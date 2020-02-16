@@ -1,10 +1,10 @@
-from app import app
+from flaskapp import app
 import unittest
 
 
 class MyTestCase(unittest.TestCase):
     def test_index(self):
-        tester =  app.test_client(self)
+        tester = app.test_client(self)
         response = tester.get("/", content_type="html/text")
         self.assertEqual(response.status_code, 200)
 
@@ -15,6 +15,7 @@ class MyTestCase(unittest.TestCase):
         data = {}
         response = tester.post("/question", data=data)
         self.assertEqual(response.status_code, 200)
+
 
 if __name__ == '__main__':
     unittest.main()
