@@ -2,24 +2,41 @@
 <html>
 
 <head>
-{#    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='demo.css') }}" />#}
+    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/questions.css') }}" />
     <title>Questions</title>
+    <style>
+
+    </style>
 </head>
 
 <body>
 
     {% for question in questions %}
-        <article>
-            <pre>
-id: {{ question.id }}
-question: {{ question.question }}
-mark: {{ question.mark }}
-difficulty: {{ question.difficulty }}
-            </pre>
-        </article>
+    <div>{{questions.size}}</div>
+    <div class="question-container"> {{ question.id }}.
+        <form>
+            <ul class="question">
+                <li class="question__field">
+                    <span class="question__field__label">question</span>:<span class=content_{{loop.index}}>
+                        {{ question.question }}</span><input type="text" class=newContent_{{loop.index}} />
+                </li>
+                <li class="question__field">
+                    <span class="question__field__label">mark</span>:<span class=content_{{loop.index}}>
+                        {{ question.mark }}</span><input type="text" class=newContent_{{loop.index}} />
+                </li>
+                <li class="question__field">
+                    <span class="question__field__label">difficulty</span>:<span class=content_{{loop.index}}>
+                        {{ question.difficulty }}</span><input type="text" class=newContent_{{loop.index}} />
+                </li>
+                <li><button type="button" class="edit {{loop.index}}">Edit</button>
+                    <button type="button" class="cancel {{loop.index}}">Cancel</button>
+                    <button type="button" class="save {{loop.index}}">Save Changes</button></li>
+        </form>
+    </div>
+    </ul>
 
     {% endfor %}
-
+    <script type="text/javascript" src=" {{ url_for('static', filename='js/questions.js') }}"> </script>
 </body>
 
 </html>
