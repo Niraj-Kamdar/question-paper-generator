@@ -9,7 +9,12 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/question", methods=["GET", "POST"])
+@app.route("/question")
+def questions():
+    _questions = Question.query.all()
+    return render_template("questions.html", questions=_questions)
+
+@app.route("/question/new", methods=["GET", "POST"])
 def add_question():
     form = QuestionForm()
     if form.validate_on_submit():
@@ -20,4 +25,4 @@ def add_question():
         db.session.commit()
         flash(f"New question added successfully!", "success")
         return redirect(url_for("add_question"))
-    return render_template("question.html", form=form)
+    return render_template("question_form.html", form=form)

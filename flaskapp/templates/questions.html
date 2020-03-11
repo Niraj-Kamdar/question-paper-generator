@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+{#    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='demo.css') }}" />#}
+    <title>Questions</title>
+</head>
+
+<body>
+
+    {% for question in questions %}
+        <article>
+            <pre>
+id: {{ question.id }}
+question: {{ question.question }}
+mark: {{ question.mark }}
+difficulty: {{ question.difficulty }}
+            </pre>
+        </article>
+
+    {% endfor %}
+
+</body>
+
+</html>
