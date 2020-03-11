@@ -14,6 +14,7 @@ def questions():
     _questions = Question.query.all()
     return render_template("questions.html", questions=_questions)
 
+
 @app.route("/question/new", methods=["GET", "POST"])
 def add_question():
     form = QuestionForm()
