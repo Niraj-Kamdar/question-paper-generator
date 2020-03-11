@@ -36,7 +36,16 @@ If your environment is activated then run following command to start webserver.
 python run.py
 ```
 
+### Migrating
+
+When you change database schema i.e change model or add new models you have to perform following commands before running server. Ofcourse you have to activate venv as we have discussed above.
+
+If your environment is activated then run following command to upgrade database.
+```console
+python manage.py db migrate -m "Migration message"
+python manage.py db upgrade
+```
+
 ## Built With
 
 * [Flask](http://flask.pocoo.org/) -  Flask is a microframework for Python based on Werkzeug and Jinja 2
-
