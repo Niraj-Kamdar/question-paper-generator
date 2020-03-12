@@ -9,7 +9,13 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/question", methods=["GET", "POST"])
+@app.route("/question")
+def questions():
+    _questions = Question.query.all()
+    return render_template("questions.html", questions=_questions)
+
+
+@app.route("/question/new", methods=["GET", "POST"])
 def add_question():
     form = QuestionForm()
     if form.validate_on_submit():
@@ -20,6 +26,7 @@ def add_question():
         db.session.commit()
         flash(f"New question added successfully!", "success")
         return redirect(url_for("add_question"))
+<<<<<<< HEAD
     return render_template("question.html", form=form)
 
 @app.route("/show_questions") #List all the questions in database and when clicked on question it goes to update question
@@ -48,3 +55,6 @@ def update_question():
 
 
 
+=======
+    return render_template("question_form.html", form=form)
+>>>>>>> 9c1ee9c13ec7a928ac4462fd948396c1ecb42eff

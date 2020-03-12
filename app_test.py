@@ -40,7 +40,7 @@ class AddQuestionTestCase(unittest.TestCase):
         self.assertTrue(tester)
 
     def test_add_question(self):
-        response = self.app.post("/question",
+        response = self.app.post("/question/new",
                                  data=dict(question="Is it okay?", mark="8", difficulty=10, submit="submit"),
                                  follow_redirects=True)
         self.assertEqual(response.status_code, 200)
