@@ -26,8 +26,6 @@ def add_question():
         db.session.commit()
         flash(f"New question added successfully!", "success")
         return redirect(url_for("add_question"))
-<<<<<<< HEAD
-    return render_template("question.html", form=form)
 
 @app.route("/show_questions") #List all the questions in database and when clicked on question it goes to update question
 def show_question():
@@ -52,9 +50,3 @@ def update_question():
         return redirect(url_for("show_question"))
     return render_template('updateMarkDifficulty.html',form = form,que = que)
 
-
-
-
-=======
-    return render_template("question_form.html", form=form)
->>>>>>> 9c1ee9c13ec7a928ac4462fd948396c1ecb42eff
