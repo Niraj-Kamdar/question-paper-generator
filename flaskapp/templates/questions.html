@@ -1,25 +1,35 @@
-<!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-{#    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='demo.css') }}" />#}
-    <title>Questions</title>
+    <title>
+        Add Question
+    </title>
+    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/list_question.css') }}"/>
 </head>
 
 <body>
+<div id="questions">
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+        <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endwith %}
+    {% block content %}
+        <h1>Question List</h1>
 
-    {% for question in questions %}
-        <article>
-            <pre>
-id: {{ question.id }}
-question: {{ question.question }}
-mark: {{ question.mark }}
-difficulty: {{ question.difficulty }}
-            </pre>
-        </article>
+        {% for q in questions %}
+            <a href="{{ url_for('update_question', question_id=q.id) }}">
+                <p>
+                    {{ q.id,q.question,q.mark,q.difficulty }}
+                </p>
+            </a>
+        {% endfor %}
+    {% endblock %}
 
-    {% endfor %}
-
+</div>
+<script type="text/javascript" src=" {{ url_for('static', filename='js/question_form.js') }}"></script>
 </body>
 
 </html>

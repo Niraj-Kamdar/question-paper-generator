@@ -1,6 +1,6 @@
-from flask import render_template, url_for, flash, redirect,request
+from flask import render_template, url_for, flash, redirect, request
 from flaskapp import app, db
-from flaskapp.forms import QuestionForm,updateForm
+from flaskapp.forms import QuestionForm, updateForm
 from flaskapp.models import Question
 
 
@@ -9,7 +9,7 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/question")
+@app.route("/questions")
 def questions():
     _questions = Question.query.all()
     return render_template("questions.html", questions=_questions)
@@ -26,27 +26,23 @@ def add_question():
         db.session.commit()
         flash(f"New question added successfully!", "success")
         return redirect(url_for("add_question"))
+    return render_template("question_form.html", form=form, question=Question(mark="", difficulty=""))
 
-@app.route("/show_questions") #List all the questions in database and when clicked on question it goes to update question
-def show_question():
-    q = db.session.query(Question).all() 
-    return render_template('list_question.html',questions = q) 
 
-@app.route("/update_question",methods=["GET","POST"]) 
-def update_question():
-    question_id = request.args.get('question_id')
-    que = db.session.query(Question).filter_by(id = question_id).first()
-    if que == None:
-        flash(f"Question Does not exist", "Failure")
-        return redirect(url_for("show_question"))
-    form = updateForm()
-    if form.validate_on_submit():        
-        if form.mark.data is not None:
-            que.mark = form.mark.data
-        if form.difficulty.data is not None:
-            que.difficulty = form.difficulty.data
+@app.route("/question/update/<int:question_id>", methods=["GET", "POST"])
+def update_question(question_id):
+    question = db.session.query(Question).filter_by(id=question_id).first()
+    if question is None:
+        flash(f"Question:{question_id} Does not exist", "Failure")
+        return redirect(url_for("questions"))
+    # print(question.question)
+    form = QuestionForm()
+    form.question.data = question.question
+    if form.validate_on_submit():
+        question.question = form.question.data
+        question.mark = form.mark.data
+        question.difficulty = form.difficulty.data
         db.session.commit()
-        flash(f"Update successfull!", "success")
+        flash(f"Question:{question_id} updated successfully!", "success")
         return redirect(url_for("show_question"))
-    return render_template('updateMarkDifficulty.html',form = form,que = que)
-
+    return render_template('question_form.html', form=form, question=question)
