@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>
@@ -35,7 +35,7 @@
         <div class="form__client_error"></div>
         <div class="form__fields">
             {{ form.mark.label(class="form__fields__label") }}
-            {{ form.mark(id="form__fields__mark", value=question.mark) }}
+            {{ form.mark(id="form__fields__mark") }}
         </div>
 
         {% if form.mark.errors %}
@@ -48,7 +48,7 @@
         <div class="form__client_error"></div>
         <div class="form__fields">
             {{ form.difficulty.label(class="form__fields__label") }}
-            {{ form.difficulty(id="form__fields__difficulty", value=question.difficulty) }}
+            {{ form.difficulty(id="form__fields__difficulty") }}
         </div>
 
         {% if form.difficulty.errors %}
