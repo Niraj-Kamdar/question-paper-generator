@@ -26,4 +26,13 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Unit-test
       run: | 
-        python app_test.py
+        pip install coverage
+        coverage run -m unittest app_test.py
+        coverage xml -o covreport.xml
+    - name: upload code coverage to codecov
+      uses: codecov/codecov-action@v1
+      with:
+        file: ./covreport.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true
