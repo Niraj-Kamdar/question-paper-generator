@@ -11,11 +11,3 @@ class QuestionForm(FlaskForm):
     difficulty = IntegerField('Difficulty',
                               validators=[DataRequired(), NumberRange(1, 100, "Not a valid difficulty")])
     submit = SubmitField('submit')
-
-
-class updateForm(FlaskForm):
-    mark = IntegerField('Mark',
-                        validators=[NumberRange(1, 100, "Not in a valid mark range"), Optional()])
-    difficulty = IntegerField('Difficulty',
-                              validators=[NumberRange(1, 100, "Not a valid difficulty"), Optional()])
-    submit = SubmitField('submit')

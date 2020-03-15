@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from flaskapp import app, db
-from flaskapp.forms import QuestionForm, updateForm
+from flaskapp.forms import QuestionForm
 from flaskapp.models import Question
 
 
