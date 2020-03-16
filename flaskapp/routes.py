@@ -2,11 +2,18 @@ from flask import render_template, url_for, flash, redirect, request
 from flaskapp import app, db
 from flaskapp.forms import QuestionForm, updateForm
 from flaskapp.models import Question
+# generate random integer values
+from random import seed
+from random import randint
+seed(1)
 
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    colors = [["#007991","#00bfe6"],["#642B73","#C6426E"],["#444444","#777777"]]
+    opacity = "b3"
+    random_num = randint(0, len(colors)-1)
+    return render_template("index.html",color=colors[random_num],opacity=opacity)
 
 
 @app.route("/question")
