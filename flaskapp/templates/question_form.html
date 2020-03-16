@@ -21,6 +21,7 @@
     <h3 id="form__question_paper">Question Paper</h3>
     <form method="POST" action="" novalidate>
         {{ form.hidden_tag() }}
+
         <div class="form__fields">
             {{ form.question.label(class="form__fields__label") }}
             {{ form.question(id="form__fields__question") }}
@@ -33,11 +34,11 @@
             </ul>
         {% endif %}
         <div class="form__client_error"></div>
+
         <div class="form__fields">
             {{ form.mark.label(class="form__fields__label") }}
             {{ form.mark(id="form__fields__mark") }}
         </div>
-
         {% if form.mark.errors %}
             <ul class="form__error">
                 {% for error in form.mark.errors %}
@@ -46,6 +47,7 @@
             </ul>
         {% endif %}
         <div class="form__client_error"></div>
+
         <div class="form__fields">
             {{ form.difficulty.label(class="form__fields__label") }}
             {{ form.difficulty(id="form__fields__difficulty") }}
@@ -59,6 +61,21 @@
             </ul>
         {% endif %}
         <div class="form__client_error"></div>
+
+        <div class="form__fields">
+            {{ form.imp.label(class="form__fields__label") }}
+            {{ form.imp(id="form__fields__imp") }}
+        </div>
+
+        {% if form.imp.errors %}
+            <ul class="form__error">
+                {% for error in form.imp.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="form__client_error"></div>
+
         {{ form.submit }}
     </form>
 </div>
