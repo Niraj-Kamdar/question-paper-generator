@@ -1,42 +1,77 @@
 <!DOCTYPE html>
-<html>
 
-<head>
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/questions.css') }}" />
-    <title>Questions</title>
-    <style>
+<html lang="en">
+    <head>
+        <title>
+            Add Question
+        </title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+            filename='css/list_question.css') }}" />
+    </head>
 
-    </style>
-</head>
+    <body>
+        <div id="questions">
+            {% with messages = get_flashed_messages(with_categories=true) %} {%
+            if
+            messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %} {% endwith %}
+            {% block content %}
+            <h1>Question List</h1>
 
-<body>
 
-    {% for question in questions %}
-    <div>{{questions.size}}</div>
-    <div class="question-container"> {{ question.id }}.
-        <form>
-            <ul class="question">
-                <li class="question__field">
-                    <span class="question__field__label">question</span>:<span class=content_{{loop.index}}>
-                        {{ question.question }}</span><input type="text" class=newContent_{{loop.index}} />
-                </li>
-                <li class="question__field">
-                    <span class="question__field__label">mark</span>:<span class=content_{{loop.index}}>
-                        {{ question.mark }}</span><input type="text" class=newContent_{{loop.index}} />
-                </li>
-                <li class="question__field">
-                    <span class="question__field__label">difficulty</span>:<span class=content_{{loop.index}}>
-                        {{ question.difficulty }}</span><input type="text" class=newContent_{{loop.index}} />
-                </li>
-                <li><button type="button" class="edit {{loop.index}}">Edit</button>
-                    <button type="button" class="cancel {{loop.index}}">Cancel</button>
-                    <button type="button" class="save {{loop.index}}">Save Changes</button></li>
-        </form>
-    </div>
-    </ul>
+            {% for question in questions %}
+            <div>{{questions.size}}</div>
+            <div class="question-container"> {{ question.id }}.
+                <form>
+                    <ul class="question">
+                        <li class="question__field">
+                            <span class="question__field__label">question</span>:<span
+                                class=content_{{loop.index}}>
+                                {{ question.question }}</span><input type="text"
+                                class=newContent_{{loop.index}} />
+                        </li>
+                        <li class="question__field">
+                            <span class="question__field__label">mark</span>:<span
+                                class=content_{{loop.index}}>
+                                {{ question.mark }}</span><input type="text"
+                                class=newContent_{{loop.index}} />
+                        </li>
+                        <li class="question__field">
+                            <span class="question__field__label">difficulty</span>:<span
+                                class=content_{{loop.index}}>
+                                {{ question.difficulty }}</span><input
+                                type="text" class=newContent_{{loop.index}} />
+                        </li>
+                        <li><button type="button" class="edit {{loop.index}}">Edit</button>
+                            <button type="button" class="cancel {{loop.index}}">Cancel</button>
+                            <button type="button" class="save {{loop.index}}">Save
+                                Changes</button></li>
+                    </form>
+                </div>
+            </ul>
 
-    {% endfor %}
-    <script type="text/javascript" src=" {{ url_for('static', filename='js/questions.js') }}"> </script>
-</body>
+            {% endfor %}
+            <script type="text/javascript" src="{{ url_for('static',
+                filename='js/questions.js') }}"> </script>
+
+            {% for q in questions %}
+            <a href="{{ url_for('update_question', question_id=q.id) }}">
+                <p>
+                    {{ q.id,q.question,q.mark,q.difficulty }}
+                </p>
+            </a>
+            {% endfor %}
+            {% endblock %}
+
+        </div>
+        <script type="text/javascript" src="{{ url_for('static',
+            filename='js/question_form.js') }}"></script>
+
+    </body>
 
 </html>

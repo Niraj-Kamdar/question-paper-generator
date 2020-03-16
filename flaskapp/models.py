@@ -9,3 +9,9 @@ class Question(db.Model):
 
     def __repr__(self):
         return f"Question({self.question}, {self.mark}, {self.difficulty})"
+
+    def to_dict(self):
+        return dict(id=self.id,
+                    question=self.question,
+                    mark=self.mark,
+                    difficulty=self.difficulty)

@@ -1,6 +1,6 @@
 name: Python application
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -24,5 +24,15 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-        # unittesting 
-        python app_test.py
+    - name: Unit-test
+      run: | 
+        pip install coverage
+        coverage run -m unittest app_test.py
+        coverage xml -o covreport.xml
+    - name: upload code coverage to codecov
+      uses: codecov/codecov-action@v1
+      with:
+        file: ./covreport.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true

@@ -25,5 +25,22 @@ def add_question():
         db.session.add(question)
         db.session.commit()
         flash(f"New question added successfully!", "success")
-        return redirect(url_for("add_question"))
+        return redirect(url_for("questions"))
     return render_template("question_form.html", form=form)
+
+
+@app.route("/question/update/<int:question_id>", methods=["GET", "POST"])
+def update_question(question_id):
+    question = db.session.query(Question).filter_by(id=question_id).first()
+    if question is None:
+        flash(f"Question:{question_id} Does not exist", "Failure")
+        return redirect(url_for("questions"))
+    form = QuestionForm(**question.to_dict())
+    if form.validate_on_submit():
+        question.question = form.question.data
+        question.mark = form.mark.data
+        question.difficulty = form.difficulty.data
+        db.session.commit()
+        flash(f"Question:{question_id} updated successfully!", "success")
+        return redirect(url_for("questions"))
+    return render_template('question_form.html', form=form)
