@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect,json
+from flask import render_template, url_for, flash, redirect, json
 from flaskapp import app, db
 from flaskapp.forms import QuestionForm
 from flaskapp.models import Question
@@ -41,16 +41,17 @@ def update_question(question_id):
         question.question = form.question.data
         question.mark = form.mark.data
         question.difficulty = form.difficulty.data
-        question.imp=form.imp.data
+        question.imp = form.imp.data
         db.session.commit()
         flash(f"Question:{question_id} updated successfully!", "success")
         return redirect(url_for("questions"))
     return render_template('question_form.html', form=form)
 
+
 @app.route("/question/imp/<impq>", methods=["GET", "POST"])
 def mark_imp(impq):
-    arr  = json.loads(impq)
-    Question_a = Question.query.all()
+    """impq string convert to list"""
+    arr = json.loads(impq)
     for x in arr:
         question = db.session.query(Question).filter_by(id=x).first()
         question.imp = True

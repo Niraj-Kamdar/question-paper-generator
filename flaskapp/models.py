@@ -9,7 +9,7 @@ class Question(db.Model):
     imp = db.Column(db.Boolean,default=False)
 
     def __repr__(self):
-        return f"Question({self.question}, {self.mark}, {self.difficulty},{self.imp})"
+        return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.imp})"
 
     def to_dict(self):
         return dict(id=self.id,
