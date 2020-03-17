@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>
-        Add Question
-    </title>
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/question_form.css') }}"/>
-</head>
-
-<body>
+{% extends "layout.html" %}
+{% block main %}
 <div id="form">
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
       messages %}
@@ -62,7 +53,4 @@
         {{ form.submit }}
     </form>
 </div>
-<script type="text/javascript" src=" {{ url_for('static', filename='js/question_form.js') }}"></script>
-</body>
-
-</html>
+{% endblock main %}

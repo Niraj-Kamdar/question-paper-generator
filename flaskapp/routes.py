@@ -12,7 +12,12 @@ def index():
 @app.route("/question")
 def questions():
     _questions = Question.query.all()
-    return render_template("questions.html", questions=_questions)
+    # change css_file and js_file here!
+    return render_template("questions.html",
+                           questions=_questions,
+                           css_file='css/question_form.css',
+                           js_file='js/question_form.js'
+                           )
 
 
 @app.route("/question/new", methods=["GET", "POST"])
@@ -26,7 +31,11 @@ def add_question():
         db.session.commit()
         flash(f"New question added successfully!", "success")
         return redirect(url_for("questions"))
-    return render_template("question_form.html", form=form)
+    return render_template("question_form.html",
+                           form=form,
+                           css_file='css/question_form.css',
+                           js_file='js/question_form.js'
+                           )
 
 
 @app.route("/question/update/<int:question_id>", methods=["GET", "POST"])
@@ -43,4 +52,8 @@ def update_question(question_id):
         db.session.commit()
         flash(f"Question:{question_id} updated successfully!", "success")
         return redirect(url_for("questions"))
-    return render_template('question_form.html', form=form)
+    return render_template('question_form.html',
+                           form=form,
+                           css_file='css/question_form.css',
+                           js_file='js/question_form.js'
+                           )
