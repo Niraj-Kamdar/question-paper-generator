@@ -22,7 +22,7 @@ def questions():
     return render_template("questions.html",
                            questions=_questions,
                            css_file='css/question_form.css',
-                           js_file='js/question_form.js'
+                           js_file='js/update_question.js'
                            )
 
 
