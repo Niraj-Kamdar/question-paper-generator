@@ -1,41 +1,30 @@
-<!DOCTYPE html>
+{% extends "layout.html" %}
 
-<html lang="en">
-<head>
-    <title>
-        Add Question
-    </title>
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/list_question.css') }}"/>
-</head>
+{% block main %}
+	<div id="questions">
+		{% with messages = get_flashed_messages(with_categories=true) %} {% if
+		  messages %}
+			<ul class="flashes">
+				{% for category, message in messages %}
+					<li class="{{ category }}">{{ message }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %} {% endwith %}
+		{% block content %}
+			<h1>Question List</h1>
 
-<body>
-<div id="questions">
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-      messages %}
-        <ul class="flashes">
-            {% for category, message in messages %}
-                <li class="{{ category }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %} {% endwith %}
-    {% block content %}
-        <h1>Question List</h1>
+			{% for q in questions %}
+				<a href="{{ url_for('update_question', question_id=q.id) }}">
+					<p>
+					<h3>{{ q.id }}</h3>
+					<p>Question = {{ q.question }}</p>
+					<p>Marks = {{ q.mark }}</p>
+					<p>Difficulty = {{ q.difficulty }}</p>
+					<p>important = {{ q.imp }}</p>
+					</p>
+				</a>
+			{% endfor %}
+		{% endblock %}
 
-        {% for q in questions %}
-            <a href="{{ url_for('update_question', question_id=q.id) }}">
-                <p>
-                <h3>{{ q.id }}</h3>
-                <p>Question = {{ q.question }}</p>
-                <p>Marks = {{ q.mark }}</p>
-                <p>Difficulty = {{ q.difficulty }}</p>
-                <p>important = {{ q.imp }}</p>
-                </p>
-            </a>
-        {% endfor %}
-    {% endblock %}
-
-</div>
-<script type="text/javascript" src=" {{ url_for('static', filename='js/question_form.js') }}"></script>
-</body>
-
-</html>
+	</div>
+{% endblock %}
