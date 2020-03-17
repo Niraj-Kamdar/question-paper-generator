@@ -3,13 +3,13 @@ const question = document.getElementById("form__fields__question");
 const mark = document.getElementById("form__fields__mark");
 const difficulty = document.getElementById("form__fields__difficulty");
 const formErrors = document.querySelectorAll(".form__client_error");
-question.addEventListener("blur", e => {
+question.addEventListener("blur", () => {
     if (question.value.trim() === "")
         formErrors[0].innerHTML = "empty question";
     if (question.value.trim().length < 2)
         formErrors[0].innerHTML = "enter valid question";
 });
-question.addEventListener("input", e => {
+question.addEventListener("input", () => {
     if (formErrors[0].innerHTML) formErrors[0].innerHTML = "";
 });
 mark.addEventListener("blur", e => {
@@ -21,7 +21,7 @@ mark.addEventListener("blur", e => {
     )
         formErrors[1].innerHTML = "enter marks between 1 and 100";
 });
-mark.addEventListener("input", e => {
+mark.addEventListener("input", () => {
     if (formErrors[1].innerHTML) formErrors[1].innerHTML = "";
 });
 difficulty.addEventListener("blur", e => {
@@ -33,7 +33,7 @@ difficulty.addEventListener("blur", e => {
     )
         formErrors[2].innerHTML = "enter difficulty between 1 and 100";
 });
-difficulty.addEventListener("input", e => {
+difficulty.addEventListener("input", () => {
     if (formErrors[2].innerHTML) formErrors[2].innerHTML = "";
 });
 form.addEventListener("submit", e => {
