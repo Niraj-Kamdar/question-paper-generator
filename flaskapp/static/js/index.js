@@ -1,5 +1,5 @@
-function scrollFunction(color1,color2) {
-	var header = document.getElementById("header");
+scrollFunction = (color1,color2) => {
+  var header = document.getElementById("header");
 	var ofset = 50;
 	if ( window.pageYOffset > ofset || document.body.scrollTop > ofset || document.documentElement.scrollTop > ofset) {
 		header.classList.add("py-2");
@@ -12,8 +12,9 @@ function scrollFunction(color1,color2) {
 	}
 }
 
-function login_page_show() {
-	var x = document.getElementById('content');
+var btn = document.getElementsByClassName('login_btn')[0];
+btn.addEventListener("click", () => {
+    var x = document.getElementById('content');
 	if (x.className === 'hidden') {
 		document.getElementById('bodycontent').style.marginLeft = "0%";
 		document.getElementsByClassName('overlape')[0].style.marginLeft = "0%";
@@ -26,14 +27,15 @@ function login_page_show() {
 		x.className = 'hidden';
 		setTimeout(() => {  disp(x) }, 1000);
 		setTimeout(() => {
-		document.getElementById('bodycontent').style.marginLeft = "-30%";
-		document.getElementsByClassName('overlape')[0].style.marginLeft = "-30%";
-		document.getElementsByClassName('col2')[0].style.width = "55%";
-		document.getElementById('footer').style.marginLeft = "-30%";
-		document.getElementById('footercontent').style.marginLeft = "30%";
-	}, 500);
-}
-}
+			document.getElementById('bodycontent').style.marginLeft = "-30%";
+			document.getElementsByClassName('overlape')[0].style.marginLeft = "-30%";
+			document.getElementsByClassName('col2')[0].style.width = "55%";
+			document.getElementById('footer').style.marginLeft = "-30%";
+			document.getElementById('footercontent').style.marginLeft = "30%";
+		}, 500);
+	}
+});
+
 function disp(x){
 	if (x.style.height != "0px") {
 		x.style.height = "0px";
