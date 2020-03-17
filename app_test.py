@@ -1,9 +1,9 @@
-from flask_sqlalchemy import orm
-from flask_sqlalchemy import sqlalchemy
+import os
+import unittest
+
+from flask_sqlalchemy import orm, sqlalchemy
 
 from flaskapp import app, db, models
-import unittest
-import os
 
 sessionmaker = orm.sessionmaker
 create_engine = sqlalchemy.create_engine

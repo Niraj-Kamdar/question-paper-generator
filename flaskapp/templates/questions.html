@@ -24,11 +24,11 @@
         {% for q in questions %}
             <a href="{{ url_for('update_question', question_id=q.id) }}">
                 <p>
-                    <h3>{{q.id}}</h3>
-                    <p>Question = {{q.question}}</p>
-                    <p>Marks = {{q.mark}}</p>
-                    <p>Difficulty = {{q.difficulty}}</p>
-                    <p>important = {{q.imp}}</p>
+                <h3>{{ q.id }}</h3>
+                <p>Question = {{ q.question }}</p>
+                <p>Marks = {{ q.mark }}</p>
+                <p>Difficulty = {{ q.difficulty }}</p>
+                <p>important = {{ q.imp }}</p>
                 </p>
             </a>
         {% endfor %}
