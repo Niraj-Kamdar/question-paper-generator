@@ -34,7 +34,7 @@
 			    			<h4>Question Paper Generator</h4>
 			    		</div>
 			    		<div class="col3">
-			    			<button type="button" class="btn-outline-light login_btn" style="color : {{ color[0] }}">Login</button>
+			    			<button type="button" class="btn-outline-light login_btn" id="show_login" style="color : {{ color[0] }}">Login</button>
 			    		</div>
 	    			</div>
 	    		</header>
@@ -68,6 +68,8 @@
 										<p class="text-justify" style="text-indent:5%;"><i class="material-icons mx-2 float-left" style="font-size: 1.5vw">subdirectory_arrow_right</i>In this modern world e-book has become a basic requirement for the candidates to appear and prepare for their competitive exams within college premises. In this paper we are proposing a model system for smart question paper generation of universities. The mechanism behind this system is that many random question papers are generated along with the difficulty level of the questions in terms of percentage. After generation that particular question is then mailed to the respective university. In this system administration of the database inputs set of question paper with an option of check box to tick the correct answer. More ever weightage of the particular question in terms of marks and hours and the complexity of the question is determined. After this process whole question paper along with the weightage is stored in the database. In order to make question paper for 100 marks, admin sets all the weightage and difficulties to solve the problem. As soon as the difficulty and weightage is specified a pre doc file as per selected format will be downloaded to the admin and an electronic mail will be triggered. Range of difficulty may vary from easy, medium and hard.</p>
 										<p class="text-justify" style="text-indent:5%;"><i class="material-icons mx-2 float-left" style="font-size: 1.5vw">subdirectory_arrow_right</i>In this modern world e-book has become a basic requirement for the candidates to appear and prepare for their competitive exams within college premises. In this paper we are proposing a model system for smart question paper generation of universities. The mechanism behind this system is that many random question papers are generated along with the difficulty level of the questions in terms of percentage. After generation that particular question is then mailed to the respective university. In this system administration of the database inputs set of question paper with an option of check box to tick the correct answer. More ever weightage of the particular question in terms of marks and hours and the complexity of the question is determined. After this process whole question paper along with the weightage is stored in the database. In order to make question paper for 100 marks, admin sets all the weightage and difficulties to solve the problem. As soon as the difficulty and weightage is specified a pre doc file as per selected format will be downloaded to the admin and an electronic mail will be triggered. Range of difficulty may vary from easy, medium and hard.</p>
 										<p class="text-justify" style="text-indent:5%;"><i class="material-icons mx-2 float-left" style="font-size: 1.5vw">subdirectory_arrow_right</i>In this modern world e-book has become a basic requirement for the candidates to appear and prepare for their competitive exams within college premises. In this paper we are proposing a model system for smart question paper generation of universities. The mechanism behind this system is that many random question papers are generated along with the difficulty level of the questions in terms of percentage. After generation that particular question is then mailed to the respective university. In this system administration of the database inputs set of question paper with an option of check box to tick the correct answer. More ever weightage of the particular question in terms of marks and hours and the complexity of the question is determined. After this process whole question paper along with the weightage is stored in the database. In order to make question paper for 100 marks, admin sets all the weightage and difficulties to solve the problem. As soon as the difficulty and weightage is specified a pre doc file as per selected format will be downloaded to the admin and an electronic mail will be triggered. Range of difficulty may vary from easy, medium and hard.</p>
+										<p hidden id="data_color1" style="color: yellow;"> {{ color[0] }} </p>
+	    								<p hidden id="data_color2" style="color: yellow;"> {{ color[1] }}  </p>
 									</div>
 								</div>
 							</div>
@@ -94,13 +96,10 @@
 				        </div>
 	    			</div>
 	    		</footer>
+	    		
 
 	      	</div>
 		</div>
-
-		<script type="text/javascript">
-			window.onscroll = function() {scrollFunction( "{{ color[0] }}","{{ color[1] }}")};
-		</script>
 
 	    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
