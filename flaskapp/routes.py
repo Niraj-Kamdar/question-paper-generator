@@ -9,10 +9,10 @@ from random import randint
 
 @app.route("/")
 def index():
-    colors = [["#007991","#00bfe6"],["#642B73","#C6426E"],["#444444","#777777"]]
+    colors = [["#007991", "#00bfe6"], ["#642B73", "#C6426E"], ["#444444", "#777777"]]
     opacity = "b3"
-    random_num = randint(0, len(colors)-1)
-    return render_template("index.html",color=colors[random_num],opacity=opacity)
+    random_num = randint(0, len(colors) - 1)
+    return render_template("index.html", color=colors[random_num], opacity=opacity)
 
 
 @app.route("/question")
@@ -66,6 +66,7 @@ def update_question(question_id):
                            js_file='js/question_form.js'
                            )
 
+
 @app.route("/question/imp/<impq>", methods=["GET", "POST"])
 def mark_imp(impq):
     """impq string convert to list"""
@@ -75,4 +76,3 @@ def mark_imp(impq):
         question.imp = True
         db.session.commit()
     return redirect(url_for("questions"))
-
