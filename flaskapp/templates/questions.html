@@ -12,7 +12,10 @@
     {% endif %} {% endwith %}
     {% block content %}
     <h1>Question List</h1>
-
+    <button id="mark">Mark As IMP</button>
+    <button id="cancel">Reset</button>
+    <button id="update">Update</button>
+    <hr />
     {% for q in questions %}
     <div class="controlBtn">
         <button class="editBtn">EDIT</button>
@@ -39,6 +42,7 @@
                 <li class="questionItems">
                     <div class="questionLabel">IMP </div>
                     <div class="questionValue">:{{q.imp}}</div>
+                    <input type="checkbox" name="imp_question" value="false" class="imp" />
                 </li>
 
             </ul>
