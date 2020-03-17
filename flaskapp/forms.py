@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, TextAreaField, IntegerField
+from wtforms import SubmitField, TextAreaField, IntegerField, BooleanField
 from wtforms.validators import DataRequired, Length, NumberRange
 
 
@@ -10,10 +10,9 @@ class QuestionForm(FlaskForm):
                         validators=[DataRequired(), NumberRange(1, 100, "Not in a valid mark range")])
     difficulty = IntegerField('Difficulty',
                               validators=[DataRequired(), NumberRange(1, 100, "Not a valid difficulty")])
+    imp = BooleanField('imp')
     submit = SubmitField('submit')
-class updateForm(FlaskForm):
-    mark = IntegerField('Mark',
-                        validators=[NumberRange(1, 100, "Not in a valid mark range"),Optional()])
-    difficulty = IntegerField('Difficulty',
-                              validators=[NumberRange(1, 100, "Not a valid difficulty"),Optional()])
-    submit = SubmitField('submit')
+    option1 = TextAreaField('Option1')
+    option2 = TextAreaField('Option2')
+    option3 = TextAreaField('Option3')
+    option4 = TextAreaField('Option4')
