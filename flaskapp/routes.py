@@ -4,9 +4,7 @@ from flaskapp import app, db
 from flaskapp.forms import QuestionForm
 from flaskapp.models import Question
 # generate random integer values
-from random import seed
 from random import randint
-seed(1)
 
 
 @app.route("/")
