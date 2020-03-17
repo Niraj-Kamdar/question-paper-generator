@@ -3,6 +3,7 @@
 [![GitHub Actions](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fatrox%2Fsync-dotenv%2Fbadge&label=build&logo=none)](https://actions-badge.atrox.dev/Niraj-Kamdar/question-paper-generator/goto)
 [![codecov](https://codecov.io/gh/Niraj-Kamdar/question-paper-generator/branch/develop/graph/badge.svg)](https://codecov.io/gh/Niraj-Kamdar/question-paper-generator)
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/Niraj-Kamdar/question-paper-generator/?ref=repository-badge)
+[![DeepScan grade](https://deepscan.io/api/teams/8090/projects/10244/branches/138920/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=8090&pid=10244&bid=138920)
 [![fork this repo](http://githubbadges.com/fork.svg?user=Niraj-Kamdar&repo=question-paper-generator&style=flat)](https://github.com/Niraj-Kamdar/question-paper-generator/fork)
 
 
