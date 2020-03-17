@@ -1,8 +1,3 @@
-if(1 == 2){
-	login_page_show();
-	scrollFunction("a","b");
-}
-
 function scrollFunction(color1,color2) {
 	var header = document.getElementById("header");
 	var ofset = 50;
