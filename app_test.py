@@ -45,7 +45,7 @@ class AddQuestionTestCase(unittest.TestCase):
                                  follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         q = self.session.query(models.Question).first()
-        self.assertEqual(str(q), "Question(Is it okay?, 8, 10,True)")
+        self.assertEqual(str(q), "Question(Is it okay?, 8, 10, True)")
 
     def tearDown(self):
         """Destroy blank temp database after each test"""
