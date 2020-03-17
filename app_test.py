@@ -1,9 +1,9 @@
-from flask_sqlalchemy import orm
-from flask_sqlalchemy import sqlalchemy
+import os
+import unittest
+
+from flask_sqlalchemy import orm, sqlalchemy
 
 from flaskapp import app, db, models
-import unittest
-import os
 
 sessionmaker = orm.sessionmaker
 create_engine = sqlalchemy.create_engine
@@ -41,11 +41,11 @@ class AddQuestionTestCase(unittest.TestCase):
 
     def test_add_question(self):
         response = self.app.post("/question/new",
-                                 data=dict(question="Is it okay?", mark="8", difficulty=10, submit="submit"),
+                                 data=dict(question="Is it okay?", mark="8", difficulty=10, imp=True, submit="submit"),
                                  follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         q = self.session.query(models.Question).first()
-        self.assertEqual(str(q), "Question(Is it okay?, 8, 10)")
+        self.assertEqual(str(q), "Question(Is it okay?, 8, 10, True)")
 
     def tearDown(self):
         """Destroy blank temp database after each test"""

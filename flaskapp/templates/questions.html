@@ -1,25 +1,30 @@
 {% extends "layout.html" %}
 
 {% block main %}
-    <div id="questions">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            <ul class="flashes">
-                {% for category, message in messages %}
-                    <li class="{{ category }}">{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        {% endwith %}
-        {% block content %}
-            <h1>Question List</h1>
-                {% for q in questions %}
-                    <a href="{{ url_for('update_question', question_id=q.id) }}">
-                            <p>
-                                {{ q.id,q.question,q.mark,q.difficulty }}
-                            </p>
-                    </a>
-                {% endfor %}
-        {% endblock content %}
-    </div>
+	<div id="questions">
+		{% with messages = get_flashed_messages(with_categories=true) %} {% if
+		  messages %}
+			<ul class="flashes">
+				{% for category, message in messages %}
+					<li class="{{ category }}">{{ message }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %} {% endwith %}
+		{% block content %}
+			<h1>Question List</h1>
+
+			{% for q in questions %}
+				<a href="{{ url_for('update_question', question_id=q.id) }}">
+					<p>
+					<h3>{{ q.id }}</h3>
+					<p>Question = {{ q.question }}</p>
+					<p>Marks = {{ q.mark }}</p>
+					<p>Difficulty = {{ q.difficulty }}</p>
+					<p>important = {{ q.imp }}</p>
+					</p>
+				</a>
+			{% endfor %}
+		{% endblock %}
+
+	</div>
 {% endblock %}
