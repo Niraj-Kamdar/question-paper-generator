@@ -4,7 +4,7 @@ const formContent = Array.from(document.getElementsByClassName("formContent"));
 const forms = document.getElementsByTagName("form");
 const buffer = new Array(editBtns.length);
 editBtns.forEach(node => {
-  node.addEventListener("click", e => {
+  node.addEventListener("click", () => {
     if (!forms.length) {
       let content = "";
       const url = "/question/update/" + (editBtns.indexOf(node) + 1);
@@ -29,13 +29,13 @@ editBtns.forEach(node => {
           document.body.appendChild(myscript);
         })
         .catch(e => {
-          console.log(e);
+          throw new Error(e);
         });
     }
   });
 });
 cancelBtns.forEach(node => {
-  node.addEventListener("click", e => {
+  node.addEventListener("click", () => {
     formContent[cancelBtns.indexOf(node)].innerHTML =
       buffer[cancelBtns.indexOf(node)];
     node.style.display = "none";

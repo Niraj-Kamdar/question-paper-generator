@@ -35,9 +35,7 @@ difficulty.addEventListener("blur", e => {
 difficulty.addEventListener("input", () => {
   if (formErrors[2].innerHTML) formErrors[2].innerHTML = "";
 });
-console.log("loaded");
 form.addEventListener("submit", e => {
-  console.log("done!!!!");
   let flag = 0;
   if (question.value.trim() === "") {
     formErrors[0].innerHTML = "empty question";
