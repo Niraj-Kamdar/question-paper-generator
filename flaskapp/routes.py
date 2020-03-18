@@ -9,10 +9,10 @@ from random import randint
 
 @app.route("/")
 def index():
-    colors = [["#007991","#00bfe6"],["#642B73","#C6426E"],["#444444","#777777"]]
+    colors = [["#007991", "#00bfe6"], ["#642B73", "#C6426E"], ["#444444", "#777777"]]
     opacity = "b3"
-    random_num = randint(0, len(colors)-1)
-    return render_template("index.html",color=colors[random_num],opacity=opacity)
+    random_num = randint(0, len(colors) - 1)
+    return render_template("index.html", color=colors[random_num], opacity=opacity)
 
 
 @app.route("/question")
@@ -22,7 +22,7 @@ def questions():
     return render_template("questions.html",
                            questions=_questions,
                            css_file='css/question_form.css',
-                           js_file='js/question_form.js'
+                           js_file='js/update_question.js'
                            )
 
 
@@ -39,7 +39,7 @@ def add_question():
                             option3 = form.option3.data,
                             option4 = form.option4.data,
                             )
-        db.session.add(question)
+        db.session.add(question)    
         db.session.commit()
         flash(f"New question added successfully!", "success")
         return redirect(url_for("questions"))
@@ -75,13 +75,23 @@ def update_question(question_id):
                            js_file='js/question_form.js'
                            )
 
-@app.route("/question/imp/<impq>", methods=["GET", "POST"])
-def mark_imp(impq):
-    """impq string convert to list"""
-    arr = json.loads(impq)
-    for x in arr:
-        question = db.session.query(Question).filter_by(id=x).first()
-        question.imp = True
-        db.session.commit()
+
+@app.route("/question/imp/<impq>", methods=["GET"])
+def imp_question(impq):
+    """impq string convert to list of imp and notimp"""
+    obj = json.loads(impq)
+    imp = obj["imp"]
+    notimp = obj["notimp"]
+    db.session.query().filter(Question.id.in_(imp)).update({"imp": True})
+    db.session.query().filter(Question.id.in_(notimp)).update({"imp": False})
+    db.session.commit()
     return redirect(url_for("questions"))
 
+
+@app.route("/question/delete/<deleteq>", methods=["GET"])
+def delete_question(deleteq):
+    """impq string convert to list of imp and notimp"""
+    del_ids = json.loads(deleteq)
+    db.session.query().filter(Question.id.in_(del_ids)).delete()
+    db.session.commit()
+    return redirect(url_for("questions"))

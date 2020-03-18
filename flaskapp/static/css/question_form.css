@@ -28,3 +28,48 @@
     text-align: left;
     width: 70px;
 }
+
+.questionContainer {
+    display: flex;
+    margin: 0 0 10px 0;
+}
+
+.questionId {
+    margin: 10px 0;
+}
+
+.questions {
+    list-style-type: none;
+    padding: 0 0 0 10px;
+    margin: 0;
+}
+
+.questionItems {
+    display: flex;
+    margin: 10px 0;
+}
+
+.questionLabel {
+    width: 70px;
+}
+
+.controlBtn {
+    margin-left: 16px;
+}
+
+.cancelBtn {
+    display: none;
+}
+
+form {
+    margin-left: 10px;
+}
+
+.imp {
+    display: none;
+}
+
+#cancel,
+#update {
+    display: none;
+}

@@ -11,7 +11,7 @@
             <g>
                 <use xlink:href="#e5Mn9eGcOB" opacity="1" fill="#ae6ee8" fill-opacity="0"></use>
                 <g>
-                    <use xlink:href="#e5Mn9eGcOB" opacity="1" fill-opacity="0" stroke="#ffffff" stroke-width="10"
+                    <use xlink:href="#e5Mn9eGcOB" opacity="1" fill-opacity="0" stroke="#000000" stroke-width="10"
                          stroke-opacity="1"></use>
                 </g>
             </g>
