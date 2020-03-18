@@ -6,16 +6,16 @@
     <title>
         {{ title }}
     </title>
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}" />
+    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}"/>
 </head>
 
 <body>
 
-    {% block main %}
-    {% endblock main %}
+{% block main %}
+{% endblock main %}
 
 
-    <script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}"></script>
+<script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}"></script>
 </body>
 
 </html>

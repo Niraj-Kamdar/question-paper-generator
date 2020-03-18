@@ -69,10 +69,11 @@ def update_question(question_id):
 
 @app.route("/question/imp/<impq>", methods=["GET"])
 def mark_imp(impq):
-    """impq string convert to list"""
-    arr = json.loads(impq)
-    for x in arr:
-        question = db.session.query(Question).filter_by(id=x).first()
-        question.imp = True
-        db.session.commit()
+    """impq string convert to list of imp and notimp"""
+    obj = json.loads(impq)
+    imp = obj["imp"]
+    notimp = obj["notimp"]
+    db.session.query().filter(Question.id.in_(imp)).update({"imp": True})
+    db.session.query().filter(Question.id.in_(notimp)).update({"imp": False})
+    db.session.commit()
     return redirect(url_for("questions"))
