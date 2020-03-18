@@ -78,6 +78,7 @@ def imp_question(impq):
     db.session.commit()
     return redirect(url_for("questions"))
 
+
 @app.route("/question/delete/<deleteq>", methods=["GET"])
 def delete_question(deleteq):
     """impq string convert to list of imp and notimp"""
