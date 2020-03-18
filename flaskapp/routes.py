@@ -68,12 +68,20 @@ def update_question(question_id):
 
 
 @app.route("/question/imp/<impq>", methods=["GET"])
-def mark_imp(impq):
+def imp_question(impq):
     """impq string convert to list of imp and notimp"""
     obj = json.loads(impq)
     imp = obj["imp"]
     notimp = obj["notimp"]
     db.session.query().filter(Question.id.in_(imp)).update({"imp": True})
     db.session.query().filter(Question.id.in_(notimp)).update({"imp": False})
+    db.session.commit()
+    return redirect(url_for("questions"))
+
+@app.route("/question/delete/<deleteq>", methods=["GET"])
+def delete_question(deleteq):
+    """impq string convert to list of imp and notimp"""
+    del_ids = json.loads(deleteq)
+    db.session.query().filter(Question.id.in_(del_ids)).delete()
     db.session.commit()
     return redirect(url_for("questions"))
