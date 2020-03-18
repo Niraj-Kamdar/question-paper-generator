@@ -1,53 +1,58 @@
-{% extends "layout.html" %}
-
-{% block main %}
+{% extends "layout.html" %} {% block main %}
 <div id="questions">
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-		  messages %}
-    <ul class="flashes">
-        {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %} {% endwith %}
-    {% block content %}
-    <h1>Question List</h1>
-
-    {% for q in questions %}
-    <div class="controlBtn">
-        <button class="editBtn">EDIT</button>
-        <button class="cancelBtn">Cancel</button>
-    </div>
-    <div class="questionContainer">
-        <div class="questionId">
-            {{q.id}}
-        </div>
-        <div class="formContent">
-            <ul class="questions">
-                <li class="questionItems">
-                    <div class="questionLabel">Question </div>
-                    <div class="questionValue">:{{q.question}}</div>
-                </li>
-                <li class="questionItems">
-                    <div class="questionLabel">Mark </div>
-                    <div class="questionValue">:{{q.mark}}</div>
-                </li>
-                <li class="questionItems">
-                    <div class="questionLabel">Difficulty </div>
-                    <div class="questionValue">:{{q.difficulty}}</div>
-                </li>
-                <li class="questionItems">
-                    <div class="questionLabel">IMP </div>
-                    <div class="questionValue">:{{q.imp}}</div>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-
-    <hr />
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %}
+  <ul class="flashes">
+    {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
     {% endfor %}
-    {% endblock %}
+  </ul>
+  {% endif %} {% endwith %} {% block content %}
+  <h1>Question List</h1>
+  <button id="mark">Mark As IMP</button>
+  <button id="cancel">Reset</button>
+  <button id="update">Update</button>
+  <hr />
+  {% for q in questions %}
+  <div class="controlBtn">
+    <button class="editBtn">EDIT</button>
+    <button class="cancelBtn">Cancel</button>
+  </div>
+  <div class="questionContainer">
+    <div class="questionId">
+      {{q.id}}
+    </div>
+    <div class="formContent">
+      <ul class="questions">
+        <li class="questionItems">
+          <div class="questionLabel">Question</div>
+          <div class="questionValue">:{{q.question}}</div>
+        </li>
+        <li class="questionItems">
+          <div class="questionLabel">Mark</div>
+          <div class="questionValue">:{{q.mark}}</div>
+        </li>
+        <li class="questionItems">
+          <div class="questionLabel">Difficulty</div>
+          <div class="questionValue">:{{q.difficulty}}</div>
+        </li>
+        <li class="questionItems">
+          <div class="questionLabel">IMP</div>
+          <label
+            ><span class="questionValue">:{{q.imp}}</span>
+            <input
+              type="checkbox"
+              name="imp_question"
+              value="false"
+              class="imp"
+              id="{{q.id}}"
+          /></label>
+        </li>
+      </ul>
+    </div>
+  </div>
 
+  <hr />
+  {% endfor %} {% endblock %}
 </div>
 {% endblock %}

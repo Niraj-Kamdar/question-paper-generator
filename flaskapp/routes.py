@@ -67,7 +67,7 @@ def update_question(question_id):
                            )
 
 
-@app.route("/question/imp/<impq>", methods=["GET", "POST"])
+@app.route("/question/imp/<impq>", methods=["GET"])
 def mark_imp(impq):
     """impq string convert to list"""
     arr = json.loads(impq)

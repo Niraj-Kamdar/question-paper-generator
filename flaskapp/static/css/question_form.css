@@ -64,3 +64,11 @@
 form {
   margin-left: 10px;
 }
+
+.imp {
+  display: none;
+}
+#cancel,
+#update {
+  display: none;
+}
