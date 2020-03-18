@@ -53,74 +53,6 @@
             {% endif %}
             <div class="form__client_error"></div>
 
-<<<<<<< HEAD
-        {% if form.imp.errors %}
-            <ul class="form__error">
-                {% for error in form.imp.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        <div class="form__client_error"></div>
-        <div class="form__fields">
-            {{ form.option1.label(class="form__fields__label") }}
-            {{ form.option1(id="form__fields__option1") }}
-        </div>
-
-        {% if form.option1.errors %}
-            <ul class="form__error">
-                {% for error in form.option1.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        <div class="form__client_error"></div>
-        <div class="form__client_error"></div>
-        <div class="form__fields">
-            {{ form.option2.label(class="form__fields__label") }}
-            {{ form.option2(id="form__fields__option2") }}
-        </div>
-
-        {% if form.option2.errors %}
-            <ul class="form__error">
-                {% for error in form.option2.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        <div class="form__client_error"></div>
-        <div class="form__client_error"></div>
-        <div class="form__fields">
-            {{ form.option3.label(class="form__fields__label") }}
-            {{ form.option3(id="form__fields__option3") }}
-        </div>
-
-        {% if form.option3.errors %}
-            <ul class="form__error">
-                {% for error in form.option3.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        <div class="form__client_error"></div>
-        <div class="form__client_error"></div>
-        <div class="form__fields">
-            {{ form.option4.label(class="form__fields__label") }}
-            {{ form.option4(id="form__fields__option4") }}
-        </div>
-
-        {% if form.option4.errors %}
-            <ul class="form__error">
-                {% for error in form.option4.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        <div class="form__client_error"></div>
-        {{ form.submit }}
-    </form>
-</div>
-=======
             <div class="form__fields">
                 {{ form.imp.label(class="form__fields__label") }}
                 {{ form.imp(id="form__fields__imp") }}
@@ -135,8 +67,63 @@
             {% endif %}
             <div class="form__client_error"></div>
 
+            <div class="form__fields">
+                {{ form.option1.label(class="form__fields__label") }}
+                {{ form.option1(id="form__fields__option1") }}
+            </div>
+
+            {% if form.option1.errors %}
+                <ul class="form__error">
+                    {% for error in form.option1.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <div class="form__client_error"></div>
+
+            <div class="form__fields">
+                {{ form.option2.label(class="form__fields__label") }}
+                {{ form.option2(id="form__fields__option2") }}
+            </div>
+
+            {% if form.option2.errors %}
+                <ul class="form__error">
+                    {% for error in form.option2.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <div class="form__client_error"></div>
+            <div class="form__fields">
+                {{ form.option3.label(class="form__fields__label") }}
+                {{ form.option3(id="form__fields__option3") }}
+            </div>
+
+            {% if form.option3.errors %}
+                <ul class="form__error">
+                    {% for error in form.option3.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <div class="form__client_error"></div>
+
+            <div class="form__fields">
+                {{ form.option4.label(class="form__fields__label") }}
+                {{ form.option4(id="form__fields__option4") }}
+            </div>
+
+            {% if form.option4.errors %}
+                <ul class="form__error">
+                    {% for error in form.option4.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <div class="form__client_error"></div>
+
             {{ form.submit }}
         </form>
     </div>
->>>>>>> upstream/develop
 {% endblock main %}

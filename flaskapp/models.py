@@ -7,10 +7,10 @@ class Question(db.Model):
     mark = db.Column(db.Integer, nullable=False)
     difficulty = db.Column(db.Integer, nullable=False)
     imp = db.Column(db.Boolean, default=False)
-    option1 = db.Column(db.Text,nullable=True)
-    option2 = db.Column(db.Text,nullable=True)
-    option3 = db.Column(db.Text,nullable=True)
-    option4 = db.Column(db.Text,nullable=True)  
+    option1 = db.Column(db.Text,nullable=True,default = None)
+    option2 = db.Column(db.Text,nullable=True,default = None)
+    option3 = db.Column(db.Text,nullable=True,default = None)
+    option4 = db.Column(db.Text,nullable=True,default = None)  
     def __repr__(self):
         return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.imp})"
 

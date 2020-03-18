@@ -36,6 +36,39 @@
                             <div class="questionLabel">Difficulty</div>
                             <div class="questionValue">:{{ q.difficulty }}</div>
                         </li>
+                        {% set options = ['A','B','C','D'] %}
+                        {% set option_index = 0 %}
+                        {% if q.option1 != None and q.option1!="" %}
+                        <li class="questionItems">
+                            <div class="questionLabel">{{options[option_index]}}</div>
+                            <div class="questionValue">:{{ q.option1 }}</div>
+                            {% set option_index = option_index +  1 %}
+                        </li>
+                        {% endif %}
+                        {% if q.option2!=None and q.option2!="" %}
+                        <li class="questionItems">
+                            <div class="questionLabel">{{options[option_index]}}</div>
+                            <div class="questionValue">:{{ q.option2 }}</div>
+                            {% set option_index = option_index +  1 %}
+                        </li>
+                        {% endif %}
+
+                        {% if q.option3 != None and q.option3 != "" %}
+                        <li class="questionItems">
+                            <div class="questionLabel">{{options[option_index]}}</div>
+                            <div class="questionValue">:{{ q.option3 }}</div>
+                            {% set option_index = option_index +  1 %}
+                        </li>
+                        {% endif %}
+
+                        {% if q.option4!=None and q.option4!="" %}
+                        <li class="questionItems">
+                            <div class="questionLabel">{{options[option_index]}}</div>
+                            <div class="questionValue">:{{ q.option4 }}</div>
+                            {% set option_index = option_index +  1 %}
+                        </li>
+                        {% endif %}
+                        
                         <li class="questionItems">
                             <div class="questionLabel">IMP</div>
                             <label
@@ -52,49 +85,7 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
-{% block main %}
-	<div id="questions">
-		{% with messages = get_flashed_messages(with_categories=true) %} {% if
-		  messages %}
-			<ul class="flashes">
-				{% for category, message in messages %}
-					<li class="{{ category }}">{{ message }}</li>
-				{% endfor %}
-			</ul>
-		{% endif %} {% endwith %}
-		{% block content %}
-			<h1>Question List</h1>
-
-			{% for q in questions %}
-				<a href="{{ url_for('update_question', question_id=q.id) }}">
-					<p>
-					<h3>{{ q.id }}</h3>
-					<p>Question = {{ q.question }}</p>
-					<p>Marks = {{ q.mark }}</p>
-					<p>Difficulty = {{ q.difficulty }}</p>
-					<p>important = {{ q.imp }}</p>
-					{% if q.option1 != None %}
-						<p>  {{ q.option1 }} </p>
-					{% endif %}
-					{% if q.option2 != None %}
-						<p>  {{ q.option2 }} </p>
-					{% endif %}
-					{% if q.option3 != None %}
-						<p> {{ q.option3 }} </p>
-					{% endif %}
-					{% if q.option4 != None %}
-						<p> {{ q.option4 }} </p>
-					{% endif %}
-					</p>
-				</a>
-			{% endfor %}
-		{% endblock %}
-
-	</div>
-=======
             <hr/>
         {% endfor %} {% endblock %}
     </div>
->>>>>>> upstream/develop
 {% endblock %}
