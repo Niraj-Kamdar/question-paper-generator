@@ -47,6 +47,17 @@ class AddQuestionTestCase(unittest.TestCase):
         q = self.session.query(models.Question).first()
         self.assertEqual(str(q), "Question(Is it okay?, 8, 10, True)")
 
+    def test_imp(self):
+        response = self.app.get("/question/imp/["imp":[1,2],"notimp":[3]]",
+                                 follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        q1 = self.session.query(1)
+        q2 = self.session.query(2)
+        q3 = self.session.query(3)
+        self.assertEqual(str(q1.imp), "True")
+        self.assertEqual(str(q2.imp), "True")
+        self.assertEqual(str(q3.imp), "False")
+
     def tearDown(self):
         """Destroy blank temp database after each test"""
         db.drop_all()
