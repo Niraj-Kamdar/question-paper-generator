@@ -47,7 +47,37 @@ class AddQuestionTestCase(unittest.TestCase):
         q = self.session.query(models.Question).first()
         self.assertEqual(str(q), "Question(Is it okay?, 8, 10, True)")
 
+    def tearDown(self):
+        """Destroy blank temp database after each test"""
+        db.drop_all()
+
+class impfunction(unittest.TestCase):
+    def setUp(self):
+        """Set up a blank temp database before each test"""
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        app.config['TESTING'] = True
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
+                                                os.path.join(basedir, "flaskapp", TEST_DB)
+        self.app = app.test_client()
+        db.create_all()
+        app.config['WTF_CSRF_ENABLED'] = False
+        Session = sessionmaker(bind=create_engine(app.config['SQLALCHEMY_DATABASE_URI']), autoflush=True)
+        self.session = Session()
+
+    def test_database(self):
+        tester = os.path.exists("flaskapp/test.db")
+        self.assertTrue(tester)
+
     def test_imp(self):
+        response1 = self.app.post("/question/new",
+                                 data=dict(question="Is it okay?", mark="8", difficulty=10, imp=False, submit="submit"),
+                                 follow_redirects=True)
+        response2 = self.app.post("/question/new",
+                                 data=dict(question="Is it good?", mark="10", difficulty=20, imp=False, submit="submit"),
+                                 follow_redirects=True)
+        response2 = self.app.post("/question/new",
+                                 data=dict(question="knight?", mark="9", difficulty=11, imp=True, submit="submit"),
+                                 follow_redirects=True)
         response = self.app.get('/question/imp/["imp":[1,2],"notimp":[3]]',
                                  follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -61,7 +91,6 @@ class AddQuestionTestCase(unittest.TestCase):
     def tearDown(self):
         """Destroy blank temp database after each test"""
         db.drop_all()
-
 
 if __name__ == '__main__':
     unittest.main()
