@@ -48,7 +48,7 @@ class AddQuestionTestCase(unittest.TestCase):
         self.assertEqual(str(q), "Question(Is it okay?, 8, 10, True)")
 
     def test_imp(self):
-        response = self.app.get("/question/imp/["imp":[1,2],"notimp":[3]]",
+        response = self.app.get('/question/imp/["imp":[1,2],"notimp":[3]]',
                                  follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         q1 = self.session.query(1)
