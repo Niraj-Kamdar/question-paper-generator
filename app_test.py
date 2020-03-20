@@ -74,15 +74,15 @@ class IMPSetTestCase(unittest.TestCase):
         d = json.dumps(imp_dict)
         response1 = self.app.post("/question/new",
                                   data=dict(question="Is it okay?", mark="8",
-                                   difficulty=10, imp=False, submit="submit"),
+                                            difficulty=10, imp=False, submit="submit"),
                                   follow_redirects=True)
         response2 = self.app.post("/question/new",
                                   data=dict(question="Is it good?", mark="10",
-                                   difficulty=20, imp=False, submit="submit"),
+                                            difficulty=20, imp=False, submit="submit"),
                                   follow_redirects=True)
         response3 = self.app.post("/question/new",
                                   data=dict(question="knight?", mark="9",
-                                   difficulty=11, imp=True, submit="submit"),
+                                            difficulty=11, imp=True, submit="submit"),
                                   follow_redirects=True)
         response = self.app.get(f"/question/imp/{d}", follow_redirects=True)
         self.assertEqual(response1.status_code, 200)
