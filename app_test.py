@@ -52,7 +52,7 @@ class AddQuestionTestCase(unittest.TestCase):
         db.drop_all()
 
 
-class impfunction(unittest.TestCase):
+class IMPSetTestCase(unittest.TestCase):
     def setUp(self):
         """Set up a blank temp database before each test"""
         basedir = os.path.abspath(os.path.dirname(__file__))
@@ -84,7 +84,7 @@ class impfunction(unittest.TestCase):
                                   data=dict(question="knight?", mark="9",
                                    difficulty=11, imp=True, submit="submit"),
                                   follow_redirects=True)
-        response = self.app.get("/question/imp/{0}".format(d), follow_redirects=True)
+        response = self.app.get(f"/question/imp/{d}", follow_redirects=True)
         self.assertEqual(response1.status_code, 200)
         self.assertEqual(response2.status_code, 200)
         self.assertEqual(response3.status_code, 200)
@@ -92,9 +92,9 @@ class impfunction(unittest.TestCase):
         q1 = self.session.query(models.Question).first()
         q2 = self.session.query(models.Question).get(2)
         q3 = self.session.query(models.Question).get(3)
-        self.assertEqual(str(q1.imp), "True")
-        self.assertEqual(str(q2.imp), "True")
-        self.assertEqual(str(q3.imp), "False")
+        self.assertEqual(q1.imp, True)
+        self.assertEqual(q2.imp, True)
+        self.assertEqual(q3.imp, False)
 
     def tearDown(self):
         """Destroy blank temp database after each test"""
