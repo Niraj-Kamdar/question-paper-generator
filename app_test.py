@@ -73,15 +73,18 @@ class impfunction(unittest.TestCase):
         imp_dict = dict(imp=[1, 2], notimp=[3])
         d = json.dumps(imp_dict)
         response1 = self.app.post("/question/new",
-                                 data=dict(question="Is it okay?", mark="8", difficulty=10, imp=False, submit="submit"),
-                                 follow_redirects=True)
+                                  data=dict(question="Is it okay?", mark="8", difficulty=10,
+                                  imp=False, submit="submit"),
+                                  follow_redirects=True)
         response2 = self.app.post("/question/new",
-                                 data=dict(question="Is it good?", mark="10", difficulty=20, imp=False, submit="submit"),
-                                 follow_redirects=True)
+                                  data=dict(question="Is it good?", mark="10", difficulty=20,
+                                  imp=False, submit="submit"),
+                                  follow_redirects=True)
         response3 = self.app.post("/question/new",
-                                 data=dict(question="knight?", mark="9", difficulty=11, imp=True, submit="submit"),
-                                 follow_redirects=True)
-        response = self.app.get('/question/imp/'d, follow_redirects=True)
+                                  data=dict(question="knight?", mark="9", difficulty=11,
+                                  imp=True, submit="submit"),
+                                  follow_redirects=True)
+        response = self.app.get('/question/imp/%s'%d, follow_redirects=True)
         self.assertEqual(response1.status_code, 200)
         self.assertEqual(response2.status_code, 200)
         self.assertEqual(response3.status_code, 200)
