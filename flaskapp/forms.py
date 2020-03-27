@@ -16,3 +16,4 @@ class QuestionForm(FlaskForm):
     option2 = TextAreaField('Option2')
     option3 = TextAreaField('Option3')
     option4 = TextAreaField('Option4')
+    is_mcq = BooleanField('MCQ')

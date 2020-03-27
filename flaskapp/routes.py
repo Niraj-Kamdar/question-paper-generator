@@ -25,6 +25,15 @@ def questions():
                            js_file='js/update_question.js'
                            )
 
+def check_for_mcq(form):                #if 2 or more options are filled then returns true i.e it is an mcq.
+    count = 0
+    if(form.option1.data!=""):count+=1
+    if(form.option2.data!=""):count+=1
+    if(form.option3.data!=""):count+=1
+    if(form.option4.data!=""):count+=1
+    if(count>1):
+        return True
+    return False
 
 @app.route("/question/new", methods=["GET", "POST"])
 def add_question():
@@ -38,7 +47,7 @@ def add_question():
                             option2 = form.option2.data,
                             option3 = form.option3.data,
                             option4 = form.option4.data,
-                            )
+                            is_mcq = check_for_mcq(form))       #based on options are filled or not; 
         db.session.add(question)    
         db.session.commit()
         flash(f"New question added successfully!", "success")
@@ -66,6 +75,7 @@ def update_question(question_id):
         question.option2 = form.option2.data
         question.option3 = form.option3.data
         question.option4 = form.option4.data
+        question.is_mcq = check_for_mcq(form)
         db.session.commit()
         flash(f"Question:{question_id} updated successfully!", "success")
         return redirect(url_for("questions"))
