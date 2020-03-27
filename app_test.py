@@ -48,7 +48,7 @@ class AddQuestionTestCase(QuestionTestCase):
 
     def test_add_question(self):
         # Test valid data
-        new_question = dict(question="Is it okay?", mark=8, difficulty=10, imp=True, submit="submit")
+        new_question = dict(question="Is it okay?", mark=8, difficulty=10, imp=True, submit="submit",option1='',option2='',option3='',option4='')
         response = self.app.post("/question/new",
                                  data=new_question,
                                  follow_redirects=True)
@@ -56,10 +56,10 @@ class AddQuestionTestCase(QuestionTestCase):
         q = self.session.query(models.Question).first()
 
         # Testing if repr method is working
-        self.assertEqual(str(q), "Question(Is it okay?, 8, 10, True)")
-
+        self.assertEqual(str(q), "Question(Is it okay?, 8, 10, True,,,,,False)")
         # DO appropriate changes in new_question to match database result
         del new_question["submit"]
+        new_question["is_mcq"] = False
         new_question["id"] = 1
         self.assertEqual(q.to_dict(), new_question)
 
@@ -143,9 +143,32 @@ class DeleteSetTestCase(QuestionTestCase):
         q2 = self.session.query(models.Question).get(2)
         q3 = self.session.query(models.Question).get(3)
         self.assertEqual(q1, None)
-        self.assertEqual(str(q2), "Question(Isn't it good?, 10, 20, False)")
+        self.assertEqual(str(q2), "Question(Isn't it good?, 10, 20, False,,,,,False)")
         self.assertEqual(q3, None)
 
-
+class mcqquestionTestCase(QuestionTestCase):
+    def mcq_test_case(self):
+        #check valid dataset
+        response1 = self.app.post("/question/new",
+                                  data=dict(question="Rate it!", mark=8,
+                                            difficulty=10, imp=None, submit="submit",option1='10',option2='9',option3='8',option4='7'),
+                                  follow_redirects=True)
+        self.assertEqual(response1.status_code, 200)
+        response2 = self.app.post("/question/new",
+                                  data=dict(question="True or False?", mark=10,
+                                            difficulty=20, imp=None, submit="submit",option1='',option2='True',option3='',option4='False'),
+                                  follow_redirects=True)
+        self.assertEqual(response2.status_code, 200)
+        response3 = self.app.post("/question/new",
+                                  data=dict(question="This is subjective!", mark=9,
+                                            difficulty=11, imp=True, submit="submit"),
+                                  follow_redirects=True)
+        self.assertEqual(response3.status_code, 200)
+        q1= self.session.query(models.Question).get(1)
+        q2= self.session.query(models.Question).get(2)
+        q3= self.session.query(models.Question).get(3)
+        self.assertEqual(str(q1),"Question(Rate it!, 8, 10, False, 10, 9, 8, 7, True)")
+        self.assertEqual(str(q1),"Question(True or False?, 10, 20, False,, True,, False, True)")
+        self.assertEqual(str(q1),"Question(This is subjective!, 9, 11, True,,,,, False)")
 if __name__ == '__main__':
     unittest.main()
