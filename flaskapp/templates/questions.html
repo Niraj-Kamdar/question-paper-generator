@@ -10,8 +10,10 @@
         {% endif %} {% endwith %} {% block content %}
         <h1>Question List</h1>
         <button id="mark">Mark As IMP</button>
-        <button id="cancel">Reset</button>
+        <button id="cancel">Cancel</button>
         <button id="update">Update</button>
+        <button id="select">Select</button>
+        <button id="delete">Delete</button>
         <hr/>
         {% for q in questions %}
             <div class="controlBtn">
@@ -19,9 +21,9 @@
                 <button class="cancelBtn">Cancel</button>
             </div>
             <div class="questionContainer">
-                <div class="questionId">
-                    {{ q.id }}
-                </div>
+                <label class="questionId">
+                    {{ q.id }}<input type="checkbox" class="deleteOption">
+                </label>
                 <div class="formContent">
                     <ul class="questions">
                         <li class="questionItems">
@@ -71,21 +73,15 @@
                         
                         <li class="questionItems">
                             <div class="questionLabel">IMP</div>
-                            <label
-                            ><span class="questionValue">:{{ q.imp }}</span>
-                                <input
-                                        type="checkbox"
-                                        name="imp_question"
-                                        value="false"
-                                        class="imp"
-                                        id="{{ q.id }}"
-                                /></label>
+                            <label><span class="questionValue">:{{ q.imp }}</span>
+                                <input type="checkbox" name="imp_question" value="false" class="imp"
+                                       id="{{ q.id }}"/></label>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <hr/>
+
         {% endfor %} {% endblock %}
     </div>
 {% endblock %}

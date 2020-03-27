@@ -82,8 +82,8 @@ def imp_question(impq):
     obj = json.loads(impq)
     imp = obj["imp"]
     notimp = obj["notimp"]
-    db.session.query().filter(Question.id.in_(imp)).update({"imp": True})
-    db.session.query().filter(Question.id.in_(notimp)).update({"imp": False})
+    db.session.query(Question).filter(Question.id.in_(imp)).update(dict(imp=True), synchronize_session='fetch')
+    db.session.query(Question).filter(Question.id.in_(notimp)).update(dict(imp=False), synchronize_session='fetch')
     db.session.commit()
     return redirect(url_for("questions"))
 
@@ -92,6 +92,6 @@ def imp_question(impq):
 def delete_question(deleteq):
     """impq string convert to list of imp and notimp"""
     del_ids = json.loads(deleteq)
-    db.session.query().filter(Question.id.in_(del_ids)).delete()
+    db.session.query(Question).filter(Question.id.in_(del_ids)).delete(synchronize_session='fetch')
     db.session.commit()
     return redirect(url_for("questions"))

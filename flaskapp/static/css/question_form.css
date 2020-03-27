@@ -30,12 +30,14 @@
 }
 
 .questionContainer {
+    border-bottom: 1px solid black;
     display: flex;
     margin: 0 0 10px 0;
 }
 
 .questionId {
     margin: 10px 0;
+    display: flex;
 }
 
 .questions {
@@ -70,6 +72,11 @@ form {
 }
 
 #cancel,
-#update {
+#update,
+#delete {
+    display: none;
+}
+
+.deleteOption {
     display: none;
 }
