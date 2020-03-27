@@ -14,7 +14,7 @@ class Question(db.Model):
     is_mcq = db.Column(db.Boolean,default=False)              
 
     def __repr__(self):
-        return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.imp},{self.option1},{self.option2},{self.option3},{self.option4},{self.is_mcq})"
+        return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.imp}, {self.option1}, {self.option2}, {self.option3}, {self.option4}, {self.is_mcq})"
 
     def to_dict(self):
         return dict(id=self.id,

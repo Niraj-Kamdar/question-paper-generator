@@ -36,9 +36,11 @@ def check_for_mcq(form):
         count+=1
     if form.option4.data!="":
         count+=1
-    if count>1:
-        return True
-    return False
+    if count==1:
+        return -1
+    elif count>1:
+        return 1
+    return 0
 
 
 @app.route("/question/new", methods=["GET", "POST"])
@@ -52,16 +54,20 @@ def add_question():
                             option1 = form.option1.data,
                             option2 = form.option2.data,
                             option3 = form.option3.data,
-                            option4 = form.option4.data,
-                            is_mcq = check_for_mcq(form))        
-        db.session.add(question)    
-        db.session.commit()
-        flash(f"New question added successfully!", "success")
-        return redirect(url_for("questions"))
+                            option4 = form.option4.data)
+        rvalue = check_for_mcq(form)
+        if(rvalue!=-1):
+            question.is_mcq=bool(rvalue)        
+            db.session.add(question)    
+            db.session.commit()
+            flash(f"New question added successfully!", "success")
+            return redirect(url_for("questions"))
+        else:
+            flash(f'Fill None or Two or More options','error')
     return render_template("question_form.html",
                            form=form,
                            css_file='css/question_form.css',
-                           js_file='js/question_form.js'
+                           js_file='js/question_form.js',
                            )
 
 
@@ -81,10 +87,15 @@ def update_question(question_id):
         question.option2 = form.option2.data
         question.option3 = form.option3.data
         question.option4 = form.option4.data
-        question.is_mcq = check_for_mcq(form)
-        db.session.commit()
-        flash(f"Question:{question_id} updated successfully!", "success")
-        return redirect(url_for("questions"))
+        rvalue = check_for_mcq(form)
+        if(rvalue!=-1):
+            question.is_mcq = bool(rvalue)
+            db.session.commit()
+            flash(f"Question:{question_id} updated successfully!", "success")
+            return redirect(url_for("questions"))
+        else:
+            flash(f'Fill None or Two or more options','error')
+        
     return render_template('question_form.html',
                            form=form,
                            css_file='css/question_form.css',

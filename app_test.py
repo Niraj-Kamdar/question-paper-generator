@@ -56,7 +56,7 @@ class AddQuestionTestCase(QuestionTestCase):
         q = self.session.query(models.Question).first()
 
         # Testing if repr method is working
-        self.assertEqual(str(q), "Question(Is it okay?, 8, 10, True,,,,,False)")
+        self.assertEqual(str(q), "Question(Is it okay?, 8, 10, True, , , , , False)")
         # DO appropriate changes in new_question to match database result
         del new_question["submit"]
         new_question["is_mcq"] = False
@@ -143,11 +143,12 @@ class DeleteSetTestCase(QuestionTestCase):
         q2 = self.session.query(models.Question).get(2)
         q3 = self.session.query(models.Question).get(3)
         self.assertEqual(q1, None)
-        self.assertEqual(str(q2), "Question(Isn't it good?, 10, 20, False,,,,,False)")
+        self.assertEqual(str(q2), "Question(Isn't it good?, 10, 20, False, , , , , False)")
         self.assertEqual(q3, None)
 
 class mcqquestionTestCase(QuestionTestCase):
-    def mcq_test_case(self):
+
+    def test_mcq_case(self):
         #check valid dataset
         response1 = self.app.post("/question/new",
                                   data=dict(question="Rate it!", mark=8,
@@ -164,11 +165,19 @@ class mcqquestionTestCase(QuestionTestCase):
                                             difficulty=11, imp=True, submit="submit"),
                                   follow_redirects=True)
         self.assertEqual(response3.status_code, 200)
+        response4 = self.app.post("/question/new",
+                                  data=dict(question="Question with one Option", mark=1,
+                                            difficulty=11, imp=True, submit="submit",option3='A'),
+                                  follow_redirects=True)
+        self.assertEqual(response4.status_code, 200)
         q1= self.session.query(models.Question).get(1)
         q2= self.session.query(models.Question).get(2)
         q3= self.session.query(models.Question).get(3)
+        q4= self.session.query(models.Question).get(4)
         self.assertEqual(str(q1),"Question(Rate it!, 8, 10, False, 10, 9, 8, 7, True)")
-        self.assertEqual(str(q2),"Question(True or False?, 10, 20, False,, True,, False, True)")
-        self.assertEqual(str(q3),"Question(This is subjective!, 9, 11, True,,,,, False)")
+        self.assertEqual(str(q2),"Question(True or False?, 10, 20, False, , True, , False, True)")
+        self.assertEqual(str(q3),"Question(This is subjective!, 9, 11, True, , , , , False)")
+        self.assertEqual(q4,None)
+
 if __name__ == '__main__':
     unittest.main()
