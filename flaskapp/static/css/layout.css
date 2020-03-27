@@ -2,51 +2,28 @@ body::-webkit-scrollbar {
     display: none;
     position: fixed;
 }
-
 * {
     font-family: 'Montserrat', sans-serif;
 }
-
-#bodycontent {
-    transition: 1s;
+#page_content{
+    background-color: #f2f2f2;
 }
-
 .row {
     /*border:1px dotted red;*/
     position: relative;
     width: 100%;
 }
-
 .container-fluid {
     /*border:1px dotted yellow;*/
 }
-
-/************************************************************************/
-.img1 {
-    position: fixed;
-    min-height: 100%;
-    min-width: 1024px;
-    width: 100%;
-    height: auto;
-}
-
-.overlape {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    transition: 1s;
-}
-
-/************************************************************************/
-
 /************************************************************************/
 #header {
+    color: #0099cc;
     position: fixed;
     top: 0;
     left: 0;
     transition: 0.3s;
+    background-color: #f2f2f2;
 }
 
 .logo {
@@ -83,22 +60,26 @@ body::-webkit-scrollbar {
 }
 
 .login_btn {
+    color: #eeeeee;
     padding-top: 5%;
     padding-bottom: 5%;
     font-weight: bolder;
     font-size: 1.5vw;
     width: 100%;
     position: relative;
-    background-color: #ffffff;
+    background-color: #0099cc;
     border-top-left-radius: 20% 50%;
     border-bottom-left-radius: 20% 50%;
     border: none;
     outline: none !important;
 }
+.login_btn:hover {
+    color: #ffffff;
+    box-shadow: -10px 0 20px #ffffff;
+}
 
 /**********************************************************************/
 #content {
-    padding-top: 8%;
     transition-property: visibility, opacity;
     transition-duration: 0s, 0.5s;
     overflow: auto;
@@ -113,11 +94,12 @@ body::-webkit-scrollbar {
 }
 
 #footer {
-    left: 0;
+    /*left: 0;
     bottom: 0;
-    position: fixed;
+    position: fixed;*/
+    color: #dddddd;
+    background-color: #0099cc;
     font-size: 1vw;
-    color: rgba(255, 255, 255, 0.5);
     transition: 1s;
 }
 
@@ -126,11 +108,11 @@ body::-webkit-scrollbar {
 }
 
 .fl {
-    color: rgba(255, 255, 255, 0.5);
+    color: #dddddd;
 }
 
 .fl:hover {
-    color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
 }
 
 /*// Extra small devices (portrait phones, less than 576px)*/

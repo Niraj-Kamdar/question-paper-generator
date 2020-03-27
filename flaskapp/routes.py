@@ -3,16 +3,14 @@ from flask import render_template, url_for, flash, redirect, json
 from flaskapp import app, db
 from flaskapp.forms import QuestionForm
 from flaskapp.models import Question
-# generate random integer values
-from random import randint
 
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
-    colors = [["#007991", "#00bfe6"], ["#642B73", "#C6426E"], ["#444444", "#777777"]]
-    opacity = "b3"
-    random_num = randint(0, len(colors) - 1)
-    return render_template("index.html", color=colors[random_num], opacity=opacity)
+    # background_colors = ["#e6e6e6", "#ffe0cc"]
+    # light_background_colors = ["#f2f2f2", "#fff0e6"]
+    # text_colors = ["#808080", "#ff6600"]
+    return render_template("index.html")
 
 
 @app.route("/question")
