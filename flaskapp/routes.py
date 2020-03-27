@@ -38,7 +38,7 @@ def check_for_mcq(form):
         count+=1
     if count==1:
         return -1
-    elif count>1:
+    if count>1:
         return 1
     return 0
 
@@ -61,9 +61,8 @@ def add_question():
             db.session.add(question)    
             db.session.commit()
             flash(f"New question added successfully!", "success")
-            return redirect(url_for("questions"))
-        else:
-            flash(f'Fill None or Two or More options','error')
+            return redirect(url_for("questions"))        
+        flash(f'Fill None or Two or More options','error')
     return render_template("question_form.html",
                            form=form,
                            css_file='css/question_form.css',
@@ -93,9 +92,7 @@ def update_question(question_id):
             db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")
             return redirect(url_for("questions"))
-        else:
-            flash(f'Fill None or Two or more options','error')
-        
+        flash(f'Fill None or Two or more options','error')        
     return render_template('question_form.html',
                            form=form,
                            css_file='css/question_form.css',
