@@ -168,7 +168,7 @@ class mcqquestionTestCase(QuestionTestCase):
         q2= self.session.query(models.Question).get(2)
         q3= self.session.query(models.Question).get(3)
         self.assertEqual(str(q1),"Question(Rate it!, 8, 10, False, 10, 9, 8, 7, True)")
-        self.assertEqual(str(q1),"Question(True or False?, 10, 20, False,, True,, False, True)")
-        self.assertEqual(str(q1),"Question(This is subjective!, 9, 11, True,,,,, False)")
+        self.assertEqual(str(q2),"Question(True or False?, 10, 20, False,, True,, False, True)")
+        self.assertEqual(str(q3),"Question(This is subjective!, 9, 11, True,,,,, False)")
 if __name__ == '__main__':
     unittest.main()
