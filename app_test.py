@@ -106,6 +106,13 @@ class UpdateQuestionTestCase(QuestionTestCase):
 
         self.assertEqual(str(q), "Question(How many prime numbers between 1 to 100?, 5, 20, True)")
 
+        response = self.app.post("/question/update/4",
+                                    data=update_question,
+                                    follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Question:4 Does not exist", response.data)
+
+
 
 
 
