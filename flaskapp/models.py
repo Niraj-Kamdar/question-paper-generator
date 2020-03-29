@@ -29,3 +29,17 @@ class mcqQuestion(db.Model):
     option3 = db.Column(db.Text, nullable=False)
     option4 = db.Column(db.Text, nullable=False)
     is_mcq = db.Column(db.Boolean, default=True)
+
+    def __repr__(self):
+        return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.imp}, {self.option1}, {self.option2}, {self.option3}, {self.option4})"
+
+    def to_dict(self):
+        return dict(id=self.id,
+                    question=self.question,
+                    mark=self.mark,
+                    difficulty=self.difficulty,
+                    imp=self.imp,
+                    option1=self.option1,
+                    option2=self.option2,
+                    option3=self.option3,
+                    option4=self.option4)

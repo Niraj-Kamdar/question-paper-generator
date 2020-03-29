@@ -146,6 +146,17 @@ class DeleteSetTestCase(QuestionTestCase):
         self.assertEqual(str(q2), "Question(Isn't it good?, 10, 20, False)")
         self.assertEqual(q3, None)
 
+class mcqTestCase(QuestionTestCase):
+    
+    def test_mcq_add(self):
+        response1 = self.app.post("/question/new_mcq",
+                                  data=dict(question="Rate it", mark=8,
+                                            difficulty=10, imp=None, submit="submit",option1='10',option2='9',option3='8',option4='7'),
+                                  follow_redirects=True)
+        self.assertEqual(response1.status_code, 200)
+        q1 = self.session.query(models.mcqQuestion).get(1)
+        self.assertEqual(str(q1),"Question(Rate it, 8, 10, False, 10, 9, 8, 7)")
+
 
 if __name__ == '__main__':
     unittest.main()
