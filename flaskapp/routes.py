@@ -94,6 +94,16 @@ def add_mcqquestion():
                            )
 
 
+# to delete mcq question
+@app.route("/question/mcq/delete/<deleteq>", methods=["GET"])
+def delete_question(deleteq):
+    """impq string convert to list of imp and notimp"""
+    del_ids = json.loads(deleteq)
+    db.session.query(MCQQuestion).filter(MCQQuestion.id.in_(del_ids)).delete(synchronize_session='fetch')
+    db.session.commit()
+    return redirect(url_for("mcq_question"))
+
+
 @app.route("/question/update/<int:question_id>", methods=["GET", "POST"])
 def update_question(question_id):
     question = db.session.query(Question).filter_by(id=question_id).first()
