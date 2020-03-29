@@ -249,9 +249,9 @@ class DeleteSetForMCQTestCase(QuestionTestCase):
         self.assertEqual(response.status_code, 200)
 
         # check changes are reflected in database
-        q1 = self.session.query(models.Question).get(1)
-        q2 = self.session.query(models.Question).get(2)
-        q3 = self.session.query(models.Question).get(3)
+        q1 = self.session.query(models.MCQQuestion).get(1)
+        q2 = self.session.query(models.MCQQuestion).get(2)
+        q3 = self.session.query(models.MCQQuestion).get(3)
         self.assertEqual(q1, None)
         self.assertEqual(str(q2), "MCQQuestion(Watch, 8, 10, True, A, B, C, D)")
         self.assertEqual(q3, None)
