@@ -117,7 +117,10 @@ def imp_question(qtype, impq):
 @app.route("/question/<qtype>/delete/<deleteq>/", methods=["GET"])
 def delete_question(qtype, deleteq):
     if qtype == "mcq":
-        pass
+        del_ids = json.loads(deleteq)
+        db.session.query(MCQQuestion).filter(MCQQuestion.id.in_(del_ids)).delete(synchronize_session='fetch')
+        db.session.commit()
+        return redirect(url_for("questions", qtype="mcq"))
     elif qtype == "sub":
         del_ids = json.loads(deleteq)
         db.session.query(Question).filter(Question.id.in_(del_ids)).delete(synchronize_session='fetch')
