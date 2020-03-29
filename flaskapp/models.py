@@ -8,6 +8,16 @@ class Question(db.Model):
     difficulty = db.Column(db.Integer, nullable=False)
     imp = db.Column(db.Boolean, default=False)
 
+    @db.validates("difficulty")
+    def validate_difficulty(self, key, value):
+        assert value in range(1, 101)
+        return value
+
+    @db.validates("mark")
+    def validate_mark(self, key, value):
+        assert value in range(1, 101)
+        return value
+
     def __repr__(self):
         return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.imp})"
 
@@ -29,7 +39,16 @@ class MCQQuestion(db.Model):
     option2 = db.Column(db.Text, nullable=False)
     option3 = db.Column(db.Text, nullable=False)
     option4 = db.Column(db.Text, nullable=False)
-    is_mcq = db.Column(db.Boolean, default=True)
+
+    @db.validates("difficulty")
+    def validate_difficulty(self, key, value):
+        assert value in range(1, 11)
+        return value
+
+    @db.validates("mark")
+    def validate_mark(self, key, value):
+        assert value in range(1, 101)
+        return value
 
     def __repr__(self):
         return f"MCQQuestion({self.question}, {self.mark}, {self.difficulty}, {self.imp}," \
