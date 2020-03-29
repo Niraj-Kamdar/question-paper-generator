@@ -162,14 +162,14 @@ class mcqTestCase(QuestionTestCase):
                                  data=new_question,
                                  follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-        q = self.session.query(models.mcqQuestion).first()
+        q = self.session.query(models.mcqQuestion).get(2)
 
         # Testing if repr method is working
         self.assertEqual(str(q), "Question(Choose One, 8, 10, True, A, B, C, D)")
 
         # DO appropriate changes in new_question to match database result
         del new_question["submit"]
-        new_question["id"] = 1  
+        new_question["id"] = 2 
         self.assertEqual(q.to_dict(), new_question)
 
 
