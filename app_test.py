@@ -157,7 +157,7 @@ class mcqTestCase(QuestionTestCase):
         q1 = self.session.query(models.mcqQuestion).get(1)
         self.assertEqual(str(q1),"Question(Rate it, 8, 10, False, 10, 9, 8, 7)")
         
-        new_question = dict(question="Choose One", mark=8, difficulty=10, imp=True, submit="submit",option1='A',option2='B',option3='C',optio4='D')
+        new_question = dict(question="Choose One", mark=8, difficulty=10, imp=True, submit="submit",option1='A',option2='B',option3='C',option4='D')
         response = self.app.post("/question/new_mcq",
                                  data=new_question,
                                  follow_redirects=True)
