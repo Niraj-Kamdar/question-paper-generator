@@ -245,7 +245,7 @@ class DeleteSetForMCQTestCase(QuestionTestCase):
         # Actual delete question get request.
         delete_list = [1, 3]
         d = json.dumps(delete_list)
-        response = self.app.get(f"/question/delete/{d}", follow_redirects=True)
+        response = self.app.get(f"/question/mcq/delete/{d}", follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
         # check changes are reflected in database
