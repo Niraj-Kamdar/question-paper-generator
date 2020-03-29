@@ -47,9 +47,9 @@
                     </ul>
                 </div>
             </div>
-            
 
-        {% endfor %} 
+
+        {% endfor %}
         {% for q in mcq_questions %}
             <div class="controlBtn">
                 <button class="editBtn">EDIT</button>
@@ -80,29 +80,29 @@
                                        id="{{ q.id }}"/></label>
                         </li>
                         <li class="questionItems">
-                            <div class="questionLabel">A. </div>
+                            <div class="questionLabel">A.</div>
                             <label><span class="questionValue">:{{ q.option1 }}</span>
                         </li>
                         <li class="questionItems">
-                            <div class="questionLabel">B. </div>
+                            <div class="questionLabel">B.</div>
                             <label><span class="questionValue">:{{ q.option2 }}</span>
                         </li>
                         <li class="questionItems">
-                            <div class="questionLabel">C. </div>
+                            <div class="questionLabel">C.</div>
                             <label><span class="questionValue">:{{ q.option3 }}</span>
                         </li>
                         <li class="questionItems">
-                            <div class="questionLabel">D. </div>
+                            <div class="questionLabel">D.</div>
                             <label><span class="questionValue">:{{ q.option4 }}</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            
+
 
         {% endfor %}
-        
-        
-        {% endblock %}
+
+
+    {% endblock %}
     </div>
 {% endblock %}

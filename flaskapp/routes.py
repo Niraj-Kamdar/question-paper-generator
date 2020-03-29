@@ -1,8 +1,8 @@
 from flask import render_template, url_for, flash, redirect, json
 
 from flaskapp import app, db
-from flaskapp.forms import QuestionForm,mcqQuestionForm
-from flaskapp.models import Question,mcqQuestion
+from flaskapp.forms import QuestionForm, MCQQuestionForm
+from flaskapp.models import Question, MCQQuestion
 # generate random integer values
 from random import randint
 
@@ -25,20 +25,23 @@ def questions():
                            js_file='js/update_question.js'
                            )
 
-@app.route("/mcq_question")
+
+@app.route("/question/mcq")
 def mcq_question():
-    _mcq_questions = mcqQuestion.query.all()
+    _mcq_questions = MCQQuestion.query.all()
     # change css_file and js_file here!
     return render_template("mcq_questions.html",
                            questions=_mcq_questions,
                            css_file='css/question_form.css',
                            js_file='js/update_question.js'
                            )
-#MCQ + subjective both will be shown Change as needed
+
+
+# MCQ + subjective both will be shown Change as needed
 @app.route("/all_question")
 def all_questions():
     _questions = Question.query.all()
-    _mcq_questions = mcqQuestion.query.all()
+    _mcq_questions = MCQQuestion.query.all()
     # change css_file and js_file here!
     return render_template("all_question.html",
                            questions=_questions,
@@ -65,19 +68,21 @@ def add_question():
                            css_file='css/question_form.css',
                            js_file='js/question_form.js'
                            )
-#To add new mcq Question
-@app.route("/question/new_mcq",methods=["GET","POST"])
+
+
+# To add new mcq Question
+@app.route("/question/new/mcq", methods=["GET", "POST"])
 def add_mcqquestion():
-    form = mcqQuestionForm()
+    form = MCQQuestionForm()
     if form.validate_on_submit():
-        question = mcqQuestion(question=form.question.data,
-                            mark=form.mark.data,
-                            difficulty=form.difficulty.data,
-                            imp=form.imp.data,
-                            option1=form.option1.data,
-                            option2=form.option2.data,
-                            option3=form.option3.data,
-                            option4=form.option4.data)
+        question = MCQQuestion(question=form.question.data,
+                               mark=form.mark.data,
+                               difficulty=form.difficulty.data,
+                               imp=form.imp.data,
+                               option1=form.option1.data,
+                               option2=form.option2.data,
+                               option3=form.option3.data,
+                               option4=form.option4.data)
         db.session.add(question)
         db.session.commit()
         flash(f"New question added successfully!", "success")
@@ -87,6 +92,7 @@ def add_mcqquestion():
                            css_file='css/question_form.css',
                            js_file='js/question_form.js'
                            )
+
 
 @app.route("/question/update/<int:question_id>", methods=["GET", "POST"])
 def update_question(question_id):

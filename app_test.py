@@ -74,6 +74,7 @@ class AddQuestionTestCase(QuestionTestCase):
         q = self.session.query(models.Question).get(2)
         self.assertEqual(q, None)
 
+
 class UpdateQuestionTestCase(QuestionTestCase):
 
     def test_update_question(self):
@@ -95,10 +96,11 @@ class UpdateQuestionTestCase(QuestionTestCase):
                                   follow_redirects=True)
         self.assertEqual(response3.status_code, 200)
 
-        update_question = dict(question="How many prime numbers between 1 to 100?",mark=5,difficulty=20,imp=True,submit="submit")
+        update_question = dict(question="How many prime numbers between 1 to 100?", mark=5, difficulty=20, imp=True,
+                               submit="submit")
         response = self.app.post("/question/update/2",
-                                    data=update_question,
-                                    follow_redirects=True)
+                                 data=update_question,
+                                 follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         q = self.session.query(models.Question).get(2)
 
@@ -107,14 +109,10 @@ class UpdateQuestionTestCase(QuestionTestCase):
         self.assertEqual(str(q), "Question(How many prime numbers between 1 to 100?, 5, 20, True)")
 
         response = self.app.post("/question/update/4",
-                                    data=update_question,
-                                    follow_redirects=True)
+                                 data=update_question,
+                                 follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Question:4 Does not exist", response.data)
-
-
-
-
 
 
 class IMPSetTestCase(QuestionTestCase):
@@ -188,30 +186,33 @@ class DeleteSetTestCase(QuestionTestCase):
         self.assertEqual(str(q2), "Question(Isn't it good?, 10, 20, False)")
         self.assertEqual(q3, None)
 
-class mcqTestCase(QuestionTestCase):
-    
+
+class MCQTestCase(QuestionTestCase):
+
     def test_mcq_add(self):
-        response1 = self.app.post("/question/new_mcq",
+        response1 = self.app.post("/question/new/mcq",
                                   data=dict(question="Rate it", mark=8,
-                                            difficulty=10, imp=None, submit="submit",option1='10',option2='9',option3='8',option4='7'),
+                                            difficulty=10, imp=None, submit="submit", option1='10', option2='9',
+                                            option3='8', option4='7'),
                                   follow_redirects=True)
         self.assertEqual(response1.status_code, 200)
-        q1 = self.session.query(models.mcqQuestion).get(1)
-        self.assertEqual(str(q1),"Question(Rate it, 8, 10, False, 10, 9, 8, 7)")
-        
-        new_question = dict(question="Choose One", mark=8, difficulty=10, imp=True, submit="submit",option1='A',option2='B',option3='C',option4='D')
-        response = self.app.post("/question/new_mcq",
+        q1 = self.session.query(models.MCQQuestion).get(1)
+        self.assertEqual(str(q1), "MCQQuestion(Rate it, 8, 10, False, 10, 9, 8, 7)")
+
+        new_question = dict(question="Choose One", mark=8, difficulty=10, imp=True, submit="submit", option1='A',
+                            option2='B', option3='C', option4='D')
+        response = self.app.post("/question/new/mcq",
                                  data=new_question,
                                  follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-        q = self.session.query(models.mcqQuestion).get(2)
+        q = self.session.query(models.MCQQuestion).get(2)
 
         # Testing if repr method is working
-        self.assertEqual(str(q), "Question(Choose One, 8, 10, True, A, B, C, D)")
+        self.assertEqual(str(q), "MCQQuestion(Choose One, 8, 10, True, A, B, C, D)")
 
         # DO appropriate changes in new_question to match database result
         del new_question["submit"]
-        new_question["id"] = 2 
+        new_question["id"] = 2
         self.assertEqual(q.to_dict(), new_question)
 
 

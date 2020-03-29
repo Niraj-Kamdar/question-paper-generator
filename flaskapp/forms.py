@@ -12,8 +12,9 @@ class QuestionForm(FlaskForm):
                               validators=[DataRequired(), NumberRange(1, 100, "Not a valid difficulty")])
     imp = BooleanField('imp')
     submit = SubmitField('submit')
-    
-class mcqQuestionForm(QuestionForm):
+
+
+class MCQQuestionForm(QuestionForm):
     option1 = TextAreaField('Option1',
                             validators=[DataRequired()])
     option2 = TextAreaField('Option2',
