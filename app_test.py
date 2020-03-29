@@ -253,7 +253,7 @@ class DeleteSetForMCQTestCase(QuestionTestCase):
         q2 = self.session.query(models.MCQQuestion).get(2)
         q3 = self.session.query(models.MCQQuestion).get(3)
         self.assertEqual(q1, None)
-        self.assertEqual(str(q2), "MCQQuestion(Watch, 8, 10, True, A, B, C, D)")
+        self.assertEqual(str(q2), "MCQQuestion(Watch, 8, 10, False, A, B, C, D)")
         self.assertEqual(q3, None)
 
 
