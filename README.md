@@ -54,6 +54,21 @@ python manage.py db migrate -m "Migration message"
 python manage.py db upgrade
 ```
 
+### Testing
+
+You can run all tests with following command
+```console
+python -m unittest discover test
+```
+You can run any particular test using following command
+```console
+python -m unittest test.<filename without py>
+```
+For example if you want to run test_add_sub_question run followinf command
+```console
+python -m unittest test.test_add_sub_question
+```
+
 ## Built With
 
 * [Flask](http://flask.pocoo.org/) -  Flask is a microframework for Python based on Werkzeug and Jinja 2
