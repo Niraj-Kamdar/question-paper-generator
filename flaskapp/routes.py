@@ -96,7 +96,7 @@ def add_mcqquestion():
 
 # to delete mcq question
 @app.route("/question/mcq/delete/<deleteq>", methods=["GET"])
-def delete_question(deleteq):
+def delete_mcq(deleteq):
     """impq string convert to list of imp and notimp"""
     del_ids = json.loads(deleteq)
     db.session.query(MCQQuestion).filter(MCQQuestion.id.in_(del_ids)).delete(synchronize_session='fetch')
