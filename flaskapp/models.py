@@ -34,6 +34,12 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User({self.username}, {self.email}, {self.image_file})"
 
+    def to_dict(self):
+        return dict(id=self.id,
+                    username=self.username,
+                    email=self.email,
+                    image_file=self.image_file)
+
 
 class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -44,6 +50,10 @@ class Course(db.Model):
 
     def __repr__(self):
         return f"Course({self.name})"
+
+    def to_dict(self):
+        return dict(id=self.id,
+                    course=self.name)
 
 
 class Question(db.Model):
