@@ -1,9 +1,9 @@
 from flaskapp import models
 
-from test.test_question import QuestionTestCase
+from test.main.test_database import DatabaseTestCase
 
 
-class AddQuestionTestCase(QuestionTestCase):
+class AddQuestionTestCase(DatabaseTestCase):
 
     def test_add_question(self):
         # Test valid data

@@ -1,10 +1,10 @@
 import json
 
 from flaskapp import models
-from test.test_question import QuestionTestCase
+from test.main.test_database import DatabaseTestCase
 
 
-class DeleteMCQTestCase(QuestionTestCase):
+class DeleteMCQTestCase(DatabaseTestCase):
 
     def test_delete_mcq(self):
         # Test valid data

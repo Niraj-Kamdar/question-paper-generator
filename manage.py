@@ -1,6 +1,7 @@
-from flaskapp import app, db
-from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
+from flask_script import Manager
+
+from flaskapp import app, db
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskapp/site.db'
 migrate = Migrate(app, db)

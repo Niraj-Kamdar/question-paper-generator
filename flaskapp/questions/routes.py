@@ -1,42 +1,66 @@
-from flask import render_template, url_for, flash, redirect, json
+from flask import render_template, flash, redirect, url_for, json, Blueprint
+from flask_login import login_required, current_user
 
-from flaskapp import app, db
-from flaskapp.forms import QuestionForm, MCQQuestionForm
-from flaskapp.models import Question, MCQQuestion
-# generate random integer values
-from random import randint
+from flaskapp import db
+from flaskapp.models import MCQQuestion, Question, Course
+from flaskapp.questions.forms import CourseForm, MCQQuestionForm, QuestionForm
 
-
-@app.route("/")
-def index():
-    colors = [["#007991", "#00bfe6"], ["#642B73", "#C6426E"], ["#444444", "#777777"]]
-    opacity = "b3"
-    random_num = randint(0, len(colors) - 1)
-    return render_template("index.html", color=colors[random_num], opacity=opacity)
+questions = Blueprint('questions', __name__)
 
 
-@app.route("/question/<qtype>/")
-def questions(qtype):
+@questions.route("/course/<course_id>/question/<qtype>/")
+@login_required
+def question(course_id, qtype):
     if qtype == "mcq":
-        _mcq_questions = MCQQuestion.query.all()
+        _mcq_questions = MCQQuestion.query.filter(MCQQuestion.course_id == course_id).all()
         # change css_file and js_file here!
         return render_template("mcq_questions.html",
                                questions=_mcq_questions,
                                css_file='css/question_form.css',
-                               js_file='js/update_question.js'
+                               js_file='js/update_question.js',
+                               title='Objective Questions'
                                )
     elif qtype == "sub":
-        _questions = Question.query.all()
+        _questions = Question.query.filter(Question.course_id == course_id).all()
         # change css_file and js_file here!
         return render_template("questions.html",
                                questions=_questions,
                                css_file='css/question_form.css',
-                               js_file='js/update_question.js'
+                               js_file='js/update_question.js',
+                               title='Subjective Questions'
                                )
 
 
-@app.route("/question/<qtype>/new/", methods=["GET", "POST"])
-def add_question(qtype):
+@questions.route('/course/new/', methods=["GET", "POST"])
+@login_required
+def add_course():
+    form = CourseForm()
+    if form.validate_on_submit():
+        course = Course(name=form.course.data, teacher=current_user)
+        db.session.add(course)
+        db.session.commit()
+        flash(f"New course added successfully!", "success")
+        return redirect(url_for("questions.courses"))
+    return render_template("course_form.html",
+                           form=form,
+                           css_file='css/question_form.css',
+                           js_file='js/question_form.js',
+                           title='Add Courses'
+                           )
+
+
+@questions.route('/course/')
+@login_required
+def courses():
+    _courses = Course.query.filter(Course.teacher == current_user).all()
+    return render_template("courses.html",
+                           courses=_courses,
+                           title='Courses')
+
+
+@questions.route("/course/<course_id>/question/<qtype>/new/", methods=["GET", "POST"])
+@login_required
+def add_question(course_id, qtype):
     if qtype == "mcq":
         form = MCQQuestionForm()
         if form.validate_on_submit():
@@ -47,15 +71,17 @@ def add_question(qtype):
                                    option1=form.option1.data,
                                    option2=form.option2.data,
                                    option3=form.option3.data,
-                                   option4=form.option4.data)
+                                   option4=form.option4.data,
+                                   course_id=course_id)
             db.session.add(question)
             db.session.commit()
             flash(f"New question added successfully!", "success")
-            return redirect(url_for("questions", qtype="mcq"))
+            return redirect(url_for("questions.question", qtype="mcq", course_id=course_id))
         return render_template("mcq_question_form.html",
                                form=form,
                                css_file='css/question_form.css',
-                               js_file='js/question_form.js'
+                               js_file='js/question_form.js',
+                               title='Add Objective Question'
                                )
     elif qtype == "sub":
         form = QuestionForm()
@@ -63,27 +89,30 @@ def add_question(qtype):
             question = Question(question=form.question.data,
                                 mark=form.mark.data,
                                 difficulty=form.difficulty.data,
-                                imp=form.imp.data)
+                                imp=form.imp.data,
+                                course_id=course_id)
             db.session.add(question)
             db.session.commit()
             flash(f"New question added successfully!", "success")
-            return redirect(url_for("questions", qtype="sub"))
+            return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
         return render_template("question_form.html",
                                form=form,
                                css_file='css/question_form.css',
-                               js_file='js/question_form.js'
+                               js_file='js/question_form.js',
+                               title='Add Subjective Question'
                                )
 
 
-@app.route("/question/<qtype>/update/<int:question_id>/", methods=["GET", "POST"])
-def update_question(qtype, question_id):
+@questions.route("/course/<course_id>/question/<qtype>/update/<int:question_id>/", methods=["GET", "POST"])
+@login_required
+def update_question(course_id, qtype, question_id):
     if qtype == "mcq":
         pass
     elif qtype == "sub":
         question = db.session.query(Question).filter_by(id=question_id).first()
         if question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
-            return redirect(url_for("questions", qtype="sub"))
+            return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
         form = QuestionForm(**question.to_dict())
         if form.validate_on_submit():
             question.question = form.question.data
@@ -92,7 +121,7 @@ def update_question(qtype, question_id):
             question.imp = form.imp.data
             db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")
-            return redirect(url_for("questions", qtype="sub"))
+            return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
         return render_template('question_form.html',
                                form=form,
                                css_file='css/question_form.css',
@@ -100,8 +129,9 @@ def update_question(qtype, question_id):
                                )
 
 
-@app.route("/question/<qtype>/imp/<impq>/", methods=["GET"])
-def imp_question(qtype, impq):
+@questions.route("/course/<course_id>/question/<qtype>/imp/<impq>/", methods=["GET"])
+@login_required
+def imp_question(course_id, qtype, impq):
     if qtype == "mcq":
         pass
     elif qtype == "sub":
@@ -111,18 +141,19 @@ def imp_question(qtype, impq):
         db.session.query(Question).filter(Question.id.in_(imp)).update(dict(imp=True), synchronize_session='fetch')
         db.session.query(Question).filter(Question.id.in_(notimp)).update(dict(imp=False), synchronize_session='fetch')
         db.session.commit()
-        return redirect(url_for("questions", qtype="sub"))
+        return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
 
 
-@app.route("/question/<qtype>/delete/<deleteq>/", methods=["GET"])
-def delete_question(qtype, deleteq):
+@questions.route("/course/<course_id>/question/<qtype>/delete/<deleteq>/", methods=["GET"])
+@login_required
+def delete_question(course_id, qtype, deleteq):
     if qtype == "mcq":
         del_ids = json.loads(deleteq)
         db.session.query(MCQQuestion).filter(MCQQuestion.id.in_(del_ids)).delete(synchronize_session='fetch')
         db.session.commit()
-        return redirect(url_for("questions", qtype="mcq"))
+        return redirect(url_for("questions.question", qtype="mcq", course_id=course_id))
     elif qtype == "sub":
         del_ids = json.loads(deleteq)
         db.session.query(Question).filter(Question.id.in_(del_ids)).delete(synchronize_session='fetch')
         db.session.commit()
-        return redirect(url_for("questions", qtype="sub"))
+        return redirect(url_for("questions.question", qtype="sub", course_id=course_id))

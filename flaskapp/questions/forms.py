@@ -1,6 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, TextAreaField, IntegerField, BooleanField, StringField, SelectField
+from wtforms import StringField, TextAreaField, IntegerField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Length, NumberRange
+
+
+class CourseForm(FlaskForm):
+    course = StringField('Course',
+                         validators=[DataRequired()])
+    submit = SubmitField("submit")
 
 
 class QuestionForm(FlaskForm):

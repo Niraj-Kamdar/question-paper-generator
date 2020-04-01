@@ -1,10 +1,12 @@
+import json
+
 from flaskapp import models
-from test.test_question import QuestionTestCase
+from test.main.test_database import DatabaseTestCase
 
 
-class UpdateQuestionTestCase(QuestionTestCase):
+class IMPSetTestCase(DatabaseTestCase):
 
-    def test_update_question(self):
+    def test_imp_question(self):
         # Test valid data
         # populate database with new questions.
         response1 = self.app.post("/question/sub/new",
@@ -23,20 +25,16 @@ class UpdateQuestionTestCase(QuestionTestCase):
                                   follow_redirects=True)
         self.assertEqual(response3.status_code, 200)
 
-        update_question = dict(question="How many prime numbers between 1 to 100?", mark=5, difficulty=20, imp=True,
-                               submit="submit")
-        response = self.app.post("/question/sub/update/2",
-                                 data=update_question,
-                                 follow_redirects=True)
+        # Actual set imp get request.
+        imp_dict = dict(imp=[1, 2], notimp=[3])
+        d = json.dumps(imp_dict)
+        response = self.app.get(f"/question/sub/imp/{d}", follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-        q = self.session.query(models.Question).get(2)
 
-        # Testing if repr method is working
-
-        self.assertEqual(str(q), "Question(How many prime numbers between 1 to 100?, 5, 20, True)")
-
-        response = self.app.post("/question/sub/update/4",
-                                 data=update_question,
-                                 follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Question:4 Does not exist", response.data)
+        # check changes are reflected in database
+        q1 = self.session.query(models.Question).first()
+        q2 = self.session.query(models.Question).get(2)
+        q3 = self.session.query(models.Question).get(3)
+        self.assertEqual(q1.imp, True)
+        self.assertEqual(q2.imp, True)
+        self.assertEqual(q3.imp, False)

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block main %}
+    <div id="form">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %} {% endwith %}
+        <h3 id="form__question_paper">Course</h3>
+        <form method="POST" action="" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="form__fields">
+                {{ form.course.label(class="form__fields__label") }}
+                {{ form.course(id="form__fields__course") }}
+            </div>
+            {% if form.course.errors %}
+                <ul class="form__error">
+                    {% for error in form.course.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <div class="form__client_error"></div>
+
+
+            {{ form.submit }}
+        </form>
+    </div>
+{% endblock main %}

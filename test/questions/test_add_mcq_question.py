@@ -1,9 +1,9 @@
 from flaskapp import models
 
-from test.test_question import QuestionTestCase
+from test.main.test_database import DatabaseTestCase
 
 
-class MCQTestCase(QuestionTestCase):
+class MCQTestCase(DatabaseTestCase):
 
     def test_mcq_add(self):
         response1 = self.app.post("/question/mcq/new",
