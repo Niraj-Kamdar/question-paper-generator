@@ -43,12 +43,7 @@ def login():
 @login_required
 def home():
     _courses = Course.query.filter(Course.teacher == current_user).all()
-    return render_template("home.html",
-                            css_file='css/home.css', 
-                            js_file='js/home.js',
-                            courses=_courses,
-                            title='Home')
-
+    return render_template("home.html",css_file='css/home.css', js_file='js/home.js',courses=_courses,title='Home')
 
 @users.route("/logout")
 @login_required
