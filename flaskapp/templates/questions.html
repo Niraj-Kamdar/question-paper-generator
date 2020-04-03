@@ -12,19 +12,19 @@
   <div class="control_btns">
     <div id="mark_imp">
       <img src="{{ url_for('static',
-                filename='images/imp.svg') }}" class="control_btns_img" />
+                filename='images/imp.svg') }}" alt="imp" class="control_btns_img" />
     </div>
     <div id="update_all">
       <img src="{{ url_for('static',
-                filename='images/update.svg') }}" class="control_btns_img" />
+                filename='images/update.svg') }}" alt="update" class="control_btns_img" />
     </div>
     <div id="delete_btn">
       <img src="{{ url_for('static',
-                filename='images/bin.png') }}" class="control_btns_img" />
+                filename='images/bin.png') }}" alt="delete" class="control_btns_img" />
     </div>
     <div id="cancel_btn">
       <img src="{{ url_for('static',
-                filename='images/cancel.svg') }}" class="control_btns_img" />
+                filename='images/cancel.svg') }}" alt="cancel" class="control_btns_img" />
     </div>
   </div>
   {% for q in questions %}
@@ -57,7 +57,7 @@
     <div class="update_question">
       <div class="edit_question">
         <img src="{{ url_for('static',
-                    filename='images/edit.png') }}" class="update_question_img" />
+                    filename='images/edit.png') }}" alt="edit" class="update_question_img" />
       </div>
       <!-- <div class="delete_question"><img src="{{ url_for('static',filename='images/bin.png') }}"
                     class="update_question_img" /></div>
