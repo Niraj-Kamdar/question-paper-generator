@@ -2,10 +2,10 @@ import os
 import secrets
 
 from PIL import Image
-from flask import url_for, current_app
+from flask import url_for, current_app, render_template
 from flask_mail import Message
 
-from flaskapp import mail
+from flaskapp import mail, APP_PATH
 
 
 def save_picture(form_picture):
@@ -24,12 +24,23 @@ def save_picture(form_picture):
 
 def send_reset_email(user):
     token = user.get_reset_token()
+    mail_file = os.path.join(APP_PATH, "templates", "password-reset", "content.txt")
+    with open(mail_file, "r") as f:
+        msg_text = f.read()
+    msg_text = msg_text.format(name=user.username,
+                               action_url=url_for('users.reset_token', token=token, _external=True),
+                               support_url=url_for('main.index'),
+                               operating_system="linux",
+                               browser_name="firefox")
+    msg_html = render_template("password-reset/content.html",
+                               name=user.username,
+                               action_url=url_for('users.reset_token', token=token, _external=True),
+                               support_url=url_for('main.index'),
+                               operating_system="linux",
+                               browser_name="firefox")
     msg = Message('Password Reset Request',
-                  sender='noreply@demo.com',
+                  sender='setnow@tuta.io',
                   recipients=[user.email])
-    msg.body = f'''To reset your password, visit the following link:
-{url_for('reset_token', token=token, _external=True)}
-If you did not make this request then simply ignore this email and no changes will be made.
-'''
-    msg.html = ""
+    msg.body = msg_text
+    msg.html = msg_html
     mail.send(msg)
