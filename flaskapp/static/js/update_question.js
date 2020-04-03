@@ -148,7 +148,7 @@ cancelBtn.addEventListener("click", () => {
     }
     return;
   }
-  if (form[0]) {
+  if (forms[0]) {
     let index = -1;
     for (let i = 0; i < buffer.length; i++) {
       if (buffer[i]) {
