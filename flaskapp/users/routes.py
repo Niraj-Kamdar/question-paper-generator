@@ -21,7 +21,7 @@ def register():
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('register.html', title='Register', form=form,js_file='js/register.js')
 
 
 @users.route("/login", methods=['GET', 'POST'])
@@ -37,7 +37,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('questions.courses'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title='Login', form=form,js_file='js/login.js')
 
 
 @users.route("/logout")
@@ -78,7 +78,7 @@ def reset_request():
         send_reset_email(user)
         flash('An email has been sent with instructions to reset your password.', 'info')
         return redirect(url_for('users.login'))
-    return render_template('reset_request.html', title='Reset Password', form=form)
+    return render_template('reset_request.html', title='Reset Password', form=form,js_file='js/reset_password.js')
 
 
 @users.route("/reset_password/<token>", methods=['GET', 'POST'])
