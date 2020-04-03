@@ -3,18 +3,16 @@ window.onscroll = function () {
 };
 
 function scrollFunction() {
-    var color1 = document.getElementById("data_color1").innerHTML;
-    var color2 = document.getElementById("data_color2").innerHTML;
     var header = document.getElementById("header");
     var ofset = 50;
     if (window.pageYOffset > ofset || document.body.scrollTop > ofset || document.documentElement.scrollTop > ofset) {
         header.classList.add("py-2");
         header.classList.remove("py-4");
-        header.style.backgroundImage = "linear-gradient(to right, " + color2 + ", " + color1 + ")";
+        header.style.background = "#9000F0";
     } else {
         header.classList.add("py-4");
         header.classList.remove("py-2");
-        header.style.backgroundImage = null;
+        header.style.background = null;
     }
 }
 
@@ -22,26 +20,32 @@ window.onload = function () {
     var loginbtn = document.getElementById("show_login");
     loginbtn.addEventListener("click", () => {
         var x = document.getElementById('content');
-        if (x.className === 'hidden') {
-            document.getElementById('bodycontent').style.marginLeft = "0%";
+        if (x.classList.contains("hidden")) {
             document.getElementsByClassName('overlape')[0].style.marginLeft = "0%";
+            document.getElementsByClassName('img1')[0].style.marginLeft = "0%";
             document.getElementsByClassName('col2')[0].style.width = "85%";
-            document.getElementById('footer').style.marginLeft = "0%";
+            document.getElementById('footer').style.display = "block";
             document.getElementById('footercontent').style.marginLeft = "0%";
-            x.className = '';
+            x.classList.remove("hidden");
             disp(x);
         } else {
-            x.className = 'hidden';
+            x.classList.add("hidden");
+            setTimeout(() => {
+                document.getElementsByClassName('overlape')[0].style.marginLeft = "-30%";
+                document.getElementsByClassName('img1')[0].style.marginLeft = "-30%";
+                document.getElementsByClassName('col2')[0].style.width = "55%";
+                document.getElementById('footer').style.display = "none";
+                document.getElementById('footercontent').style.marginLeft = "30%";
+                console.log("500 ms done");
+            }, 500);
             setTimeout(() => {
                 disp(x)
+                console.log("1000 ms done");
             }, 1000);
             setTimeout(() => {
-                document.getElementById('bodycontent').style.marginLeft = "-30%";
-                document.getElementsByClassName('overlape')[0].style.marginLeft = "-30%";
-                document.getElementsByClassName('col2')[0].style.width = "55%";
-                document.getElementById('footer').style.marginLeft = "-30%";
-                document.getElementById('footercontent').style.marginLeft = "30%";
-            }, 500);
+                window.location.href='/login';
+                console.log("1500 ms done");
+            }, 2000);
         }
     });
 }
