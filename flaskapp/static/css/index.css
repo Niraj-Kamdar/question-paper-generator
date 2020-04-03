@@ -28,6 +28,7 @@ body::-webkit-scrollbar {
     min-width: 1024px;
     width: 100%;
     height: auto;
+    transition: 1s;
 }
 
 .overlape {
@@ -37,12 +38,14 @@ body::-webkit-scrollbar {
     top: 0;
     left: 0;
     transition: 1s;
+    background: #9000F0b3;
 }
 
 /************************************************************************/
 
 /************************************************************************/
 #header {
+    margin: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -90,6 +93,7 @@ body::-webkit-scrollbar {
     width: 100%;
     position: relative;
     background-color: #ffffff;
+    color: #9000F0;
     border-top-left-radius: 20% 50%;
     border-bottom-left-radius: 20% 50%;
     border: none;
@@ -98,7 +102,6 @@ body::-webkit-scrollbar {
 
 /**********************************************************************/
 #content {
-    padding-top: 8%;
     transition-property: visibility, opacity;
     transition-duration: 0s, 0.5s;
     overflow: auto;
@@ -113,16 +116,11 @@ body::-webkit-scrollbar {
 }
 
 #footer {
-    left: 0;
-    bottom: 0;
-    position: fixed;
+    display: block;
     font-size: 1vw;
     color: rgba(255, 255, 255, 0.5);
     transition: 1s;
-}
-
-#footercontent {
-    transition: 1s;
+    background: #9000F0;
 }
 
 .fl {
