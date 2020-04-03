@@ -36,15 +36,12 @@ window.onload = function () {
                 document.getElementsByClassName('col2')[0].style.width = "55%";
                 document.getElementById('footer').style.display = "none";
                 document.getElementById('footercontent').style.marginLeft = "30%";
-                console.log("500 ms done");
             }, 500);
             setTimeout(() => {
                 disp(x)
-                console.log("1000 ms done");
             }, 1000);
             setTimeout(() => {
                 window.location.href='/login';
-                console.log("1500 ms done");
             }, 2000);
         }
     });
