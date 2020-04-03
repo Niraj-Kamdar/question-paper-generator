@@ -16,7 +16,7 @@ class QuestionForm(FlaskForm):
                         validators=[DataRequired(), NumberRange(1, 101, "Not in a valid mark range")])
     difficulty = IntegerField('Difficulty',
                               validators=[DataRequired(), NumberRange(1, 101, "Not in a valid difficulty range")])
-    imp = BooleanField('imp')
+    imp = BooleanField('Mark As IMP')
     submit = SubmitField('submit')
 
 
