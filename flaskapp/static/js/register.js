@@ -16,11 +16,11 @@ registerForm.addEventListener("submit", e => {
   const confirmPassword = confirmPasswordField.value;
   userNameError.innerHTML = emailError.innerHTML = passwordError.innerHTML = confirmPasswordError.innerHTML =
     "";
-  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
+  const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
   if (
     !emailRegex.test(email) ||
     !userName ||
-    !(password === confirmPassword) ||
+    password !== confirmPassword ||
     !password
   ) {
     /**if userName is empty */
@@ -36,7 +36,7 @@ registerForm.addEventListener("submit", e => {
       passwordError.innerHTML = "password is required!!";
     }
     /**if password does not match with confirm password */
-    if (!(password === confirmPassword)) {
+    if (password !== confirmPassword) {
       confirmPasswordError.innerHTML =
         "this field must match with password field";
     }

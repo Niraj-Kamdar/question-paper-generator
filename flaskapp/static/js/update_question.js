@@ -108,6 +108,7 @@ for (let i = 0; i < editQuestion.length; i++) {
       fetch(url)
         .then(data => data.text())
         .then(data => {
+          let content = "";
           content = data;
           const startIndex = content.indexOf("<form");
           const lastIndex = content.indexOf("</form");
