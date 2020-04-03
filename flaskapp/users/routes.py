@@ -2,7 +2,7 @@ from flask import redirect, url_for, flash, render_template, request, Blueprint
 from flask_login import current_user, login_user, login_required, logout_user
 
 from flaskapp import bcrypt, db
-from flaskapp.models import User, Course
+from flaskapp.models import User
 from flaskapp.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from flaskapp.users.utils import save_picture, send_reset_email
 
@@ -12,7 +12,7 @@ users = Blueprint('users', __name__)
 @users.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('users.home'))
+        return redirect(url_for('papers.home'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -21,13 +21,13 @@ def register():
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
-    return render_template('register.html', title='Register', form=form,js_file='js/register.js')
+    return render_template('users/register.html', title='Register', form=form, js_file='js/register.js')
 
 
 @users.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('users.home'))
+        return redirect(url_for('papers.home'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -37,13 +37,8 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('users.home'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form,js_file='js/login.js')
+    return render_template('users/login.html', title='Login', form=form, js_file='js/login.js')
 
-@users.route('/home')
-@login_required
-def home():
-    _courses = Course.query.filter(Course.teacher == current_user).all()
-    return render_template("home.html",css_file='css/home.css', js_file='js/home.js',courses=_courses,title='Home')
 
 @users.route("/logout")
 @login_required
@@ -69,7 +64,7 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    return render_template('account.html', title='Account',
+    return render_template('users/account.html', title='Account',
                            image_file=image_file, form=form)
 
 
@@ -83,7 +78,8 @@ def reset_request():
         send_reset_email(user)
         flash('An email has been sent with instructions to reset your password.', 'info')
         return redirect(url_for('users.login'))
-    return render_template('reset_request.html', title='Reset Password', form=form,js_file='js/reset_password.js')
+    return render_template('users/reset_request.html', title='Reset Password', form=form,
+                           js_file='js/reset_password.js')
 
 
 @users.route("/reset_password/<token>", methods=['GET', 'POST'])
@@ -101,4 +97,4 @@ def reset_token(token):
         db.session.commit()
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
-    return render_template('reset_token.html', title='Reset Password', form=form)
+    return render_template('users/reset_token.html', title='Reset Password', form=form)

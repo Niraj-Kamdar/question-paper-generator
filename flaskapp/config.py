@@ -20,7 +20,6 @@ class DevelopmentConfig(Config):
     DEBUG = True
 
 
-
 class TestingConfig(Config):
     SECRET_KEY = '166839997171300f4a1f899733c043e20d1758d3595ff0c8'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'

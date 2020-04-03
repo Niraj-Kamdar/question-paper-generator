@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
     <div class="container pt-1" id="wrapper">
-        <h3 id="home_title" >Recent</h3>
+        <h3 id="home_title">Recent</h3>
         <div class="row">
             <div class="col pt-4" id="home_content">
                 <div class="row my-3">Paper 1</div>
@@ -12,7 +12,7 @@
             </div>
             <div class="col-1"></div>
             <div class="col-3" id="home_nav">
-                
+
                 <div class="row mb-2" id="selected_course">
                     <h2 class="px-3 py-3">Current Course : <span>123</span></h2>
                 </div>
@@ -32,10 +32,13 @@
                 </div>
                 <div class="row mt-2" id="course_btn">
                     <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Course</button>
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Course
+                        </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for _course in courses %}
-                                <a class="dropdown-item" href={{ url_for("questions.question", qtype="sub", course_id=_course.id) }}>{{ _course }}</a>
+                                <a class="dropdown-item"
+                                   href={{ url_for("questions.question", qtype="sub", course_id=_course.id) }}>{{ _course }}</a>
                             {% endfor %}
                         </div>
                     </div>

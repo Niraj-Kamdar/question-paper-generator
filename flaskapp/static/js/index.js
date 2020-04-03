@@ -41,7 +41,7 @@ window.onload = function () {
                 disp(x)
             }, 1000);
             setTimeout(() => {
-                window.location.href='/login';
+                window.location.href = '/login';
             }, 2000);
         }
     });

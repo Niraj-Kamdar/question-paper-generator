@@ -11,4 +11,3 @@ class AddCourseTestCase(DatabaseTestCase):
         q = self.db.session.query(models.Course).first()
 
         self.assertEqual(str(q), 'Course(maths)')
-

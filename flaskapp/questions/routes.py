@@ -14,7 +14,7 @@ def question(course_id, qtype):
     if qtype == "mcq":
         _mcq_questions = MCQQuestion.query.filter(MCQQuestion.course_id == course_id).all()
         # change css_file and js_file here!
-        return render_template("mcq_questions.html",
+        return render_template("questions/mcq_questions.html",
                                questions=_mcq_questions,
                                css_file='css/question_form.css',
                                js_file='js/update_question.js',
@@ -23,7 +23,7 @@ def question(course_id, qtype):
     elif qtype == "sub":
         _questions = Question.query.filter(Question.course_id == course_id).all()
         # change css_file and js_file here!
-        return render_template("questions.html",
+        return render_template("questions/questions.html",
                                questions=_questions,
                                css_file='css/question_form.css',
                                js_file='js/update_question.js',
@@ -41,7 +41,7 @@ def add_course():
         db.session.commit()
         flash(f"New course added successfully!", "success")
         return redirect(url_for("questions.courses"))
-    return render_template("course_form.html",
+    return render_template("questions/course_form.html",
                            form=form,
                            css_file='css/question_form.css',
                            js_file='js/question_form.js',
@@ -53,7 +53,7 @@ def add_course():
 @login_required
 def courses():
     _courses = Course.query.filter(Course.teacher == current_user).all()
-    return render_template("courses.html",
+    return render_template("questions/courses.html",
                            courses=_courses,
                            title='Courses')
 
@@ -77,7 +77,7 @@ def add_question(course_id, qtype):
             db.session.commit()
             flash(f"New question added successfully!", "success")
             return redirect(url_for("questions.question", qtype="mcq", course_id=course_id))
-        return render_template("mcq_question_form.html",
+        return render_template("questions/mcq_question_form.html",
                                form=form,
                                css_file='css/question_form.css',
                                js_file='js/question_form.js',
@@ -95,7 +95,7 @@ def add_question(course_id, qtype):
             db.session.commit()
             flash(f"New question added successfully!", "success")
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
-        return render_template("question_form.html",
+        return render_template("questions/question_form.html",
                                form=form,
                                css_file='css/question_form.css',
                                js_file='js/question_form.js',
@@ -122,7 +122,7 @@ def update_question(course_id, qtype, question_id):
             db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
-        return render_template('question_form.html',
+        return render_template('questions/question_form.html',
                                form=form,
                                css_file='css/question_form.css',
                                js_file='js/question_form.js'

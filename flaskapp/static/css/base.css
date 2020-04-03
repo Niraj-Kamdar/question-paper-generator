@@ -2,15 +2,18 @@ body::-webkit-scrollbar {
     display: none;
     position: fixed;
 }
-*{
+
+* {
     font-family: 'Montserrat', sans-serif;
 }
-.block_main{
-    margin-top: 13vh; 
-    min-width: 100vw; 
-    min-height: 80vh; 
+
+.block_main {
+    margin-top: 13vh;
+    min-width: 100vw;
+    min-height: 80vh;
     /*border:2px solid red;*/
 }
+
 .row {
     /*border:1px dotted yellow;*/
     position: relative;
@@ -44,13 +47,14 @@ body::-webkit-scrollbar {
     /*border :1px solid yellow;*/
 }
 
-.col3{
+.col3 {
     width: 35%;
     /*border :1px solid yellow;*/
     display: inline-flex;
     align-items: flex-end;
 }
-.col3 > .row{
+
+.col3 > .row {
     justify-content: flex-end;
     /*border :1px solid #00ffff;*/
 }
@@ -64,6 +68,7 @@ body::-webkit-scrollbar {
     border-bottom: 2px solid #ffffff00;
     font-size: 1.2vw;
 }
+
 .col3 > .row > a > h4:hover {
     color: rgba(255, 255, 255, 1);
     border-bottom: 2px solid #ffffff;
@@ -74,6 +79,7 @@ body::-webkit-scrollbar {
     max-width: 100%;
     position: relative;
 }
+
 .col4 {
     width: 5%;
     /*border :1px solid yellow;*/

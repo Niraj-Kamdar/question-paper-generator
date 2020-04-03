@@ -31,10 +31,12 @@ def create_app(config_class=Config):
     from flaskapp.questions.routes import questions
     from flaskapp.main.routes import main
     from flaskapp.errors.routes import errors
+    from flaskapp.papers.routes import papers
 
     app.register_blueprint(users)
     app.register_blueprint(questions)
     app.register_blueprint(main)
     app.register_blueprint(errors)
+    app.register_blueprint(papers)
 
     return app
