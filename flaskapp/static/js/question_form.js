@@ -1,3 +1,5 @@
+/**wrapping everything inside IIFE to create separate context */
+
 (function() {
   const form = document.getElementsByTagName("form")[0];
   //   const question = document.getElementById("form__fields__question");
@@ -7,6 +9,10 @@
   const question = document.getElementById("form_field_question_value");
   const mark = document.getElementById("marks_value");
   const difficulty = document.getElementById("difficulty_value");
+  const impCheckbox = document.getElementById("imp_checkbox");
+  const toggleBtn = document.getElementById("toggle_btn");
+  const toggleContainer = document.getElementById("toggle_container");
+  const resetBtn = document.getElementById("reset_btn");
   mark.setAttribute("placeholder", "Enter marks here");
   difficulty.setAttribute("placeholder", "Enter difficulty here");
   question.setAttribute("placeholder", "Enter question here");
@@ -73,6 +79,35 @@
     }
     if (flag) {
       e.preventDefault();
+    }
+  });
+
+  /**if checkbox is already checked */
+  if (impCheckbox.checked) {
+    toggleBtn.style.left = "24px";
+    toggleContainer.style.backgroundColor = "#2196F3";
+  }
+  toggleContainer.addEventListener("click", () => {
+    if (impCheckbox.checked) {
+      toggleBtn.style.left = "4px";
+      toggleContainer.style.backgroundColor = "#ccc";
+    } else {
+      toggleBtn.style.left = "24px";
+      toggleContainer.style.backgroundColor = "#2196F3";
+    }
+    impCheckbox.checked = !impCheckbox.checked;
+  });
+
+  /**hiding cancel button on question list page */
+  if (window.location.href.indexOf("new") === -1)
+    resetBtn.style.display = "none";
+
+  /**setting toggle switch and removing errors  on reset button*/
+  resetBtn.addEventListener("click", () => {
+    toggleBtn.style.left = "4px";
+    toggleContainer.style.backgroundColor = "#ccc";
+    for (let i = 0; i < formErrors.length; i++) {
+      formErrors[i].innerHTML = "";
     }
   });
 })();

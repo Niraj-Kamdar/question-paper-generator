@@ -72,7 +72,7 @@ deleteBtn.addEventListener("click", () => {
       const ids = [];
       for (let i = 0; i < deleteCheckbox.length; i++) {
         if (deleteCheckbox[i].checked) {
-          const matchArray = /\d+/.exec(qids[i].innerText);
+          const matchArray = /\d+/.exec(qids[i].innerText); //extracting question id
           ids.push(parseInt(matchArray[0]));
         }
       }
@@ -98,39 +98,7 @@ deleteBtn.addEventListener("click", () => {
 
 for (let i = 0; i < editQuestion.length; i++) {
   editQuestion[i].addEventListener("click", () => {
-    if (
-      !forms[0] &&
-      deleteOption[0].style.display !== "block" &&
-      updateImp[0].style.display !== "block"
-    ) {
-      const qid = parseInt(/\d+/.exec(qids[i].innerText)[0]);
-      const url = window.location.href + "update/" + qid + "/";
-      fetch(url)
-        .then(data => data.text())
-        .then(data => {
-          let content = "";
-          content = data;
-          const startIndex = content.indexOf("<form");
-          const lastIndex = content.indexOf("</form");
-          const form = content.substr(
-            startIndex,
-            lastIndex + 6 - startIndex + 1
-          );
-          buffer[i] = questions[i].innerHTML;
-          questions[i].innerHTML = form;
-          forms[0].action = url;
-          forms[0].style.width = "100%";
-          forms[0].style.backgroundColor = "rgba(0,0,0,0)";
-          forms[0].style.padding = "15px 10px";
-          const myscript = document.createElement("script");
-          myscript.setAttribute("src", "/static/js/question_form.js");
-          myscript.setAttribute("id", "updateScript");
-          document.body.appendChild(myscript);
-        })
-        .catch(e => {
-          throw new Error(e);
-        });
-    }
+    edit(i);
   });
 }
 
@@ -157,6 +125,46 @@ cancelBtn.addEventListener("click", () => {
     }
     questions[index].innerHTML = buffer[index];
     buffer[index] = undefined;
+    /**this button will be garbage collected when we edit form data.So we have add listenser to it when we close form */
+    editQuestion[index].addEventListener("click", () => {
+      edit(index);
+    });
     return;
   }
 });
+
+function edit(i) {
+  /**edit will be allowed only if mark  and delete functionality is not used  */
+  if (
+    !forms[0] &&
+    deleteOption[0].style.display !== "block" &&
+    updateImp[0].style.display !== "block"
+  ) {
+    const qid = parseInt(/\d+/.exec(qids[i].innerText)[0]);
+    const url = window.location.href + "update/" + qid + "/";
+    /**requesting form and script for updating question */
+    fetch(url)
+      .then(data => data.text())
+      .then(data => {
+        let content = "";
+
+        content = data;
+        const startIndex = content.indexOf("<form");
+        const lastIndex = content.indexOf("</form");
+        const form = content.substr(startIndex, lastIndex + 6 - startIndex + 1);
+        buffer[i] = questions[i].innerHTML;
+        questions[i].innerHTML = form;
+        forms[0].action = url;
+        forms[0].style.width = "100%";
+        forms[0].style.backgroundColor = "rgba(0,0,0,0)";
+        forms[0].style.padding = "15px 10px";
+        const myscript = document.createElement("script");
+        myscript.setAttribute("src", "/static/js/question_form.js");
+        myscript.setAttribute("id", "updateScript");
+        document.body.appendChild(myscript);
+      })
+      .catch(e => {
+        throw new Error(e);
+      });
+  }
+}

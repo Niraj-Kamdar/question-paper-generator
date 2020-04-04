@@ -1,11 +1,9 @@
-.header {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: rgba(88, 88, 88, 1);
-  font-size: 40px;
-}
+/*common css*/
+
 .flashes,
 .form__error {
   list-style-type: none;
+  margin: 0;
   padding-left: 0;
   width: 100%;
 }
@@ -14,6 +12,7 @@
   font-size: 25px;
   padding: 10px 15px;
 }
+/* css for question form*/
 #form_content {
   background-color: white;
   padding: 20px 10px;
@@ -43,13 +42,11 @@
 #marks_label {
   margin-right: 10px;
 }
-#new_question {
-  padding: 25px 40px;
-}
+
 #form {
   background-color: rgba(144, 0, 240, 0.15);
   border-radius: 10px;
-  padding: 60px 100px;
+  padding: 10px;
   /* width: 100%; */
 }
 #form_attributes {
@@ -60,16 +57,21 @@
 #mark_as_imp {
   background-color: rgba(144, 0, 240, 0.15);
   color: rgba(88, 88, 88, 1);
+  display: none;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 18px;
   padding: 5px;
+}
+#imp_checkbox {
+  display: none;
 }
 .form__fields {
   display: flex;
   margin: 10px 0;
   width: 100%;
 }
-#submit_btn {
+#submit_btn,
+#reset_btn {
   background-color: rgba(144, 0, 240, 0.15);
   border: none;
   color: rgba(88, 88, 88, 1);
@@ -77,19 +79,38 @@
   font-size: 20px;
   padding: 10px 20px;
 }
+#toggle_container {
+  align-items: center;
+  background-color: #ccc;
+  border-radius: 20px;
+  display: flex;
+  height: 24px;
+  margin-right: 5px;
+  width: 44px;
+}
+
+#toggle_btn {
+  background-color: white;
+  border-radius: 50%;
+  height: 16px;
+  left: 4px;
+  position: relative;
+  transition: left 0.3s;
+  width: 16px;
+}
 #submit_btn:hover {
   cursor: pointer;
 }
-
-#form__fields__question {
-  flex: 1;
+#reset_btn:hover {
+  cursor: pointer;
+}
+.form__client_error {
+  color: red;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
 }
 
-.form__fields__label {
-  display: inline-block;
-  text-align: left;
-  width: 70px;
-}
+/*css for question list */
 
 #questions {
   background-color: rgba(144, 0, 240, 0.15);
@@ -163,8 +184,9 @@
   text-align: right;
 }
 .second_row_column_1 {
-  width: 80px;
   border-right: 1px solid black;
+  flex-shrink: 0;
+  width: 80px;
 }
 .second_row_column_2 {
   display: flex;

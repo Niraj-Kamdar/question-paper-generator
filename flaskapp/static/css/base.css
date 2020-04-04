@@ -1,0 +1,203 @@
+body::-webkit-scrollbar {
+  display: none;
+  position: fixed;
+}
+* {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.row {
+  /*border:1px dotted yellow;*/
+  position: relative;
+  width: 100%;
+}
+
+#header {
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: 0.3s;
+  background: #642b73;
+  background: -webkit-linear-gradient(to right, #c6426e, #642b73);
+  background: linear-gradient(to right, #c6426e, #642b73);
+  /* background-color: rgba(144, 0, 240, 0.15); */
+}
+
+.logo {
+  max-height: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+.col1 {
+  /*border :1px solid yellow;*/
+  width: 5%;
+}
+
+.col2 {
+  padding-left: 1%;
+  width: 55%;
+  transition: 1s;
+  /*border :1px solid yellow;*/
+}
+
+.col3 {
+  width: 35%;
+  /*border :1px solid yellow;*/
+  display: inline-flex;
+  align-items: flex-end;
+}
+.col3 > .row {
+  justify-content: flex-end;
+  /*border :1px solid #00ffff;*/
+}
+
+.col3 > .row > a > h4 {
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  text-align: center;
+  float: left;
+  /*border :1px solid yellow;*/
+  border-bottom: 2px solid #ffffff00;
+  font-size: 1.2vw;
+}
+.col3 > .row > a > h4:hover {
+  color: rgba(255, 255, 255, 1);
+  border-bottom: 2px solid #ffffff;
+}
+
+.user {
+  max-height: 100%;
+  max-width: 100%;
+  position: relative;
+}
+.col4 {
+  width: 5%;
+  /*border :1px solid yellow;*/
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.col2 > h2 {
+  font-size: 2.5vw;
+}
+
+.col2 > h4 {
+  font-size: 1vw;
+}
+
+#footer {
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  font-size: 1vw;
+  color: rgba(255, 255, 255, 0.5);
+  transition: 1s;
+  background: #642b73;
+  background: -webkit-linear-gradient(to right, #c6426e, #642b73);
+  background: linear-gradient(to right, #c6426e, #642b73);
+}
+
+.fl {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.fl:hover {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* css for side navigation */
+
+.header {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgba(88, 88, 88, 1);
+  font-size: 40px;
+  margin: 0 40px;
+}
+
+#content {
+  display: flex;
+  flex-direction: row;
+  margin: 0px 40px 30px 40px;
+}
+
+#sideNav {
+  margin-left: 20px;
+}
+
+#explore_container {
+  margin-bottom: 10px;
+}
+
+#explore_title,
+#add_title {
+  align-items: center;
+  background-color: rgba(144, 0, 240, 0.76);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 2px;
+  padding: 12px;
+}
+
+#list_img,
+#add_img {
+  margin-right: 18px;
+}
+
+#list_img {
+  width: 30px;
+}
+
+#add_img {
+  height: 30px;
+  width: 33px;
+}
+
+#explore_items_container,
+#add_items_container {
+  background-color: rgba(144, 0, 240, 0.15);
+  padding: 12px 12px 2px 12px;
+}
+
+.explore_items,
+.add_items {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.explore_items a,
+.add_items a {
+  color: rgba(88, 88, 88, 1) !important;
+  display: inline-block;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 2px;
+  margin-left: 15px;
+  text-decoration: none !important;
+}
+
+.active {
+  font-style: italic;
+}
+
+.active:hover {
+  cursor: pointer;
+}
+
+/* css for question list*/
+
+#bottombar {
+  background-color: rgba(144, 0, 240, 0.15);
+  bottom: 0;
+  height: 10px;
+  position: sticky;
+}

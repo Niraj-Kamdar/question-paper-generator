@@ -1,7 +1,10 @@
-{% extends "layout.html" %}
+{% extends "sideNav.html" %}
+{% block header%}
+<h3 class="header">Add Subjective Question</h3>
+{%endblock header%}
 {% block main %}
 <div id="new_question">
-    <h3 class="header">Add Subjective Question</h3>
+
     <form method="POST" action="" novalidate id="form">
         {% with messages = get_flashed_messages(with_categories=true) %} {% if
                 messages %}
@@ -59,9 +62,16 @@
             </div>
             <div class="form__fields">
                 {{ form.imp.label(id="mark_as_imp") }}
-                {{ form.imp }}
+                {{ form.imp(id="imp_checkbox") }}
+                <div id="toggle_container">
+                    <div id="toggle_btn"></div>
+                </div>
+                Always include in papers
             </div>
-            {{ form.submit(id="submit_btn") }}
+            <div style="text-align: right;">
+                {{ form.submit(id="submit_btn") }}
+                <button id="reset_btn" type="reset">Cancel</button>
+            </div>
         </div>
     </form>
 

@@ -55,7 +55,7 @@ def courses():
     _courses = Course.query.filter(Course.teacher == current_user).all()
     return render_template("courses.html",
                            courses=_courses,
-                           title='Courses')
+                           title='Courses',js_file= 'js/course.js',css_file='css/course.css')
 
 
 @questions.route("/course/<course_id>/question/<qtype>/new/", methods=["GET", "POST"])
