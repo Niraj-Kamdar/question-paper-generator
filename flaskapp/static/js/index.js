@@ -27,8 +27,8 @@ window.onload = function () {
 
     var loginbtn = document.getElementById("show_login");
     loginbtn.addEventListener("click", () => {
+        var x = document.getElementById('content');
         if(window.location.href=="http://localhost:5000/login" || window.location.href=="http://localhost:5000/register"){
-            var x = document.getElementById('content');
             x.style.visibility = 'visible';
             document.getElementsByClassName('overlape')[0].style.marginLeft = "0%";
             document.getElementsByClassName('img1')[0].style.marginLeft = "0%";
@@ -44,7 +44,6 @@ window.onload = function () {
             }, 1000);
         }
         else if(window.location.href=="http://localhost:5000/"){
-            var x = document.getElementById('content');
             x.classList.add("hidden");
             setTimeout(() => {
                 document.getElementsByClassName('overlape')[0].style.marginLeft = "-30%";
