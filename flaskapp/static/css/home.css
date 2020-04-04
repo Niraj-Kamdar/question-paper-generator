@@ -1,7 +1,5 @@
 #wrapper {
     max-width: 90%;
-    /*border:5px solid green; */
-    /*background-color: #ffff00;*/
 }
 
 #wrapper > .row {
@@ -21,37 +19,12 @@
     background-color: #9000F026;
     height: 100%;
     position: relative;
-    /*border:1px solid red;*/
 }
 
 #home_content > div {
     background-color: #ffffff;
     color: #B0B0B0;
     margin: 0;
-}
-
-#course_btn > div {
-    width: 100%;
-}
-
-#course_btn > div > button {
-    width: 100%;
-    background-color: #808080;
-    color: #ffffff;
-    transition: 0.5s
-}
-
-#course_btn > div > div {
-    width: 100%;
-}
-
-#course_btn > div > div > a {
-    color: #808080;
-}
-
-#course_btn > div > div > a:hover {
-    background-color: #9000F026;
-    color: #000000;
 }
 
 #home_nav {

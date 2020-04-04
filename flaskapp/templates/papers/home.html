@@ -12,38 +12,20 @@
             </div>
             <div class="col-1"></div>
             <div class="col-3" id="home_nav">
-
-                <div class="row mb-2" id="selected_course">
-                    <h2 class="px-3 py-3">Current Course : <span>123</span></h2>
-                </div>
-                <div class="row my-2 pl-2" id="generate_paper_btn">
+                <div class="row mb-2 pl-2" id="generate_paper_btn">
                     <h1 class="px-3 py-1">G</h1>
                     <div class="col">
                         <h3>Generate</h3>
                         <h5>Paper</h5>
                     </div>
                 </div>
-                <div class="row my-2 pl-2" id="question_bank_btn">
+                <div class="row mt-2 pl-2" id="question_bank_btn">
                     <h1 class="px-3 py-1">Q</h1>
                     <div class="col">
                         <h3>Question</h3>
                         <h5>Bank</h5>
                     </div>
                 </div>
-                <div class="row mt-2" id="course_btn">
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Course
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            {% for _course in courses %}
-                                <a class="dropdown-item"
-                                   href={{ url_for("questions.question", qtype="sub", course_id=_course.id) }}>{{ _course }}</a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
