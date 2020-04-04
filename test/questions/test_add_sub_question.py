@@ -1,34 +1,21 @@
 from flaskapp import models
+from test.main.base_classes import BaseCourse
+from test.main.utils import test_post_request
 
-from test.main.test_database import DatabaseTestCase
 
-
-class AddQuestionTestCase(DatabaseTestCase):
+class AddQuestionTestCase(BaseCourse):
 
     def test_add_question(self):
         # Test valid data
         new_question = dict(question="Is it okay?", mark=8, difficulty=10, imp=True, submit="submit")
-        response = self.app.post("/question/sub/new/",
-                                 data=new_question,
-                                 follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-        q = self.session.query(models.Question).first()
+        response, question = test_post_request(self, "/course/1/question/sub/new/", new_question, models.Question, 1)
 
         # Testing if repr method is working
-        self.assertEqual(str(q), "Question(Is it okay?, 8, 10, True)")
-
-        # DO appropriate changes in new_question to match database result
-        del new_question["submit"]
-        new_question["id"] = 1
-        self.assertEqual(q.to_dict(), new_question)
+        self.assertEqual(str(question), "Question(Is it okay?, 8, 10, True)")
 
         # Test invalid data
-        response = self.app.post("/question/sub/new/",
-                                 data=dict(question="Isn't it okay?", mark=None, difficulty="1", imp=False,
-                                           submit="submit"),
-                                 follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
+        new_question = dict(question="Isn't it okay?", mark=None, difficulty="1", imp=False, submit="submit")
 
-        # Check changes are reflected in database
-        q = self.session.query(models.Question).get(2)
-        self.assertEqual(q, None)
+        self.assertRaises(AttributeError,
+                          test_post_request,
+                          self, "/course/1/question/sub/new/", new_question, models.Question, 2)

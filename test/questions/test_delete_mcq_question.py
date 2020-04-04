@@ -1,45 +1,21 @@
 import json
 
 from flaskapp import models
-from test.main.test_database import DatabaseTestCase
+from test.main.base_classes import BaseMCQQuestion
 
 
-class DeleteMCQTestCase(DatabaseTestCase):
+class DeleteMCQTestCase(BaseMCQQuestion):
 
     def test_delete_mcq(self):
-        # Test valid data
-        # populate database with new questions.
-        response1 = self.app.post("/question/mcq/new/",
-                                  data=dict(question="Rate it", mark=8,
-                                            difficulty=10, imp=None, submit="submit", option1='10', option2='9',
-                                            option3='8', option4='7'),
-                                  follow_redirects=True)
-        self.assertEqual(response1.status_code, 200)
-
-        response2 = self.app.post("/question/mcq/new/",
-                                  data=dict(question="Watch", mark=8,
-                                            difficulty=10, imp=None, submit="submit", option1='A', option2='B',
-                                            option3='C', option4='D'),
-                                  follow_redirects=True)
-        self.assertEqual(response2.status_code, 200)
-
-        response3 = self.app.post("/question/mcq/new/",
-                                  data=dict(question="New novel", mark=8,
-                                            difficulty=10, imp=None, submit="submit", option1='H', option2='G',
-                                            option3='V', option4='O'),
-                                  follow_redirects=True)
-        self.assertEqual(response3.status_code, 200)
-
-        # Actual delete question get request.
-        delete_list = [1, 3]
+        delete_list = [1, 3, 5]
         d = json.dumps(delete_list)
-        response = self.app.get(f"/question/mcq/delete/{d}", follow_redirects=True)
+        response = self.client.get(f"/course/1/question/mcq/delete/{d}", follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
         # check changes are reflected in database
-        q1 = self.session.query(models.MCQQuestion).get(1)
-        q2 = self.session.query(models.MCQQuestion).get(2)
-        q3 = self.session.query(models.MCQQuestion).get(3)
-        self.assertEqual(q1, None)
-        self.assertEqual(str(q2), "MCQQuestion(Watch, 8, 10, False, A, B, C, D)")
-        self.assertEqual(q3, None)
+        q1 = self.db.session.query(models.MCQQuestion).get(1)
+        q3 = self.db.session.query(models.MCQQuestion).get(3)
+        q5 = self.db.session.query(models.MCQQuestion).get(5)
+        self.assertIsNone(q1)
+        self.assertIsNone(q3)
+        self.assertIsNone(q5)

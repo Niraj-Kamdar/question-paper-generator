@@ -99,7 +99,7 @@ class MCQQuestion(db.Model):
 
     @db.validates("difficulty")
     def validate_difficulty(self, key, value):
-        assert value in range(1, 11)
+        assert value in range(1, 101)
         return value
 
     @db.validates("mark")

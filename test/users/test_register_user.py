@@ -1,14 +1,21 @@
-from flaskapp.main.utils import test_post_request
-from test.main.test_database import DatabaseTestCase
+from bs4 import BeautifulSoup
+
+from test.main.base_classes import BaseUser
 
 
-class UserTestCase(DatabaseTestCase):
-    def test_register_user(self):
-        new_user = dict(username="pr.proton", email="proton@gmail.com", password="proton@101",
-                        confirm_password="proton@101", submit="Sign Up")
-        test_post_request(self, "/register", new_user, 1)
+class LoginUserTestCase(BaseUser):
 
     def test_login_user(self):
-        user = dict(email="proton@gmail.com", password="proton@101")
-        response, obj = test_post_request(self, "/login", user)
-        # fixme: check if response.content is home page.
+        self.login()
+        response = self.client.get("/home")
+        soup = BeautifulSoup(response.data, 'lxml')
+        title = soup.find(id="home_title")
+        self.assertEqual(title.contents[0], 'Recent')
+
+    def test_logout_user(self):
+        self.login()
+        self.logout()
+        response = self.client.get("/home")
+        soup = BeautifulSoup(response.data, 'lxml')
+        title = soup.find(id="home_title")
+        self.assertEqual(title, None)
