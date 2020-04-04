@@ -45,6 +45,7 @@
 }
 
 #home_nav > .row {
+    cursor: pointer;
     user-select: none;
     color: #B0B0B0;
     background-color: #9000F026;
