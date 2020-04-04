@@ -33,6 +33,7 @@ body::-webkit-scrollbar {
 }
 /************************************************************************/
 .img1 {
+    margin-left: -30%;
     position: fixed;
     min-height: 100%;
     min-width: 1024px;
@@ -42,6 +43,7 @@ body::-webkit-scrollbar {
 }
 
 .overlape {
+    margin-left: -30%;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -75,7 +77,7 @@ body::-webkit-scrollbar {
 
 .col2 {
     padding-left: 1%;
-    width: 85%;
+    width: 55%;
     transition: 1s;
     /*border :1px solid yellow;*/
 }
@@ -115,6 +117,7 @@ body::-webkit-scrollbar {
     transition-property: visibility, opacity;
     transition-duration: 0s, 0.5s;
     overflow: auto;
+    visibility: hidden;
 }
 
 #content.hidden {
@@ -126,7 +129,7 @@ body::-webkit-scrollbar {
 }
 
 #footer {
-    display: block;
+    display: none;
     font-size: 1vw;
     color: rgba(255, 255, 255, 0.5);
     transition: 1s;
@@ -197,4 +200,42 @@ body::-webkit-scrollbar {
         padding-bottom: 6%;
         font-size: 2vw;
     }
+}
+.avtar{
+    margin: 0; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;    
+}
+.avtar > img{
+    width: 7vw; 
+    height: 7vw;
+}
+.form-group{
+    color: #707070;
+}
+.form_submit{
+    margin:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rbtn{
+    background: #9000F000;
+    border: 1px solid #9000F0;
+    color: #9000F0;
+}
+.rbtn:hover{
+    background: #9000F0;
+    color: #ffffff;
+}
+.register_other_links{
+    border-top: 1px solid #b0b0b0;
+}
+.register_other_links > small{
+    display: flex;
+    justify-content: flex-end;
+}
+.register_other_links > small > a{
+    color: #9000F0;
 }

@@ -5,7 +5,7 @@ main = Blueprint('main', __name__)
 
 @main.route("/")
 def index():
-    return render_template("main/index.html", title='Index')
+    return render_template("main/index.html", title='Index', css_file='css/index.css', js_file='js/index.js')
 
 
 @main.route("/about")

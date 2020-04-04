@@ -17,18 +17,33 @@ function scrollFunction() {
 }
 
 window.onload = function () {
+
+    if(window.location.href=="http://localhost:5000/login" || window.location.href=="http://localhost:5000/register"){
+        var x = document.getElementById('content');
+        x.style.visibility = 'hidden';
+        x.classList.add("hidden");
+        x.style.height = "0px";
+    }
+
     var loginbtn = document.getElementById("show_login");
     loginbtn.addEventListener("click", () => {
         var x = document.getElementById('content');
-        if (x.classList.contains("hidden")) {
+        if(window.location.href=="http://localhost:5000/login" || window.location.href=="http://localhost:5000/register"){
+            x.style.visibility = 'visible';
             document.getElementsByClassName('overlape')[0].style.marginLeft = "0%";
             document.getElementsByClassName('img1')[0].style.marginLeft = "0%";
             document.getElementsByClassName('col2')[0].style.width = "85%";
             document.getElementById('footer').style.display = "block";
             document.getElementById('footercontent').style.marginLeft = "0%";
-            x.classList.remove("hidden");
-            disp(x);
-        } else {
+            x.style.height = "auto";
+            setTimeout(() => {
+                x.classList.remove("hidden");
+            }, 500);
+            setTimeout(() => {
+                window.location.href = 'http://localhost:5000/';
+            }, 1000);
+        }
+        else if(window.location.href=="http://localhost:5000/"){
             x.classList.add("hidden");
             setTimeout(() => {
                 document.getElementsByClassName('overlape')[0].style.marginLeft = "-30%";
@@ -38,19 +53,11 @@ window.onload = function () {
                 document.getElementById('footercontent').style.marginLeft = "30%";
             }, 500);
             setTimeout(() => {
-                disp(x)
+                x.style.height = "0px";
             }, 1000);
             setTimeout(() => {
-                window.location.href = '/login';
-            }, 2000);
+                window.location.href = 'http://localhost:5000/login';
+            }, 1500);
         }
     });
-}
-
-function disp(x) {
-    if (x.style.height != "0px") {
-        x.style.height = "0px";
-    } else {
-        x.style.height = "auto";
-    }
 }

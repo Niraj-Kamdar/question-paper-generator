@@ -34,10 +34,22 @@
 
     <div>
 
-        <header>
-            <div class="row px-4 py-2 text-white sticky-top" id="header">
-                <div class="col1">
-                    <img src="{{ url_for('static', filename='images/logo.svg') }}" class="logo" alt="logo">
+    <header>
+        <div class="row px-4 py-2 text-white sticky-top" id="header">
+            <div class="col1">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" class="logo" alt="logo">
+            </div>
+            <div class="col2">
+                <h2>SetNow</h2>
+                <h4>Question Paper Generator</h4>
+            </div>
+            <div class="col3">
+                <div class="row" style="margin:0;padding:0;">
+                    <a href="#"><h4 class="py-2 mx-3">Home</h4></a>
+                    <a href="#"><h4 class="py-2 mx-3">Add</h4></a>
+                    <a href="#"><h4 class="py-2 mx-3">Bucket</h4></a>
+                    <a href="#"><h4 class="py-2 mx-3">About</h4></a>
+                    <a href="#"><h4 class="py-2 mx-3">Contact Us</h4></a>
                 </div>
                 <div class="col2">
                     <h2>SetNow</h2>
@@ -66,11 +78,9 @@
                     <img src="{{ url_for('static', filename=profile_pic) }}" class="user" alt="user">
                 </div>
             </div>
-        </header>
-
-        <div class="block_main">
-            {% block main %}
-            {% endblock %}
+            <div class="col4">
+                <img src="{{ url_for('static', filename=profile_pic) }}" class="user" alt="user" title="profile">
+            </div>
         </div>
 
         <footer>
