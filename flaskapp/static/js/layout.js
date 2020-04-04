@@ -25,7 +25,6 @@ if (explore_items.length) {
       if (explore_items[i].innerText === option) {
         explore_items[i].classList.add("active");
       }
-      console.log(explore_items[i].innerText, option);
     }
   }
 
