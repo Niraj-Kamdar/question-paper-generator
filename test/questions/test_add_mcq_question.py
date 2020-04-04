@@ -10,7 +10,7 @@ class MCQTestCase(BaseCourse):
         # test valid data
         new_mcq = dict(question="Rate it", mark=8, difficulty=10, imp=None,
                        option1='10', option2='9', option3='8', option4='7')
-        response, mcq = test_post_request(self, "/course/1/question/mcq/new/", new_mcq, models.MCQQuestion, 1)
+        _, mcq = test_post_request(self, "/course/1/question/mcq/new/", new_mcq, models.MCQQuestion, 1)
         # test repr method
         self.assertEqual(str(mcq), "MCQQuestion(Rate it, 8, 10, False, 10, 9, 8, 7)")
         # test invalid data

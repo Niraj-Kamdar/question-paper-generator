@@ -1,7 +1,6 @@
 import json
 
 from flaskapp import models
-
 from test.main.base_classes import BaseSubQuestion
 
 

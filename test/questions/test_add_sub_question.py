@@ -8,7 +8,7 @@ class AddQuestionTestCase(BaseCourse):
     def test_add_question(self):
         # Test valid data
         new_question = dict(question="Is it okay?", mark=8, difficulty=10, imp=True, submit="submit")
-        response, question = test_post_request(self, "/course/1/question/sub/new/", new_question, models.Question, 1)
+        _, question = test_post_request(self, "/course/1/question/sub/new/", new_question, models.Question, 1)
 
         # Testing if repr method is working
         self.assertEqual(str(question), "Question(Is it okay?, 8, 10, True)")
