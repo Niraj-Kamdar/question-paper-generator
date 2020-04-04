@@ -1,69 +1,81 @@
-{% extends "layout.html" %}
+{% extends "sideNav.html" %}
+{% block header %}
+<h3 class="header">Add Subjective Question</h3>
+{%endblock header%}
+{% block flashes %}
+{% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+<ul class="flashes">
+    {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %} {% endwith %}
+{%endblock flashes %}
 {% block main %}
-    <div id="new_question">
-        <h3 class="header">Add Subjective Question</h3>
-        <form method="POST" action="" novalidate id="form">
-            {% with messages = get_flashed_messages(with_categories=true) %} {% if
-                messages %}
-                <ul class="flashes">
-                    {% for category, message in messages %}
-                        <li class="{{ category }}">{{ message }}</li>
+<div id="new_question">
+
+    <form method="POST" action="" novalidate id="form">
+
+        {{ form.hidden_tag() }}
+        <div id="form_content">
+            <div class="form_field_question_label">
+                {{ form.question.label }} :
+                <div>
+                    {{ form.question(id="form_field_question_value") }}
+                </div>
+                {% if form.question.errors %}
+                <ul class="form__error">
+                    {% for error in form.question.errors %}
+                    <li>{{ error }}</li>
                     {% endfor %}
                 </ul>
-            {% endif %} {% endwith %}
-            {{ form.hidden_tag() }}
-            <div id="form_content">
-                <div class="form_field_question_label">
-                    {{ form.question.label }} :
+                {% endif %}
+                <div class="form__client_error"></div>
+            </div>
+            <div id="form_attributes">
+                <div id="marks_label">
+                    {{ form.mark.label }} :
                     <div>
-                        {{ form.question(id="form_field_question_value") }}
+                        {{ form.mark(id="marks_value") }}
                     </div>
-                    {% if form.question.errors %}
-                        <ul class="form__error">
-                            {% for error in form.question.errors %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
+                    {% if form.mark.errors %}
+                    <ul class="form__error">
+                        {% for error in form.mark.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
                     {% endif %}
                     <div class="form__client_error"></div>
                 </div>
-                <div id="form_attributes">
-                    <div id="marks_label">
-                        {{ form.mark.label }} :
-                        <div>
-                            {{ form.mark(id="marks_value") }}
-                        </div>
-                        {% if form.mark.errors %}
-                            <ul class="form__error">
-                                {% for error in form.mark.errors %}
-                                    <li>{{ error }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                        <div class="form__client_error"></div>
+                <div id="difficulty_label">
+                    {{ form.difficulty.label }} :
+                    <div>
+                        {{ form.difficulty(id="difficulty_value") }}
                     </div>
-                    <div id="difficulty_label">
-                        {{ form.difficulty.label }} :
-                        <div>
-                            {{ form.difficulty(id="difficulty_value") }}
-                        </div>
-                        {% if form.difficulty.errors %}
-                            <ul class="form__error">
-                                {% for error in form.difficulty.errors %}
-                                    <li>{{ error }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                        <div class="form__client_error"></div>
-                    </div>
+                    {% if form.difficulty.errors %}
+                    <ul class="form__error">
+                        {% for error in form.difficulty.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <div class="form__client_error"></div>
                 </div>
-                <div class="form__fields">
-                    {{ form.imp.label(id="mark_as_imp") }}
-                    {{ form.imp }}
-                </div>
-                {{ form.submit(id="submit_btn") }}
             </div>
-        </form>
+            <div class="form__fields">
+                {{ form.imp.label(id="mark_as_imp") }}
+                {{ form.imp(id="imp_checkbox") }}
+                <div id="toggle_container">
+                    <div id="toggle_btn"></div>
+                </div>Always include in Papers
+            </div>
+            <div style="text-align: right;">
+                {{ form.submit(id="submit_btn") }}
+                <button type="reset" id="reset_btn">Cancel</button>
+            </div>
+        </div>
+    </form>
 
-    </div>
+</div>
 {% endblock main %}
