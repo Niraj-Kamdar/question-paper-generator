@@ -4,39 +4,39 @@
 
 
 
-<div id="sideNav">
-    <div id="explore_container">
-        <div id="explore_title">
-            <img alt="list" src="{{url_for('static',filename='images/list.svg')}}" id="list_img" />
-            Explore
-        </div>
-        <div id="explore_items_container">
-            <div class="explore_items">
-                <img alt="list_style_image" src="{{url_for('static',filename='images/list_style_image.svg')}}" />
-                <a href="#" class="nav_link"><b>M</b>ultiple <b>C</b>hoice <b>Q</b>uestion</a>
+    <div id="sideNav">
+        <div id="explore_container">
+            <div id="explore_title">
+                <img alt="list" src="{{ url_for('static',filename='images/list.svg') }}" id="list_img"/>
+                Explore
             </div>
-            <div class="explore_items">
-                <img alt="list_style_image" src="{{url_for('static',filename='images/list_style_image.svg')}}" />
-                <a href="#" class="nav_link"><b>S</b>ubjective <b>Q</b>uestion</a>
+            <div id="explore_items_container">
+                <div class="explore_items">
+                    <img alt="list_style_image" src="{{ url_for('static',filename='images/list_style_image.svg') }}"/>
+                    <a href="#" class="nav_link"><b>M</b>ultiple <b>C</b>hoice <b>Q</b>uestion</a>
+                </div>
+                <div class="explore_items">
+                    <img alt="list_style_image" src="{{ url_for('static',filename='images/list_style_image.svg') }}"/>
+                    <a href="#" class="nav_link"><b>S</b>ubjective <b>Q</b>uestion</a>
+                </div>
+            </div>
+        </div>
+        <div id="add_container">
+            <div id="add_title">
+                <img alt="add" src="{{ url_for('static',filename='images/add.svg') }}" id="add_img"/>
+                Add
+            </div>
+            <div id="add_items_container">
+                <div class="add_items">
+                    <img alt="list_style_image" src="{{ url_for('static',filename='images/list_style_image.svg') }}"/>
+                    <a href="#" class="nav_link"><b>M</b>ultiple <b>C</b>hoice <b>Q</b>uestion</a>
+                </div>
+                <div class="add_items">
+                    <img alt="list_style_image" src="{{ url_for('static',filename='images/list_style_image.svg') }}"/>
+                    <a href="#" class="nav_link"><b>S</b>ubjective <b>Q</b>uestion</a>
+                </div>
             </div>
         </div>
     </div>
-    <div id="add_container">
-        <div id="add_title">
-            <img alt="add" src="{{url_for('static',filename='images/add.svg')}}" id="add_img" />
-            Add
-        </div>
-        <div id="add_items_container">
-            <div class="add_items">
-                <img alt="list_style_image" src="{{url_for('static',filename='images/list_style_image.svg')}}" />
-                <a href="#" class="nav_link"><b>M</b>ultiple <b>C</b>hoice <b>Q</b>uestion</a>
-            </div>
-            <div class="add_items">
-                <img alt="list_style_image" src="{{url_for('static',filename='images/list_style_image.svg')}}" />
-                <a href="#" class="nav_link"><b>S</b>ubjective <b>Q</b>uestion</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 {% endblock sideNav %}

@@ -21,16 +21,17 @@ body::-webkit-scrollbar {
     /*border:1px dotted yellow;*/
 }
 
-.login_page{
+.login_page {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    top:0; 
+    top: 0;
     right: 0;
     width: 30%;
     height: 100%;
-    position: fixed; 
+    position: fixed;
 }
+
 /************************************************************************/
 .img1 {
     position: fixed;

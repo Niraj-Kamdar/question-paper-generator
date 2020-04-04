@@ -1,10 +1,10 @@
 body::-webkit-scrollbar {
-  display: none;
-  position: fixed;
+    display: none;
+    position: fixed;
 }
 
 * {
-  font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .block_main {
@@ -15,29 +15,29 @@ body::-webkit-scrollbar {
 }
 
 .row {
-  /*border:1px dotted yellow;*/
-  position: relative;
-  width: 100%;
+    /*border:1px dotted yellow;*/
+    position: relative;
+    width: 100%;
 }
 
 #header {
-  margin: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transition: 0.3s;
-  background: #9000f0;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: 0.3s;
+    background: #9000f0;
 }
 
 .logo {
-  max-height: 100%;
-  max-width: 100%;
-  position: relative;
+    max-height: 100%;
+    max-width: 100%;
+    position: relative;
 }
 
 .col1 {
-  /*border :1px solid yellow;*/
-  width: 5%;
+    /*border :1px solid yellow;*/
+    width: 5%;
 }
 
 .col2 {
@@ -73,18 +73,19 @@ body::-webkit-scrollbar {
 }
 
 .col3 > .row > a > h4:hover {
-  color: rgba(255, 255, 255, 1);
-  border-bottom: 2px solid #ffffff;
+    color: rgba(255, 255, 255, 1);
+    border-bottom: 2px solid #ffffff;
 }
 
 .col4 {
-  width: 5%;
-  /*border :1px solid yellow;*/
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+    width: 5%;
+    /*border :1px solid yellow;*/
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
-.col4 > img{
+
+.col4 > img {
     cursor: pointer;
     width: 3vw;
     height: 3vw;
@@ -92,7 +93,8 @@ body::-webkit-scrollbar {
     box-shadow: 0 0 10px 2px #000000;
     /*opacity: 0.8;*/
 }
-.col4 > img:hover{
+
+.col4 > img:hover {
     /*opacity: 1;*/
     box-shadow: 0 0 10px 2px #ffffff;
 }
@@ -103,92 +105,92 @@ body::-webkit-scrollbar {
 }
 
 .col2 > h4 {
-  font-size: 1vw;
+    font-size: 1vw;
 }
 
 #footer {
-  left: 0;
-  bottom: 0;
-  position: fixed;
-  font-size: 1vw;
-  color: rgba(255, 255, 255, 0.5);
-  transition: 1s;
-  background: #9000f0;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    font-size: 1vw;
+    color: rgba(255, 255, 255, 0.5);
+    transition: 1s;
+    background: #9000f0;
 }
 
 .fl {
-  color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .fl:hover {
-  color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, 1);
 }
 
 /*css for side navigation*/
 * {
-  letter-spacing: 2px;
+    letter-spacing: 2px;
 }
 
 #content {
-  display: flex;
-  flex-direction: row;
-  margin: 0 10px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 10px;
 }
 
 #sideNav {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 #explore_title,
 #add_title {
-  align-items: center;
-  background-color: rgba(144, 0, 240, 0.76);
-  color: white;
-  display: flex;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 20px;
-  padding: 10px;
+    align-items: center;
+    background-color: rgba(144, 0, 240, 0.76);
+    color: white;
+    display: flex;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    padding: 10px;
 }
 
 #list_img,
 #add_img {
-  margin-right: 16px;
-  width: 30px;
+    margin-right: 16px;
+    width: 30px;
 }
 
 #explore_items_container,
 #add_items_container {
-  background-color: rgba(144, 0, 240, 0.15);
-  padding: 5px;
-  margin-bottom: 20px;
+    background-color: rgba(144, 0, 240, 0.15);
+    padding: 5px;
+    margin-bottom: 20px;
 }
 
 .explore_items,
 .add_items {
-  background-color: white;
-  color: rgba(76, 76, 76, 1);
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 5px;
-  padding: 5px;
+    background-color: white;
+    color: rgba(76, 76, 76, 1);
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    padding: 5px;
 }
 
 .explore_items:last-child,
 .add_items:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .explore_items img,
 .add_items img {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .nav_link {
-  color: rgba(76, 76, 76, 1) !important;
-  cursor: pointer;
-  text-decoration: none !important;
+    color: rgba(76, 76, 76, 1) !important;
+    cursor: pointer;
+    text-decoration: none !important;
 }
 
 .active {
-  font-style: italic;
+    font-style: italic;
 }

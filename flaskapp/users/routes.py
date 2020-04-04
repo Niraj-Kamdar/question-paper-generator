@@ -21,7 +21,8 @@ def register():
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
-    return render_template('users/register.html', title='Register', form=form, css_file='css/register.css', js_file='js/index.js', js_file2='js/register.js', btn_name='Back')
+    return render_template('users/register.html', title='Register', form=form, css_file='css/register.css',
+                           js_file='js/index.js', js_file2='js/register.js', btn_name='Back')
 
 
 @users.route("/login", methods=['GET', 'POST'])
@@ -37,7 +38,8 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('papers.home'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('users/login.html', title='Login', form=form, css_file='css/login.css', js_file='js/index.js', js_file2='js/login.js', btn_name='Back')
+    return render_template('users/login.html', title='Login', form=form, css_file='css/login.css',
+                           js_file='js/index.js', js_file2='js/login.js', btn_name='Back')
 
 
 @users.route("/logout")

@@ -21,16 +21,17 @@ body::-webkit-scrollbar {
     /*border:1px dotted yellow;*/
 }
 
-.login_page{
+.login_page {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    top:0; 
+    top: 0;
     right: 0;
     width: 30%;
     height: 100%;
-    position: fixed; 
+    position: fixed;
 }
+
 /************************************************************************/
 .img1 {
     margin-left: -30%;
@@ -201,41 +202,50 @@ body::-webkit-scrollbar {
         font-size: 2vw;
     }
 }
-.avtar{
-    margin: 0; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center;    
-}
-.avtar > img{
-    width: 7vw; 
-    height: 7vw;
-}
-.form-group{
-    color: #707070;
-}
-.form_submit{
-    margin:0;
+
+.avtar {
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.rbtn{
+
+.avtar > img {
+    width: 7vw;
+    height: 7vw;
+}
+
+.form-group {
+    color: #707070;
+}
+
+.form_submit {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rbtn {
     background: #9000F000;
     border: 1px solid #9000F0;
     color: #9000F0;
 }
-.rbtn:hover{
+
+.rbtn:hover {
     background: #9000F0;
     color: #ffffff;
 }
-.register_other_links{
+
+.register_other_links {
     border-top: 1px solid #b0b0b0;
 }
-.register_other_links > small{
+
+.register_other_links > small {
     display: flex;
     justify-content: flex-end;
 }
-.register_other_links > small > a{
+
+.register_other_links > small > a {
     color: #9000F0;
 }

@@ -1,5 +1,5 @@
 window.onload = function () {
-	var userbtn = document.getElementsByClassName('user')[0]
+    var userbtn = document.getElementsByClassName('user')[0]
     userbtn.addEventListener("click", () => {
         window.location.href = 'http://localhost:5000/account';
     });
