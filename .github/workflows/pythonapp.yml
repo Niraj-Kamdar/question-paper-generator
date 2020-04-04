@@ -29,7 +29,6 @@ jobs:
           pip install coverage
           coverage run -m unittest discover test
           coverage xml -o covreport.xml
-        continue-on-error: true
       - name: upload code coverage to codecov
         uses: codecov/codecov-action@v1
         with:
