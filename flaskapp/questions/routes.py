@@ -64,16 +64,16 @@ def add_question(course_id, qtype):
     if qtype == "mcq":
         form = MCQQuestionForm()
         if form.validate_on_submit():
-            question = MCQQuestion(question=form.question.data,
-                                   mark=form.mark.data,
-                                   difficulty=form.difficulty.data,
-                                   imp=form.imp.data,
-                                   option1=form.option1.data,
-                                   option2=form.option2.data,
-                                   option3=form.option3.data,
-                                   option4=form.option4.data,
-                                   course_id=course_id)
-            db.session.add(question)
+            _question = MCQQuestion(question=form.question.data,
+                                    mark=form.mark.data,
+                                    difficulty=form.difficulty.data,
+                                    imp=form.imp.data,
+                                    option1=form.option1.data,
+                                    option2=form.option2.data,
+                                    option3=form.option3.data,
+                                    option4=form.option4.data,
+                                    course_id=course_id)
+            db.session.add(_question)
             db.session.commit()
             flash(f"New question added successfully!", "success")
             return redirect(url_for("questions.question", qtype="mcq", course_id=course_id))
@@ -86,12 +86,12 @@ def add_question(course_id, qtype):
     elif qtype == "sub":
         form = QuestionForm()
         if form.validate_on_submit():
-            question = Question(question=form.question.data,
-                                mark=form.mark.data,
-                                difficulty=form.difficulty.data,
-                                imp=form.imp.data,
-                                course_id=course_id)
-            db.session.add(question)
+            _question = Question(question=form.question.data,
+                                 mark=form.mark.data,
+                                 difficulty=form.difficulty.data,
+                                 imp=form.imp.data,
+                                 course_id=course_id)
+            db.session.add(_question)
             db.session.commit()
             flash(f"New question added successfully!", "success")
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
@@ -109,16 +109,16 @@ def update_question(course_id, qtype, question_id):
     if qtype == "mcq":
         pass
     elif qtype == "sub":
-        question = db.session.query(Question).filter_by(id=question_id).first()
-        if question is None:
+        _question = db.session.query(Question).filter_by(id=question_id).first()
+        if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
-        form = QuestionForm(**question.to_dict())
+        form = QuestionForm(**_question.to_dict())
         if form.validate_on_submit():
-            question.question = form.question.data
-            question.mark = form.mark.data
-            question.difficulty = form.difficulty.data
-            question.imp = form.imp.data
+            _question.question = form.question.data
+            _question.mark = form.mark.data
+            _question.difficulty = form.difficulty.data
+            _question.imp = form.imp.data
             db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
