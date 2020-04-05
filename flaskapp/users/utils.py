@@ -23,7 +23,7 @@ def save_picture(form_picture):
 
 def send_reset_email(user):
     token = user.get_reset_token()
-    mail_file = os.path.join(APP_PATH, "templates", "users","password-reset", "content.txt")
+    mail_file = os.path.join(APP_PATH, "templates", "users", "password-reset", "content.txt")
     with open(mail_file, "r") as f:
         msg_text = f.read()
     msg_text = msg_text.format(name=user.username,
