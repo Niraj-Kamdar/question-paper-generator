@@ -23,7 +23,7 @@ def save_picture(form_picture):
 
 def send_reset_email(user):
     token = user.get_reset_token()
-    mail_file = os.path.join(APP_PATH, "templates", "password-reset", "content.txt")
+    mail_file = os.path.join(APP_PATH, "templates", "users","password-reset", "content.txt")
     with open(mail_file, "r") as f:
         msg_text = f.read()
     msg_text = msg_text.format(name=user.username,
@@ -31,7 +31,7 @@ def send_reset_email(user):
                                support_url=url_for('main.index'),
                                operating_system="linux",
                                browser_name="firefox")
-    msg_html = render_template("password-reset/content.html",
+    msg_html = render_template("users/password-reset/content.html",
                                name=user.username,
                                action_url=url_for('users.reset_token', token=token, _external=True),
                                support_url=url_for('main.index'),
