@@ -140,7 +140,9 @@ body::-webkit-scrollbar {
 #sideNav {
   margin-right: 10px;
 }
-
+#course_link {
+  cursor: pointer;
+}
 #explore_title,
 #add_title,
 #courses_title {

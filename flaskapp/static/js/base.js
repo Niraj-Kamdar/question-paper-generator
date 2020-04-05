@@ -2,6 +2,32 @@ const exploreItems = document.getElementsByClassName("explore_items");
 const mainContainer = document.getElementById("main_container");
 mainContainer.style.paddingTop = "100px"; // for all pages except question list
 document.body.style.overflowY = "auto"; //for all pages except question list
+
+const homeLink = document.getElementById("home_link");
+const courseLink = document.getElementById("course_link");
+const profileLink = document.getElementsByClassName("user")[0];
+let rootUrl = "";
+profileLink.addEventListener("click", () => {
+  if (rootUrl + "account" !== window.location.href)
+    window.location.href = rootUrl + "account";
+});
+const length = window.location.href.match(new RegExp("/", "g"));
+
+if (length !== 3) {
+  let index = window.location.href.indexOf("/", 0);
+  index = window.location.href.indexOf("/", index + 1);
+  index = window.location.href.indexOf("/", index + 1);
+  rootUrl = window.location.href.substr(0, index + 1);
+  homeLink.setAttribute("href", rootUrl + "home");
+}
+
+let courseUrl = rootUrl + "course/";
+if (window.location.href !== courseUrl) {
+  courseLink.setAttribute("href", courseUrl);
+} else {
+  courseLink.removeAttribute("href");
+}
+
 // for question pages
 if (exploreItems.length) {
   const add_items = document.getElementsByClassName("add_items");
@@ -54,3 +80,8 @@ if (exploreItems.length) {
     mainContainer.style.paddingTop = "100px";
   }
 }
+
+const addCourse = document.getElementById("add_course");
+addCourse.addEventListener("click", () => {
+  window.location.href = rootUrl + "course/new";
+});
