@@ -1,5 +1,5 @@
 from test.main.base_classes import BaseUser,BaseDatabase
-from test.main.utils import *
+from test.main.utils import test_post_request,compare_dict
 from flaskapp import models
 
 class accountUpdate(BaseUser):
