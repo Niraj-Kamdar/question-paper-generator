@@ -4,7 +4,7 @@ from flaskapp import models
 from test.main.base_classes import BaseSubQuestion
 
 
-class IMPSetTestCase(BaseSubQuestion):
+class IMPMCQTestCase(BaseSubQuestion):
 
     def test_imp_question(self):
         # Actual set imp get request.
