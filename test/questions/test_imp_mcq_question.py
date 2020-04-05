@@ -3,6 +3,7 @@ import json
 from flaskapp import models
 from test.main.base_classes import BaseMCQQuestion
 
+
 class IMPMCQTestCase(BaseMCQQuestion):
 
     def test_imp_question(self):

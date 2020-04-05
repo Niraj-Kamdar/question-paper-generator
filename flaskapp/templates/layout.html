@@ -8,111 +8,111 @@
     </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/base.css') }}" />
+    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/base.css') }}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}" />
+    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <style>
 
     </style>
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}" />
+    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}"/>
 </head>
 
 <body>
-    <div>
-        <header>
-            <div class="row px-4 py-2 text-white sticky-top" id="header">
-                <div class="col1">
-                    <img src="{{ url_for('static', filename='images/logo.svg') }}" class="logo" alt="logo">
-                </div>
-                <div class="col2">
-                    <h2>SetNow</h2>
-                    <h4>Question Paper Generator</h4>
-                </div>
-                <div class="col3 pr-3">
-                    <div class="row" style="margin:0;padding:0;">
-                        <a href="#">
-                            <h4 class="py-2 mx-3">Home</h4>
-                        </a>
-                        <a href="#">
-                            <h4 class="py-2 mx-3">Add</h4>
-                        </a>
-                        <a href="#">
-                            <h4 class="py-2 mx-3">Bucket</h4>
-                        </a>
-                        <a href="#">
-                            <h4 class="py-2 mx-3">About</h4>
-                        </a>
-                        <a href="#">
-                            <h4 class="py-2 mx-3">Contact Us</h4>
-                        </a>
-                    </div>
-                </div>
-                <div class="col4">
-                    <img src="{{ url_for('static', filename='images/user.svg') }}" class="user" alt="user">
+<div>
+    <header>
+        <div class="row px-4 py-2 text-white sticky-top" id="header">
+            <div class="col1">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" class="logo" alt="logo">
+            </div>
+            <div class="col2">
+                <h2>SetNow</h2>
+                <h4>Question Paper Generator</h4>
+            </div>
+            <div class="col3 pr-3">
+                <div class="row" style="margin:0;padding:0;">
+                    <a href="#">
+                        <h4 class="py-2 mx-3">Home</h4>
+                    </a>
+                    <a href="#">
+                        <h4 class="py-2 mx-3">Add</h4>
+                    </a>
+                    <a href="#">
+                        <h4 class="py-2 mx-3">Bucket</h4>
+                    </a>
+                    <a href="#">
+                        <h4 class="py-2 mx-3">About</h4>
+                    </a>
+                    <a href="#">
+                        <h4 class="py-2 mx-3">Contact Us</h4>
+                    </a>
                 </div>
             </div>
-        </header>
-        <div style="padding-top: 8%;" id="main_container">
-
-            {% block login %}
-            {% endblock login %}
-            <div>
-                {% block flashes %}
-                {% endblock flashes %}
-                {% block header %}
-                {% endblock header %}
-                <div id="content">
-                    <div style="flex-grow: 1;">
-                        {% block main %}
-                        {% endblock main %}
-                    </div>
-                    {% block sideNav %}
-                    {% endblock sideNav %}
-                </div>
+            <div class="col4">
+                <img src="{{ url_for('static', filename='images/user.svg') }}" class="user" alt="user">
             </div>
         </div>
+    </header>
+    <div style="padding-top: 8%;" id="main_container">
 
-        <footer>
-            <div class="col py-3 text-center" id="footer">
+        {% block login %}
+        {% endblock login %}
+        <div>
+            {% block flashes %}
+            {% endblock flashes %}
+            {% block header %}
+            {% endblock header %}
+            <div id="content">
+                <div style="flex-grow: 1;">
+                    {% block main %}
+                    {% endblock main %}
+                </div>
+                {% block sideNav %}
+                {% endblock sideNav %}
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="col py-3 text-center" id="footer">
                 <span class="mr-3">© 2020 Copyright :
                     <a href="http://localhost:5000/" class="fl"><b>setnow.com</b></a>
                 </span>
-                <span>|</span>
-                <a href="#" class="fl"><i class="fab fa-facebook-f mx-3"> </i></a>
-                <span>|</span>
-                <a href="#" class="fl"><i class="fab fa-twitter mx-3"> </i></a>
-                <span>|</span>
-                <a href="#" class="fl"><i class="fab fa-google-plus-g mx-3"> </i></a>
-                <span>|</span>
-                <a href="#" class="fl"><i class="fab fa-linkedin-in mx-3"> </i></a>
-                <span>|</span>
-                <a href="#" class="fl"><i class="fab fa-instagram ml-3"> </i></a>
-            </div>
-        </footer>
+            <span>|</span>
+            <a href="#" class="fl"><i class="fab fa-facebook-f mx-3"> </i></a>
+            <span>|</span>
+            <a href="#" class="fl"><i class="fab fa-twitter mx-3"> </i></a>
+            <span>|</span>
+            <a href="#" class="fl"><i class="fab fa-google-plus-g mx-3"> </i></a>
+            <span>|</span>
+            <a href="#" class="fl"><i class="fab fa-linkedin-in mx-3"> </i></a>
+            <span>|</span>
+            <a href="#" class="fl"><i class="fab fa-instagram ml-3"> </i></a>
+        </div>
+    </footer>
 
-    </div>
+</div>
 
-    <!-- <script type="text/javascript" src="{{url_for('static',filename='js/login.js')}}"></script> -->
+<!-- <script type="text/javascript" src="{{url_for('static',filename='js/login.js')}}"></script> -->
 
-    <script src="https://kit.fontawesome.com/bb7cf58c3b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+<script src="https://kit.fontawesome.com/bb7cf58c3b.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-    <script src="{{ url_for('static',filename='js/layout.js') }}" defer="defer"></script>
+</script>
+<script src="{{ url_for('static',filename='js/layout.js') }}" defer="defer"></script>
 
-    <script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}" defer="defer"></script>
+<script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}" defer="defer"></script>
 </body>
 
 </html>
