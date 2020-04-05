@@ -19,3 +19,5 @@ class LoginUserTestCase(BaseUser):
         soup = BeautifulSoup(response.data, 'lxml')
         title = soup.find(id="home_title")
         self.assertEqual(title, None)
+
+
