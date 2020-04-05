@@ -23,74 +23,81 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="row m-5 mb-2">
-        <h2>Reset Password</h2>
-    </div>
-    <div class="container p-3">
-    
-        <form method="POST" action="" id="resetForm" novalidate>
+<div class="row m-5 mb-2">
+    <h2>Reset Password</h2>
+</div>
+<div class="container p-3">
 
-            {{ form.hidden_tag() }}
-            <h5 class="ml-2">Enter the email address that is associated with your account.</h5>
-            <fieldset class="form-group mt-4 p-3">
+    <form method="POST" action="" id="resetForm" novalidate>
 
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
-                    <div id="email_error"></div>
-                    <div class="form-group btn_container mt-3">
-                        {{ form.submit(class="btn rpbtn") }}
+        {{ form.hidden_tag() }}
+        <h5 class="ml-2">Enter the email address that is associated with your account.</h5>
+        <fieldset class="form-group mt-4 p-3">
+
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }}
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
                     </div>
+                {% else %}
+                    {{ form.email(class="form-control form-control-lg") }}
+                {% endif %}
+                <div id="email_error"></div>
+                <div class="form-group btn_container mt-3">
+                    {{ form.submit(class="btn rpbtn") }}
                 </div>
+            </div>
 
-            </fieldset>
+        </fieldset>
 
-            
 
-        </form>
-    </div>
-    <style type="text/css" rel="stylesheet" media="all">
-        *{
-            font-family: 'Montserrat', sans-serif;
-        }
-        .container{
-            background: #9000F026;
-        }
-        .container > form > h5{
-            color: #707070;
-        }
-        .row{
-            margin:0;
-            border-bottom: 1px solid #b0b0b0;
-        }
-        .row > h2{
-            color: #707070;
-            font-weight: bolder;
-        }
-        fieldset{
-            background: #9000F0;
-        }
-        .form-group >label{
-            color: #ffffff;
-            font-weight: bold;
-        }
-        .rpbtn{
-            border: 1px solid #ffffff;
-            color: #ffffff;
-        }
-        .rpbtn:hover{
-            background: #ffffff;
-            color: #9000F0;
-        }
-    </style>
+    </form>
+</div>
+<style type="text/css" rel="stylesheet" media="all">
+    * {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .container {
+        background: #9000F026;
+    }
+
+    .container > form > h5 {
+        color: #707070;
+    }
+
+    .row {
+        margin: 0;
+        border-bottom: 1px solid #b0b0b0;
+    }
+
+    .row > h2 {
+        color: #707070;
+        font-weight: bolder;
+    }
+
+    fieldset {
+        background: #9000F0;
+    }
+
+    .form-group > label {
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .rpbtn {
+        border: 1px solid #ffffff;
+        color: #ffffff;
+    }
+
+    .rpbtn:hover {
+        background: #ffffff;
+        color: #9000F0;
+    }
+</style>
 </body>
 </html>
