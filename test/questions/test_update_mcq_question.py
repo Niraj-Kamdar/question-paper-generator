@@ -9,7 +9,7 @@ class UpdateQuestionTestCase(BaseMCQQuestion):
     def test_update_question(self):
         # test valid data
         update_question = dict(question="moon is ...?", mark=8, difficulty=10, imp=None, submit="submit",
-                            option1="Planet", option2="Satellite", option3="meteor", option4="star")
+                               option1="Planet", option2="Satellite", option3="meteor", option4="star")
         test_post_request(self, "/course/1/question/mcq/update/2", update_question, models.MCQQuestion, 2)
 
         # test invalid data
