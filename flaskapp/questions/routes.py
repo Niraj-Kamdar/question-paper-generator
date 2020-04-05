@@ -118,9 +118,9 @@ def update_question(course_id, qtype, question_id):
             _question.difficulty = form.difficulty.data
             _question.imp = form.imp.data
             _question.option1 = form.option1.data
-            _question.option2 = form.option2.data,
-            _question.option3 = form.option3.data,
-            _question.option4 = form.option4.data,
+            _question.option2 = form.option2.data
+            _question.option3 = form.option3.data
+            _question.option4 = form.option4.data
             db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")
             return redirect(url_for("questions.question", qtype=qtype, course_id=course_id))
