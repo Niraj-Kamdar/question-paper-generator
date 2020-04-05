@@ -108,13 +108,21 @@ Array.from(editQuestion).forEach((node) => {
 });
 
 cancelBtn.addEventListener("click", () => {
-  if (deleteOption[0].style.display === "block") {
+  let flag = false;
+
+  for (let j = 0; j < deleteOption.length; j++) {
+    if (deleteOption[j].style.display === "block") flag = true;
+  }
+  if (flag) {
     for (let i = 0; i < deleteOption.length; i++) {
       deleteOption[i].style.display = "none";
     }
     return;
   }
-  if (updateImp[0].style.display === "block") {
+  for (let j = 0; j < updateImp.length; j++) {
+    if (updateImp[j].style.display === "block") flag = true;
+  }
+  if (flag) {
     for (let i = 0; i < updateImp.length; i++) {
       updateImp[i].style.display = "none";
       imps[i].style.display = "block";
