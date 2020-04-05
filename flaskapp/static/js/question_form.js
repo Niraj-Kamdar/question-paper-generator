@@ -123,7 +123,7 @@
     const laterUrl = url.substr(courseIndex);
     for (let i = 0; i < courseName.length; i++) {
       const completeUrl =
-        partialUrl + "/" + courseId[i].innerText + "/question/sub/";
+        partialUrl + "/" + courseId[i].innerText + "/question/sub/new";
       const cid = /(\d+)/.exec(laterUrl)[1];
       if (cid === courseId[i].innerText) {
         coursesItemContainer[0].innerHTML =
