@@ -7,7 +7,6 @@ const impCheckbox = document.getElementsByClassName("imp_checkbox");
 const mark = document.getElementById("mark_imp");
 const deleteBtn = document.getElementById("delete_btn");
 const deleteOption = document.getElementsByClassName("delete_question");
-console.log(deleteOption);
 const deleteCheckbox = document.getElementsByClassName("delete_checkbox");
 const questions = document.getElementsByClassName("question_container");
 const editQuestion = document.getElementsByClassName("edit_question");
