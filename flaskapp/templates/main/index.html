@@ -22,14 +22,8 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
 
-    <!-- <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/index.css') }}"/>
-    <script type="text/javascript" src=" {{ url_for('static', filename='js/index.js') }}"></script> -->
 
     <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}"/>
-    <script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}"></script>
-    {% if js_file2 %}
-        <script type="text/javascript" src=" {{ url_for('static', filename=js_file2) }}"></script>
-    {% endif %}
 </head>
 <body style="margin: 0;">
 <div id="bodycontent">
@@ -170,5 +164,9 @@
         </footer>
     </div>
 </div>
+<script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}"></script>
+{% if js_file2 %}
+    <script type="text/javascript" src=" {{ url_for('static', filename=js_file2) }}"></script>
+{% endif %}
 </body>
 </html>
