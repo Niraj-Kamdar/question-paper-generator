@@ -202,10 +202,9 @@
             </footer>
         </div>
     </div>
-</div>
-<script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}"></script>
+<script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}" defer="defer"></script>
 {% if js_file2 %}
-    <script type="text/javascript" src=" {{ url_for('static', filename=js_file2) }}"></script>
+    <script type="text/javascript" src=" {{ url_for('static', filename=js_file2) }}" defer="defer"></script>
 {% endif %}
 </body>
 
