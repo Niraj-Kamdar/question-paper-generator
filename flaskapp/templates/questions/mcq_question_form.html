@@ -1,40 +1,40 @@
 {% extends "sideNav.html" %}
 {% block flashes %}
-{% with messages = get_flashed_messages(with_categories=true) %} {% if
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
 messages %}
-<ul class="flashes">
-    {% for category, message in messages %}
-    <li class="{{ category }}">{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %} {% endwith %}
+        <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endwith %}
 {% endblock flashes %}
 {% block header %}
-<h3 class="header">Add Multiple Choice Question</h3>
+    <h3 class="header">Add Multiple Choice Question</h3>
 {% endblock header %}
 {% block main %}
-<div id="new_question">
-    <div id="topbar"></div>
+    <div id="new_question">
+        <div id="topbar"></div>
 
-    <form method="POST" action="" novalidate id="form">
-        {{ form.hidden_tag() }}
-        <div id="form_content">
-            <div class="form_field_question_label">
-                {{ form.question.label }} :
-                <div>
-                    {{ form.question(id="form_field_question_value") }}
+        <form method="POST" action="" novalidate id="form">
+            {{ form.hidden_tag() }}
+            <div id="form_content">
+                <div class="form_field_question_label">
+                    {{ form.question.label }} :
+                    <div>
+                        {{ form.question(id="form_field_question_value") }}
+                    </div>
+                    {% if form.question.errors %}
+                        <ul class="form__error">
+                            {% for error in form.question.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <div class="form__client_error"></div>
                 </div>
-                {% if form.question.errors %}
-                <ul class="form__error">
-                    {% for error in form.question.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                <div class="form__client_error"></div>
-            </div>
 
-            <!-- <div class="form__fields">
+                <!-- <div class="form__fields">
                 {{ form.question.label(class="form__fields__label") }}
                 {{ form.question(id="form__fields__question") }}
             </div>
@@ -46,7 +46,7 @@ messages %}
             </ul>
             {% endif %}
             <div class="form__client_error"></div> -->
-            <!-- <div class="form__fields">
+                <!-- <div class="form__fields">
                 {{ form.mark.label(class="form__fields__label") }}
                 {{ form.mark(id="form__fields__mark") }}
             </div>
@@ -72,105 +72,105 @@ messages %}
             </ul>
             {% endif %}
             <div class="form__client_error"></div> -->
-            <div id="form_attributes">
-                <div id="marks_label">
-                    {{ form.mark.label }} :
-                    <div>
-                        {{ form.mark(id="marks_value") }}
+                <div id="form_attributes">
+                    <div id="marks_label">
+                        {{ form.mark.label }} :
+                        <div>
+                            {{ form.mark(id="marks_value") }}
+                        </div>
+                        {% if form.mark.errors %}
+                            <ul class="form__error">
+                                {% for error in form.mark.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="form__client_error"></div>
                     </div>
-                    {% if form.mark.errors %}
-                    <ul class="form__error">
-                        {% for error in form.mark.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    <div class="form__client_error"></div>
-                </div>
-                <div id="difficulty_label">
-                    {{ form.difficulty.label }} :
-                    <div>
-                        {{ form.difficulty(id="difficulty_value") }}
+                    <div id="difficulty_label">
+                        {{ form.difficulty.label }} :
+                        <div>
+                            {{ form.difficulty(id="difficulty_value") }}
+                        </div>
+                        {% if form.difficulty.errors %}
+                            <ul class="form__error">
+                                {% for error in form.difficulty.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="form__client_error"></div>
                     </div>
-                    {% if form.difficulty.errors %}
-                    <ul class="form__error">
-                        {% for error in form.difficulty.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    <div class="form__client_error"></div>
                 </div>
-            </div>
 
-            <!-- <div class="form__fields">
+                <!-- <div class="form__fields">
                 {{ form.imp.label(class="form__fields__label") }}
                 {{ form.imp(id="form__fields__imp") }}
             </div> -->
-            <div id="options">Options :
+                <div id="options">Options :
 
-                <div class="options_row">
+                    <div class="options_row">
 
-                    {{ form.option1.label(class="options_label") }}
-                    {{ form.option1(class="options_value") }}
-                </div>
-                <div style="width: 100%">
-                    {% if form.option1.errors %}
-                    <ul class="form__error">
-                        {% for error in form.option1.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    <div class="form__client_error"></div>
-                </div>
+                        {{ form.option1.label(class="options_label") }}
+                        {{ form.option1(class="options_value") }}
+                    </div>
+                    <div style="width: 100%">
+                        {% if form.option1.errors %}
+                            <ul class="form__error">
+                                {% for error in form.option1.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="form__client_error"></div>
+                    </div>
 
-                <div class="options_row">
-                    {{ form.option2.label(class="options_label") }}
-                    {{ form.option2(class="options_value") }}
+                    <div class="options_row">
+                        {{ form.option2.label(class="options_label") }}
+                        {{ form.option2(class="options_value") }}
 
-                </div>
-                <div style="width: 100%">
-                    {% if form.option2.errors %}
-                    <ul class="form__error">
-                        {% for error in form.option2.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    <div class="form__client_error"></div>
-                </div>
-                <div class="options_row">
-                    {{ form.option3.label(class="options_label") }}
-                    {{ form.option3(class="options_value") }}
-                </div>
-                <div style="width: 100%">
-                    {% if form.option3.errors %}
-                    <ul class="form__error">
-                        {% for error in form.option3.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    <div class="form__client_error"></div>
-                </div>
-                <div class="options_row">
-                    {{ form.option4.label(class="options_label") }}
-                    {{ form.option4(class="options_value") }}
-                </div>
-                <div style="width: 100%">
-                    {% if form.option4.errors %}
-                    <ul class="form__error">
-                        {% for error in form.option4.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    <div class="form__client_error"></div>
-                </div>
+                    </div>
+                    <div style="width: 100%">
+                        {% if form.option2.errors %}
+                            <ul class="form__error">
+                                {% for error in form.option2.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="form__client_error"></div>
+                    </div>
+                    <div class="options_row">
+                        {{ form.option3.label(class="options_label") }}
+                        {{ form.option3(class="options_value") }}
+                    </div>
+                    <div style="width: 100%">
+                        {% if form.option3.errors %}
+                            <ul class="form__error">
+                                {% for error in form.option3.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="form__client_error"></div>
+                    </div>
+                    <div class="options_row">
+                        {{ form.option4.label(class="options_label") }}
+                        {{ form.option4(class="options_value") }}
+                    </div>
+                    <div style="width: 100%">
+                        {% if form.option4.errors %}
+                            <ul class="form__error">
+                                {% for error in form.option4.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="form__client_error"></div>
+                    </div>
 
 
-                <!-- <div style="width: 50%">
+                    <!-- <div style="width: 50%">
                         {% if form.option2.errors %}
                         <ul class="form__error">
                             {% for error in form.option2.errors %}
@@ -182,7 +182,7 @@ messages %}
                     </div>
                  -->
 
-                <!-- <div class="options_row">
+                    <!-- <div class="options_row">
 
                     {{ form.option3.label(class="options_label") }}
                     {{ form.option3(class="options_value") }}
@@ -217,22 +217,23 @@ messages %}
                     </div>
 
                 </div> -->
-            </div>
+                </div>
 
 
-            <div class="form__fields">
-                {{ form.imp.label(id="mark_as_imp") }}
-                {{ form.imp(id="imp_checkbox") }}
-                <div id="toggle_container">
-                    <div id="toggle_btn"></div>
-                </div>Always include in Papers
+                <div class="form__fields">
+                    {{ form.imp.label(id="mark_as_imp") }}
+                    {{ form.imp(id="imp_checkbox") }}
+                    <div id="toggle_container">
+                        <div id="toggle_btn"></div>
+                    </div>
+                    Always include in Papers
+                </div>
+                <div style="text-align: right;">
+                    {{ form.submit(id="submit_btn") }}
+                    <button type="reset" id="reset_btn">Cancel</button>
+                </div>
             </div>
-            <div style="text-align: right;">
-                {{ form.submit(id="submit_btn") }}
-                <button type="reset" id="reset_btn">Cancel</button>
-            </div>
-        </div>
-    </form>
-    <div class="bottombar"></div>
-</div>
+        </form>
+        <div class="bottombar"></div>
+    </div>
 {% endblock main %}
