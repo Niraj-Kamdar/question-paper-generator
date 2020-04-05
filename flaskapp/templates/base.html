@@ -23,10 +23,10 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/base.css') }}"/>
-    <script type="text/javascript" src=" {{ url_for('static', filename='js/base.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}"/>
-    <script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}"/>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}" defer="defer"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename=css_file) }}"/>
+    <script type="text/javascript" src="{{ url_for('static', filename=js_file) }}" defer="defer"></script>
 
 </head>
 
