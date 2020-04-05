@@ -16,8 +16,8 @@ def question(course_id, qtype):
         # change css_file and js_file here!
         return render_template("questions/mcq_questions.html",
                                questions=_mcq_questions,
-                               css_file='css/question_form.css',
-                               js_file='js/update_question.js',
+                               css_file='css/mcq_form.css',
+                               js_file='js/update_mcq_question.js',
                                title='Objective Questions'
                                )
     elif qtype == "sub":
@@ -64,34 +64,34 @@ def add_question(course_id, qtype):
     if qtype == "mcq":
         form = MCQQuestionForm()
         if form.validate_on_submit():
-            _question = MCQQuestion(question=form.question.data,
-                                    mark=form.mark.data,
-                                    difficulty=form.difficulty.data,
-                                    imp=form.imp.data,
-                                    option1=form.option1.data,
-                                    option2=form.option2.data,
-                                    option3=form.option3.data,
-                                    option4=form.option4.data,
-                                    course_id=course_id)
-            db.session.add(_question)
+            question = MCQQuestion(question=form.question.data,
+                                   mark=form.mark.data,
+                                   difficulty=form.difficulty.data,
+                                   imp=form.imp.data,
+                                   option1=form.option1.data,
+                                   option2=form.option2.data,
+                                   option3=form.option3.data,
+                                   option4=form.option4.data,
+                                   course_id=course_id)
+            db.session.add(question)
             db.session.commit()
             flash(f"New question added successfully!", "success")
             return redirect(url_for("questions.question", qtype="mcq", course_id=course_id))
         return render_template("questions/mcq_question_form.html",
                                form=form,
-                               css_file='css/question_form.css',
-                               js_file='js/question_form.js',
+                               css_file='css/mcq_form.css',
+                               js_file='js/mcq_question_form.js',
                                title='Add Objective Question'
                                )
     elif qtype == "sub":
         form = QuestionForm()
         if form.validate_on_submit():
-            _question = Question(question=form.question.data,
-                                 mark=form.mark.data,
-                                 difficulty=form.difficulty.data,
-                                 imp=form.imp.data,
-                                 course_id=course_id)
-            db.session.add(_question)
+            question = Question(question=form.question.data,
+                                mark=form.mark.data,
+                                difficulty=form.difficulty.data,
+                                imp=form.imp.data,
+                                course_id=course_id)
+            db.session.add(question)
             db.session.commit()
             flash(f"New question added successfully!", "success")
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
@@ -109,16 +109,16 @@ def update_question(course_id, qtype, question_id):
     if qtype == "mcq":
         pass
     elif qtype == "sub":
-        _question = db.session.query(Question).filter_by(id=question_id).first()
-        if _question is None:
+        question = db.session.query(Question).filter_by(id=question_id).first()
+        if question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
-        form = QuestionForm(**_question.to_dict())
+        form = QuestionForm(**question.to_dict())
         if form.validate_on_submit():
-            _question.question = form.question.data
-            _question.mark = form.mark.data
-            _question.difficulty = form.difficulty.data
-            _question.imp = form.imp.data
+            question.question = form.question.data
+            question.mark = form.mark.data
+            question.difficulty = form.difficulty.data
+            question.imp = form.imp.data
             db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
