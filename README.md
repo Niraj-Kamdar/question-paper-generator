@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/Niraj-Kamdar/question-paper-generator/branch/develop/graph/badge.svg)](https://codecov.io/gh/Niraj-Kamdar/question-paper-generator)
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/Niraj-Kamdar/question-paper-generator/?ref=repository-badge)
 [![DeepScan grade](https://deepscan.io/api/teams/8090/projects/10244/branches/138920/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=8090&pid=10244&bid=138920)
-[![fork this repo](http://githubbadges.com/fork.svg?user=Niraj-Kamdar&repo=question-paper-generator&style=flat)](https://github.com/Niraj-Kamdar/question-paper-generator/fork)
+[![fork this repo](https://img.shields.io/github/forks/Niraj-Kamdar/question-paper-generator)](https://github.com/Niraj-Kamdar/question-paper-generator/fork)
 
 
 This is a question paper generator website for the institute.
