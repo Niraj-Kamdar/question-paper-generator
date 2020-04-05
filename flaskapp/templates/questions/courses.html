@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 {% block main %}
-    {% for _course in courses %}
-        <a href={{ url_for("questions.question", qtype="sub", course_id=_course.id) }}>{{ _course }}</a><br>
-    {% endfor %}
-    <button onclick="add()">Add Course</button>
-    <script type="text/javascript">
-    	function add() {
-    		window.location.href = 'http://localhost:5000/course/new';
-    	}
-    </script>
-{% endblock main %}
+
+
+{% for _course in courses %}
+<a href={{ url_for("questions.question", qtype="sub", course_id=_course.id) }}>{{ _course }}</a><br>
+{% endfor %}
+
+
+{%endblock main %}

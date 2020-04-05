@@ -138,7 +138,7 @@ cancelBtn.addEventListener("click", () => {
     editQuestion[index].addEventListener("click", () => {
       edit(index);
     });
-    buffer[index] = undefined;
+    document.body.removeChild(document.getElementById("updateScript"));
     return;
   }
 });

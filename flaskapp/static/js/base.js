@@ -1,9 +1,9 @@
-const explore_items = document.getElementsByClassName("explore_items");
+const exploreItems = document.getElementsByClassName("explore_items");
 const mainContainer = document.getElementById("main_container");
-mainContainer.style.paddingTop = "8%"; // for all pages except question list
+mainContainer.style.paddingTop = "100px"; // for all pages except question list
 document.body.style.overflowY = "auto"; //for all pages except question list
 // for question pages
-if (explore_items.length) {
+if (exploreItems.length) {
   const add_items = document.getElementsByClassName("add_items");
   const nav_links = document.getElementsByClassName("nav_link");
   const url = window.location.href;
@@ -21,9 +21,9 @@ if (explore_items.length) {
     }
   }
   if (!flag) {
-    for (let i = 0; i < explore_items.length; i++) {
-      if (explore_items[i].innerText === option) {
-        explore_items[i].classList.add("active");
+    for (let i = 0; i < exploreItems.length; i++) {
+      if (exploreItems[i].innerText === option) {
+        exploreItems[i].classList.add("active");
       }
     }
   }
