@@ -18,8 +18,8 @@ def question(course_id, qtype):
         return render_template("questions/mcq_questions.html",
                                questions=_mcq_questions,
                                courses=_courses,
-                               css_file='css/question_form.css',
-                               js_file='js/update_question.js',
+                               css_file='css/mcq_form.css',
+                               js_file='js/update_mcq_question.js',
                                title='Objective Questions'
                                )
     elif qtype == "sub":
@@ -64,6 +64,7 @@ def courses():
 @questions.route("/course/<course_id>/question/<qtype>/new/", methods=["GET", "POST"])
 @login_required
 def add_question(course_id, qtype):
+    _courses = Course.query.filter(Course.teacher == current_user).all()
     if qtype == "mcq":
         form = MCQQuestionForm()
         if form.validate_on_submit():
@@ -82,8 +83,9 @@ def add_question(course_id, qtype):
             return redirect(url_for("questions.question", qtype="mcq", course_id=course_id))
         return render_template("questions/mcq_question_form.html",
                                form=form,
-                               css_file='css/question_form.css',
-                               js_file='js/question_form.js',
+                               courses = _courses,
+                               css_file='css/mcq_form.css',
+                               js_file='js/mcq_question_form.js',
                                title='Add Objective Question'
                                )
     elif qtype == "sub":
@@ -100,6 +102,7 @@ def add_question(course_id, qtype):
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
         return render_template("questions/question_form.html",
                                form=form,
+                               courses = _courses,
                                css_file='css/question_form.css',
                                js_file='js/question_form.js',
                                title='Add Subjective Question'

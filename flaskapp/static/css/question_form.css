@@ -1,316 +1,320 @@
 .header {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    color: rgba(88, 88, 88, 1);
-    font-size: 40px;
-    margin: 0 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgba(88, 88, 88, 1);
+  font-size: 40px;
+  margin: 0 20px;
 }
 
 .flashes,
 .form__error {
-    list-style-type: none;
-    padding-left: 0;
-    width: 100%;
+  list-style-type: none;
+  padding-left: 0;
+  width: 100%;
 }
 
 .flashes_question {
-    background-color: white;
-    border: 1px solid black;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    width: 400px;
-    z-index: 2;
+  background-color: white;
+  border: 1px solid black;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 400px;
+  z-index: 2;
 }
 
 .flashes li {
-    color: rgba(88, 88, 88, 1);
-    font-size: 25px;
-    padding: 10px 15px;
+  color: rgba(88, 88, 88, 1);
+  font-size: 25px;
+  padding: 10px 15px;
 }
 
 .form__error {
-    color: red;
-    font-size: 20px;
-    margin: 0;
-    padding: 0;
+  color: red;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
 }
 
 #form_attributes {
-    display: flex;
+  display: flex;
 }
 
 #form_content {
-    background-color: white;
-    padding: 20px 10px;
+  background-color: white;
+  padding: 20px 10px;
 }
 
 .form_field_question_label,
 #marks_label,
 #difficulty_label {
-    background-color: rgba(144, 0, 240, 0.15);
-    color: rgba(88, 88, 88, 1);
-    flex-grow: 1;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 25px;
-    padding: 10px;
+  background-color: rgba(144, 0, 240, 0.15);
+  color: rgba(88, 88, 88, 1);
+  flex-grow: 1;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  padding: 10px;
 }
 
 #form_field_question_value,
 #marks_value,
 #difficulty_value {
-    box-sizing: border-box;
-    display: block;
-    flex-grow: 1;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    margin-top: 10px;
-    padding: 5px;
-    width: 100%;
+  box-sizing: border-box;
+  display: block;
+  flex-grow: 1;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  margin-top: 10px;
+  padding: 5px;
+  width: 100%;
 }
 
 #marks_label {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 #new_question {
-    margin: 0 10px;
+  margin: 0 10px;
 }
 
 #form {
-    background-color: rgba(144, 0, 240, 0.15);
-    border-radius: 10px;
-    padding: 10px;
-    /* width: 100%; */
+  background-color: rgba(144, 0, 240, 0.15);
+  border-radius: 10px;
+  padding: 10px;
+  /* width: 100%; */
 }
 
 #form_attributes {
-    display: flex;
-    flex-direction: row;
-    margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
 }
 
 #mark_as_imp {
-    display: none;
+  display: none;
 }
 
 .form__fields {
-    align-items: center;
-    display: flex;
-    margin: 10px 0;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  margin: 10px 0;
+  width: 100%;
 }
 
 #submit_btn,
 #reset_btn {
-    background-color: rgba(144, 0, 240, 0.15);
-    border: none;
-    color: rgba(88, 88, 88, 1);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    padding: 10px 20px;
+  background-color: rgba(144, 0, 240, 0.15);
+  border: none;
+  color: rgba(88, 88, 88, 1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  padding: 10px 20px;
 }
 
 #submit_btn:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #reset_btn:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #imp_checkbox {
-    display: none;
+  display: none;
 }
 
 #toggle_container {
-    align-items: center;
-    border-radius: 30px;
-    background-color: #ccc;
-    display: flex;
+  align-items: center;
+  border-radius: 30px;
+  background-color: #ccc;
+  display: flex;
 
-    height: 24px;
-    margin-right: 10px;
-    width: 48px;
+  height: 24px;
+  margin-right: 10px;
+  width: 48px;
 }
 
 #toggle_container:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #toggle_btn {
-    background-color: white;
-    border-radius: 50%;
-    left: 4px;
-    height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  left: 4px;
+  height: 16px;
 
-    position: relative;
-    transition: left 0.4s;
-    width: 16px;
+  position: relative;
+  transition: left 0.4s;
+  width: 16px;
 }
 
 #difficulty_value,
 #marks_value,
 #form_field_question_value {
-    color: rgba(88, 88, 88, 1);
-    font-size: 20px;
-    padding: 10px;
+  color: rgba(88, 88, 88, 1);
+  font-size: 20px;
+  padding: 10px;
 }
 
 .form__client_error {
-    color: red;
-    font-size: 20px;
+  color: red;
+  font-size: 20px;
 }
 
 /* css for question list */
 #questions {
-    margin-right: 10px;
+  margin-right: 10px;
 
-    background-color: rgba(144, 0, 240, 0.15);
+  background-color: rgba(144, 0, 240, 0.15);
 }
 
 .control_btns {
-    margin: 10px;
-    padding: 5px 0;
-    border-radius: 8px;
-    background-color: white;
-    display: inline-flex;
-    flex-direction: row;
+  margin: 10px;
+  padding: 5px 0;
+  border-radius: 8px;
+  background-color: white;
+  display: inline-flex;
+  flex-direction: row;
 }
 
 .control_btns div {
-    padding: 0px 10px;
-    border-right: 1px solid black;
+  padding: 0px 10px;
+  border-right: 1px solid black;
 }
 
 .control_btns div:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .control_btns div:last-child {
-    border: none;
+  border: none;
 }
 
 .control_btns_img {
-    width: 20px;
+  width: 20px;
 }
 
 .question_container {
-    display: flex;
-    flex-direction: row;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    color: rgba(88, 88, 88, 1);
-    font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgba(88, 88, 88, 1);
+  font-size: 25px;
 }
 
 .question_info {
-    background-color: white;
-    border-radius: 10px;
-    padding: 10px 5px;
-    flex-direction: column;
-    flex-grow: 1;
-    margin: 10px 0 10px 10px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 5px;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: 10px 0 10px 10px;
 }
 
 .first_row {
-    border-bottom: 1px solid black;
-    display: flex;
-    flex-direction: row;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: row;
 }
 
 .second_row {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .first_row_column_1 {
-    border-right: 1px solid black;
-    padding-bottom: 5px;
-    text-align: left;
-    width: 80px;
+  border-right: 1px solid black;
+  padding-bottom: 5px;
+  text-align: left;
+  width: 80px;
 }
 
 .first_row_column_2 {
-    flex-grow: 1;
-    text-align: right;
+  flex-grow: 1;
+  text-align: right;
 }
 
 .first_row_column_3 {
-    display: none;
-    flex-grow: 1;
-    text-align: right;
+  display: none;
+  flex-grow: 1;
+  text-align: right;
 }
 
 .second_row_column_1 {
-    border-right: 1px solid black;
-    flex-shrink: 0;
-    width: 80px;
+  border-right: 1px solid black;
+  flex-shrink: 0;
+  width: 80px;
 }
 
 .second_row_column_2 {
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    /* justify-content: space-between; */
-    padding: 10px 0px 0px 10px;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  /* justify-content: space-between; */
+  padding: 10px 0px 0px 10px;
 }
 
 .question_description {
-    flex-grow: 1;
-    word-break: break-word;
+  flex-grow: 1;
+  word-break: break-word;
 }
 
 .question_properties {
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    text-align: right;
-    width: 200px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  text-align: right;
+  width: 200px;
 }
 
 .update_question {
-    /* background-color: white; */
-    border-radius: 10px;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    /* margin: 10px 10px 10px 0px; */
-    padding: 10px 15px;
+  /* background-color: white; */
+  border-radius: 10px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  /* margin: 10px 10px 10px 0px; */
+  padding: 10px 15px;
 }
 
 .delete_question {
-    display: none;
-    padding: 10px 0px 10px 5px;
+  display: none;
+  padding: 10px 0px 10px 5px;
 }
 
 .edit_question {
-    background-color: white;
-    border-radius: 10px;
-    padding: 5px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .edit_question {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #delete_btn img {
-    opacity: 0.4;
+  opacity: 0.4;
 }
 
 .update_question_img {
-    opacity: 0.4;
-    width: 20px;
+  opacity: 0.4;
+  width: 20px;
 }
 
 input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 #bottombar {
-    background-color: rgba(144, 0, 240, 0.15);
-    bottom: 0;
-    height: 8px;
-    position: sticky;
+  background-color: rgba(144, 0, 240, 0.15);
+  bottom: 0;
+  height: 8px;
+  position: sticky;
+}
+
+#jcourse {
+  display: none;
 }

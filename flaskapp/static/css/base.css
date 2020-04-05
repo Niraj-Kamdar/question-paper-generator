@@ -170,12 +170,14 @@ body::-webkit-scrollbar {
   padding: 5px;
 }
 
-#explore_items_container,
-#add_items_container,
-.courses_item_container {
+.explore_items_container,
+.add_items_container,
+.courses_items_container {
   background-color: rgba(144, 0, 240, 0.15);
   padding: 5px;
-  margin-bottom: 20px;
+  /* display: none; */
+  margin: 0;
+  /* margin-bottom: 20px; */
 }
 
 .explore_items:last-child,
@@ -190,7 +192,8 @@ body::-webkit-scrollbar {
   margin-right: 10px;
 }
 
-.nav_link {
+.nav_link,
+.course_link {
   color: rgba(76, 76, 76, 1) !important;
   cursor: pointer;
   text-decoration: none !important;
@@ -199,3 +202,22 @@ body::-webkit-scrollbar {
 .active {
   font-style: italic;
 }
+
+.courses_container,
+.explore_container,
+.add_container {
+  margin-bottom: 20px;
+  width: 330px;
+}
+
+/* .courses_container:hover .courses_items_container {
+  display: block;
+}
+
+.explore_container:hover .explore_items_container {
+  display: block;
+}
+
+.add_container:hover .add_items_container {
+  display: block;
+} */
