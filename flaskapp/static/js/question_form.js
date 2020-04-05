@@ -11,6 +11,10 @@
   mark.setAttribute("placeholder", "Enter marks here");
   difficulty.setAttribute("placeholder", "Enter difficulty here");
   question.setAttribute("placeholder", "Enter question here");
+
+  /**for styling */
+  const blockMain = document.getElementsByClassName("block_main");
+  blockMain[0].classList.remove("block_main");
   // question.addEventListener("blur", () => {
   //   if (question.value.trim() === "")
   //     formErrors[0].innerHTML = "empty question";

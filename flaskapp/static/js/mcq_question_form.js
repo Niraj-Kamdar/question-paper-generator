@@ -10,6 +10,10 @@
   const impCheckbox = document.getElementById("imp_checkbox");
   const form = document.getElementById("form");
 
+  /**for styling */
+  const blockMain = document.getElementsByClassName("block_main");
+  blockMain[0].classList.remove("block_main");
+
   marksValue.setAttribute("placeholder", "Enter marks here");
   difficultyValue.setAttribute("placeholder", "Enter difficulty here");
   questionValue.setAttribute("placeholder", "Enter question here");
