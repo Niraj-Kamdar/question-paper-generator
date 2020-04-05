@@ -110,9 +110,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-    <script src="{{url_for('static',filename='js/layout.js')}}"></script>
+    <script src="{{url_for('static',filename='js/layout.js')}}" defer="defer"></script>
 
-    <script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}"></script>
+    <script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}" defer="defer"></script>
 </body>
 
 </html>
