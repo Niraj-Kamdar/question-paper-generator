@@ -45,7 +45,7 @@
             </div>
             <div class="col3">
                 <div class="row" style="margin:0;padding:0;">
-                    <a href="#"><h4 class="py-2 mx-3">Home</h4></a>
+                    <a href="http://localhost:5000/home"><h4 class="py-2 mx-3">Home</h4></a>
                     <a href="#"><h4 class="py-2 mx-3">Add</h4></a>
                     <a href="#"><h4 class="py-2 mx-3">Bucket</h4></a>
                     <a href="#"><h4 class="py-2 mx-3">About</h4></a>
@@ -58,9 +58,21 @@
         </div>
     </header>
 
-    <div class="block_main">
-        {% block main %}
-        {% endblock %}
+    <div style="padding-top: 8%;" class="block_main" id="main_container">
+        <div>
+            {% block flashes %}
+            {% endblock flashes %}
+            {% block header %}
+            {% endblock header %}
+            <div id="content">
+                <div style="flex-grow: 1;">
+                    {% block main %}
+                    {% endblock main %}
+                </div>
+                {% block sideNav %}
+                {% endblock sideNav %}
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -82,6 +94,8 @@
     </footer>
 
 </div>
+<script src="{{ url_for('static',filename='js/base.js') }}" defer="defer"></script>
 
+<script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}" defer="defer"></script>
 </body>
 </html>

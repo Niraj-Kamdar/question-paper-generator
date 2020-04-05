@@ -7,4 +7,8 @@ window.onload = function () {
     question_bank_btn.addEventListener("click", () => {
         window.location.href = 'http://localhost:5000/course/1/question/sub/';
     });
+    var manage_courses_btn = document.getElementById("manage_courses_btn");
+    manage_courses_btn.addEventListener("click", () => {
+        window.location.href = 'http://localhost:5000/course';
+    });
 }
