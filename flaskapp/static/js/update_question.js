@@ -13,8 +13,6 @@ const editQuestion = document.getElementsByClassName("edit_question");
 const cancelBtn = document.getElementById("cancel_btn");
 
 /**for styling */
-const blockMain = document.getElementsByClassName("block_main");
-blockMain[0].classList.remove("block_main");
 
 const buffer = {
   data: "",
@@ -138,7 +136,8 @@ cancelBtn.addEventListener("click", () => {
     editQuestion[index].addEventListener("click", () => {
       edit(index);
     });
-    buffer[index] = undefined;
+    const script = document.getElementById("updateScript");
+    document.body.removeChild(script);
     return;
   }
 });
