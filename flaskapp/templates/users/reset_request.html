@@ -31,8 +31,8 @@
     <form method="POST" action="" id="resetForm" novalidate>
 
         {{ form.hidden_tag() }}
-        <h5 class="ml-2">Enter the email address that is associated with your account.</h5>
-        <fieldset class="form-group mt-4 p-3">
+        <h5 class="ml-2 p-3">Enter the email address that is associated with your account.</h5>
+        <fieldset class="form-group mt-2 p-3">
 
             <div class="form-group">
                 {{ form.email.label(class="form-control-label") }}
@@ -67,7 +67,8 @@
     }
 
     .container > form > h5 {
-        color: #707070;
+        color: #ffffff;
+        background: #9000F0;
     }
 
     .row {
@@ -81,22 +82,21 @@
     }
 
     fieldset {
-        background: #9000F0;
+        /*background: #9000F0;*/
     }
 
     .form-group > label {
-        color: #ffffff;
-        font-weight: bold;
+        color: #707070;
     }
 
     .rpbtn {
-        border: 1px solid #ffffff;
-        color: #ffffff;
+        border: 1px solid #9000F0;
+        color: #9000F0;
     }
 
     .rpbtn:hover {
-        background: #ffffff;
-        color: #9000F0;
+        background: #9000F0;
+        color: #ffffff;
     }
 </style>
 </body>

@@ -8,7 +8,7 @@ body::-webkit-scrollbar {
 }
 
 .block_main {
-    margin-top: 14vh;
+    /* margin-top: 14vh; */
     min-width: 100vw;
     min-height: 80vh;
     /*border:2px solid red;*/
@@ -42,13 +42,13 @@ body::-webkit-scrollbar {
 
 .col2 {
     padding-left: 1.5%;
-    width: 55%;
+    width: 50%;
     transition: 1s;
     /*border :1px solid yellow;*/
 }
 
 .col3 {
-    width: 35%;
+    width: 40%;
     /*border :1px solid yellow;*/
     display: inline-flex;
     align-items: center;
@@ -141,6 +141,10 @@ body::-webkit-scrollbar {
     margin-right: 10px;
 }
 
+#course_link {
+    cursor: pointer;
+}
+
 #explore_title,
 #add_title,
 #courses_title {
@@ -173,11 +177,11 @@ body::-webkit-scrollbar {
 .explore_items_container,
 .add_items_container,
 .courses_items_container {
-  background-color: rgba(144, 0, 240, 0.15);
-  padding: 5px;
-  /* display: none; */
-  margin: 0;
-  /* margin-bottom: 20px; */
+    background-color: rgba(144, 0, 240, 0.15);
+    padding: 5px;
+    /* display: none; */
+    margin: 0;
+    /* margin-bottom: 20px; */
 }
 
 .explore_items:last-child,
@@ -194,9 +198,9 @@ body::-webkit-scrollbar {
 
 .nav_link,
 .course_link {
-  color: rgba(76, 76, 76, 1) !important;
-  cursor: pointer;
-  text-decoration: none !important;
+    color: rgba(76, 76, 76, 1) !important;
+    cursor: pointer;
+    text-decoration: none !important;
 }
 
 .active {
@@ -206,8 +210,8 @@ body::-webkit-scrollbar {
 .courses_container,
 .explore_container,
 .add_container {
-  margin-bottom: 20px;
-  width: 330px;
+    margin-bottom: 20px;
+    width: 330px;
 }
 
 /* .courses_container:hover .courses_items_container {

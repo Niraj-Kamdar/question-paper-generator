@@ -83,7 +83,7 @@ def add_question(course_id, qtype):
             return redirect(url_for("questions.question", qtype="mcq", course_id=course_id))
         return render_template("questions/mcq_question_form.html",
                                form=form,
-                               courses = _courses,
+                               courses=_courses,
                                css_file='css/mcq_form.css',
                                js_file='js/mcq_question_form.js',
                                title='Add Objective Question'
@@ -102,7 +102,7 @@ def add_question(course_id, qtype):
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
         return render_template("questions/question_form.html",
                                form=form,
-                               courses = _courses,
+                               courses=_courses,
                                css_file='css/question_form.css',
                                js_file='js/question_form.js',
                                title='Add Subjective Question'

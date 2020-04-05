@@ -1,6 +1,21 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
+
+
+
 {% block main %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+        <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endwith %}
+
     {% for _course in courses %}
-        <a href={{ url_for("questions.question", qtype="sub", course_id=_course.id) }}>{{ _course }}</a>
+        <a href={{ url_for("questions.question", qtype="sub", course_id=_course.id) }}>{{ _course }}</a><br>
     {% endfor %}
+
+    <button id="add_course">Add Course</button>
+
 {% endblock main %}
