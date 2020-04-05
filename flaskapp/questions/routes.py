@@ -11,11 +11,13 @@ questions = Blueprint('questions', __name__)
 @questions.route("/course/<course_id>/question/<qtype>/")
 @login_required
 def question(course_id, qtype):
+    _courses = Course.query.filter(Course.teacher == current_user).all()
     if qtype == "mcq":
         _mcq_questions = MCQQuestion.query.filter(MCQQuestion.course_id == course_id).all()
         # change css_file and js_file here!
         return render_template("questions/mcq_questions.html",
                                questions=_mcq_questions,
+                               courses=_courses,
                                css_file='css/question_form.css',
                                js_file='js/update_question.js',
                                title='Objective Questions'
@@ -25,6 +27,7 @@ def question(course_id, qtype):
         # change css_file and js_file here!
         return render_template("questions/questions.html",
                                questions=_questions,
+                               courses=_courses,
                                css_file='css/question_form.css',
                                js_file='js/update_question.js',
                                title='Subjective Questions'
