@@ -12,6 +12,9 @@ const questions = document.getElementsByClassName("question_container");
 const editQuestion = document.getElementsByClassName("edit_question");
 const cancelBtn = document.getElementById("cancel_btn");
 
+/**for styling */
+const blockMain = document.getElementsByClassName("block_main");
+blockMain[0].classList.remove("block_main");
 const buffer = {
   data: "",
   index: -1,
