@@ -187,7 +187,7 @@ const partialUrl = url.substr(0, courseIndex + 6);
 const laterUrl = url.substr(courseIndex);
 for (let i = 0; i < courseName.length; i++) {
   const completeUrl =
-    partialUrl + "/" + courseId[i].innerText + "/question/sub/";
+    partialUrl + "/" + courseId[i].innerText + "/question/mcq/";
   const cid = /(\d+)/.exec(laterUrl)[1];
 
   if (cid === courseId[i].innerText) {
