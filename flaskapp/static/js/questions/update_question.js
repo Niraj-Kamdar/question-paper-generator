@@ -30,7 +30,11 @@ for (let i = 0; i < imps.length; i++) {
 }
 
 mark.addEventListener("click", () => {
-  if (!forms[0] && deleteOption[0].style.display !== "block") {
+  if (
+    !forms[0] &&
+    deleteOption.length &&
+    deleteOption[0].style.display !== "block"
+  ) {
     if (updateImp[0].style.display !== "block") {
       for (let i = 0; i < imps.length; i++) {
         imps[i].style.display = "none";
@@ -70,7 +74,7 @@ mark.addEventListener("click", () => {
 });
 
 deleteBtn.addEventListener("click", () => {
-  if (updateImp[0].style.display !== "block" && !forms[0]) {
+  if (updateImp.length && updateImp[0].style.display !== "block" && !forms[0]) {
     if (deleteOption[0].style.display !== "block") {
       for (let i = 0; i < deleteOption.length; i++) {
         deleteOption[i].style.display = "block";
