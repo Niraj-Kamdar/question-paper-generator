@@ -18,8 +18,8 @@ def question(course_id, qtype):
         return render_template("questions/mcq_questions.html",
                                questions=_mcq_questions,
                                courses=_courses,
-                               css_file='css/mcq_form.css',
-                               js_file='js/update_mcq_question.js',
+                               css_file='css/questions/mcq_form.css',
+                               js_file='js/questions/update_mcq_question.js',
                                title='Objective Questions'
                                )
     elif qtype == "sub":
@@ -28,8 +28,8 @@ def question(course_id, qtype):
         return render_template("questions/questions.html",
                                questions=_questions,
                                courses=_courses,
-                               css_file='css/question_form.css',
-                               js_file='js/update_question.js',
+                               css_file='css/questions/question_form.css',
+                               js_file='js/questions/update_question.js',
                                title='Subjective Questions'
                                )
 
@@ -46,8 +46,8 @@ def add_course():
         return redirect(url_for("questions.courses"))
     return render_template("questions/course_form.html",
                            form=form,
-                           css_file='css/question_form.css',
-                           js_file='js/question_form.js',
+                           css_file='css/questions/question_form.css',
+                           js_file='js/questions/add_course.js',
                            title='Add Courses'
                            )
 
@@ -58,6 +58,8 @@ def courses():
     _courses = Course.query.filter(Course.teacher == current_user).all()
     return render_template("questions/courses.html",
                            courses=_courses,
+                           css_file='css/questions/courses.css',
+                           js_file='js/questions/courses.js',
                            title='Courses')
 
 
@@ -84,8 +86,8 @@ def add_question(course_id, qtype):
         return render_template("questions/mcq_question_form.html",
                                form=form,
                                courses=_courses,
-                               css_file='css/mcq_form.css',
-                               js_file='js/mcq_question_form.js',
+                               css_file='css/questions/mcq_form.css',
+                               js_file='js/questions/mcq_question_form.js',
                                title='Add Objective Question'
                                )
     elif qtype == "sub":
@@ -103,8 +105,8 @@ def add_question(course_id, qtype):
         return render_template("questions/question_form.html",
                                form=form,
                                courses=_courses,
-                               css_file='css/question_form.css',
-                               js_file='js/question_form.js',
+                               css_file='css/questions/question_form.css',
+                               js_file='js/questions/question_form.js',
                                title='Add Subjective Question'
                                )
 
@@ -132,8 +134,8 @@ def update_question(course_id, qtype, question_id):
             return redirect(url_for("questions.question", qtype=qtype, course_id=course_id))
         return render_template('questions/mcq_question_form.html',
                                form=form,
-                               css_file='css/question_form.css',
-                               js_file='js/question_form.js'
+                               css_file='css/questions/question_form.css',
+                               js_file='js/questions/question_form.js'
                                )
     elif qtype == "sub":
         _question = db.session.query(Question).filter_by(id=question_id).first()
@@ -151,8 +153,8 @@ def update_question(course_id, qtype, question_id):
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
         return render_template('questions/question_form.html',
                                form=form,
-                               css_file='css/question_form.css',
-                               js_file='js/question_form.js'
+                               css_file='css/questions/question_form.css',
+                               js_file='js/questions/question_form.js'
                                )
 
 

@@ -22,8 +22,8 @@ def register():
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
-    return render_template('users/register.html', title='Register', form=form, css_file='css/register.css',
-                           js_file='js/index.js', js_file2='js/register.js', btn_name='Back')
+    return render_template('users/register.html', title='Register', form=form, css_file='css/users/register.css',
+                           js_file='js/index.js', js_file2='js/users/register.js', btn_name='Back')
 
 
 @users.route("/login", methods=['GET', 'POST'])
@@ -39,8 +39,8 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('papers.home'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('users/login.html', title='Login', form=form, css_file='css/login.css',
-                           js_file='js/index.js', js_file2='js/login.js', btn_name='Back')
+    return render_template('users/login.html', title='Login', form=form, css_file='css/users/login.css',
+                           js_file='js/index.js', js_file2='js/users/login.js', btn_name='Back')
 
 
 @users.route("/logout")
@@ -67,8 +67,8 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    return render_template('users/account.html', title='Account',
-                           image_file=image_file, form=form)
+    return render_template('users/account.html', title='Account',css_file='css/users/accounts.css',
+                           image_file=image_file, form=form, js_file='js/users/account.js')
 
 
 @users.route("/reset_password", methods=['GET', 'POST'])
@@ -82,7 +82,7 @@ def reset_request():
         flash('An email has been sent with instructions to reset your password.', 'info')
         return redirect(url_for('users.login'))
     return render_template('users/reset_request.html', title='Reset Password', form=form,
-                           js_file='js/reset_password.js')
+                           js_file='js/users/reset_password.js')
 
 
 @users.route("/reset_password/<token>", methods=['GET', 'POST'])
