@@ -7,13 +7,13 @@ assignees: ''
 
 ---
 
-**Describe the test**
+### Describe the test
 A clear and concise description of what the test is about.
 
-**What it covers**
+### What it covers
 A clear description about the coverage of the test.
 
-**Testing**
+### Testing
 
 Some tests for the above testcase.
 
