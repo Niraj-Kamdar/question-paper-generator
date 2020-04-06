@@ -2,8 +2,8 @@ from flask import render_template, flash, redirect, url_for, json, Blueprint
 from flask_login import login_required, current_user
 
 from flaskapp import db
+from flaskapp.blueprints.questions.forms import CourseForm, MCQQuestionForm, QuestionForm
 from flaskapp.models import MCQQuestion, Question, Course
-from flaskapp.questions.forms import CourseForm, MCQQuestionForm, QuestionForm
 
 questions = Blueprint('questions', __name__)
 
