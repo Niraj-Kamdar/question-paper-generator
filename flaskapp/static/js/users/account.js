@@ -7,9 +7,8 @@ const userName = document.getElementById("username");
 const email = document.getElementById("email");
 const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
 const clientError = document.getElementsByClassName("form_client_error");
-console.log("loading", emailRegex.test(email.value));
+
 accountForm.addEventListener("submit", (e) => {
-  console.log("submit");
   clientError[0].innerHTML = clientError[1].innerHTML = "";
   if (userName.value.trim() === "" || !emailRegex.test(email.value)) {
     e.preventDefault();

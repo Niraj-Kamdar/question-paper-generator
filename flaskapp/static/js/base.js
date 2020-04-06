@@ -81,3 +81,10 @@ if (exploreItems.length) {
     mainContainer.style.paddingTop = "100px";
   }
 }
+
+const addCourse = document.getElementById("add_course");
+if (addCourse) {
+  addCourse.addEventListener("click", () => {
+    window.location.href = rootUrl + "course/new";
+  });
+}
