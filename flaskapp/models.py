@@ -66,12 +66,14 @@ class Question(db.Model):
 
     @db.validates("difficulty")
     def validate_difficulty(self, key, value):
-        assert value in range(1, 101)
+        if value not in range(1, 101):
+            raise AssertionError
         return value
 
     @db.validates("mark")
     def validate_mark(self, key, value):
-        assert value in range(1, 101)
+        if value not in range(1, 101):
+            raise AssertionError
         return value
 
     def __repr__(self):
@@ -99,12 +101,14 @@ class MCQQuestion(db.Model):
 
     @db.validates("difficulty")
     def validate_difficulty(self, key, value):
-        assert value in range(1, 101)
+        if value not in range(1, 101):
+            raise AssertionError
         return value
 
     @db.validates("mark")
     def validate_mark(self, key, value):
-        assert value in range(1, 101)
+        if value not in range(1, 101):
+            raise AssertionError
         return value
 
     def __repr__(self):
