@@ -4,7 +4,6 @@
 [![codecov](https://codecov.io/gh/Niraj-Kamdar/question-paper-generator/branch/develop/graph/badge.svg)](https://codecov.io/gh/Niraj-Kamdar/question-paper-generator)
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/Niraj-Kamdar/question-paper-generator/?ref=repository-badge)
 [![DeepScan grade](https://deepscan.io/api/teams/8090/projects/10244/branches/138920/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=8090&pid=10244&bid=138920)
-[![fork this repo](https://img.shields.io/github/forks/Niraj-Kamdar/question-paper-generator)](https://github.com/Niraj-Kamdar/question-paper-generator/fork)
 
 
 The **Question Paper Generator** has been developed to override the problems prevailing in the practicing manual system.This software supported to reduce the hardships faced by the existing system.In this system we present a smart question paper generating system for universities.This application is reduced as much as possible to avoid errors while entering the data.
