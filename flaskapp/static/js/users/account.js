@@ -1,20 +1,43 @@
-setTimeout(() => {
+(function () {
+  setTimeout(() => {
     const flash = document.getElementsByClassName("flashes")[0];
     if (flash) flash.style.display = "none";
-}, 1000);
-const accountForm = document.getElementById("account_form");
-const userName = document.getElementById("username");
-const email = document.getElementById("email");
-const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
-const clientError = document.getElementsByClassName("form_client_error");
+  }, 1000);
+  const accountForm = document.getElementById("account_form");
+  const userName = document.getElementById("username");
+  const email = document.getElementById("email");
 
-accountForm.addEventListener("submit", (e) => {
+  const clientError = document.getElementsByClassName("form_client_error");
+
+  accountForm.addEventListener("submit", (e) => {
     clientError[0].innerHTML = clientError[1].innerHTML = "";
-    if (userName.value.trim() === "" || !emailRegex.test(email.value)) {
-        e.preventDefault();
-        if (userName.value.trim() === "")
-            clientError[0].innerHTML = "enter valid name";
-        if (!emailRegex.test(email.value))
-            clientError[1].innerHTML = "enter valid email";
+    const validation = isValid(userName.value, email.value);
+    if (!validation.isValid) {
+      e.preventDefault();
+      for (let i = 0; i < validation.errors.length; i++) {
+        clientError[i].innerText = validation.errors[i];
+      }
     }
-});
+  });
+
+  function isValid(user, email) {
+    let validation = {
+      isValid: true,
+      errors: [],
+    };
+    if (user.trim() === "") {
+      validation.errors.push("username is required");
+      validation.isValid = false;
+    } else {
+      validation.errors.push("");
+    }
+    const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
+    if (!emailRegex.test(email)) {
+      validation.errors.push("email address is invalid!!");
+      validation.isValid = false;
+    } else {
+      validation.errors.push("");
+    }
+    return validation;
+  }
+})();
