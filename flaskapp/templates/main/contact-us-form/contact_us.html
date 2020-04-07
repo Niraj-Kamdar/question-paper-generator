@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact US</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href={{ url_for("static", filename="images/icons/favicon.ico") }}/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href={{ url_for("static", filename="vendor/bootstrap/css/bootstrap.min.css") }}>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href={{ url_for("static", filename="fonts/font-awesome-4.7.0/css/font-awesome.min.css") }}>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href={{ url_for("static", filename="vendor/animate/animate.css") }}>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href={{ url_for("static", filename="vendor/css-hamburgers/hamburgers.min.css") }}>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href={{ url_for("static", filename="vendor/select2/select2.min.css") }}>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href={{ url_for("static", filename="css/contact-us/util.css") }}>
+    <link rel="stylesheet" type="text/css" href={{ url_for("static", filename="css/contact-us/main.css") }}>
+    <!--===============================================================================================-->
+</head>
+<body>
+
+<div class="bg-contact100" style="background-image: url({{ url_for("static", filename='images/bg-01.jpg') }});">
+    <div class="container-contact100">
+        <div class="wrap-contact100">
+            <div class="contact100-pic js-tilt" data-tilt>
+                <img alt="IMG" src={{ url_for("static", filename="images/img-01.png") }}>
+            </div>
+
+            <form class="contact100-form validate-form">
+					<span class="contact100-form-title">
+						Get in touch
+					</span>
+
+                <div class="wrap-input100 validate-input" data-validate="Name is required">
+                    {{ form.name(class="input100", placeholder="Name") }}
+                    {#                    <input class="input100" type="text" name="name" placeholder="Name">#}
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    {{ form.email(class="input100", placeholder="Email") }}
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Valid mobile is required: 1234567890">
+                    {{ form.mobile(class="input100", placeholder="Mobile") }}
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+							<i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
+						</span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Subject is required">
+                    {{ form.subject(class="input100", placeholder="Subject") }}
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+							<i class="fa fa-indent" aria-hidden="true"></i>
+						</span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Message is required">
+                    {{ form.message(class="input100", placeholder="Message") }}
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="container-contact100-form-btn">
+                    <button class="contact100-form-btn">
+                        Send
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--===============================================================================================-->
+<script src={{ url_for("static", filename="vendor/jquery/jquery-3.2.1.min.js") }}></script>
+<!--===============================================================================================-->
+<script src={{ url_for("static", filename="vendor/bootstrap/js/popper.js") }}></script>
+<script src={{ url_for("static", filename="vendor/bootstrap/js/bootstrap.min.js") }}></script>
+<!--===============================================================================================-->
+<script src={{ url_for("static", filename="vendor/select2/select2.min.js") }}></script>
+<!--===============================================================================================-->
+<script src={{ url_for("static", filename="vendor/tilt/tilt.jquery.min.js") }}></script>
+<script>
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
+<!--===============================================================================================-->
+<script src={{ url_for("static", filename="js/contact_us.js") }}></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-23581568-13');
+</script>
+<script src="https://browser.sentry-cdn.com/5.15.4/bundle.min.js"
+        integrity="sha384-Nrg+xiw+qRl3grVrxJtWazjeZmUwoSt0FAVsbthlJ5OMpx0G08bqIq3b/v0hPjhB" crossorigin="anonymous">
+</script>
+<script>
+    Sentry.init({dsn: 'https://c9335936f879448e8ba64f062636caaf@o374456.ingest.sentry.io/5192852'});
+</script>
+</body>
+</html>

@@ -38,4 +38,4 @@ def contact_us():
         send_contact_us_receipt_email(**data)
         flash(f"Your Message has recorded successfully! We will reach out soon.", "success")
         return redirect(url_for("main.contact_us"))
-    return render_template("main/contact_us.html", title="Contact Us")
+    return render_template("main/contact-us-form/contact_us.html", form=form)
