@@ -1,0 +1,20 @@
+https://setnow.herokuapp.com/
+
+
+************
+Hi {name},
+************
+
+Thanks for contacting SetNow's Support team!
+
+We've received your request, and we're diligently working 24/7 to address your issue. We will certainly help you out as soon as we can.
+
+To check the status of the ticket and add additional comments, reply directly to this email.
+
+Thanks,
+The SetNow Team
+
+
+© 2019 SetNow. All rights reserved.
+
+SetNow, LLC
