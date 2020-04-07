@@ -20,6 +20,7 @@ def question(course_id, qtype):
                                courses=_courses,
                                css_file='css/questions/mcq_form.css',
                                js_file='js/questions/update_mcq_question.js',
+                               js_file2='js/sideNav.js',
                                title='Objective Questions'
                                )
     elif qtype == "sub":
@@ -30,6 +31,7 @@ def question(course_id, qtype):
                                courses=_courses,
                                css_file='css/questions/question_form.css',
                                js_file='js/questions/update_question.js',
+                               js_file2='js/sideNav.js',
                                title='Subjective Questions'
                                )
 
@@ -88,6 +90,7 @@ def add_question(course_id, qtype):
                                courses=_courses,
                                css_file='css/questions/mcq_form.css',
                                js_file='js/questions/mcq_question_form.js',
+                               js_file2='js/sideNav.js',
                                title='Add Objective Question'
                                )
     elif qtype == "sub":
@@ -107,6 +110,7 @@ def add_question(course_id, qtype):
                                courses=_courses,
                                css_file='css/questions/question_form.css',
                                js_file='js/questions/question_form.js',
+                               js_file2='js/sideNav.js',
                                title='Add Subjective Question'
                                )
 

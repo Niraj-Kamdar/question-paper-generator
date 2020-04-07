@@ -3,105 +3,108 @@
 
 <head>
     <title>Set Now : Home</title>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/84a8728d56.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
 
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/base.css') }}"/>
+    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/base.css') }}" />
     <script type="text/javascript" src=" {{ url_for('static', filename='js/base.js') }}" defer="defer"></script>
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}"/>
+    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}" />
     <script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}" defer="defer"></script>
+    {% if js_file2 %}
+    <script type="text/javascript" src="{{url_for('static',filename=js_file2)}}" defer="defer"></script>
+    {% endif %}
 </head>
 
 <body style="margin: 0;">
-<div>
-    <header>
-        <div class="row px-4 py-2 text-white sticky-top" id="header">
-            <div class="col1">
-                <img src="{{ url_for('static', filename='images/logo.svg') }}" class="logo" alt="logo"/>
-            </div>
-            <div class="col2">
-                <h2>SetNow</h2>
-                <h4>Question Paper Generator</h4>
-            </div>
-            <div class="col3">
-                <div class="row" style="margin: 0; padding: 0;">
-                    <a href="#" id="home_link">
-                        <h4 class="py-2 mx-2">Home</h4>
-                    </a>
-                    <!-- <a href="#">
+    <div>
+        <header>
+            <div class="row px-4 py-2 text-white sticky-top" id="header">
+                <div class="col1">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" class="logo" alt="logo" />
+                </div>
+                <div class="col2">
+                    <h2>SetNow</h2>
+                    <h4>Question Paper Generator</h4>
+                </div>
+                <div class="col3">
+                    <div class="row" style="margin: 0; padding: 0;">
+                        <a href="#" id="home_link">
+                            <h4 class="py-2 mx-2">Home</h4>
+                        </a>
+                        <!-- <a href="#">
                         <h4 class="py-2 mx-2">Questions</h4>
                     </a> -->
-                    <a href="#" id="course_link">
-                        <h4 class="py-2 mx-2">Courses</h4>
-                    </a>
-                    <!-- <a href="/course/new">
+                        <a href="#" id="course_link">
+                            <h4 class="py-2 mx-2">Courses</h4>
+                        </a>
+                        <!-- <a href="/course/new">
                         <h4 class="py-2 mx-2">Add Course</h4>
                     </a> -->
-                    <a href="/logout">
-                        <h4 class="py-2 mx-2">Log Out</h4>
-                    </a>
+                        <a href="/logout">
+                            <h4 class="py-2 mx-2">Log Out</h4>
+                        </a>
 
+                    </div>
+                </div>
+                <div class="col4">
+                    <img src="{{ url_for('static', filename='profile_pics/default.svg') }}" class="user" alt="user"
+                        title="profile" />
                 </div>
             </div>
-            <div class="col4">
-                <img src="{{ url_for('static', filename='profile_pics/default.svg') }}" class="user" alt="user"
-                     title="profile"/>
-            </div>
-        </div>
-    </header>
+        </header>
 
-    <div style="padding-top: 8%;" class="block_main" id="main_container">
-        {% block login %}
-        {% endblock login %}
-        <div>
-            {% block flashes %}
-            {% endblock flashes %}
-            {% block header %}
-            {% endblock header %}
-            <div id="content">
-                <div style="flex-grow: 1;">
-                    {% block main %} {% endblock main %}
+        <div style="padding-top: 8%;" class="block_main" id="main_container">
+            {% block login %}
+            {% endblock login %}
+            <div>
+                {% block flashes %}
+                {% endblock flashes %}
+                {% block header %}
+                {% endblock header %}
+                <div id="content">
+                    <div style="flex-grow: 1;">
+                        {% block main %} {% endblock main %}
+                    </div>
+                    {% block sideNav %} {% endblock sideNav %}
                 </div>
-                {% block sideNav %} {% endblock sideNav %}
             </div>
         </div>
-    </div>
 
-    <footer>
-        <div class="col py-3 text-center" id="footer">
+        <footer>
+            <div class="col py-3 text-center" id="footer">
                 <span class="mr-3">© 2020 Copyright :
                     <a href="http://setnow.herokuapp.com/" class="fl"><b>setnow.herokuapp.com</b></a>
                 </span>
-            <span>|</span>
-            <a href="#" class="fl"><i class="fab fa-facebook-f mx-2"> </i></a>
-            <span>|</span>
-            <a href="#" class="fl"><i class="fab fa-twitter mx-2"> </i></a>
-            <span>|</span>
-            <a href="#" class="fl"><i class="fab fa-google-plus-g mx-2"> </i></a>
-            <span>|</span>
-            <a href="#" class="fl"><i class="fab fa-linkedin-in mx-2"> </i></a>
-            <span>|</span>
-            <a href="#" class="fl"><i class="fab fa-instagram ml-3"> </i></a>
-        </div>
-    </footer>
-</div>
+                <span>|</span>
+                <a href="#" class="fl"><i class="fab fa-facebook-f mx-2"> </i></a>
+                <span>|</span>
+                <a href="#" class="fl"><i class="fab fa-twitter mx-2"> </i></a>
+                <span>|</span>
+                <a href="#" class="fl"><i class="fab fa-google-plus-g mx-2"> </i></a>
+                <span>|</span>
+                <a href="#" class="fl"><i class="fab fa-linkedin-in mx-2"> </i></a>
+                <span>|</span>
+                <a href="#" class="fl"><i class="fab fa-instagram ml-3"> </i></a>
+            </div>
+        </footer>
+    </div>
 </body>
 
 </html>
