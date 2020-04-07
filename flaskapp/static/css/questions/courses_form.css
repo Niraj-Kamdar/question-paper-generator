@@ -1,47 +1,52 @@
 #form_question_paper {
-  padding-left: 10px;
+    padding-left: 10px;
 }
+
 #course_form {
-  background-color: rgba(144, 0, 240, 0.15);
-  box-shadow: 4px 4px 2px 0;
-  /* margin: 10px; */
-  padding: 10px;
-  width: 50%;
+    background-color: rgba(144, 0, 240, 0.15);
+    box-shadow: 4px 4px 2px 0;
+    /* margin: 10px; */
+    padding: 10px;
+    width: 50%;
 }
+
 #form_content {
-  background-color: white;
-  padding: 10px;
+    background-color: white;
+    padding: 10px;
 }
+
 .form__fields {
-  background-color: rgba(144, 0, 240, 0.15);
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
+    background-color: rgba(144, 0, 240, 0.15);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
 }
 
 .form__fields label {
-  color: rgba(88, 88, 88, 1);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 20px;
+    color: rgba(88, 88, 88, 1);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
 }
+
 .form__fields input {
-  padding: 10px;
+    padding: 10px;
 }
+
 .form__client_error {
-  color: red;
-  margin: 0;
+    color: red;
+    margin: 0;
 }
 
 #submit_btn {
-  text-align: right;
+    text-align: right;
 }
 
 #submit {
-  background-color: rgba(144, 0, 240, 0.15);
-  border: 0;
-  color: rgba(88, 88, 88, 1);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 20px;
-  margin: 10px 0;
-  padding: 10px;
+    background-color: rgba(144, 0, 240, 0.15);
+    border: 0;
+    color: rgba(88, 88, 88, 1);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    margin: 10px 0;
+    padding: 10px;
 }
