@@ -13,27 +13,20 @@ You will need `python 3.6+` installed.
 
 ### Installing
 
-After cloning/downloading this repository enable virtual environment for current project and install necessary packages from requirements.txt with following command
+After cloning/downloading this repository enable virtual environment for current project and install necessary packages from pipfile with following command
 
 ```console
-python -m venv venv
-cd venv
-cd scripts
-./activate
-cd ../..
-pip install -r dev-requirements.txt
+pip install pipenv
+pipenv install --dev
 ```
 
-Note: If you just want to run this website use `requirements.txt` instead of `dev-requirements.txt`
+Note: If you just want to run this website use `pipenv install` without `--dev` 
 
 ### Running
 
-Before running following commands make sure you are in virtual environment. You can verify it by checking `(venv)` in the start. If your virtual environment isn't activated then activate it using following command
+Before running following commands make sure you are in virtual environment. If your virtual environment isn't activated then activate it using following command
 ```console
-cd venv
-cd scripts
-./activate
-cd ../..
+pipenv shell
 ```
 If your environment is activated then run following command to start webserver.
 ```console

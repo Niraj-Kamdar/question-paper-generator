@@ -1,6 +1,6 @@
 import unittest
 
-from flaskapp import create_app, db, config, models
+from flaskapp import create_app, db, config, models, mail
 from test.main.utils import test_post_request
 
 
@@ -9,6 +9,8 @@ class BaseDatabase(unittest.TestCase):
         """Set up a blank temp database before each test"""
         self.app = create_app(config_class=config.TestingConfig)
         self.app.app_context().push()
+
+        self.mail = mail
 
         self.db = db
         self.db.create_all()

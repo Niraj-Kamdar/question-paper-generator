@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/bb7cf58c3b.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="{{url_for('static',filename=js_file)}}" defer="defer"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename=js_file) }}" defer="defer"></script>
     <style type="text/css" rel="stylesheet" media="all">
         * {
             font-family: 'Montserrat', sans-serif;
@@ -32,7 +32,7 @@
             background: #9000F026;
         }
 
-        .container>form>h5 {
+        .container > form > h5 {
             color: #ffffff;
             background: #9000F0;
         }
@@ -42,7 +42,7 @@
             border-bottom: 1px solid #b0b0b0;
         }
 
-        .row>h2 {
+        .row > h2 {
             color: #707070;
             font-weight: bolder;
         }
@@ -51,7 +51,7 @@
             /*background: #9000F0;*/
         }
 
-        .form-group>label {
+        .form-group > label {
             color: #707070;
         }
 
@@ -68,40 +68,40 @@
 </head>
 
 <body>
-    <div class="row m-5 mb-2">
-        <h2>Reset Password</h2>
-    </div>
-    <div class="container p-3">
+<div class="row m-5 mb-2">
+    <h2>Reset Password</h2>
+</div>
+<div class="container p-3">
 
-        <form method="POST" action="" id="resetForm" novalidate>
+    <form method="POST" action="" id="resetForm" novalidate>
 
-            {{ form.hidden_tag() }}
-            <h5 class="ml-2 p-3">Enter the email address that is associated with your account.</h5>
-            <fieldset class="form-group mt-2 p-3">
+        {{ form.hidden_tag() }}
+        <h5 class="ml-2 p-3">Enter the email address that is associated with your account.</h5>
+        <fieldset class="form-group mt-2 p-3">
 
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label") }}
-                    {% if form.email.errors %}
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }}
+                {% if form.email.errors %}
                     {{ form.email(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.email.errors %}
-                        <span>{{ error }}</span>
+                            <span>{{ error }}</span>
                         {% endfor %}
                     </div>
-                    {% else %}
+                {% else %}
                     {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
-                    <div id="email_error"></div>
-                    <div class="form-group btn_container mt-3">
-                        {{ form.submit(class="btn rpbtn") }}
-                    </div>
+                {% endif %}
+                <div id="email_error"></div>
+                <div class="form-group btn_container mt-3">
+                    {{ form.submit(class="btn rpbtn") }}
                 </div>
+            </div>
 
-            </fieldset>
+        </fieldset>
 
 
-        </form>
-    </div>
+    </form>
+</div>
 
 </body>
 
