@@ -64,18 +64,6 @@ class Question(db.Model):
     imp = db.Column(db.Boolean, default=False)
     course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
 
-    @db.validates("difficulty")
-    def validate_difficulty(self, key, value):
-        if value not in range(1, 101):
-            raise AssertionError
-        return value
-
-    @db.validates("mark")
-    def validate_mark(self, key, value):
-        if value not in range(1, 101):
-            raise AssertionError
-        return value
-
     def __repr__(self):
         return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.imp})"
 
@@ -98,18 +86,6 @@ class MCQQuestion(db.Model):
     option3 = db.Column(db.Text, nullable=False)
     option4 = db.Column(db.Text, nullable=False)
     course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
-
-    @db.validates("difficulty")
-    def validate_difficulty(self, key, value):
-        if value not in range(1, 101):
-            raise AssertionError
-        return value
-
-    @db.validates("mark")
-    def validate_mark(self, key, value):
-        if value not in range(1, 101):
-            raise AssertionError
-        return value
 
     def __repr__(self):
         return f"MCQQuestion({self.question}, {self.mark}, {self.difficulty}, {self.imp}," \
