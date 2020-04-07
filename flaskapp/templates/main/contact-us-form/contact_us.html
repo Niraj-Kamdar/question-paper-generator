@@ -33,8 +33,9 @@
                 <img alt="IMG" src={{ url_for("static", filename="images/img-01.png") }}>
             </div>
 
-            <form class="contact100-form validate-form">
-					<span class="contact100-form-title">
+            <form method="POST" action="" id="contactForm" class="contact100-form validate-form">
+                {{ form.hidden_tag() }}
+                <span class="contact100-form-title">
 						Get in touch
 					</span>
 

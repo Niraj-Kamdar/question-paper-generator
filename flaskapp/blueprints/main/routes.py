@@ -25,7 +25,7 @@ def help_page():
     return render_template("main/help.html", title="Help")
 
 
-@main.route("/contact-us")
+@main.route("/contact-us", methods=["GET", "POST"])
 def contact_us():
     form = ContactUs()
     if form.validate_on_submit():
