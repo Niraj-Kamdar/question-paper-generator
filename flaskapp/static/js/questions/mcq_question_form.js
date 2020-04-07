@@ -5,11 +5,22 @@
   const optionsValue = document.getElementsByClassName("options_value");
   const toggleContainer = document.getElementById("toggle_container");
   const toggleBtn = document.getElementById("toggle_btn");
+  const submitBtn = document.getElementById("submit_btn");
   const resetBtn = document.getElementById("reset_btn");
   const clientErrors = document.getElementsByClassName("form__client_error");
   const impCheckbox = document.getElementById("imp_checkbox");
   const form = document.getElementById("form");
-
+  let tabindex = 1;
+  questionValue.setAttribute("tabindex", tabindex++);
+  marksValue.setAttribute("tabindex", tabindex++);
+  difficultyValue.setAttribute("tabindex", tabindex++);
+  optionsValue[0].setAttribute("tabindex", tabindex++);
+  optionsValue[1].setAttribute("tabindex", tabindex++);
+  optionsValue[2].setAttribute("tabindex", tabindex++);
+  optionsValue[3].setAttribute("tabindex", tabindex++);
+  toggleContainer.setAttribute("tabindex", tabindex++);
+  submitBtn.setAttribute("tabindex", tabindex++);
+  resetBtn.setAttribute("tabindex", tabindex++);
   /**for styling */
   const blockMain = document.getElementsByClassName("block_main");
   if (blockMain.length) blockMain[0].classList.remove("block_main");
@@ -22,6 +33,24 @@
   optionsValue[1].setAttribute("placeholder", "Option (B)");
   optionsValue[2].setAttribute("placeholder", "Option (C)");
   optionsValue[3].setAttribute("placeholder", "Option (D)");
+
+  questionValue.addEventListener("input", () => {
+    clientErrors[0].innerText = "";
+  });
+
+  marksValue.addEventListener("input", () => {
+    clientErrors[1].innerText = "";
+  });
+
+  difficultyValue.addEventListener("input", () => {
+    clientErrors[2].innerText = "";
+  });
+
+  for (let i = 0; i < optionsValue.length; i++) {
+    optionsValue[i].addEventListener("input", () => {
+      clientErrors[i + 3].innerText = "";
+    });
+  }
 
   form.addEventListener("submit", (e) => {
     for (let i = 0; i < clientErrors.length; i++) {

@@ -7,8 +7,15 @@
   const toggleContainer = document.getElementById("toggle_container");
   const toggleBtn = document.getElementById("toggle_btn");
   const impCheckbox = document.getElementById("imp_checkbox");
+  const submitBtn = document.getElementById("submit_btn");
   const resetBtn = document.getElementById("reset_btn");
-
+  let tabindex = 1;
+  question.setAttribute("tabindex", tabindex++);
+  mark.setAttribute("tabindex", tabindex++);
+  difficulty.setAttribute("tabindex", tabindex++);
+  toggleContainer.setAttribute("tabindex", tabindex++);
+  submitBtn.setAttribute("tabindex", tabindex++);
+  resetBtn.setAttribute("tabindex", tabindex++);
   /**setting placeholder of form elements */
   mark.setAttribute("placeholder", "Enter marks here");
   difficulty.setAttribute("placeholder", "Enter difficulty here");
@@ -17,6 +24,18 @@
   /**for styling */
   const blockMain = document.getElementsByClassName("block_main");
   if (blockMain.length) blockMain[0].classList.remove("block_main");
+
+  question.addEventListener("input", () => {
+    formErrors[0].innerHTML = "";
+  });
+
+  mark.addEventListener("input", () => {
+    formErrors[1].innerHTML = "";
+  });
+
+  difficulty.addEventListener("input", () => {
+    formErrors[2].innerHTML = "";
+  });
 
   /**form submit handler */
   form.addEventListener("submit", (e) => {

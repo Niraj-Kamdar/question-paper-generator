@@ -3,6 +3,7 @@
   const courseField = document.getElementById("form__fields__course");
   const clientError = document.getElementsByClassName("form__client_error");
 
+  courseField.setAttribute("placeholder", "Add course");
   courseForm.addEventListener("submit", (e) => {
     clientError[0].innerHTML = "";
     const validation = isValid(courseField.value);

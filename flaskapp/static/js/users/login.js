@@ -9,6 +9,12 @@
 
   /* form validation */
   if (loginForm) {
+    emailField.addEventListener("input", () => {
+      emailError.innerHTML = "";
+    });
+    passwordField.addEventListener("input", () => {
+      passwordError.innerHTML = "";
+    });
     loginForm.addEventListener("submit", (e) => {
       emailError.innerHTML = "";
       passwordError.innerHTML = "";

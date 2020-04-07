@@ -5,20 +5,24 @@
   const homeLink = document.getElementById("home_link");
   const courseLink = document.getElementById("course_link");
   const profileLink = document.getElementsByClassName("user")[0];
-  let rootUrl = "";
+  let index = window.location.href.indexOf("/", 0);
+  index = window.location.href.indexOf("/", index + 1);
+  index = window.location.href.indexOf("/", index + 1);
+  const rootUrl = window.location.href.substr(0, index + 1);
   profileLink.addEventListener("click", () => {
     if (rootUrl + "account" !== window.location.href)
       window.location.href = rootUrl + "account";
   });
   const length = window.location.href.match(new RegExp("/", "g")).length;
+
   if (length !== 3) {
-    let index = window.location.href.indexOf("/", 0);
-    index = window.location.href.indexOf("/", index + 1);
-    index = window.location.href.indexOf("/", index + 1);
-    rootUrl = window.location.href.substr(0, index + 1);
     homeLink.setAttribute("href", rootUrl + "home");
-  } else if (window.location.href.indexOf("home") !== -1) {
-    homeLink.removeAttribute("href");
+  } else {
+    if (window.location.href.indexOf("home") !== -1) {
+      homeLink.removeAttribute("href");
+    } else {
+      homeLink.setAttribute("href", rootUrl + "home");
+    }
   }
 
   let courseUrl = rootUrl + "course/";

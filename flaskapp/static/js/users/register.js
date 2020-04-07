@@ -10,6 +10,18 @@
   const confirmPasswordError = document.getElementById(
     "user_confirm_password_error"
   );
+  userNameField.addEventListener("input", () => {
+    userNameError.innerText = "";
+  });
+  emailField.addEventListener("input", () => {
+    emailError.innerText = "";
+  });
+  passwordField.addEventListener("input", () => {
+    passwordError.innerText = "";
+  });
+  confirmPasswordField.addEventListener("input", () => {
+    confirmPasswordError.innerText = "";
+  });
   registerForm.addEventListener("submit", (e) => {
     const email = emailField.value;
     const userName = userNameField.value;

@@ -7,6 +7,14 @@
   const userName = document.getElementById("username");
   const email = document.getElementById("email");
 
+  userName.addEventListener("input", () => {
+    clientError[0].innerHTML = "";
+  });
+
+  email.addEventListener("input", () => {
+    clientError[1].innerHTML = "";
+  });
+
   const clientError = document.getElementsByClassName("form_client_error");
 
   accountForm.addEventListener("submit", (e) => {

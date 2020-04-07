@@ -48,7 +48,7 @@ def add_course():
         return redirect(url_for("questions.courses"))
     return render_template("questions/course_form.html",
                            form=form,
-                           css_file='css/questions/question_form.css',
+                           css_file='css/questions/courses_form.css',
                            js_file='js/questions/add_course.js',
                            title='Add Courses'
                            )

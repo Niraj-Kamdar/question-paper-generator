@@ -5,6 +5,9 @@
   if (resetForm) {
     const emailField = document.getElementById("email");
     const emailError = document.getElementById("email_error");
+    emailField.addEventListener("input", () => {
+      emailError.innerHTML = "";
+    });
     resetForm.addEventListener("submit", (e) => {
       const email = emailField.value;
       emailError.innerHTML = "";
@@ -20,6 +23,12 @@
       "confirm_password"
     )[0];
     const formError = document.getElementsByClassName("form_error");
+    password.addEventListener("input", () => {
+      formError[0].innerHTML = "";
+    });
+    confirmPassword.addEventListener("input", () => {
+      formError[1].innerHTML = "";
+    });
     resetPasswordForm.addEventListener("submit", (e) => {
       formError[0].innerHTML = formError[1].innerHTML = "";
       const validation = isValidPassword(password.value, confirmPassword.value);
