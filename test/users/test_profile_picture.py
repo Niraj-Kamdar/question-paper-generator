@@ -1,5 +1,5 @@
-import os
 from test.main.base_classes import BaseUser
+
 
 class UserAccountTestCase(BaseUser):
     def test_profile(self):
