@@ -5,8 +5,7 @@ tasks:
       pip3 install pipenv
       pipenv install --dev
     command: |
-      pipenv shell
-      python app.py
+      pipenv run python app.py
   - init: |
       echo "Use it for git commands :)"
        
