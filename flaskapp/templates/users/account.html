@@ -16,18 +16,20 @@
 {% endblock flashes %}
 
 {% block main %}
-    <div class="content-section" style="padding-top:20px;">
+    <div class="content-section pt-4">
 
-        <div style="width:50%;text-align: center;">
-            <div class="media">
+        <div style=" width:45%;text-align: right;">
+            <div class="media pt-5">
                 <img class="rounded-circle account-img" src="{{ image_file }}" alt="round-image" id="profile_pic"/>
-                <div class="media-body">
+
+                <div class="media-body mt-5">
                     <h2 class="account-heading">{{ current_user.username }}</h2>
                     <p class="text-secondary">{{ current_user.email }}</p>
                 </div>
             </div>
 
         </div>
+
         <div>
 
 

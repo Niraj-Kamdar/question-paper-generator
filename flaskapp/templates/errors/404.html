@@ -1,7 +1,11 @@
-{% extends "base.html" %}
-{% block main %}
-    <div class="content-section">
-        <h1>Oops. Page Not Found (404)</h1>
-        <p>That page does not exist. Please try a different location</p>
-    </div>
-{% endblock main %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>404</title>
+</head>
+<body style="margin: 0;">
+	<div>
+		<img style="min-width: 100vw; min-height: 100vh; position: fixed;" src="{{ url_for('static', filename='images/404.svg') }}" class="error-404" alt="404" />
+	</div>
+</body>
+</html>
