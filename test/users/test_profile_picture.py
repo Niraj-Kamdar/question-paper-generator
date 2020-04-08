@@ -5,5 +5,6 @@ class UserAccountTestCase(BaseUser):
     def test_profile(self):
         self.login()
         url = '/account'
-        files = {'picture': open('profile1.png', 'rb')}
+        im1 = os.path.join(TEST_PATH, "users", "profile1.png")
+        files = {'media': open(im1, 'rb')}
         self.client.post(url, files=files)
