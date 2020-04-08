@@ -20,24 +20,22 @@
     <div id="questions">
         {% block content %}
             <div class="control_btns">
-                <div id="mark_imp">
+                <div id="mark_imp" title="mark imp">
                     <img src="{{ url_for('static',
                 filename='images/imp.svg') }}" alt="imp" class="control_btns_img"/>
                 </div>
-                <div id="update_all">
-                    <img src="{{ url_for('static',
-                filename='images/update.svg') }}" alt="update" class="control_btns_img"/>
-                </div>
-                <div id="delete_btn">
+
+                <div id="delete_btn" title="delete">
                     <img src="{{ url_for('static',
                 filename='images/bin.png') }}" alt="delete" class="control_btns_img"/>
                 </div>
-                <div id="cancel_btn">
+                <div id="cancel_btn" title="Cancel">
                     <img src="{{ url_for('static',
                 filename='images/cancel.svg') }}" alt="cancel" class="control_btns_img"/>
                 </div>
             </div>
             <div style="max-height : 446px;overflow-x: auto;position: relative;">
+
             {% for q in questions %}
                 <div class="question_container">
                     <div class="delete_question">
@@ -78,6 +76,12 @@
 
             {% endfor %} {% endblock %}
         <div id="bottombar"></div>
+        <div id="jcourse">
+            {% for course in courses %}
+                <div class="course_name">{{ course.name }} </div>
+                <div class="course_id">{{ course.id }}</div>
+            {% endfor %}
+        </div>
         </div>
     </div>
 {% endblock %}

@@ -6,6 +6,9 @@ coverage:
   round: down
   range: "50...100"
 
+ignore:
+  - "app.py"
+
 parsers:
   gcov:
     branch_detection:

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Set Now</title>
     <meta charset="utf-8">
@@ -7,31 +8,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/bb7cf58c3b.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
 
-    <!-- <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/index.css') }}"/>
-    <script type="text/javascript" src=" {{ url_for('static', filename='js/index.js') }}"></script> -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
 
     <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}"/>
-    <script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}"></script>
-    {% if js_file2 %}
-        <script type="text/javascript" src=" {{ url_for('static', filename=js_file2) }}"></script>
-    {% endif %}
 </head>
+
 <body style="margin: 0;">
+<div id="loader_container">
+    <div id="loader"></div>
+</div>
 <div id="bodycontent">
 
 
@@ -92,55 +79,91 @@
                         <div class="container-fluid ml-5 mt-4">
                             <div class="row pb-5">
                                 <p class="text-justify" style="text-indent:5%;"><i
-                                        class="material-icons mx-2 float-left" style="font-size: 1.5vw">subdirectory_arrow_right</i>In
-                                    this modern world e-book has become a basic requirement for the candidates to appear
-                                    and prepare for their competitive exams within college premises. In this paper we
-                                    are proposing a model system for smart question paper generation of universities.
-                                    The mechanism behind this system is that many random question papers are generated
+                                        class="material-icons mx-2 float-left"
+                                        style="font-size: 1.5vw">subdirectory_arrow_right</i>In
+                                    this modern world e-book has become a basic requirement for the candidates to
+                                    appear
+                                    and prepare for their competitive exams within college premises. In this paper
+                                    we
+                                    are proposing a model system for smart question paper generation of
+                                    universities.
+                                    The mechanism behind this system is that many random question papers are
+                                    generated
                                     along with the difficulty level of the questions in terms of percentage. After
-                                    generation that particular question is then mailed to the respective university. In
+                                    generation that particular question is then mailed to the respective university.
+                                    In
                                     this system administration of the database inputs set of question paper with an
                                     option of check box to tick the correct answer. More ever weightage of the
-                                    particular question in terms of marks and hours and the complexity of the question
-                                    is determined. After this process whole question paper along with the weightage is
-                                    stored in the database. In order to make question paper for 100 marks, admin sets
-                                    all the weightage and difficulties to solve the problem. As soon as the difficulty
-                                    and weightage is specified a pre doc file as per selected format will be downloaded
-                                    to the admin and an electronic mail will be triggered. Range of difficulty may vary
+                                    particular question in terms of marks and hours and the complexity of the
+                                    question
+                                    is determined. After this process whole question paper along with the weightage
+                                    is
+                                    stored in the database. In order to make question paper for 100 marks, admin
+                                    sets
+                                    all the weightage and difficulties to solve the problem. As soon as the
+                                    difficulty
+                                    and weightage is specified a pre doc file as per selected format will be
+                                    downloaded
+                                    to the admin and an electronic mail will be triggered. Range of difficulty may
+                                    vary
                                     from easy, medium and hard.</p>
                                 <p class="text-justify" style="text-indent:5%;"><i
-                                        class="material-icons mx-2 float-left" style="font-size: 1.5vw">subdirectory_arrow_right</i>In
-                                    this modern world e-book has become a basic requirement for the candidates to appear
-                                    and prepare for their competitive exams within college premises. In this paper we
-                                    are proposing a model system for smart question paper generation of universities.
-                                    The mechanism behind this system is that many random question papers are generated
+                                        class="material-icons mx-2 float-left"
+                                        style="font-size: 1.5vw">subdirectory_arrow_right</i>In
+                                    this modern world e-book has become a basic requirement for the candidates to
+                                    appear
+                                    and prepare for their competitive exams within college premises. In this paper
+                                    we
+                                    are proposing a model system for smart question paper generation of
+                                    universities.
+                                    The mechanism behind this system is that many random question papers are
+                                    generated
                                     along with the difficulty level of the questions in terms of percentage. After
-                                    generation that particular question is then mailed to the respective university. In
+                                    generation that particular question is then mailed to the respective university.
+                                    In
                                     this system administration of the database inputs set of question paper with an
                                     option of check box to tick the correct answer. More ever weightage of the
-                                    particular question in terms of marks and hours and the complexity of the question
-                                    is determined. After this process whole question paper along with the weightage is
-                                    stored in the database. In order to make question paper for 100 marks, admin sets
-                                    all the weightage and difficulties to solve the problem. As soon as the difficulty
-                                    and weightage is specified a pre doc file as per selected format will be downloaded
-                                    to the admin and an electronic mail will be triggered. Range of difficulty may vary
+                                    particular question in terms of marks and hours and the complexity of the
+                                    question
+                                    is determined. After this process whole question paper along with the weightage
+                                    is
+                                    stored in the database. In order to make question paper for 100 marks, admin
+                                    sets
+                                    all the weightage and difficulties to solve the problem. As soon as the
+                                    difficulty
+                                    and weightage is specified a pre doc file as per selected format will be
+                                    downloaded
+                                    to the admin and an electronic mail will be triggered. Range of difficulty may
+                                    vary
                                     from easy, medium and hard.</p>
                                 <p class="text-justify" style="text-indent:5%;"><i
-                                        class="material-icons mx-2 float-left" style="font-size: 1.5vw">subdirectory_arrow_right</i>In
-                                    this modern world e-book has become a basic requirement for the candidates to appear
-                                    and prepare for their competitive exams within college premises. In this paper we
-                                    are proposing a model system for smart question paper generation of universities.
-                                    The mechanism behind this system is that many random question papers are generated
+                                        class="material-icons mx-2 float-left"
+                                        style="font-size: 1.5vw">subdirectory_arrow_right</i>In
+                                    this modern world e-book has become a basic requirement for the candidates to
+                                    appear
+                                    and prepare for their competitive exams within college premises. In this paper
+                                    we
+                                    are proposing a model system for smart question paper generation of
+                                    universities.
+                                    The mechanism behind this system is that many random question papers are
+                                    generated
                                     along with the difficulty level of the questions in terms of percentage. After
-                                    generation that particular question is then mailed to the respective university. In
+                                    generation that particular question is then mailed to the respective university.
+                                    In
                                     this system administration of the database inputs set of question paper with an
                                     option of check box to tick the correct answer. More ever weightage of the
-                                    particular question in terms of marks and hours and the complexity of the question
-                                    is determined. After this process whole question paper along with the weightage is
-                                    stored in the database. In order to make question paper for 100 marks, admin sets
-                                    all the weightage and difficulties to solve the problem. As soon as the difficulty
-                                    and weightage is specified a pre doc file as per selected format will be downloaded
-                                    to the admin and an electronic mail will be triggered. Range of difficulty may vary
+                                    particular question in terms of marks and hours and the complexity of the
+                                    question
+                                    is determined. After this process whole question paper along with the weightage
+                                    is
+                                    stored in the database. In order to make question paper for 100 marks, admin
+                                    sets
+                                    all the weightage and difficulties to solve the problem. As soon as the
+                                    difficulty
+                                    and weightage is specified a pre doc file as per selected format will be
+                                    downloaded
+                                    to the admin and an electronic mail will be triggered. Range of difficulty may
+                                    vary
                                     from easy, medium and hard.</p>
                             </div>
                         </div>
@@ -152,23 +175,49 @@
         <footer>
             <div class="row" id="footer" style="margin: 0;padding: 0;">
                 <div class="col py-3 text-center" id="footercontent">
-                        <span class="mr-3">© 2020 Copyright :
-                            <a href="http://localhost:5000/" class="fl"><b>setnow.com</b></a>
+                        <span class="mr-3 span_color">© 2020 Copyright :
+                            <a href="/" class="fl a_color"><b>setnow.com</b></a>
                         </span>
-                    <span>|</span>
-                    <a href="#" class="fl"><i class="fab fa-facebook-f mx-3"> </i></a>
-                    <span>|</span>
-                    <a href="#" class="fl"><i class="fab fa-twitter mx-3"> </i></a>
-                    <span>|</span>
-                    <a href="#" class="fl"><i class="fab fa-google-plus-g mx-3"> </i></a>
-                    <span>|</span>
-                    <a href="#" class="fl"><i class="fab fa-linkedin-in mx-3"> </i></a>
-                    <span>|</span>
-                    <a href="#" class="fl"><i class="fab fa-instagram ml-3"> </i></a>
+                    <span class="span_color">|</span>
+                    <a href="#" class="fl a_color"><i class="fab fa-facebook-f mx-3"> </i></a>
+                    <span class="span_color">|</span>
+                    <a href="#" class="fl a_color"><i class="fab fa-twitter mx-3"> </i></a>
+                    <span class="span_color">|</span>
+                    <a href="#" class="fl a_color"><i class="fab fa-google-plus-g mx-3"> </i></a>
+                    <span class="span_color">|</span>
+                    <a href="#" class="fl a_color"><i class="fab fa-linkedin-in mx-3"> </i></a>
+                    <span class="span_color">|</span>
+                    <a href="#" class="fl a_color"><i class="fab fa-instagram ml-3"> </i></a>
                 </div>
             </div>
         </footer>
     </div>
 </div>
+<script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}" defer="defer"></script>
+{% if js_file2 %}
+    <script type="text/javascript" src=" {{ url_for('static', filename=js_file2) }}" defer="defer"></script>
+{% endif %}
+<script src="https://kit.fontawesome.com/bb7cf58c3b.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+<script src="https://browser.sentry-cdn.com/5.15.4/bundle.min.js"
+        integrity="sha384-Nrg+xiw+qRl3grVrxJtWazjeZmUwoSt0FAVsbthlJ5OMpx0G08bqIq3b/v0hPjhB" crossorigin="anonymous">
+</script>
+<script>
+    Sentry.init({
+        dsn: 'https://1fdf413ccfcc4a249f79519bfc269965@o374456.ingest.sentry.io/5192531'
+    });
+</script>
 </body>
+
 </html>

@@ -4,7 +4,7 @@ body::-webkit-scrollbar {
 }
 
 * {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 #bodycontent {
@@ -49,7 +49,7 @@ body::-webkit-scrollbar {
     top: 0;
     left: 0;
     transition: 1s;
-    background: #9000F0b3;
+    background: #9000f0b3;
 }
 
 /************************************************************************/
@@ -61,6 +61,7 @@ body::-webkit-scrollbar {
     top: 0;
     left: 0;
     transition: 0.3s;
+    z-index: -1;
 }
 
 .logo {
@@ -104,7 +105,7 @@ body::-webkit-scrollbar {
     width: 100%;
     position: relative;
     background-color: #ffffff;
-    color: #9000F0;
+    color: #9000f0;
     border-top-left-radius: 20% 50%;
     border-bottom-left-radius: 20% 50%;
     border: none;
@@ -131,7 +132,7 @@ body::-webkit-scrollbar {
     font-size: 1vw;
     color: rgba(255, 255, 255, 0.5);
     transition: 1s;
-    background: #9000F0;
+    background: #9000f0;
 }
 
 .fl {
@@ -168,6 +169,55 @@ body::-webkit-scrollbar {
         padding-top: 5%;
         padding-bottom: 5%;
         font-size: 3vw;
+    }
+}
+
+.span_color,
+.a_color {
+    color: white;
+}
+
+#loader_container {
+    top: 0;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 2;
+}
+
+#loader {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid rgba(144, 0, 240, 0.76);
+    border-radius: 50%;
+    border-top: 8px solid white;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
 

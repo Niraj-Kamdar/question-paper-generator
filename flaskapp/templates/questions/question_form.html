@@ -2,6 +2,7 @@
 {% block header %}
     <h3 class="header">Add Subjective Question</h3>
 {% endblock header %}
+
 {% block flashes %}
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %}
@@ -18,6 +19,7 @@
         <form method="POST" action="" novalidate id="form">
 
             {{ form.hidden_tag() }}
+
             <div id="form_content">
                 <div class="form_field_question_label">
                     {{ form.question.label }} :
@@ -75,6 +77,12 @@
                     {{ form.submit(id="submit_btn") }}
                     <button type="reset" id="reset_btn">Cancel</button>
                 </div>
+            </div>
+            <div id="jcourse">
+                {% for course in courses %}
+                    <div class="course_name">{{ course.name }} </div>
+                    <div class="course_id">{{ course.id }}</div>
+                {% endfor %}
             </div>
         </form>
 
