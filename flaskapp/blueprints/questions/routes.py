@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, json, Blueprint
+from flask import render_template, flash, redirect, url_for, json, Blueprint, abort
 from flask_login import login_required, current_user
 
 from flaskapp import db
@@ -11,6 +11,9 @@ questions = Blueprint('questions', __name__)
 @questions.route("/course/<course_id>/question/<qtype>/")
 @login_required
 def question(course_id, qtype):
+    _course = Course.query.filter(Course.id == course_id).first()
+    if _course.teacher != current_user:
+        abort(403)
     _courses = Course.query.filter(Course.teacher == current_user).all()
     if qtype == "mcq":
         _mcq_questions = MCQQuestion.query.filter(MCQQuestion.course_id == course_id).all()
@@ -34,6 +37,8 @@ def question(course_id, qtype):
                                js_file2='js/sideNav.js',
                                title='Subjective Questions'
                                )
+    else:
+        abort(404)
 
 
 @questions.route('/course/new/', methods=["GET", "POST"])
@@ -68,6 +73,9 @@ def courses():
 @questions.route("/course/<course_id>/question/<qtype>/new/", methods=["GET", "POST"])
 @login_required
 def add_question(course_id, qtype):
+    _course = Course.query.filter(Course.id == course_id).first()
+    if _course.teacher != current_user:
+        abort(403)
     _courses = Course.query.filter(Course.teacher == current_user).all()
     if qtype == "mcq":
         form = MCQQuestionForm()
@@ -113,11 +121,16 @@ def add_question(course_id, qtype):
                                js_file2='js/sideNav.js',
                                title='Add Subjective Question'
                                )
+    else:
+        abort(404)
 
 
 @questions.route("/course/<course_id>/question/<qtype>/update/<int:question_id>/", methods=["GET", "POST"])
 @login_required
 def update_question(course_id, qtype, question_id):
+    _course = Course.query.filter(Course.id == course_id).first()
+    if _course.teacher != current_user:
+        abort(403)
     if qtype == "mcq":
         _question = db.session.query(MCQQuestion).filter_by(id=question_id).first()
         if _question is None:
@@ -160,11 +173,16 @@ def update_question(course_id, qtype, question_id):
                                css_file='css/questions/question_form.css',
                                js_file='js/questions/question_form.js'
                                )
+    else:
+        abort(404)
 
 
 @questions.route("/course/<course_id>/question/<qtype>/imp/<impq>/", methods=["GET"])
 @login_required
 def imp_question(course_id, qtype, impq):
+    _course = Course.query.filter(Course.id == course_id).first()
+    if _course.teacher != current_user:
+        abort(403)
     obj = json.loads(impq)
     imp = obj["imp"]
     notimp = obj["notimp"]
@@ -180,11 +198,16 @@ def imp_question(course_id, qtype, impq):
         db.session.query(Question).filter(Question.id.in_(notimp)).update(dict(imp=False), synchronize_session='fetch')
         db.session.commit()
         return redirect(url_for("questions.question", qtype=qtype, course_id=course_id))
+    else:
+        abort(404)
 
 
 @questions.route("/course/<course_id>/question/<qtype>/delete/<deleteq>/", methods=["GET"])
 @login_required
 def delete_question(course_id, qtype, deleteq):
+    _course = Course.query.filter(Course.id == course_id).first()
+    if _course.teacher != current_user:
+        abort(403)
     if qtype == "mcq":
         del_ids = json.loads(deleteq)
         db.session.query(MCQQuestion).filter(MCQQuestion.id.in_(del_ids)).delete(synchronize_session='fetch')
@@ -195,3 +218,5 @@ def delete_question(course_id, qtype, deleteq):
         db.session.query(Question).filter(Question.id.in_(del_ids)).delete(synchronize_session='fetch')
         db.session.commit()
         return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
+    else:
+        abort(404)
