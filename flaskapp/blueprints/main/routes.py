@@ -9,6 +9,7 @@ main = Blueprint('main', __name__)
 #Render Home page
 @main.route("/")
 def index():
+    """Render Home page"""
     if current_user.is_authenticated:
         return redirect(url_for('papers.home'))
     return render_template("main/index.html", title='Index', css_file='css/index.css', js_file='js/index.js',
@@ -17,17 +18,23 @@ def index():
 #Render about us page
 @main.route("/about-us")
 def about_us():
+    """Render about us page    """
     return render_template('main/about.html', title='About Us')
 
 #Render help page 
 @main.route("/help")
 def help_page():
+    """Render help page. """
     return render_template("main/help.html", title="Help")
 
 #To collect the Info from user.
 #To get new suggestion or bug or any comment about web-app.
 @main.route("/contact-us")
 def contact_us():
+    """
+    To collect the Info from user.
+    To get new suggestion or bug or any comment about web-app.
+    """
     form = ContactUs()
     if form.validate_on_submit():
         data = dict(name=form.name.data,

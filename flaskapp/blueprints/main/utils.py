@@ -5,8 +5,9 @@ from flask_mail import Message
 
 from flaskapp import mail, APP_PATH
 
-#Sends an email to developers which user stated
+
 def send_contact_us_email(**data):
+    """Sends an email to developers which user stated    """
     mail_file = os.path.join(APP_PATH, "templates", "main", "contact-us", "content.txt")
     with open(mail_file, "r") as f:
         msg_text = f.read()
@@ -19,8 +20,10 @@ def send_contact_us_email(**data):
     msg.html = msg_html
     mail.send(msg)
 
-#send contact us receipt email
+
 def send_contact_us_receipt_email(**data):
+    """send contact us receipt email.
+    """
     mail_file = os.path.join(APP_PATH, "templates", "main", "contact-us-receipt", "content.txt")
     with open(mail_file, "r") as f:
         msg_text = f.read()

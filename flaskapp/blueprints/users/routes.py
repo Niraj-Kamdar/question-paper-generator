@@ -11,9 +11,10 @@ users = Blueprint('users', __name__)
 
 
 @users.route("/register", methods=['GET', 'POST'])
-#If successfully registered than shows message of that and save password and username to the database
-#Redirecting to the papers.home page.
 def register():
+    """If successfully registered than shows message of that and save password and username to the database
+        Redirecting to the papers.home page.
+    """
     if current_user.is_authenticated:
         return redirect(url_for('papers.home'))
     form = RegistrationForm()
@@ -29,9 +30,11 @@ def register():
 
 
 @users.route("/login", methods=['GET', 'POST'])
-#If user is authenticated and login is succesfully occures shows message of successfully logged in
-# Redict to papers.home page 
+
 def login():
+    """If user is authenticated and login is succesfully occures shows message of successfully logged in
+        Redict to papers.home page 
+    """
     if current_user.is_authenticated:
         return redirect(url_for('papers.home'))
     form = LoginForm()
@@ -49,18 +52,21 @@ def login():
 
 @users.route("/logout")
 @login_required
-#for logout from current account and end session
-#Redirect to main index page (login page).
+
 def logout():
+    """for logout from current account and end session.
+        Redirect to main index page (login page).
+    """
     logout_user()
     return redirect(url_for('main.index'))
 
 
 @users.route("/account", methods=['GET', 'POST'])
 @login_required
-#To make an account of user
-#To set name,email or profile pic: function changes to it.
 def account():
+    """To make an account of user.
+        To set name,email or profile pic: function changes to it.
+    """
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.picture.data:
@@ -80,8 +86,9 @@ def account():
 
 
 @users.route("/reset_password", methods=['GET', 'POST'])
-#To reset password send varification to submitted email then redirect to login page
 def reset_request():
+    """To reset password send varification to submitted email then redirect to login page.
+    """
     if current_user.is_authenticated:
         return redirect(url_for("papers.home"))
     form = RequestResetForm()
@@ -95,10 +102,14 @@ def reset_request():
 
 
 @users.route("/reset_password/<token>", methods=['GET', 'POST'])
-#To set new password take token and set new password 
-#Print message that "Your password has been updated! You are now able to log in."
-#then redirect to login page.
+
+
+
 def reset_token(token):
+    """To set new password take token and set new password .
+        Print message that "Your password has been updated! You are now able to log in.
+        then redirect to login page.
+    """
     if current_user.is_authenticated:
         return redirect(url_for('papers.home'))
     user = User.verify_reset_token(token)

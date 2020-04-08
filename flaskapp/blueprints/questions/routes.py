@@ -11,6 +11,7 @@ questions = Blueprint('questions', __name__)
 @questions.route("/course/<course_id>/question/<qtype>/")
 @login_required
 def question(course_id, qtype):
+    """According to course ID add question (sub/mcq) render to according template.     """
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
         abort(403)
@@ -44,6 +45,7 @@ def question(course_id, qtype):
 @questions.route('/course/new/', methods=["GET", "POST"])
 @login_required
 def add_course():
+    """Rendering to add course page.  """
     form = CourseForm()
     if form.validate_on_submit():
         course = Course(name=form.course.data, teacher=current_user)
@@ -62,6 +64,7 @@ def add_course():
 @questions.route('/course/')
 @login_required
 def courses():
+    """ Redering to courses page.Where listed down user's courses.    """
     _courses = Course.query.filter(Course.teacher == current_user).all()
     return render_template("questions/courses.html",
                            courses=_courses,
@@ -72,8 +75,8 @@ def courses():
 
 @questions.route("/course/<course_id>/question/<qtype>/new/", methods=["GET", "POST"])
 @login_required
-#For adding question according to mcq or subjective with it's validation
 def add_question(course_id, qtype):
+    """For adding question according to mcq or subjective with it's validation.    """
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
         abort(403)
@@ -125,11 +128,12 @@ def add_question(course_id, qtype):
     else:
         abort(404)
 
-#for updating questions if that question is exist then update it by id.And update marks , difficulty and IMP flag accorging to input.
-#And do changes in database accordingly.
 @questions.route("/course/<course_id>/question/<qtype>/update/<int:question_id>/", methods=["GET", "POST"])
 @login_required
 def update_question(course_id, qtype, question_id):
+    """for updating questions if that question is exist then update it by id.And update marks , difficulty and IMP flag accorging to input.
+       And do changes in database accordingly.
+    """
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
         abort(403)
@@ -178,10 +182,11 @@ def update_question(course_id, qtype, question_id):
     else:
         abort(404)
 
-#set an IMP flag to particular question.And do changes in database also.
+
 @questions.route("/course/<course_id>/question/<qtype>/imp/<impq>/", methods=["GET"])
 @login_required
 def imp_question(course_id, qtype, impq):
+    """set an IMP flag to particular question.And do changes in database also.    """
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
         abort(403)
@@ -203,10 +208,11 @@ def imp_question(course_id, qtype, impq):
     else:
         abort(404)
 
-#To delete question
+
 @questions.route("/course/<course_id>/question/<qtype>/delete/<deleteq>/", methods=["GET"])
 @login_required
 def delete_question(course_id, qtype, deleteq):
+    """To delete question    """
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
         abort(403)
