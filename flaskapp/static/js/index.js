@@ -88,6 +88,7 @@ window.onload = function () {
 (function () {
     
     const aboutLink = document.getElementById("about_page_link");
+    const helpLink = document.getElementById("help_page_link");
     // const courseLink = document.getElementById("course_link");
     // const profileLink = document.getElementsByClassName("user")[0];
     let index = window.location.href.indexOf("/", 0);
@@ -101,6 +102,13 @@ window.onload = function () {
         aboutLink.setAttribute("href", aboutUrl);
     } else {
         aboutLink.removeAttribute("href");
+    }
+
+    let helpUrl = rootUrl + "help";
+    if (window.location.href !== helpUrl) {
+        helpLink.setAttribute("href", helpUrl);
+    } else {
+        helpLink.removeAttribute("href");
     }
     
 })();
