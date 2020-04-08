@@ -72,6 +72,7 @@ def courses():
 
 @questions.route("/course/<course_id>/question/<qtype>/new/", methods=["GET", "POST"])
 @login_required
+#For adding question according to mcq or subjective with it's validation
 def add_question(course_id, qtype):
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
@@ -124,7 +125,8 @@ def add_question(course_id, qtype):
     else:
         abort(404)
 
-
+#for updating questions if that question is exist then update it by id.And update marks , difficulty and IMP flag accorging to input.
+#And do changes in database accordingly.
 @questions.route("/course/<course_id>/question/<qtype>/update/<int:question_id>/", methods=["GET", "POST"])
 @login_required
 def update_question(course_id, qtype, question_id):
@@ -176,7 +178,7 @@ def update_question(course_id, qtype, question_id):
     else:
         abort(404)
 
-
+#set an IMP flag to particular question.And do changes in database also.
 @questions.route("/course/<course_id>/question/<qtype>/imp/<impq>/", methods=["GET"])
 @login_required
 def imp_question(course_id, qtype, impq):
@@ -201,7 +203,7 @@ def imp_question(course_id, qtype, impq):
     else:
         abort(404)
 
-
+#To delete question
 @questions.route("/course/<course_id>/question/<qtype>/delete/<deleteq>/", methods=["GET"])
 @login_required
 def delete_question(course_id, qtype, deleteq):

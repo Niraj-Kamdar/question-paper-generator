@@ -7,7 +7,7 @@ from flask_mail import Message
 
 from flaskapp import mail, APP_PATH
 
-
+#To save profile picture
 def save_picture(form_picture):
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = str(current_user.id) + f_ext
@@ -20,7 +20,8 @@ def save_picture(form_picture):
 
     return picture_fn
 
-
+#When user forgets password, via mail varification reset password
+#this function is for sending an email to submitted mail ID.
 def send_reset_email(user):
     token = user.get_reset_token()
     mail_file = os.path.join(APP_PATH, "templates", "users", "password-reset", "content.txt")

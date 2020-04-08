@@ -17,11 +17,13 @@ class RegistrationForm(FlaskForm):
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
+    #function which validates username by uniqueness 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError('That username is taken. Please choose a different one.')
-
+    
+    #function which validates email by uniqeness
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
@@ -36,12 +38,15 @@ class UpdateAccountForm(FlaskForm):
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
 
+
+    #function which validates username by uniqueness 
     def validate_username(self, username):
         if username.data != current_user.username:
             user = User.query.filter_by(username=username.data).first()
             if user:
                 raise ValidationError('That username is taken. Please choose a different one.')
 
+    #function which validates email by uniqueness 
     def validate_email(self, email):
         if email.data != current_user.email:
             user = User.query.filter_by(email=email.data).first()
@@ -62,6 +67,7 @@ class RequestResetForm(FlaskForm):
                         validators=[DataRequired(), Email()])
     submit = SubmitField('Request Password Reset')
 
+    #If submitted email is not registered, raise notification about register first.
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user is None:

@@ -2,13 +2,13 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, IntegerField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Length, NumberRange
 
-
+#Class for courseforms 
 class CourseForm(FlaskForm):
     course = StringField('Course',
                          validators=[DataRequired()])
     submit = SubmitField("submit")
 
-
+#class for question form which contains question, marks-difficulty-imp according to question
 class QuestionForm(FlaskForm):
     question = TextAreaField('Question',
                              validators=[DataRequired(), Length(min=2)])
@@ -19,7 +19,7 @@ class QuestionForm(FlaskForm):
     imp = BooleanField('Mark As IMP')
     submit = SubmitField('submit')
 
-
+#class for MCQ type questions
 class MCQQuestionForm(QuestionForm):
     option1 = StringField('Option1',
                           validators=[DataRequired()])
