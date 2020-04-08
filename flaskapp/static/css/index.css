@@ -133,16 +133,14 @@ body::-webkit-scrollbar {
     transition: 1s;
     background: #9000f0;
 }
-#footer_links{
-    margin: 0;
-}
 #social_links{
     margin: 0;
     font-size: 1vw;
-    background: #7a00cc;
 }
 #footer_links > div > h6 > a{
     color: #ffffff;
+    font-size: 0.8vw;
+    color: rgba(255, 255, 255, 0.7);
 }
 .fl {
     color: rgba(255, 255, 255, 0.8);

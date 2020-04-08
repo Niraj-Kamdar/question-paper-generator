@@ -10,10 +10,18 @@
     background: #9000F026;
 }
 
-#page_title > h2 {
+#page_title .col > h2 {
     color: #b0b0b0;
     font-size: 2vw;
     font-weight: bolder;
+}
+#index_page_link{
+    color: #9000F026;
+    font-size: 4vh;
+    font-weight: bolder;
+}
+#index_page_link:hover{
+    color: #9000F0;
 }
 
 .about_logo{

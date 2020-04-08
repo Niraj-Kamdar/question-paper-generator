@@ -89,7 +89,8 @@ window.onload = function () {
     
     const aboutLink = document.getElementById("about_page_link");
     const helpLink = document.getElementById("help_page_link");
-    // const courseLink = document.getElementById("course_link");
+    const policyLink = document.getElementById("policy_page_link");
+    const servicesLink = document.getElementById("services_page_link");
     // const profileLink = document.getElementsByClassName("user")[0];
     let index = window.location.href.indexOf("/", 0);
     index = window.location.href.indexOf("/", index + 1);
@@ -109,6 +110,20 @@ window.onload = function () {
         helpLink.setAttribute("href", helpUrl);
     } else {
         helpLink.removeAttribute("href");
+    }
+
+    let policyUrl = rootUrl + "privacy-policy";
+    if (window.location.href !== policyUrl) {
+        policyLink.setAttribute("href", policyUrl);
+    } else {
+        policyLink.removeAttribute("href");
+    }
+
+    let servicesUrl = rootUrl + "terms-of-service";
+    if (window.location.href !== servicesUrl) {
+        servicesLink.setAttribute("href", servicesUrl);
+    } else {
+        servicesLink.removeAttribute("href");
     }
     
 })();
