@@ -9,5 +9,5 @@ class UserAccountTestCase(BaseUser):
         self.login()
         url = '/account'
         im1 = os.path.join(TEST_PATH, "users", "profile1.png")
-        picture = Image.open(im1)
-        self.client.post(url, picture = picture)
+        data = Image.open(im1)
+        self.client.post(url, data = data, follow_redirects=True)
