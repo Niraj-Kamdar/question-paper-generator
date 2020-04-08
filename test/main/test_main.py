@@ -15,10 +15,6 @@ class BasicTestCase(unittest.TestCase):
         response = tester.get("/", content_type="html/text")
         self.assertEqual(response.status_code, 200)
 
-    def test_database(self):
-        tester = os.path.join(APP_PATH, "site.db")
-        self.assertTrue(os.path.isfile(tester))
-
 
 class TestingDatabaseTestCase(BaseDatabase):
     def test_database(self):
