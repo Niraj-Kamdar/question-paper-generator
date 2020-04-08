@@ -1,8 +1,10 @@
 image:
   file: .gitpod.Dockerfile
 tasks:
-  - init: pip install pipenv && pipenv install --dev
-    command:  pipenv shell && python app.py
+  - init: pip install pipenv 
+    command: pipenv install --dev
+  - init: pipenv shell
+    command: python app.py
 ports:
   - port: 5000
     onOpen: open-preview
