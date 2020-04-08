@@ -33,10 +33,49 @@
                     {% endif %}
                     <div class="form_error"></div>
                 </div>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
             </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
+
         </form>
+
     </div>
-{% endblock main %}
+    <style type="text/css" rel="stylesheet" media="all">
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .container {
+            background: #9000F026;
+        }
+
+        .row {
+            margin: 0;
+            border-bottom: 1px solid #b0b0b0;
+        }
+
+        .row > h2 {
+            color: #707070;
+            font-weight: bolder;
+        }
+
+        fieldset {
+            /*background: #9000F0;*/
+        }
+
+        .form-group > label {
+            color: #707070;
+        }
+
+        .rpbtn {
+            border: 1px solid #9000F0;
+            color: #9000F0;
+        }
+
+        .rpbtn:hover {
+            background: #9000F0;
+            color: #ffffff;
+        }
+    </style>
+{% endblock %}
