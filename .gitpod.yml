@@ -3,8 +3,7 @@ image:
 tasks:
   - init: pip install pipenv 
     command: pipenv install --dev
-  - init: pipenv shell
-    command: python app.py
+    command: pipenv run python app.py
 ports:
   - port: 5000
     onOpen: open-preview
