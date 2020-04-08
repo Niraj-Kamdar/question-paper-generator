@@ -5,6 +5,14 @@
     <title>Set Now : Home</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <script src="https://browser.sentry-cdn.com/5.15.4/bundle.min.js"
+        integrity="sha384-Nrg+xiw+qRl3grVrxJtWazjeZmUwoSt0FAVsbthlJ5OMpx0G08bqIq3b/v0hPjhB" crossorigin="anonymous">
+    </script>
+    <script>
+        Sentry.init({
+            dsn: 'https://c9335936f879448e8ba64f062636caaf@o374456.ingest.sentry.io/5192852'
+        });
+    </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -34,15 +42,11 @@
                         <a href="#" id="home_link">
                             <h4 class="py-2 mx-2">Home</h4>
                         </a>
-                        <!-- <a href="#">
-                    <h4 class="py-2 mx-2">Questions</h4>
-                </a> -->
+
                         <a href="#" id="course_link">
                             <h4 class="py-2 mx-2">Courses</h4>
                         </a>
-                        <!-- <a href="/course/new">
-                    <h4 class="py-2 mx-2">Add Course</h4>
-                </a> -->
+
                         <a href="/logout">
                             <h4 class="py-2 mx-2">Log Out</h4>
                         </a>
@@ -62,13 +66,15 @@
             <div>
                 {% block flashes %}
                 {% endblock flashes %}
-                {% block header %}
-                {% endblock header %}
-                <div id="content">
-                    <div style="flex-grow: 1;">
-                        {% block main %} {% endblock main %}
+                <div style="display: flex;flex-direction: column;justify-content: center;">
+                    {% block header %}
+                    {% endblock header %}
+                    <div id="content">
+                        <div style="width:70%;">
+                            {% block main %} {% endblock main %}
+                        </div>
+                        {% block sideNav %} {% endblock sideNav %}
                     </div>
-                    {% block sideNav %} {% endblock sideNav %}
                 </div>
             </div>
         </div>
@@ -105,15 +111,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-    <script src="https://browser.sentry-cdn.com/5.15.4/bundle.min.js"
-        integrity="sha384-Nrg+xiw+qRl3grVrxJtWazjeZmUwoSt0FAVsbthlJ5OMpx0G08bqIq3b/v0hPjhB" crossorigin="anonymous">
-</script>
-<script>
-    Sentry.init({dsn: 'https://c9335936f879448e8ba64f062636caaf@o374456.ingest.sentry.io/5192852'});
-</script>
-<script type="text/javascript" src=" {{ url_for('static', filename='js/base.js') }}" defer="defer"></script>
-<script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}" defer="defer"></script>
-{% if js_file2 %}
+
+    <script type="text/javascript" src=" {{ url_for('static', filename='js/base.js') }}" defer="defer"></script>
+    <script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}" defer="defer"></script>
+    {% if js_file2 %}
     <script type="text/javascript" src="{{ url_for('static',filename=js_file2) }}" defer="defer"></script>
     {% endif %}
 </body>

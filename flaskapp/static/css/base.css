@@ -157,7 +157,10 @@ body::-webkit-scrollbar {
 }
 
 #sideNav {
+  max-height: 65vh;
   margin-right: 10px;
+  overflow-y: auto;
+  border-bottom: 2px solid rgba(144, 0, 240, 0.15);
 }
 
 #home_link {
@@ -234,7 +237,7 @@ body::-webkit-scrollbar {
 .explore_container,
 .add_container {
   margin-bottom: 20px;
-  width: 330px;
+  min-width: 150px;
 }
 
 /* .courses_container:hover .courses_items_container {
