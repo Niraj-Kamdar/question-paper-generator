@@ -19,7 +19,14 @@ TEST_DB = "test.db"
 
 
 def create_app(config_class=Config):
-    """  TO Initialize app    """
+    """To create
+    
+    Keyword Arguments:
+        config_class {object} -- It configures app (default: {Config})
+    
+    Returns:
+        App -- it configuers app
+    """
     app = Flask(__name__)
     app.config.from_object(config_class)
 

@@ -7,7 +7,11 @@ papers = Blueprint('papers', __name__)
 @papers.route('/home')
 @login_required
 def home():
-    """ For rendering papers page    """
+    """Render Home page 
+    
+    Returns:
+        page -- It will render home page.
+    """
     return render_template("papers/home.html",
                            css_file='css/home.css',
                            js_file='js/home.js',

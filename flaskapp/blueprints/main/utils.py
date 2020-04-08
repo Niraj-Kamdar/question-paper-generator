@@ -7,7 +7,8 @@ from flaskapp import mail, APP_PATH
 
 
 def send_contact_us_email(**data):
-    """Sends an email to developers which user stated    """
+    """Sends an text file via email to set now handler.
+    """
     mail_file = os.path.join(APP_PATH, "templates", "main", "contact-us", "content.txt")
     with open(mail_file, "r") as f:
         msg_text = f.read()
@@ -22,7 +23,8 @@ def send_contact_us_email(**data):
 
 
 def send_contact_us_receipt_email(**data):
-    """send contact us receipt email.
+    """When user give their inputs to contact us. Then reply to that mail to user as receipt(reply) of 
+    contact us mail.
     """
     mail_file = os.path.join(APP_PATH, "templates", "main", "contact-us-receipt", "content.txt")
     with open(mail_file, "r") as f:
