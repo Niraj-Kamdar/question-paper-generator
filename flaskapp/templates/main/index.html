@@ -6,31 +6,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
 
-    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}"/>
+    <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename=css_file) }}" />
 </head>
 
 <body style="margin: 0;">
-<div id="loader_container">
-    <div id="loader"></div>
-</div>
-<div id="bodycontent">
-
-
-    <div class="login_page">
-        <div class="container" style=" width: 80%; margin-top: -5%;">
-            {% block main %}{% endblock %}
-        </div>
+    <div id="loader_container">
+        <div id="loader"></div>
     </div>
+    <div id="bodycontent">
 
-    <img src="{{ url_for('static',filename='images/background1.png') }}" class="img1" alt="background Image">
-    <div class="overlape"></div>
-    <div class="container-fluid" style="padding: 0;">
+
+        <div class="login_page">
+            <div class="container" style=" width: 80%; margin-top: -5%;">
+                {% block main %}{% endblock %}
+            </div>
+        </div>
+
+        <img src="{{ url_for('static',filename='images/background1.png') }}" class="img1" alt="background Image">
+        <div class="overlape"></div>
+        <div class="container-fluid" style="padding: 0;">
+            
         <header>
             <div class="row pl-4 py-4 text-white sticky-top" id="header" style="margin: 0; padding: 0;">
                 <div class="col1">
@@ -43,9 +44,9 @@
                 <div class="col3">
                     <button type="button" class="login_btn" id="show_login">
                         {% if btn_name %}
-                            {{ btn_name }}
+                        {{ btn_name }}
                         {% else %}
-                            Login
+                        Login
                         {% endif %}
                     </button>
                 </div>
@@ -173,44 +174,79 @@
         </main>
 
         <footer>
-            <div class="row" id="footer" style="margin: 0;padding: 0;">
-                <div class="col py-3 text-center" id="footercontent">
+            <div class="row" id="footer">
+                <div class="row" id="social_links">
+                    <div class="col py-3 text-center" id="footercontent">
                         <span class="mr-3 span_color">© 2020 Copyright :
-                            <a href="/" class="fl a_color"><b>setnow.com</b></a>
+                            <a href="/" class="fl"><b>setnow.com</b></a>
                         </span>
-                    <span class="span_color">|</span>
-                    <a href="#" class="fl a_color"><i class="fab fa-facebook-f mx-3"> </i></a>
-                    <span class="span_color">|</span>
-                    <a href="#" class="fl a_color"><i class="fab fa-twitter mx-3"> </i></a>
-                    <span class="span_color">|</span>
-                    <a href="#" class="fl a_color"><i class="fab fa-google-plus-g mx-3"> </i></a>
-                    <span class="span_color">|</span>
-                    <a href="#" class="fl a_color"><i class="fab fa-linkedin-in mx-3"> </i></a>
-                    <span class="span_color">|</span>
-                    <a href="#" class="fl a_color"><i class="fab fa-instagram ml-3"> </i></a>
+                        <span class="span_color">|</span>
+                        <a href="#" class="fl"><i class="fab fa-facebook-f mx-3"> </i></a>
+                        <span class="span_color">|</span>
+                        <a href="#" class="fl"><i class="fab fa-twitter mx-3"> </i></a>
+                        <span class="span_color">|</span>
+                        <a href="#" class="fl"><i class="fab fa-google-plus-g mx-3"> </i></a>
+                        <span class="span_color">|</span>
+                        <a href="#" class="fl"><i class="fab fa-linkedin-in mx-3"> </i></a>
+                        <span class="span_color">|</span>
+                        <a href="#" class="fl"><i class="fab fa-instagram ml-3"> </i></a>
+                    </div>
+                </div>
+                <div class="row text-center d-flex justify-content-center pt-5 pb-3" id="footer_links">
+
+                  <div class="col-md-2 mb-3">
+                    <h6 class="text-uppercase font-weight-bold">
+                      <a href="#!" id="about_page_link">About us</a>
+                    </h6>
+                  </div>
+                 
+                  <div class="col-md-2 mb-3">
+                    <h6 class="text-uppercase font-weight-bold">
+                      <a href="#!">Products</a>
+                    </h6>
+                  </div>
+                
+                  <div class="col-md-2 mb-3">
+                    <h6 class="text-uppercase font-weight-bold">
+                      <a href="#!">Awards</a>
+                    </h6>
+                  </div>
+
+                  <div class="col-md-2 mb-3">
+                    <h6 class="text-uppercase font-weight-bold">
+                      <a href="#!">Help</a>
+                    </h6>
+                  </div>
+               
+                  <div class="col-md-2 mb-3">
+                    <h6 class="text-uppercase font-weight-bold">
+                      <a href="#!">Contact</a>
+                    </h6>
+                  </div>
                 </div>
             </div>
         </footer>
+
     </div>
-</div>
-<script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}" defer="defer"></script>
-{% if js_file2 %}
+
+    <script type="text/javascript" src=" {{ url_for('static', filename=js_file) }}" defer="defer"></script>
+    {% if js_file2 %}
     <script type="text/javascript" src=" {{ url_for('static', filename=js_file2) }}" defer="defer"></script>
-{% endif %}
-<script src="https://kit.fontawesome.com/bb7cf58c3b.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    {% endif %}
+    <script src="https://kit.fontawesome.com/bb7cf58c3b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-</script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-</script>
-<script src="https://browser.sentry-cdn.com/5.15.4/bundle.min.js"
+    </script>
+    <script src="https://browser.sentry-cdn.com/5.15.4/bundle.min.js"
         integrity="sha384-Nrg+xiw+qRl3grVrxJtWazjeZmUwoSt0FAVsbthlJ5OMpx0G08bqIq3b/v0hPjhB" crossorigin="anonymous">
 </script>
 <script>

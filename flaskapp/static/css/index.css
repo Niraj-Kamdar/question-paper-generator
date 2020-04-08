@@ -128,19 +128,27 @@ body::-webkit-scrollbar {
 }
 
 #footer {
+    margin: 0;
     display: block;
-    font-size: 1vw;
-    color: rgba(255, 255, 255, 0.5);
     transition: 1s;
     background: #9000f0;
 }
-
-.fl {
-    color: rgba(255, 255, 255, 0.5);
+#footer_links{
+    margin: 0;
 }
-
+#social_links{
+    margin: 0;
+    font-size: 1vw;
+    background: #7a00cc;
+}
+#footer_links > div > h6 > a{
+    color: #ffffff;
+}
+.fl {
+    color: rgba(255, 255, 255, 0.8);
+}
 .fl:hover {
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 1);
 }
 
 /*// Extra small devices (portrait phones, less than 576px)*/
@@ -172,9 +180,8 @@ body::-webkit-scrollbar {
     }
 }
 
-.span_color,
-.a_color {
-    color: white;
+.span_color{
+    color: rgba(255,255,255,0.7);
 }
 
 #loader_container {
