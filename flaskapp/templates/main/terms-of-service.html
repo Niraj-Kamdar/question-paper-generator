@@ -24,11 +24,33 @@
     </script>
     <script type="text/javascript" src="{{ url_for('static',filename=js_file) }}" defer="defer"></script>
     <!-- <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='css/.css') }}"/> -->
+    <style type="text/css" rel="stylesheet" media="all">
+        #page_title .col > h2 {
+            color: #b0b0b0;
+            font-size: 2vw;
+            font-weight: bolder;
+        }
+        #index_page_link{
+            color: #9000F026;
+            font-size: 4vh;
+            font-weight: bolder;
+        }
+        #index_page_link:hover{
+            color: #9000F0;
+        }
+    </style>
 </head>
 
 <body>
 
-      <div class="row m-5 mb-2 pl-4" id="page_title" style="text-align: center; color: #b0b0b0; font-size: 2vw; font-weight: bolder;"><h2 style="width: 100%;">Terms of Service</h2></div>
+      <div class="row m-5 mb-2" id="page_title">
+            <div class="col">
+                  <h2>Terms Of Service</h2>
+            </div>
+            <div class="col-1">
+                  <a href="/" id="index_page_link"><i class="fas fa-arrow-circle-left"></i></a>
+            </div>
+      </div>
 
       <div class="container pt-1 pb-5 mb-5" id="wrapper">
 
