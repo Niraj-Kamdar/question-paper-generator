@@ -70,8 +70,10 @@
                     </span>
                     <div style="background-color: rgba(144,0,240,0.15);padding:10px;">
                         <div class="wrap-input100 validate-input" data-validate="Name is required">
-                            {{ form.name(class="input100", placeholder="Name") }}
-                            {#                    <input class="input100" type="text" name="name" placeholder="Name">#}
+                            <label style="display: none;">
+                                {{ form.name(class="input100", placeholder="Name") }}
+
+                                {#                    <input class="input100" type="text" name="name" placeholder="Name">#}</label>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-user" aria-hidden="true"></i>
