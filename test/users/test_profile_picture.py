@@ -1,7 +1,6 @@
 from PIL import Image
 import os
 import requests
-from flaskapp import models
 from test.main.base_classes import BaseUser
 from test import TEST_PATH
 
