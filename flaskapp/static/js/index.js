@@ -84,3 +84,23 @@ window.onload = function () {
         }
     });
 };
+
+(function () {
+    
+    const aboutLink = document.getElementById("about_page_link");
+    // const courseLink = document.getElementById("course_link");
+    // const profileLink = document.getElementsByClassName("user")[0];
+    let index = window.location.href.indexOf("/", 0);
+    index = window.location.href.indexOf("/", index + 1);
+    index = window.location.href.indexOf("/", index + 1);
+    const rootUrl = window.location.href.substr(0, index + 1);
+
+
+    let aboutUrl = rootUrl + "about-us";
+    if (window.location.href !== aboutUrl) {
+        aboutLink.setAttribute("href", aboutUrl);
+    } else {
+        aboutLink.removeAttribute("href");
+    }
+    
+})();

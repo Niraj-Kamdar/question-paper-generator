@@ -17,7 +17,7 @@ def index():
 
 @main.route("/about-us")
 def about_us():
-    return render_template('main/about.html', title='About Us')
+    return render_template('main/about.html', title='About Us', css_file='css/about.css')
 
 
 @main.route("/help")

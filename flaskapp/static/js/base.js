@@ -31,4 +31,7 @@
     } else {
         courseLink.removeAttribute("href");
     }
+
+
+    
 })();
