@@ -9,9 +9,9 @@ class accountUpdate(BaseUser):
         test_post_request(self, "/account", update_user, models.User, 1)
 
 class conflictTest(BaseDatabase):
-    def test_conflict_username(self):
+    def test_conflict_username(self):  
         BaseDatabase.setUp(self)
-        self.client = self.app.test_client()
+        self.client = self.app.test_client()            
         new_user1 = dict(username="pr.proton", email="proton@gmail.com", password="proton@101",
                         confirm_password="proton@101", submit="Sign Up")
         test_post_request(self, "/register", new_user1, models.User, 1)
