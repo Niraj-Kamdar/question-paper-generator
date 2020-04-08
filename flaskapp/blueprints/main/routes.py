@@ -19,6 +19,13 @@ def index():
 def about_us():
     return render_template('main/about.html', title='About Us')
 
+@main.route("/privacy-policy")
+def policy_page():
+    return render_template("main/privacy-policy.html", title="Privacy Policy")
+    
+@main.route("/terms-of-service")
+def terms_of_service_page():
+    return render_template("main/terms-of-service.html", title="Terms Of Service")
 
 @main.route("/help")
 def help_page():
