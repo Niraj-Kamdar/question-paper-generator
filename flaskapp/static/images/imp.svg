@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <defs>
-        <style>.a{fill:#b0b0b0;}.b{fill:none;}</style>
-    </defs>
-    <path class="a" d="M17,3H7A2,2,0,0,0,5.01,5L5,21l7-3,7,3V5A2.006,2.006,0,0,0,17,3Z"/>
-    <path class="b" d="M0,0H24V24H0Z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><defs><style>.a{fill:#b0b0b0}.b{fill:none}</style></defs><path d="M17,3H7A2,2,0,0,0,5.01,5L5,21l7-3,7,3V5A2.006,2.006,0,0,0,17,3Z" class="a"/><path d="M0,0H24V24H0Z" class="b"/></svg>

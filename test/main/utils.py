@@ -1,3 +1,6 @@
+from flask import json
+
+
 def compare_dict(self, dict1, dict2):
     common_keys = set(dict1.keys()) & set(dict2.keys())
     for key in common_keys:
@@ -16,3 +19,10 @@ def test_post_request(self, path, data, model=None, entry_no=None):
         compare_dict(self, obj.to_dict(), data)
         return response, obj
     return response, None
+
+
+def test_get_request(self, path, data):
+    data = json.dumps(data)
+    response = self.client.get(f"{path}{data}", follow_redirects=True)
+    self.assertEqual(response.status_code, 200)
+    return response

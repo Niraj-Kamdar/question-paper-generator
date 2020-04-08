@@ -21,6 +21,10 @@ function scrollFunction() {
 }
 
 window.onload = function () {
+    //   console.log(document.getElementById("loader_container").style.display);
+    document.getElementById("loader_container").style.display = "none";
+    document.getElementById("header").style.zIndex = 1;
+    //   console.log("loaded");
     const index1 = window.location.href.indexOf("/login");
     const index2 = window.location.href.indexOf("/register");
     if (index1 !== -1 || index2 !== -1) {
@@ -58,27 +62,8 @@ window.onload = function () {
                         window.location.href = window.location.href.substr(0, index1);
                     else window.location.href = window.location.href.substr(0, index2);
                 }
-                // if (
-                //   window.location.href.startsWith("http://localhost:5000/login") ||
-                //   window.location.href.startsWith("http://localhost:5000/register")
-                // ) {
-                //   window.location.href = "http://localhost:5000/";
-                // } else if (
-                //   window.location.href.startsWith(
-                //     "http://setnow.herokuapp.com/login"
-                //   ) ||
-                //   window.location.href.startsWith(
-                //     "http://setnow.herokuapp.com/register"
-                //   )
-                // ) {
-                //   window.location.href = "http://setnow.herokuapp.com/";
-                // }
             }, 1000);
-        } else if (
-            //   window.location.href.startsWith("http://localhost:5000/") ||
-            //   window.location.href.startsWith("http://setnow.herokuapp.com/")
-            window.location.href.match(new RegExp("/", "g")).length === 3
-        ) {
+        } else if (window.location.href.match(new RegExp("/", "g")).length === 3) {
             x.classList.add("hidden");
             setTimeout(() => {
                 document.getElementsByClassName("overlape")[0].style.marginLeft =
@@ -92,13 +77,6 @@ window.onload = function () {
                 x.style.height = "0px";
             }, 1000);
             setTimeout(() => {
-                // if (window.location.href.startsWith("http://localhost:5000/")) {
-                //   window.location.href = "http://localhost:5000/login";
-                // } else if (
-                //   window.location.href.startsWith("http://setnow.herokuapp.com/")
-                // ) {
-                //   window.location.href = "http://setnow.herokuapp.com/login";
-                // }
                 if (window.location.href.match(new RegExp("/", "g")).length === 3) {
                     window.location.href += "login";
                 }

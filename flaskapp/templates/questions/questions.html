@@ -20,16 +20,16 @@
     <div id="questions">
         {% block content %}
             <div class="control_btns">
-                <div id="mark_imp">
+                <div id="mark_imp" title="mark imp">
                     <img src="{{ url_for('static',
                 filename='images/imp.svg') }}" alt="imp" class="control_btns_img"/>
                 </div>
 
-                <div id="delete_btn">
+                <div id="delete_btn" title="delete">
                     <img src="{{ url_for('static',
                 filename='images/bin.png') }}" alt="delete" class="control_btns_img"/>
                 </div>
-                <div id="cancel_btn">
+                <div id="cancel_btn" title="Cancel">
                     <img src="{{ url_for('static',
                 filename='images/cancel.svg') }}" alt="cancel" class="control_btns_img"/>
                 </div>

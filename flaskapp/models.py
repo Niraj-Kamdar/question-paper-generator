@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     courses = db.relationship('Course', backref='teacher', lazy=True)
 
-    def get_reset_token(self, expires_sec=1800):
+    def get_reset_token(self, expires_sec=86400):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
         return s.dumps({'user_id': self.id}).decode('utf-8')
 
@@ -64,16 +64,6 @@ class Question(db.Model):
     imp = db.Column(db.Boolean, default=False)
     course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
 
-    @db.validates("difficulty")
-    def validate_difficulty(self, key, value):
-        assert value in range(1, 101)
-        return value
-
-    @db.validates("mark")
-    def validate_mark(self, key, value):
-        assert value in range(1, 101)
-        return value
-
     def __repr__(self):
         return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.imp})"
 
@@ -96,16 +86,6 @@ class MCQQuestion(db.Model):
     option3 = db.Column(db.Text, nullable=False)
     option4 = db.Column(db.Text, nullable=False)
     course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
-
-    @db.validates("difficulty")
-    def validate_difficulty(self, key, value):
-        assert value in range(1, 101)
-        return value
-
-    @db.validates("mark")
-    def validate_mark(self, key, value):
-        assert value in range(1, 101)
-        return value
 
     def __repr__(self):
         return f"MCQQuestion({self.question}, {self.mark}, {self.difficulty}, {self.imp}," \

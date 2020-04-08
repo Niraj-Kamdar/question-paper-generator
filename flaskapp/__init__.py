@@ -27,11 +27,11 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     mail.init_app(app)
 
-    from flaskapp.users.routes import users
-    from flaskapp.questions.routes import questions
-    from flaskapp.main.routes import main
-    from flaskapp.errors.routes import errors
-    from flaskapp.papers.routes import papers
+    from flaskapp.blueprints.users.routes import users
+    from flaskapp.blueprints.questions.routes import questions
+    from flaskapp.blueprints.main.routes import main
+    from flaskapp.blueprints.errors.routes import errors
+    from flaskapp.blueprints.papers.routes import papers
 
     app.register_blueprint(users)
     app.register_blueprint(questions)

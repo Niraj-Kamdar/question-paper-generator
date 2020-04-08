@@ -1,0 +1,20 @@
+https://setnow.herokuapp.com/
+
+
+************
+Contact US ticket
+************
+
+Name: {name} 
+Email: {email} 
+Mobile: {mobile} 
+Subject: {subject}
+Message: {message} 
+
+Thanks,
+The SetNow Team
+
+
+© 2019 SetNow. All rights reserved.
+
+SetNow, LLC

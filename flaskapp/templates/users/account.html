@@ -1,57 +1,89 @@
 {% extends "base.html" %}
-{% block main %}
-    <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle account-img" src="{{ image_file }}" alt="round-image" style="width:256px;">
-            <div class="media-body">
-                <h2 class="account-heading">{{ current_user.username }}</h2>
-                <p class="text-secondary">{{ current_user.email }}</p>
-            </div>
-        </div>
-        <form method="POST" action="" enctype="multipart/form-data">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Account Info</legend>
-                <div class="form-group">
-                    {{ form.username.label(class="form-control-label") }}
 
-                    {% if form.username.errors %}
-                        {{ form.username(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.username.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.username(class="form-control form-control-lg") }}
-                    {% endif %}
+
+{% block flashes %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+
+        <ul class="flashes flashes_question">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endwith %}
+
+{% endblock flashes %}
+
+{% block main %}
+    <div class="content-section" style="padding-top:20px;">
+
+        <div style="width:50%;text-align: center;">
+            <div class="media">
+                <img class="rounded-circle account-img" src="{{ image_file }}" alt="round-image" id="profile_pic"/>
+                <div class="media-body">
+                    <h2 class="account-heading">{{ current_user.username }}</h2>
+                    <p class="text-secondary">{{ current_user.email }}</p>
                 </div>
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.picture.label() }}
-                    {{ form.picture(class="form-control-file") }}
-                    {% if form.picture.errors %}
-                        {% for error in form.picture.errors %}
-                            <span class="text-danger">{{ error }}</span></br>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-            </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
             </div>
-        </form>
+
+        </div>
+        <div>
+
+
+            <form method="POST" action="" enctype="multipart/form-data" id="account_form" novalidate>
+                {{ form.hidden_tag() }}
+
+                <!-- <legend class="border-bottom mb-4">Account Info</legend> -->
+
+                <div id="form_content">
+                    <h3 id="account_info">Account Info</h3>
+                    <div class="form_items">
+
+                        {{ form.username.label }}
+
+                        {% if form.username.errors %}
+                            {{ form.username(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.username.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.username(class="form-control form-control-lg") }}
+                        {% endif %}
+                        <div class="form_client_error"></div>
+                    </div>
+                    <div class="form_items">
+                        {{ form.email.label(class="form-control-label") }}
+                        {% if form.email.errors %}
+                            {{ form.email(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="form-control form-control-lg") }}
+                        {% endif %}
+                        <div class="form_client_error"></div>
+                    </div>
+                    <div class="form_items">
+                        {{ form.picture.label }}
+                        {{ form.picture(class="form-control-file") }}
+                        {% if form.picture.errors %}
+                            {% for error in form.picture.errors %}
+                                <span class="text-danger">{{ error }}</span></br>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div style="text-align: right;">
+                        {{ form.submit(class="btn btn-outline-info") }}
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
     </div>
 {% endblock main %}

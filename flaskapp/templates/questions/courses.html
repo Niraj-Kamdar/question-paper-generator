@@ -1,21 +1,32 @@
 {% extends "base.html" %}
 
-
-
-{% block main %}
+{% block flashes %}
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %}
-        <ul class="flashes">
+        <ul class="flashes flashes_abs">
             {% for category, message in messages %}
                 <li class="{{ category }}">{{ message }}</li>
             {% endfor %}
         </ul>
     {% endif %} {% endwith %}
+{% endblock flashes %}
+{% block main %}
 
-    {% for _course in courses %}
-        <a href={{ url_for("questions.question", qtype="sub", course_id=_course.id) }}>{{ _course }}</a><br>
-    {% endfor %}
+    <div id="course_container">
+        <div class="course_items">
+            {% for _course in courses %}
 
-    <button id="add_course">Add Course</button>
+                <a class="course_item"
+                   href={{ url_for("questions.question", qtype="sub", course_id=_course.id) }}>{{ _course.name }}</a>
+                <br>
+
+            {% endfor %}
+        </div>
+        <div style="margin-left : auto">
+            <div id="add_course">
+                <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img">Add Course</div>
+            </div>
+        </div>
+    </div>
 
 {% endblock main %}

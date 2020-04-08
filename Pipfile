@@ -1,0 +1,42 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+beautifulsoup4 = "*"
+lxml = "*"
+coverage = "*"
+
+[packages]
+alembic = "*"
+bcrypt = "*"
+blinker = "*"
+cffi = "*"
+click = "*"
+flask-bcrypt = "*"
+flask-script = "*"
+gunicorn = "*"
+itsdangerous = "*"
+psycopg2 = "*"
+pycparser = "*"
+python-dateutil = "*"
+python-editor = "*"
+six = "*"
+Flask = "*"
+Flask-Login = "*"
+Flask-Mail = "*"
+Flask-Migrate = "*"
+Flask-SQLAlchemy = "*"
+Flask-WTF = "*"
+Jinja2 = "*"
+Mako = "*"
+MarkupSafe = "*"
+Pillow = "*"
+SQLAlchemy = "*"
+Werkzeug = "*"
+WTForms = "*"
+sentry-sdk = {extras = ["flask"],version = "==0.14.3"}
+
+[requires]
+python_version = "3.7"

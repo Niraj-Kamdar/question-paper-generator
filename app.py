@@ -1,6 +1,14 @@
-from flaskapp import create_app
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
 
-app = create_app()
+from flaskapp import create_app, config
+
+sentry_sdk.init(
+        dsn="https://1fdf413ccfcc4a249f79519bfc269965@o374456.ingest.sentry.io/5192531",
+        integrations=[FlaskIntegration()]
+)
+
+app = create_app(config_class=config.DevelopmentConfig)
 
 
 @app.after_request
