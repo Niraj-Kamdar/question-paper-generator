@@ -1,5 +1,7 @@
 .idea/
 venv/
+.venv/
+.theia/
 __pycache__/
 virtual/
 .vscode/
