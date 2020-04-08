@@ -238,6 +238,8 @@ iframe {
 .contact100-form-title {
   display: block;
   background-color: rgba(144, 0, 240, 0.76);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   font-family: Montserrat-ExtraBold;
   font-size: 24px;
   color: white;
@@ -251,6 +253,8 @@ input.input100 {
   height: 50px;
   border-radius: 25px;
   padding: 0 30px 0 50px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
 }
 
 input.input100[name="email"] {
@@ -516,7 +520,15 @@ textarea.input100 {
   font-size: 25px;
   padding: 10px 15px;
 }
-
+label {
+  display: block;
+}
+#form_content {
+  background-color: rgba(144, 0, 240, 0.15);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px;
+}
 /* end flashes*/
 @media (max-width: 992px) {
   .alert-validate::before {

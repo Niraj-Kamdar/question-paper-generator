@@ -68,9 +68,9 @@
                     <span class="contact100-form-title">
                         Get in touch
                     </span>
-                    <div style="background-color: rgba(144,0,240,0.15);padding:10px;">
+                    <div id="form_content">
                         <div class="wrap-input100 validate-input" data-validate="Name is required">
-                            <label style="display: none;">
+                            <label>
                                 {{ form.name(class="input100", placeholder="Name") }}
 
                                 {#                    <input class="input100" type="text" name="name" placeholder="Name">#}</label>
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                            {{ form.email(class="input100", placeholder="Email") }}
+                            <label>{{ form.email(class="input100", placeholder="Email") }}</label>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -89,7 +89,7 @@
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Valid mobile is required: 1234567890">
-                            {{ form.mobile(class="input100", placeholder="Mobile") }}
+                            <label>{{ form.mobile(class="input100", placeholder="Mobile") }}</label>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-mobile fa-2x" aria-hidden="true"></i>
@@ -97,7 +97,7 @@
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Subject is required">
-                            {{ form.subject(class="input100", placeholder="Subject") }}
+                            <label>{{ form.subject(class="input100", placeholder="Subject") }}</label>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-indent" aria-hidden="true"></i>
@@ -105,7 +105,7 @@
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Message is required">
-                            {{ form.message(class="input100", placeholder="Message") }}
+                            <label>{{ form.message(class="input100", placeholder="Message") }}</label>
                             <span class="focus-input100"></span>
                         </div>
 
