@@ -6,11 +6,12 @@ a {
 }
 
 .row {
-  /*border:1px dotted red;*/
   position: relative;
   /* width: 100%; */
 }
-
+#footercontent {
+  font-family: "Montserrat", sans-serif;
+}
 #footer {
   margin: 0;
   display: block;
@@ -140,6 +141,14 @@ a:hover {
   /*border :1px solid yellow;*/
   border-bottom: 2px solid #ffffff00;
   font-size: 1.2vw;
+}
+.fl {
+  color: rgba(255, 255, 255, 1);
+  font-family: "Montserrat", sans-serif;
+}
+.fl:hover {
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
 }
 
 .col3 > .row > a > h4:hover {
