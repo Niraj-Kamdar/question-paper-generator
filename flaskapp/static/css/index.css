@@ -93,10 +93,12 @@ body::-webkit-scrollbar {
 
 .col2 > h2 {
   font-size: 2.5vw;
+  font-family: "Montserrat", sans-serif;
 }
 
 .col2 > h4 {
   font-size: 1vw;
+  font-family: "Montserrat", sans-serif;
 }
 
 .login_btn {
@@ -145,7 +147,7 @@ body::-webkit-scrollbar {
   color: rgba(255, 255, 255, 0.7);
 }
 .fl {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 1);
 }
 .fl:hover {
   color: rgba(255, 255, 255, 1);
