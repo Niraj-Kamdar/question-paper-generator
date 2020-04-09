@@ -11,3 +11,13 @@
 #index_page_link:hover {
   color: #9000f0;
 }
+#services_content {
+  color: #808080;
+}
+#services_content > h3 {
+  width: 100%;
+  font-size: 1.5vw;
+}
+#services_content > p {
+  padding-left: 3%;
+}
