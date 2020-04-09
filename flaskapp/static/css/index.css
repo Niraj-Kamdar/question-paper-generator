@@ -69,7 +69,9 @@ body::-webkit-scrollbar {
   max-width: 100%;
   position: relative;
 }
-
+.logo:hover {
+  cursor: pointer;
+}
 .col1 {
   /*border :1px solid yellow;*/
   width: 5%;
@@ -127,10 +129,6 @@ body::-webkit-scrollbar {
   transition-delay: 0s, 0.5s;
 }
 
-footer {
-  position: sticky;
-  bottom: 0;
-}
 #footer {
   margin: 0;
   display: block;
