@@ -58,11 +58,12 @@ label {
 
 #submit {
     width: 100%;
-    border:1px solid #9000F0;
+    border: 1px solid #9000F0;
     color: #9000F0;
 }
+
 #submit:hover {
-    background: #9000F0; 
+    background: #9000F0;
     color: #ffffff;
 }
 
@@ -73,7 +74,7 @@ label {
 }
 
 .media {
-    text-align: center; 
+    text-align: center;
     width: 50%;
     height: 100%;
     background: #9000F026;

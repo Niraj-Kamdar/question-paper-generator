@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 
 {% block header %}
-<h1 class="header">Recent</h1>
+    <h1 class="header">Recent</h1>
 {% endblock header %}
 
 
 {% block flashes %}
-{% with messages = get_flashed_messages(with_categories=true) %} {% if
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %}
-<ul class="flashes flashes_question">
-    {% for category, message in messages %}
-    <li class="{{ category }}">{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %} {% endwith %}
+        <ul class="flashes flashes_question">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endwith %}
 {% endblock flashes %}
 
 {% block main %}
@@ -51,7 +51,7 @@
         </div>
     </div>
 {% endblock sideNav %}
-    
+
 
 
 

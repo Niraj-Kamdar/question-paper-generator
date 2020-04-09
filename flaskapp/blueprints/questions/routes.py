@@ -14,6 +14,7 @@ def question(course_id, qtype):
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
         abort(403)
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     _courses = Course.query.filter(Course.teacher == current_user).all()
     if qtype == "mcq":
         _mcq_questions = MCQQuestion.query.filter(MCQQuestion.course_id == course_id).all()
@@ -24,6 +25,7 @@ def question(course_id, qtype):
                                css_file='css/questions/mcq_form.css',
                                js_file='js/questions/update_mcq_question.js',
                                js_file2='js/sideNav.js',
+                               image_file=image_file,
                                title='Objective Questions'
                                )
     elif qtype == "sub":
@@ -35,6 +37,7 @@ def question(course_id, qtype):
                                css_file='css/questions/question_form.css',
                                js_file='js/questions/update_question.js',
                                js_file2='js/sideNav.js',
+                               image_file=image_file,
                                title='Subjective Questions'
                                )
     else:
@@ -45,6 +48,7 @@ def question(course_id, qtype):
 @login_required
 def add_course():
     form = CourseForm()
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     if form.validate_on_submit():
         course = Course(name=form.course.data, teacher=current_user)
         db.session.add(course)
@@ -55,6 +59,7 @@ def add_course():
                            form=form,
                            css_file='css/questions/courses_form.css',
                            js_file='js/questions/add_course.js',
+                           image_file=image_file,
                            title='Add Courses'
                            )
 
@@ -63,10 +68,12 @@ def add_course():
 @login_required
 def courses():
     _courses = Course.query.filter(Course.teacher == current_user).all()
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template("questions/courses.html",
                            courses=_courses,
                            css_file='css/questions/courses.css',
                            js_file='js/questions/courses.js',
+                           image_file=image_file,
                            title='Courses')
 
 
@@ -76,6 +83,7 @@ def add_question(course_id, qtype):
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
         abort(403)
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     _courses = Course.query.filter(Course.teacher == current_user).all()
     if qtype == "mcq":
         form = MCQQuestionForm()
@@ -99,6 +107,7 @@ def add_question(course_id, qtype):
                                css_file='css/questions/mcq_form.css',
                                js_file='js/questions/mcq_question_form.js',
                                js_file2='js/sideNav.js',
+                               image_file=image_file,
                                title='Add Objective Question'
                                )
     elif qtype == "sub":
