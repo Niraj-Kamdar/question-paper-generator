@@ -2,6 +2,8 @@
   const footer = document.getElementsByTagName("footer")[0];
   footer.style.position = "fixed";
   footer.style.bottom = "0px";
+  footer.style.left = "0px";
+  footer.style.right = "0px";
   const form = document.getElementsByTagName("form")[0];
   const formErrors = document.getElementsByClassName("form__client_error");
   const question = document.getElementById("form_field_question_value");
