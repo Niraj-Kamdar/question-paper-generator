@@ -26,7 +26,6 @@ def question(course_id, qtype):
     _courses = Course.query.filter(Course.teacher == current_user).all()
     if qtype == "mcq":
         _mcq_questions = MCQQuestion.query.filter(MCQQuestion.course_id == course_id).all()
-        # change css_file and js_file here!
         return render_template("questions/mcq_questions.html",
                                questions=_mcq_questions,
                                courses=_courses,
@@ -37,7 +36,6 @@ def question(course_id, qtype):
                                )
     elif qtype == "sub":
         _questions = Question.query.filter(Question.course_id == course_id).all()
-        # change css_file and js_file here!
         return render_template("questions/questions.html",
                                questions=_questions,
                                courses=_courses,
