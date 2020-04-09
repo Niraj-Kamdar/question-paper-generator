@@ -18,8 +18,8 @@
 {% block main %}
     <div class="content-section pt-4">
 
-        <div style=" width:45%;text-align: right;">
-            <div class="media pt-5">
+        <div style=" width:40% ;text-align: right;">
+            <div class="media pt-5" style="width: 100%;">
                 <img class="rounded-circle account-img" src="{{ image_file }}" alt="round-image" id="profile_pic"/>
 
                 <div class="media-body mt-5">
@@ -27,10 +27,9 @@
                     <p class="text-secondary">{{ current_user.email }}</p>
                 </div>
             </div>
-
         </div>
 
-        <div>
+        <div style="width: 60%;">
 
 
             <form method="POST" action="" enctype="multipart/form-data" id="account_form" novalidate>
