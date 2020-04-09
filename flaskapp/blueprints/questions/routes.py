@@ -128,6 +128,7 @@ def add_question(course_id, qtype):
                                css_file='css/questions/question_form.css',
                                js_file='js/questions/question_form.js',
                                js_file2='js/sideNav.js',
+                               image_file=image_file,
                                title='Add Subjective Question'
                                )
     else:
