@@ -9,7 +9,7 @@ class LoginUserTestCase(BaseUser):
         self.login()
         response = self.client.get("/home")
         soup = BeautifulSoup(response.data, 'lxml')
-        title = soup.find(id="home_title")
+        title = soup.find(("h1", {"class": "header"}))
         self.assertEqual(title.contents[0], 'Recent')
 
     def test_logout_user(self):
@@ -17,5 +17,5 @@ class LoginUserTestCase(BaseUser):
         self.logout()
         response = self.client.get("/home")
         soup = BeautifulSoup(response.data, 'lxml')
-        title = soup.find(id="home_title")
-        self.assertEqual(title, None)
+        title = soup.find(("h1", {"class": "header"}))
+        self.assertEqual(title.contents[0], 'Redirecting...')

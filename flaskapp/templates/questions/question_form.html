@@ -1,6 +1,9 @@
 {% extends "sideNav.html" %}
+{% block image %}
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+{% endblock image %}
 {% block header %}
-    <h3 class="header">Add Subjective Question</h3>
+    <h3 class="header" style="style=" font-weight: 500;">Add Subjective Question</h3>
 {% endblock header %}
 
 {% block flashes %}

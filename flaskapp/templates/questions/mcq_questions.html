@@ -1,7 +1,9 @@
 {% extends "sideNav.html" %}
-
+{% block image %}
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+{% endblock image %}
 {% block header %}
-    <h1 class="header">Multiple Choice Question</h1>
+    <h1 class="header" style="font-weight: 500;">Multiple Choice Question</h1>
 {% endblock header %}
 
 {% block flashes %}
@@ -36,7 +38,7 @@
                 filename='images/cancel.svg') }}" alt="cancel" class="control_btns_img"/>
                 </div>
             </div>
-            <div style="max-height : 446px;overflow-x: auto;position: relative;">
+            <div style="max-height : 60vh;overflow-y: auto;position: relative;">
             {% for q in questions %}
                 <div class="question_container">
                     <div class="delete_question">

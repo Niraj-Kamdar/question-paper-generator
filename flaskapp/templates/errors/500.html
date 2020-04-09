@@ -1,7 +1,12 @@
-{% extends "base.html" %}
-{% block main %}
-    <div class="content-section">
-        <h1>Something went wrong (500)</h1>
-        <p>We're experiencing some trouble on our end. Please try again in the near future</p>
-    </div>
-{% endblock main %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>500</title>
+</head>
+<body style="margin: 0;">
+<div>
+    <img style="min-width: 100vw; min-height: 100vh; position: fixed;"
+         src="{{ url_for('static', filename='images/500.svg') }}" class="error-500" alt="500"/>
+</div>
+</body>
+</html>

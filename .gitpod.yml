@@ -1,0 +1,17 @@
+image:
+  file: .gitpod.Dockerfile
+tasks:
+  - init: |
+      pip3 install pipenv
+      pipenv install --dev
+    command: |
+      pipenv run python app.py
+  - init: |
+      echo "Use it for git commands :)"
+
+ports:
+  - port: 5000
+    onOpen: open-preview
+vscode:
+  extensions:
+    - littlefoxteam.vscode-python-test-adapter@0.3.16:tZ/6xOSSdKUaq6JCUVkD+A==

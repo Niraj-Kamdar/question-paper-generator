@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-
+{% block image %}
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+{% endblock image %}
 {% block flashes %}
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %}
@@ -24,7 +26,8 @@
         </div>
         <div style="margin-left : auto">
             <div id="add_course">
-                <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img">Add Course</div>
+                <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img" alt="add">Add Course
+                </div>
             </div>
         </div>
     </div>

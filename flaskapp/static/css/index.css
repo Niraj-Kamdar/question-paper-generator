@@ -70,6 +70,10 @@ body::-webkit-scrollbar {
     position: relative;
 }
 
+.logo:hover {
+    cursor: pointer;
+}
+
 .col1 {
     /*border :1px solid yellow;*/
     width: 5%;
@@ -91,10 +95,12 @@ body::-webkit-scrollbar {
 
 .col2 > h2 {
     font-size: 2.5vw;
+    font-family: "Montserrat", sans-serif;
 }
 
 .col2 > h4 {
     font-size: 1vw;
+    font-family: "Montserrat", sans-serif;
 }
 
 .login_btn {
@@ -128,19 +134,30 @@ body::-webkit-scrollbar {
 }
 
 #footer {
+    margin: 0;
     display: block;
-    font-size: 1vw;
-    color: rgba(255, 255, 255, 0.5);
     transition: 1s;
     background: #9000f0;
 }
 
+#social_links {
+    margin: 0;
+    font-size: 1vw;
+}
+
+#footer_links > div > h6 > a {
+    color: #ffffff;
+    font-size: 0.8vw;
+    color: rgba(255, 255, 255, 0.7);
+}
+
 .fl {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 1);
 }
 
 .fl:hover {
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
 }
 
 /*// Extra small devices (portrait phones, less than 576px)*/
@@ -172,9 +189,8 @@ body::-webkit-scrollbar {
     }
 }
 
-.span_color,
-.a_color {
-    color: white;
+.span_color {
+    color: rgba(255, 255, 255, 1);
 }
 
 #loader_container {

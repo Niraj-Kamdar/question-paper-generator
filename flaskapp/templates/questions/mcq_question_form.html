@@ -1,4 +1,7 @@
 {% extends "sideNav.html" %}
+{% block image %}
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+{% endblock image %}
 {% block flashes %}
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
 messages %}
@@ -10,7 +13,7 @@ messages %}
     {% endif %} {% endwith %}
 {% endblock flashes %}
 {% block header %}
-    <h3 class="header">Add Multiple Choice Question</h3>
+    <h3 class="header" style="font-weight: 500;">Add Multiple Choice Question</h3>
 {% endblock header %}
 {% block main %}
     <div id="new_question">
