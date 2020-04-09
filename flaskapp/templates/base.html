@@ -63,14 +63,16 @@
         <div style="padding-top: 8%; margin-bottom: 4%;" class="block_main" id="main_container">
             {% block login %}
             {% endblock login %}
-            <div>
+            <div class="px-5 py-2">
                 {% block flashes %}
                 {% endblock flashes %}
-                <div style="display: flex;flex-direction: column;justify-content: center;">
-                    {% block header %}
-                    {% endblock header %}
-                    <div id="content">
-                        <div style="width:70%;" id="template_display">
+                <div class="px-5" style="display: flex;flex-direction: column;justify-content: center;">
+                    <div class="row mb-2" style="margin: 0;">
+                        {% block header %}
+                        {% endblock header %}
+                    </div>
+                    <div id="content" style="margin: 0;">
+                        <div class="mr-2" style="width:75%;" id="template_display">
                             {% block main %} {% endblock main %}
                         </div>
                         {% block sideNav %} {% endblock sideNav %}
@@ -93,24 +95,24 @@
                 <span>|</span>
                 <a href="#" class="fl"><i class="fab fa-linkedin-in mx-2"> </i></a>
                 <span>|</span>
-                <a href="#" class="fl"><i class="fab fa-instagram ml-3"> </i></a>
-                <span class="span_color">|</span>
+                <a href="#" class="fl"><i class="fab fa-instagram mx-3"> </i></a>
+                <span>|</span>
                 <span class="mx-3 span_color">
                     <a href="/about-us" class="fl" id="about_page_link">About us</a>
                 </span>
-                <span class="span_color">|</span>
+                <span>|</span>
                 <span class="mx-3 span_color">
                     <a href="/help" class="fl" id="help_page_link">Help</a>
                 </span>
-                <span class="span_color">|</span>
+                <span>|</span>
                 <span class="mx-3 span_color">
                     <a href="/contact-us" class="fl" id="contact_page_link">contact Us</a>
                 </span>
-                <span class="span_color">|</span>
+                <span>|</span>
                 <span class="mx-3 span_color">
                     <a href="/privacy-policy" class="fl" id="policy_page_link">Privacy Policy</a>
                 </span>
-                <span class="span_color">|</span>
+                <span>|</span>
                 <span class="ml-3 span_color">
                     <a href="/terms-of-service" class="fl" id="services_page_link">Terms Of Services</a>
                 </span>
