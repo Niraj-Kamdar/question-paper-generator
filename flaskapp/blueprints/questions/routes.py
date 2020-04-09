@@ -164,6 +164,7 @@ def add_question(course_id, qtype):
     else:
         abort(404)
 
+
 @questions.route("/course/<course_id>/question/<qtype>/update/<int:question_id>/", methods=["GET", "POST"])
 @login_required
 def update_question(course_id, qtype, question_id):

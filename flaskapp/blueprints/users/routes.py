@@ -34,7 +34,6 @@ def register():
 
 
 @users.route("/login", methods=['GET', 'POST'])
-
 def login():
     """Login into system
     
@@ -60,7 +59,6 @@ def login():
 
 @users.route("/logout")
 @login_required
-
 def logout():
     """For Logout 
     
@@ -119,9 +117,6 @@ def reset_request():
 
 
 @users.route("/reset_password/<token>", methods=['GET', 'POST'])
-
-
-
 def reset_token(token):
     """reset password's token
     

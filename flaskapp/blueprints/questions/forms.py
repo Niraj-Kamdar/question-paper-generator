@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, IntegerField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Length, NumberRange
 
- 
+
 class CourseForm(FlaskForm):
     course = StringField('Course',
                          validators=[DataRequired()])

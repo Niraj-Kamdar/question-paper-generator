@@ -6,6 +6,7 @@ from flaskapp.blueprints.main.utils import send_contact_us_email, send_contact_u
 
 main = Blueprint('main', __name__)
 
+
 @main.route("/")
 def index():
     """Render Home page
@@ -47,6 +48,7 @@ def help_page():
         HTML - It will redirect to help page.
     """
     return render_template("main/help.html", title="Help")
+
 
 @main.route("/contact-us")
 def contact_us():

@@ -29,7 +29,6 @@ def save_picture(form_picture):
     return picture_fn
 
 
-
 def send_reset_email(user):
     """For reset password make an email for existed user
     
