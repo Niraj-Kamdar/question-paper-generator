@@ -149,6 +149,7 @@ body::-webkit-scrollbar {
 }
 .fl:hover {
   color: rgba(255, 255, 255, 1);
+  text-decoration: none;
 }
 
 /*// Extra small devices (portrait phones, less than 576px)*/

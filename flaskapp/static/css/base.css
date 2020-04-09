@@ -146,6 +146,7 @@ body::-webkit-scrollbar {
 
 .fl:hover {
   color: rgba(255, 255, 255, 1);
+  text-decoration: none;
 }
 
 /*css for side navigation*/
