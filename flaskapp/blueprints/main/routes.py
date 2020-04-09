@@ -17,19 +17,19 @@ def index():
 
 @main.route("/about-us")
 def about_us():
-    return render_template('main/about.html', title='About Us')
+    return render_template('main/about.html', title='About Us',css_file='css/about.css')
 
 @main.route("/privacy-policy")
 def policy_page():
-    return render_template("main/privacy-policy.html", title="Privacy Policy")
+    return render_template("main/privacy-policy.html", title="Privacy Policy",css_file='css/privacy_policy')
     
 @main.route("/terms-of-service")
 def terms_of_service_page():
-    return render_template("main/terms-of-service.html", title="Terms Of Service")
+    return render_template("main/terms-of-service.html", title="Terms Of Service",css_file='css/terms_of_service')
 
 @main.route("/help")
 def help_page():
-    return render_template("main/help.html", title="Help")
+    return render_template("main/help.html", title="Help", css_file='css/help.css')
 
 
 @main.route("/contact-us", methods=["GET", "POST"])
