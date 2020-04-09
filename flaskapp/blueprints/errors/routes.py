@@ -10,7 +10,7 @@ def error_404(error):
         error {object} -- Detects error
     
     Returns:
-        render template -- Display an error of 404
+        HTML -- An error page for HTTP 404(not found) error code.Handles error and render custom HTML page for that error.
     """
     return render_template('errors/404.html'), 404
 
@@ -23,7 +23,7 @@ def error_403(error):
         error {object} -- Detects error
     
     Returns:
-        render template -- Display an error of 403
+        HTML -- An error page for HTTP 403 error code.Handles error and render custom HTML page for that error.
     """
     return render_template('errors/403.html'), 403
 
@@ -36,6 +36,6 @@ def error_500(error):
         error {object} -- Detects error
     
     Returns:
-        render template -- Display an error of 500
+        HTML -- An error page for HTTP 500 error code.Handles error and render custom HTML page for that error.
     """
     return render_template('errors/500.html'), 500

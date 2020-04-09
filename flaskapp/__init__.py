@@ -25,7 +25,7 @@ def create_app(config_class=Config):
         config_class {object} -- It configures app (default: {Config})
     
     Returns:
-        App -- it configuers app
+        App -- it creates app using configuration from config_class
     """
     app = Flask(__name__)
     app.config.from_object(config_class)

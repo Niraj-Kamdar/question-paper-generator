@@ -7,7 +7,7 @@ from flaskapp import mail, APP_PATH
 
 
 def send_contact_us_email(**data):
-    """Sends an text file via email to set now handler.
+    """We send email to ourself using this function
     """
     mail_file = os.path.join(APP_PATH, "templates", "main", "contact-us", "content.txt")
     with open(mail_file, "r") as f:

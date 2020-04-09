@@ -11,7 +11,7 @@ def index():
     """Render Home page
     
     Returns:
-        HTML function -- If the current user is authenticated then render to home page of site.
+        HTML-- If the current user is authenticated then render to home page of site.
     """
     if current_user.is_authenticated:
         return redirect(url_for('papers.home'))
@@ -24,7 +24,7 @@ def about_us():
     """Render about us page
     
     Returns:
-        HTML function -- It will redirect to about us page.
+        HTML  -- It will redirect to about us page.
     """
     return render_template('main/about.html', title='About Us')
 
@@ -34,7 +34,7 @@ def help_page():
     """Render help page
     
     Returns:
-        HTML function -- It will redirect to help page.
+        HTML - It will redirect to help page.
     """
     return render_template("main/help.html", title="Help")
 
@@ -43,7 +43,7 @@ def contact_us():
     """Render Contact us page
     
     Returns:
-        HTML function -- To collect Info from user for suggestion or bug or any comment about web-app.
+        HTML-- To collect Info from user for suggestion or bug or any comment about web-app.
     """
     form = ContactUs()
     if form.validate_on_submit():

@@ -10,7 +10,7 @@ def home():
     """Render Home page 
     
     Returns:
-        page -- It will render home page.
+        HTML -- It will render home page.
     """
     return render_template("papers/home.html",
                            css_file='css/home.css',
