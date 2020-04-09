@@ -9,6 +9,11 @@ main = Blueprint('main', __name__)
 
 @main.route("/")
 def index():
+    """Render Home page
+    
+    Returns:
+        HTML-- If the current user is authenticated then render to home page of site.
+    """
     if current_user.is_authenticated:
         return redirect(url_for('papers.home'))
     return render_template("main/index.html", title='Index', css_file='css/index.css', js_file='js/index.js',
@@ -17,6 +22,11 @@ def index():
 
 @main.route("/about-us")
 def about_us():
+    """Render about us page
+    
+    Returns:
+        HTML  -- It will redirect to about us page.
+    """
     return render_template('main/about.html', title='About Us', css_file='css/about.css')
 
 
@@ -32,11 +42,21 @@ def terms_of_service_page():
 
 @main.route("/help")
 def help_page():
-    return render_template("main/help.html", title="Help", css_file='css/help.css')
+    """Render help page
+    
+    Returns:
+        HTML - It will redirect to help page.
+    """
+    return render_template("main/help.html", title="Help")
 
 
-@main.route("/contact-us", methods=["GET", "POST"])
+@main.route("/contact-us")
 def contact_us():
+    """Render Contact us page
+    
+    Returns:
+        HTML-- To collect Info from user for suggestion or bug or any comment about web-app.
+    """
     form = ContactUs()
     if form.validate_on_submit():
         data = dict(name=form.name.data,

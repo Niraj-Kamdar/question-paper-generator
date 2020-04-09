@@ -9,6 +9,14 @@ from flaskapp import mail, APP_PATH
 
 
 def save_picture(form_picture):
+    """Save profile picture
+    
+    Arguments:
+        form_picture {form} -- Entered picture which user want to set to his profile
+    
+    Returns:
+        string -- To save picture
+    """
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = str(current_user.id) + f_ext
     picture_path = os.path.join(current_app.root_path, 'static/profile_pics', picture_fn)
@@ -22,6 +30,12 @@ def save_picture(form_picture):
 
 
 def send_reset_email(user):
+    """For reset password make an email for existed user
+    
+    Arguments:
+        user {object} -- To reset password. when user want to reset password this function 
+        will send mail of reset password to user's submitted/registered mail for verification.
+    """
     token = user.get_reset_token()
     mail_file = os.path.join(APP_PATH, "templates", "users", "password-reset", "content.txt")
     with open(mail_file, "r") as f:

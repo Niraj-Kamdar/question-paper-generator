@@ -11,6 +11,15 @@ questions = Blueprint('questions', __name__)
 @questions.route("/course/<course_id>/question/<qtype>/")
 @login_required
 def question(course_id, qtype):
+    """Rendering Question page
+    
+    Arguments:
+        course_id {Object} -- Id for course
+        qtype {Subjective/mcq} -- Specification about question is subjective or MCQ type
+    
+    Returns:
+        HTML Function -- According to choosen type of question render page
+    """
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
         abort(403)
@@ -18,7 +27,6 @@ def question(course_id, qtype):
     _courses = Course.query.filter(Course.teacher == current_user).all()
     if qtype == "mcq":
         _mcq_questions = MCQQuestion.query.filter(MCQQuestion.course_id == course_id).all()
-        # change css_file and js_file here!
         return render_template("questions/mcq_questions.html",
                                questions=_mcq_questions,
                                courses=_courses,
@@ -30,7 +38,6 @@ def question(course_id, qtype):
                                )
     elif qtype == "sub":
         _questions = Question.query.filter(Question.course_id == course_id).all()
-        # change css_file and js_file here!
         return render_template("questions/questions.html",
                                questions=_questions,
                                courses=_courses,
@@ -47,6 +54,12 @@ def question(course_id, qtype):
 @questions.route('/course/new/', methods=["GET", "POST"])
 @login_required
 def add_course():
+    """Rendering to add course page
+    
+    Returns:
+        HTML function -- For adding new course to user's account. After submitting new course redirect to courses page.Else show form which 
+        shows add course feild.
+    """
     form = CourseForm()
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     if form.validate_on_submit():
@@ -67,6 +80,11 @@ def add_course():
 @questions.route('/course/')
 @login_required
 def courses():
+    """Show listed down course of user
+    
+    Returns:
+        HTML function -- Redirect to courses pages where listed down all courses.
+    """
     _courses = Course.query.filter(Course.teacher == current_user).all()
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template("questions/courses.html",
@@ -80,6 +98,18 @@ def courses():
 @questions.route("/course/<course_id>/question/<qtype>/new/", methods=["GET", "POST"])
 @login_required
 def add_question(course_id, qtype):
+    """Adding question
+    
+    Arguments:
+        course_id {Object} -- Course ID which uniquley defined.
+        qtype {Subjective/MCQ} -- What is the type of question ? subjective or MCQ
+    
+    Returns:
+        HTML function -- If the course instructor is not user than it will throw error 403 then 
+        according to type of question eg : if type is MCQ then difficulty, mark, options, IMP flag
+        and if type is subjective then difficulty,mark,IMP flag added with question to the database 
+        and will add to UI and listdown on screen.
+    """
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
         abort(403)
@@ -138,6 +168,12 @@ def add_question(course_id, qtype):
 @questions.route("/course/<course_id>/question/<qtype>/update/<int:question_id>/", methods=["GET", "POST"])
 @login_required
 def update_question(course_id, qtype, question_id):
+    """For updating question
+    
+    Returns:
+        Render template -- for updating questions if that question is exist then update it by id.And update marks , difficulty and IMP flag accorging to input.
+       And do changes in database accordingly.
+    """
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
         abort(403)
@@ -190,6 +226,11 @@ def update_question(course_id, qtype, question_id):
 @questions.route("/course/<course_id>/question/<qtype>/imp/<impq>/", methods=["GET"])
 @login_required
 def imp_question(course_id, qtype, impq):
+    """Set an IMP flag to question
+    
+    Returns:
+        Same page with flag or without flag -- set an IMP flag to particular question.And do changes in database also.
+    """
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
         abort(403)
@@ -215,6 +256,12 @@ def imp_question(course_id, qtype, impq):
 @questions.route("/course/<course_id>/question/<qtype>/delete/<deleteq>/", methods=["GET"])
 @login_required
 def delete_question(course_id, qtype, deleteq):
+    """Delete question
+    
+    Returns:
+        page -- If current user is not an instructor of that subject then throw erroe else 
+        delete question's data. and update UI.
+    """
     _course = Course.query.filter(Course.id == course_id).first()
     if _course.teacher != current_user:
         abort(403)

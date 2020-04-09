@@ -22,6 +22,11 @@ class BaseDatabase(unittest.TestCase):
 
 class BaseUser(BaseDatabase):
     def setUp(self):
+        """Setup for user
+        
+        Arguments:
+            BaseDatabase {[type]} -- [description]
+        """
         BaseDatabase.setUp(self)
         self.client = self.app.test_client()
         new_user = dict(username="pr.proton", email="proton@gmail.com", password="proton@101",
@@ -29,6 +34,8 @@ class BaseUser(BaseDatabase):
         test_post_request(self, "/register", new_user, models.User, 1)
 
     def login(self):
+        """[User login]
+        """
         user = dict(email="proton@gmail.com", password="proton@101", remember=True, submit="Login")
         test_post_request(self, "/login", user)
 
@@ -45,6 +52,7 @@ class BaseCourse(BaseUser):
         test_post_request(self, "/course/new", new_course, models.Course, 1)
 
     def tearDown(self):
+        """  Destroy blank temp database before each test   """
         self.logout()
         BaseDatabase.tearDown(self)
 
