@@ -7,6 +7,11 @@ from flaskapp import db, login_manager
 
 @login_manager.user_loader
 def load_user(user_id):
+    """Add user to database
+    
+    Returns:
+        int(ID)  -- Load the user by giving user-ID
+    """
     return User.query.get(int(user_id))
 
 

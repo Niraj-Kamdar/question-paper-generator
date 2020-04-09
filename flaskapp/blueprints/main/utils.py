@@ -7,6 +7,9 @@ from flaskapp import mail, APP_PATH
 
 
 def send_contact_us_email(**data):
+    """
+    It will send an email with name, email, subject and message filled by our user on contact us page to ourselves.   
+    """
     mail_file = os.path.join(APP_PATH, "templates", "main", "contact-us", "content.txt")
     with open(mail_file, "r") as f:
         msg_text = f.read()
@@ -21,6 +24,10 @@ def send_contact_us_email(**data):
 
 
 def send_contact_us_receipt_email(**data):
+    """
+    It will send an email to the user who has submitted his message on contact us page,
+    stating SetNow has recieved your email.
+    """
     mail_file = os.path.join(APP_PATH, "templates", "main", "contact-us-receipt", "content.txt")
     with open(mail_file, "r") as f:
         msg_text = f.read()
