@@ -5,10 +5,6 @@ a {
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
 
-footer {
-  bottom: 0px;
-  position: sticky;
-}
 .row {
   /*border:1px dotted red;*/
   position: relative;
@@ -49,7 +45,7 @@ footer {
   margin: 0px;
   padding: 0px;
   z-index: 2;
-  background: #9000f0b3;
+  background: #9000f0;
 }
 .header_contact {
   background-color: #9000f0 !important;
@@ -71,12 +67,16 @@ footer {
 
 .col1 {
   /*border :1px solid yellow;*/
-  width: 5%;
+  width: 6%;
 }
 .logo {
   max-height: 100%;
+  /* height: auto; */
   max-width: 100%;
   position: relative;
+}
+.logo:hover {
+  cursor: pointer;
 }
 @media (max-width: 575.98px) {
   .col2 {
@@ -113,7 +113,7 @@ footer {
 
 a:hover {
   color: white !important;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .col3 {

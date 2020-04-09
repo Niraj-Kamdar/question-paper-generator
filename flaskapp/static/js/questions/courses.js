@@ -1,4 +1,7 @@
 (function () {
+  const footer = document.getElementsByTagName("footer")[0];
+  footer.style.position = "fixed";
+  footer.style.bottom = "0px";
   const flashes = document.getElementsByClassName("flashes");
   if (flashes.length) {
     setTimeout(() => {

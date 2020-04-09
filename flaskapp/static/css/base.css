@@ -54,6 +54,10 @@ body::-webkit-scrollbar {
   position: relative;
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
 .col1 {
   /*border :1px solid yellow;*/
   width: 5%;
@@ -128,8 +132,8 @@ body::-webkit-scrollbar {
 
 #footer {
   left: 0;
-  bottom: 0;
-  position: fixed;
+  /* bottom: 0;
+  position: fixed; */
   font-size: 1vw;
   color: rgba(255, 255, 255, 0.5);
   transition: 1s;
@@ -142,6 +146,7 @@ body::-webkit-scrollbar {
 
 .fl:hover {
   color: rgba(255, 255, 255, 1);
+  text-decoration: none;
 }
 
 /*css for side navigation*/
