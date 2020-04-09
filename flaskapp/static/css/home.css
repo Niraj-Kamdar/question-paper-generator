@@ -10,6 +10,13 @@
     max-width: 1%;
 }
 
+.header {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: rgba(88, 88, 88, 1);
+    font-size: 40px;
+    margin: 0 20px;
+}
+
 #home_title {
     color: #B0B0B0;
     font-weight: bolder;

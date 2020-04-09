@@ -47,5 +47,5 @@ class UserAccountTestCase(BaseUser):
 
             response = self.client.get("/home")
             soup = BeautifulSoup(response.data, 'lxml')
-            title = soup.find(id="home_title")
+            title = soup.find(("h1", {"class": "header"}))
             self.assertEqual(title.contents[0], 'Recent')

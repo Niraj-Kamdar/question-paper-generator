@@ -5,7 +5,7 @@ coverage:
   precision: 2
   round: down
   range: "50...100"
-  
+
 coverage:
   status:
     patch:
@@ -13,21 +13,21 @@ coverage:
         # basic
         target: auto
         threshold: 0%
-        base: auto 
-   
- coverage:
-  status:
-    project:
-      default:
-        # basic
-        target: auto
-        threshold: 0%
-        base: auto 
-        flags: 
-          - unit
-        paths: 
-          - "src"
- 
+        base: auto
+
+  coverage:
+    status:
+      project:
+        default:
+          # basic
+          target: auto
+          threshold: 0%
+          base: auto
+          flags:
+            - unit
+          paths:
+            - "src"
+
 ignore:
   - "app.py"
 
