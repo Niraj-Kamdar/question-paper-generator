@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block image %}
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+{% endblock image %}
+{% block header %}
+    <h3 id="form_question_paper">Add Course</h3>
+{% endblock header %}
+{% block flashes %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+        <ul class="flashes flashes_question">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endwith %}
+{% endblock flashes %}
+
+
+{% block main %}
+    <div id="form">
+
+
+        <form method="POST" action="" novalidate id="course_form">
+            {{ form.hidden_tag() }}
+            <div id="form_content">
+                <div class="form__fields">
+                    {{ form.course.label(class="form__fields__label") }}
+                    {{ form.course(id="form__fields__course") }}
+
+                    {% if form.course.errors %}
+                        <ul class="form__error">
+                            {% for error in form.course.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <div class="form__client_error"></div>
+                </div>
+                <div id="submit_btn">
+                    {{ form.submit }}
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock main %}

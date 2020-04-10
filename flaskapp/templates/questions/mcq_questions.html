@@ -1,0 +1,104 @@
+{% extends "sideNav.html" %}
+{% block image %}
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+{% endblock image %}
+{% block header %}
+    <h1 class="header" style="font-weight: 500;">Multiple Choice Question</h1>
+{% endblock header %}
+
+{% block flashes %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+
+        <ul class="flashes flashes_question">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endwith %}
+
+{% endblock flashes %}
+
+{% block main %}
+    <div id="questions">
+        {% block content %}
+            <div class="control_btns">
+                <div id="mark_imp" title="update imp">
+                    <img src="{{ url_for('static',
+                filename='images/imp.svg') }}" alt="imp" class="control_btns_img"/>
+                </div>
+
+                <div id="delete_btn" title="delete">
+                    <img src="{{ url_for('static',
+                filename='images/bin.png') }}" alt="delete" class="control_btns_img"/>
+                </div>
+                <div id="cancel_btn" title="Cancel">
+                    <img src="{{ url_for('static',
+                filename='images/cancel.svg') }}" alt="cancel" class="control_btns_img"/>
+                </div>
+            </div>
+            <div style="max-height : 60vh;overflow-y: auto;position: relative;">
+            {% for q in questions %}
+                <div class="question_container">
+                    <div class="delete_question">
+                        <label><input type="checkbox" class="delete_checkbox"/></label>
+                    </div>
+                    <div class="question_info">
+                        <div class="first_row">
+                            <div class="first_row_column_1">ID: {{ q.id }}</div>
+                            <div class="first_row_column_2">{{ q.imp }}</div>
+                            <div class="first_row_column_3">
+                                <label><span class="mark_label"></span><input type="checkbox" name="isimp" value="false"
+                                                                              class="imp_checkbox"/></label>
+                            </div>
+                        </div>
+                        <div class="second_row">
+                            <div class="second_row_column_1"></div>
+                            <div class="second_row_column_2">
+                                <div class="question_description">
+                                    {{ q.question }}
+                                    <div class="options_container">
+
+                                        <div class="options_final_value">{{ q.option1 }}</div>
+                                        <div class="options_final_value">{{ q.option2 }}</div>
+
+
+                                        <div class="options_final_value">{{ q.option3 }}</div>
+                                        <div class="options_final_value">{{ q.option4 }}</div>
+
+                                    </div>
+                                </div>
+                                <div class="question_properties">
+                                    <div class="marks">Marks : {{ q.mark }}</div>
+                                    <div class="difficulty">Difficulty : {{ q.difficulty }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="update_question">
+                        <div class="edit_question">
+                            <img src="{{ url_for('static',
+                    filename='images/edit.png') }}" alt="edit" class="update_question_img"/>
+                        </div>
+                        <!-- <div class="delete_question"><img src="{{ url_for('static',filename='images/bin.png') }}"
+                    class="update_question_img" /></div>
+            <div></div> -->
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
+
+        {% endblock %}
+        <div class="bottombar"></div>
+        <div id="jcourse">
+            {% for course in courses %}
+                <div class="course_name">{{ course.name }} </div>
+                <div class="course_id">{{ course.id }}</div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+{% endblock %}
