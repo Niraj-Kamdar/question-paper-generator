@@ -38,7 +38,7 @@
             </div>
             <div style="max-height : 60vh;overflow-y: auto;position: relative;">
 
-            {% for q in questions %}
+            {% for q in questions.items %}
                 <div class="question_container">
                     <div class="delete_question">
                         <label><input type="checkbox" class="delete_checkbox"/></label>
@@ -86,4 +86,24 @@
         </div>
         </div>
     </div>
+{% endblock %}
+{% block page %}
+    {% if questions %}
+        {% for page_num in questions.iter_pages(left_edge=1,
+                                                right_edge=1,
+                                                left_current=1,
+                                                right_current=2) %}
+            {% if page_num %}
+                {% if questions.page == page_num %}
+                    <a class="btn btn-info mb-4"
+                       href="{{ url_for('questions.question', page=page_num, course_id=None, qtype='sub') }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-info mb-4"
+                       href="{{ url_for('questions.question', page=page_num, course_id=None, qtype='sub') }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}

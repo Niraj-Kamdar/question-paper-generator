@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, json, Blueprint, abort
+from flask import render_template, flash, redirect, url_for, json, Blueprint, abort, request
 from flask_login import login_required, current_user
 
 from flaskapp import db
@@ -25,8 +25,10 @@ def question(course_id, qtype):
         abort(403)
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     _courses = Course.query.filter(Course.teacher == current_user).all()
+    main_page = request.args.get('page', 1, type=int)
     if qtype == "mcq":
-        _mcq_questions = MCQQuestion.query.filter(MCQQuestion.course_id == course_id).all()
+        _mcq_questions = MCQQuestion.query.filter(MCQQuestion.course_id == course_id).paginate(page=main_page,
+                                                                                               per_page=1)
         return render_template("questions/mcq_questions.html",
                                questions=_mcq_questions,
                                courses=_courses,
@@ -37,7 +39,7 @@ def question(course_id, qtype):
                                title='Objective Questions'
                                )
     elif qtype == "sub":
-        _questions = Question.query.filter(Question.course_id == course_id).all()
+        _questions = Question.query.filter(Question.course_id == course_id).paginate(page=main_page, per_page=1)
         return render_template("questions/questions.html",
                                questions=_questions,
                                courses=_courses,

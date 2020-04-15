@@ -77,6 +77,9 @@
                     </div>
                     {% block sideNav %} {% endblock sideNav %}
                 </div>
+                <div>
+                    {% block page %} {% endblock page %}
+                </div>
             </div>
         </div>
     </div>
@@ -100,23 +103,24 @@
                     <a href="#" class="fl"><i class="fab fa-instagram mx-3"> </i></a>
                     <span class="span_color">|</span>
                     <span class="mx-3 span_color">
-                            <a href="/about-us" class="fl" id="about_page_link">About us</a>
+                            <a href="{{ url_for('main.about_us') }}" class="fl" id="about_page_link">About us</a>
                         </span>
                     <span class="span_color">|</span>
                     <span class="mx-3 span_color">
-                            <a href="/help" class="fl" id="help_page_link">Help</a>
+                            <a href="{{ url_for('main.help_page') }}" class="fl" id="help_page_link">Help</a>
                         </span>
                     <span class="span_color">|</span>
                     <span class="mx-3 span_color">
-                            <a href="/contact-us" class="fl" id="contact_page_link">contact Us</a>
+                            <a href="{{ url_for('main.contact_us') }}" class="fl" id="contact_page_link">contact Us</a>
                         </span>
                     <span class="span_color">|</span>
                     <span class="mx-3 span_color">
-                            <a href="/privacy-policy" class="fl" id="policy_page_link">Privacy Policy</a>
+                            <a href="{{ url_for('main.policy_page') }}" class="fl"
+                               id="policy_page_link">Privacy Policy</a>
                         </span>
                     <span class="span_color">|</span>
                     <span class="ml-3 span_color">
-                            <a href="/terms-of-service" class="fl" id="services_page_link">Terms Of Services</a>
+                            <a href="{{ url_for('main.terms_of_service_page') }}" class="fl" id="services_page_link">Terms Of Services</a>
                         </span>
                 </div>
             </div>
