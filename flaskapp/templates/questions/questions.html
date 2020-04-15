@@ -96,10 +96,10 @@
             {% if page_num %}
                 {% if questions.page == page_num %}
                     <a class="btn btn-info mb-4"
-                       href="{{ url_for('questions.question', page=page_num, course_id=None, qtype='sub') }}">{{ page_num }}</a>
+                       href="{{ url_for('questions.question', page=page_num, course_id=course_id, qtype=qtype) }}">{{ page_num }}</a>
                 {% else %}
                     <a class="btn btn-outline-info mb-4"
-                       href="{{ url_for('questions.question', page=page_num, course_id=None, qtype='sub') }}">{{ page_num }}</a>
+                       href="{{ url_for('questions.question', page=page_num, course_id=course_id, qtype=qtype) }}">{{ page_num }}</a>
                 {% endif %}
             {% else %}
                 ...
