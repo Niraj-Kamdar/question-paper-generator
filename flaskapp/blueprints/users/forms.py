@@ -1,3 +1,4 @@
+from flask_login import current_user
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, FileField, BooleanField
@@ -15,12 +16,18 @@ def validate_email_exists(form, email):
 def validate_username(form, username):
     user = User.query.filter_by(username=username.data).first()
     if user:
+        if current_user:
+            if user == current_user:
+                return
         raise ValidationError('That username is taken. Please choose a different one.')
 
 
 def validate_email(form, email):
     user = User.query.filter_by(email=email.data).first()
     if user:
+        if current_user:
+            if user == current_user:
+                return
         raise ValidationError('That email is taken. Please choose a different one.')
 
 
