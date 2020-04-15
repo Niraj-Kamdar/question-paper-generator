@@ -49,8 +49,7 @@ def question(course_id, qtype):
                                image_file=image_file,
                                title='Subjective Questions'
                                )
-    else:
-        abort(404)
+    abort(404)
 
 
 @questions.route('/course/new/', methods=["GET", "POST"])
@@ -163,8 +162,7 @@ def add_question(course_id, qtype):
                                image_file=image_file,
                                title='Add Subjective Question'
                                )
-    else:
-        abort(404)
+    abort(404)
 
 
 @questions.route("/course/<course_id>/question/<qtype>/update/<int:question_id>/", methods=["GET", "POST"])
@@ -221,8 +219,7 @@ def update_question(course_id, qtype, question_id):
                                css_file='css/questions/question_form.css',
                                js_file='js/questions/question_form.js'
                                )
-    else:
-        abort(404)
+    abort(404)
 
 
 @questions.route("/course/<course_id>/question/<qtype>/imp/<impq>/", methods=["GET"])
@@ -251,8 +248,7 @@ def imp_question(course_id, qtype, impq):
         db.session.query(Question).filter(Question.id.in_(notimp)).update(dict(imp=False), synchronize_session='fetch')
         db.session.commit()
         return redirect(url_for("questions.question", qtype=qtype, course_id=course_id))
-    else:
-        abort(404)
+    abort(404)
 
 
 @questions.route("/course/<course_id>/question/<qtype>/delete/<deleteq>/", methods=["GET"])
@@ -277,5 +273,4 @@ def delete_question(course_id, qtype, deleteq):
         db.session.query(Question).filter(Question.id.in_(del_ids)).delete(synchronize_session='fetch')
         db.session.commit()
         return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
-    else:
-        abort(404)
+    abort(404)
