@@ -7,6 +7,30 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from flaskapp.models import User
 
 
+def validate_email_exists(form, email):
+    user = User.query.filter_by(email=email.data).first()
+    if user is None:
+        raise ValidationError('There is no account with that email. You must register first.')
+
+
+def validate_username(form, username):
+    user = User.query.filter_by(username=username.data).first()
+    if user:
+        if current_user:
+            if user == current_user:
+                return
+        raise ValidationError('That username is taken. Please choose a different one.')
+
+
+def validate_email(form, email):
+    user = User.query.filter_by(email=email.data).first()
+    if user:
+        if current_user:
+            if user == current_user:
+                return
+        raise ValidationError('That email is taken. Please choose a different one.')
+
+
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
