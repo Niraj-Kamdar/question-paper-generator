@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, json, Blueprint, abort
+from flask import render_template, flash, redirect, url_for, json, Blueprint, abort, request
 from flask_login import login_required, current_user
 
 from flaskapp import db
@@ -25,8 +25,10 @@ def question(course_id, qtype):
         abort(403)
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     _courses = Course.query.filter(Course.teacher == current_user).all()
+    main_page = request.args.get('page', 1, type=int)
     if qtype == "mcq":
-        _mcq_questions = MCQQuestion.query.filter(MCQQuestion.course_id == course_id).all()
+        _mcq_questions = MCQQuestion.query.filter(MCQQuestion.course_id == course_id).paginate(page=main_page,
+                                                                                               per_page=1)
         return render_template("questions/mcq_questions.html",
                                questions=_mcq_questions,
                                courses=_courses,
@@ -37,7 +39,7 @@ def question(course_id, qtype):
                                title='Objective Questions'
                                )
     elif qtype == "sub":
-        _questions = Question.query.filter(Question.course_id == course_id).all()
+        _questions = Question.query.filter(Question.course_id == course_id).paginate(page=main_page, per_page=1)
         return render_template("questions/questions.html",
                                questions=_questions,
                                courses=_courses,
@@ -47,8 +49,7 @@ def question(course_id, qtype):
                                image_file=image_file,
                                title='Subjective Questions'
                                )
-    else:
-        abort(404)
+    abort(404)
 
 
 @questions.route('/course/new/', methods=["GET", "POST"])
@@ -161,8 +162,7 @@ def add_question(course_id, qtype):
                                image_file=image_file,
                                title='Add Subjective Question'
                                )
-    else:
-        abort(404)
+    abort(404)
 
 
 @questions.route("/course/<course_id>/question/<qtype>/update/<int:question_id>/", methods=["GET", "POST"])
@@ -219,8 +219,7 @@ def update_question(course_id, qtype, question_id):
                                css_file='css/questions/question_form.css',
                                js_file='js/questions/question_form.js'
                                )
-    else:
-        abort(404)
+    abort(404)
 
 
 @questions.route("/course/<course_id>/question/<qtype>/imp/<impq>/", methods=["GET"])
@@ -249,8 +248,7 @@ def imp_question(course_id, qtype, impq):
         db.session.query(Question).filter(Question.id.in_(notimp)).update(dict(imp=False), synchronize_session='fetch')
         db.session.commit()
         return redirect(url_for("questions.question", qtype=qtype, course_id=course_id))
-    else:
-        abort(404)
+    abort(404)
 
 
 @questions.route("/course/<course_id>/question/<qtype>/delete/<deleteq>/", methods=["GET"])
@@ -275,5 +273,4 @@ def delete_question(course_id, qtype, deleteq):
         db.session.query(Question).filter(Question.id.in_(del_ids)).delete(synchronize_session='fetch')
         db.session.commit()
         return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
-    else:
-        abort(404)
+    abort(404)

@@ -32,12 +32,12 @@ def about_us():
 
 @main.route("/privacy-policy")
 def policy_page():
-    return render_template("main/privacy-policy.html", title="Privacy Policy", css_file='css/privacy_policy')
+    return render_template("main/privacy-policy.html", title="Privacy Policy", css_file='css/privacy_policy.css')
 
 
 @main.route("/terms-of-service")
 def terms_of_service_page():
-    return render_template("main/terms-of-service.html", title="Terms Of Service", css_file='css/terms_of_service')
+    return render_template("main/terms-of-service.html", title="Terms Of Service", css_file='css/terms_of_service.css')
 
 
 @main.route("/help")

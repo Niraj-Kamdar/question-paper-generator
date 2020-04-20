@@ -12,21 +12,14 @@ coverage:
       default:
         # basic
         target: auto
-        threshold: 0%
+        threshold: 10%
         base: auto
-
-  coverage:
-    status:
-      project:
-        default:
-          # basic
-          target: auto
-          threshold: 0%
-          base: auto
-          flags:
-            - unit
-          paths:
-            - "src"
+    project:
+      default:
+        # basic
+        target: auto
+        threshold: 10%
+        base: auto
 
 ignore:
   - "app.py"
