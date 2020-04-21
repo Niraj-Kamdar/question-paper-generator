@@ -36,8 +36,10 @@
                 <div class="row pl-2 py-3 text-white sticky-top" id="header" style="margin: 0; padding: 0;">
                     <div id="bars_container"><i class="fa fa-bars"></i></div>
                     <div class="col1">
-                        <img src="{{ url_for('static', filename='images/logo.svg') }}" class="logo" alt="logo"
-                            id="logo">
+                        <a href="/">
+                            <img src="{{ url_for('static', filename='images/logo.svg') }}" class="logo" alt="logo"
+                                id="logo">
+                        </a>
                     </div>
                     <div class="col2">
                         <h2>SetNow</h2>
@@ -62,7 +64,7 @@
                         <div id="logo_container">
 
                             <div class="col1">
-                                <a href="/home">
+                                <a href="/">
                                     <img src="{{ url_for('static',
                                         filename='images/logo.svg') }}" class="logo" alt="logo" />
                                 </a>

@@ -2,14 +2,6 @@ window.onscroll = function () {
   scrollFunction();
 };
 
-document.getElementById("logo").addEventListener("click", () => {
-  const url = window.location.href;
-  let index = url.indexOf("/", 0);
-  index = url.indexOf("/", index + 1);
-  index = url.indexOf("/", index + 1);
-  window.location.href = window.location.href.substr(0, index + 1);
-});
-
 function scrollFunction() {
   var header = document.getElementById("header");
   var ofset = 50;
@@ -109,7 +101,7 @@ window.onload = function () {
 
     //hide side nav on resizing
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 768) sideNavigationContainer.style.left = "";
+      if (window.innerWidth > 868) sideNavigationContainer.style.left = "";
       document.body.style.overflowY = "";
     });
 
@@ -266,42 +258,16 @@ window.onload = function () {
       });
     }
   }
+  {
+    const logo = document.getElementsByClassName("logo");
 
-  const aboutLink = document.getElementById("about_page_link");
-  const helpLink = document.getElementById("help_page_link");
-  const policyLink = document.getElementById("policy_page_link");
-  const servicesLink = document.getElementById("services_page_link");
+    for (let i = 0; i < logo.length; i++) {
+      logo[i].addEventListener("click", function (e) {
+        if (e.target.parentNode.href === window.location.href)
+          e.preventDefault();
+      });
+    }
+  }
+
   // const profileLink = document.getElementsByClassName("user")[0];
-  let index = window.location.href.indexOf("/", 0);
-  index = window.location.href.indexOf("/", index + 1);
-  index = window.location.href.indexOf("/", index + 1);
-  const rootUrl = window.location.href.substr(0, index + 1);
-
-  let aboutUrl = rootUrl + "about-us";
-  if (window.location.href !== aboutUrl) {
-    aboutLink.setAttribute("href", aboutUrl);
-  } else {
-    aboutLink.removeAttribute("href");
-  }
-
-  let helpUrl = rootUrl + "help";
-  if (window.location.href !== helpUrl) {
-    helpLink.setAttribute("href", helpUrl);
-  } else {
-    helpLink.removeAttribute("href");
-  }
-
-  let policyUrl = rootUrl + "privacy-policy";
-  if (window.location.href !== policyUrl) {
-    policyLink.setAttribute("href", policyUrl);
-  } else {
-    policyLink.removeAttribute("href");
-  }
-
-  let servicesUrl = rootUrl + "terms-of-service";
-  if (window.location.href !== servicesUrl) {
-    servicesLink.setAttribute("href", servicesUrl);
-  } else {
-    servicesLink.removeAttribute("href");
-  }
 })();

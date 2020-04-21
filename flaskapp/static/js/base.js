@@ -14,7 +14,7 @@
 
     //hide side nav on resizing
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 768) sideNavigationContainer.style.left = "";
+      if (window.innerWidth > 868) sideNavigationContainer.style.left = "";
       document.body.style.overflowY = "";
     });
 
