@@ -49,3 +49,19 @@ class UserAccountTestCase(BaseUser):
             soup = BeautifulSoup(response.data, 'lxml')
             title = soup.find(("h1", {"class": "header"}))
             self.assertEqual(title.contents[0], 'Recent')
+        # test fake token
+        with self.mail.record_messages() as outbox:
+            data = dict(email="proton@gmail.com")
+            response, _ = test_post_request(self, "/reset_password", data)
+            self.assertIn(b"An email has been sent with instructions to reset your password.", response.data)
+            self.assertEqual(1, len(outbox))
+            self.assertEqual("Password Reset Request", outbox[0].subject)
+            self.assertEqual("proton@gmail.com", outbox[0].recipients[0])
+            regex = r"/reset_password/([^/]+) \)"
+            link = re.search(regex, outbox[0].body)
+            self.assertIsNotNone(link)
+            token = link.group(1)
+
+            new_password = dict(password="VeryDumb@123", confirm_password="VeryDumb@123")
+            response, _ = test_post_request(self, "/reset_password/erwsaad" + , new_password) #fake token
+            assertRedirects(response, url_for('reset_password'))
