@@ -51,8 +51,7 @@ def login():
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('papers.home'))
-        else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
+        flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('users/login.html', title='Login', form=form, css_file='css/users/login.css',
                            js_file='js/index.js', js_file2='js/users/login.js', btn_name='Back')
 
@@ -88,9 +87,8 @@ def account():
         db.session.commit()
         flash('Your account has been updated!', 'success')
         return redirect(url_for('users.account'))
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.email.data = current_user.email
+    form.username.data = current_user.username
+    form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('users/account.html', title='Account', css_file='css/users/accounts.css',
                            image_file=image_file, form=form, js_file='js/users/account.js')
