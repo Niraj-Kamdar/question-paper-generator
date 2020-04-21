@@ -55,8 +55,7 @@ class UserAccountTestCase(BaseUser):
         with self.mail.record_messages() as outbox:
             data = dict(email="proton@gmail.com")
             response, _ = test_post_request(self, "/reset_password", data)
-            self.assertIn(b"An email has been sent with instructions "
-                          + "to reset your password.",
+            self.assertIn(b"Your password has been updated! You are now able to log in",
                           response.data)
             self.assertEqual(1, len(outbox))
             self.assertEqual("Password Reset Request", outbox[0].subject)
