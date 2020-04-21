@@ -67,7 +67,7 @@ def add_course():
         course = Course(name=form.course.data, teacher=current_user)
         db.session.add(course)
         db.session.commit()
-        flash(f"New course added successfully!", "success")
+        flash("New course added successfully!", "success")
         return redirect(url_for("questions.courses"))
     return render_template("questions/course_form.html",
                            form=form,
@@ -130,7 +130,7 @@ def add_question(course_id, qtype):
                                     course_id=course_id)
             db.session.add(_question)
             db.session.commit()
-            flash(f"New question added successfully!", "success")
+            flash("New question added successfully!", "success")
             return redirect(url_for("questions.question", qtype="mcq", course_id=course_id))
         return render_template("questions/mcq_question_form.html",
                                form=form,
