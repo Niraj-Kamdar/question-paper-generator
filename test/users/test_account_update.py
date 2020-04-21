@@ -45,7 +45,7 @@ class UserAccountTestCase(BaseUser):
 
             # test fake token
             response, _ = test_post_request(self, "/reset_password/ran", new_password)
-            self.assertEqual(response.location, url_for('splash.dashboard', _external=True))
+            self.assertEqual(response.location, url_for('reset_password', _external=True))
 
             user = dict(email="proton@gmail.com", password="VeryDumb@123", remember=True, submit="Login")
             test_post_request(self, "/login", user)
