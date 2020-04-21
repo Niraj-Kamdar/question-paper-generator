@@ -71,4 +71,4 @@ class UserAccountTestCase(BaseUser):
                                 confirm_password="VeryDumb@123")
             response, _ = test_post_request(self, "/reset_password/erwsaad",
                                             new_password)
-            assertRedirects(response, url_for('reset_password'))
+            self.assertRedirects(response, url_for('reset_password'))
