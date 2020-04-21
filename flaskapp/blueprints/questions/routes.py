@@ -180,7 +180,7 @@ def update_question(course_id, qtype, question_id):
     if qtype == "mcq":
         _question = db.session.query(MCQQuestion).filter_by(id=question_id).first()
         if _question is None:
-            flash("Question:{question_id} Does not exist", "Failure")
+            flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(url_for("questions.question", qtype=qtype, course_id=course_id))
         form = MCQQuestionForm(**_question.to_dict())
         if form.validate_on_submit():
@@ -193,7 +193,7 @@ def update_question(course_id, qtype, question_id):
             _question.option3 = form.option3.data
             _question.option4 = form.option4.data
             db.session.commit()
-            flash("Question:{question_id} updated successfully!", "success")
+            flash(f"Question:{question_id} updated successfully!", "success")
             return redirect(url_for("questions.question", qtype=qtype, course_id=course_id))
         return render_template('questions/mcq_question_form.html',
                                form=form,
@@ -203,7 +203,7 @@ def update_question(course_id, qtype, question_id):
     elif qtype == "sub":
         _question = db.session.query(Question).filter_by(id=question_id).first()
         if _question is None:
-            flash("Question:{question_id} Does not exist", "Failure")
+            flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
         form = QuestionForm(**_question.to_dict())
         if form.validate_on_submit():
@@ -212,7 +212,7 @@ def update_question(course_id, qtype, question_id):
             _question.difficulty = form.difficulty.data
             _question.imp = form.imp.data
             db.session.commit()
-            flash("Question:{question_id} updated successfully!", "success")
+            flash(f"Question:{question_id} updated successfully!", "success")
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
         return render_template('questions/question_form.html',
                                form=form,

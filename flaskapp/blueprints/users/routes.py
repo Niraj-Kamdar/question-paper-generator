@@ -2,8 +2,11 @@ from flask import redirect, url_for, flash, render_template, request, Blueprint
 from flask_login import current_user, login_user, login_required, logout_user
 
 from flaskapp import bcrypt, db
-from flaskapp.blueprints.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, \
-    ResetPasswordForm
+from flaskapp.blueprints.users.forms import (RegistrationForm,
+                                             LoginForm,
+                                             UpdateAccountForm,
+                                             RequestResetForm,
+                                             ResetPasswordForm)
 from flaskapp.blueprints.users.utils import save_picture, send_reset_email
 from flaskapp.models import User
 
@@ -29,8 +32,13 @@ def register():
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
-    return render_template('users/register.html', title='Register', form=form, css_file='css/users/register.css',
-                           js_file='js/index.js', js_file2='js/users/register.js', btn_name='Back')
+    return render_template('users/register.html',
+                           title='Register',
+                           form=form,
+                           css_file='css/users/register.css',
+                           js_file='js/index.js',
+                           js_file2='js/users/register.js',
+                           btn_name='Back')
 
 
 @users.route("/login", methods=['GET', 'POST'])
@@ -52,8 +60,13 @@ def login():
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('papers.home'))
         flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('users/login.html', title='Login', form=form, css_file='css/users/login.css',
-                           js_file='js/index.js', js_file2='js/users/login.js', btn_name='Back')
+    return render_template('users/login.html',
+                           title='Login',
+                           form=form,
+                           css_file='css/users/login.css',
+                           js_file='js/index.js',
+                           js_file2='js/users/login.js',
+                           btn_name='Back')
 
 
 @users.route("/logout")
@@ -90,8 +103,12 @@ def account():
     form.username.data = current_user.username
     form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    return render_template('users/account.html', title='Account', css_file='css/users/accounts.css',
-                           image_file=image_file, form=form, js_file='js/users/account.js')
+    return render_template('users/account.html',
+                           title='Account',
+                           css_file='css/users/accounts.css',
+                           image_file=image_file,
+                           form=form,
+                           js_file='js/users/account.js')
 
 
 @users.route("/reset_password", methods=['GET', 'POST'])
@@ -110,7 +127,9 @@ def reset_request():
         send_reset_email(user)
         flash('An email has been sent with instructions to reset your password.', 'info')
         return redirect(url_for('users.login'))
-    return render_template('users/reset_request.html', title='Reset Password', form=form,
+    return render_template('users/reset_request.html',
+                           title='Reset Password',
+                           form=form,
                            js_file='js/users/reset_password.js')
 
 
@@ -139,5 +158,7 @@ def reset_token(token):
         db.session.commit()
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
-    return render_template('users/reset_token.html', title='Reset Password', form=form,
+    return render_template('users/reset_token.html',
+                           title='Reset Password',
+                           form=form,
                            js_file='js/users/reset_password.js')
