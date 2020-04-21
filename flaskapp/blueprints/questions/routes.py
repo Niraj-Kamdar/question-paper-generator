@@ -21,7 +21,7 @@ def question(course_id, qtype):
         HTML Function -- According to choosen type of question render page
     """
     _course = Course.query.filter(Course.id == course_id).first()
-    if _course.teacher != current_user:
+    if _course is None or _course.teacher != current_user:
         abort(403)
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     _courses = Course.query.filter(Course.teacher == current_user).all()
@@ -112,7 +112,7 @@ def add_question(course_id, qtype):
         and will add to UI and listdown on screen.
     """
     _course = Course.query.filter(Course.id == course_id).first()
-    if _course.teacher != current_user:
+    if _course is None or _course.teacher != current_user:
         abort(403)
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     _courses = Course.query.filter(Course.teacher == current_user).all()
@@ -175,7 +175,7 @@ def update_question(course_id, qtype, question_id):
        And do changes in database accordingly.
     """
     _course = Course.query.filter(Course.id == course_id).first()
-    if _course.teacher != current_user:
+    if _course is None or _course.teacher != current_user:
         abort(403)
     if qtype == "mcq":
         _question = db.session.query(MCQQuestion).filter_by(id=question_id).first()
@@ -231,7 +231,7 @@ def imp_question(course_id, qtype, impq):
         Same page with flag or without flag -- set an IMP flag to particular question.And do changes in database also.
     """
     _course = Course.query.filter(Course.id == course_id).first()
-    if _course.teacher != current_user:
+    if _course is None or _course.teacher != current_user:
         abort(403)
     obj = json.loads(impq)
     imp = obj["imp"]
@@ -261,7 +261,7 @@ def delete_question(course_id, qtype, deleteq):
         delete question's data. and update UI.
     """
     _course = Course.query.filter(Course.id == course_id).first()
-    if _course.teacher != current_user:
+    if _course is None or _course.teacher != current_user:
         abort(403)
     if qtype == "mcq":
         del_ids = json.loads(deleteq)
