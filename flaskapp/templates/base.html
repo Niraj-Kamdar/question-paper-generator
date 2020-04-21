@@ -25,6 +25,10 @@
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',
             filename=css_file) }}" />
+    {% if css_file2 %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+            filename=css_file2) }}" />
+    {% endif%}
 
     <link rel=“stylesheet” href=“https://use.fontawesome.com/releases/v5.5.0/css/all.css”
         integrity=“sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU” crossorigin=“anonymous”>
@@ -129,7 +133,7 @@
             </div>
 
         </header>
-        <div style="padding-top: 8%; margin-bottom: 4%;" class="block_main" id="main_container">
+        <div style="margin-bottom: 4%;" class="block_main" id="main_container">
 
             <div class="px-5 py-2">
                 {% block flashes %} {% endblock flashes %}

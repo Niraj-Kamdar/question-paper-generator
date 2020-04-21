@@ -104,7 +104,7 @@
       let mainI = 0;
       let mainFlag = false;
 
-      mainContainer.style.paddingTop = "100px"; // for all pages except question list
+      // mainContainer.style.paddingTop = "100px"; // for all pages except question list
 
       mainContainer.addEventListener("touchstart", function (e) {
         let touchObj = {};
