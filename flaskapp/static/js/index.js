@@ -192,7 +192,7 @@ window.onload = function () {
 
       mainContainer.addEventListener("touchstart", function (e) {
         let touchObj = {};
-        if (window.innerWidth > 768) return; //do not process if screen width is greater than 768
+        if (window.innerWidth > 868) return; //do not process if screen width is greater than 768
         touchObj = e.changedTouches[0];
         e.preventDefault(); // to avoid click
         mainTouchStartX = touchObj.pageX;
@@ -207,7 +207,7 @@ window.onload = function () {
         let distance = 0;
         let left = 0;
         if (mainFlag) return;
-        if (window.innerWidth > 768) return;
+        if (window.innerWidth > 868) return;
         touchObj = e.changedTouches[0];
         distance = touchObj.pageX - preMainPageX;
         if (mainI === 0) {
@@ -237,7 +237,7 @@ window.onload = function () {
           mainTouchStartX > 100 ||
           sideNavigationContainer.style.left >= "0px" || //if already side nav is present at correct position
           mainFlag ||
-          window.innerWidth > 768
+          window.innerWidth > 868
         )
           return;
 

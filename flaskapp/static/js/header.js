@@ -22,7 +22,7 @@
 
     //hide side nav on resizing
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 768) sideNavigationContainer.style.left = "";
+      if (window.innerWidth > 868) sideNavigationContainer.style.left = "";
       document.body.style.overflowY = "";
     });
 
@@ -113,7 +113,7 @@
 
       mainContainer.addEventListener("touchstart", function (e) {
         let touchObj = {};
-        if (window.innerWidth > 768) return; //do not process if screen width is greater than 768
+        if (window.innerWidth > 868) return; //do not process if screen width is greater than 768
         touchObj = e.changedTouches[0];
         e.preventDefault(); // to avoid click
         mainTouchStartX = touchObj.pageX;
@@ -128,7 +128,7 @@
         let distance = 0;
         let left = 0;
         if (mainFlag) return;
-        if (window.innerWidth > 768) return;
+        if (window.innerWidth > 868) return;
         touchObj = e.changedTouches[0];
         distance = touchObj.pageX - preMainPageX;
         if (mainI === 0) {
@@ -158,7 +158,7 @@
           mainTouchStartX > 100 ||
           sideNavigationContainer.style.left >= "0px" || //if already side nav is present at correct position
           mainFlag ||
-          window.innerWidth > 768
+          window.innerWidth > 868
         )
           return;
 
