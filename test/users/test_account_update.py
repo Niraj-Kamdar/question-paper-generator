@@ -38,15 +38,14 @@ class UserAccountTestCase(BaseUser):
             link = re.search(regex, outbox[0].body)
             self.assertIsNotNone(link)
             token = link.group(1)
-            
-            # test fake token
-            response, _ = test_post_request(self, "/reset_password/erwsaad",
-                                            new_password)
-            self.assertRedirects(response, url_for('reset_password'))
 
             new_password = dict(password="VeryDumb@123", confirm_password="VeryDumb@123")
             response, _ = test_post_request(self, "/reset_password/" + token, new_password)
             self.assertIn(b"Your password has been updated! You are now able to log in", response.data)
+
+            # test fake token
+            response, _ = test_post_request(self, "/reset_password/ran", new_password)
+            self.assertRedirects(response, url_for('reset_password'))
 
             user = dict(email="proton@gmail.com", password="VeryDumb@123", remember=True, submit="Login")
             test_post_request(self, "/login", user)
