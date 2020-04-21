@@ -42,16 +42,18 @@
         </div>
     </div>
     <div style="max-height : 60vh;overflow-y: auto;position: relative;">
-        {% for q in questions %}
+        {% for q in questions.items %}
         <div class="question_container">
             <div class="delete_question">
                 <label><input type="checkbox" class="delete_checkbox" /></label>
             </div>
-            <div style="max-height : 60vh;overflow-y: auto;position: relative;">
-                {% for q in questions.items %}
-                <div class="question_container">
-                    <div class="delete_question">
-                        <label><input type="checkbox" class="delete_checkbox" /></label>
+            <div class="question_info">
+                <div class="first_row">
+                    <div class="first_row_column_1">ID: {{ q.id }}</div>
+                    <div class="first_row_column_2">{{ q.imp }}</div>
+                    <div class="first_row_column_3">
+                        <label><span class="mark_label"></span><input type="checkbox" name="isimp" value="false"
+                                class="imp_checkbox" /></label>
                     </div>
                 </div>
                 <div class="second_row">
@@ -101,25 +103,26 @@
             {% endfor %}
         </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
 
-    {% block page %}
-    {% if questions %}
-    {% for page_num in questions.iter_pages(left_edge=1,
+{% block page %}
+{% if questions %}
+{% for page_num in questions.iter_pages(left_edge=1,
                                                 right_edge=1,
                                                 left_current=1,
                                                 right_current=2) %}
-    {% if page_num %}
-    {% if questions.page == page_num %}
-    <a class="btn btn-info mb-4"
-        href="{{ url_for('questions.question', page=page_num, course_id=course_id, qtype=qtype) }}">{{ page_num }}</a>
-    {% else %}
-    <a class="btn btn-outline-info mb-4"
-        href="{{ url_for('questions.question', page=page_num, course_id=course_id, qtype=qtype) }}">{{ page_num }}</a>
-    {% endif %}
-    {% else %}
-    ...
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% endblock %}
+{% if page_num %}
+{% if questions.page == page_num %}
+<a class="btn btn-info mb-4"
+    href="{{ url_for('questions.question', page=page_num, course_id=course_id, qtype=qtype) }}">{{ page_num }}</a>
+{% else %}
+<a class="btn btn-outline-info mb-4"
+    href="{{ url_for('questions.question', page=page_num, course_id=course_id, qtype=qtype) }}">{{ page_num }}</a>
+{% endif %}
+{% else %}
+...
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endblock %}
