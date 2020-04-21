@@ -1,8 +1,7 @@
 import re
 
 from bs4 import BeautifulSoup
-
-from flask import request, url_for
+import flask_testing
 from flaskapp import models
 from test.main.base_classes import BaseUser
 from test.main.utils import test_post_request
@@ -45,7 +44,7 @@ class UserAccountTestCase(BaseUser):
 
             # test fake token
             response, _ = test_post_request(self, "/reset_password/ran", new_password)
-            assert request.path == url_for('reset_password')
+            assertRedirects(response, "/reset_password")
 
             user = dict(email="proton@gmail.com", password="VeryDumb@123", remember=True, submit="Login")
             test_post_request(self, "/login", user)
