@@ -1,359 +1,198 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "headerFooter.html"%}
 
-<head>
-    <title>Contact US</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://browser.sentry-cdn.com/5.15.4/bundle.min.js"
-        integrity="sha384-Nrg+xiw+qRl3grVrxJtWazjeZmUwoSt0FAVsbthlJ5OMpx0G08bqIq3b/v0hPjhB" crossorigin="anonymous">
-    </script>
-    <script>
-        Sentry.init({
-            dsn: "https://c9335936f879448e8ba64f062636caaf@o374456.ingest.sentry.io/5192852",
-        });
-    </script>
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href={{ url_for("static",
-    filename="images/icons/favicon.ico") }} />
-    <!--===============================================================================================-->
-    <!-- <link rel="stylesheet" type="text/css"
-        href={{ url_for("static", filename="vendor/bootstrap/css/bootstrap.min.css") }}> -->
+<!--===============================================================================================-->
+<!-- <link rel="icon" type="image/png" href={{ url_for("static",
+    filename="images/icons/favicon.ico") }} /> -->
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!--===============================================================================================-->
-    <!-- <link rel="stylesheet" type="text/css"
-        href={{ url_for("static", filename="fonts/font-awesome-4.7.0/css/font-awesome.min.css") }}> -->
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-    <!--===============================================================================================-->
-    <!-- <link rel="stylesheet" type="text/css" href={{ url_for("static", filename="vendor/animate/animate.css") }}> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css"
-        crossorigin="anonymous" />
-    <!--===============================================================================================-->
-    <!-- <link rel="stylesheet" type="text/css"
-        href={{ url_for("static", filename="vendor/css-hamburgers/hamburgers.min.css") }}> -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.1.3/hamburgers.min.css" crossorigin="anonymous" />
-    <!--===============================================================================================-->
-    <!-- <link rel="stylesheet" type="text/css" href={{ url_for("static", filename="vendor/select2/select2.min.css") }}> -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href='{{ url_for("static",
-    filename="css/contact_us/util.css") }}' />
-    <link rel="stylesheet" type="text/css" href='{{ url_for("static",
-    filename="css/contact_us/main.css") }}' />
-    <!--===============================================================================================-->
-    <meta charset="utf-8" />
+<!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" /> -->
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
-
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/header_footer.css') }}" />
-</head>
-
-<body>
-    <header>
-        <div class="row pl-4 py-2 text-white sticky-top header_contact" id="header"
-            style="margin: 0; padding: 0;background-color: rgba(140,0,244,1);">
-            <div id="bars_container"><i class="fa fa-bars"></i></div>
-            <div class="col1">
-                <img src="{{ url_for('static',
-                                    filename='images/logo.svg') }}" class="logo" alt="logo" id="logo">
-            </div>
-            <div class="col2">
-                <h2>SetNow</h2>
-                <h4>Question Paper Generator</h4>
-            </div>
-            <div class="col3">
-
-                <div class="row" style="margin: 0; padding: 0;">
-
-                    <a href="/about-us" class="top_navigation_items">
-                        <h4 class="py-2 mx-3">About Us</h4>
-                    </a>
-                    <a href="/help" class="top_navigation_items">
-                        <h4 class="py-2 mx-3">Help</h4>
-                    </a>
-                    <a href="/contact-us" class="top_navigation_items">
-                        <h4 class="py-2 mx-3">Contact Us</h4>
-                    </a>
-
-                </div>
-            </div>
-            <div id="side_navigation_container">
-                <div id="logo_container">
-
-                    <div class="col1">
-                        <a href="/home">
-                            <img src="{{ url_for('static',
-                                        filename='images/logo.svg') }}" class="logo" alt="logo" />
-                        </a>
-                    </div>
-
-                    <div class="col2">
-                        <h2>SetNow</h2>
-                        <h4>Question Paper Generator</h4>
-                    </div>
-                    <div class="col4">
-                        <a href="/account" class="profile_page">
-                            {% block image2 %} {% endblock image2 %}
-                        </a>
-                    </div>
-                </div>
-                <div id="side_navigation_items_container">
-                    <a href="/about-us" class="side_navigation_items">
-                        About Us
-                    </a>
-                    <a href="/help" class="side_navigation_items">
-                        Help
-                    </a>
-                    <a href="/contact-us" class="side_navigation_items">
-                        Contact Us
-                    </a>
-                    <a href="#" class="side_navigation_items" id="close_link">Close</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div id="flash">
-        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+<div id="flash">
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
       messages %}
-        <ul class="flashes">
-            {% for category, message in messages %}
-            <li class="{{ category }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %} {% endwith %}
-    </div>
-    <div class="bg-contact100" style="background-image: url({{ url_for('static', filename='images/bg-01.jpg') }})">
-        <div class="container-contact100" style="padding-top: 8%;" id="main_container">
-            <div class="wrap-contact100" style="padding-top:150px;">
-                <div class="contact100-pic js-tilt" data-tilt>
-                    <img alt="IMG" src={{ url_for("static",
-            filename="images/img-01.png") }}>
-                </div>
+    <ul class="flashes">
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+</div>
 
-                <form method="POST" action="" id="contactForm" class="contact100-form validate-form">
-                    {{ form.hidden_tag() }}
-                    <span class="contact100-form-title">
-                        Get in touch
-                    </span>
-                    <div id="form_content">
-                        <div class="wrap-input100 validate-input" data-validate="Name is required">
-                            <label>
-                                {{ form.name(class="input100", placeholder="Name") }} {#
+
+{%block links%}
+<link rel="stylesheet" crossorigin="anonymous"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css" />
+<link rel="stylesheet" crossorigin="anonymous"
+    href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.1.3/hamburgers.min.css" />
+<link rel="stylesheet" crossorigin="anonymous"
+    href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+{%endblock links%}
+
+{% block body %}
+
+
+<div class="bg-contact100" style="background-image: url({{ url_for('static', filename='images/bg-01.jpg') }})">
+    <div class="container-contact100" style="padding-top: 8%;">
+        <div class="wrap-contact100" style="padding-top:150px;">
+            <div class="contact100-pic js-tilt" data-tilt>
+                <img alt="IMG" src={{ url_for("static",
+            filename="images/img-01.png") }}>
+            </div>
+
+            <form method="POST" action="" id="contactForm" class="contact100-form validate-form">
+                {{ form.hidden_tag() }}
+                <span class="contact100-form-title">
+                    Get in touch
+                </span>
+                <div id="form_content">
+                    <div class="wrap-input100 validate-input" data-validate="Name is required">
+                        <label>
+                            {{ form.name(class="input100", placeholder="Name") }} {#
                   <input
                     class="input100"
                     type="text"
                     name="name"
                     placeholder="Name"
                   />#}</label>
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                            </span>
-                        </div>
-
-                        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                            <label>{{ form.email(class="input100", placeholder="Email") }}</label>
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                            </span>
-                        </div>
-
-                        <div class="wrap-input100 validate-input" data-validate="Valid mobile is required: 1234567890">
-                            <label>{{ form.mobile(class="input100", placeholder="Mobile") }}</label>
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-mobile fa-1x" aria-hidden="true"></i>
-                            </span>
-                        </div>
-
-                        <div class="wrap-input100 validate-input" data-validate="Subject is required">
-                            <label>{{ form.subject(class="input100", placeholder="Subject") }}</label>
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-indent" aria-hidden="true"></i>
-                            </span>
-                        </div>
-
-                        <div class="wrap-input100 validate-input" data-validate="Message is required">
-                            <label>{{ form.message(class="input100", placeholder="Message") }}</label>
-                            <span class="focus-input100"></span>
-                        </div>
-
-                        <div class="container-contact100-form-btn">
-                            <button class="contact100-form-btn">
-                                Send
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <footer>
-        <div class="row" id="footer">
-            <div class="row" id="social_links">
-                <div class="col py-3 text-center" id="footercontent">
-                    <div class="footer_items">
-                        <span class="mr-3 span_color" style="color: white;">©
-                            2020 Copyright :
-                            <a href="/" class="fl">setnow.herokuapp.com</a>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user" aria-hidden="true"></i>
                         </span>
                     </div>
 
-                    <div class="footer_items">
-                        <a href="#" class="fl"><i class="fab fa-facebook-f
-                                    "> </i></a>
-
-                        <a href="#" class="fl"><i class="fab fa-twitter
-                                    "> </i></a>
-
-                        <a href="#" class="fl"><i class="fab
-                                    fa-google-plus-g "> </i></a>
-
-                        <a href="#" class="fl"><i class="fab fa-linkedin-in
-                                    "> </i></a>
-
-                        <a href="#" class="fl"><i class="fab fa-instagram
-                                    "> </i></a>
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <label>{{ form.email(class="input100", placeholder="Email") }}</label>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
                     </div>
 
-
-                    <div class="footer_items">
-                        <span class="span_color">
-                            <a href="/privacy-policy" class="fl" id="policy_page_link">Privacy
-                                Policy</a>
+                    <div class="wrap-input100 validate-input" data-validate="Valid mobile is required: 1234567890">
+                        <label>{{ form.mobile(class="input100", placeholder="Mobile") }}</label>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-mobile fa-1x" aria-hidden="true"></i>
                         </span>
+                    </div>
 
-                        <span class="span_color">
-                            <a href="/terms-of-service" class="fl" id="services_page_link">Terms Of
-                                Services</a>
+                    <div class="wrap-input100 validate-input" data-validate="Subject is required">
+                        <label>{{ form.subject(class="input100", placeholder="Subject") }}</label>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-indent" aria-hidden="true"></i>
                         </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Message is required">
+                        <label>{{ form.message(class="input100", placeholder="Message") }}</label>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="container-contact100-form-btn">
+                        <button class="contact100-form-btn">
+                            Send
+                        </button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </footer>
-    <script type="text/javascript" src="{{ url_for('static',filename='js/header.js') }}"></script>
-    <script src="https://kit.fontawesome.com/bb7cf58c3b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+    </div>
+</div>
+{% endblock body %}
 
-    <!--===============================================================================================-->
-    <!-- <script src={{ url_for("static", filename="vendor/jquery/jquery-3.2.1.min.js") }}></script> -->
 
-    <script>
-        (function ($) {
-            "use strict";
 
-            /*==================================================================
-                    [ Validate ]*/
-            var input = $(".validate-input .input100");
 
-            $(".validate-form").on("submit", function () {
-                var check = true;
+<!--===============================================================================================-->
+<!-- <script src={{ url_for("static", filename="vendor/jquery/jquery-3.2.1.min.js") }}></script> -->
+{%block script %}
+<script>
+    (function ($) {
+        "use strict";
 
-                for (var i = 0; i < input.length; i++) {
-                    if (validate(input[i]) == false) {
-                        showValidate(input[i]);
-                        check = false;
-                    }
-                }
+        /*==================================================================
+                [ Validate ]*/
+        var input = $(".validate-input .input100");
 
-                return check;
-            });
+        $(".validate-form").on("submit", function () {
+            var check = true;
 
-            $(".validate-form .input100").each(function () {
-                $(this).focus(function () {
-                    hideValidate(this);
-                });
-            });
-
-            function validate(input) {
-                if (
-                    $(input).attr("type") == "email" ||
-                    $(input).attr("name") == "email"
-                ) {
-                    if (
-                        $(input)
-                        .val()
-                        .trim()
-                        .match(
-                            /^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
-                        ) == null
-                    ) {
-                        return false;
-                    }
-                } else {
-                    if ($(input).val().trim() == "") {
-                        return false;
-                    }
+            for (var i = 0; i < input.length; i++) {
+                if (validate(input[i]) == false) {
+                    showValidate(input[i]);
+                    check = false;
                 }
             }
 
-            function showValidate(input) {
-                var thisAlert = $(input).parent();
-
-                $(thisAlert).addClass("alert-validate");
-            }
-
-            function hideValidate(input) {
-                var thisAlert = $(input).parent();
-
-                $(thisAlert).removeClass("alert-validate");
-            }
-        })(jQuery);
-    </script>
-    <!--===============================================================================================-->
-    <!-- <script src={{ url_for("static", filename="vendor/bootstrap/js/popper.js") }}></script> -->
-    <!-- <script src={{ url_for("static", filename="vendor/bootstrap/js/bootstrap.min.js") }}></script> -->
-
-    <!--===============================================================================================-->
-    <!-- <script src={{ url_for("static", filename="vendor/select2/select2.min.js") }}></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js" type="text/javascript">
-    </script>
-    <!--===============================================================================================-->
-    <!-- <script src={{ url_for("static", filename="vendor/tilt/tilt.jquery.min.js") }}></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js" type="text/javascript">
-    </script>
-    <script>
-        $(".js-tilt").tilt({
-            scale: 1.1,
+            return check;
         });
-    </script>
-    <!--===============================================================================================-->
-    <!-- <script src={{ url_for("static", filename="js/contact_us/contact_us.js") }}></script> -->
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+        $(".validate-form .input100").each(function () {
+            $(this).focus(function () {
+                hideValidate(this);
+            });
+        });
 
-        function gtag() {
-            dataLayer.push(arguments);
+        function validate(input) {
+            if (
+                $(input).attr("type") == "email" ||
+                $(input).attr("name") == "email"
+            ) {
+                if (
+                    $(input)
+                    .val()
+                    .trim()
+                    .match(
+                        /^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
+                    ) == null
+                ) {
+                    return false;
+                }
+            } else {
+                if ($(input).val().trim() == "") {
+                    return false;
+                }
+            }
         }
 
-        gtag("js", new Date());
+        function showValidate(input) {
+            var thisAlert = $(input).parent();
 
-        gtag("config", "UA-23581568-13");
-    </script>
-</body>
+            $(thisAlert).addClass("alert-validate");
+        }
 
-</html>
+        function hideValidate(input) {
+            var thisAlert = $(input).parent();
+
+            $(thisAlert).removeClass("alert-validate");
+        }
+    })(jQuery);
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js" type="text/javascript">
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js" type="text/javascript">
+</script>
+<script>
+    $(".js-tilt").tilt({
+        scale: 1.1,
+    });
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag("js", new Date());
+
+    gtag("config", "UA-23581568-13");
+</script>
+{%endblock script %}

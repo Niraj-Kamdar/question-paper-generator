@@ -1,24 +1,5 @@
-* {
-  font-family: "Montserrat", sans-serif;
-}
-
-body::-webkit-scrollbar {
-  display: none;
-  position: fixed;
-}
-
-#bars_container {
-  display: none;
-  font-size: 24px;
-  margin: auto 0;
-}
-
 #bodycontent {
   transition: 1s;
-}
-
-#close_link {
-  display: none;
 }
 
 #content {
@@ -35,89 +16,17 @@ body::-webkit-scrollbar {
   transition-delay: 0s, 0.5s;
 }
 
-.col1 {
-  /*border :1px solid yellow;*/
-  width: 80px;
-}
-
-.col2 {
-  flex-grow: 1;
-  padding-left: 1.5%;
-  /* width: 50%; */
-  transition: 1s;
-  /*border :1px solid yellow;*/
-}
-
-.col2 > h2 {
-  font-size: 32px;
-  /* font-weight: bolder; */
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: 0px;
-}
-
-.col2 > h4 {
-  font-size: 20px;
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: 0px;
-}
-
-.col3 {
-  /* width: 40%; */
-  /*border :1px solid yellow;*/
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.col3 > .row {
-  display: flex;
-  justify-content: flex-end;
-  /*border :1px solid red;*/
-}
-
-.col3 .row a {
-  display: block;
-  text-decoration: none !important;
-}
-
-.col3 .row h4 {
+/* .col3 .row h4 {
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
   text-align: right;
   /* float: left; */
-  /*border :1px solid yellow;*/
-  border-bottom: 2px solid #ffffff00;
+/*border :1px solid yellow;*/
+/*border-bottom: 2px solid #ffffff00;
   font-size: 20px;
-}
+} */
 
-.col3 .row h4:hover {
-  color: rgba(255, 255, 255, 1);
-  cursor: pointer;
-}
-
-#footer {
-  margin: 0;
-  display: block;
-  transition: 1s;
-  background: #9000f0;
-}
-
-#footercontent {
-  display: flex;
-  justify-content: center;
-}
-
-.fl {
-  color: rgba(255, 255, 255, 1);
-  margin: 0 10px;
-}
-
-.fl:hover {
-  color: rgba(255, 255, 255, 1);
-  text-decoration: none;
-}
-
-#header {
+/* #header {
   background-color: #9000f0;
   display: flex;
   margin: 0;
@@ -126,7 +35,7 @@ body::-webkit-scrollbar {
   left: 0;
   transition: 0.3s;
   z-index: -1;
-}
+} */
 
 .img1 {
   position: fixed;
@@ -135,26 +44,6 @@ body::-webkit-scrollbar {
   width: 100%;
   height: auto;
   transition: 1s;
-}
-
-#logo_container {
-  display: flex;
-  border-bottom: 1px solid white;
-  padding-bottom: 10px;
-}
-
-#logo_container > .col4 {
-  display: none;
-}
-
-.logo {
-  max-height: 100%;
-  max-width: 100%;
-  position: relative;
-}
-
-.logo:hover {
-  cursor: pointer;
 }
 
 .login_btn {
@@ -218,48 +107,6 @@ body::-webkit-scrollbar {
   animation: spin 2s linear infinite;
 }
 
-.row {
-  /*border:1px dotted red;*/
-  position: relative;
-  width: 100%;
-}
-
-#side_navigation_container {
-  background-color: rgba(144, 0, 240, 1);
-  bottom: 0;
-  border-right: 1px solid white;
-  height: 1600px;
-  left: -300px;
-  padding: 10px;
-  position: absolute;
-  /* right: 0px; */
-  top: 0;
-  transition: left 0.5s;
-  width: 280px;
-}
-
-.side_navigation_items {
-  border-bottom: 1px solid white;
-  color: white;
-  display: block;
-  padding: 10px 0;
-  text-align: center;
-}
-
-.side_navigation_items:hover {
-  color: white;
-  text-decoration: none;
-}
-
-#social_links {
-  margin: 0;
-  font-size: 20px;
-}
-
-.span_color {
-  color: rgba(255, 255, 255, 1);
-}
-
 /************************************************************************/
 
 /************************************************************************/
@@ -284,66 +131,5 @@ body::-webkit-scrollbar {
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-/*// Small devices (landscape phones, tablates, 576px and up)*/
-@media (max-width: 1200px) {
-  #footercontent {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 868px) {
-  #bars_container {
-    display: block;
-  }
-  #close_link {
-    display: block;
-  }
-  .col3 {
-    display: none;
-  }
-  .col1 {
-    display: none;
-  }
-  .col2 {
-    display: none;
-  }
-  .col2 > h2 {
-    font-size: 24px;
-  }
-  .col2 > h4 {
-    font-size: 12px;
-  }
-  .col4 {
-    margin-left: auto;
-    width: 56px;
-  }
-  #logo_container > .col1 {
-    width: 56px;
-  }
-  #logo_container > .col1,
-  #logo_container > .col2 {
-    display: block;
-  }
-}
-@media (max-width: 395px) {
-  .footer_items:last-child {
-    display: flex;
-    flex-direction: column;
-  }
-}
-@media (max-width: 375px) {
-  .col4 {
-    display: none;
-  }
-  #logo_container > .col4 {
-    display: block;
-    margin-left: auto;
-  }
-  #side_navigation_container {
-    left: -100%;
-    width: 100%;
   }
 }

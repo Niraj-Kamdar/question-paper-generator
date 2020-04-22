@@ -14,7 +14,7 @@
 
     //hide side nav on resizing
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 868) sideNavigationContainer.style.left = "";
+      if (window.innerWidth > 920) sideNavigationContainer.style.left = "";
       document.body.style.overflowY = "";
     });
 
@@ -35,6 +35,7 @@
       let sideI = 0;
 
       let sideFlag = false;
+      let netDistance = 0;
       //listen for touch-start on side nav for closing
 
       sideNavigationContainer.addEventListener("touchstart", function (e) {
@@ -45,6 +46,7 @@
         // reset for every touch start event
         sideFlag = false;
         sideI = 0;
+        netDistance = 0;
         // }
       });
 
@@ -55,6 +57,7 @@
         if (sideFlag) return;
         touchObj = e.changedTouches[0];
         distance = touchObj.pageX - preSidePageX;
+        netDistance += distance;
         if (sideI === 0) {
           let yDiff = 0;
           sideI++;
@@ -79,15 +82,19 @@
         let distance = 0;
 
         if (sideFlag) return;
-        touchObj = e.changedTouches[0];
-        distance = touchObj.pageX - sideTouchStartX;
-
-        if (-distance >= 40) {
-          sideNavigationContainer.style.left = "";
-          document.body.style.overflowY = "";
-        } else {
-          sideNavigationContainer.style.left = "0px";
-          document.body.style.overflowY = "hidden";
+        try {
+          touchObj = e.changedTouches[0];
+          distance = touchObj.pageX - sideTouchStartX;
+        } catch (e) {
+          distance = netDistance;
+        } finally {
+          if (-distance >= 40) {
+            sideNavigationContainer.style.left = "";
+            document.body.style.overflowY = "";
+          } else {
+            sideNavigationContainer.style.left = "0px";
+            document.body.style.overflowY = "hidden";
+          }
         }
       });
     }
@@ -103,19 +110,19 @@
       let preMainPageX = 0; // previous x coordinate for main page
       let mainI = 0;
       let mainFlag = false;
-
+      let netDistance = 0;
       // mainContainer.style.paddingTop = "100px"; // for all pages except question list
 
       mainContainer.addEventListener("touchstart", function (e) {
         let touchObj = {};
-        if (window.innerWidth > 868) return; //do not process if screen width is greater than 768
+        if (window.innerWidth > 920) return; //do not process if screen width is greater than 920
         touchObj = e.changedTouches[0];
-        e.preventDefault(); // to avoid click
         mainTouchStartX = touchObj.pageX;
         mainTouchStartY = touchObj.pageY;
         preMainPageX = touchObj.pageX;
         mainFlag = false;
         mainI = 0;
+        netDistance = 0;
       });
 
       mainContainer.addEventListener("touchmove", function (e) {
@@ -123,9 +130,10 @@
         let distance = 0;
         let left = 0;
         if (mainFlag) return;
-        if (window.innerWidth > 868) return;
+        if (window.innerWidth > 920) return;
         touchObj = e.changedTouches[0];
         distance = touchObj.pageX - preMainPageX;
+        netDistance = netDistance + distance;
         if (mainI === 0) {
           let yDiff = 0;
           mainI++;
@@ -148,12 +156,11 @@
       mainContainer.addEventListener("touchend", function (e) {
         let touchObj = {};
         let distance = 0;
-        e.preventDefault();
         if (
           mainTouchStartX > 100 ||
           sideNavigationContainer.style.left >= "0px" || //if already side nav is present at correct position
           mainFlag ||
-          window.innerWidth > 868
+          window.innerWidth > 920
         )
           return;
 
@@ -161,58 +168,119 @@
         //   sideNavigationContainer.style.left = `${initialLeft}px`;
         //   return;
         // }
+        try {
+          touchObj = e.changedTouches[0];
 
-        touchObj = e.changedTouches[0];
-        distance = touchObj.pageX - mainTouchStartX;
-        if (distance >= 40) {
-          sideNavigationContainer.style.left = "0px";
-          document.body.style.overflowY = "hidden";
-        } else {
-          sideNavigationContainer.style.left = "";
-          document.body.style.overflowY = "";
+          distance = touchObj.pageX - mainTouchStartX;
+        } catch (e) {
+          distance = netDistance;
+        } finally {
+          if (distance >= 40) {
+            sideNavigationContainer.style.left = "0px";
+            document.body.style.overflowY = "hidden";
+          } else {
+            sideNavigationContainer.style.left = "";
+            document.body.style.overflowY = "";
+          }
         }
       });
     }
   }
   {
-    const sideNavigationItems = document.getElementsByClassName(
-      "side_navigation_items"
-    );
-    //disable links if href and window location is same for side navigation links
-    for (let i = 0; i < sideNavigationItems.length; i++) {
-      sideNavigationItems[i].addEventListener("click", (e) => {
-        if (
-          e.target.href === window.location.href ||
-          e.target.href + "/" === window.location.href //for course/
-        )
-          e.preventDefault();
-      });
+    let isHomePage = false;
+    let areAdditionalPages = false;
+    {
+      const additionalPages = [
+        "about-us",
+        "help",
+        "privacy-policy",
+        "terms-of-service",
+        "contact-us",
+      ];
+      const header = document.getElementById("header");
+      const url = window.location.href;
+      isHomePage = !!(
+        url.match(new RegExp("/", "g")).length === 3 &&
+        url[url.length - 1] === "/"
+      );
+      for (page of additionalPages) {
+        const index = url.indexOf(page);
+        if (index !== -1) {
+          areAdditionalPages = true;
+          break;
+        }
+      }
+      if (isHomePage) {
+        header.classList.remove("px-4", "py-2");
+        header.classList.add("pl-2", "py-3");
+      }
+      if (areAdditionalPages) {
+        header.classList.remove("px-4");
+        header.classList.add("pl-2");
+      }
     }
-  }
-  {
-    const topNavigationItems = document.getElementsByClassName(
-      "top_navigation_items"
-    );
+    {
+      const sideNavigationItems = document.getElementsByClassName(
+        "side_navigation_items"
+      );
 
-    //disable links if href and window location is same for top navigation links
-    for (let i = 0; i < topNavigationItems.length; i++) {
-      topNavigationItems[i].addEventListener("click", function (e) {
-        if (
-          e.target.parentNode.href === window.location.href ||
-          e.target.parentNode.href + "/" === window.location.href //for course/
-        )
-          e.preventDefault();
-      });
+      if (isHomePage || areAdditionalPages) {
+        sideNavigationItems[5].parentNode.style.display = "none";
+        sideNavigationItems[1].style.display = sideNavigationItems[9].style.display =
+          "none";
+      } else {
+        sideNavigationItems[2].style.display = sideNavigationItems[3].style.display = sideNavigationItems[4].style.display =
+          "none";
+      }
+
+      //disable links if href and window location is same for side navigation links
+      for (let i = 0; i < sideNavigationItems.length; i++) {
+        sideNavigationItems[i].addEventListener("click", (e) => {
+          if (
+            e.target.href === window.location.href ||
+            e.target.href + "home" === window.location.href ||
+            e.target.href + "/" === window.location.href //for course/
+          )
+            e.preventDefault();
+        });
+      }
     }
-  }
-  {
-    const profilePage = document.getElementsByClassName("profile_page");
+    {
+      const topNavigationItems = document.getElementsByClassName(
+        "top_navigation_items"
+      );
+      if (isHomePage || areAdditionalPages) {
+        topNavigationItems[5].parentNode.parentNode.style.display = "none";
+        topNavigationItems[1].style.display = topNavigationItems[8].style.display =
+          "none";
+      } else {
+        topNavigationItems[2].style.display = topNavigationItems[3].style.display = topNavigationItems[4].style.display =
+          "none";
+      }
+      //disable links if href and window location is same for top navigation links
+      for (let i = 0; i < topNavigationItems.length; i++) {
+        topNavigationItems[i].addEventListener("click", function (e) {
+          if (
+            e.target.parentNode.href === window.location.href ||
+            e.target.parentNode.href + "home" === window.location.href ||
+            e.target.parentNode.href + "/" === window.location.href //for course/
+          )
+            e.preventDefault();
+        });
+      }
+    }
 
-    for (let i = 0; i < profilePage.length; i++) {
-      profilePage[i].addEventListener("click", function (e) {
-        if (window.location.href === e.target.parentNode.href)
-          e.preventDefault();
-      });
+    {
+      const profilePage = document.getElementsByClassName("profile_page");
+
+      for (let i = 0; i < profilePage.length; i++) {
+        if (isHomePage || areAdditionalPages)
+          profilePage[i].parentNode.style.display = "none";
+        profilePage[i].addEventListener("click", function (e) {
+          if (window.location.href === e.target.parentNode.href)
+            e.preventDefault();
+        });
+      }
     }
   }
   {
@@ -220,25 +288,27 @@
 
     for (let i = 0; i < logo.length; i++) {
       logo[i].addEventListener("click", function (e) {
-        if (e.target.parentNode.href === window.location.href)
+        if (
+          e.target.parentNode.href === window.location.href ||
+          e.target.parentNode.href + "home" === window.location.href
+        )
           e.preventDefault();
       });
     }
   }
   {
+    let startX = 0;
+    let startY = 0;
+    let flag = false;
     const dropdownContainer = document.getElementsByClassName(
       "dropdown_container"
     )[0];
     const dropdownTitle = dropdownContainer.firstElementChild;
 
-    dropdownContainer.lastElementChild.style.display = "none";
-
-    dropdownContainer.addEventListener("mouseenter", function (e) {
-      const target = e.target;
+    dropdownContainer.addEventListener("mouseenter", function () {
       const classList = dropdownTitle.lastElementChild.classList;
       classList.remove("fa-caret-down");
       classList.add("fa-caret-up");
-      target.lastElementChild.style.display = "";
     });
 
     dropdownContainer.addEventListener("mouseleave", function (e) {
@@ -249,25 +319,56 @@
       target.lastElementChild.style.display = "";
     });
 
-    dropdownTitle.addEventListener("click", function (e) {
+    dropdownTitle.addEventListener("touchstart", function (e) {
+      let touchObj = {};
+      touchObj = e.changedTouches[0];
+      startX = touchObj.pageX;
+      startY = touchObj.pageY;
+    });
+
+    dropdownTitle.addEventListener("touchmove", function (e) {
+      let touchObj = {};
+      touchObj = e.changedTouches[0];
+      if (
+        !(Math.abs(touchObj.pageX - startX) <= 10) ||
+        !(Math.abs(touchObj.pageY - startY) <= 10)
+      )
+        flag = true;
+    });
+
+    dropdownTitle.addEventListener("touchend", function (e) {
+      let touchObj = {};
       let target = {};
       let dropdownItemsContainer = {};
       let classList = {};
       let display = "";
-      if (Array.from(e.target.classList).includes("fa"))
-        target = e.target.parentNode;
-      else target = e.target;
-      dropdownItemsContainer = target.nextElementSibling;
-      display = window.getComputedStyle(dropdownItemsContainer).display;
-      classList = target.lastElementChild.classList;
-      if (display === "block") {
-        dropdownItemsContainer.style.display = "none";
-        classList.remove("fa-caret-up");
-        classList.add("fa-caret-down");
-      } else {
-        dropdownItemsContainer.style.display = "block";
-        classList.remove("fa-caret-down");
-        classList.add("fa-caret-up");
+      touchObj = e.changedTouches[0];
+      e.preventDefault();
+      try {
+        target = touchObj.target;
+        if (
+          !(Math.abs(touchObj.pageX - startX) <= 10) ||
+          !(Math.abs(touchObj.pageY - startY) <= 10)
+        )
+          return;
+      } catch (e) {
+        target = dropdownTitle;
+        if (flag) return;
+      } finally {
+        dropdownItemsContainer = target.nextElementSibling;
+        display = window
+          .getComputedStyle(dropdownItemsContainer)
+          .getPropertyValue("display");
+        classList = target.lastElementChild.classList;
+        if (display === "block") {
+          dropdownItemsContainer.style.display = "none";
+          classList.remove("fa-caret-up");
+          classList.add("fa-caret-down");
+        } else {
+          dropdownItemsContainer.style.display = "block";
+          classList.remove("fa-caret-down");
+          classList.add("fa-caret-up");
+        }
       }
     });
   }
@@ -297,6 +398,17 @@
       }
     });
   }
-
+  {
+    const footerLinks = document.getElementsByClassName("fl");
+    for (let i = 0; i < footerLinks.length; i++) {
+      footerLinks[i].addEventListener("click", (e) => {
+        if (
+          e.target.href === window.location.href ||
+          e.target.href + "home" === window.location.href
+        )
+          e.preventDefault();
+      });
+    }
+  }
   document.body.style.overflowY = "auto"; //for all pages except question list
 })();
