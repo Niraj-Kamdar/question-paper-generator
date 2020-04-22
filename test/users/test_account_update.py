@@ -27,6 +27,7 @@ class UserAccountTestCase(BaseUser):
     def test_forgot_password(self):
         # test valid user
         with self.mail.record_messages() as outbox:
+            # test with valid token
             data = dict(email="proton@gmail.com")
             response, _ = test_post_request(self, "/reset_password", data)
             self.assertIn(b"An email has been sent with instructions to reset your password.", response.data)
@@ -49,3 +50,10 @@ class UserAccountTestCase(BaseUser):
             soup = BeautifulSoup(response.data, 'lxml')
             title = soup.find(("h1", {"class": "header"}))
             self.assertEqual(title.contents[0], 'Recent')
+            self.logout()
+
+        # test invalid token
+        response, _ = test_post_request(self, "/reset_password/fakeToken", new_password)
+        self.assertIn(b"<title>SetNow : Reset Password</title>", response.data)
+        # FIXME: add flash in frontend: enable this test once fixed
+        # self.assertIn(b"That is an invalid or expired token", response.data)
