@@ -203,7 +203,7 @@
         url.match(new RegExp("/", "g")).length === 3 &&
         url[url.length - 1] === "/"
       );
-      for (page of additionalPages) {
+      for (let page of additionalPages) {
         const index = url.indexOf(page);
         if (index !== -1) {
           areAdditionalPages = true;
