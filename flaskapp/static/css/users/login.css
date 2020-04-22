@@ -9,6 +9,8 @@ body::-webkit-scrollbar {
 
 #bodycontent {
     transition: 1s;
+    position: relative;
+    z-index: 1;
 }
 
 .row {
@@ -30,6 +32,7 @@ body::-webkit-scrollbar {
     width: 30%;
     height: 100%;
     position: fixed;
+    z-index: 2;
 }
 
 /************************************************************************/

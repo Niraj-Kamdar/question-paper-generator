@@ -27,17 +27,18 @@ def about_us():
     Returns:
         HTML  -- It will redirect to about us page.
     """
-    return render_template('main/about.html', title='About Us', css_file='css/about.css')
+    return render_template('main/about.html', title='About Us', css_file='css/main/about.css')
 
 
 @main.route("/privacy-policy")
 def policy_page():
-    return render_template("main/privacy-policy.html", title="Privacy Policy", css_file='css/privacy_policy.css')
+    return render_template("main/privacy-policy.html", title="Privacy Policy", css_file='css/main/privacy_policy.css')
 
 
 @main.route("/terms-of-service")
 def terms_of_service_page():
-    return render_template("main/terms-of-service.html", title="Terms Of Service", css_file='css/terms_of_service.css')
+    return render_template("main/terms-of-service.html", title="Terms Of Service",
+                           css_file='css/main/terms_of_service.css')
 
 
 @main.route("/help")
@@ -66,6 +67,7 @@ def contact_us():
                     message=form.message.data)
         send_contact_us_email(**data)
         send_contact_us_receipt_email(**data)
-        flash(f"Your Message has recorded successfully! We will reach out soon.", "success")
+        flash("Your Message has recorded successfully! We will reach out soon.", "success")
         return redirect(url_for("main.contact_us"))
-    return render_template("main/contact-us/contact_us_form.html", title="Contact Us", form=form)
+    return render_template("main/contact-us/contact_us_form.html", title="Contact Us", form=form,
+                           css_file='css/contact_us/main.css', css_file2='css/contact_us/util.css')

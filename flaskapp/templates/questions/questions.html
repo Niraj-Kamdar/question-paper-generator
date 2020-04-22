@@ -2,6 +2,9 @@
 {% block image %}
     <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
 {% endblock image %}
+{% block image2 %}
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+{% endblock image2 %}
 {% block header %}
     <h1 class="header" style="font-weight: 500;">Subjective Questions</h1>
 {% endblock header %}
@@ -38,32 +41,24 @@
             </div>
             <div style="max-height : 60vh;overflow-y: auto;position: relative;">
 
-            {% for q in questions.items %}
-                <div class="question_container">
-                    <div class="delete_question">
-                        <label><input type="checkbox" class="delete_checkbox"/></label>
+                {% for q in questions.items %}
+                    <div class="question_container">
+                        <div class="delete_question">
+                            <label><input type="checkbox" class="delete_checkbox"/></label>
+                        </div>
                     </div>
-                    <div class="question_info">
-                        <div class="first_row">
-                            <div class="first_row_column_1">ID: {{ q.id }}</div>
-                            <div class="first_row_column_2">{{ q.imp }}</div>
-                            <div class="first_row_column_3">
-                                <label><span class="mark_label"></span><input type="checkbox" name="isimp" value="false"
-                                                                              class="imp_checkbox"/></label>
+                    <div class="second_row">
+                        <div class="second_row_column_1"></div>
+                        <div class="second_row_column_2">
+                            <div class="question_description">
+                                {{ q.question }}
+                            </div>
+                            <div class="question_properties">
+                                <div class="marks">Marks : {{ q.mark }}</div>
+                                <div class="difficulty">Difficulty : {{ q.difficulty }}</div>
                             </div>
                         </div>
-                        <div class="second_row">
-                            <div class="second_row_column_1"></div>
-                            <div class="second_row_column_2">
-                                <div class="question_description">
-                                    {{ q.question }}
-                                </div>
-                                <div class="question_properties">
-                                    <div class="marks">Marks : {{ q.mark }}</div>
-                                    <div class="difficulty">Difficulty : {{ q.difficulty }}</div>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                     </div>
                     <div class="update_question">
                         <div class="edit_question">
@@ -74,17 +69,16 @@
                     class="update_question_img" /></div>
             <div></div> -->
                     </div>
-                </div>
+                    </div>
 
-            {% endfor %} {% endblock %}
-        <div id="bottombar"></div>
-        <div id="jcourse">
-            {% for course in courses %}
-                <div class="course_name">{{ course.name }} </div>
-                <div class="course_id">{{ course.id }}</div>
-            {% endfor %}
-        </div>
-        </div>
+                {% endfor %} {% endblock %}
+    <div id="bottombar"></div>
+    <div id="jcourse">
+        {% for course in courses %}
+            <div class="course_name">{{ course.name }} </div>
+            <div class="course_id">{{ course.id }}</div>
+        {% endfor %}
+    </div>
     </div>
 {% endblock %}
 {% block page %}

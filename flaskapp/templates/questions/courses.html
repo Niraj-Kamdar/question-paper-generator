@@ -2,6 +2,9 @@
 {% block image %}
     <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
 {% endblock image %}
+{% block image2 %}
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+{% endblock image2 %}
 {% block flashes %}
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %}

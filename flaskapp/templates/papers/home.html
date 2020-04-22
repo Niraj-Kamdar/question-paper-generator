@@ -2,6 +2,9 @@
 {% block image %}
     <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
 {% endblock image %}
+{% block image2 %}
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+{% endblock image2 %}
 {% block header %}
     <h1 class="header">Recent</h1>
 {% endblock header %}
@@ -44,13 +47,13 @@
 {% endblock main %}
 {% block sideNav %}
     <div class="ml-4 col-3" id="home_nav">
-        <div class="row pl-2" id="manage_courses_btn">
+        <a class="row pl-2" id="manage_courses_btn" href="/course">
             <h1 class="px-3 py-1">C</h1>
             <div class="col">
                 <h3>Manage</h3>
                 <h5>Courses</h5>
             </div>
-        </div>
+        </a>
     </div>
 {% endblock sideNav %}
 

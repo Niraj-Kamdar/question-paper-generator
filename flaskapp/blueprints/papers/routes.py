@@ -14,8 +14,8 @@ def home():
     """
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template("papers/home.html",
-                           css_file='css/home.css',
-                           js_file='js/home.js',
+                           css_file='css/base.css',
+                           css_file2='css/home.css',
                            title='Home',
                            image_file=image_file,
                            profile_pic="profile_pics/" + current_user.image_file)
