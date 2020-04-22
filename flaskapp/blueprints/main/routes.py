@@ -66,6 +66,6 @@ def contact_us():
                     message=form.message.data)
         send_contact_us_email(**data)
         send_contact_us_receipt_email(**data)
-        flash(f"Your Message has recorded successfully! We will reach out soon.", "success")
+        flash("Your Message has recorded successfully! We will reach out soon.", "success")
         return redirect(url_for("main.contact_us"))
     return render_template("main/contact-us/contact_us_form.html", title="Contact Us", form=form,css_file='css/contact_us/main.css',css_file2='css/contact_us/util.css')
