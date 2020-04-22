@@ -1,261 +1,261 @@
 body::-webkit-scrollbar {
-  display: none;
-  position: fixed;
+    display: none;
+    position: fixed;
 }
 
 * {
-  font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 #bodycontent {
-  transition: 1s;
-  position: relative;
-  z-index: 1;
+    transition: 1s;
+    position: relative;
+    z-index: 1;
 }
 
 .row {
-  /*border:1px dotted red;*/
-  position: relative;
-  width: 100%;
+    /*border:1px dotted red;*/
+    position: relative;
+    width: 100%;
 }
 
 .container-fluid {
-  /*border:1px dotted yellow;*/
+    /*border:1px dotted yellow;*/
 }
 
 .login_page {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  right: 0;
-  width: 30%;
-  height: 100%;
-  position: fixed;
-  z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    position: fixed;
+    z-index: 2;
 }
 
 /************************************************************************/
 .img1 {
-  margin-left: -30%;
-  position: fixed;
-  min-height: 100%;
-  min-width: 1024px;
-  width: 100%;
-  height: auto;
-  transition: 1s;
+    margin-left: -30%;
+    position: fixed;
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    transition: 1s;
 }
 
 .overlape {
-  margin-left: -30%;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  transition: 1s;
-  background: #9000f0b3;
+    margin-left: -30%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: 1s;
+    background: #9000f0b3;
 }
 
 /************************************************************************/
 
 /************************************************************************/
 #header {
-  margin: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transition: 0.3s;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: 0.3s;
 }
 
 .logo {
-  max-height: 100%;
-  max-width: 100%;
-  position: relative;
+    max-height: 100%;
+    max-width: 100%;
+    position: relative;
 }
 
 .col1 {
-  /*border :1px solid yellow;*/
-  width: 5%;
+    /*border :1px solid yellow;*/
+    width: 5%;
 }
 
 .col2 {
-  padding-left: 1%;
-  width: 55%;
-  transition: 1s;
-  /*border :1px solid yellow;*/
+    padding-left: 1%;
+    width: 55%;
+    transition: 1s;
+    /*border :1px solid yellow;*/
 }
 
 .col3 {
-  width: 10%;
-  /*border :1px solid yellow;*/
-  display: inline-flex;
-  align-items: center;
+    width: 10%;
+    /*border :1px solid yellow;*/
+    display: inline-flex;
+    align-items: center;
 }
 
 .col2 > h2 {
-  font-size: 2.5vw;
+    font-size: 2.5vw;
 }
 
 .col2 > h4 {
-  font-size: 1vw;
+    font-size: 1vw;
 }
 
 .login_btn {
-  padding-top: 5%;
-  padding-bottom: 5%;
-  font-weight: bolder;
-  font-size: 1.5vw;
-  width: 100%;
-  position: relative;
-  background-color: #ffffff;
-  color: #9000f0;
-  border-top-left-radius: 20% 50%;
-  border-bottom-left-radius: 20% 50%;
-  border: none;
-  outline: none !important;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-weight: bolder;
+    font-size: 1.5vw;
+    width: 100%;
+    position: relative;
+    background-color: #ffffff;
+    color: #9000f0;
+    border-top-left-radius: 20% 50%;
+    border-bottom-left-radius: 20% 50%;
+    border: none;
+    outline: none !important;
 }
 
 /**********************************************************************/
 #content {
-  transition-property: visibility, opacity;
-  transition-duration: 0s, 0.5s;
-  overflow: auto;
-  visibility: hidden;
+    transition-property: visibility, opacity;
+    transition-duration: 0s, 0.5s;
+    overflow: auto;
+    visibility: hidden;
 }
 
 #content.hidden {
-  opacity: 0;
-  visibility: hidden;
-  transition-property: opacity, visibility;
-  transition-duration: 0.5s, 0s;
-  transition-delay: 0s, 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    transition-property: opacity, visibility;
+    transition-duration: 0.5s, 0s;
+    transition-delay: 0s, 0.5s;
 }
 
 #footer {
-  display: none;
-  font-size: 1vw;
-  color: rgba(255, 255, 255, 0.5);
-  transition: 1s;
-  background: #9000f0;
+    display: none;
+    font-size: 1vw;
+    color: rgba(255, 255, 255, 0.5);
+    transition: 1s;
+    background: #9000f0;
 }
 
 .fl {
-  color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .fl:hover {
-  color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 /*// Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
-  .col1 {
-    width: 10%;
-  }
+    .col1 {
+        width: 10%;
+    }
 
-  .col2 {
-    width: 72%;
-  }
+    .col2 {
+        width: 72%;
+    }
 
-  .col3 {
-    width: 18%;
-  }
+    .col3 {
+        width: 18%;
+    }
 
-  .col2 > h2 {
-    font-size: 4vw;
-  }
+    .col2 > h2 {
+        font-size: 4vw;
+    }
 
-  .col2 > h4 {
-    font-size: 2vw;
-  }
+    .col2 > h4 {
+        font-size: 2vw;
+    }
 
-  .login_btn {
-    padding-top: 5%;
-    padding-bottom: 5%;
-    font-size: 3vw;
-  }
+    .login_btn {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        font-size: 3vw;
+    }
 }
 
 /*// Small devices (landscape phones, tablates, 576px and up)*/
 @media (min-width: 576px) and (max-width: 991.98px) {
-  .col1 {
-    width: 6%;
-  }
+    .col1 {
+        width: 6%;
+    }
 
-  .col2 {
-    width: 82%;
-  }
+    .col2 {
+        width: 82%;
+    }
 
-  .col3 {
-    width: 12%;
-  }
+    .col3 {
+        width: 12%;
+    }
 
-  .col2 > h2 {
-    font-size: 3vw;
-  }
+    .col2 > h2 {
+        font-size: 3vw;
+    }
 
-  .col2 > h4 {
-    font-size: 1.5vw;
-  }
+    .col2 > h4 {
+        font-size: 1.5vw;
+    }
 
-  .login_btn {
-    padding-top: 6%;
-    padding-bottom: 6%;
-    font-size: 2vw;
-  }
+    .login_btn {
+        padding-top: 6%;
+        padding-bottom: 6%;
+        font-size: 2vw;
+    }
 }
 
 .avtar {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .avtar > img {
-  width: 7vw;
-  height: 7vw;
+    width: 7vw;
+    height: 7vw;
 }
 
 .form-group {
-  color: #707070;
+    color: #707070;
 }
 
 .form_submit {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .lbtn {
-  background: #9000f000;
-  border: 1px solid #9000f0;
-  color: #9000f0;
+    background: #9000f000;
+    border: 1px solid #9000f0;
+    color: #9000f0;
 }
 
 .lbtn:hover {
-  background: #9000f0;
-  color: #ffffff;
+    background: #9000f0;
+    color: #ffffff;
 }
 
 .login_other_links {
-  border-top: 1px solid #b0b0b0;
+    border-top: 1px solid #b0b0b0;
 }
 
 .login_other_links > small {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .login_other_links > small > a {
-  color: #9000f0;
+    color: #9000f0;
 }
 
 .invalid-feedback,
 #form_email_error,
 #form_password_error {
-  color: red;
-  margin-bottom: 16px;
+    color: red;
+    margin-bottom: 16px;
 }
