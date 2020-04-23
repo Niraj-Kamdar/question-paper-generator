@@ -89,24 +89,34 @@
   right: 0;
   bottom: 0;
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(255, 255, 255, 1);
   z-index: 2;
 }
 
 #loader {
   position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border: 8px solid rgba(144, 0, 240, 0.76);
   border-radius: 50%;
   border-top: 8px solid white;
   width: 60px;
   height: 60px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
+  animation: spin 1s linear infinite;
+}
+#register {
+  margin-bottom: 30px;
+  text-align: center;
 }
 
+#register a {
+  background-color: white;
+  color: rgba(144, 0, 240, 0.76);
+  padding: 10px;
+  text-decoration: none;
+}
 /************************************************************************/
 
 /************************************************************************/

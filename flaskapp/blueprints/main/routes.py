@@ -47,7 +47,7 @@ def help_page():
     Returns:
         HTML - It will redirect to help page.
     """
-    return render_template("main/help.html", title="Help")
+    return render_template("main/help.html", title="Help",css_file='css/main/help.css')
 
 
 @main.route("/contact-us")

@@ -7,13 +7,6 @@
 {%endblock loader %}
 <!-- <div id="bodycontent"> -->
 
-{%block LogIn%}
-<div class="login_page">
-    <div class="container" style=" width: 80%; margin-top: -5%;">
-        {% block main %}{% endblock %}
-    </div>
-</div>
-{%endblock LogIn%}
 
 {%block backgroundImage %}
 <img src="{{ url_for('static',filename='images/background1.png') }}" class="img1" alt="background Image">
@@ -92,6 +85,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="register">
+        <a href="/register">Register Now</a>
     </div>
 </main>
 {%endblock body %}

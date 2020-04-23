@@ -189,6 +189,7 @@
   {
     let isHomePage = false;
     let areAdditionalPages = false;
+    let isLogin = false;
     {
       const additionalPages = [
         "about-us",
@@ -203,6 +204,10 @@
         url.match(new RegExp("/", "g")).length === 3 &&
         url[url.length - 1] === "/"
       );
+      isLogin =
+        url.indexOf("login") !== -1 || url.indexOf("register") !== -1
+          ? true
+          : false;
       for (let page of additionalPages) {
         const index = url.indexOf(page);
         if (index !== -1) {
@@ -226,10 +231,14 @@
 
       if (isHomePage || areAdditionalPages) {
         sideNavigationItems[5].parentNode.style.display = "none";
-        sideNavigationItems[1].style.display = sideNavigationItems[9].style.display =
+        sideNavigationItems[1].style.display = sideNavigationItems[10].style.display =
+          "none";
+      } else if (isLogin) {
+        sideNavigationItems[5].parentNode.style.display = "none";
+        sideNavigationItems[1].style.display = sideNavigationItems[10].style.display = sideNavigationItems[9].style.display =
           "none";
       } else {
-        sideNavigationItems[2].style.display = sideNavigationItems[3].style.display = sideNavigationItems[4].style.display =
+        sideNavigationItems[2].style.display = sideNavigationItems[3].style.display = sideNavigationItems[4].style.display = sideNavigationItems[9].style.display =
           "none";
       }
 
@@ -251,10 +260,14 @@
       );
       if (isHomePage || areAdditionalPages) {
         topNavigationItems[5].parentNode.parentNode.style.display = "none";
-        topNavigationItems[1].style.display = topNavigationItems[8].style.display =
+        topNavigationItems[1].style.display = topNavigationItems[9].style.display =
+          "none";
+      } else if (isLogin) {
+        topNavigationItems[5].parentNode.parentNode.style.display = "none";
+        topNavigationItems[1].style.display = topNavigationItems[9].style.display = topNavigationItems[8].style.display =
           "none";
       } else {
-        topNavigationItems[2].style.display = topNavigationItems[3].style.display = topNavigationItems[4].style.display =
+        topNavigationItems[2].style.display = topNavigationItems[3].style.display = topNavigationItems[8].style.display = topNavigationItems[4].style.display =
           "none";
       }
       //disable links if href and window location is same for top navigation links
@@ -274,7 +287,7 @@
       const profilePage = document.getElementsByClassName("profile_page");
 
       for (let i = 0; i < profilePage.length; i++) {
-        if (isHomePage || areAdditionalPages)
+        if (isHomePage || areAdditionalPages || isLogin)
           profilePage[i].parentNode.style.display = "none";
         profilePage[i].addEventListener("click", function (e) {
           if (window.location.href === e.target.parentNode.href)
