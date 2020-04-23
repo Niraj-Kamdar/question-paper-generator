@@ -1,23 +1,23 @@
-{% extends "headerFooter.html"%}
+{% extends "headerFooter.html" %}
 
 {% block body %}
 
-<div style="margin-bottom: 4%;" class="block_main">
+    <div style="margin-bottom: 4%;" class="block_main">
 
-    <div class="px-5 py-2">
-        {% block flashes %} {% endblock flashes %}
-        <div class="px-5" id="page_display">
-            <div class="row mb-2" style="margin: 0;">
-                {% block header %} {% endblock header %}
-            </div>
-            <div id="content" style="margin: 0;">
-                <div class="mr-2" style="width: 75%;" id="template_display">
-                    {% block main %} {% endblock main %}
+        <div class="px-5 py-2">
+            {% block flashes %} {% endblock flashes %}
+            <div class="px-5" id="page_display">
+                <div class="row mb-2" style="margin: 0;">
+                    {% block header %} {% endblock header %}
                 </div>
-                {% block sideNav %} {% endblock sideNav %}
+                <div id="content" style="margin: 0;">
+                    <div class="mr-2" style="width: 75%;" id="template_display">
+                        {% block main %} {% endblock main %}
+                    </div>
+                    {% block sideNav %} {% endblock sideNav %}
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 {% endblock body %}
