@@ -3,6 +3,7 @@ from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 from flaskapp import db, login_manager
+from flaskapp.utils import default_instructions
 
 
 @login_manager.user_loader
@@ -49,9 +50,9 @@ class User(db.Model, UserMixin):
 class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False)
-    questions = db.relationship('Question', backref='course', lazy=True)
-    mcq_questions = db.relationship("MCQQuestion", backref='course', lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    units = db.relationship('Unit', backref='course', lazy=True)
+    papers = db.relationship('Paper', backref='course', lazy=True)
 
     def __repr__(self):
         return f"Course({self.name})"
@@ -61,22 +62,43 @@ class Course(db.Model):
                     course=self.name)
 
 
+class Unit(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    chapter_no = db.Column(db.Integer, nullable=False)
+    name = db.Column(db.Text, nullable=True)
+    course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
+    questions = db.relationship('Question', backref='unit', lazy=True)
+    mcq_questions = db.relationship("MCQQuestion", backref='unit', lazy=True)
+
+    def __repr__(self):
+        return f"Unit({self.chapter_no, self.name})"
+
+    def to_dict(self):
+        return dict(id=self.id, chapter_no=self.chapter_no, name=self.name)
+
+
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.Text, nullable=False)
     mark = db.Column(db.Integer, nullable=False)
-    difficulty = db.Column(db.Integer, nullable=False)
+    difficulty = db.Column(
+            db.Enum("easy", "medium", "hard", name="difficulty_type"),
+            nullable=False)
+    cognitive_level = db.Column(
+            db.Enum("knowledge", "comprehension", "application", name="cognitive_type"),
+            nullable=False)
     imp = db.Column(db.Boolean, default=False)
-    course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
+    unit_id = db.Column(db.Integer, db.ForeignKey("unit.id"), nullable=False)
 
     def __repr__(self):
-        return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.imp})"
+        return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.cognitive_level}, {self.imp})"
 
     def to_dict(self):
         return dict(id=self.id,
                     question=self.question,
                     mark=self.mark,
                     difficulty=self.difficulty,
+                    cognitive_level=self.cognitive_level,
                     imp=self.imp)
 
 
@@ -84,16 +106,21 @@ class MCQQuestion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.Text, nullable=False)
     mark = db.Column(db.Integer, nullable=False)
-    difficulty = db.Column(db.Integer, nullable=False)
+    difficulty = db.Column(
+            db.Enum("easy", "medium", "hard", name="difficulty_type"),
+            nullable=False)
+    cognitive_level = db.Column(
+            db.Enum("knowledge", "comprehension", "application", name="cognitive_type"),
+            nullable=False)
     imp = db.Column(db.Boolean, default=False)
     option1 = db.Column(db.Text, nullable=False)
     option2 = db.Column(db.Text, nullable=False)
     option3 = db.Column(db.Text, nullable=False)
     option4 = db.Column(db.Text, nullable=False)
-    course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
+    unit_id = db.Column(db.Integer, db.ForeignKey("unit.id"), nullable=False)
 
     def __repr__(self):
-        return f"MCQQuestion({self.question}, {self.mark}, {self.difficulty}, {self.imp}," \
+        return f"MCQQuestion({self.question}, {self.mark}, {self.difficulty}, {self.cognitive_level}, {self.imp}," \
                f" {self.option1}, {self.option2}, {self.option3}, {self.option4})"
 
     def to_dict(self):
@@ -101,8 +128,29 @@ class MCQQuestion(db.Model):
                     question=self.question,
                     mark=self.mark,
                     difficulty=self.difficulty,
+                    cognitive_level=self.cognitive_level,
                     imp=self.imp,
                     option1=self.option1,
                     option2=self.option2,
                     option3=self.option3,
                     option4=self.option4)
+
+
+class Paper(db.Model):
+    """ paper format matrix (values are id of question)
+             a     b     c     d
+        1 [[50,    4,    6      ],
+        2  [3,    43,   12,   67],
+        3  [14,  102            ]]
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False)
+    mark = db.Column(db.Integer, nullable=False)
+    difficulty = db.Column(db.JSON, nullable=False)  # {easy: 30 mark, medium: 10 mark, hard: 10 mark }
+    cognitive_level = db.Column(db.JSON, nullable=False)  # {K: 30 mark, C: 10 mark, A: 10 mark }
+    paper_format = db.Column(db.JSON, nullable=False)
+    paper_logo = db.Column(db.Text, nullable=False, default="logo.svg")
+    exam_date = db.Column(db.Date, nullable=False)
+    time_limit = db.Column(db.Text, nullable=False)
+    instructions = db.Column(db.JSON, nullable=True, default=default_instructions)
+    course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
