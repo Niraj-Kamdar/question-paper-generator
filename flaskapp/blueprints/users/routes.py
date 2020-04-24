@@ -36,7 +36,7 @@ def register():
                            title='Register',
                            form=form,
                            css_file='css/users/register.css',
-                           
+
                            js_file='js/users/register.js',
                            btn_name='Back')
 
@@ -64,7 +64,7 @@ def login():
                            title='Login',
                            form=form,
                            css_file='css/users/login.css',
-                           
+
                            js_file='js/users/login.js',
                            btn_name='Back')
 

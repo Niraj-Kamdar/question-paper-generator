@@ -1,81 +1,81 @@
 {% extends "base.html" %}
 {% block main %}
-<div class="content-section">
-    <form method="POST" action="" novalidate id="reset_password_form">
-        {{ form.hidden_tag() }}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Reset Password</legend>
-            <div class="form-group">
-                {{ form.password.label(class="form-control-label") }}
-                {% if form.password.errors %}
-                {{ form.password(class="form-control form-control-lg is-invalid password") }}
-                <div class="invalid-feedback">
-                    {% for error in form.password.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
+    <div class="content-section">
+        <form method="POST" action="" novalidate id="reset_password_form">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Reset Password</legend>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid password") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg password") }}
+                    {% endif %}
+                    <div class="form_error"></div>
                 </div>
-                {% else %}
-                {{ form.password(class="form-control form-control-lg password") }}
-                {% endif %}
-                <div class="form_error"></div>
-            </div>
-            <div class="form-group">
-                {{ form.confirm_password.label(class="form-control-label") }}
-                {% if form.confirm_password.errors %}
-                {{ form.confirm_password(class="form-control form-control-lg is-invalid confirm_password") }}
-                <div class="invalid-feedback">
-                    {% for error in form.confirm_password.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
+                <div class="form-group">
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid confirm_password") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-lg confirm_password") }}
+                    {% endif %}
+                    <div class="form_error"></div>
                 </div>
-                {% else %}
-                {{ form.confirm_password(class="form-control form-control-lg confirm_password") }}
-                {% endif %}
-                <div class="form_error"></div>
-            </div>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
-        </fieldset>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            </fieldset>
 
-    </form>
+        </form>
 
-</div>
-<style type="text/css" rel="stylesheet" media="all">
-    * {
-        font-family: 'Montserrat', sans-serif;
-    }
+    </div>
+    <style type="text/css" rel="stylesheet" media="all">
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
 
-    .container {
-        background: #9000F026;
-    }
+        .container {
+            background: #9000F026;
+        }
 
-    .row {
-        margin: 0;
-        border-bottom: 1px solid #b0b0b0;
-    }
+        .row {
+            margin: 0;
+            border-bottom: 1px solid #b0b0b0;
+        }
 
-    .row>h2 {
-        color: #707070;
-        font-weight: bolder;
-    }
+        .row > h2 {
+            color: #707070;
+            font-weight: bolder;
+        }
 
-    fieldset {
-        /*background: #9000F0;*/
-    }
+        fieldset {
+            /*background: #9000F0;*/
+        }
 
-    .form-group>label {
-        color: #707070;
-    }
+        .form-group > label {
+            color: #707070;
+        }
 
-    .rpbtn {
-        border: 1px solid #9000F0;
-        color: #9000F0;
-    }
+        .rpbtn {
+            border: 1px solid #9000F0;
+            color: #9000F0;
+        }
 
-    .rpbtn:hover {
-        background: #9000F0;
-        color: #ffffff;
-    }
-</style>
+        .rpbtn:hover {
+            background: #9000F0;
+            color: #ffffff;
+        }
+    </style>
 {% endblock %}

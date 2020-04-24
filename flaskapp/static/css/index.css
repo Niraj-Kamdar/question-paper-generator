@@ -1,19 +1,19 @@
 #bodycontent {
-  transition: 1s;
+    transition: 1s;
 }
 
 #content {
-  transition-property: visibility, opacity;
-  transition-duration: 0s, 0.5s;
-  overflow: auto;
+    transition-property: visibility, opacity;
+    transition-duration: 0s, 0.5s;
+    overflow: auto;
 }
 
 #content.hidden {
-  opacity: 0;
-  visibility: hidden;
-  transition-property: opacity, visibility;
-  transition-duration: 0.5s, 0s;
-  transition-delay: 0s, 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    transition-property: opacity, visibility;
+    transition-duration: 0.5s, 0s;
+    transition-delay: 0s, 0.5s;
 }
 
 /* .col3 .row h4 {
@@ -38,85 +38,87 @@
 } */
 
 .img1 {
-  position: fixed;
-  min-height: 100%;
-  min-width: 1024px;
-  width: 100%;
-  height: auto;
-  transition: 1s;
+    position: fixed;
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    transition: 1s;
 }
 
 .login_btn {
-  padding-top: 5%;
-  padding-bottom: 5%;
-  font-weight: bolder;
-  font-size: 1.5vw;
-  width: 100%;
-  position: relative;
-  background-color: #ffffff;
-  color: #9000f0;
-  border-top-left-radius: 20% 50%;
-  border-bottom-left-radius: 20% 50%;
-  border: none;
-  outline: none !important;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-weight: bolder;
+    font-size: 1.5vw;
+    width: 100%;
+    position: relative;
+    background-color: #ffffff;
+    color: #9000f0;
+    border-top-left-radius: 20% 50%;
+    border-bottom-left-radius: 20% 50%;
+    border: none;
+    outline: none !important;
 }
 
 .login_page {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  right: 0;
-  width: 30%;
-  height: 100%;
-  position: fixed;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    position: fixed;
 }
 
 .overlape {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  transition: 1s;
-  background: #9000f0b3;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: 1s;
+    background: #9000f0b3;
 }
 
 #loader_container {
-  top: 0;
-  text-align: center;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 1);
-  z-index: 2;
+    top: 0;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 2;
 }
 
 #loader {
-  position: relative;
-  border: 8px solid rgba(144, 0, 240, 0.76);
-  border-radius: 50%;
-  border-top: 8px solid white;
-  width: 60px;
-  height: 60px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 1s linear infinite;
+    position: relative;
+    border: 8px solid rgba(144, 0, 240, 0.76);
+    border-radius: 50%;
+    border-top: 8px solid white;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 1s linear infinite;
 }
+
 #register {
-  margin-bottom: 30px;
-  text-align: center;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 #register a {
-  background-color: white;
-  color: rgba(144, 0, 240, 0.76);
-  padding: 10px;
-  text-decoration: none;
+    background-color: white;
+    color: rgba(144, 0, 240, 0.76);
+    padding: 10px;
+    text-decoration: none;
 }
+
 /************************************************************************/
 
 /************************************************************************/
@@ -127,19 +129,19 @@
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

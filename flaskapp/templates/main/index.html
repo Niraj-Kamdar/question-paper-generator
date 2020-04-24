@@ -1,97 +1,97 @@
 {% extends "headerFooter.html" %}
 
 {% block loader %}
-<div id="loader_container">
-    <div id="loader"></div>
-</div>
+    <div id="loader_container">
+        <div id="loader"></div>
+    </div>
 {% endblock loader %}
 <!-- <div id="bodycontent"> -->
 
 
 {% block backgroundImage %}
-<img src="{{ url_for('static',filename='images/background1.png') }}" class="img1" alt="background Image">
-<div class="overlape"></div>
+    <img src="{{ url_for('static',filename='images/background1.png') }}" class="img1" alt="background Image">
+    <div class="overlape"></div>
 {% endblock backgroundImage %}
 
 <!-- <div class="container-fluid" style="padding: 0;"> -->
 <!-- </div> -->
 {% block body %}
-<main>
-    <div class="row pl-4 pt-2 text-white" id="content" style="margin: 0;padding: 0;">
-        <div class="container-fluid pr-5" style="margin-top: 8%;">
-            <div class="container-fluid mt-4" style="width: 90%;">
-                <i class="material-icons mr-3 float-left" style="font-size: 3vw">add_box</i>
-                <h2 class="mt-1">Why you should use it?</h2>
-                <div class="container-fluid ml-5 mt-4">
-                    <div class="row">
-                        <i class="material-icons mx-2 float-left" style="font-size: 2vw">double_arrow</i>
-                        <p>Wide portion covered from all modules.</p>
-                    </div>
-                    <div class="row">
-                        <i class="material-icons mx-2 float-left" style="font-size: 2vw">double_arrow</i>
-                        <p>No possibility of paper leak & threats.</p>
-                    </div>
-                    <div class="row">
-                        <i class="material-icons mx-2 float-left" style="font-size: 2vw">double_arrow</i>
-                        <p>No transport & security expenses.</p>
-                    </div>
-                    <div class="row">
-                        <i class="material-icons mx-2 float-left" style="font-size: 2vw">double_arrow</i>
-                        <p>Reduces human efforts.</p>
-                    </div>
-                    <div class="row">
-                        <i class="material-icons mx-2 float-left" style="font-size: 2vw">double_arrow</i>
-                        <p>Paper generated on click.</p>
+    <main>
+        <div class="row pl-4 pt-2 text-white" id="content" style="margin: 0;padding: 0;">
+            <div class="container-fluid pr-5" style="margin-top: 8%;">
+                <div class="container-fluid mt-4" style="width: 90%;">
+                    <i class="material-icons mr-3 float-left" style="font-size: 3vw">add_box</i>
+                    <h2 class="mt-1">Why you should use it?</h2>
+                    <div class="container-fluid ml-5 mt-4">
+                        <div class="row">
+                            <i class="material-icons mx-2 float-left" style="font-size: 2vw">double_arrow</i>
+                            <p>Wide portion covered from all modules.</p>
+                        </div>
+                        <div class="row">
+                            <i class="material-icons mx-2 float-left" style="font-size: 2vw">double_arrow</i>
+                            <p>No possibility of paper leak & threats.</p>
+                        </div>
+                        <div class="row">
+                            <i class="material-icons mx-2 float-left" style="font-size: 2vw">double_arrow</i>
+                            <p>No transport & security expenses.</p>
+                        </div>
+                        <div class="row">
+                            <i class="material-icons mx-2 float-left" style="font-size: 2vw">double_arrow</i>
+                            <p>Reduces human efforts.</p>
+                        </div>
+                        <div class="row">
+                            <i class="material-icons mx-2 float-left" style="font-size: 2vw">double_arrow</i>
+                            <p>Paper generated on click.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="container-fluid mt-4" style="width: 90%;">
-                <i class="material-icons mr-3 float-left" style="font-size: 3vw">info</i>
-                <h2 class="mt-1">Some more glimpse.</h2>
-                <div class="container-fluid ml-5 mt-4">
-                    <div class="row pb-5">
-                        <!-- <p class="text-justify" style="text-indent:5%;"><i
-                                            class="material-icons mx-2 float-left"
-                                            style="font-size: 1.5vw">
-                                        subdirectory_arrow_right</i>Here we are proposing a model system for smart question paper generation for universities. In this system administration of the database inputs set of questions with an option of check box to tick the correct answer. More ever weightage of the particular question in terms of marks and hours and the complexity of the question is determined. After this process whole question paper along with the weightage is stored in the database. In order to make question paper, admin sets all the weightage and difficulties to solve the problem. As soon as the difficulty and weightage is specified a pre doc file as per selected format will be downloaded to the admin and an electronic mail will be triggered. Range of difficulty may vary from easy, medium and hard.We are hoping that, this website will help in lighten your work for making question paper. Our goal to make this website is to reduce hours of manual work to set question paper which cover all syllbas, include important qustions and with overall difficulty as you desire.
-                                    </p> -->
-                        <p class="text-justify" style="text-indent:5%;"><i class="material-icons mx-2 float-left"
-                                style="font-size: 1.5vw">
+                <div class="container-fluid mt-4" style="width: 90%;">
+                    <i class="material-icons mr-3 float-left" style="font-size: 3vw">info</i>
+                    <h2 class="mt-1">Some more glimpse.</h2>
+                    <div class="container-fluid ml-5 mt-4">
+                        <div class="row pb-5">
+                            <!-- <p class="text-justify" style="text-indent:5%;"><i
+                                                class="material-icons mx-2 float-left"
+                                                style="font-size: 1.5vw">
+                                            subdirectory_arrow_right</i>Here we are proposing a model system for smart question paper generation for universities. In this system administration of the database inputs set of questions with an option of check box to tick the correct answer. More ever weightage of the particular question in terms of marks and hours and the complexity of the question is determined. After this process whole question paper along with the weightage is stored in the database. In order to make question paper, admin sets all the weightage and difficulties to solve the problem. As soon as the difficulty and weightage is specified a pre doc file as per selected format will be downloaded to the admin and an electronic mail will be triggered. Range of difficulty may vary from easy, medium and hard.We are hoping that, this website will help in lighten your work for making question paper. Our goal to make this website is to reduce hours of manual work to set question paper which cover all syllbas, include important qustions and with overall difficulty as you desire.
+                                        </p> -->
+                            <p class="text-justify" style="text-indent:5%;"><i class="material-icons mx-2 float-left"
+                                                                               style="font-size: 1.5vw">
                                 subdirectory_arrow_right</i>Examination Process is Important BUT Preparing
-                            Question
-                            Paper is Challenging. A simplified and easy to use solution to create question
-                            papers. With SetNow question Paper Generator entire tedious task of manual
-                            question
-                            paper creation is eradicated swiftly and efficiently. SetNow question paper
-                            generator is a remarkable solution for schools/colleges and other educational
-                            institutes. Generally conducting an exam is an extremely lengthy process. This
-                            may
-                            take a lot of time. Teachers have no much time for creating question papers so
-                            exceedingly perceived school/universities hire other resources who can make test
-                            papers. Using the free demo of question paper generator software, the dependency
-                            on
-                            other human resources is decreasing. Question paper generator generates
-                            questions in
-                            just minutes. The system allows to add a complexity of question-level using a
-                            multitude question like Multiple Choice, Descriptive Question. The system
-                            generates
-                            module wise question paper. One can set marks on question wise, module wise,
-                            module
-                            to module also the functionality of without displaying marks on the question
-                            paper.
-                            One can export question paper to pdf format after question paper generated.
-                        </p>
+                                Question
+                                Paper is Challenging. A simplified and easy to use solution to create question
+                                papers. With SetNow question Paper Generator entire tedious task of manual
+                                question
+                                paper creation is eradicated swiftly and efficiently. SetNow question paper
+                                generator is a remarkable solution for schools/colleges and other educational
+                                institutes. Generally conducting an exam is an extremely lengthy process. This
+                                may
+                                take a lot of time. Teachers have no much time for creating question papers so
+                                exceedingly perceived school/universities hire other resources who can make test
+                                papers. Using the free demo of question paper generator software, the dependency
+                                on
+                                other human resources is decreasing. Question paper generator generates
+                                questions in
+                                just minutes. The system allows to add a complexity of question-level using a
+                                multitude question like Multiple Choice, Descriptive Question. The system
+                                generates
+                                module wise question paper. One can set marks on question wise, module wise,
+                                module
+                                to module also the functionality of without displaying marks on the question
+                                paper.
+                                One can export question paper to pdf format after question paper generated.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="register">
-        <a href="/register">Register Now</a>
-    </div>
-</main>
-{%endblock body %}
+        <div id="register">
+            <a href="/register">Register Now</a>
+        </div>
+    </main>
+{% endblock body %}
 
 
 
