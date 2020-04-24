@@ -1,6 +1,10 @@
+#main_container > div {
+    padding-top: 70px;
+}
+
 #page_title .col > h2 {
     color: #b0b0b0;
-    font-size: 2vw;
+    font-size: 30px;
     font-weight: bolder;
 }
 
@@ -16,4 +20,10 @@
 
 #policy_content {
     color: #808080;
+}
+
+@media (max-width: 920px) {
+    #main_container > div {
+        padding-top: 40px;
+    }
 }

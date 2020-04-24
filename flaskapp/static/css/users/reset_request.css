@@ -1,0 +1,55 @@
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
+.container {
+    background: #9000f026;
+}
+
+.container > form > h5 {
+    color: #ffffff;
+    background: #9000f0;
+}
+
+.flashes_warning {
+    background-color: white;
+    border: 1px solid black;
+    left: 50%;
+    list-style-type: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 400px;
+    z-index: 2;
+}
+
+.flashes_warning li {
+    color: red;
+    font-size: 25px;
+    padding: 10px 15px;
+}
+
+.row {
+    margin: 0;
+    border-bottom: 1px solid #b0b0b0;
+}
+
+.row > h2 {
+    color: #707070;
+    font-weight: bolder;
+}
+
+.form-group > label {
+    color: #707070;
+}
+
+.rpbtn {
+    border: 1px solid #9000f0;
+    color: #9000f0;
+}
+
+.rpbtn:hover {
+    background: #9000f0;
+    color: #ffffff;
+}

@@ -7,6 +7,13 @@
     const emailError = document.getElementById("form_email_error");
     const passwordError = document.getElementById("form_password_error");
 
+    const flashAlert = document.getElementsByClassName("flashes_question");
+    if (flashAlert.length) {
+        setTimeout(() => {
+            flashAlert[0].style.display = "none";
+        }, 1000);
+    }
+
     /* form validation */
     if (loginForm) {
         emailField.addEventListener("input", () => {

@@ -11,11 +11,7 @@ const deleteCheckbox = document.getElementsByClassName("delete_checkbox");
 const questions = document.getElementsByClassName("question_container");
 const editQuestion = document.getElementsByClassName("edit_question");
 const cancelBtn = document.getElementById("cancel_btn");
-const footer = document.getElementsByTagName("footer")[0];
-footer.style.position = "fixed";
-footer.style.bottom = "0px";
-footer.style.left = "0px";
-footer.style.right = "0px";
+
 /**for styling */
 const blockMain = document.getElementsByClassName("block_main");
 if (blockMain.length) blockMain[0].classList.remove("block_main");

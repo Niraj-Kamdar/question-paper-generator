@@ -42,7 +42,6 @@
 
     // for question list page
     if (index1 === -1) {
-        document.body.style.overflowY = "hidden";
         const flashes = document.getElementsByClassName("flashes");
         if (flashes.length) {
             // console.log("yup");

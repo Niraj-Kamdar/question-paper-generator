@@ -1,9 +1,4 @@
 (function () {
-    const footer = document.getElementsByTagName("footer")[0];
-    footer.style.position = "fixed";
-    footer.style.bottom = "0px";
-    footer.style.left = "0px";
-    footer.style.right = "0px";
     const questionValue = document.getElementById("form_field_question_value");
     const marksValue = document.getElementById("marks_value");
     const difficultyValue = document.getElementById("difficulty_value");

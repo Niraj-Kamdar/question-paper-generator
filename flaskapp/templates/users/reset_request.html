@@ -8,69 +8,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/bb7cf58c3b.js" crossorigin="anonymous"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-    <script type="text/javascript" src="{{ url_for('static',filename=js_file) }}" defer="defer"></script>
-    <style type="text/css" rel="stylesheet" media="all">
-        * {
-            font-family: 'Montserrat', sans-serif;
-        }
 
-        .container {
-            background: #9000F026;
-        }
-
-        .container > form > h5 {
-            color: #ffffff;
-            background: #9000F0;
-        }
-
-        .row {
-            margin: 0;
-            border-bottom: 1px solid #b0b0b0;
-        }
-
-        .row > h2 {
-            color: #707070;
-            font-weight: bolder;
-        }
-
-        fieldset {
-            /*background: #9000F0;*/
-        }
-
-        .form-group > label {
-            color: #707070;
-        }
-
-        .rpbtn {
-            border: 1px solid #9000F0;
-            color: #9000F0;
-        }
-
-        .rpbtn:hover {
-            background: #9000F0;
-            color: #ffffff;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/users/reset_request.css') }}"/>
 </head>
 
 <body>
 <div class="row m-5 mb-2">
     <h2>Reset Password</h2>
 </div>
+{% block flashes %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+messages %}
+        <ul class="flashes_warning">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endwith %}
+{% endblock flashes %}
 <div class="container p-3">
 
     <form method="POST" action="" id="resetForm" novalidate>
@@ -102,6 +59,21 @@
 
     </form>
 </div>
+<script src="https://kit.fontawesome.com/bb7cf58c3b.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/users/reset_request.js') }}" defer="defer">
+</script>
 
 </body>
 

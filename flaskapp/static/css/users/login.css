@@ -1,38 +1,11 @@
-body::-webkit-scrollbar {
-    display: none;
-    position: fixed;
-}
-
-* {
-    font-family: "Montserrat", sans-serif;
-}
-
-#bodycontent {
-    transition: 1s;
-    position: relative;
-    z-index: 1;
-}
-
-.row {
-    /*border:1px dotted red;*/
-    position: relative;
-    width: 100%;
-}
-
-.container-fluid {
-    /*border:1px dotted yellow;*/
+.container {
+    background-color: rgba(144, 0, 240, 0.15);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 70%;
 }
 
 .login_page {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    right: 0;
-    width: 30%;
-    height: 100%;
-    position: fixed;
-    z-index: 2;
+    padding-top: 150px;
 }
 
 /************************************************************************/
@@ -60,46 +33,6 @@ body::-webkit-scrollbar {
 /************************************************************************/
 
 /************************************************************************/
-#header {
-    margin: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transition: 0.3s;
-}
-
-.logo {
-    max-height: 100%;
-    max-width: 100%;
-    position: relative;
-}
-
-.col1 {
-    /*border :1px solid yellow;*/
-    width: 5%;
-}
-
-.col2 {
-    padding-left: 1%;
-    width: 55%;
-    transition: 1s;
-    /*border :1px solid yellow;*/
-}
-
-.col3 {
-    width: 10%;
-    /*border :1px solid yellow;*/
-    display: inline-flex;
-    align-items: center;
-}
-
-.col2 > h2 {
-    font-size: 2.5vw;
-}
-
-.col2 > h4 {
-    font-size: 1vw;
-}
 
 .login_btn {
     padding-top: 5%;
@@ -117,94 +50,10 @@ body::-webkit-scrollbar {
 }
 
 /**********************************************************************/
-#content {
-    transition-property: visibility, opacity;
-    transition-duration: 0s, 0.5s;
-    overflow: auto;
-    visibility: hidden;
-}
-
-#content.hidden {
-    opacity: 0;
-    visibility: hidden;
-    transition-property: opacity, visibility;
-    transition-duration: 0.5s, 0s;
-    transition-delay: 0s, 0.5s;
-}
-
-#footer {
-    display: none;
-    font-size: 1vw;
-    color: rgba(255, 255, 255, 0.5);
-    transition: 1s;
-    background: #9000f0;
-}
-
-.fl {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.fl:hover {
-    color: rgba(255, 255, 255, 0.3);
-}
 
 /*// Extra small devices (portrait phones, less than 576px)*/
-@media (max-width: 575.98px) {
-    .col1 {
-        width: 10%;
-    }
-
-    .col2 {
-        width: 72%;
-    }
-
-    .col3 {
-        width: 18%;
-    }
-
-    .col2 > h2 {
-        font-size: 4vw;
-    }
-
-    .col2 > h4 {
-        font-size: 2vw;
-    }
-
-    .login_btn {
-        padding-top: 5%;
-        padding-bottom: 5%;
-        font-size: 3vw;
-    }
-}
 
 /*// Small devices (landscape phones, tablates, 576px and up)*/
-@media (min-width: 576px) and (max-width: 991.98px) {
-    .col1 {
-        width: 6%;
-    }
-
-    .col2 {
-        width: 82%;
-    }
-
-    .col3 {
-        width: 12%;
-    }
-
-    .col2 > h2 {
-        font-size: 3vw;
-    }
-
-    .col2 > h4 {
-        font-size: 1.5vw;
-    }
-
-    .login_btn {
-        padding-top: 6%;
-        padding-bottom: 6%;
-        font-size: 2vw;
-    }
-}
 
 .avtar {
     margin: 0;
@@ -214,8 +63,10 @@ body::-webkit-scrollbar {
 }
 
 .avtar > img {
-    width: 7vw;
-    height: 7vw;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 64px;
+    height: 64px;
 }
 
 .form-group {
@@ -249,6 +100,10 @@ body::-webkit-scrollbar {
     justify-content: flex-end;
 }
 
+label {
+    margin-bottom: 8px;
+}
+
 .login_other_links > small > a {
     color: #9000f0;
 }
@@ -258,4 +113,10 @@ body::-webkit-scrollbar {
 #form_password_error {
     color: red;
     margin-bottom: 16px;
+}
+
+@media (max-width: 920px) {
+    .login_page {
+        padding-top: 100px;
+    }
 }

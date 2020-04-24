@@ -186,9 +186,11 @@
             });
         }
     }
+
     {
         let isHomePage = false;
         let areAdditionalPages = false;
+        let isLogin = false;
         {
             const additionalPages = [
                 "about-us",
@@ -197,26 +199,21 @@
                 "terms-of-service",
                 "contact-us",
             ];
-            const header = document.getElementById("header");
             const url = window.location.href;
             isHomePage = !!(
                 url.match(new RegExp("/", "g")).length === 3 &&
                 url[url.length - 1] === "/"
             );
+            isLogin =
+                url.indexOf("login") !== -1 || url.indexOf("register") !== -1
+                    ? true
+                    : false;
             for (let page of additionalPages) {
                 const index = url.indexOf(page);
                 if (index !== -1) {
                     areAdditionalPages = true;
                     break;
                 }
-            }
-            if (isHomePage) {
-                header.classList.remove("px-4", "py-2");
-                header.classList.add("pl-2", "py-3");
-            }
-            if (areAdditionalPages) {
-                header.classList.remove("px-4");
-                header.classList.add("pl-2");
             }
         }
         {
@@ -226,10 +223,14 @@
 
             if (isHomePage || areAdditionalPages) {
                 sideNavigationItems[5].parentNode.style.display = "none";
-                sideNavigationItems[1].style.display = sideNavigationItems[9].style.display =
+                sideNavigationItems[1].style.display = sideNavigationItems[10].style.display =
+                    "none";
+            } else if (isLogin) {
+                sideNavigationItems[5].parentNode.style.display = "none";
+                sideNavigationItems[1].style.display = sideNavigationItems[10].style.display = sideNavigationItems[9].style.display =
                     "none";
             } else {
-                sideNavigationItems[2].style.display = sideNavigationItems[3].style.display = sideNavigationItems[4].style.display =
+                sideNavigationItems[2].style.display = sideNavigationItems[3].style.display = sideNavigationItems[4].style.display = sideNavigationItems[9].style.display =
                     "none";
             }
 
@@ -245,16 +246,34 @@
                 });
             }
         }
+
+        {
+            const profilePage = document.getElementsByClassName("profile_page");
+
+            for (let i = 0; i < profilePage.length; i++) {
+                if (isHomePage || areAdditionalPages || isLogin)
+                    profilePage[i].parentNode.style.display = "none";
+                profilePage[i].addEventListener("click", function (e) {
+                    if (window.location.href === e.target.parentNode.href)
+                        e.preventDefault();
+                });
+            }
+        }
+
         {
             const topNavigationItems = document.getElementsByClassName(
                 "top_navigation_items"
             );
             if (isHomePage || areAdditionalPages) {
                 topNavigationItems[5].parentNode.parentNode.style.display = "none";
-                topNavigationItems[1].style.display = topNavigationItems[8].style.display =
+                topNavigationItems[1].style.display = topNavigationItems[9].style.display =
+                    "none";
+            } else if (isLogin) {
+                topNavigationItems[5].parentNode.parentNode.style.display = "none";
+                topNavigationItems[1].style.display = topNavigationItems[9].style.display = topNavigationItems[8].style.display =
                     "none";
             } else {
-                topNavigationItems[2].style.display = topNavigationItems[3].style.display = topNavigationItems[4].style.display =
+                topNavigationItems[2].style.display = topNavigationItems[3].style.display = topNavigationItems[8].style.display = topNavigationItems[4].style.display =
                     "none";
             }
             //disable links if href and window location is same for top navigation links
@@ -269,23 +288,9 @@
                 });
             }
         }
-
-        {
-            const profilePage = document.getElementsByClassName("profile_page");
-
-            for (let i = 0; i < profilePage.length; i++) {
-                if (isHomePage || areAdditionalPages)
-                    profilePage[i].parentNode.style.display = "none";
-                profilePage[i].addEventListener("click", function (e) {
-                    if (window.location.href === e.target.parentNode.href)
-                        e.preventDefault();
-                });
-            }
-        }
     }
     {
         const logo = document.getElementsByClassName("logo");
-
         for (let i = 0; i < logo.length; i++) {
             logo[i].addEventListener("click", function (e) {
                 if (
@@ -296,6 +301,7 @@
             });
         }
     }
+
     {
         let startX = 0;
         let startY = 0;
@@ -304,12 +310,6 @@
             "dropdown_container"
         )[0];
         const dropdownTitle = dropdownContainer.firstElementChild;
-
-        dropdownContainer.addEventListener("mouseenter", function () {
-            const classList = dropdownTitle.lastElementChild.classList;
-            classList.remove("fa-caret-down");
-            classList.add("fa-caret-up");
-        });
 
         dropdownContainer.addEventListener("mouseleave", function (e) {
             const target = e.target;

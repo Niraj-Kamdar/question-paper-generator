@@ -7,13 +7,6 @@
 {% endblock loader %}
 <!-- <div id="bodycontent"> -->
 
-{% block LogIn %}
-    <div class="login_page">
-        <div class="container" style=" width: 80%; margin-top: -5%;">
-            {% block main %}{% endblock %}
-        </div>
-    </div>
-{% endblock LogIn %}
 
 {% block backgroundImage %}
     <img src="{{ url_for('static',filename='images/background1.png') }}" class="img1" alt="background Image">
@@ -58,10 +51,10 @@
                     <div class="container-fluid ml-5 mt-4">
                         <div class="row pb-5">
                             <!-- <p class="text-justify" style="text-indent:5%;"><i
-                                            class="material-icons mx-2 float-left"
-                                            style="font-size: 1.5vw">
-                                        subdirectory_arrow_right</i>Here we are proposing a model system for smart question paper generation for universities. In this system administration of the database inputs set of questions with an option of check box to tick the correct answer. More ever weightage of the particular question in terms of marks and hours and the complexity of the question is determined. After this process whole question paper along with the weightage is stored in the database. In order to make question paper, admin sets all the weightage and difficulties to solve the problem. As soon as the difficulty and weightage is specified a pre doc file as per selected format will be downloaded to the admin and an electronic mail will be triggered. Range of difficulty may vary from easy, medium and hard.We are hoping that, this website will help in lighten your work for making question paper. Our goal to make this website is to reduce hours of manual work to set question paper which cover all syllbas, include important qustions and with overall difficulty as you desire.
-                                    </p> -->
+                                                class="material-icons mx-2 float-left"
+                                                style="font-size: 1.5vw">
+                                            subdirectory_arrow_right</i>Here we are proposing a model system for smart question paper generation for universities. In this system administration of the database inputs set of questions with an option of check box to tick the correct answer. More ever weightage of the particular question in terms of marks and hours and the complexity of the question is determined. After this process whole question paper along with the weightage is stored in the database. In order to make question paper, admin sets all the weightage and difficulties to solve the problem. As soon as the difficulty and weightage is specified a pre doc file as per selected format will be downloaded to the admin and an electronic mail will be triggered. Range of difficulty may vary from easy, medium and hard.We are hoping that, this website will help in lighten your work for making question paper. Our goal to make this website is to reduce hours of manual work to set question paper which cover all syllbas, include important qustions and with overall difficulty as you desire.
+                                        </p> -->
                             <p class="text-justify" style="text-indent:5%;"><i class="material-icons mx-2 float-left"
                                                                                style="font-size: 1.5vw">
                                 subdirectory_arrow_right</i>Examination Process is Important BUT Preparing
@@ -93,8 +86,13 @@
                 </div>
             </div>
         </div>
+
+        <div id="register">
+            <a href="/register">Register Now</a>
+        </div>
     </main>
 {% endblock body %}
+
 
 
 

@@ -1,79 +1,83 @@
-{% extends "main/index.html" %}
-{% block main %}
-    <div class="avtar row mb-2">
-        <img src="{{ url_for('static',filename='images/user.svg') }}" alt="user">
-    </div>
-    <div class="content-section">
-        <form method="POST" action="" novalidate id="registerForm">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <div class="form-group mb-3">
-                    {{ form.username.label(class="form-control-label") }}
-
-                    {% if form.username.errors %}
-                        {{ form.username(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.username.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.username(class="form-control form-control-lg") }}
-                    {% endif %}
-                    <div id="user_name_error"></div>
-                </div>
-                <div class="form-group my-3">
-                    {{ form.email.label(class="form-control-label") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
-                    <div id="user_email_error"></div>
-                </div>
-                <div class="form-group my-3">
-                    {{ form.password.label(class="form-control-label") }}
-                    {% if form.password.errors %}
-                        {{ form.password(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.password(class="form-control form-control-lg") }}
-                    {% endif %}
-                    <div id="user_password_error"></div>
-                </div>
-                <div class="form-group mt-3 mb-1">
-                    {{ form.confirm_password.label(class="form-control-label") }}
-                    {% if form.confirm_password.errors %}
-                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.confirm_password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.confirm_password(class="form-control form-control-lg") }}
-                    {% endif %}
-                    <div id="user_confirm_password_error"></div>
-                </div>
-            </fieldset>
-            <div class="form-group form_submit mt-2 mb-4">
-                {{ form.submit(class="btn rbtn btn-block") }}
+{% extends "headerFooter.html" %}
+{% block body %}
+    <div class="register_page">
+        <div class="container">
+            <div class="avtar row mb-2">
+                <img src="{{ url_for('static',filename='images/user.svg') }}" alt="user">
             </div>
-        </form>
-    </div>
+            <div class="content-section">
+                <form method="POST" action="" novalidate id="registerForm">
+                    {{ form.hidden_tag() }}
+                    <fieldset class="form-group">
+                        <div class="form-group mb-3">
+                            {{ form.username.label(class="form-control-label") }}
 
-    <div class="register_other_links pt-2">
-        <small class="text-muted">
-            Already Have An Account? <a class="ml-2" href="{{ url_for('users.login') }}">Sign In</a>
-        </small>
+                            {% if form.username.errors %}
+                                {{ form.username(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.username.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.username(class="form-control form-control-lg") }}
+                            {% endif %}
+                            <div id="user_name_error"></div>
+                        </div>
+                        <div class="form-group my-3">
+                            {{ form.email.label(class="form-control-label") }}
+                            {% if form.email.errors %}
+                                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.email(class="form-control form-control-lg") }}
+                            {% endif %}
+                            <div id="user_email_error"></div>
+                        </div>
+                        <div class="form-group my-3">
+                            {{ form.password.label(class="form-control-label") }}
+                            {% if form.password.errors %}
+                                {{ form.password(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.password.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.password(class="form-control form-control-lg") }}
+                            {% endif %}
+                            <div id="user_password_error"></div>
+                        </div>
+                        <div class="form-group mt-3 mb-1">
+                            {{ form.confirm_password.label(class="form-control-label") }}
+                            {% if form.confirm_password.errors %}
+                                {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.confirm_password.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.confirm_password(class="form-control form-control-lg") }}
+                            {% endif %}
+                            <div id="user_confirm_password_error"></div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group form_submit mt-2 mb-4">
+                        {{ form.submit(class="btn rbtn btn-block") }}
+                    </div>
+                </form>
+            </div>
+
+            <div class="register_other_links pt-2">
+                <small class="text-muted">
+                    Already Have An Account? <a class="ml-2" href="{{ url_for('users.login') }}">Sign In</a>
+                </small>
+            </div>
+        </div>
     </div>
-{% endblock main %}
+{% endblock body %}
