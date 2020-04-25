@@ -154,3 +154,15 @@ class Paper(db.Model):
     time_limit = db.Column(db.Text, nullable=False)
     instructions = db.Column(db.JSON, nullable=True, default=default_instructions)
     course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
+
+    def to_dict(self):
+        return dict(id=self.id,
+                    name=self.name,
+                    mark=self.mark,
+                    difficulty=self.difficulty,
+                    cognitive_level=self.cognitive_level,
+                    paper_format=self.paper_format,
+                    paper_logo=self.paper_logo,
+                    exam_date=self.exam_date,
+                    time_limit=self.time_limit,
+                    instructions=self.instructions)
