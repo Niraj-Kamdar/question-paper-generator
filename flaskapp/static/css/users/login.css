@@ -1,11 +1,14 @@
 .container {
   background-color: rgba(144, 0, 240, 0.15);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 70%;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  max-width: 540px;
 }
 
 .login_page {
+  margin: 0 10px;
   padding-top: 150px;
+  padding-bottom: 50px;
 }
 
 /************************************************************************/
@@ -112,10 +115,4 @@ label {
 #form_password_error {
   color: red;
   margin-bottom: 16px;
-}
-
-@media (max-width: 920px) {
-  .login_page {
-    padding-top: 100px;
-  }
 }

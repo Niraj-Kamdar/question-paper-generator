@@ -27,6 +27,8 @@
 
   question.addEventListener("input", () => {
     formErrors[0].innerHTML = "";
+    e.target.style.height = "";
+    e.target.style.height = e.target.scrollHeight + "px";
   });
 
   mark.addEventListener("input", () => {
@@ -35,6 +37,16 @@
 
   difficulty.addEventListener("input", () => {
     formErrors[2].innerHTML = "";
+  });
+
+  question.setAttribute(
+    "style",
+    "height:" + question.scrollHeight + "px;overflow-y:hidden;"
+  );
+
+  window.addEventListener("resize", function () {
+    question.style.height = "";
+    question.style.height = question.scrollHeight + "px";
   });
 
   /**form submit handler */

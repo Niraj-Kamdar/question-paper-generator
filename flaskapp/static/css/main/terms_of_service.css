@@ -6,6 +6,8 @@
   color: #b0b0b0;
   font-size: 30px;
   font-weight: bolder;
+  padding-top: 40px;
+  text-align: center;
 }
 
 #index_page_link {
@@ -20,19 +22,29 @@
 
 #services_content {
   color: #808080;
+  padding: 0.5rem 32px;
 }
 
 #services_content > h3 {
   width: 100%;
-  font-size: 1.5vw;
+  font-size: 16px;
 }
 
 #services_content > p {
   padding-left: 3%;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 960px) {
   #main_container > div {
     padding-top: 40px;
+  }
+  #page_title .col > h2 {
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 340px) {
+  #page_title .col > h2 {
+    font-size: 20px;
   }
 }

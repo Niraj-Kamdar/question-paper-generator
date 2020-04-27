@@ -18,16 +18,16 @@
     <div class="row m-5 mb-2">
         <h2>Reset Password</h2>
     </div>
-    {% block flashes %}
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    <div id="opacity_container">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
 messages %}
-    <ul class="flashes_warning">
-        {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %} {% endwith %}
-    {% endblock flashes %}
+        <ul class="flashes_warning">
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+    </div>
     <div class="container p-3">
 
         <form method="POST" action="" id="resetForm" novalidate>

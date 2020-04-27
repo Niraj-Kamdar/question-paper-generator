@@ -1,9 +1,4 @@
 (function () {
-  document.getElementById("template_display").style.width = "100%";
-  setTimeout(() => {
-    const flash = document.getElementsByClassName("flashes")[0];
-    if (flash) flash.style.display = "none";
-  }, 1000);
   const accountForm = document.getElementById("account_form");
   const userName = document.getElementById("username");
   const email = document.getElementById("email");

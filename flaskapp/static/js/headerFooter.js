@@ -14,7 +14,7 @@
 
     //hide side nav on resizing
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 920) sideNavigationContainer.style.left = "";
+      if (window.innerWidth > 960) sideNavigationContainer.style.left = "";
       document.body.style.overflowY = "";
     });
 
@@ -115,7 +115,7 @@
 
       mainContainer.addEventListener("touchstart", function (e) {
         let touchObj = {};
-        if (window.innerWidth > 920) return; //do not process if screen width is greater than 920
+        if (window.innerWidth > 960) return; //do not process if screen width is greater than 960
         touchObj = e.changedTouches[0];
         mainTouchStartX = touchObj.pageX;
         mainTouchStartY = touchObj.pageY;
@@ -130,7 +130,7 @@
         let distance = 0;
         let left = 0;
         if (mainFlag) return;
-        if (window.innerWidth > 920) return;
+        if (window.innerWidth > 960) return;
         touchObj = e.changedTouches[0];
         distance = touchObj.pageX - preMainPageX;
         netDistance = netDistance + distance;
@@ -160,7 +160,7 @@
           mainTouchStartX > 100 ||
           sideNavigationContainer.style.left >= "0px" || //if already side nav is present at correct position
           mainFlag ||
-          window.innerWidth > 920
+          window.innerWidth > 960
         )
           return;
 
@@ -191,6 +191,8 @@
     let isHomePage = false;
     let areAdditionalPages = false;
     let isLogin = false;
+    let isQuestionPage = false;
+    let isCoursesPage = false;
     {
       const additionalPages = [
         "about-us",
@@ -200,14 +202,20 @@
         "contact-us",
       ];
       const url = window.location.href;
+
       isHomePage = !!(
         url.match(new RegExp("/", "g")).length === 3 &&
         url[url.length - 1] === "/"
       );
+
       isLogin =
         url.indexOf("login") !== -1 || url.indexOf("register") !== -1
           ? true
           : false;
+
+      isQuestionPage = url.indexOf("question") !== -1 ? true : false;
+      isCoursesPage = url.match(/.+course\/$/) ? true : false;
+
       for (let page of additionalPages) {
         const index = url.indexOf(page);
         if (index !== -1) {
@@ -220,18 +228,67 @@
       const sideNavigationItems = document.getElementsByClassName(
         "side_navigation_items"
       );
+      const exploreContainer = document.getElementById("explore_container");
+      const addContainer = document.getElementById("add_container");
+      const courseContainer = document.getElementById("course_container");
+      const childrenLength = courseContainer.children.length;
+      const moreItemsContainer =
+        sideNavigationItems[childrenLength + 13].parentNode;
+      const addMCQ = sideNavigationItems[childrenLength + 4];
+      const addQuestion = sideNavigationItems[childrenLength + 5];
+      const viewMCQ = sideNavigationItems[childrenLength + 1];
+      const viewQuestion = sideNavigationItems[childrenLength + 2];
+      const addCourse = sideNavigationItems[childrenLength + 6];
+      const removeCourse = sideNavigationItems[childrenLength + 7];
+      const course = sideNavigationItems[childrenLength + 9];
+      const aboutUs = sideNavigationItems[childrenLength + 10];
+      const help = sideNavigationItems[childrenLength + 11];
+      const contactUs = sideNavigationItems[childrenLength + 12];
 
-      if (isHomePage || areAdditionalPages) {
-        sideNavigationItems[5].parentNode.style.display = "none";
-        sideNavigationItems[1].style.display = sideNavigationItems[10].style.display =
-          "none";
-      } else if (isLogin) {
-        sideNavigationItems[5].parentNode.style.display = "none";
-        sideNavigationItems[1].style.display = sideNavigationItems[10].style.display = sideNavigationItems[9].style.display =
-          "none";
+      const logIn = sideNavigationItems[childrenLength + 17];
+      const logOut = sideNavigationItems[childrenLength + 18];
+
+      if (isHomePage || areAdditionalPages || isLogin) {
+        exploreContainer.style.display = "none";
+        addContainer.style.display = "none";
+        courseContainer.style.display = "none";
+        moreItemsContainer.style.display = "none";
+        course.style.display = logOut.style.display = "none";
+        addCourse.style.display = "none";
+        removeCourse.style.display = "none";
+        if (isLogin) {
+          logIn.style.display = "none";
+        }
       } else {
-        sideNavigationItems[2].style.display = sideNavigationItems[3].style.display = sideNavigationItems[4].style.display = sideNavigationItems[9].style.display =
+        if (isQuestionPage) {
+          addMCQ.style.display = addQuestion.style.display = "none";
+          viewMCQ.style.display = viewQuestion.style.display = "none";
+          course.style.display = "none";
+          for (let i = 1; i < childrenLength; i++) {
+            sideNavigationItems[i].style.display = "none";
+          }
+        }
+        if (isCoursesPage) {
+          course.style.display = "none";
+          addCourse.style.display = "block";
+        }
+        aboutUs.style.display = help.style.display = contactUs.style.display = logIn.style.display =
           "none";
+        for (let i = 1; i < moreItemsContainer.children.length; i++) {
+          moreItemsContainer.children[i].style.display = "none";
+        }
+        if (addCourse.style.display) {
+          addCourse.style.display = "";
+          removeCourse.style.display = "";
+        } else {
+          addCourse.style.display = "none";
+          removeCourse.style.display = "none";
+        }
+        if (addMCQ.style.display !== "none") {
+          exploreContainer.style.display = "none";
+          addContainer.style.display = "none";
+          courseContainer.style.display = "none";
+        }
       }
 
       //disable links if href and window location is same for side navigation links
@@ -253,6 +310,21 @@
       for (let i = 0; i < profilePage.length; i++) {
         if (isHomePage || areAdditionalPages || isLogin)
           profilePage[i].parentNode.style.display = "none";
+
+        profilePage[i].addEventListener("touchstart", function (e) {
+          if (window.location.href === e.target.parentNode.href)
+            e.preventDefault();
+          e.target.style.boxShadow = "none";
+        });
+
+        profilePage[i].addEventListener("touchend", function (e) {
+          e.target.style.boxShadow = "0 0 10px 2px #ffffff";
+        });
+
+        profilePage[i].addEventListener("mouseenter", function (e) {
+          e.target.firstElementChild.style.boxShadow = "";
+        });
+
         profilePage[i].addEventListener("click", function (e) {
           if (window.location.href === e.target.parentNode.href)
             e.preventDefault();
@@ -374,31 +446,6 @@
   }
 
   {
-    const dropdownTitle = document.getElementsByClassName(
-      "dropdown_container_2"
-    )[0].firstElementChild;
-
-    dropdownTitle.addEventListener("click", function (e) {
-      let target = {};
-      let dropdownItemsContainer = {};
-      let classList = {};
-      if (Array.from(e.target.classList).includes("fa"))
-        target = e.target.parentNode;
-      else target = e.target;
-      dropdownItemsContainer = target.nextElementSibling;
-      classList = target.lastElementChild.classList;
-      if (dropdownItemsContainer.style.display !== "block") {
-        dropdownItemsContainer.style.display = "block";
-        classList.remove("fa-caret-down");
-        classList.add("fa-caret-up");
-      } else {
-        dropdownItemsContainer.style.display = "none";
-        classList.remove("fa-caret-up");
-        classList.add("fa-caret-down");
-      }
-    });
-  }
-  {
     const footerLinks = document.getElementsByClassName("fl");
     for (let i = 0; i < footerLinks.length; i++) {
       footerLinks[i].addEventListener("click", (e) => {
@@ -410,5 +457,67 @@
       });
     }
   }
-  document.body.style.overflowY = "auto"; //for all pages except question list
+  {
+    function handleQuestionNav(e) {
+      let target = {};
+      let classList = {};
+      let children = {};
+      if (Array.from(e.target.classList).includes("fa"))
+        target = e.target.parentNode;
+      else target = e.target;
+      classList = target.lastElementChild.classList;
+      children = target.parentNode.children;
+      if (
+        Array.from(target.lastElementChild.classList).includes("fa-caret-down")
+      ) {
+        for (let i = 1; i < children.length; i++) {
+          children[i].style.display = "block";
+        }
+        classList.remove("fa-caret-down");
+        classList.add("fa-caret-up");
+      } else {
+        for (let i = 1; i < children.length; i++) {
+          children[i].style.display = "none";
+        }
+        classList.remove("fa-caret-up");
+        classList.add("fa-caret-down");
+      }
+    }
+    {
+      const dropdownTitle = document.getElementById("explore_container")
+        .firstElementChild;
+
+      dropdownTitle.addEventListener("click", handleQuestionNav);
+    }
+    {
+      const dropdownTitle = document.getElementById("add_container")
+        .firstElementChild;
+
+      dropdownTitle.addEventListener("click", handleQuestionNav);
+    }
+    {
+      const dropdownTitle = document.getElementsByClassName(
+        "dropdown_container_2"
+      )[0].firstElementChild;
+
+      dropdownTitle.addEventListener("click", handleQuestionNav);
+    }
+    {
+      const dropdownTitle = document.getElementById("course_container")
+        .firstElementChild;
+      dropdownTitle.addEventListener("click", handleQuestionNav);
+    }
+  }
+  {
+    const flash = document.getElementsByClassName("flashes_question")[0];
+    if (flash) {
+      document.body.style.overflowY = "hidden";
+      document.getElementById("opacity_container").style.display = "block";
+      setTimeout(() => {
+        flash.style.display = "none";
+        document.body.style.overflowY = "";
+        document.getElementById("opacity_container").style.display = "";
+      }, 1000);
+    }
+  }
 })();
