@@ -9,6 +9,13 @@ class CourseForm(FlaskForm):
     submit = SubmitField("submit")
 
 
+class UnitForm(FlaskForm):
+    chapter_no = IntegerField('Chapter No.',
+                              validators=[DataRequired(), NumberRange(1, 101, "Units can't be more than 100")], )
+    name = StringField('Name', validators=[DataRequired()])
+    submit = SubmitField("submit")
+
+
 class QuestionForm(FlaskForm):
     question = TextAreaField('Question',
                              validators=[DataRequired(), Length(min=2)])

@@ -8,7 +8,7 @@ from flaskapp.utils import default_instructions
 
 @login_manager.user_loader
 def load_user(user_id):
-    """Add user to database
+    """Load User as current_user from the Database
     
     Returns:
         int(ID)  -- Load the user by giving user-ID
@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.svg')
     password = db.Column(db.String(60), nullable=False)
-    courses = db.relationship('Course', backref='teacher', lazy=True)
+    courses = db.relationship('Course', backref='teacher', lazy=True, cascade="all, delete-orphan")
 
     def get_reset_token(self, expires_sec=86400):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -51,8 +51,8 @@ class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    units = db.relationship('Unit', backref='course', lazy=True)
-    papers = db.relationship('Paper', backref='course', lazy=True)
+    units = db.relationship('Unit', backref='course', lazy=True, cascade="all, delete-orphan")
+    papers = db.relationship('Paper', backref='course', lazy=True, cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"Course({self.name})"
@@ -67,8 +67,8 @@ class Unit(db.Model):
     chapter_no = db.Column(db.Integer, nullable=False)
     name = db.Column(db.Text, nullable=True)
     course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
-    questions = db.relationship('Question', backref='unit', lazy=True)
-    mcq_questions = db.relationship("MCQQuestion", backref='unit', lazy=True)
+    questions = db.relationship('Question', backref='unit', lazy=True, cascade="all, delete-orphan")
+    mcq_questions = db.relationship("MCQQuestion", backref='unit', lazy=True, cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"Unit({self.chapter_no, self.name})"
