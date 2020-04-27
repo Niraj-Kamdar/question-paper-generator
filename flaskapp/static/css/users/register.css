@@ -18,6 +18,7 @@
 label {
   margin-bottom: 8px;
 }
+
 /************************************************************************/
 
 /************************************************************************/
@@ -44,6 +45,7 @@ label {
   padding-top: 150px;
   padding-bottom: 50px;
 }
+
 /**********************************************************************/
 
 @media (max-width: 920px) {
@@ -51,6 +53,7 @@ label {
     padding-top: 100px;
   }
 }
+
 /*// Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
   .login_btn {

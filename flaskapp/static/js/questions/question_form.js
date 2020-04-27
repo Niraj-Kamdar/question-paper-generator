@@ -63,25 +63,6 @@
     }
   });
 
-  toggleContainer.addEventListener("click", () => {
-    if (impCheckbox.checked) {
-      toggleBtn.style.left = "4px";
-      toggleContainer.style.backgroundColor = "#ccc";
-    } else {
-      toggleBtn.style.left = "28px";
-      toggleContainer.style.backgroundColor = "rgba(144, 0, 240, 0.76)";
-    }
-    impCheckbox.checked = !impCheckbox.checked;
-  });
-
-  resetBtn.addEventListener("click", () => {
-    toggleBtn.style.left = "4px";
-    toggleContainer.style.backgroundColor = "#ccc";
-    for (let i = 0; i < formErrors.length; i++) {
-      formErrors[i].innerHTML = "";
-    }
-  });
-
   /** for question update form */
   if (impCheckbox.checked) {
     toggleBtn.style.left = "28px";

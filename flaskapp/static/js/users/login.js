@@ -27,6 +27,26 @@
     });
   }
 
+  /* form validation */
+  if (loginForm) {
+    emailField.addEventListener("input", () => {
+      emailError.innerHTML = "";
+    });
+    passwordField.addEventListener("input", () => {
+      passwordError.innerHTML = "";
+    });
+    loginForm.addEventListener("submit", (e) => {
+      emailError.innerHTML = "";
+      passwordError.innerHTML = "";
+      const validation = isValid(emailField.value, passwordField.value);
+      if (!validation.isValid) {
+        e.preventDefault();
+        emailError.innerText = validation.errors[0];
+        passwordError.innerText = validation.errors[1];
+      }
+    });
+  }
+
   function isValid(email, password) {
     const validation = {
       isValid: true,
