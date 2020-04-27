@@ -22,7 +22,12 @@
   color: #808080;
 }
 
-@media (max-width: 960px) {
+#policy_content > p {
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+@media (max-width: 920px) {
   #main_container > div {
     padding-top: 40px;
   }

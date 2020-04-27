@@ -27,11 +27,15 @@
 
 #services_content > h3 {
   width: 100%;
-  font-size: 16px;
 }
 
 #services_content > p {
   padding-left: 3%;
+  padding-right: 3%;
+}
+
+#services_content > ol {
+  padding-right: 3%;
 }
 
 @media (max-width: 960px) {

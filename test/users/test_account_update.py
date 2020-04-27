@@ -57,3 +57,8 @@ class UserAccountTestCase(BaseUser):
         self.assertIn(b"<title>SetNow : Reset Password</title>", response.data)
         # FIXME: add flash in frontend: enable this test once fixed
         # self.assertIn(b"That is an invalid or expired token", response.data)
+                
+        # test unregistered email
+        data = dict(email="doesn't@exit.com")
+        response, _ = test_post_request(self, "/reset_password", data)
+        self.assertIn(b"There is no account with that email. You must register first.", response.data)
