@@ -1,3 +1,6 @@
+from flask import url_for
+from flask_login import current_user
+
 default_instructions = [
     "Write your name and student number in the space provided",
     "Make sure your mobile phone is switched off and place it at the front together with\
@@ -15,3 +18,8 @@ default_instructions = [
                           You must remain silent until after you have exited the building.",
     "Remember! Any form of cheating is not allowed and action will be taken.",
 ]
+
+
+def profile_path():
+    return url_for("static",
+                   filename="profile_pics/" + current_user.image_file)

@@ -16,12 +16,12 @@ from flaskapp.blueprints.questions.forms import UnitForm
 from flaskapp.blueprints.questions.utils import check_valid_course
 from flaskapp.blueprints.questions.utils import check_valid_question_type
 from flaskapp.blueprints.questions.utils import check_valid_unit
-from flaskapp.blueprints.questions.utils import image_file
 from flaskapp.blueprints.questions.utils import update_imp
 from flaskapp.models import Course
 from flaskapp.models import MCQQuestion
 from flaskapp.models import Question
 from flaskapp.models import Unit
+from flaskapp.utils import profile_path
 
 questions = Blueprint("questions", __name__)
 
@@ -48,7 +48,7 @@ def add_course():
         css_file="css/base.css",
         css_file2="css/questions/courses_form.css",
         js_file="js/questions/add_course.js",
-        image_file=image_file,
+        image_file=profile_path(),
         title="Add Courses",
     )
 
@@ -68,7 +68,7 @@ def courses():
         css_file="css/base.css",
         css_file2="css/questions/courses.css",
         js_file="js/questions/courses.js",
-        image_file=image_file,
+        image_file=profile_path(),
         title="Courses",
     )
 
@@ -102,7 +102,7 @@ def add_unit(course_id):
         css_file="css/base.css",
         css_file2="css/questions/courses_form.css",
         js_file="js/questions/add_course.js",
-        image_file=image_file,
+        image_file=profile_path(),
         title="Add Courses",
     )
 
@@ -137,7 +137,7 @@ def question(course_id, unit_id, qtype):
             css_file3="css/questions/sideNav.css",
             js_file="js/questions/update_mcq_question.js",
             js_file2="js/sideNav.js",
-            image_file=image_file,
+            image_file=profile_path(),
             title="Objective Questions",
         )
     else:
@@ -152,7 +152,7 @@ def question(course_id, unit_id, qtype):
             css_file3="css/questions/sideNav.css",
             js_file="js/questions/update_question.js",
             js_file2="js/sideNav.js",
-            image_file=image_file,
+            image_file=profile_path(),
             title="Subjective Questions",
         )
 
@@ -210,7 +210,7 @@ def add_question(course_id, unit_id, qtype):
             css_file3="css/questions/sideNav.css",
             js_file="js/questions/mcq_question_form.js",
             js_file2="js/sideNav.js",
-            image_file=image_file,
+            image_file=profile_path(),
             title="Add Objective Question",
         )
     else:
@@ -242,7 +242,7 @@ def add_question(course_id, unit_id, qtype):
             css_file3="css/questions/sideNav.css",
             js_file="js/questions/question_form.js",
             js_file2="js/sideNav.js",
-            image_file=image_file,
+            image_file=profile_path(),
             title="Add Subjective Question",
         )
 

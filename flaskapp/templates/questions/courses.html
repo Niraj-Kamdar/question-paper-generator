@@ -22,7 +22,7 @@
             {% for _course in courses %}
 
                 <a class="course_item"
-                   href={{ url_for("questions.question", qtype="sub", course_id=_course.id) }}>{{ _course.name }}</a>
+                   href={{ url_for("questions.units", course_id=_course.id) }}>{{ _course.name }}</a>
                 <br>
 
             {% endfor %}
