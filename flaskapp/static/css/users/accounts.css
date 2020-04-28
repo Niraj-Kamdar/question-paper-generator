@@ -1,147 +1,152 @@
 .form_client_error {
-  color: red;
-  margin-bottom: 16px;
+    color: red;
+    margin-bottom: 16px;
 }
 
 #account_form {
-  background-color: rgba(144, 0, 240, 0.15);
-  /*box-shadow: 0 4px 12px 0;*/
-  /* height: 300px; */
-  overflow-y: auto;
-  padding: 10px;
-  scrollbar-width: none;
+    background-color: rgba(144, 0, 240, 0.15);
+    /*box-shadow: 0 4px 12px 0;*/
+    /* height: 300px; */
+    overflow-y: auto;
+    padding: 10px;
+    scrollbar-width: none;
 }
 
 #account_form::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 #account_info {
-  background-color: rgba(144, 0, 240, 0.76);
-  color: white;
-  font-size: 20px;
-  /* margin: 10px; */
-  /* text-align: center; */
-  padding: 10px;
+    background-color: rgba(144, 0, 240, 0.76);
+    color: white;
+    font-size: 20px;
+    /* margin: 10px; */
+    /* text-align: center; */
+    padding: 10px;
 }
 
 #form_content {
-  background-color: white;
-  padding: 10px;
+    background-color: white;
+    padding: 10px;
 }
 
 .form_items {
-  background-color: rgba(144, 0, 240, 0.15);
-  color: rgba(88, 88, 88, 1);
+    background-color: rgba(144, 0, 240, 0.15);
+    color: rgba(88, 88, 88, 1);
 
-  font-size: 20px;
-  margin-bottom: 10px;
-  padding: 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
 }
 
 label {
-  margin: 0;
-  padding-left: 8px;
+    margin: 0;
+    padding-left: 8px;
 }
 
 #username,
 #email {
-  padding: 8px;
-  color: rgba(88, 88, 88, 1);
+    padding: 8px;
+    color: rgba(88, 88, 88, 1);
 }
 
 #submit {
-  width: 100%;
-  border: 1px solid #9000f0;
-  color: #9000f0;
+    width: 100%;
+    border: 1px solid #9000f0;
+    color: #9000f0;
 }
 
 #submit:hover {
-  background: #9000f0;
-  color: #ffffff;
+    background: #9000f0;
+    color: #ffffff;
 }
 
 #profile_pic {
-  height: 200px;
-  width: 200px;
-  box-shadow: 0 4px 12px 0;
+    height: 200px;
+    width: 200px;
+    box-shadow: 0 4px 12px 0;
 }
 
 .media {
-  text-align: center;
-  /* width: 50%; */
-  height: 100%;
-  background: #9000f026;
-  /* align-items: center; */
-  /*box-shadow: 0 4px 12px 0;*/
-  display: inline-block;
-  flex-direction: column;
-  padding-top: 20px;
+    text-align: center;
+    /* width: 50%; */
+    height: 100%;
+    background: #9000f026;
+    /* align-items: center; */
+    /*box-shadow: 0 4px 12px 0;*/
+    display: inline-block;
+    flex-direction: column;
+    padding-top: 20px;
 }
 
 .media-body {
-  margin-left: 15px;
+    margin-left: 15px;
 }
 
 #topbar {
-  position: sticky;
-  top: 0;
-  height: 8px;
-  background-color: rgba(144, 0, 240, 0.15);
+    position: sticky;
+    top: 0;
+    height: 8px;
+    background-color: rgba(144, 0, 240, 0.15);
 }
 
 #template_display {
-  margin-right: 0 !important;
+    margin-right: 0 !important;
 }
+
 .content-section {
-  display: flex;
+    display: flex;
 }
 
 .child {
-  width: 40%;
+    width: 40%;
 }
 
 #page_container {
-  padding-top: 100px;
+    padding-top: 100px;
 }
+
 @media (max-width: 1100px) {
-  .child {
-    width: 360px;
-  }
+    .child {
+        width: 360px;
+    }
 }
 
 @media (max-width: 960px) {
-  #body_container,
-  #page_display {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  #page_container {
-    padding-top: 70px;
-  }
+    #body_container,
+    #page_display {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    #page_container {
+        padding-top: 70px;
+    }
 }
 
 @media (max-width: 780px) {
-  .child {
-    width: 450px;
-  }
-  #template_display > div {
-    align-items: center;
-    flex-direction: column;
-  }
+    .child {
+        width: 450px;
+    }
+
+    #template_display > div {
+        align-items: center;
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 500px) {
-  .child {
-    width: 100%;
-  }
-  #template_display > div {
-    padding: 0 10px;
-  }
+    .child {
+        width: 100%;
+    }
+
+    #template_display > div {
+        padding: 0 10px;
+    }
 }
 
 @media (max-width: 380px) {
-  #page_container {
-    padding-top: 40px;
-  }
+    #page_container {
+        padding-top: 40px;
+    }
 }

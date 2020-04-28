@@ -1,91 +1,91 @@
 {% extends "sideNav.html" %}
 {% block image %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
 {% endblock image %}
 {% block image2 %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
 {% endblock image2 %}
 {% block header %}
-<h3 class="header" style=" font-weight: 500;">Add Subjective Question</h3>
+    <h3 class="header" style=" font-weight: 500;">Add Subjective Question</h3>
 {% endblock header %}
 
 {% block flashes %}
-{% with messages = get_flashed_messages(with_categories=true) %} {% if
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %}
-<ul class="flashes">
-    {% for category, message in messages %}
-    <li class="{{ category }}">{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %} {% endwith %}
+        <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endwith %}
 {% endblock flashes %}
 {% block main %}
-<div id="new_question">
+    <div id="new_question">
 
-    <form method="POST" action="" novalidate id="form">
+        <form method="POST" action="" novalidate id="form">
 
-        {{ form.hidden_tag() }}
+            {{ form.hidden_tag() }}
 
-        <div id="form_content">
-            <div class="form_field_question_label">
-                {{ form.question.label }} :
-                <div>
-                    {{ form.question(id="form_field_question_value") }}
-                </div>
-                {% if form.question.errors %}
-                <ul class="form__error">
-                    {% for error in form.question.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                <div class="form__client_error"></div>
-            </div>
-            <div id="form_attributes">
-                <div id="marks_label">
-                    {{ form.mark.label }} :
+            <div id="form_content">
+                <div class="form_field_question_label">
+                    {{ form.question.label }} :
                     <div>
-                        {{ form.mark(id="marks_value") }}
+                        {{ form.question(id="form_field_question_value") }}
                     </div>
-                    {% if form.mark.errors %}
-                    <ul class="form__error">
-                        {% for error in form.mark.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
+                    {% if form.question.errors %}
+                        <ul class="form__error">
+                            {% for error in form.question.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
                     {% endif %}
                     <div class="form__client_error"></div>
                 </div>
-                <div id="difficulty_label">
-                    {{ form.difficulty.label }} :
-                    <div>
-                        {{ form.difficulty(id="difficulty_value") }}
+                <div id="form_attributes">
+                    <div id="marks_label">
+                        {{ form.mark.label }} :
+                        <div>
+                            {{ form.mark(id="marks_value") }}
+                        </div>
+                        {% if form.mark.errors %}
+                            <ul class="form__error">
+                                {% for error in form.mark.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="form__client_error"></div>
                     </div>
-                    {% if form.difficulty.errors %}
-                    <ul class="form__error">
-                        {% for error in form.difficulty.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    <div class="form__client_error"></div>
+                    <div id="difficulty_label">
+                        {{ form.difficulty.label }} :
+                        <div>
+                            {{ form.difficulty(id="difficulty_value") }}
+                        </div>
+                        {% if form.difficulty.errors %}
+                            <ul class="form__error">
+                                {% for error in form.difficulty.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="form__client_error"></div>
+                    </div>
+                </div>
+                <div class="form__fields">
+                    {{ form.imp.label(id="mark_as_imp") }}
+                    {{ form.imp(id="imp_checkbox") }}
+                    <div id="toggle_container">
+                        <div id="toggle_btn"></div>
+                    </div>
+                    Always include in Papers
+                </div>
+                <div style="text-align: right;">
+                    {{ form.submit(id="submit_btn") }}
+                    <button type="reset" id="reset_btn">Cancel</button>
                 </div>
             </div>
-            <div class="form__fields">
-                {{ form.imp.label(id="mark_as_imp") }}
-                {{ form.imp(id="imp_checkbox") }}
-                <div id="toggle_container">
-                    <div id="toggle_btn"></div>
-                </div>
-                Always include in Papers
-            </div>
-            <div style="text-align: right;">
-                {{ form.submit(id="submit_btn") }}
-                <button type="reset" id="reset_btn">Cancel</button>
-            </div>
-        </div>
 
-    </form>
+        </form>
 
-</div>
+    </div>
 {% endblock main %}

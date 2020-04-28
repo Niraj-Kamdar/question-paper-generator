@@ -1,22 +1,22 @@
 .container {
-  background-color: rgba(144, 0, 240, 0.15);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-  max-width: 540px;
+    background-color: rgba(144, 0, 240, 0.15);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    max-width: 540px;
 }
 
 .login_page {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  right: 0;
-  width: 30%;
-  height: 100%;
-  position: fixed;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    position: fixed;
 }
 
 label {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 /************************************************************************/
@@ -26,99 +26,99 @@ label {
 /************************************************************************/
 
 .login_btn {
-  padding-top: 5%;
-  padding-bottom: 5%;
-  font-weight: bolder;
-  font-size: 1.5vw;
-  width: 100%;
-  position: relative;
-  background-color: #ffffff;
-  color: #9000f0;
-  border-top-left-radius: 20% 50%;
-  border-bottom-left-radius: 20% 50%;
-  border: none;
-  outline: none !important;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-weight: bolder;
+    font-size: 1.5vw;
+    width: 100%;
+    position: relative;
+    background-color: #ffffff;
+    color: #9000f0;
+    border-top-left-radius: 20% 50%;
+    border-bottom-left-radius: 20% 50%;
+    border: none;
+    outline: none !important;
 }
 
 .register_page {
-  margin: 0 10px;
-  padding-top: 150px;
-  padding-bottom: 50px;
+    margin: 0 10px;
+    padding-top: 150px;
+    padding-bottom: 50px;
 }
 
 /**********************************************************************/
 
 @media (max-width: 920px) {
-  .register_page {
-    padding-top: 100px;
-  }
+    .register_page {
+        padding-top: 100px;
+    }
 }
 
 /*// Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
-  .login_btn {
-    padding-top: 5%;
-    padding-bottom: 5%;
-    font-size: 3vw;
-  }
+    .login_btn {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        font-size: 3vw;
+    }
 }
 
 /*// Small devices (landscape phones, tablates, 576px and up)*/
 @media (min-width: 576px) and (max-width: 991.98px) {
-  .login_btn {
-    padding-top: 6%;
-    padding-bottom: 6%;
-    font-size: 2vw;
-  }
+    .login_btn {
+        padding-top: 6%;
+        padding-bottom: 6%;
+        font-size: 2vw;
+    }
 }
 
 .avtar {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .avtar > img {
-  border-radius: 50%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 64px;
-  height: 64px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 64px;
+    height: 64px;
 }
 
 .form-group {
-  color: #707070;
+    color: #707070;
 }
 
 .form_submit {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .rbtn {
-  background: #9000f000;
-  border: 1px solid #9000f0;
-  color: #9000f0;
+    background: #9000f000;
+    border: 1px solid #9000f0;
+    color: #9000f0;
 }
 
 .rbtn:hover {
-  background: #9000f0;
-  color: #ffffff;
+    background: #9000f0;
+    color: #ffffff;
 }
 
 .register_other_links {
-  border-top: 1px solid #b0b0b0;
+    border-top: 1px solid #b0b0b0;
 }
 
 .register_other_links > small {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .register_other_links > small > a {
-  color: #9000f0;
+    color: #9000f0;
 }
 
 .invalid-feedback,
@@ -126,6 +126,6 @@ label {
 #user_email_error,
 #user_password_error,
 #user_confirm_password_error {
-  color: red;
-  margin-bottom: 16px;
+    color: red;
+    margin-bottom: 16px;
 }
