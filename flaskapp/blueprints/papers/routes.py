@@ -15,7 +15,8 @@ def home():
     Returns:
         HTML -- It will render home page.
     """
-    image_file = url_for("static", filename="profile_pics/" + current_user.image_file)
+    image_file = url_for("static",
+                         filename="profile_pics/" + current_user.image_file)
     return render_template(
         "papers/home.html",
         css_file="css/base.css",

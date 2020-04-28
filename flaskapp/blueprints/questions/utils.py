@@ -8,7 +8,8 @@ from flaskapp import db
 from flaskapp.models import Course
 from flaskapp.models import Unit
 
-image_file = url_for("static", filename="profile_pics/" + current_user.image_file)
+image_file = url_for("static",
+                     filename="profile_pics/" + current_user.image_file)
 
 
 def check_valid_course(func):
@@ -46,9 +47,7 @@ def check_valid_question_type(func):
 
 def update_imp(question, obj):
     db.session.query(question).filter(question.id.in_(obj["imp"])).update(
-        dict(imp=True), synchronize_session="fetch"
-    )
+        dict(imp=True), synchronize_session="fetch")
     db.session.query(question).filter(question.id.in_(obj["notimp"])).update(
-        dict(imp=False), synchronize_session="fetch"
-    )
+        dict(imp=False), synchronize_session="fetch")
     db.session.commit()

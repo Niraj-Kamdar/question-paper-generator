@@ -21,11 +21,14 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    image_file = db.Column(db.String(20), nullable=False, default="default.svg")
+    image_file = db.Column(db.String(20),
+                           nullable=False,
+                           default="default.svg")
     password = db.Column(db.String(60), nullable=False)
-    courses = db.relationship(
-        "Course", backref="teacher", lazy=True, cascade="all, delete-orphan"
-    )
+    courses = db.relationship("Course",
+                              backref="teacher",
+                              lazy=True,
+                              cascade="all, delete-orphan")
 
     def get_reset_token(self, expires_sec=86400):
         s = Serializer(current_app.config["SECRET_KEY"], expires_sec)
@@ -56,12 +59,14 @@ class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    units = db.relationship(
-        "Unit", backref="course", lazy=True, cascade="all, delete-orphan"
-    )
-    papers = db.relationship(
-        "Paper", backref="course", lazy=True, cascade="all, delete-orphan"
-    )
+    units = db.relationship("Unit",
+                            backref="course",
+                            lazy=True,
+                            cascade="all, delete-orphan")
+    papers = db.relationship("Paper",
+                             backref="course",
+                             lazy=True,
+                             cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"Course({self.name})"
@@ -74,13 +79,17 @@ class Unit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     chapter_no = db.Column(db.Integer, nullable=False)
     name = db.Column(db.Text, nullable=True)
-    course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
-    questions = db.relationship(
-        "Question", backref="unit", lazy=True, cascade="all, delete-orphan"
-    )
-    mcq_questions = db.relationship(
-        "MCQQuestion", backref="unit", lazy=True, cascade="all, delete-orphan"
-    )
+    course_id = db.Column(db.Integer,
+                          db.ForeignKey("course.id"),
+                          nullable=False)
+    questions = db.relationship("Question",
+                                backref="unit",
+                                lazy=True,
+                                cascade="all, delete-orphan")
+    mcq_questions = db.relationship("MCQQuestion",
+                                    backref="unit",
+                                    lazy=True,
+                                    cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"Unit({self.chapter_no, self.name})"
@@ -93,11 +102,16 @@ class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.Text, nullable=False)
     mark = db.Column(db.Integer, nullable=False)
-    difficulty = db.Column(
-        db.Enum("easy", "medium", "hard", name="difficulty_type"), nullable=False
-    )
+    difficulty = db.Column(db.Enum("easy",
+                                   "medium",
+                                   "hard",
+                                   name="difficulty_type"),
+                           nullable=False)
     cognitive_level = db.Column(
-        db.Enum("knowledge", "comprehension", "application", name="cognitive_type"),
+        db.Enum("knowledge",
+                "comprehension",
+                "application",
+                name="cognitive_type"),
         nullable=False,
     )
     imp = db.Column(db.Boolean, default=False)
@@ -121,11 +135,16 @@ class MCQQuestion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.Text, nullable=False)
     mark = db.Column(db.Integer, nullable=False)
-    difficulty = db.Column(
-        db.Enum("easy", "medium", "hard", name="difficulty_type"), nullable=False
-    )
+    difficulty = db.Column(db.Enum("easy",
+                                   "medium",
+                                   "hard",
+                                   name="difficulty_type"),
+                           nullable=False)
     cognitive_level = db.Column(
-        db.Enum("knowledge", "comprehension", "application", name="cognitive_type"),
+        db.Enum("knowledge",
+                "comprehension",
+                "application",
+                name="cognitive_type"),
         nullable=False,
     )
     imp = db.Column(db.Boolean, default=False)
@@ -175,8 +194,12 @@ class Paper(db.Model):
     paper_logo = db.Column(db.Text, nullable=False, default="logo.svg")
     exam_date = db.Column(db.Date, nullable=False)
     time_limit = db.Column(db.Text, nullable=False)
-    instructions = db.Column(db.JSON, nullable=True, default=default_instructions)
-    course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
+    instructions = db.Column(db.JSON,
+                             nullable=True,
+                             default=default_instructions)
+    course_id = db.Column(db.Integer,
+                          db.ForeignKey("course.id"),
+                          nullable=False)
 
     def to_dict(self):
         return dict(

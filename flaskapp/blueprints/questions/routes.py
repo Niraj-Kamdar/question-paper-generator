@@ -89,9 +89,9 @@ def add_unit(course_id):
     form = UnitForm()
     _course = Course.query.filter(Course.id == course_id).first()
     if form.validate_on_submit():
-        unit = Unit(
-            chapter_no=form.chapter_no.data, name=form.name.data, course=_course
-        )
+        unit = Unit(chapter_no=form.chapter_no.data,
+                    name=form.name.data,
+                    course=_course)
         db.session.add(unit)
         db.session.commit()
         flash("New unit added successfully!", "success")
@@ -126,8 +126,8 @@ def question(course_id, unit_id, qtype):
     main_page = request.args.get("page", 1, type=int)
     if qtype == "mcq":
         _mcq_questions = MCQQuestion.query.filter(
-            MCQQuestion.unit_id == unit_id
-        ).paginate(page=main_page, per_page=1)
+            MCQQuestion.unit_id == unit_id).paginate(page=main_page,
+                                                     per_page=1)
         return render_template(
             "questions/mcq_questions.html",
             questions=_mcq_questions,
@@ -141,9 +141,8 @@ def question(course_id, unit_id, qtype):
             title="Objective Questions",
         )
     else:
-        _questions = Question.query.filter(Question.unit_id == unit_id).paginate(
-            page=main_page, per_page=1
-        )
+        _questions = Question.query.filter(
+            Question.unit_id == unit_id).paginate(page=main_page, per_page=1)
         return render_template(
             "questions/questions.html",
             questions=_questions,
@@ -158,9 +157,8 @@ def question(course_id, unit_id, qtype):
         )
 
 
-@questions.route(
-    "/course/<course_id>/unit/<unit_id>/question/<qtype>/new/", methods=["GET", "POST"]
-)
+@questions.route("/course/<course_id>/unit/<unit_id>/question/<qtype>/new/",
+                 methods=["GET", "POST"])
 @login_required
 @check_valid_course
 @check_valid_unit
@@ -202,8 +200,7 @@ def add_question(course_id, unit_id, qtype):
                     qtype="mcq",
                     course_id=course_id,
                     unit_id=unit_id,
-                )
-            )
+                ))
         return render_template(
             "questions/mcq_question_form.html",
             form=form,
@@ -235,8 +232,7 @@ def add_question(course_id, unit_id, qtype):
                     qtype="sub",
                     course_id=course_id,
                     unit_id=unit_id,
-                )
-            )
+                ))
         return render_template(
             "questions/question_form.html",
             form=form,
@@ -267,7 +263,8 @@ def update_question(course_id, unit_id, qtype, question_id):
        And do changes in database accordingly.
     """
     if qtype == "mcq":
-        _question = db.session.query(MCQQuestion).filter_by(id=question_id).first()
+        _question = db.session.query(MCQQuestion).filter_by(
+            id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(
@@ -276,8 +273,7 @@ def update_question(course_id, unit_id, qtype, question_id):
                     qtype=qtype,
                     course_id=course_id,
                     unit_id=unit_id,
-                )
-            )
+                ))
         form = MCQQuestionForm(**_question.to_dict())
         if form.validate_on_submit():
             _question.question = form.question.data
@@ -296,8 +292,7 @@ def update_question(course_id, unit_id, qtype, question_id):
                     qtype=qtype,
                     course_id=course_id,
                     unit_id=unit_id,
-                )
-            )
+                ))
         return render_template(
             "questions/mcq_question_form.html",
             form=form,
@@ -305,7 +300,8 @@ def update_question(course_id, unit_id, qtype, question_id):
             js_file="js/questions/question_form.js",
         )
     else:
-        _question = db.session.query(Question).filter_by(id=question_id).first()
+        _question = db.session.query(Question).filter_by(
+            id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(
@@ -314,8 +310,7 @@ def update_question(course_id, unit_id, qtype, question_id):
                     qtype="sub",
                     course_id=course_id,
                     unit_id=unit_id,
-                )
-            )
+                ))
         form = QuestionForm(**_question.to_dict())
         if form.validate_on_submit():
             _question.question = form.question.data
@@ -330,8 +325,7 @@ def update_question(course_id, unit_id, qtype, question_id):
                     qtype="sub",
                     course_id=course_id,
                     unit_id=unit_id,
-                )
-            )
+                ))
         return render_template(
             "questions/question_form.html",
             form=form,
@@ -341,8 +335,8 @@ def update_question(course_id, unit_id, qtype, question_id):
 
 
 @questions.route(
-    "/course/<course_id>/unit/<unit_id>/question/<qtype>/imp/<impq>/", methods=["GET"]
-)
+    "/course/<course_id>/unit/<unit_id>/question/<qtype>/imp/<impq>/",
+    methods=["GET"])
 @login_required
 @check_valid_course
 @check_valid_unit
@@ -357,17 +351,17 @@ def imp_question(course_id, unit_id, qtype, impq):
     if qtype == "mcq":
         update_imp(MCQQuestion, obj)
         return redirect(
-            url_for(
-                "questions.question", qtype=qtype, course_id=course_id, unit_id=unit_id
-            )
-        )
+            url_for("questions.question",
+                    qtype=qtype,
+                    course_id=course_id,
+                    unit_id=unit_id))
     else:
         update_imp(Question, obj)
         return redirect(
-            url_for(
-                "questions.question", qtype=qtype, course_id=course_id, unit_id=unit_id
-            )
-        )
+            url_for("questions.question",
+                    qtype=qtype,
+                    course_id=course_id,
+                    unit_id=unit_id))
 
 
 @questions.route(
@@ -387,23 +381,21 @@ def delete_question(course_id, unit_id, qtype, deleteq):
     """
     if qtype == "mcq":
         del_ids = json.loads(deleteq)
-        db.session.query(MCQQuestion).filter(MCQQuestion.id.in_(del_ids)).delete(
-            synchronize_session="fetch"
-        )
+        db.session.query(MCQQuestion).filter(
+            MCQQuestion.id.in_(del_ids)).delete(synchronize_session="fetch")
         db.session.commit()
         return redirect(
-            url_for(
-                "questions.question", qtype="mcq", course_id=course_id, unit_id=unit_id
-            )
-        )
+            url_for("questions.question",
+                    qtype="mcq",
+                    course_id=course_id,
+                    unit_id=unit_id))
     else:
         del_ids = json.loads(deleteq)
-        db.session.query(Question).filter(Question.id.in_(del_ids)).delete(
-            synchronize_session="fetch"
-        )
+        db.session.query(Question).filter(
+            Question.id.in_(del_ids)).delete(synchronize_session="fetch")
         db.session.commit()
         return redirect(
-            url_for(
-                "questions.question", qtype="sub", course_id=course_id, unit_id=unit_id
-            )
-        )
+            url_for("questions.question",
+                    qtype="sub",
+                    course_id=course_id,
+                    unit_id=unit_id))
