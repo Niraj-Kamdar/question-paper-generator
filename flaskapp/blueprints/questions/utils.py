@@ -3,6 +3,7 @@ import functools
 from flask import abort, url_for
 from flask_login import current_user
 
+from flaskapp import db
 from flaskapp.models import Course, Unit
 
 image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
@@ -39,3 +40,11 @@ def check_valid_question_type(func):
         return func(*args, **kwargs)
 
     return wrapper
+
+
+def update_imp(question, obj):
+    db.session.query(question).filter(question.id.in_(obj["imp"])).update(dict(imp=True),
+                                                                          synchronize_session='fetch')
+    db.session.query(question).filter(question.id.in_(obj["notimp"])).update(dict(imp=False),
+                                                                             synchronize_session='fetch')
+    db.session.commit()

@@ -9,7 +9,8 @@ from flaskapp.blueprints.questions.forms import (CourseForm,
 from flaskapp.blueprints.questions.utils import (check_valid_course,
                                                  image_file,
                                                  check_valid_unit,
-                                                 check_valid_question_type)
+                                                 check_valid_question_type,
+                                                 update_imp)
 from flaskapp.models import MCQQuestion, Question, Course, Unit
 
 questions = Blueprint('questions', __name__)
@@ -82,7 +83,7 @@ def add_unit(course_id):
         db.session.commit()
         flash("New unit added successfully!", "success")
         return redirect(url_for("questions.units", course_id=course_id))
-    return render_template("questions/course_form.html",
+    return render_template("questions/unit_form.html",
                            form=form,
                            css_file='css/base.css',
                            css_file2='css/questions/courses_form.css',
@@ -226,7 +227,7 @@ def update_question(course_id, unit_id, qtype, question_id):
         _question = db.session.query(MCQQuestion).filter_by(id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
-            return redirect(url_for("questions.question", qtype=qtype, course_id=course_id))
+            return redirect(url_for("questions.question", qtype=qtype, course_id=course_id, unit_id=unit_id))
         form = MCQQuestionForm(**_question.to_dict())
         if form.validate_on_submit():
             _question.question = form.question.data
@@ -239,7 +240,7 @@ def update_question(course_id, unit_id, qtype, question_id):
             _question.option4 = form.option4.data
             db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")
-            return redirect(url_for("questions.question", qtype=qtype, course_id=course_id))
+            return redirect(url_for("questions.question", qtype=qtype, course_id=course_id, unit_id=unit_id))
         return render_template('questions/mcq_question_form.html',
                                form=form,
                                css_file='css/questions/question_form.css',
@@ -249,7 +250,7 @@ def update_question(course_id, unit_id, qtype, question_id):
         _question = db.session.query(Question).filter_by(id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
-            return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
+            return redirect(url_for("questions.question", qtype="sub", course_id=course_id, unit_id=unit_id))
         form = QuestionForm(**_question.to_dict())
         if form.validate_on_submit():
             _question.question = form.question.data
@@ -258,7 +259,7 @@ def update_question(course_id, unit_id, qtype, question_id):
             _question.imp = form.imp.data
             db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")
-            return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
+            return redirect(url_for("questions.question", qtype="sub", course_id=course_id, unit_id=unit_id))
         return render_template('questions/question_form.html',
                                form=form,
                                css_file='css/questions/question_form.css',
@@ -278,20 +279,12 @@ def imp_question(course_id, unit_id, qtype, impq):
         Same page with flag or without flag -- set an IMP flag to particular question.And do changes in database also.
     """
     obj = json.loads(impq)
-    imp = obj["imp"]
-    notimp = obj["notimp"]
     if qtype == "mcq":
-        db.session.query(MCQQuestion).filter(MCQQuestion.id.in_(imp)).update(dict(imp=True),
-                                                                             synchronize_session='fetch')
-        db.session.query(MCQQuestion).filter(MCQQuestion.id.in_(notimp)).update(dict(imp=False),
-                                                                                synchronize_session='fetch')
-        db.session.commit()
-        return redirect(url_for("questions.question", qtype=qtype, course_id=course_id))
+        update_imp(MCQQuestion, obj)
+        return redirect(url_for("questions.question", qtype=qtype, course_id=course_id, unit_id=unit_id))
     else:
-        db.session.query(Question).filter(Question.id.in_(imp)).update(dict(imp=True), synchronize_session='fetch')
-        db.session.query(Question).filter(Question.id.in_(notimp)).update(dict(imp=False), synchronize_session='fetch')
-        db.session.commit()
-        return redirect(url_for("questions.question", qtype=qtype, course_id=course_id))
+        update_imp(Question, obj)
+        return redirect(url_for("questions.question", qtype=qtype, course_id=course_id, unit_id=unit_id))
 
 
 @questions.route("/course/<course_id>/unit/<unit_id>/question/<qtype>/delete/<deleteq>/", methods=["GET"])
@@ -310,9 +303,9 @@ def delete_question(course_id, unit_id, qtype, deleteq):
         del_ids = json.loads(deleteq)
         db.session.query(MCQQuestion).filter(MCQQuestion.id.in_(del_ids)).delete(synchronize_session='fetch')
         db.session.commit()
-        return redirect(url_for("questions.question", qtype="mcq", course_id=course_id))
+        return redirect(url_for("questions.question", qtype="mcq", course_id=course_id, unit_id=unit_id))
     else:
         del_ids = json.loads(deleteq)
         db.session.query(Question).filter(Question.id.in_(del_ids)).delete(synchronize_session='fetch')
         db.session.commit()
-        return redirect(url_for("questions.question", qtype="sub", course_id=course_id))
+        return redirect(url_for("questions.question", qtype="sub", course_id=course_id, unit_id=unit_id))
