@@ -32,19 +32,16 @@ messages %}
     <div class="control_btns">
         <div id="mark_imp" title="update imp">
             <img src="{{ url_for('static',
-                filename='images/imp.svg') }}" alt="imp"
-                class="control_btns_img" />
+                filename='images/imp.svg') }}" alt="imp" class="control_btns_img" />
         </div>
 
         <div id="delete_btn" title="delete">
             <img src="{{ url_for('static',
-                filename='images/bin.png') }}" alt="delete"
-                class="control_btns_img" />
+                filename='images/bin.png') }}" alt="delete" class="control_btns_img" />
         </div>
         <div id="cancel_btn" title="Cancel">
             <img src="{{ url_for('static',
-                filename='images/cancel.svg') }}" alt="cancel"
-                class="control_btns_img" />
+                filename='images/cancel.svg') }}" alt="cancel" class="control_btns_img" />
         </div>
     </div>
     <div>
@@ -55,13 +52,12 @@ messages %}
             </div>
             <div class="question_info">
                 <div class="first_row">
-                    <div class="first_row_column_1">ID: {{ q.id }}</div>
+                    <div class="first_row_column_1" data-id="{{q.id}}"></div>
                     <div class="first_row_column_2">
 
                         {{ q.imp }}</div>
                     <div class="first_row_column_3">
-                        <label><span class="mark_label"></span><input
-                                type="checkbox" name="isimp" value="false"
+                        <label><span class="mark_label"></span><input type="checkbox" name="isimp" value="false"
                                 class="imp_checkbox" /></label>
                     </div>
                 </div>
@@ -89,8 +85,7 @@ messages %}
             <div class="update_question">
                 <div class="edit_question">
                     <img src="{{ url_for('static',
-                        filename='images/edit.png') }}" alt="edit"
-                        class="update_question_img" />
+                        filename='images/edit.png') }}" alt="edit" class="update_question_img" />
                 </div>
                 <!-- <div class="delete_question"><img src="{{ url_for('static',filename='images/bin.png') }}"
                     class="update_question_img" /></div>
@@ -118,13 +113,11 @@ messages %}
     right_current=2) %}
     {% if page_num %}
     {% if questions.page == page_num %}
-    <a class="btn btn-info mb-4"
-        href="{{ url_for('questions.question', page=page_num,
+    <a class="btn btn-info mb-4" href="{{ url_for('questions.question', page=page_num,
         course_id=course_id,
         qtype=qtype) }}">{{ page_num }}</a>
     {% else %}
-    <a class="btn btn-outline-info mb-4"
-        href="{{ url_for('questions.question', page=page_num,
+    <a class="btn btn-outline-info mb-4" href="{{ url_for('questions.question', page=page_num,
         course_id=course_id,
         qtype=qtype) }}">{{ page_num }}</a>
     {% endif %}

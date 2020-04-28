@@ -25,7 +25,7 @@
   const blockMain = document.getElementsByClassName("block_main");
   if (blockMain.length) blockMain[0].classList.remove("block_main");
 
-  question.addEventListener("input", () => {
+  question.addEventListener("input", (e) => {
     formErrors[0].innerHTML = "";
     e.target.style.height = "";
     e.target.style.height = e.target.scrollHeight + "px";

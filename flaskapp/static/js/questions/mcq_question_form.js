@@ -28,6 +28,7 @@
       fakeContainer[3].setAttribute("tabindex", tabindex++);
       toggleContainer.setAttribute("tabindex", tabindex++);
       submitBtn.setAttribute("tabindex", tabindex++);
+      resetBtn.setAttribute("tabindex", tabindex++);
     }
     {
       for (let i = 0; i < optionsValue.length; i++) {
