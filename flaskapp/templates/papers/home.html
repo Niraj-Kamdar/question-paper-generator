@@ -1,60 +1,60 @@
 {% extends "base.html" %}
 {% block image %}
-    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
 {% endblock image %}
 {% block image2 %}
-    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
 {% endblock image2 %}
 {% block header %}
-    <h1 class="header">Recent</h1>
+<h1 class="header">Recent</h1>
 {% endblock header %}
 
 
 {% block flashes %}
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+{% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %}
-        <ul class="flashes flashes_question">
-            {% for category, message in messages %}
-                <li class="{{ category }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %} {% endwith %}
+<ul class="flashes flashes_question">
+    {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %} {% endwith %}
 {% endblock flashes %}
 
 {% block main %}
-    <div class="col pt-4" id="home_content">
-        <div class="row my-3 p-3">Paper 1</div>
-        <div class="row my-3 p-3">Paper 2</div>
-        <div class="row my-3 p-3">Paper 3</div>
-        <div class="row my-3 p-3">Paper 4</div>
-        <div class="row my-3 p-3">Paper 5</div>
-        <div class="row my-3 p-3">Paper 6</div>
-        <div class="row my-3 p-3">Paper 7</div>
-        <div class="row my-3 p-3">Paper 8</div>
-        <div class="row my-3 p-3">Paper 9</div>
-        <div class="row my-3 p-3">Paper 10</div>
-        <div class="row my-3 p-3">Paper 11</div>
-        <div class="row my-3 p-3">Paper 12</div>
-        <div class="row my-3 p-3">Paper 13</div>
-        <div class="row my-3 p-3">Paper 14</div>
-        <div class="row my-3 p-3">Paper 15</div>
-        <div class="row my-3 p-3">Paper 16</div>
-        <div class="row my-3 p-3">Paper 17</div>
-        <div class="row my-3 p-3">Paper 18</div>
-        <div class="row my-3 p-3">Paper 19</div>
-        <div class="row my-3 p-3">Paper 20</div>
-    </div>
+<div class="col pt-4" id="home_content">
+    <a class="row my-3 p-3" href="#">Paper 1</a>
+    <a class="row my-3 p-3" href="#">Paper 2</a>
+    <a class="row my-3 p-3" href="#">Paper 3</a>
+    <a class="row my-3 p-3" href="#">Paper 4</a>
+    <a class="row my-3 p-3" href="#">Paper 5</a>
+    <a class="row my-3 p-3" href="#">Paper 6</a>
+    <a class="row my-3 p-3" href="#">Paper 7</a>
+    <a class="row my-3 p-3" href="#">Paper 8</a>
+    <a class="row my-3 p-3" href="#">Paper 9</a>
+    <a class="row my-3 p-3" href="#">Paper 10</a>
+    <a class="row my-3 p-3" href="#">Paper 11</a>
+    <a class="row my-3 p-3" href="#">Paper 12</a>
+    <a class="row my-3 p-3" href="#">Paper 13</a>
+    <a class="row my-3 p-3" href="#">Paper 14</a>
+    <a class="row my-3 p-3" href="#">Paper 15</a>
+    <a class="row my-3 p-3" href="#">Paper 16</a>
+    <a class="row my-3 p-3" href="#">Paper 17</a>
+    <a class="row my-3 p-3" href="#">Paper 18</a>
+    <a class="row my-3 p-3" href="#">Paper 19</a>
+    <a class="row my-3 p-3" href="#">Paper 20</a>
+</div>
 {% endblock main %}
 {% block sideNav %}
-    <div class="ml-4 col-3" id="home_nav">
-        <a class="row pl-2" id="manage_courses_btn" href="/course">
-            <h1 class="px-3 py-1">C</h1>
-            <div class="col">
-                <h3>Manage</h3>
-                <h5>Courses</h5>
-            </div>
-        </a>
-    </div>
+<div class="ml-4" id="home_nav">
+    <a class="row pl-2" id="manage_courses_btn" href="/course">
+        <h1 class="px-3 py-1">C</h1>
+        <div class="col">
+            <h3>Manage</h3>
+            <h5>Courses</h5>
+        </div>
+    </a>
+</div>
 {% endblock sideNav %}
 
 

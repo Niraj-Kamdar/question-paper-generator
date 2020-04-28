@@ -1,11 +1,15 @@
 #content {
-    display: flex;
-    flex-direction: row;
-    margin: 0 10px;
+  display: flex;
+  flex-direction: row;
+  margin: 0 10px;
 }
 
 #page_display {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#template_display {
+  flex-grow: 1;
 }
