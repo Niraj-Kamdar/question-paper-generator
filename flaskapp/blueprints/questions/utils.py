@@ -1,9 +1,12 @@
 import functools
 
-from flask import abort, url_for
+from flask import abort
+from flask import url_for
 from flask_login import current_user
+
 from flaskapp import db
-from flaskapp.models import Course, Unit
+from flaskapp.models import Course
+from flaskapp.models import Unit
 
 image_file = url_for("static", filename="profile_pics/" + current_user.image_file)
 
