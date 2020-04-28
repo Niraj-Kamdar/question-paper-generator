@@ -25,8 +25,8 @@
     [ RESTYLE TAG ]*/
 
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -46,7 +46,7 @@ a {
   font-size: 14px;
   line-height: 1.7;
   color: #666666;
-  margin: 0px;
+  margin: 0;
   transition: all 0.4s;
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
@@ -69,12 +69,12 @@ p {
   font-size: 14px;
   line-height: 1.7;
   color: #666666;
-  margin: 0px;
+  margin: 0;
 }
 
 ul,
 li {
-  margin: 0px;
+  margin: 0;
   list-style-type: none;
 }
 
@@ -281,11 +281,13 @@ textarea.input100 {
 .input100 {
   display: block;
   width: 100%;
-  background: #e6e6e6;
+  /* background: rgb(230, 230, 230); */
+  background-color: white;
   font-family: Montserrat-Bold;
   font-size: 15px;
   line-height: 1.5;
-  color: #666666;
+  /* color: rgb(102, 102, 102); */
+  color: rgba(88, 88, 88, 1);
 }
 
 /*------------------------------------------------------------------
@@ -299,7 +301,7 @@ textarea.input100 {
   z-index: -1;
   width: 100%;
   height: 100%;
-  box-shadow: 0px 0px 0px 0px;
+  box-shadow: 0;
   color: rgba(132, 106, 221, 0.5);
 }
 
@@ -310,14 +312,14 @@ textarea.input100 {
 
 @-webkit-keyframes anim-shadow {
   to {
-    box-shadow: 0px 0px 60px 25px;
+    box-shadow: 0 0 60px 25px;
     opacity: 0;
   }
 }
 
 @keyframes anim-shadow {
   to {
-    box-shadow: 0px 0px 60px 25px;
+    box-shadow: 0 0 60px 25px;
     opacity: 0;
   }
 }
@@ -370,7 +372,7 @@ textarea.input100 {
   height: 50px;
   border-radius: 25px;
   background: #846add;
-  font-family: Montserrat-Bold;
+  /* font-family: Montserrat-Bold; */
   font-size: 15px;
   line-height: 1.5;
   color: #fff;
@@ -425,7 +427,7 @@ textarea.input100 {
 
 @media (max-width: 768px) {
   .wrap-contact100 {
-    padding: 110px 80px 157px 80px;
+    padding: 110px 80px 157px;
   }
 
   .contact100-pic {
@@ -439,7 +441,7 @@ textarea.input100 {
 
 @media (max-width: 576px) {
   .wrap-contact100 {
-    padding: 110px 15px 157px 15px;
+    padding: 110px 15px 157px;
   }
 }
 
@@ -501,11 +503,6 @@ textarea.input100 {
 .alert-validate:hover:before {
   visibility: visible;
   opacity: 1;
-}
-
-.input100 {
-  background-color: white;
-  color: rgba(88, 88, 88, 1);
 }
 
 /* for flashes*/

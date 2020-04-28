@@ -46,7 +46,7 @@
 }
 
 .control_btns div {
-  padding: 0px 10px;
+  padding: 0 10px;
   border-right: 1px solid black;
 }
 
@@ -64,7 +64,7 @@
 
 .delete_question {
   display: none;
-  padding: 10px 0px 10px 5px;
+  padding: 10px 0 10px 5px;
 }
 
 #delete_btn img {
@@ -74,11 +74,8 @@
 .edit_question {
   background-color: white;
   border-radius: 25px;
-  padding: 5px;
-}
-
-.edit_question {
   cursor: pointer;
+  padding: 5px;
 }
 
 .first_row {
@@ -136,7 +133,7 @@
   color: red;
   font-size: 20px;
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
 }
 
 .form_field_question_label {
@@ -247,7 +244,7 @@ label {
   flex-direction: row;
   flex-grow: 1;
   /* justify-content: space-between; */
-  padding: 10px 5px 0px 10px;
+  padding: 10px 5px 0 10px;
 }
 
 #submit_btn:hover {

@@ -54,13 +54,13 @@ body {
   font-size: 32px;
   /* font-weight: bolder; */
   font-family: "Montserrat", sans-serif;
-  letter-spacing: 0px;
+  letter-spacing: 0;
 }
 
 .col2 > h4 {
   font-size: 20px;
   font-family: "Montserrat", sans-serif;
-  letter-spacing: 0px;
+  letter-spacing: 0;
 }
 
 .col3 {

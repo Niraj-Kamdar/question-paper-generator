@@ -74,12 +74,9 @@
 
 #team_card {
   padding: 0;
+  background: #9000f026;
   border: 1px solid #9000f0;
   border-radius: 10px;
-}
-
-#team_card {
-  background: #9000f026;
 }
 
 #wrapper {
