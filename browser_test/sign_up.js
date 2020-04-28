@@ -13,13 +13,15 @@ web.selectWindow('title=Set Now');
 //       xpath:href: //a[contains(@href, \'/register\')]
 //   xpath:position: //small[2]/a
 //             link: link=Sign Up
-//              css: css=#bodycontent > div.login_page > div > div.login_other_links.pt-2 > small:nth-child(2) > a
+//              css: css=#bodycontent > div.login_page > div >
+//              div.login_other_links.pt-2 > small:nth-child(2) > a
 web.click('//a[contains(text(),\'Sign Up\')]');
 web.selectWindow('title=Set Now');
 // xpath:idRelative: //form[@id=\'registerForm\']/fieldset/div[1]/label
 //   xpath:position: //div[1]/label
 //              css: css=#registerForm > fieldset > div.form-group.mb-3 > label
-web.assertText('//form[@id=\'registerForm\']/fieldset/div[1]/label', 'Username');
+web.assertText('//form[@id=\'registerForm\']/fieldset/div[1]/label',
+               'Username');
 // xpath:idRelative: //form[@id=\'registerForm\']/fieldset/div[2]/label
 //   xpath:position: //div[2]/label
 //              css: css=#registerForm > fieldset > div:nth-child(2) > label
@@ -27,11 +29,14 @@ web.assertText('//form[@id=\'registerForm\']/fieldset/div[2]/label', 'Email');
 // xpath:idRelative: //form[@id=\'registerForm\']/fieldset/div[3]/label
 //   xpath:position: //div[3]/label
 //              css: css=#registerForm > fieldset > div:nth-child(3) > label
-web.assertText('//form[@id=\'registerForm\']/fieldset/div[3]/label', 'Password');
+web.assertText('//form[@id=\'registerForm\']/fieldset/div[3]/label',
+               'Password');
 // xpath:idRelative: //form[@id=\'registerForm\']/fieldset/div[4]/label
 //   xpath:position: //div[4]/label
-//              css: css=#registerForm > fieldset > div.form-group.mt-3.mb-1 > label
-web.assertText('//form[@id=\'registerForm\']/fieldset/div[4]/label', 'Confirm Password');
+//              css: css=#registerForm > fieldset > div.form-group.mt-3.mb-1 >
+//              label
+web.assertText('//form[@id=\'registerForm\']/fieldset/div[4]/label',
+               'Confirm Password');
 web.assertTitle('Set Now');
 //               id: id=username
 //             name: name=username

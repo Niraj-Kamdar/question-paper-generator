@@ -61,12 +61,15 @@ web.click('//div[@id=\'main_container\']/div/div/div[1]');
 // xpath:idRelative: //div[@id=\'main_container\']/div/div/div[1]/h1
 //   xpath:position: //h1
 //              css: css=#main_container > div > div > div.row.mb-2 > h1
-web.assertText('//div[@id=\'main_container\']/div/div/div[1]/h1', 'Subjective Questions');
+web.assertText('//div[@id=\'main_container\']/div/div/div[1]/h1',
+               'Subjective Questions');
 web.assertTitle('Set Now : Home');
 // xpath:idRelative: //div[@id=\'sideNav\']/div[3]/div[2]/div[2]/a
-//       xpath:href: //a[@href=\'http://127.0.0.1:5000/course/2/question/sub/new/\']
+//       xpath:href:
+//       //a[@href=\'http://127.0.0.1:5000/course/2/question/sub/new/\']
 //   xpath:position: //div[3]/div[2]/div[2]/a
-//              css: css=#sideNav > div.add_container > div.add_items_container > div:nth-child(2) > a
+//              css: css=#sideNav > div.add_container > div.add_items_container
+//              > div:nth-child(2) > a
 web.click('//div[@id=\'sideNav\']/div[3]/div[2]/div[2]/a');
 web.selectWindow('title=Set Now : Home');
 //               id: id=form_field_question_value
@@ -82,7 +85,8 @@ web.click('id=form_field_question_value');
 // xpath:idRelative: //div[@id=\'form_content\']/div[1]/div[1]/textarea
 //   xpath:position: //textarea
 //              css: css=#form_field_question_value
-web.type('id=form_field_question_value', 'How many Prime numbers between 1 to 100?');
+web.type('id=form_field_question_value',
+         'How many Prime numbers between 1 to 100?');
 //               id: id=marks_value
 //             name: name=mark
 // xpath:attributes: //input[@id=\'marks_value\']
@@ -122,19 +126,28 @@ web.selectWindow('title=Set Now : Home');
 // xpath:idRelative: //div[@id=\'main_container\']/div/div/div[1]/h1
 //   xpath:position: //h1
 //              css: css=#main_container > div > div > div.row.mb-2 > h1
-web.assertText('//div[@id=\'main_container\']/div/div/div[1]/h1', 'Subjective Questions');
+web.assertText('//div[@id=\'main_container\']/div/div/div[1]/h1',
+               'Subjective Questions');
 // xpath:idRelative: //div[@id=\'main_container\']/div/div/div[1]
 //   xpath:position: //body/div/div/div/div/div[1]
 //              css: css=#main_container > div > div > div.row.mb-2
 web.click('//div[@id=\'main_container\']/div/div/div[1]');
-// xpath:idRelative: //div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]
+// xpath:idRelative:
+// //div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]
 //   xpath:position: //div[2]/div[1]/div[2]/div[2]/div[2]/div[1]
-//              css: css=#questions > div:nth-child(2) > div.question_container > div.question_info > div.second_row > div.second_row_column_2 > div.question_description
+//              css: css=#questions > div:nth-child(2) > div.question_container
+//              > div.question_info > div.second_row > div.second_row_column_2 >
+//              div.question_description
 web.click('//div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]');
-// xpath:idRelative: //div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]
+// xpath:idRelative:
+// //div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]
 //   xpath:position: //div[2]/div[1]/div[2]/div[2]/div[2]/div[1]
-//              css: css=#questions > div:nth-child(2) > div.question_container > div.question_info > div.second_row > div.second_row_column_2 > div.question_description
-web.assertText('//div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]', 'How many Prime numbers between 1 to 100?');
+//              css: css=#questions > div:nth-child(2) > div.question_container
+//              > div.question_info > div.second_row > div.second_row_column_2 >
+//              div.question_description
+web.assertText(
+    '//div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]',
+    'How many Prime numbers between 1 to 100?');
 //               id: id=template_display
 // xpath:attributes: //div[@id=\'template_display\']
 // xpath:idRelative: //div[@id=\'content\']/div[1]
@@ -144,7 +157,8 @@ web.click('id=template_display');
 //        xpath:img: //img[@alt=\'edit\']
 // xpath:idRelative: //div[@id=\'questions\']/div[2]/div[1]/div[3]/div/img
 //   xpath:position: //div[1]/div[3]/div/img
-//              css: css=#questions > div:nth-child(2) > div.question_container > div.update_question > div > img
+//              css: css=#questions > div:nth-child(2) > div.question_container
+//              > div.update_question > div > img
 web.click('//img[@alt=\'edit\']');
 // xpath:idRelative: //div[@id=\'main_container\']/div/div/div[1]
 //   xpath:position: //body/div/div/div/div/div[1]
@@ -153,7 +167,8 @@ web.click('//div[@id=\'main_container\']/div/div/div[1]');
 // xpath:idRelative: //div[@id=\'main_container\']/div/div/div[1]/h1
 //   xpath:position: //h1
 //              css: css=#main_container > div > div > div.row.mb-2 > h1
-web.assertText('//div[@id=\'main_container\']/div/div/div[1]/h1', 'Subjective Questions');
+web.assertText('//div[@id=\'main_container\']/div/div/div[1]/h1',
+               'Subjective Questions');
 // xpath:idRelative: //div[@id=\'main_container\']/div
 //   xpath:position: //body/div/div/div
 //              css: css=#main_container > div
@@ -172,7 +187,8 @@ web.click('id=form_field_question_value');
 // xpath:idRelative: //div[@id=\'form_content\']/div[1]/div[1]/textarea
 //   xpath:position: //textarea
 //              css: css=#form_field_question_value
-web.type('id=form_field_question_value', 'How many Prime numbers between 2 to 50?');
+web.type('id=form_field_question_value',
+         'How many Prime numbers between 2 to 50?');
 //               id: id=marks_value
 //             name: name=mark
 // xpath:attributes: //input[@id=\'marks_value\']
@@ -222,20 +238,29 @@ web.selectWindow('title=Set Now : Home');
 // xpath:idRelative: //div[@id=\'main_container\']/div/div/div[1]/h1
 //   xpath:position: //h1
 //              css: css=#main_container > div > div > div.row.mb-2 > h1
-web.assertText('//div[@id=\'main_container\']/div/div/div[1]/h1', 'Subjective Questions');
+web.assertText('//div[@id=\'main_container\']/div/div/div[1]/h1',
+               'Subjective Questions');
 // xpath:idRelative: //div[@id=\'questions\']/div[2]/div[1]
 //   xpath:position: //body/div/div/div/div/div[2]/div[1]/div/div[2]/div[1]
 //              css: css=#questions > div:nth-child(2) > div.question_container
 web.click('//div[@id=\'questions\']/div[2]/div[1]');
 web.assertTitle('Set Now : Home');
-// xpath:idRelative: //div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]
+// xpath:idRelative:
+// //div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]
 //   xpath:position: //div[2]/div[1]/div[2]/div[2]/div[2]/div[1]
-//              css: css=#questions > div:nth-child(2) > div.question_container > div.question_info > div.second_row > div.second_row_column_2 > div.question_description
+//              css: css=#questions > div:nth-child(2) > div.question_container
+//              > div.question_info > div.second_row > div.second_row_column_2 >
+//              div.question_description
 web.click('//div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]');
-// xpath:idRelative: //div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]
+// xpath:idRelative:
+// //div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]
 //   xpath:position: //div[2]/div[1]/div[2]/div[2]/div[2]/div[1]
-//              css: css=#questions > div:nth-child(2) > div.question_container > div.question_info > div.second_row > div.second_row_column_2 > div.question_description
-web.assertText('//div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]', 'How many Prime numbers between 2 to 50?');
+//              css: css=#questions > div:nth-child(2) > div.question_container
+//              > div.question_info > div.second_row > div.second_row_column_2 >
+//              div.question_description
+web.assertText(
+    '//div[@id=\'questions\']/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]',
+    'How many Prime numbers between 2 to 50?');
 //               id: id=template_display
 // xpath:attributes: //div[@id=\'template_display\']
 // xpath:idRelative: //div[@id=\'content\']/div[1]
@@ -250,7 +275,8 @@ web.click('//img[@alt=\'delete\']');
 // xpath:attributes: (//input[@type=\'checkbox\'])[1]
 // xpath:idRelative: //div[@id=\'questions\']/div[2]/div[1]/div[1]/label/input
 //   xpath:position: //div[1]/label/input
-//              css: css=#questions > div:nth-child(2) > div.question_container > div.delete_question > label > input
+//              css: css=#questions > div:nth-child(2) > div.question_container
+//              > div.delete_question > label > input
 web.click('(//input[@type=\'checkbox\'])[1]');
 //        xpath:img: //img[@alt=\'delete\']
 // xpath:idRelative: //div[@id=\'delete_btn\']/img
@@ -264,7 +290,8 @@ web.click('//div[@id=\'main_container\']/div/div/div[1]');
 // xpath:idRelative: //div[@id=\'main_container\']/div/div/div[1]/h1
 //   xpath:position: //h1
 //              css: css=#main_container > div > div > div.row.mb-2 > h1
-web.assertText('//div[@id=\'main_container\']/div/div/div[1]/h1', 'Subjective Questions');
+web.assertText('//div[@id=\'main_container\']/div/div/div[1]/h1',
+               'Subjective Questions');
 //               id: id=template_display
 // xpath:attributes: //div[@id=\'template_display\']
 // xpath:idRelative: //div[@id=\'content\']/div[1]

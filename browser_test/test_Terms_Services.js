@@ -34,7 +34,9 @@ web.click('//div[@id=\'services_content\']/p[5]');
 // xpath:idRelative: //div[@id=\'services_content\']/p[4]
 //   xpath:position: //p[4]
 //              css: css=#services_content > p:nth-child(6)
-web.assertText('//div[@id=\'services_content\']/p[4]', `The above copyright notice and this permission notice shall be included in all copies or substantial
+web.assertText(
+    '//div[@id=\'services_content\']/p[4]',
+    `The above copyright notice and this permission notice shall be included in all copies or substantial
  portions
  of the Software.`);
 //   xpath:position: //body/div
@@ -47,7 +49,9 @@ web.click('//div[@id=\'services_content\']/p[6]');
 // xpath:idRelative: //div[@id=\'services_content\']/p[6]
 //   xpath:position: //p[6]
 //              css: css=#services_content > p:nth-child(11)
-web.waitForText('//div[@id=\'services_content\']/p[6]', `In no event shall SetNow or its suppliers be liable for any damages (including, without limitation,
+web.waitForText(
+    '//div[@id=\'services_content\']/p[6]',
+    `In no event shall SetNow or its suppliers be liable for any damages (including, without limitation,
  damages
  for loss of data or profit, or due to business interruption) arising out of the use or inability to use
  the
@@ -66,7 +70,9 @@ web.click('id=services_content');
 // xpath:idRelative: //div[@id=\'services_content\']/p[9]
 //   xpath:position: //p[9]
 //              css: css=#services_content > p:nth-child(17)
-web.assertText('//div[@id=\'services_content\']/p[9]', `SetNow may revise these terms of service for its website at any time without notice. By using this
+web.assertText(
+    '//div[@id=\'services_content\']/p[9]',
+    `SetNow may revise these terms of service for its website at any time without notice. By using this
  website
  you are agreeing to be bound by the then current version of these terms of service.`);
 //   xpath:position: //body/div

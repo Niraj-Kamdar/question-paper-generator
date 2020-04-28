@@ -31,7 +31,8 @@ web.click('//div[@id=\'about_content\']/p[1]');
 // xpath:idRelative: //div[@id=\'about_content\']/p[1]
 //   xpath:position: //div[2]/p[1]
 //              css: css=#about_content > p:nth-child(1)
-web.assertText('//div[@id=\'about_content\']/p[1]', `Welcome to SetNow, We're dedicated to giving you the
+web.assertText('//div[@id=\'about_content\']/p[1]',
+               `Welcome to SetNow, We're dedicated to giving you the
  very best of our service. We are hoping that,
  this website will help in lighten your work for
  making question paper. Our goal to make this
