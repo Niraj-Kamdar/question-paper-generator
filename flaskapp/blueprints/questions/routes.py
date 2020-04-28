@@ -78,7 +78,8 @@ def add_unit(course_id):
     form = UnitForm()
     _course = Course.query.filter(Course.id == course_id).first()
     if form.validate_on_submit():
-        unit = Unit(chapter_no=form.chapter_no.data, name=form.name.data, course=_course)
+        unit = Unit(chapter_no=form.chapter_no.data,
+                    name=form.name.data, course=_course)
         db.session.add(unit)
         db.session.commit()
         flash("New unit added successfully!", "success")
@@ -100,11 +101,11 @@ def add_unit(course_id):
 @check_valid_question_type
 def question(course_id, unit_id, qtype):
     """Rendering Question page
-    
+
     Arguments:
         course_id {Object} -- Id for course
         qtype {Subjective/mcq} -- Specification about question is subjective or MCQ type
-    
+
     Returns:
         HTML Function -- According to choosen type of question render page
     """
@@ -125,7 +126,8 @@ def question(course_id, unit_id, qtype):
                                title='Objective Questions'
                                )
     else:
-        _questions = Question.query.filter(Question.unit_id == unit_id).paginate(page=main_page, per_page=1)
+        _questions = Question.query.filter(
+            Question.unit_id == unit_id).paginate(page=main_page, per_page=1)
         return render_template("questions/questions.html",
                                questions=_questions,
                                courses=_courses,
@@ -146,11 +148,11 @@ def question(course_id, unit_id, qtype):
 @check_valid_question_type
 def add_question(course_id, unit_id, qtype):
     """Adding question
-    
+
     Arguments:
         course_id {Object} -- Course ID which uniquley defined.
         qtype {Subjective/MCQ} -- What is the type of question ? subjective or MCQ
-    
+
     Returns:
         HTML function -- If the course instructor is not user than it will throw error 403 then 
         according to type of question eg : if type is MCQ then difficulty, mark, options, IMP flag
@@ -218,13 +220,14 @@ def add_question(course_id, unit_id, qtype):
 @check_valid_question_type
 def update_question(course_id, unit_id, qtype, question_id):
     """For updating question
-    
+
     Returns:
         Render template -- for updating questions if that question is exist then update it by id.And update marks , difficulty and IMP flag accorging to input.
        And do changes in database accordingly.
     """
     if qtype == "mcq":
-        _question = db.session.query(MCQQuestion).filter_by(id=question_id).first()
+        _question = db.session.query(
+            MCQQuestion).filter_by(id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(url_for("questions.question", qtype=qtype, course_id=course_id, unit_id=unit_id))
@@ -247,7 +250,8 @@ def update_question(course_id, unit_id, qtype, question_id):
                                js_file='js/questions/question_form.js'
                                )
     else:
-        _question = db.session.query(Question).filter_by(id=question_id).first()
+        _question = db.session.query(
+            Question).filter_by(id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(url_for("questions.question", qtype="sub", course_id=course_id, unit_id=unit_id))
@@ -274,7 +278,7 @@ def update_question(course_id, unit_id, qtype, question_id):
 @check_valid_question_type
 def imp_question(course_id, unit_id, qtype, impq):
     """Set an IMP flag to question
-    
+
     Returns:
         Same page with flag or without flag -- set an IMP flag to particular question.And do changes in database also.
     """
@@ -294,18 +298,20 @@ def imp_question(course_id, unit_id, qtype, impq):
 @check_valid_question_type
 def delete_question(course_id, unit_id, qtype, deleteq):
     """Delete question
-    
+
     Returns:
         page -- If current user is not an instructor of that subject then throw erroe else 
         delete question's data. and update UI.
     """
     if qtype == "mcq":
         del_ids = json.loads(deleteq)
-        db.session.query(MCQQuestion).filter(MCQQuestion.id.in_(del_ids)).delete(synchronize_session='fetch')
+        db.session.query(MCQQuestion).filter(MCQQuestion.id.in_(
+            del_ids)).delete(synchronize_session='fetch')
         db.session.commit()
         return redirect(url_for("questions.question", qtype="mcq", course_id=course_id, unit_id=unit_id))
     else:
         del_ids = json.loads(deleteq)
-        db.session.query(Question).filter(Question.id.in_(del_ids)).delete(synchronize_session='fetch')
+        db.session.query(Question).filter(Question.id.in_(
+            del_ids)).delete(synchronize_session='fetch')
         db.session.commit()
         return redirect(url_for("questions.question", qtype="sub", course_id=course_id, unit_id=unit_id))

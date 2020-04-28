@@ -6,7 +6,8 @@ from flask_login import current_user
 from flaskapp import db
 from flaskapp.models import Course, Unit
 
-image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+image_file = url_for('static', filename='profile_pics/' +
+                     current_user.image_file)
 
 
 def check_valid_course(func):

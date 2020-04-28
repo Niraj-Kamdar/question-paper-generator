@@ -10,7 +10,8 @@ from flaskapp.models import User
 def validate_email_exists(form, email):
     user = User.query.filter_by(email=email.data).first()
     if user is None:
-        raise ValidationError('There is no account with that email. You must register first.')
+        raise ValidationError(
+            'There is no account with that email. You must register first.')
 
 
 def validate_username(form, username):
@@ -19,7 +20,8 @@ def validate_username(form, username):
         if current_user:
             if user == current_user:
                 return
-        raise ValidationError('That username is taken. Please choose a different one.')
+        raise ValidationError(
+            'That username is taken. Please choose a different one.')
 
 
 def validate_email(form, email):
@@ -28,7 +30,8 @@ def validate_email(form, email):
         if current_user:
             if user == current_user:
                 return
-        raise ValidationError('That email is taken. Please choose a different one.')
+        raise ValidationError(
+            'That email is taken. Please choose a different one.')
 
 
 class RegistrationForm(FlaskForm):
@@ -47,7 +50,8 @@ class UpdateAccountForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20), validate_username])
     email = StringField('Email',
                         validators=[DataRequired(), Email(), validate_email])
-    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    picture = FileField('Update Profile Picture', validators=[
+                        FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
 
 
