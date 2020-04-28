@@ -11,8 +11,8 @@ from flaskapp.config import Config
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
-login_manager.login_view = 'users.login'
-login_manager.login_message_category = 'info'
+login_manager.login_view = "users.login"
+login_manager.login_message_category = "info"
 mail = Mail()
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
 TEST_DB = "test.db"
@@ -20,10 +20,10 @@ TEST_DB = "test.db"
 
 def create_app(config_class=Config):
     """To create
-    
+
     Keyword Arguments:
         config_class {object} -- It configures app (default: {Config})
-    
+
     Returns:
         App -- it creates app using configuration from config_class
     """
