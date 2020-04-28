@@ -20,21 +20,21 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    image_file = db.Column(db.String(20), nullable=False,
-                           default='default.svg')
+    image_file = db.Column(db.String(20), nullable=False, default="default.svg")
     password = db.Column(db.String(60), nullable=False)
     courses = db.relationship(
-        'Course', backref='teacher', lazy=True, cascade="all, delete-orphan")
+        "Course", backref="teacher", lazy=True, cascade="all, delete-orphan"
+    )
 
     def get_reset_token(self, expires_sec=86400):
-        s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
-        return s.dumps({'user_id': self.id}).decode('utf-8')
+        s = Serializer(current_app.config["SECRET_KEY"], expires_sec)
+        return s.dumps({"user_id": self.id}).decode("utf-8")
 
     @staticmethod
     def verify_reset_token(token):
-        s = Serializer(current_app.config['SECRET_KEY'])
+        s = Serializer(current_app.config["SECRET_KEY"])
         try:
-            user_id = s.loads(token)['user_id']
+            user_id = s.loads(token)["user_id"]
         except:
             return None
         return User.query.get(user_id)
@@ -43,39 +43,43 @@ class User(db.Model, UserMixin):
         return f"User({self.username}, {self.email}, {self.image_file})"
 
     def to_dict(self):
-        return dict(id=self.id,
-                    username=self.username,
-                    email=self.email,
-                    image_file=self.image_file)
+        return dict(
+            id=self.id,
+            username=self.username,
+            email=self.email,
+            image_file=self.image_file,
+        )
 
 
 class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    units = db.relationship('Unit', backref='course',
-                            lazy=True, cascade="all, delete-orphan")
-    papers = db.relationship('Paper', backref='course',
-                             lazy=True, cascade="all, delete-orphan")
+    units = db.relationship(
+        "Unit", backref="course", lazy=True, cascade="all, delete-orphan"
+    )
+    papers = db.relationship(
+        "Paper", backref="course", lazy=True, cascade="all, delete-orphan"
+    )
 
     def __repr__(self):
         return f"Course({self.name})"
 
     def to_dict(self):
-        return dict(id=self.id,
-                    course=self.name)
+        return dict(id=self.id, course=self.name)
 
 
 class Unit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     chapter_no = db.Column(db.Integer, nullable=False)
     name = db.Column(db.Text, nullable=True)
-    course_id = db.Column(db.Integer, db.ForeignKey(
-        "course.id"), nullable=False)
+    course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
     questions = db.relationship(
-        'Question', backref='unit', lazy=True, cascade="all, delete-orphan")
+        "Question", backref="unit", lazy=True, cascade="all, delete-orphan"
+    )
     mcq_questions = db.relationship(
-        "MCQQuestion", backref='unit', lazy=True, cascade="all, delete-orphan")
+        "MCQQuestion", backref="unit", lazy=True, cascade="all, delete-orphan"
+    )
 
     def __repr__(self):
         return f"Unit({self.chapter_no, self.name})"
@@ -89,12 +93,12 @@ class Question(db.Model):
     question = db.Column(db.Text, nullable=False)
     mark = db.Column(db.Integer, nullable=False)
     difficulty = db.Column(
-        db.Enum("easy", "medium", "hard", name="difficulty_type"),
-        nullable=False)
+        db.Enum("easy", "medium", "hard", name="difficulty_type"), nullable=False
+    )
     cognitive_level = db.Column(
-        db.Enum("knowledge", "comprehension",
-                "application", name="cognitive_type"),
-        nullable=False)
+        db.Enum("knowledge", "comprehension", "application", name="cognitive_type"),
+        nullable=False,
+    )
     imp = db.Column(db.Boolean, default=False)
     unit_id = db.Column(db.Integer, db.ForeignKey("unit.id"), nullable=False)
 
@@ -102,12 +106,14 @@ class Question(db.Model):
         return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.cognitive_level}, {self.imp})"
 
     def to_dict(self):
-        return dict(id=self.id,
-                    question=self.question,
-                    mark=self.mark,
-                    difficulty=self.difficulty,
-                    cognitive_level=self.cognitive_level,
-                    imp=self.imp)
+        return dict(
+            id=self.id,
+            question=self.question,
+            mark=self.mark,
+            difficulty=self.difficulty,
+            cognitive_level=self.cognitive_level,
+            imp=self.imp,
+        )
 
 
 class MCQQuestion(db.Model):
@@ -115,12 +121,12 @@ class MCQQuestion(db.Model):
     question = db.Column(db.Text, nullable=False)
     mark = db.Column(db.Integer, nullable=False)
     difficulty = db.Column(
-        db.Enum("easy", "medium", "hard", name="difficulty_type"),
-        nullable=False)
+        db.Enum("easy", "medium", "hard", name="difficulty_type"), nullable=False
+    )
     cognitive_level = db.Column(
-        db.Enum("knowledge", "comprehension",
-                "application", name="cognitive_type"),
-        nullable=False)
+        db.Enum("knowledge", "comprehension", "application", name="cognitive_type"),
+        nullable=False,
+    )
     imp = db.Column(db.Boolean, default=False)
     option1 = db.Column(db.Text, nullable=False)
     option2 = db.Column(db.Text, nullable=False)
@@ -129,20 +135,24 @@ class MCQQuestion(db.Model):
     unit_id = db.Column(db.Integer, db.ForeignKey("unit.id"), nullable=False)
 
     def __repr__(self):
-        return f"MCQQuestion({self.question}, {self.mark}, {self.difficulty}, {self.cognitive_level}, {self.imp}," \
-               f" {self.option1}, {self.option2}, {self.option3}, {self.option4})"
+        return (
+            f"MCQQuestion({self.question}, {self.mark}, {self.difficulty}, {self.cognitive_level}, {self.imp},"
+            f" {self.option1}, {self.option2}, {self.option3}, {self.option4})"
+        )
 
     def to_dict(self):
-        return dict(id=self.id,
-                    question=self.question,
-                    mark=self.mark,
-                    difficulty=self.difficulty,
-                    cognitive_level=self.cognitive_level,
-                    imp=self.imp,
-                    option1=self.option1,
-                    option2=self.option2,
-                    option3=self.option3,
-                    option4=self.option4)
+        return dict(
+            id=self.id,
+            question=self.question,
+            mark=self.mark,
+            difficulty=self.difficulty,
+            cognitive_level=self.cognitive_level,
+            imp=self.imp,
+            option1=self.option1,
+            option2=self.option2,
+            option3=self.option3,
+            option4=self.option4,
+        )
 
 
 class Paper(db.Model):
@@ -152,6 +162,7 @@ class Paper(db.Model):
         2  [3,    43,   12,   67],
         3  [14,  102            ]]
     """
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False)
     mark = db.Column(db.Integer, nullable=False)
@@ -163,19 +174,19 @@ class Paper(db.Model):
     paper_logo = db.Column(db.Text, nullable=False, default="logo.svg")
     exam_date = db.Column(db.Date, nullable=False)
     time_limit = db.Column(db.Text, nullable=False)
-    instructions = db.Column(db.JSON, nullable=True,
-                             default=default_instructions)
-    course_id = db.Column(db.Integer, db.ForeignKey(
-        "course.id"), nullable=False)
+    instructions = db.Column(db.JSON, nullable=True, default=default_instructions)
+    course_id = db.Column(db.Integer, db.ForeignKey("course.id"), nullable=False)
 
     def to_dict(self):
-        return dict(id=self.id,
-                    name=self.name,
-                    mark=self.mark,
-                    difficulty=self.difficulty,
-                    cognitive_level=self.cognitive_level,
-                    paper_format=self.paper_format,
-                    paper_logo=self.paper_logo,
-                    exam_date=self.exam_date,
-                    time_limit=self.time_limit,
-                    instructions=self.instructions)
+        return dict(
+            id=self.id,
+            name=self.name,
+            mark=self.mark,
+            difficulty=self.difficulty,
+            cognitive_level=self.cognitive_level,
+            paper_format=self.paper_format,
+            paper_logo=self.paper_logo,
+            exam_date=self.exam_date,
+            time_limit=self.time_limit,
+            instructions=self.instructions,
+        )

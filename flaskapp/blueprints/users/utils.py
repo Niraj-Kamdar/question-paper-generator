@@ -20,7 +20,8 @@ def save_picture(form_picture):
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = str(current_user.id) + f_ext
     picture_path = os.path.join(
-        current_app.root_path, 'static/profile_pics', picture_fn)
+        current_app.root_path, "static/profile_pics", picture_fn
+    )
 
     output_size = (256, 256)
     i = Image.open(form_picture)
@@ -38,26 +39,29 @@ def send_reset_email(user):
         will send mail of reset password to user's submitted/registered mail for verification.
     """
     token = user.get_reset_token()
-    mail_file = os.path.join(APP_PATH, "templates",
-                             "users", "password-reset", "content.txt")
+    mail_file = os.path.join(
+        APP_PATH, "templates", "users", "password-reset", "content.txt"
+    )
     with open(mail_file, "r") as f:
         msg_text = f.read()
-    msg_text = msg_text.format(name=user.username,
-                               action_url=url_for(
-                                   'users.reset_token', token=token, _external=True),
-                               support_url=url_for('main.index'),
-                               operating_system="linux",
-                               browser_name="firefox")
-    msg_html = render_template("users/password-reset/content.html",
-                               name=user.username,
-                               action_url=url_for(
-                                   'users.reset_token', token=token, _external=True),
-                               support_url=url_for('main.index'),
-                               operating_system="linux",
-                               browser_name="firefox")
-    msg = Message('Password Reset Request',
-                  sender='setnow@tuta.io',
-                  recipients=[user.email])
+    msg_text = msg_text.format(
+        name=user.username,
+        action_url=url_for("users.reset_token", token=token, _external=True),
+        support_url=url_for("main.index"),
+        operating_system="linux",
+        browser_name="firefox",
+    )
+    msg_html = render_template(
+        "users/password-reset/content.html",
+        name=user.username,
+        action_url=url_for("users.reset_token", token=token, _external=True),
+        support_url=url_for("main.index"),
+        operating_system="linux",
+        browser_name="firefox",
+    )
+    msg = Message(
+        "Password Reset Request", sender="setnow@tuta.io", recipients=[user.email]
+    )
     msg.body = msg_text
     msg.html = msg_html
     mail.send(msg)

@@ -29,15 +29,24 @@ class BaseUser(BaseDatabase):
         """
         BaseDatabase.setUp(self)
         self.client = self.app.test_client()
-        new_user = dict(username="pr.proton", email="proton@gmail.com", password="proton@101",
-                        confirm_password="proton@101", submit="Sign Up")
+        new_user = dict(
+            username="pr.proton",
+            email="proton@gmail.com",
+            password="proton@101",
+            confirm_password="proton@101",
+            submit="Sign Up",
+        )
         test_post_request(self, "/register", new_user, models.User, 1)
 
     def login(self):
         """[User login]
         """
-        user = dict(email="proton@gmail.com", password="proton@101",
-                    remember=True, submit="Login")
+        user = dict(
+            email="proton@gmail.com",
+            password="proton@101",
+            remember=True,
+            submit="Login",
+        )
         test_post_request(self, "/login", user)
 
     def logout(self):
@@ -62,57 +71,117 @@ class BaseSubQuestion(BaseCourse):
     def setUp(self):
         BaseCourse.setUp(self)
 
-        new_question = dict(question="Is it okay?", mark=8,
-                            difficulty=10, imp=None, submit="submit")
-        test_post_request(self, "/course/1/question/sub/new/",
-                          new_question, models.Question, 1)
+        new_question = dict(
+            question="Is it okay?", mark=8, difficulty=10, imp=None, submit="submit"
+        )
+        test_post_request(
+            self, "/course/1/question/sub/new/", new_question, models.Question, 1
+        )
 
-        new_question = dict(question="Is it question?",
-                            mark=7, difficulty=50, imp=True, submit="submit")
-        test_post_request(self, "/course/1/question/sub/new/",
-                          new_question, models.Question, 2)
+        new_question = dict(
+            question="Is it question?", mark=7, difficulty=50, imp=True, submit="submit"
+        )
+        test_post_request(
+            self, "/course/1/question/sub/new/", new_question, models.Question, 2
+        )
 
-        new_question = dict(question="What is it?", mark=2,
-                            difficulty=70, imp=None, submit="submit")
-        test_post_request(self, "/course/1/question/sub/new/",
-                          new_question, models.Question, 3)
+        new_question = dict(
+            question="What is it?", mark=2, difficulty=70, imp=None, submit="submit"
+        )
+        test_post_request(
+            self, "/course/1/question/sub/new/", new_question, models.Question, 3
+        )
 
-        new_question = dict(question="What was that?", mark=6,
-                            difficulty=20, imp=None, submit="submit")
-        test_post_request(self, "/course/1/question/sub/new/",
-                          new_question, models.Question, 4)
+        new_question = dict(
+            question="What was that?", mark=6, difficulty=20, imp=None, submit="submit"
+        )
+        test_post_request(
+            self, "/course/1/question/sub/new/", new_question, models.Question, 4
+        )
 
-        new_question = dict(question="How are you?", mark=2,
-                            difficulty=40, imp=True, submit="submit")
-        test_post_request(self, "/course/1/question/sub/new/",
-                          new_question, models.Question, 5)
+        new_question = dict(
+            question="How are you?", mark=2, difficulty=40, imp=True, submit="submit"
+        )
+        test_post_request(
+            self, "/course/1/question/sub/new/", new_question, models.Question, 5
+        )
 
 
 class BaseMCQQuestion(BaseCourse):
     def setUp(self):
         BaseCourse.setUp(self)
 
-        new_question = dict(question="Is it okay?", mark=8, difficulty=10, imp=None, submit="submit",
-                            option1="A", option2="B", option3="C", option4="D")
-        test_post_request(self, "/course/1/question/mcq/new/",
-                          new_question, models.MCQQuestion, 1)
+        new_question = dict(
+            question="Is it okay?",
+            mark=8,
+            difficulty=10,
+            imp=None,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self, "/course/1/question/mcq/new/", new_question, models.MCQQuestion, 1
+        )
 
-        new_question = dict(question="Is it question?", mark=7, difficulty=50, imp=True, submit="submit",
-                            option1="A", option2="B", option3="C", option4="D")
-        test_post_request(self, "/course/1/question/mcq/new/",
-                          new_question, models.MCQQuestion, 2)
+        new_question = dict(
+            question="Is it question?",
+            mark=7,
+            difficulty=50,
+            imp=True,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self, "/course/1/question/mcq/new/", new_question, models.MCQQuestion, 2
+        )
 
-        new_question = dict(question="What is it?", mark=2, difficulty=70, imp=None, submit="submit",
-                            option1="A", option2="B", option3="C", option4="D")
-        test_post_request(self, "/course/1/question/mcq/new/",
-                          new_question, models.MCQQuestion, 3)
+        new_question = dict(
+            question="What is it?",
+            mark=2,
+            difficulty=70,
+            imp=None,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self, "/course/1/question/mcq/new/", new_question, models.MCQQuestion, 3
+        )
 
-        new_question = dict(question="What was that?", mark=6, difficulty=20, imp=None, submit="submit",
-                            option1="A", option2="B", option3="C", option4="D")
-        test_post_request(self, "/course/1/question/mcq/new/",
-                          new_question, models.MCQQuestion, 4)
+        new_question = dict(
+            question="What was that?",
+            mark=6,
+            difficulty=20,
+            imp=None,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self, "/course/1/question/mcq/new/", new_question, models.MCQQuestion, 4
+        )
 
-        new_question = dict(question="How are you?", mark=2, difficulty=40, imp=True, submit="submit",
-                            option1="A", option2="B", option3="C", option4="D")
-        test_post_request(self, "/course/1/question/mcq/new/",
-                          new_question, models.MCQQuestion, 5)
+        new_question = dict(
+            question="How are you?",
+            mark=2,
+            difficulty=40,
+            imp=True,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self, "/course/1/question/mcq/new/", new_question, models.MCQQuestion, 5
+        )

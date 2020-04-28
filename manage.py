@@ -7,7 +7,7 @@ from flaskapp.config import Config
 app = create_app(config_class=Config)
 migrate = Migrate(app, db)
 manager = Manager(app)
-manager.add_command('db', MigrateCommand)
+manager.add_command("db", MigrateCommand)
 
 if __name__ == "__main__":
     manager.run()
