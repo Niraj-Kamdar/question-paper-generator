@@ -37,6 +37,10 @@ html {
 }
 
 /*---------------------------------------------*/
+#main_container {
+    background-color: rgba(132, 106, 221, 0.9);
+}
+
 a {
     font-family: Montserrat-Regular;
     font-size: 14px;
@@ -181,7 +185,6 @@ iframe {
 
 .container-contact100 {
     width: 100%;
-    min-height: 100vh;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -189,8 +192,9 @@ iframe {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     padding: 15px;
+    padding-top: 120px;
     background: rgba(132, 106, 221, 0.9);
 }
 
@@ -207,7 +211,7 @@ iframe {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 110px 130px 157px 148px;
+    padding: 30px !important;
 }
 
 /*------------------------------------------------------------------
@@ -540,5 +544,11 @@ label {
     .alert-validate::before {
         visibility: visible;
         opacity: 1;
+    }
+}
+
+@media (max-width: 960px) {
+    .container-contact100 {
+        padding-top: 60px;
     }
 }

@@ -23,7 +23,7 @@
 {% block main %}
     <div class="content-section pt-4" style="justify-content: center;">
 
-        <div style=" width:40% ;text-align: right;">
+        <div style="text-align: right;" class="child">
             <div class="media pt-5" style="width: 100%;">
                 <img class="rounded-circle account-img" src="{{ image_file }}" alt="round-image" id="profile_pic"/>
 
@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div style="width: 40%;">
+        <div class="child">
 
 
             <form method="POST" action="" enctype="multipart/form-data" id="account_form" novalidate>
@@ -49,29 +49,26 @@
                         {{ form.username.label }}
 
                         {% if form.username.errors %}
-                            {{ form.username(class="form-control form-control-lg is-invalid") }}
+
                             <div class="invalid-feedback">
                                 {% for error in form.username.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
-                        {% else %}
-                            {{ form.username(class="form-control form-control-lg") }}
                         {% endif %}
+                        {{ form.username(class="form-control form-control-lg") }}
                         <div class="form_client_error"></div>
                     </div>
                     <div class="form_items">
                         {{ form.email.label(class="form-control-label") }}
                         {% if form.email.errors %}
-                            {{ form.email(class="form-control form-control-lg is-invalid") }}
                             <div class="invalid-feedback">
                                 {% for error in form.email.errors %}
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
-                        {% else %}
-                            {{ form.email(class="form-control form-control-lg") }}
                         {% endif %}
+                        {{ form.email(class="form-control form-control-lg") }}
                         <div class="form_client_error"></div>
                     </div>
                     <div class="form_items">

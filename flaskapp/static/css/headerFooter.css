@@ -8,6 +8,12 @@
     color: white;
 }
 
+#add_container,
+#explore_container,
+#course_container {
+    cursor: pointer;
+}
+
 body {
     margin: 0;
     overflow: auto;
@@ -17,6 +23,14 @@ body {
     display: none;
     font-size: 24px;
     margin: auto 0;
+}
+
+.bb {
+    border-bottom: 1px solid white;
+}
+
+.bt {
+    border-top: 1px solid white;
 }
 
 #close_link {
@@ -95,7 +109,7 @@ body {
     border-radius: 50%;
     box-shadow: 0 0 10px 2px #ffffff;
     cursor: pointer;
-    height: auto;
+    height: 80px;
     width: 100%;
     /*opacity: 0.8;*/
 }
@@ -136,23 +150,18 @@ body {
     display: block;
 }
 
-.dropdown_items_container_2 {
-    display: none;
-    position: relative;
-    top: 0;
-    width: 100%;
-}
-
 .flashes_question {
     background-color: white;
     border: 1px solid black;
+    box-shadow: 0 1px 6px #000;
     left: 50%;
     list-style-type: none;
+    padding: 0;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    width: 400px;
+    /* width: 400px; */
     z-index: 2;
 }
 
@@ -227,8 +236,8 @@ header {
 }
 
 .logo {
-    max-height: 100%;
-    max-width: 100%;
+    height: 80px;
+    width: 80px;
     position: relative;
 }
 
@@ -239,6 +248,17 @@ header {
 #navigation_btn {
     background-color: #9000f0;
     text-align: center;
+}
+
+#opacity_container {
+    background-color: rgba(255, 255, 255, 0.7);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
 }
 
 #page_container {
@@ -279,7 +299,6 @@ header {
 }
 
 .side_navigation_items {
-    border-bottom: 1px solid white;
     color: white;
     direction: ltr;
     display: block;
@@ -287,6 +306,10 @@ header {
     font-size: 1rem;
     padding: 10px 0;
     text-align: center;
+}
+
+.side_navigation_items_hide {
+    display: none;
 }
 
 .side_navigation_items:hover {
@@ -300,7 +323,7 @@ header {
     }
 }
 
-@media (max-width: 920px) {
+@media (max-width: 960px) {
     #bars_container {
         display: block;
     }
@@ -331,16 +354,36 @@ header {
 
     .col4 {
         margin-left: auto;
-        width: 56px;
+        width: 48px;
+    }
+
+    .col4 img {
+        height: 48px;
     }
 
     #logo_container > .col1 {
-        width: 56px;
+        margin-right: 10px;
+        width: 48px;
     }
 
     #logo_container > .col1,
     #logo_container > .col2 {
         display: block;
+    }
+
+    .logo {
+        height: 56px;
+        width: 56px;
+    }
+}
+
+@media (max-width: 640px) {
+    .flashes_question {
+        width: 240px;
+    }
+
+    .flashes_question li {
+        font-size: 16px;
     }
 }
 

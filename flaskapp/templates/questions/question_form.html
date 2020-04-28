@@ -6,7 +6,7 @@
     <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
 {% endblock image2 %}
 {% block header %}
-    <h3 class="header" style="style=" font-weight: 500;">Add Subjective Question</h3>
+    <h3 class="header" style=" font-weight: 500;">Add Subjective Question</h3>
 {% endblock header %}
 
 {% block flashes %}
@@ -84,12 +84,7 @@
                     <button type="reset" id="reset_btn">Cancel</button>
                 </div>
             </div>
-            <div id="jcourse">
-                {% for course in courses %}
-                    <div class="course_name">{{ course.name }} </div>
-                    <div class="course_id">{{ course.id }}</div>
-                {% endfor %}
-            </div>
+
         </form>
 
     </div>

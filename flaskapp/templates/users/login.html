@@ -2,18 +2,20 @@
 
 
 
-
+{% block flashes %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+        <ul class="flashes_question">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endwith %}
+{% endblock flashes %}
 
 {% block body %}
     <div class="login_page">
-        {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %}
-            <ul class="flashes_question">
-                {% for category, message in messages %}
-                    <li class="{{ category }}">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %} {% endwith %}
+
         <div class="container">
             <div class="content-section">
 

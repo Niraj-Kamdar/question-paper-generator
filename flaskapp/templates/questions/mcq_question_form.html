@@ -20,7 +20,6 @@ messages %}
 {% endblock header %}
 {% block main %}
     <div id="new_question">
-        <div id="topbar"></div>
 
         <form method="POST" action="" novalidate id="form">
             {{ form.hidden_tag() }}
@@ -40,44 +39,7 @@ messages %}
                     <div class="form__client_error"></div>
                 </div>
 
-                <!-- <div class="form__fields">
-                {{ form.question.label(class="form__fields__label") }}
-                {{ form.question(id="form__fields__question") }}
-            </div>
-            {% if form.question.errors %}
-            <ul class="form__error">
-                {% for error in form.question.errors %}
-                <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            <div class="form__client_error"></div> -->
-                <!-- <div class="form__fields">
-                {{ form.mark.label(class="form__fields__label") }}
-                {{ form.mark(id="form__fields__mark") }}
-            </div>
-            {% if form.mark.errors %}
-            <ul class="form__error">
-                {% for error in form.mark.errors %}
-                <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            <div class="form__client_error"></div>
 
-            <div class="form__fields">
-                {{ form.difficulty.label(class="form__fields__label") }}
-                {{ form.difficulty(id="form__fields__difficulty") }}
-            </div>
-
-            {% if form.difficulty.errors %}
-            <ul class="form__error">
-                {% for error in form.difficulty.errors %}
-                <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            <div class="form__client_error"></div> -->
                 <div id="form_attributes">
                     <div id="marks_label">
                         {{ form.mark.label }} :
@@ -109,14 +71,12 @@ messages %}
                     </div>
                 </div>
 
-                <!-- <div class="form__fields">
-                {{ form.imp.label(class="form__fields__label") }}
-                {{ form.imp(id="form__fields__imp") }}
-            </div> -->
+
                 <div id="options">Options :
-
                     <div class="options_row">
-
+                        <label class="fake_label"><span style="display:none;">Content</span>
+                            <textarea class="fake_container"></textarea>
+                        </label>
                         {{ form.option1.label(class="options_label") }}
                         {{ form.option1(class="options_value") }}
                     </div>
@@ -132,6 +92,9 @@ messages %}
                     </div>
 
                     <div class="options_row">
+                        <label class="fake_label"><span style="display:none;">Content</span>
+                            <textarea class="fake_container"></textarea>
+                        </label>
                         {{ form.option2.label(class="options_label") }}
                         {{ form.option2(class="options_value") }}
 
@@ -147,6 +110,9 @@ messages %}
                         <div class="form__client_error"></div>
                     </div>
                     <div class="options_row">
+                        <label class="fake_label"><span style="display:none;">Content</span>
+                            <textarea class="fake_container"></textarea>
+                        </label>
                         {{ form.option3.label(class="options_label") }}
                         {{ form.option3(class="options_value") }}
                     </div>
@@ -161,6 +127,9 @@ messages %}
                         <div class="form__client_error"></div>
                     </div>
                     <div class="options_row">
+                        <label class="fake_label"><span style="display:none;">Content</span>
+                            <textarea class="fake_container"></textarea>
+                        </label>
                         {{ form.option4.label(class="options_label") }}
                         {{ form.option4(class="options_value") }}
                     </div>
@@ -174,55 +143,6 @@ messages %}
                         {% endif %}
                         <div class="form__client_error"></div>
                     </div>
-
-
-                    <!-- <div style="width: 50%">
-                        {% if form.option2.errors %}
-                        <ul class="form__error">
-                            {% for error in form.option2.errors %}
-                            <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
-                        <div class="form__client_error"></div>
-                    </div>
-                 -->
-
-                    <!-- <div class="options_row">
-
-                    {{ form.option3.label(class="options_label") }}
-                    {{ form.option3(class="options_value") }}
-
-
-                    {{ form.option4.label(class="options_label") }}
-                    {{ form.option4(class="options_value") }}
-
-                </div>
-
-                <div class="options_error_second_row">
-
-                    <div style="width: 50%">
-                        {% if form.option3.errors %}
-                        <ul class="form__error">
-                            {% for error in form.option3.errors %}
-                            <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
-                        <div class="form__client_error"></div>
-                    </div>
-                    <div style="width: 50%">
-                        {% if form.option4.errors %}
-                        <ul class="form__error">
-                            {% for error in form.option4.errors %}
-                            <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
-                        <div class="form__client_error"></div>
-                    </div>
-
-                </div> -->
                 </div>
 
 
@@ -239,13 +159,7 @@ messages %}
                     <button type="reset" id="reset_btn">Cancel</button>
                 </div>
             </div>
-            <div id="jcourse">
-                {% for course in courses %}
-                    <div class="course_name">{{ course.name }} </div>
-                    <div class="course_id">{{ course.id }}</div>
-                {% endfor %}
-            </div>
         </form>
-        <div class="bottombar"></div>
+
     </div>
 {% endblock main %}

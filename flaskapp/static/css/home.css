@@ -25,20 +25,26 @@
 #home_content {
     background-color: #9000f026;
     height: 100%;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
     position: relative;
 }
 
-#home_content > div {
+#home_content > a {
     background-color: #ffffff;
     color: #b0b0b0;
     margin: 0;
+    text-decoration: none;
 }
 
 #home_nav {
     padding: 0;
     height: 100%;
-    max-width: 20%;
     position: relative;
+}
+
+#page_container {
+    padding-top: 100px;
 }
 
 #selected_course > h2 {
@@ -69,30 +75,55 @@
 
 #home_nav > .row > h1 {
     margin: 0;
-    font-size: 4vw;
+    font-size: 48px;
     font-weight: bolder;
     /*border:1px solid red;*/
     font-family: sans-serif;
+    padding-left: 0 !important;
 }
 
 #home_nav > .row > .col {
-    padding: 0;
+    padding: 0 10px 0 0;
 }
 
 #home_nav > .row > .col > h3 {
     margin: 0;
-    font-size: 2vw;
+    font-size: 24px;
     font-weight: bolder;
     /*border:1px solid red;*/
 }
 
 #home_nav > .row > .col > h5 {
     margin: 0;
-    font-size: 1vw;
+    font-size: 12px;
     font-weight: lighter;
     /*border:1px solid red;*/
 }
 
 #manage_courses_btn {
     text-decoration: none !important;
+}
+
+@media (max-width: 960px) {
+    #page_container {
+        padding-top: 70px;
+    }
+}
+
+@media (max-width: 700px) {
+    #body_container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    #page_display {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    #home_nav {
+        display: none;
+        margin-left: 0 !important;
+        margin-bottom: 16px;
+    }
 }

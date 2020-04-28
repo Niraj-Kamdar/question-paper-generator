@@ -50,8 +50,8 @@
     margin-right: 10px;
 }
 
-#list_img,
-#add_img {
+.list_img,
+.add_img {
     margin-right: 16px;
     width: 30px;
 }
@@ -67,10 +67,23 @@
     font-style: italic;
 }
 
+.course_id {
+    display: none;
+}
+
 #sideNav {
-    max-height: 65vh;
     margin-right: 10px;
-    min-width: 100px;
-    overflow-y: auto;
-    border-bottom: 2px solid rgba(144, 0, 240, 0.15);
+    min-width: 270px;
+}
+
+@media (max-width: 960px) {
+    .explore_container,
+    .add_container,
+    .courses_container {
+        display: none;
+    }
+
+    #page_container {
+        padding-top: 70px;
+    }
 }

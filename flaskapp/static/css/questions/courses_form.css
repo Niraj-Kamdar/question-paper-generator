@@ -7,7 +7,11 @@
     box-shadow: 4px 4px 2px 0;
     /* margin: 10px; */
     padding: 10px;
-    width: 50%;
+    width: 550px;
+}
+
+#page_container {
+    padding-top: 100px;
 }
 
 #form_content {
@@ -49,4 +53,40 @@
     font-size: 20px;
     margin: 10px 0;
     padding: 10px;
+}
+
+@media (max-width: 786px) {
+    #body_container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    #content {
+        margin: 0 10px !important;
+    }
+
+    #form_question_paper {
+        width: 550px;
+    }
+
+    #page_display {
+        align-items: center;
+    }
+
+    #template_display {
+        margin-right: 0 !important;
+    }
+}
+
+@media (max-width: 568px) {
+    #page_display {
+        align-items: initial;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    #course_form,
+    #form_question_paper {
+        width: 100%;
+    }
 }

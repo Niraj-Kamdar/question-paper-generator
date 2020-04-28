@@ -25,9 +25,11 @@
   const blockMain = document.getElementsByClassName("block_main");
   if (blockMain.length) blockMain[0].classList.remove("block_main");
 
-  question.addEventListener("input", () => {
-    formErrors[0].innerHTML = "";
-  });
+    question.addEventListener("input", (e) => {
+        formErrors[0].innerHTML = "";
+        e.target.style.height = "";
+        e.target.style.height = e.target.scrollHeight + "px";
+    });
 
   mark.addEventListener("input", () => {
     formErrors[1].innerHTML = "";
@@ -37,21 +39,31 @@
     formErrors[2].innerHTML = "";
   });
 
-  /**form submit handler */
-  form.addEventListener("submit", (e) => {
-    for (let i = 0; i < formErrors.length; i++) {
-      formErrors[i].innerHTML = "";
-    }
-    let validation = isValid(question.value, mark.value, difficulty.value);
-    if (!validation.isValid) {
-      for (let i = 0; i < validation.errors.length; i++) {
-        formErrors[i].innerHTML = validation.errors[i];
-      }
-      e.preventDefault();
-    }
-  });
+    question.setAttribute(
+        "style",
+        "height:" + question.scrollHeight + "px;overflow-y:hidden;"
+    );
 
-  toggleContainer.addEventListener("click", () => {
+    window.addEventListener("resize", function () {
+        question.style.height = "";
+        question.style.height = question.scrollHeight + "px";
+    });
+
+    /**form submit handler */
+    form.addEventListener("submit", (e) => {
+        for (let i = 0; i < formErrors.length; i++) {
+            formErrors[i].innerHTML = "";
+        }
+        let validation = isValid(question.value, mark.value, difficulty.value);
+        if (!validation.isValid) {
+            for (let i = 0; i < validation.errors.length; i++) {
+                formErrors[i].innerHTML = validation.errors[i];
+            }
+            e.preventDefault();
+        }
+    });
+
+    /** for question update form */
     if (impCheckbox.checked) {
       toggleBtn.style.left = "4px";
       toggleContainer.style.backgroundColor = "#ccc";

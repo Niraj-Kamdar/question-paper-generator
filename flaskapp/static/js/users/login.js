@@ -7,12 +7,25 @@
   const emailError = document.getElementById("form_email_error");
   const passwordError = document.getElementById("form_password_error");
 
-  const flashAlert = document.getElementsByClassName("flashes_question");
-  if (flashAlert.length) {
-    setTimeout(() => {
-      flashAlert[0].style.display = "none";
-    }, 1000);
-  }
+    /* form validation */
+    if (loginForm) {
+        emailField.addEventListener("input", () => {
+            emailError.innerHTML = "";
+        });
+        passwordField.addEventListener("input", () => {
+            passwordError.innerHTML = "";
+        });
+        loginForm.addEventListener("submit", (e) => {
+            emailError.innerHTML = "";
+            passwordError.innerHTML = "";
+            const validation = isValid(emailField.value, passwordField.value);
+            if (!validation.isValid) {
+                e.preventDefault();
+                emailError.innerText = validation.errors[0];
+                passwordError.innerText = validation.errors[1];
+            }
+        });
+    }
 
   /* form validation */
   if (loginForm) {

@@ -4,20 +4,22 @@
 
     <div style="margin-bottom: 4%;" class="block_main">
 
-        <div class="px-5 py-2">
-            {% block flashes %} {% endblock flashes %}
+        <div class="px-5 py-2" id="body_container">
+
             <div class="px-5" id="page_display">
                 <div class="row mb-2" style="margin: 0;">
                     {% block header %} {% endblock header %}
                 </div>
                 <div id="content" style="margin: 0;">
-                    <div class="mr-2" style="width: 75%;" id="template_display">
+                    <div class="mr-2" id="template_display">
                         {% block main %} {% endblock main %}
                     </div>
                     {% block sideNav %} {% endblock sideNav %}
                 </div>
             </div>
         </div>
+        {% block page %}
+        {% endblock page %}
     </div>
 
 {% endblock body %}

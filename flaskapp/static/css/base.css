@@ -9,3 +9,7 @@
     flex-direction: column;
     justify-content: center;
 }
+
+#template_display {
+    flex-grow: 1;
+}
