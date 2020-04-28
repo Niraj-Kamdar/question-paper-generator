@@ -434,10 +434,7 @@ input[type="checkbox"] {
     font-size: 16px;
     padding: 8px 16px;
   }
-  input[type="checkbox"] {
-    height: 16px;
-    width: 16px;
-  }
+
   .first_row {
     border-bottom: 0;
   }
@@ -452,6 +449,10 @@ input[type="checkbox"] {
   .header {
     font-size: 24px;
     margin: 0;
+  }
+  input[type="checkbox"] {
+    height: 16px;
+    width: 16px;
   }
   #page_display {
     padding: 0 10px !important;
