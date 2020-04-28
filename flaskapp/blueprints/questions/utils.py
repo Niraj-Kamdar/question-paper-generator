@@ -2,7 +2,6 @@ import functools
 
 from flask import abort, url_for
 from flask_login import current_user
-
 from flaskapp import db
 from flaskapp.models import Course, Unit
 

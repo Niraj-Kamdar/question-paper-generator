@@ -1,21 +1,14 @@
-from flask import render_template, flash, redirect, url_for, json, Blueprint, request
-from flask_login import login_required, current_user
-
+from flask import (Blueprint, flash, json, redirect, render_template, request,
+                   url_for)
+from flask_login import current_user, login_required
 from flaskapp import db
-from flaskapp.blueprints.questions.forms import (
-    CourseForm,
-    MCQQuestionForm,
-    QuestionForm,
-    UnitForm,
-)
-from flaskapp.blueprints.questions.utils import (
-    check_valid_course,
-    image_file,
-    check_valid_unit,
-    check_valid_question_type,
-    update_imp,
-)
-from flaskapp.models import MCQQuestion, Question, Course, Unit
+from flaskapp.blueprints.questions.forms import (CourseForm, MCQQuestionForm,
+                                                 QuestionForm, UnitForm)
+from flaskapp.blueprints.questions.utils import (check_valid_course,
+                                                 check_valid_question_type,
+                                                 check_valid_unit, image_file,
+                                                 update_imp)
+from flaskapp.models import Course, MCQQuestion, Question, Unit
 
 questions = Blueprint("questions", __name__)
 
