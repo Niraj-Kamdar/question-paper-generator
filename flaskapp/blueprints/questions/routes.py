@@ -28,58 +28,6 @@ questions = Blueprint("questions", __name__)
 
 @questions.route("/course/new/", methods=["GET", "POST"])
 @login_required
-def question(course_id, qtype):
-    """Rendering Question page
-
-    Arguments:
-        course_id {Object} -- Id for course
-        qtype {Subjective/mcq} -- Specification about question is subjective or MCQ type
-
-    Returns:
-        HTML Function -- According to choosen type of question render page
-    """
-    _course = Course.query.filter(Course.id == course_id).first()
-    if _course is None or _course.teacher != current_user:
-        abort(403)
-    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    _courses = Course.query.filter(Course.teacher == current_user).all()
-    main_page = request.args.get('page', 1, type=int)
-    if qtype == "mcq":
-        _mcq_questions = MCQQuestion.query.filter(MCQQuestion.course_id == course_id).paginate(page=main_page,
-                                                                                               per_page=1)
-        return render_template("questions/mcq_questions.html",
-                               questions=_mcq_questions,
-                               courses=_courses,
-                               course_id=course_id,
-                               qtype=qtype,
-                               css_file='css/base.css',
-                               css_file2='css/questions/mcq_form.css',
-                               css_file3='css/questions/sideNav.css',
-                               js_file='js/questions/update_mcq_question.js',
-                               js_file2='js/sideNav.js',
-                               image_file=image_file,
-                               title='Objective Questions'
-                               )
-    elif qtype == "sub":
-        _questions = Question.query.filter(Question.course_id == course_id).paginate(page=main_page, per_page=1)
-        return render_template("questions/questions.html",
-                               questions=_questions,
-                               courses=_courses,
-                               course_id=course_id,
-                               qtype=qtype,
-                               css_file='css/base.css',
-                               css_file2='css/questions/question_form.css',
-                               css_file3='css/questions/sideNav.css',
-                               js_file='js/questions/update_question.js',
-                               js_file2='js/sideNav.js',
-                               image_file=image_file,
-                               title='Subjective Questions'
-                               )
-    abort(404)
-
-
-@questions.route('/course/new/', methods=["GET", "POST"])
-@login_required
 def add_course():
     """Rendering to add course page
 
@@ -131,7 +79,7 @@ def courses():
 def units(course_id):
     _course = Course.query.filter(Course.id == course_id).first()
     _units = Unit.query.filter(Unit.course == _course).all()
-    return render_template("questions/units.html", units=_units, title="Units")
+    return render_template("questions/units.html",image_file=profile_path(), units=_units, title="Units")
 
 
 @questions.route("/course/<course_id>/unit/new", methods=["GET", "POST"])
