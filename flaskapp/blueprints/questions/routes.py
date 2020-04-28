@@ -173,9 +173,9 @@ def add_question(course_id, unit_id, qtype):
         qtype {Subjective/MCQ} -- What is the type of question ? subjective or MCQ
 
     Returns:
-        HTML function -- If the course instructor is not user than it will throw error 403 then 
+        HTML function -- If the course instructor is not user than it will throw error 403 then
         according to type of question eg : if type is MCQ then difficulty, mark, options, IMP flag
-        and if type is subjective then difficulty,mark,IMP flag added with question to the database 
+        and if type is subjective then difficulty,mark,IMP flag added with question to the database
         and will add to UI and listdown on screen.
     """
     _courses = Course.query.filter(Course.teacher == current_user).all()
@@ -382,7 +382,7 @@ def delete_question(course_id, unit_id, qtype, deleteq):
     """Delete question
 
     Returns:
-        page -- If current user is not an instructor of that subject then throw erroe else 
+        page -- If current user is not an instructor of that subject then throw erroe else
         delete question's data. and update UI.
     """
     if qtype == "mcq":

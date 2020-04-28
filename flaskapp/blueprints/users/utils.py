@@ -38,7 +38,7 @@ def send_reset_email(user):
     """For reset password make an email for existed user
 
     Arguments:
-        user {object} -- To reset password. when user want to reset password this function 
+        user {object} -- To reset password. when user want to reset password this function
         will send mail of reset password to user's submitted/registered mail for verification.
     """
     token = user.get_reset_token()
