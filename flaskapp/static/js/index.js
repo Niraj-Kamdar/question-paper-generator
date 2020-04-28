@@ -1,10 +1,15 @@
-window.onscroll = function() { scrollFunction(); };
+window.onscroll = function () {
+  scrollFunction();
+};
 
 function scrollFunction() {
   var header = document.getElementById("header");
   var ofset = 50;
-  if (window.pageYOffset > ofset || document.body.scrollTop > ofset ||
-      document.documentElement.scrollTop > ofset) {
+  if (
+    window.pageYOffset > ofset ||
+    document.body.scrollTop > ofset ||
+    document.documentElement.scrollTop > ofset
+  ) {
     header.classList.add("py-2");
     header.classList.remove("py-3");
     // header.style.background = "#9000F0";
@@ -15,7 +20,7 @@ function scrollFunction() {
   }
 }
 
-window.onload = function() {
+window.onload = function () {
   //   console.log(document.getElementById("loader_container").style.display);
   document.getElementById("loader_container").style.display = "none";
   document.getElementById("header").style.zIndex = 1;
@@ -83,6 +88,6 @@ window.onload = function() {
   //   });
 };
 
-(function() {
-// const profileLink = document.getElementsByClassName("user")[0];
+(function () {
+  // const profileLink = document.getElementsByClassName("user")[0];
 })();
