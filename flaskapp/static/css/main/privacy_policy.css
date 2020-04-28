@@ -1,13 +1,3 @@
-#main_container > div {
-  padding-top: 70px;
-}
-
-#page_title .col > h2 {
-  color: #b0b0b0;
-  font-size: 30px;
-  font-weight: bolder;
-}
-
 #index_page_link {
   color: #9000f026;
   font-size: 4vh;
@@ -16,6 +6,16 @@
 
 #index_page_link:hover {
   color: #9000f0;
+}
+
+#main_container > div {
+  padding-top: 70px;
+}
+
+#page_title .col > h2 {
+  color: #b0b0b0;
+  font-size: 30px;
+  font-weight: bolder;
 }
 
 #policy_content {

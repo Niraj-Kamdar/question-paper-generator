@@ -123,10 +123,6 @@ body {
   cursor: pointer;
 }
 
-#drop_down_image {
-  width: 10px;
-}
-
 .dropdown_container,
 .dropdown_container_2 {
   position: relative;
@@ -245,11 +241,6 @@ header {
   cursor: pointer;
 }
 
-#navigation_btn {
-  background-color: #9000f0;
-  text-align: center;
-}
-
 #opacity_container {
   background-color: rgba(255, 255, 255, 0.7);
   display: none;
@@ -359,8 +350,8 @@ header {
     display: block;
   }
   .logo {
-    height: 56px;
-    width: 56px;
+    height: 48px;
+    width: 48px;
   }
 }
 @media (max-width: 640px) {

@@ -1,6 +1,7 @@
-.form_client_error {
-  color: red;
-  margin-bottom: 16px;
+#username,
+#email {
+  padding: 8px;
+  color: rgba(88, 88, 88, 1);
 }
 
 #account_form {
@@ -12,10 +13,6 @@
   scrollbar-width: none;
 }
 
-#account_form::-webkit-scrollbar {
-  display: none;
-}
-
 #account_info {
   background-color: rgba(144, 0, 240, 0.76);
   color: white;
@@ -23,6 +20,19 @@
   /* margin: 10px; */
   /* text-align: center; */
   padding: 10px;
+}
+
+.content-section {
+  display: flex;
+}
+
+.child {
+  width: 40%;
+}
+
+.form_client_error {
+  color: red;
+  margin-bottom: 16px;
 }
 
 #form_content {
@@ -44,29 +54,6 @@ label {
   padding-left: 8px;
 }
 
-#username,
-#email {
-  padding: 8px;
-  color: rgba(88, 88, 88, 1);
-}
-
-#submit {
-  width: 100%;
-  border: 1px solid #9000f0;
-  color: #9000f0;
-}
-
-#submit:hover {
-  background: #9000f0;
-  color: #ffffff;
-}
-
-#profile_pic {
-  height: 200px;
-  width: 200px;
-  box-shadow: 0 4px 12px 0;
-}
-
 .media {
   text-align: center;
   /* width: 50%; */
@@ -83,22 +70,25 @@ label {
   margin-left: 15px;
 }
 
-#topbar {
-  position: sticky;
-  top: 0;
-  height: 8px;
-  background-color: rgba(144, 0, 240, 0.15);
+#profile_pic {
+  height: 200px;
+  width: 200px;
+  box-shadow: 0 4px 12px 0;
+}
+
+#submit {
+  width: 100%;
+  border: 1px solid #9000f0;
+  color: #9000f0;
+}
+
+#submit:hover {
+  background: #9000f0;
+  color: #ffffff;
 }
 
 #template_display {
   margin-right: 0 !important;
-}
-.content-section {
-  display: flex;
-}
-
-.child {
-  width: 40%;
 }
 
 #page_container {

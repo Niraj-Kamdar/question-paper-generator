@@ -7,7 +7,7 @@
 {% endblock image2 %}
 {% block flashes %}
 {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %}
+messages %}
 <ul class="flashes flashes_question">
     {% for category, message in messages %}
     <li class="{{ category }}">{{ message }}</li>
@@ -21,17 +21,19 @@
     <div class="course_items">
         {% for _course in courses %}
 
-        <a class="course_item"
-            href={{ url_for("questions.question", qtype="sub", course_id=_course.id) }}>{{ _course.name }}</a>
+        <a class="course_item" href='{{ url_for("questions.question" ,
+            qtype="sub" ,
+            course_id=_course.id) }}'>{{ _course.name }}</a>
         <br>
 
         {% endfor %}
     </div>
     <div style="margin-left : auto">
-        <div id="add_course">
-            <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img" alt="add">Add Course
+        <a id="add_course" href="/course/new">
+            <div><img src="{{ url_for('static',filename='images/add.svg') }}"
+                    id="add_img" alt="add">Add Course
             </div>
-        </div>
+        </a>
     </div>
 </div>
 

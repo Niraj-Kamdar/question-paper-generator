@@ -1,7 +1,3 @@
-#form_question_paper {
-  padding-left: 10px;
-}
-
 #course_form {
   background-color: rgba(144, 0, 240, 0.15);
   box-shadow: 4px 4px 2px 0;
@@ -9,12 +5,14 @@
   padding: 10px;
   width: 550px;
 }
-#page_container {
-  padding-top: 100px;
-}
+
 #form_content {
   background-color: white;
   padding: 10px;
+}
+
+#form_question_paper {
+  padding-left: 10px;
 }
 
 .form__fields {
@@ -39,6 +37,10 @@
   margin: 0;
 }
 
+#page_container {
+  padding-top: 100px;
+}
+
 #submit_btn {
   text-align: right;
 }
@@ -52,6 +54,7 @@
   margin: 10px 0;
   padding: 10px;
 }
+
 @media (max-width: 786px) {
   #body_container {
     padding-left: 0 !important;

@@ -31,6 +31,10 @@
   padding: 10px 15px;
 }
 
+.form-group > label {
+  color: #707070;
+}
+
 #opacity_container {
   background-color: rgba(255, 255, 255, 0.7);
   display: none;
@@ -50,10 +54,6 @@
 .row > h2 {
   color: #707070;
   font-weight: bolder;
-}
-
-.form-group > label {
-  color: #707070;
 }
 
 .rpbtn {

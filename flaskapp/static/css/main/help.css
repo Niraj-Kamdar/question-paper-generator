@@ -1,43 +1,6 @@
-#main_container > div {
-  padding-top: 70px;
-}
-
-#wrapper {
-  max-width: 90%;
-}
-
-#wrapper > .row {
-  margin: 0;
-}
-
-#page_title .col > h2 {
-  color: #b0b0b0;
-  font-size: 30px;
-  font-weight: bolder;
-}
-
-#index_page_link {
-  color: #9000f026;
-  font-size: 4vh;
-  font-weight: bolder;
-}
-
-#index_page_link:hover {
-  color: #9000f0;
-}
-
 .about_logo {
   width: 50%;
   margin: auto;
-}
-
-#help_content {
-  text-indent: 5%;
-  text-align: justify;
-}
-
-#help_content > p {
-  width: 100%;
 }
 
 .card-header {
@@ -54,6 +17,43 @@
   font-size: 30px;
   width: 100%;
   font-weight: lighter;
+}
+
+#help_content {
+  text-indent: 5%;
+  text-align: justify;
+}
+
+#help_content > p {
+  width: 100%;
+}
+
+#index_page_link {
+  color: #9000f026;
+  font-size: 4vh;
+  font-weight: bolder;
+}
+
+#index_page_link:hover {
+  color: #9000f0;
+}
+
+#main_container > div {
+  padding-top: 70px;
+}
+
+#page_title .col > h2 {
+  color: #b0b0b0;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+#wrapper {
+  max-width: 90%;
+}
+
+#wrapper > .row {
+  margin: 0;
 }
 
 @media (max-width: 960px) {

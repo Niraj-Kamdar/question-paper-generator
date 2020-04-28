@@ -1,3 +1,13 @@
+#index_page_link {
+  color: #9000f026;
+  font-size: 4vh;
+  font-weight: bolder;
+}
+
+#index_page_link:hover {
+  color: #9000f0;
+}
+
 #main_container > div {
   padding-top: 70px;
 }
@@ -8,16 +18,6 @@
   font-weight: bolder;
   padding-top: 40px;
   text-align: center;
-}
-
-#index_page_link {
-  color: #9000f026;
-  font-size: 4vh;
-  font-weight: bolder;
-}
-
-#index_page_link:hover {
-  color: #9000f0;
 }
 
 #services_content {

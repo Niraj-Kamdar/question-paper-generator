@@ -38,7 +38,9 @@ def question(course_id, qtype):
                                js_file='js/questions/update_mcq_question.js',
                                js_file2='js/sideNav.js',
                                image_file=image_file,
-                               title='Objective Questions'
+                               title='Objective Questions',
+                               course_id=course_id,
+                               qtype=qtype
                                )
     elif qtype == "sub":
         _questions = Question.query.filter(Question.course_id == course_id).paginate(page=main_page, per_page=1)
@@ -51,7 +53,9 @@ def question(course_id, qtype):
                                js_file='js/questions/update_question.js',
                                js_file2='js/sideNav.js',
                                image_file=image_file,
-                               title='Subjective Questions'
+                               title='Subjective Questions',
+                               course_id=course_id,
+                               qtype=qtype
                                )
     abort(404)
 
