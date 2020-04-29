@@ -1,26 +1,27 @@
-window.onscroll = function () {
+(function () {
+  window.onscroll = function () {
     scrollFunction();
-};
+  };
 
-function scrollFunction() {
+  function scrollFunction() {
     var header = document.getElementById("header");
     var ofset = 50;
     if (
-        window.pageYOffset > ofset ||
-        document.body.scrollTop > ofset ||
-        document.documentElement.scrollTop > ofset
+      window.pageYOffset > ofset ||
+      document.body.scrollTop > ofset ||
+      document.documentElement.scrollTop > ofset
     ) {
-        header.classList.add("py-2");
-        header.classList.remove("py-3");
-        // header.style.background = "#9000F0";
+      header.classList.add("py-2");
+      header.classList.remove("py-3");
+      // header.style.background = "#9000F0";
     } else {
-        header.classList.add("py-3");
-        header.classList.remove("py-2");
-        header.style.background = null;
+      header.classList.add("py-3");
+      header.classList.remove("py-2");
+      header.style.background = null;
     }
-}
+  }
 
-window.onload = function () {
+  window.onload = function () {
     //   console.log(document.getElementById("loader_container").style.display);
     document.getElementById("loader_container").style.display = "none";
     document.getElementById("header").style.zIndex = 1;
@@ -28,10 +29,10 @@ window.onload = function () {
     const index1 = window.location.href.indexOf("/login");
     const index2 = window.location.href.indexOf("/register");
     if (index1 !== -1 || index2 !== -1) {
-        var x = document.getElementById("content");
-        x.style.visibility = "hidden";
-        x.classList.add("hidden");
-        x.style.height = "0px";
+      var x = document.getElementById("content");
+      x.style.visibility = "hidden";
+      x.classList.add("hidden");
+      x.style.height = "0px";
     }
 
     //   var loginbtn = document.getElementById("show_login");
@@ -83,8 +84,9 @@ window.onload = function () {
     //       }, 1500);
     //     }
     //   });
-};
+  };
 
-(function () {
+  (function () {
     // const profileLink = document.getElementsByClassName("user")[0];
+  })();
 })();
