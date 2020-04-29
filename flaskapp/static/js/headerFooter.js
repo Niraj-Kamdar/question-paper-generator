@@ -1,16 +1,16 @@
 (function () {
-  {
-    const sideNavigationContainer = document.getElementById(
-      "side_navigation_container"
-    ); // side nav
+    {
+        const sideNavigationContainer = document.getElementById(
+            "side_navigation_container"
+        ); // side nav
 
-    // open side nav on click on bar button
-    document
-      .getElementById("bars_container")
-      .addEventListener("click", function () {
-        sideNavigationContainer.style.left = "0px";
-        document.body.style.overflowY = "hidden";
-      });
+        // open side nav on click on bar button
+        document
+            .getElementById("bars_container")
+            .addEventListener("click", function () {
+                sideNavigationContainer.style.left = "0px";
+                document.body.style.overflowY = "hidden";
+            });
 
         //hide side nav on resizing
         window.addEventListener("resize", function () {
@@ -18,408 +18,411 @@
             document.body.style.overflowY = "";
         });
 
-    // close side nav
-    document
-      .getElementById("close_link")
-      .addEventListener("click", function (e) {
-        e.preventDefault(); // prevent link from clicking
-        sideNavigationContainer.style.left = "";
-        document.body.style.overflowY = "";
-      });
-
-    {
-      let sideTouchStartX = 0; // x coordinate of first touch of side nav
-      let sideTouchStartY = 0; // y coordinate of first touch of side nav
-      let preSidePageX = 0; // previous x coordinate for side nav
-
-      let sideI = 0;
-
-      let sideFlag = false;
-      let netDistance = 0;
-      // listen for touch-start on side nav for closing
-
-      sideNavigationContainer.addEventListener("touchstart", function (e) {
-        let touchObj = {};
-        touchObj = e.changedTouches[0]; // html element which has been touched
-        sideTouchStartX = preSidePageX = touchObj.pageX; // x coordinate of touch
-        sideTouchStartY = touchObj.pageY;
-        // reset for every touch start event
-        sideFlag = false;
-        sideI = 0;
-        netDistance = 0;
-        // }
-      });
-
-      sideNavigationContainer.addEventListener("touchmove", function (e) {
-        let touchObj = {};
-        let distance = 0;
-        let left = 0;
-        if (sideFlag) return;
-        touchObj = e.changedTouches[0];
-        distance = touchObj.pageX - preSidePageX;
-        netDistance += distance;
-        if (sideI === 0) {
-          let yDiff = 0;
-          sideI++;
-          yDiff = Math.abs(touchObj.pageY - sideTouchStartY);
-          if (yDiff > Math.abs(distance)) {
-            sideFlag = true; // mark flag if user has done swipe with angle > 45
-            return;
-          }
-        }
-
-        preSidePageX = touchObj.pageX;
-        left = parseInt(sideNavigationContainer.style.left);
-        if (left + distance <= 0) {
-          sideNavigationContainer.style.left = `${left + distance}px`;
-        } else sideNavigationContainer.style.left = "0px";
-        e.preventDefault(); // to avoid scroll
-        // }
-      });
-
-      sideNavigationContainer.addEventListener("touchend", function (e) {
-        let touchObj = {};
-        let distance = 0;
-
-            mainContainer.addEventListener("touchstart", function (e) {
-                let touchObj = {};
-                if (window.innerWidth > 960) return; //do not process if screen width is greater than 960
-                touchObj = e.changedTouches[0];
-                mainTouchStartX = touchObj.pageX;
-                mainTouchStartY = touchObj.pageY;
-                preMainPageX = touchObj.pageX;
-                mainFlag = false;
-                mainI = 0;
-                netDistance = 0;
+        // close side nav
+        document
+            .getElementById("close_link")
+            .addEventListener("click", function (e) {
+                e.preventDefault(); // prevent link from clicking
+                sideNavigationContainer.style.left = "";
+                document.body.style.overflowY = "";
             });
 
-            mainContainer.addEventListener("touchmove", function (e) {
+        {
+            let sideTouchStartX = 0; // x coordinate of first touch of side nav
+            let sideTouchStartY = 0; // y coordinate of first touch of side nav
+            let preSidePageX = 0; // previous x coordinate for side nav
+
+            let sideI = 0;
+
+            let sideFlag = false;
+            let netDistance = 0;
+            // listen for touch-start on side nav for closing
+
+            sideNavigationContainer.addEventListener("touchstart", function (e) {
+                let touchObj = {};
+                touchObj = e.changedTouches[0]; // html element which has been touched
+                sideTouchStartX = preSidePageX = touchObj.pageX; // x coordinate of touch
+                sideTouchStartY = touchObj.pageY;
+                // reset for every touch start event
+                sideFlag = false;
+                sideI = 0;
+                netDistance = 0;
+                // }
+            });
+
+            sideNavigationContainer.addEventListener("touchmove", function (e) {
                 let touchObj = {};
                 let distance = 0;
                 let left = 0;
-                if (mainFlag) return;
-                if (window.innerWidth > 960) return;
+                if (sideFlag) return;
                 touchObj = e.changedTouches[0];
-                distance = touchObj.pageX - preMainPageX;
-                netDistance = netDistance + distance;
-                if (mainI === 0) {
+                distance = touchObj.pageX - preSidePageX;
+                netDistance += distance;
+                if (sideI === 0) {
                     let yDiff = 0;
-                    mainI++;
-                    yDiff = Math.abs(touchObj.pageY - mainTouchStartY);
+                    sideI++;
+                    yDiff = Math.abs(touchObj.pageY - sideTouchStartY);
                     if (yDiff > Math.abs(distance)) {
-                        //mark flag if user has done swipe with angle > 45
-                        mainFlag = true;
+                        sideFlag = true; // mark flag if user has done swipe with angle > 45
                         return;
                     }
                 }
-                if (mainTouchStartX > 100) return; // if user touched from screen at distance greater than 100px then do not process it
-                e.preventDefault(); //avoid scroll
-                preMainPageX = touchObj.pageX;
-                left = parseInt(sideNavigationContainer.style.left || initialLeft);
-                if (left + distance <= 0)
+
+                preSidePageX = touchObj.pageX;
+                left = parseInt(sideNavigationContainer.style.left);
+                if (left + distance <= 0) {
                     sideNavigationContainer.style.left = `${left + distance}px`;
-                else sideNavigationContainer.style.left = "0px";
+                } else sideNavigationContainer.style.left = "0px";
+                e.preventDefault(); // to avoid scroll
+                // }
             });
 
-            mainContainer.addEventListener("touchend", function (e) {
+            sideNavigationContainer.addEventListener("touchend", function (e) {
                 let touchObj = {};
                 let distance = 0;
-                if (
-                    mainTouchStartX > 100 ||
-                    sideNavigationContainer.style.left >= "0px" || //if already side nav is present at correct position
-                    mainFlag ||
-                    window.innerWidth > 960
-                )
-                    return;
 
-                // if (initialLeft > parseInt(sideNavigationContainer.style.left)) {
-                //   sideNavigationContainer.style.left = `${initialLeft}px`;
-                //   return;
-                // }
-                try {
+                mainContainer.addEventListener("touchstart", function (e) {
+                    let touchObj = {};
+                    if (window.innerWidth > 960) return; //do not process if screen width is greater than 960
                     touchObj = e.changedTouches[0];
+                    mainTouchStartX = touchObj.pageX;
+                    mainTouchStartY = touchObj.pageY;
+                    preMainPageX = touchObj.pageX;
+                    mainFlag = false;
+                    mainI = 0;
+                    netDistance = 0;
+                });
 
-                    distance = touchObj.pageX - mainTouchStartX;
-                } catch (e) {
-                    distance = netDistance;
-                } finally {
-                    if (distance >= 40) {
-                        sideNavigationContainer.style.left = "0px";
-                        document.body.style.overflowY = "hidden";
-                    } else {
-                        sideNavigationContainer.style.left = "";
-                        document.body.style.overflowY = "";
+                mainContainer.addEventListener("touchmove", function (e) {
+                    let touchObj = {};
+                    let distance = 0;
+                    let left = 0;
+                    if (mainFlag) return;
+                    if (window.innerWidth > 960) return;
+                    touchObj = e.changedTouches[0];
+                    distance = touchObj.pageX - preMainPageX;
+                    netDistance = netDistance + distance;
+                    if (mainI === 0) {
+                        let yDiff = 0;
+                        mainI++;
+                        yDiff = Math.abs(touchObj.pageY - mainTouchStartY);
+                        if (yDiff > Math.abs(distance)) {
+                            //mark flag if user has done swipe with angle > 45
+                            mainFlag = true;
+                            return;
+                        }
                     }
-                }
-            });
-        }
-      });
-    }
-    {
-        let isHomePage = false;
-        let areAdditionalPages = false;
-        let isLogin = false;
-        let isQuestionPage = false;
-        let isCoursesPage = false;
-        {
-            const additionalPages = [
-                "about-us",
-                "help",
-                "privacy-policy",
-                "terms-of-service",
-                "contact-us",
-            ];
-            const url = window.location.href;
+                    if (mainTouchStartX > 100) return; // if user touched from screen at distance greater than 100px then do not process it
+                    e.preventDefault(); //avoid scroll
+                    preMainPageX = touchObj.pageX;
+                    left = parseInt(sideNavigationContainer.style.left || initialLeft);
+                    if (left + distance <= 0)
+                        sideNavigationContainer.style.left = `${left + distance}px`;
+                    else sideNavigationContainer.style.left = "0px";
+                });
 
-            isHomePage = !!(
-                url.match(new RegExp("/", "g")).length === 3 &&
-                url[url.length - 1] === "/"
-            );
+                mainContainer.addEventListener("touchend", function (e) {
+                    let touchObj = {};
+                    let distance = 0;
+                    if (
+                        mainTouchStartX > 100 ||
+                        sideNavigationContainer.style.left >= "0px" || //if already side nav is present at correct position
+                        mainFlag ||
+                        window.innerWidth > 960
+                    )
+                        return;
 
-            isLogin =
-                url.indexOf("login") !== -1 || url.indexOf("register") !== -1
-                    ? true
-                    : false;
+                    // if (initialLeft > parseInt(sideNavigationContainer.style.left)) {
+                    //   sideNavigationContainer.style.left = `${initialLeft}px`;
+                    //   return;
+                    // }
+                    try {
+                        touchObj = e.changedTouches[0];
 
-            isQuestionPage = url.indexOf("question") !== -1 ? true : false;
-            isCoursesPage = url.match(/.+course\/$/) ? true : false;
-
-            for (let page of additionalPages) {
-                const index = url.indexOf(page);
-                if (index !== -1) {
-                    areAdditionalPages = true;
-                    break;
-                }
+                        distance = touchObj.pageX - mainTouchStartX;
+                    } catch (e) {
+                        distance = netDistance;
+                    } finally {
+                        if (distance >= 40) {
+                            sideNavigationContainer.style.left = "0px";
+                            document.body.style.overflowY = "hidden";
+                        } else {
+                            sideNavigationContainer.style.left = "";
+                            document.body.style.overflowY = "";
+                        }
+                    }
+                });
             }
         }
-        {
-            const sideNavigationItems = document.getElementsByClassName(
-                "side_navigation_items"
-            );
-            const exploreContainer = document.getElementById("explore_container");
-            const addContainer = document.getElementById("add_container");
-            const courseContainer = document.getElementById("course_container");
-            const childrenLength = courseContainer.children.length;
-            const moreItemsContainer =
-                sideNavigationItems[childrenLength + 13].parentNode;
-            const addMCQ = sideNavigationItems[childrenLength + 4];
-            const addQuestion = sideNavigationItems[childrenLength + 5];
-            const viewMCQ = sideNavigationItems[childrenLength + 1];
-            const viewQuestion = sideNavigationItems[childrenLength + 2];
-            const addCourse = sideNavigationItems[childrenLength + 6];
-            const removeCourse = sideNavigationItems[childrenLength + 7];
-            const course = sideNavigationItems[childrenLength + 9];
-            const aboutUs = sideNavigationItems[childrenLength + 10];
-            const help = sideNavigationItems[childrenLength + 11];
-            const contactUs = sideNavigationItems[childrenLength + 12];
+    );
+}
+{
+    let isHomePage = false;
+    let areAdditionalPages = false;
+    let isLogin = false;
+    let isQuestionPage = false;
+    let isCoursesPage = false;
+    {
+        const additionalPages = [
+            "about-us",
+            "help",
+            "privacy-policy",
+            "terms-of-service",
+            "contact-us",
+        ];
+        const url = window.location.href;
 
-            const logIn = sideNavigationItems[childrenLength + 17];
-            const logOut = sideNavigationItems[childrenLength + 18];
+        isHomePage = !!(
+            url.match(new RegExp("/", "g")).length === 3 &&
+            url[url.length - 1] === "/"
+        );
 
-            if (isHomePage || areAdditionalPages || isLogin) {
+        isLogin =
+            url.indexOf("login") !== -1 || url.indexOf("register") !== -1
+                ? true
+                : false;
+
+        isQuestionPage = url.indexOf("question") !== -1 ? true : false;
+        isCoursesPage = url.match(/.+course\/$/) ? true : false;
+
+        for (let page of additionalPages) {
+            const index = url.indexOf(page);
+            if (index !== -1) {
+                areAdditionalPages = true;
+                break;
+            }
+        }
+    }
+    {
+        const sideNavigationItems = document.getElementsByClassName(
+            "side_navigation_items"
+        );
+        const exploreContainer = document.getElementById("explore_container");
+        const addContainer = document.getElementById("add_container");
+        const courseContainer = document.getElementById("course_container");
+        const childrenLength = courseContainer.children.length;
+        const moreItemsContainer =
+            sideNavigationItems[childrenLength + 13].parentNode;
+        const addMCQ = sideNavigationItems[childrenLength + 4];
+        const addQuestion = sideNavigationItems[childrenLength + 5];
+        const viewMCQ = sideNavigationItems[childrenLength + 1];
+        const viewQuestion = sideNavigationItems[childrenLength + 2];
+        const addCourse = sideNavigationItems[childrenLength + 6];
+        const removeCourse = sideNavigationItems[childrenLength + 7];
+        const course = sideNavigationItems[childrenLength + 9];
+        const aboutUs = sideNavigationItems[childrenLength + 10];
+        const help = sideNavigationItems[childrenLength + 11];
+        const contactUs = sideNavigationItems[childrenLength + 12];
+
+        const logIn = sideNavigationItems[childrenLength + 17];
+        const logOut = sideNavigationItems[childrenLength + 18];
+
+        if (isHomePage || areAdditionalPages || isLogin) {
+            exploreContainer.style.display = "none";
+            addContainer.style.display = "none";
+            courseContainer.style.display = "none";
+            moreItemsContainer.style.display = "none";
+            course.style.display = logOut.style.display = "none";
+            addCourse.style.display = "none";
+            removeCourse.style.display = "none";
+            if (isLogin) {
+                logIn.style.display = "none";
+            }
+        } else {
+            if (isQuestionPage) {
+                addMCQ.style.display = addQuestion.style.display = "none";
+                viewMCQ.style.display = viewQuestion.style.display = "none";
+                course.style.display = "none";
+                for (let i = 1; i < childrenLength; i++) {
+                    sideNavigationItems[i].style.display = "none";
+                }
+            }
+            if (isCoursesPage) {
+                course.style.display = "none";
+                addCourse.style.display = "block";
+            }
+            aboutUs.style.display = help.style.display = contactUs.style.display = logIn.style.display =
+                "none";
+            for (let i = 1; i < moreItemsContainer.children.length; i++) {
+                moreItemsContainer.children[i].style.display = "none";
+            }
+            if (addCourse.style.display) {
+                addCourse.style.display = "";
+                removeCourse.style.display = "";
+            } else {
+                addCourse.style.display = "none";
+                removeCourse.style.display = "none";
+            }
+            if (addMCQ.style.display !== "none") {
                 exploreContainer.style.display = "none";
                 addContainer.style.display = "none";
                 courseContainer.style.display = "none";
-                moreItemsContainer.style.display = "none";
-                course.style.display = logOut.style.display = "none";
-                addCourse.style.display = "none";
-                removeCourse.style.display = "none";
-                if (isLogin) {
-                    logIn.style.display = "none";
-                }
-            } else {
-                if (isQuestionPage) {
-                    addMCQ.style.display = addQuestion.style.display = "none";
-                    viewMCQ.style.display = viewQuestion.style.display = "none";
-                    course.style.display = "none";
-                    for (let i = 1; i < childrenLength; i++) {
-                        sideNavigationItems[i].style.display = "none";
-                    }
-                }
-                if (isCoursesPage) {
-                    course.style.display = "none";
-                    addCourse.style.display = "block";
-                }
-                aboutUs.style.display = help.style.display = contactUs.style.display = logIn.style.display =
-                    "none";
-                for (let i = 1; i < moreItemsContainer.children.length; i++) {
-                    moreItemsContainer.children[i].style.display = "none";
-                }
-                if (addCourse.style.display) {
-                    addCourse.style.display = "";
-                    removeCourse.style.display = "";
-                } else {
-                    addCourse.style.display = "none";
-                    removeCourse.style.display = "none";
-                }
-                if (addMCQ.style.display !== "none") {
-                    exploreContainer.style.display = "none";
-                    addContainer.style.display = "none";
-                    courseContainer.style.display = "none";
-                }
-            }
-
-      let mainTouchStartX = 0; // x coordinate of first touch of main page
-      let mainTouchStartY = 0; // y coordinate of first touch of main page
-      let preMainPageX = 0; // previous x coordinate for main page
-      let mainI = 0;
-      let mainFlag = false;
-      let netDistance = 0;
-      // mainContainer.style.paddingTop = "100px"; // for all pages except
-      // question list
-
-      mainContainer.addEventListener("touchstart", function (e) {
-        let touchObj = {};
-        if (window.innerWidth > 920) return; // do not process if screen width is greater than 920
-        touchObj = e.changedTouches[0];
-        mainTouchStartX = touchObj.pageX;
-        mainTouchStartY = touchObj.pageY;
-        preMainPageX = touchObj.pageX;
-        mainFlag = false;
-        mainI = 0;
-        netDistance = 0;
-      });
-
-            for (let i = 0; i < profilePage.length; i++) {
-                if (isHomePage || areAdditionalPages || isLogin)
-                    profilePage[i].parentNode.style.display = "none";
-
-                profilePage[i].addEventListener("touchstart", function (e) {
-                    if (window.location.href === e.target.parentNode.href)
-                        e.preventDefault();
-                    e.target.style.boxShadow = "none";
-                });
-
-                profilePage[i].addEventListener("touchend", function (e) {
-                    e.target.style.boxShadow = "0 0 10px 2px #ffffff";
-                });
-
-                profilePage[i].addEventListener("mouseenter", function (e) {
-                    e.target.firstElementChild.style.boxShadow = "";
-                });
-
-                profilePage[i].addEventListener("click", function (e) {
-                    if (window.location.href === e.target.parentNode.href)
-                        e.preventDefault();
-                });
             }
         }
-        if (mainTouchStartX > 100) return; // if user touched from screen at distance greater than 100px
-        // then do not process it
-        e.preventDefault(); // avoid scroll
-        preMainPageX = touchObj.pageX;
-        left = parseInt(sideNavigationContainer.style.left || initialLeft);
-        if (left + distance <= 0)
-          sideNavigationContainer.style.left = `${left + distance}px`;
-        else sideNavigationContainer.style.left = "0px";
-      });
 
-      mainContainer.addEventListener("touchend", function (e) {
-        let touchObj = {};
-        let distance = 0;
-        if (
-          mainTouchStartX > 100 ||
-          sideNavigationContainer.style.left >= "0px" || // if already side nav is present at correct position
-          mainFlag ||
-          window.innerWidth > 920
-        )
-          return;
+        let mainTouchStartX = 0; // x coordinate of first touch of main page
+        let mainTouchStartY = 0; // y coordinate of first touch of main page
+        let preMainPageX = 0; // previous x coordinate for main page
+        let mainI = 0;
+        let mainFlag = false;
+        let netDistance = 0;
+        // mainContainer.style.paddingTop = "100px"; // for all pages except
+        // question list
 
-        // if (initialLeft > parseInt(sideNavigationContainer.style.left)) {
-        //   sideNavigationContainer.style.left = `${initialLeft}px`;
-        //   return;
-        // }
-        try {
-          touchObj = e.changedTouches[0];
+        mainContainer.addEventListener("touchstart", function (e) {
+            let touchObj = {};
+            if (window.innerWidth > 920) return; // do not process if screen width is greater than 920
+            touchObj = e.changedTouches[0];
+            mainTouchStartX = touchObj.pageX;
+            mainTouchStartY = touchObj.pageY;
+            preMainPageX = touchObj.pageX;
+            mainFlag = false;
+            mainI = 0;
+            netDistance = 0;
+        });
 
-          distance = touchObj.pageX - mainTouchStartX;
-        } catch (e) {
-          distance = netDistance;
-        } finally {
-          if (distance >= 40) {
+        for (let i = 0; i < profilePage.length; i++) {
+            if (isHomePage || areAdditionalPages || isLogin)
+                profilePage[i].parentNode.style.display = "none";
+
+            profilePage[i].addEventListener("touchstart", function (e) {
+                if (window.location.href === e.target.parentNode.href)
+                    e.preventDefault();
+                e.target.style.boxShadow = "none";
+            });
+
+            profilePage[i].addEventListener("touchend", function (e) {
+                e.target.style.boxShadow = "0 0 10px 2px #ffffff";
+            });
+
+            profilePage[i].addEventListener("mouseenter", function (e) {
+                e.target.firstElementChild.style.boxShadow = "";
+            });
+
+            profilePage[i].addEventListener("click", function (e) {
+                if (window.location.href === e.target.parentNode.href)
+                    e.preventDefault();
+            });
+        }
+    }
+    if (mainTouchStartX > 100) return; // if user touched from screen at distance greater than 100px
+    // then do not process it
+    e.preventDefault(); // avoid scroll
+    preMainPageX = touchObj.pageX;
+    left = parseInt(sideNavigationContainer.style.left || initialLeft);
+    if (left + distance <= 0)
+        sideNavigationContainer.style.left = `${left + distance}px`;
+    else sideNavigationContainer.style.left = "0px";
+}
+)
+;
+
+mainContainer.addEventListener("touchend", function (e) {
+    let touchObj = {};
+    let distance = 0;
+    if (
+        mainTouchStartX > 100 ||
+        sideNavigationContainer.style.left >= "0px" || // if already side nav is present at correct position
+        mainFlag ||
+        window.innerWidth > 920
+    )
+        return;
+
+    // if (initialLeft > parseInt(sideNavigationContainer.style.left)) {
+    //   sideNavigationContainer.style.left = `${initialLeft}px`;
+    //   return;
+    // }
+    try {
+        touchObj = e.changedTouches[0];
+
+        distance = touchObj.pageX - mainTouchStartX;
+    } catch (e) {
+        distance = netDistance;
+    } finally {
+        if (distance >= 40) {
             sideNavigationContainer.style.left = "0px";
             document.body.style.overflowY = "hidden";
-          } else {
+        } else {
             sideNavigationContainer.style.left = "";
             document.body.style.overflowY = "";
-          }
         }
-      });
     }
-  }
+});
+}
+}
 
-  {
+{
     let isHomePage = false;
     let areAdditionalPages = false;
     let isLogin = false;
     {
-      const additionalPages = [
-        "about-us",
-        "help",
-        "privacy-policy",
-        "terms-of-service",
-        "contact-us",
-      ];
-      const url = window.location.href;
-      isHomePage = !!(
-        url.match(new RegExp("/", "g")).length === 3 &&
-        url[url.length - 1] === "/"
-      );
-      isLogin =
-        url.indexOf("login") !== -1 || url.indexOf("register") !== -1
-          ? true
-          : false;
-      for (let page of additionalPages) {
-        const index = url.indexOf(page);
-        if (index !== -1) {
-          areAdditionalPages = true;
-          break;
+        const additionalPages = [
+            "about-us",
+            "help",
+            "privacy-policy",
+            "terms-of-service",
+            "contact-us",
+        ];
+        const url = window.location.href;
+        isHomePage = !!(
+            url.match(new RegExp("/", "g")).length === 3 &&
+            url[url.length - 1] === "/"
+        );
+        isLogin =
+            url.indexOf("login") !== -1 || url.indexOf("register") !== -1
+                ? true
+                : false;
+        for (let page of additionalPages) {
+            const index = url.indexOf(page);
+            if (index !== -1) {
+                areAdditionalPages = true;
+                break;
+            }
         }
-      }
     }
     {
-      const sideNavigationItems = document.getElementsByClassName(
-        "side_navigation_items"
-      );
+        const sideNavigationItems = document.getElementsByClassName(
+            "side_navigation_items"
+        );
 
-      if (isHomePage || areAdditionalPages) {
-        sideNavigationItems[5].parentNode.style.display = "none";
-        sideNavigationItems[1].style.display = sideNavigationItems[10].style.display =
-          "none";
-      } else if (isLogin) {
-        sideNavigationItems[5].parentNode.style.display = "none";
-        sideNavigationItems[1].style.display = sideNavigationItems[10].style.display = sideNavigationItems[9].style.display =
-          "none";
-      } else {
-        sideNavigationItems[2].style.display = sideNavigationItems[3].style.display = sideNavigationItems[4].style.display = sideNavigationItems[9].style.display =
-          "none";
-      }
+        if (isHomePage || areAdditionalPages) {
+            sideNavigationItems[5].parentNode.style.display = "none";
+            sideNavigationItems[1].style.display = sideNavigationItems[10].style.display =
+                "none";
+        } else if (isLogin) {
+            sideNavigationItems[5].parentNode.style.display = "none";
+            sideNavigationItems[1].style.display = sideNavigationItems[10].style.display = sideNavigationItems[9].style.display =
+                "none";
+        } else {
+            sideNavigationItems[2].style.display = sideNavigationItems[3].style.display = sideNavigationItems[4].style.display = sideNavigationItems[9].style.display =
+                "none";
+        }
 
-      // disable links if href and window location is same for side navigation
-      // links
-      for (let i = 0; i < sideNavigationItems.length; i++) {
-        sideNavigationItems[i].addEventListener("click", (e) => {
-          if (
-            e.target.href === window.location.href ||
-            e.target.href + "home" === window.location.href ||
-            e.target.href + "/" === window.location.href // for course/
-          )
-            e.preventDefault();
-        });
-      }
+        // disable links if href and window location is same for side navigation
+        // links
+        for (let i = 0; i < sideNavigationItems.length; i++) {
+            sideNavigationItems[i].addEventListener("click", (e) => {
+                if (
+                    e.target.href === window.location.href ||
+                    e.target.href + "home" === window.location.href ||
+                    e.target.href + "/" === window.location.href // for course/
+                )
+                    e.preventDefault();
+            });
+        }
     }
 
     {
-      const profilePage = document.getElementsByClassName("profile_page");
+        const profilePage = document.getElementsByClassName("profile_page");
 
-      for (let i = 0; i < profilePage.length; i++) {
-        if (isHomePage || areAdditionalPages || isLogin)
-          profilePage[i].parentNode.style.display = "none";
-        profilePage[i].addEventListener("click", function (e) {
-          if (window.location.href === e.target.parentNode.href)
-            e.preventDefault();
-        });
-      }
+        for (let i = 0; i < profilePage.length; i++) {
+            if (isHomePage || areAdditionalPages || isLogin)
+                profilePage[i].parentNode.style.display = "none";
+            profilePage[i].addEventListener("click", function (e) {
+                if (window.location.href === e.target.parentNode.href)
+                    e.preventDefault();
+            });
+        }
     }
 
     {
@@ -497,44 +500,48 @@
                 document.getElementById("opacity_container").style.display = "";
             }, 1000);
         }
-      }
-    });
-  }
+    }
+}
+)
+;
+}
 
-  {
+{
     const dropdownTitle = document.getElementsByClassName(
-      "dropdown_container_2"
+        "dropdown_container_2"
     )[0].firstElementChild;
 
     dropdownTitle.addEventListener("click", function (e) {
-      let target = {};
-      let dropdownItemsContainer = {};
-      let classList = {};
-      if (Array.from(e.target.classList).includes("fa"))
-        target = e.target.parentNode;
-      else target = e.target;
-      dropdownItemsContainer = target.nextElementSibling;
-      classList = target.lastElementChild.classList;
-      if (dropdownItemsContainer.style.display !== "block") {
-        dropdownItemsContainer.style.display = "block";
-        classList.remove("fa-caret-down");
-        classList.add("fa-caret-up");
-      } else {
-        dropdownItemsContainer.style.display = "none";
-        classList.remove("fa-caret-up");
-        classList.add("fa-caret-down");
-      }
+        let target = {};
+        let dropdownItemsContainer = {};
+        let classList = {};
+        if (Array.from(e.target.classList).includes("fa"))
+            target = e.target.parentNode;
+        else target = e.target;
+        dropdownItemsContainer = target.nextElementSibling;
+        classList = target.lastElementChild.classList;
+        if (dropdownItemsContainer.style.display !== "block") {
+            dropdownItemsContainer.style.display = "block";
+            classList.remove("fa-caret-down");
+            classList.add("fa-caret-up");
+        } else {
+            dropdownItemsContainer.style.display = "none";
+            classList.remove("fa-caret-up");
+            classList.add("fa-caret-down");
+        }
     });
-  }
-  {
+}
+{
     const footerLinks = document.getElementsByClassName("fl");
     for (let i = 0; i < footerLinks.length; i++) {
-      footerLinks[i].addEventListener("click", (e) => {
-        if (
-          e.target.href === window.location.href ||
-          e.target.href + "home" === window.location.href
-        )
-          e.preventDefault();
-      });
+        footerLinks[i].addEventListener("click", (e) => {
+            if (
+                e.target.href === window.location.href ||
+                e.target.href + "home" === window.location.href
+            )
+                e.preventDefault();
+        });
     }
-})();
+}
+)
+();

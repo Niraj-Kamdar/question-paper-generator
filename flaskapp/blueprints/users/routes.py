@@ -1,23 +1,10 @@
-from flask import Blueprint
-from flask import flash
-from flask import redirect
-from flask import render_template
-from flask import request
-from flask import url_for
-from flask_login import current_user
-from flask_login import login_required
-from flask_login import login_user
-from flask_login import logout_user
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required, login_user, logout_user
 
-from flaskapp import bcrypt
-from flaskapp import db
-from flaskapp.blueprints.users.forms import LoginForm
-from flaskapp.blueprints.users.forms import RegistrationForm
-from flaskapp.blueprints.users.forms import RequestResetForm
-from flaskapp.blueprints.users.forms import ResetPasswordForm
-from flaskapp.blueprints.users.forms import UpdateAccountForm
-from flaskapp.blueprints.users.utils import save_picture
-from flaskapp.blueprints.users.utils import send_reset_email
+from flaskapp import bcrypt, db
+from flaskapp.blueprints.users.forms import LoginForm, RegistrationForm, RequestResetForm, ResetPasswordForm, \
+    UpdateAccountForm
+from flaskapp.blueprints.users.utils import save_picture, send_reset_email
 from flaskapp.models import User
 from flaskapp.utils import profile_path
 
@@ -38,7 +25,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(
-            form.password.data).decode("utf-8")
+                form.password.data).decode("utf-8")
         user = User(username=form.username.data,
                     email=form.email.data,
                     password=hashed_password)
@@ -48,12 +35,12 @@ def register():
               "success")
         return redirect(url_for("users.login"))
     return render_template(
-        "users/register.html",
-        title="Register",
-        form=form,
-        css_file="css/users/register.css",
-        js_file="js/users/register.js",
-        btn_name="Back",
+            "users/register.html",
+            title="Register",
+            form=form,
+            css_file="css/users/register.css",
+            js_file="js/users/register.js",
+            btn_name="Back",
     )
 
 
@@ -76,15 +63,15 @@ def login():
             login_user(user, remember=form.remember.data)
             next_page = request.args.get("next")
             return (redirect(next_page) if next_page else redirect(
-                url_for("papers.home")))
+                    url_for("papers.home")))
         flash("Login Unsuccessful. Please check email and password", "danger")
     return render_template(
-        "users/login.html",
-        title="Login",
-        form=form,
-        css_file="css/users/login.css",
-        js_file="js/users/login.js",
-        btn_name="Back",
+            "users/login.html",
+            title="Login",
+            form=form,
+            css_file="css/users/login.css",
+            js_file="js/users/login.js",
+            btn_name="Back",
     )
 
 
@@ -123,13 +110,13 @@ def account():
     form.email.data = current_user.email
     image_file = profile_path()
     return render_template(
-        "users/account.html",
-        title="Account",
-        css_file="css/base.css",
-        css_file2="css/users/accounts.css",
-        image_file=image_file,
-        form=form,
-        js_file="js/users/account.js",
+            "users/account.html",
+            title="Account",
+            css_file="css/base.css",
+            css_file2="css/users/accounts.css",
+            image_file=image_file,
+            form=form,
+            js_file="js/users/account.js",
     )
 
 
@@ -148,14 +135,14 @@ def reset_request():
         user = User.query.filter_by(email=form.email.data).first()
         send_reset_email(user)
         flash(
-            "An email has been sent with instructions to reset your password.",
-            "info")
+                "An email has been sent with instructions to reset your password.",
+                "info")
         return redirect(url_for("users.login"))
     return render_template(
-        "users/reset_request.html",
-        title="Reset Password",
-        form=form,
-        js_file="js/users/reset_password.js",
+            "users/reset_request.html",
+            title="Reset Password",
+            form=form,
+            js_file="js/users/reset_password.js",
     )
 
 
@@ -180,15 +167,15 @@ def reset_token(token):
     form = ResetPasswordForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(
-            form.password.data).decode("utf-8")
+                form.password.data).decode("utf-8")
         user.password = hashed_password
         db.session.commit()
         flash("Your password has been updated! You are now able to log in",
               "success")
         return redirect(url_for("users.login"))
     return render_template(
-        "users/reset_token.html",
-        title="Reset Password",
-        form=form,
-        js_file="js/users/reset_password.js",
+            "users/reset_token.html",
+            title="Reset Password",
+            form=form,
+            js_file="js/users/reset_password.js",
     )

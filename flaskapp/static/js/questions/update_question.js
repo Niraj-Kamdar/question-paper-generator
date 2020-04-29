@@ -22,45 +22,65 @@ for (let i = 0; i < qids.length; i++) {
 const blockMain = document.getElementsByClassName("block_main");
 if (blockMain.length) blockMain[0].classList.remove("block_main");
 const buffer = {
-  data: "",
-  index: -1,
+    data: "",
+    index: -1,
 };
 for (let i = 0; i < imps.length; i++) {
-  if (imps[i].innerText === "True") {
-    imps[i].innerText = "IMP";
-    impCheckbox[i].checked = true;
-  } else {
-    imps[i].innerText = "";
-  }
-  markLabel[i].innerText = "Set IMP";
+    if (imps[i].innerText === "True") {
+        imps[i].innerText = "IMP";
+        impCheckbox[i].checked = true;
+    } else {
+        imps[i].innerText = "";
+    }
+    markLabel[i].innerText = "Set IMP";
 }
 
 mark.addEventListener("click", () => {
-  if (
-    !forms[0] &&
-    deleteOption.length &&
-    deleteOption[0].style.display !== "block"
-  ) {
-    if (updateImp[0].style.display !== "block") {
-      for (let i = 0; i < imps.length; i++) {
-        imps[i].style.display = "none";
-        updateImp[i].style.display = "block";
-      }
-    } else {
-      const impIds = [];
-      const notImpIds = [];
-      for (let i = 0; i < impCheckbox.length; i++) {
-        const matchArray = /\d+/.exec(qids[i].innerText);
-        if (impCheckbox[i].checked) {
-          impIds.push(Number(matchArray[0]));
+    if (
+        !forms[0] &&
+        deleteOption.length &&
+        deleteOption[0].style.display !== "block"
+    ) {
+        if (updateImp[0].style.display !== "block") {
+            for (let i = 0; i < imps.length; i++) {
+                imps[i].style.display = "none";
+                updateImp[i].style.display = "block";
+            }
         } else {
             const impIds = [];
             const notImpIds = [];
             for (let i = 0; i < impCheckbox.length; i++) {
+                const matchArray = /\d+/.exec(qids[i].innerText);
                 if (impCheckbox[i].checked) {
-                    impIds.push(qids[i].getAttribute("data-id"));
+                    impIds.push(Number(matchArray[0]));
                 } else {
-                    notImpIds.push(qids[i].getAttribute("data-id"));
+                    const impIds = [];
+                    const notImpIds = [];
+                    for (let i = 0; i < impCheckbox.length; i++) {
+                        if (impCheckbox[i].checked) {
+                            impIds.push(qids[i].getAttribute("data-id"));
+                        } else {
+                            notImpIds.push(qids[i].getAttribute("data-id"));
+                        }
+                    }
+                    const data = {
+                        imp: impIds,
+                        notimp: notImpIds,
+                    };
+                    const jsonData = JSON.stringify(data);
+                    const url = window.location.href + "imp/" + jsonData;
+                    fetch(url)
+                        .then(() => {
+                            for (let i = 0; i < impCheckbox.length; i++) {
+                                if (impCheckbox[i].checked) imps[i].innerText = "IMP";
+                                else imps[i].innerText = "";
+                                imps[i].style.display = "block";
+                                updateImp[i].style.display = "none";
+                            }
+                        })
+                        .catch((e) => {
+                            throw new Error(e);
+                        });
                 }
             }
             const data = {
@@ -82,27 +102,7 @@ mark.addEventListener("click", () => {
                     throw new Error(e);
                 });
         }
-      }
-      const data = {
-        imp: impIds,
-        notimp: notImpIds,
-      };
-      const jsonData = JSON.stringify(data);
-      const url = window.location.href + "imp/" + jsonData;
-      fetch(url)
-        .then(() => {
-          for (let i = 0; i < impCheckbox.length; i++) {
-            if (impCheckbox[i].checked) imps[i].innerText = "IMP";
-            else imps[i].innerText = "";
-            imps[i].style.display = "block";
-            updateImp[i].style.display = "none";
-          }
-        })
-        .catch((e) => {
-          throw new Error(e);
-        });
     }
-  }
 });
 
 deleteBtn.addEventListener("click", () => {
@@ -135,72 +135,73 @@ deleteBtn.addEventListener("click", () => {
                     throw new Error(e);
                 });
         }
-      }
-      const jsonId = JSON.stringify(ids);
-      const url = window.location.href + "delete/" + jsonId;
-      fetch(url)
+    }
+    const jsonId = JSON.stringify(ids);
+    const url = window.location.href + "delete/" + jsonId;
+    fetch(url)
         .then(() => {
-          for (let i = 0; i < deleteCheckbox.length; i++) {
-            if (!deleteCheckbox[i].checked) {
-              deleteOption[i].style.display = "none";
-            } else {
-              questions[i].parentNode.removeChild(questions[i]);
-              i--;
+            for (let i = 0; i < deleteCheckbox.length; i++) {
+                if (!deleteCheckbox[i].checked) {
+                    deleteOption[i].style.display = "none";
+                } else {
+                    questions[i].parentNode.removeChild(questions[i]);
+                    i--;
+                }
             }
-          }
         })
         .catch((e) => {
-          throw new Error(e);
+            throw new Error(e);
         });
-    }
-  }
-});
+}
+}
+})
+;
 
 Array.from(editQuestion).forEach((node) => {
-  node.addEventListener("click", () => {
-    edit(Array.from(editQuestion).indexOf(node));
-  });
+    node.addEventListener("click", () => {
+        edit(Array.from(editQuestion).indexOf(node));
+    });
 });
 
 cancelBtn.addEventListener("click", () => {
-  let flag = false;
+    let flag = false;
 
-  for (let j = 0; j < deleteOption.length; j++) {
-    if (deleteOption[j].style.display === "block") {
-      flag = true;
-      break;
+    for (let j = 0; j < deleteOption.length; j++) {
+        if (deleteOption[j].style.display === "block") {
+            flag = true;
+            break;
+        }
     }
-  }
-  if (flag) {
-    for (let i = 0; i < deleteOption.length; i++) {
-      deleteOption[i].style.display = "none";
-      deleteCheckbox[i].checked = false;
+    if (flag) {
+        for (let i = 0; i < deleteOption.length; i++) {
+            deleteOption[i].style.display = "none";
+            deleteCheckbox[i].checked = false;
+        }
+        return;
     }
-    return;
-  }
-  for (let j = 0; j < updateImp.length; j++) {
-    if (updateImp[j].style.display === "block") {
-      flag = true;
-      break;
+    for (let j = 0; j < updateImp.length; j++) {
+        if (updateImp[j].style.display === "block") {
+            flag = true;
+            break;
+        }
     }
-  }
-  if (flag) {
-    for (let i = 0; i < updateImp.length; i++) {
-      updateImp[i].style.display = "none";
-      imps[i].style.display = "block";
+    if (flag) {
+        for (let i = 0; i < updateImp.length; i++) {
+            updateImp[i].style.display = "none";
+            imps[i].style.display = "block";
+        }
+        return;
     }
-    return;
-  }
-  if (forms[0]) {
-    questions[buffer.index].innerHTML = buffer.data;
-    const index = buffer.index;
-    editQuestion[index].addEventListener("click", () => {
-      edit(index);
-    });
-    const script = document.getElementById("updateScript");
-    document.body.removeChild(script);
-    return;
-  }
+    if (forms[0]) {
+        questions[buffer.index].innerHTML = buffer.data;
+        const index = buffer.index;
+        editQuestion[index].addEventListener("click", () => {
+            edit(index);
+        });
+        const script = document.getElementById("updateScript");
+        document.body.removeChild(script);
+        return;
+    }
 });
 
 function edit(i) {

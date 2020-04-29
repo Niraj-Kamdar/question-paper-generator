@@ -32,8 +32,8 @@ web.click("//div[@id='about_content']/p[1]");
 //   xpath:position: //div[2]/p[1]
 //              css: css=#about_content > p:nth-child(1)
 web.assertText(
-  "//div[@id='about_content']/p[1]",
-  `Welcome to SetNow, We're dedicated to giving you the
+    "//div[@id='about_content']/p[1]",
+    `Welcome to SetNow, We're dedicated to giving you the
  very best of our service. We are hoping that,
  this website will help in lighten your work for
  making question paper. Our goal to make this
@@ -53,15 +53,15 @@ web.click("id=wrapper");
 // xpath:idRelative: (//div[@id=\'m_name\']/p)[1]
 //   xpath:position: //div[1]/div[1]/div[1]/p
 web.assertText(
-  "(//div[@id='m_name']/p)[1]",
-  `Niraj Kamdar
+    "(//div[@id='m_name']/p)[1]",
+    `Niraj Kamdar
  [201701184]`
 );
 // xpath:idRelative: (//div[@id=\'m_name\']/p)[8]
 //   xpath:position: //div[3]/div[2]/div[1]/p
 web.assertText(
-  "(//div[@id='m_name']/p)[8]",
-  `Manan Solanki
+    "(//div[@id='m_name']/p)[8]",
+    `Manan Solanki
  [201701209]`
 );
 // xpath:attributes: (//div[@id=\'m_name\'])[6]
@@ -71,8 +71,8 @@ web.click("(//div[@id='m_name'])[6]");
 // xpath:idRelative: (//div[@id=\'m_name\']/p)[6]
 //   xpath:position: //div[2]/div[3]/div[1]/p
 web.assertText(
-  "(//div[@id='m_name']/p)[6]",
-  `Karpit Patel
+    "(//div[@id='m_name']/p)[6]",
+    `Karpit Patel
  [201701174]`
 );
 // xpath:attributes: (//div[@id=\'m_name\'])[13]

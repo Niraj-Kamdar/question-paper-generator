@@ -74,59 +74,65 @@ class BaseUnit(BaseCourse):
         test_post_request(self, "/course/1/unit/new", new_unit, models.Unit, 1)
 
 
-class BaseSubQuestion(BaseCourse):
+class BaseSubQuestion(BaseUnit):
     def setUp(self):
-        BaseCourse.setUp(self)
+        BaseUnit.setUp(self)
 
         new_question = dict(question="Is it okay?",
                             mark=8,
-                            difficulty=10,
+                            difficulty="easy",
+                            cognitive_level="comprehension",
                             imp=None,
                             submit="submit")
-        test_post_request(self, "/course/1/question/sub/new/", new_question,
+        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question,
                           models.Question, 1)
 
         new_question = dict(question="Is it question?",
                             mark=7,
-                            difficulty=50,
+                            difficulty="hard",
+                            cognitive_level="application",
                             imp=True,
                             submit="submit")
-        test_post_request(self, "/course/1/question/sub/new/", new_question,
+        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question,
                           models.Question, 2)
 
         new_question = dict(question="What is it?",
                             mark=2,
-                            difficulty=70,
+                            difficulty="medium",
+                            cognitive_level="Knowledge",
                             imp=None,
                             submit="submit")
-        test_post_request(self, "/course/1/question/sub/new/", new_question,
+        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question,
                           models.Question, 3)
 
         new_question = dict(question="What was that?",
                             mark=6,
-                            difficulty=20,
+                            difficulty="medium",
+                            cognitive_level="application",
                             imp=None,
                             submit="submit")
-        test_post_request(self, "/course/1/question/sub/new/", new_question,
+        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question,
                           models.Question, 4)
 
         new_question = dict(question="How are you?",
                             mark=2,
-                            difficulty=40,
+                            difficulty="easy",
+                            cognitive_level="Knowledge",
                             imp=True,
                             submit="submit")
-        test_post_request(self, "/course/1/question/sub/new/", new_question,
+        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question,
                           models.Question, 5)
 
 
-class BaseMCQQuestion(BaseCourse):
+class BaseMCQQuestion(BaseUnit):
     def setUp(self):
-        BaseCourse.setUp(self)
+        BaseUnit.setUp(self)
 
         new_question = dict(
                 question="Is it okay?",
                 mark=8,
-                difficulty=10,
+                difficulty="easy",
+                cognitive_level="Knowledge",
                 imp=None,
                 submit="submit",
                 option1="A",
@@ -140,7 +146,8 @@ class BaseMCQQuestion(BaseCourse):
         new_question = dict(
                 question="Is it question?",
                 mark=7,
-                difficulty=50,
+                difficulty="medium",
+                cognitive_level="application",
                 imp=True,
                 submit="submit",
                 option1="A",
@@ -154,7 +161,8 @@ class BaseMCQQuestion(BaseCourse):
         new_question = dict(
                 question="What is it?",
                 mark=2,
-                difficulty=70,
+                difficulty="hard",
+                cognitive_level="application",
                 imp=None,
                 submit="submit",
                 option1="A",
@@ -168,7 +176,8 @@ class BaseMCQQuestion(BaseCourse):
         new_question = dict(
                 question="What was that?",
                 mark=6,
-                difficulty=20,
+                difficulty="easy",
+                cognitive_level="knowledge",
                 imp=None,
                 submit="submit",
                 option1="A",
@@ -182,7 +191,8 @@ class BaseMCQQuestion(BaseCourse):
         new_question = dict(
                 question="How are you?",
                 mark=2,
-                difficulty=40,
+                difficulty="easy",
+                cognitive_level="knowledge",
                 imp=True,
                 submit="submit",
                 option1="A",

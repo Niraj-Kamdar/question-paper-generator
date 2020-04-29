@@ -1,16 +1,8 @@
 from flask_login import current_user
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
-from wtforms import BooleanField
-from wtforms import FileField
-from wtforms import PasswordField
-from wtforms import StringField
-from wtforms import SubmitField
-from wtforms.validators import DataRequired
-from wtforms.validators import Email
-from wtforms.validators import EqualTo
-from wtforms.validators import Length
-from wtforms.validators import ValidationError
+from wtforms import BooleanField, FileField, PasswordField, StringField, SubmitField
+from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 
 from flaskapp.models import User
 
@@ -19,7 +11,7 @@ def validate_email_exists(form, email):
     user = User.query.filter_by(email=email.data).first()
     if user is None:
         raise ValidationError(
-            "There is no account with that email. You must register first.")
+                "There is no account with that email. You must register first.")
 
 
 def validate_username(form, username):
@@ -29,7 +21,7 @@ def validate_username(form, username):
             if user == current_user:
                 return
         raise ValidationError(
-            "That username is taken. Please choose a different one.")
+                "That username is taken. Please choose a different one.")
 
 
 def validate_email(form, email):
@@ -39,30 +31,30 @@ def validate_email(form, email):
             if user == current_user:
                 return
         raise ValidationError(
-            "That email is taken. Please choose a different one.")
+                "That email is taken. Please choose a different one.")
 
 
 class RegistrationForm(FlaskForm):
     username = StringField(
-        "Username",
-        validators=[DataRequired(),
-                    Length(min=2, max=20), validate_username],
+            "Username",
+            validators=[DataRequired(),
+                        Length(min=2, max=20), validate_username],
     )
     email = StringField("Email",
                         validators=[DataRequired(),
                                     Email(), validate_email])
     password = PasswordField("Password", validators=[DataRequired()])
     confirm_password = PasswordField(
-        "Confirm Password", validators=[DataRequired(),
-                                        EqualTo("password")])
+            "Confirm Password", validators=[DataRequired(),
+                                            EqualTo("password")])
     submit = SubmitField("Sign Up")
 
 
 class UpdateAccountForm(FlaskForm):
     username = StringField(
-        "Username",
-        validators=[DataRequired(),
-                    Length(min=2, max=20), validate_username],
+            "Username",
+            validators=[DataRequired(),
+                        Length(min=2, max=20), validate_username],
     )
     email = StringField("Email",
                         validators=[DataRequired(),
@@ -81,14 +73,14 @@ class LoginForm(FlaskForm):
 
 class RequestResetForm(FlaskForm):
     email = StringField(
-        "Email", validators=[DataRequired(),
-                             Email(), validate_email_exists])
+            "Email", validators=[DataRequired(),
+                                 Email(), validate_email_exists])
     submit = SubmitField("Request Password Reset")
 
 
 class ResetPasswordForm(FlaskForm):
     password = PasswordField("Password", validators=[DataRequired()])
     confirm_password = PasswordField(
-        "Confirm Password", validators=[DataRequired(),
-                                        EqualTo("password")])
+            "Confirm Password", validators=[DataRequired(),
+                                            EqualTo("password")])
     submit = SubmitField("Reset Password")

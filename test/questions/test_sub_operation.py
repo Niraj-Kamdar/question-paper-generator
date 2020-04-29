@@ -1,18 +1,17 @@
 from flaskapp import models
 from test.main.base_classes import BaseSubQuestion
-from test.main.utils import test_get_request
-from test.main.utils import test_post_request
+from test.main.utils import test_get_request, test_post_request
 
 
 class SubOperationTestCase(BaseSubQuestion):
     def test_update_question(self):
         # test valid data
         update_question = dict(
-            question="How many prime numbers between 1 to 100?",
-            mark=5,
-            difficulty=20,
-            imp=True,
-            submit="submit",
+                question="How many prime numbers between 1 to 100?",
+                mark=5,
+                difficulty=20,
+                imp=True,
+                submit="submit",
         )
         test_post_request(self, "/course/1/question/sub/update/2",
                           update_question, models.Question, 2)

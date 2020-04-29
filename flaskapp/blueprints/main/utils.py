@@ -3,8 +3,7 @@ import os
 from flask import render_template
 from flask_mail import Message
 
-from flaskapp import APP_PATH
-from flaskapp import mail
+from flaskapp import APP_PATH, mail
 
 
 def send_contact_us_email(**data):
@@ -36,9 +35,9 @@ def send_contact_us_receipt_email(**data):
         msg_text = f.read()
     msg_html = render_template("main/contact-us-receipt/content.html")
     msg = Message(
-        f'[SetNow Support] Re: {data["subject"]}',
-        sender="setnow@tuta.io",
-        recipients=[data["email"]],
+            f'[SetNow Support] Re: {data["subject"]}',
+            sender="setnow@tuta.io",
+            recipients=[data["email"]],
     )
     msg.body = msg_text
     msg.html = msg_html
