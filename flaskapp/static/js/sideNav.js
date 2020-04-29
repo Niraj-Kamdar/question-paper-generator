@@ -1,30 +1,22 @@
-{
+(function () {
   const exploreItems = document.getElementsByClassName("explore_items");
   const addItems = document.getElementsByClassName("add_items");
-  const url = window.location.href;
+  const sideUrl = window.location.href;
   let option = "";
-  const index1 = url.indexOf("new");
-  const index2 = url.indexOf("sub");
+  const index1 = sideUrl.indexOf("new");
+  const index2 = sideUrl.indexOf("sub");
   let flag = false;
-  if (index2 !== -1) option = "Subjective Question";
-  else option = "Multiple Choice Question";
-
-  for (let i = 0; i < addItems.length; i++) {
-    if (addItems[i].innerText === option && index1 !== -1) {
-      addItems[i].classList.add("active");
-      flag = true;
-    }
-  }
-  if (!flag) {
-    for (let i = 0; i < exploreItems.length; i++) {
-      if (exploreItems[i].innerText === option) {
-        exploreItems[i].classList.add("active");
-      }
-    }
-  }
-}
-
-{
+  const addMCQ = document.getElementById("add_container").firstElementChild
+    .nextElementSibling;
+  const addSubjectiveQuestion = addMCQ.nextElementSibling;
+  const viewMCQ = document.getElementById("explore_container").firstElementChild
+    .nextElementSibling;
+  const viewSubjectiveQuestion = viewMCQ.nextElementSibling;
+  const nav_links = document.getElementsByClassName("nav_link");
+  const courseContainer = document.getElementById("course_container");
+  const rNavCourseName = []; //left side nav
+  const children = courseContainer.children;
+  const navCourseName = document.getElementsByClassName("course_link"); //right side links
   function assignStaticLink(
     addMCQ,
     addSubjectiveQuestion,
@@ -68,35 +60,6 @@
     );
   }
 
-  {
-    const addMCQ = document.getElementById("add_container").firstElementChild
-      .nextElementSibling;
-    const addSubjectiveQuestion = addMCQ.nextElementSibling;
-    const viewMCQ = document.getElementById("explore_container")
-      .firstElementChild.nextElementSibling;
-    const viewSubjectiveQuestion = viewMCQ.nextElementSibling;
-    assignStaticLink(
-      addMCQ,
-      addSubjectiveQuestion,
-      viewMCQ,
-      viewSubjectiveQuestion,
-      window.location.href,
-      true
-    );
-  }
-  {
-    const nav_links = document.getElementsByClassName("nav_link");
-    assignStaticLink(
-      nav_links[2],
-      nav_links[3],
-      nav_links[0],
-      nav_links[1],
-      window.location.href,
-      false
-    );
-  }
-}
-{
   function assignDynamicLink(courseName, url, flag) {
     const courseIndex = url.indexOf("course");
     const laterUrl = url.substr(courseIndex);
@@ -123,19 +86,47 @@
       }
     }
   }
-  {
-    const courseContainer = document.getElementById("course_container");
-    const courseName = [];
-    const children = courseContainer.children;
 
-    for (let i = 1; i < children.length; i++) {
-      courseName.push(children[i]);
+  if (index2 !== -1) option = "Subjective Question";
+  else option = "Multiple Choice Question";
+
+  for (let i = 0; i < addItems.length; i++) {
+    if (addItems[i].innerText === option && index1 !== -1) {
+      addItems[i].classList.add("active");
+      flag = true;
     }
-    // console.log(courseName);
-    assignDynamicLink(courseName, window.location.href, true);
   }
-  {
-    const courseName = document.getElementsByClassName("course_link");
-    assignDynamicLink(courseName, window.location.href, false);
+  if (!flag) {
+    for (let i = 0; i < exploreItems.length; i++) {
+      if (exploreItems[i].innerText === option) {
+        exploreItems[i].classList.add("active");
+      }
+    }
   }
-}
+
+  assignStaticLink(
+    addMCQ,
+    addSubjectiveQuestion,
+    viewMCQ,
+    viewSubjectiveQuestion,
+    window.location.href,
+    true
+  );
+
+  assignStaticLink(
+    nav_links[2],
+    nav_links[3],
+    nav_links[0],
+    nav_links[1],
+    window.location.href,
+    false
+  );
+
+  for (let i = 1; i < children.length; i++) {
+    rNavCourseName.push(children[i]);
+  }
+  // console.log(courseName);
+  assignDynamicLink(rNavCourseName, window.location.href, true);
+
+  assignDynamicLink(navCourseName, window.location.href, false);
+})();
