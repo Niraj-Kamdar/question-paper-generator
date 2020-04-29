@@ -2,9 +2,8 @@ from flask import current_app
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
-from flaskapp import db
-from flaskapp import login_manager
-from flaskapp.utils import default_instructions
+from flaskapp import db, login_manager
+from flaskapp.utils import default_instructions, DifficultyEnum, CognitiveEnum
 
 
 @login_manager.user_loader
@@ -48,10 +47,10 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         return dict(
-            id=self.id,
-            username=self.username,
-            email=self.email,
-            image_file=self.image_file,
+                id=self.id,
+                username=self.username,
+                email=self.email,
+                image_file=self.image_file,
         )
 
 
@@ -102,17 +101,11 @@ class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.Text, nullable=False)
     mark = db.Column(db.Integer, nullable=False)
-    difficulty = db.Column(db.Enum("easy",
-                                   "medium",
-                                   "hard",
-                                   name="difficulty_type"),
+    difficulty = db.Column(db.Enum(DifficultyEnum),
                            nullable=False)
     cognitive_level = db.Column(
-        db.Enum("knowledge",
-                "comprehension",
-                "application",
-                name="cognitive_type"),
-        nullable=False,
+            db.Enum(CognitiveEnum),
+            nullable=False,
     )
     imp = db.Column(db.Boolean, default=False)
     unit_id = db.Column(db.Integer, db.ForeignKey("unit.id"), nullable=False)
@@ -122,12 +115,12 @@ class Question(db.Model):
 
     def to_dict(self):
         return dict(
-            id=self.id,
-            question=self.question,
-            mark=self.mark,
-            difficulty=self.difficulty,
-            cognitive_level=self.cognitive_level,
-            imp=self.imp,
+                id=self.id,
+                question=self.question,
+                mark=self.mark,
+                difficulty=self.difficulty,
+                cognitive_level=self.cognitive_level,
+                imp=self.imp,
         )
 
 
@@ -135,17 +128,11 @@ class MCQQuestion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.Text, nullable=False)
     mark = db.Column(db.Integer, nullable=False)
-    difficulty = db.Column(db.Enum("easy",
-                                   "medium",
-                                   "hard",
-                                   name="difficulty_type"),
+    difficulty = db.Column(db.Enum(DifficultyEnum),
                            nullable=False)
     cognitive_level = db.Column(
-        db.Enum("knowledge",
-                "comprehension",
-                "application",
-                name="cognitive_type"),
-        nullable=False,
+            db.Enum(CognitiveEnum),
+            nullable=False,
     )
     imp = db.Column(db.Boolean, default=False)
     option1 = db.Column(db.Text, nullable=False)
@@ -162,16 +149,16 @@ class MCQQuestion(db.Model):
 
     def to_dict(self):
         return dict(
-            id=self.id,
-            question=self.question,
-            mark=self.mark,
-            difficulty=self.difficulty,
-            cognitive_level=self.cognitive_level,
-            imp=self.imp,
-            option1=self.option1,
-            option2=self.option2,
-            option3=self.option3,
-            option4=self.option4,
+                id=self.id,
+                question=self.question,
+                mark=self.mark,
+                difficulty=self.difficulty,
+                cognitive_level=self.cognitive_level,
+                imp=self.imp,
+                option1=self.option1,
+                option2=self.option2,
+                option3=self.option3,
+                option4=self.option4,
         )
 
 
@@ -203,14 +190,14 @@ class Paper(db.Model):
 
     def to_dict(self):
         return dict(
-            id=self.id,
-            name=self.name,
-            mark=self.mark,
-            difficulty=self.difficulty,
-            cognitive_level=self.cognitive_level,
-            paper_format=self.paper_format,
-            paper_logo=self.paper_logo,
-            exam_date=self.exam_date,
-            time_limit=self.time_limit,
-            instructions=self.instructions,
+                id=self.id,
+                name=self.name,
+                mark=self.mark,
+                difficulty=self.difficulty,
+                cognitive_level=self.cognitive_level,
+                paper_format=self.paper_format,
+                paper_logo=self.paper_logo,
+                exam_date=self.exam_date,
+                time_limit=self.time_limit,
+                instructions=self.instructions,
         )

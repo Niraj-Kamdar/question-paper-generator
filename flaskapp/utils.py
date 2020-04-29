@@ -1,3 +1,5 @@
+from enum import Enum
+
 from flask import url_for
 from flask_login import current_user
 
@@ -18,6 +20,32 @@ default_instructions = [
                           You must remain silent until after you have exited the building.",
     "Remember! Any form of cheating is not allowed and action will be taken.",
 ]
+
+
+class CognitiveEnum(Enum):
+    Knowledge = 1
+    Comprehension = 2
+    Application = 3
+
+
+class DifficultyEnum(Enum):
+    Easy = 1
+    Medium = 2
+    Hard = 3
+
+
+def DifficultyLevel(value):
+    translate = {"easy": DifficultyEnum.Easy,
+                 "medium": DifficultyEnum.Medium,
+                 "hard": DifficultyEnum.Hard}
+    return translate[value]
+
+
+def CognitiveLevel(value):
+    translate = {"application": CognitiveEnum.Application,
+                 "comprehension": CognitiveEnum.Comprehension,
+                 "knowledge": CognitiveEnum.Knowledge}
+    return translate[value]
 
 
 def profile_path():

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 32968ab9d974
+Revision ID: 09c0658d6d5d
 Revises: 
-Create Date: 2020-04-28 16:26:13.030869
+Create Date: 2020-04-29 17:41:38.687410
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '32968ab9d974'
+revision = '09c0658d6d5d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -62,8 +62,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('question', sa.Text(), nullable=False),
     sa.Column('mark', sa.Integer(), nullable=False),
-    sa.Column('difficulty', sa.Enum('easy', 'medium', 'hard', name='difficulty_type'), nullable=False),
-    sa.Column('cognitive_level', sa.Enum('knowledge', 'comprehension', 'application', name='cognitive_type'), nullable=False),
+    sa.Column('difficulty', sa.Enum('Easy', 'Medium', 'Hard', name='difficultyenum'), nullable=False),
+    sa.Column('cognitive_level', sa.Enum('Knowledge', 'Comprehension', 'Application', name='cognitiveenum'), nullable=False),
     sa.Column('imp', sa.Boolean(), nullable=True),
     sa.Column('option1', sa.Text(), nullable=False),
     sa.Column('option2', sa.Text(), nullable=False),
@@ -77,8 +77,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('question', sa.Text(), nullable=False),
     sa.Column('mark', sa.Integer(), nullable=False),
-    sa.Column('difficulty', sa.Enum('easy', 'medium', 'hard', name='difficulty_type'), nullable=False),
-    sa.Column('cognitive_level', sa.Enum('knowledge', 'comprehension', 'application', name='cognitive_type'), nullable=False),
+    sa.Column('difficulty', sa.Enum('Easy', 'Medium', 'Hard', name='difficultyenum'), nullable=False),
+    sa.Column('cognitive_level', sa.Enum('Knowledge', 'Comprehension', 'Application', name='cognitiveenum'), nullable=False),
     sa.Column('imp', sa.Boolean(), nullable=True),
     sa.Column('unit_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['unit_id'], ['unit.id'], ),

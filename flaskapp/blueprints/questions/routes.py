@@ -21,7 +21,7 @@ from flaskapp.models import Course
 from flaskapp.models import MCQQuestion
 from flaskapp.models import Question
 from flaskapp.models import Unit
-from flaskapp.utils import profile_path
+from flaskapp.utils import profile_path, DifficultyLevel, CognitiveLevel
 
 questions = Blueprint("questions", __name__)
 
@@ -132,6 +132,9 @@ def question(course_id, unit_id, qtype):
             "questions/mcq_questions.html",
             questions=_mcq_questions,
             courses=_courses,
+            course_id=course_id,
+            unit_id=unit_id,
+            qtype=qtype,
             css_file="css/base.css",
             css_file2="css/questions/mcq_form.css",
             css_file3="css/questions/sideNav.css",
@@ -147,6 +150,9 @@ def question(course_id, unit_id, qtype):
             "questions/questions.html",
             questions=_questions,
             courses=_courses,
+            course_id=course_id,
+            unit_id=unit_id,
+            qtype=qtype,
             css_file="css/base.css",
             css_file2="css/questions/question_form.css",
             css_file3="css/questions/sideNav.css",
@@ -183,7 +189,8 @@ def add_question(course_id, unit_id, qtype):
             _question = MCQQuestion(
                 question=form.question.data,
                 mark=form.mark.data,
-                difficulty=form.difficulty.data,
+                difficulty=DifficultyLevel(form.difficulty.data),
+                cognitive_level=CognitiveLevel(form.cognitive_level.data),
                 imp=form.imp.data,
                 option1=form.option1.data,
                 option2=form.option2.data,
@@ -205,6 +212,9 @@ def add_question(course_id, unit_id, qtype):
             "questions/mcq_question_form.html",
             form=form,
             courses=_courses,
+            course_id=course_id,
+            unit_id=unit_id,
+            qtype=qtype,
             css_file="css/base.css",
             css_file2="css/questions/mcq_form.css",
             css_file3="css/questions/sideNav.css",
@@ -219,7 +229,8 @@ def add_question(course_id, unit_id, qtype):
             _question = Question(
                 question=form.question.data,
                 mark=form.mark.data,
-                difficulty=form.difficulty.data,
+                difficulty=DifficultyLevel(form.difficulty.data),
+                cognitive_level=CognitiveLevel(form.cognitive_level.data),
                 imp=form.imp.data,
                 unit_id=unit_id,
             )
@@ -237,6 +248,9 @@ def add_question(course_id, unit_id, qtype):
             "questions/question_form.html",
             form=form,
             courses=_courses,
+            course_id=course_id,
+            unit_id=unit_id,
+            qtype=qtype,
             css_file="css/base.css",
             css_file2="css/questions/question_form.css",
             css_file3="css/questions/sideNav.css",

@@ -1,5 +1,7 @@
 from flask import json
 
+from flaskapp.utils import DifficultyEnum, DifficultyLevel, CognitiveEnum, CognitiveLevel
+
 
 def compare_dict(self, dict1, dict2):
     """Compare to objects
@@ -10,8 +12,14 @@ def compare_dict(self, dict1, dict2):
     """
     common_keys = set(dict1.keys()) & set(dict2.keys())
     for key in common_keys:
-        if dict1[key] is None:
-            dict1[key] = False
+        try:
+            dict2[key] = DifficultyLevel(dict2[key])
+        except KeyError:
+            pass
+        try:
+            dict2[key] = CognitiveLevel(dict2[key])
+        except KeyError:
+            pass
         if dict2[key] is None:
             dict2[key] = False
         self.assertEqual(dict1[key], dict2[key])
