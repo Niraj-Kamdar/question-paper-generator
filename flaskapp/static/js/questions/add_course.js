@@ -2,6 +2,7 @@
   const courseField = document.getElementById("form__fields__course");
   const clientError = document.getElementsByClassName("form__client_error");
   const courseForm = document.getElementById("course_form");
+
   function isValid(course) {
     let validation = {
       isValid: true,

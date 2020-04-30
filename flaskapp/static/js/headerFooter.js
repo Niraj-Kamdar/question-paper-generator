@@ -76,6 +76,7 @@ const rdropdownMoreTitle = document.getElementsByClassName(
 const rDropdownCourseTitle = document.getElementById("course_container")
   .firstElementChild;
 const flash = document.getElementsByClassName("flashes_question")[0];
+
 function handleQuestionNav(e) {
   let target = {};
   let classList = {};
