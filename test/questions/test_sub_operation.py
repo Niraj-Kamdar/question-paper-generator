@@ -38,3 +38,4 @@ class SubOperationTestCase(BaseSubQuestion):
         self.assertEqual(q1.imp, True)
         self.assertEqual(q3.imp, True)
         self.assertEqual(q5.imp, False)
+        print("good")
