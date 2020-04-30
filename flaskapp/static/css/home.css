@@ -1,94 +1,109 @@
-#wrapper {
-    max-width: 90%;
-}
-
-#wrapper > .row {
-    margin: 0;
-}
-
-#wrapper > .row > .col-1 {
-    max-width: 1%;
-}
-
 .header {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    color: rgba(88, 88, 88, 1);
-    font-size: 40px;
-    margin: 0 20px;
-}
-
-#home_title {
-    color: #B0B0B0;
-    font-weight: bolder;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgba(88, 88, 88, 1);
+  font-size: 40px;
+  margin: 0 20px;
 }
 
 #home_content {
-    background-color: #9000F026;
-    height: 100%;
-    position: relative;
+  background-color: #9000f026;
+
+  height: 100%;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  position: relative;
 }
 
-#home_content > div {
-    background-color: #ffffff;
-    color: #B0B0B0;
-    margin: 0;
+#home_content > a {
+  background-color: #ffffff;
+  color: #b0b0b0;
+  margin: 0;
+  text-decoration: none;
 }
 
 #home_nav {
-    padding: 0;
-    height: 100%;
-    max-width: 20%;
-    position: relative;
-}
-
-#selected_course > h2 {
-    text-align: center;
-    width: 100%;
-    margin: 0;
-    background-color: #808080;
-    color: #ffffff;
-    font-size: 1vw;
-    font-weight: bolder;
+  padding: 0;
+  height: 100%;
+  position: relative;
 }
 
 #home_nav > .row {
-    cursor: pointer;
-    user-select: none;
-    color: #B0B0B0;
-    background-color: #9000F026;
-    margin: 0;
-    display: inline-flex;
-    align-items: center;
-    transition: 0.5s;
+  cursor: pointer;
+  user-select: none;
+  color: #b0b0b0;
+  background-color: #9000f026;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  transition: 0.5s;
 }
 
 #home_nav > .row:hover {
-    background-color: #9000F0;
-    color: #ffffff;
+  background-color: #9000f0;
+  color: #ffffff;
 }
 
 #home_nav > .row > h1 {
-    margin: 0;
-    font-size: 4vw;
-    font-weight: bolder;
-    /*border:1px solid red;*/
-    font-family: sans-serif;
+  margin: 0;
+  font-size: 48px;
+  font-weight: bolder;
+
+  font-family: sans-serif;
+  padding-left: 0 !important;
 }
 
 #home_nav > .row > .col {
-    padding: 0;
+  padding: 0 10px 0 0;
 }
 
 #home_nav > .row > .col > h3 {
-    margin: 0;
-    font-size: 2vw;
-    font-weight: bolder;
-    /*border:1px solid red;*/
+  margin: 0;
+  font-size: 24px;
+  font-weight: bolder;
 }
 
 #home_nav > .row > .col > h5 {
-    margin: 0;
-    font-size: 1vw;
-    font-weight: lighter;
-    /*border:1px solid red;*/
+  margin: 0;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+#manage_courses_btn {
+  text-decoration: none !important;
+}
+
+#page_container {
+  padding-top: 100px;
+}
+
+#papers_container {
+  border: 2px solid red;
+}
+
+#wrapper {
+  border: 2px solid green;
+}
+
+@media (max-width: 960px) {
+  #page_container {
+    padding-top: 70px;
+  }
+}
+
+@media (max-width: 700px) {
+  #body_container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  #page_display {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  #home_nav {
+    display: none;
+    margin-left: 0 !important;
+    margin-bottom: 16px;
+  }
 }
