@@ -51,7 +51,8 @@ class AddQuestionTestCase(BaseCourse):
             self, "/course/1/question/mcq/new/", new_mcq, models.MCQQuestion, 1
         )
         # test repr method
-        self.assertEqual(str(mcq), "MCQQuestion(Rate it, 8, 10, False, 10, 9, 8, 7)")
+        self.assertEqual(
+            str(mcq), "MCQQuestion(Rate it, 8, 10, False, 10, 9, 8, 7)")
         # test invalid data
         new_mcq = dict(
             question=None,

@@ -23,7 +23,7 @@ class BaseDatabase(unittest.TestCase):
 class BaseUser(BaseDatabase):
     def setUp(self):
         """Setup for user
-        
+
         Arguments:
             BaseDatabase {[type]} -- [description]
         """

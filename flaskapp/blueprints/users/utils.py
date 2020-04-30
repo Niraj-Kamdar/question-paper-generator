@@ -10,10 +10,10 @@ from flaskapp import mail, APP_PATH
 
 def save_picture(form_picture):
     """Save profile picture
-    
+
     Arguments:
         form_picture {form} -- Entered picture which user want to set to his profile
-    
+
     Returns:
         string -- To save picture
     """
@@ -33,7 +33,7 @@ def save_picture(form_picture):
 
 def send_reset_email(user):
     """For reset password make an email for existed user
-    
+
     Arguments:
         user {object} -- To reset password. when user want to reset password this function 
         will send mail of reset password to user's submitted/registered mail for verification.

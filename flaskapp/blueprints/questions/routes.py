@@ -36,7 +36,8 @@ def question(course_id, qtype):
     _course = Course.query.filter(Course.id == course_id).first()
     if _course is None or _course.teacher != current_user:
         abort(403)
-    image_file = url_for("static", filename="profile_pics/" + current_user.image_file)
+    image_file = url_for(
+        "static", filename="profile_pics/" + current_user.image_file)
     _courses = Course.query.filter(Course.teacher == current_user).all()
     main_page = request.args.get("page", 1, type=int)
     if qtype == "mcq":
@@ -88,7 +89,8 @@ def add_course():
         shows add course feild.
     """
     form = CourseForm()
-    image_file = url_for("static", filename="profile_pics/" + current_user.image_file)
+    image_file = url_for(
+        "static", filename="profile_pics/" + current_user.image_file)
     if form.validate_on_submit():
         course = Course(name=form.course.data, teacher=current_user)
         db.session.add(course)
@@ -115,7 +117,8 @@ def courses():
         HTML function -- Redirect to courses pages where listed down all courses.
     """
     _courses = Course.query.filter(Course.teacher == current_user).all()
-    image_file = url_for("static", filename="profile_pics/" + current_user.image_file)
+    image_file = url_for(
+        "static", filename="profile_pics/" + current_user.image_file)
     return render_template(
         "questions/courses.html",
         courses=_courses,
@@ -145,7 +148,8 @@ def add_question(course_id, qtype):
     _course = Course.query.filter(Course.id == course_id).first()
     if _course is None or _course.teacher != current_user:
         abort(403)
-    image_file = url_for("static", filename="profile_pics/" + current_user.image_file)
+    image_file = url_for(
+        "static", filename="profile_pics/" + current_user.image_file)
     _courses = Course.query.filter(Course.teacher == current_user).all()
     if qtype == "mcq":
         form = MCQQuestionForm()
@@ -226,7 +230,8 @@ def update_question(course_id, qtype, question_id):
     if _course is None or _course.teacher != current_user:
         abort(403)
     if qtype == "mcq":
-        _question = db.session.query(MCQQuestion).filter_by(id=question_id).first()
+        _question = db.session.query(
+            MCQQuestion).filter_by(id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(
@@ -254,7 +259,8 @@ def update_question(course_id, qtype, question_id):
             js_file="js/questions/question_form.js",
         )
     elif qtype == "sub":
-        _question = db.session.query(Question).filter_by(id=question_id).first()
+        _question = db.session.query(
+            Question).filter_by(id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(

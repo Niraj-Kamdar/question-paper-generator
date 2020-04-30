@@ -18,7 +18,7 @@ users = Blueprint("users", __name__)
 @users.route("/register", methods=["GET", "POST"])
 def register():
     """Registeration of user
-    
+
     Returns:
         HTML function/ page -- If user is authenticated then redirect to papers.home page.
         after submitting the form for registration go to login page.
@@ -51,7 +51,7 @@ def register():
 @users.route("/login", methods=["GET", "POST"])
 def login():
     """Login into system
-    
+
     Returns:
         HTML function/page -- If the user is authenticated then redirect to papers home page
         else after logging in(with validation of correct details) go to papers home page
@@ -66,7 +66,8 @@ def login():
             login_user(user, remember=form.remember.data)
             next_page = request.args.get("next")
             return (
-                redirect(next_page) if next_page else redirect(url_for("papers.home"))
+                redirect(next_page) if next_page else redirect(
+                    url_for("papers.home"))
             )
         flash("Login Unsuccessful. Please check email and password", "danger")
     return render_template(
@@ -83,7 +84,7 @@ def login():
 @login_required
 def logout():
     """For Logout 
-    
+
     Returns:
         Page -- It will redirect to mail index page
     """
@@ -95,7 +96,7 @@ def logout():
 @login_required
 def account():
     """Accout of User
-    
+
     Returns:
         Rendering page -- If user want to change profile pic or name or email.
         it will do it.
@@ -112,7 +113,8 @@ def account():
         return redirect(url_for("users.account"))
     form.username.data = current_user.username
     form.email.data = current_user.email
-    image_file = url_for("static", filename="profile_pics/" + current_user.image_file)
+    image_file = url_for(
+        "static", filename="profile_pics/" + current_user.image_file)
     return render_template(
         "users/account.html",
         title="Account",
@@ -127,7 +129,7 @@ def account():
 @users.route("/reset_password", methods=["GET", "POST"])
 def reset_request():
     """For reset password
-    
+
     Returns:
         Page -- If user want to reset password it will allow it by email verification.Mail will 
         sent to user's mail and page will render to home login page.
@@ -153,10 +155,10 @@ def reset_request():
 @users.route("/reset_password/<token>", methods=["GET", "POST"])
 def reset_token(token):
     """reset password's token
-    
+
     Arguments:
         token {Token} -- Object
-    
+
     Returns:
         page -- If user is authenticated then redirect to home page.
         If user is none then shows warning.else show a message with updated password and
