@@ -4,8 +4,8 @@ const resetPasswordForm = document.getElementById("reset_password_form");
 
 function isValid(email) {
   const validation = {
-    isValid: true,
-    errors: [],
+    isValid : true,
+    errors : [],
   };
 
   if (!emailRegex.test(email)) {
@@ -20,8 +20,8 @@ function isValid(email) {
 
 function isValidPassword(password, confirmPassword) {
   const validation = {
-    isValid: true,
-    errors: [],
+    isValid : true,
+    errors : [],
   };
   if (password.trim() === "") {
     validation.errors.push("Password is required!!");
@@ -45,9 +45,7 @@ function isValidPassword(password, confirmPassword) {
 if (resetForm) {
   const emailField = document.getElementById("email");
   const emailError = document.getElementById("email_error");
-  emailField.addEventListener("input", () => {
-    emailError.innerHTML = "";
-  });
+  emailField.addEventListener("input", () => { emailError.innerHTML = ""; });
   resetForm.addEventListener("submit", (e) => {
     const email = emailField.value;
     const validation = isValid(email);
@@ -61,16 +59,12 @@ if (resetForm) {
 
 if (resetPasswordForm) {
   const password = document.getElementsByClassName("password")[0];
-  const confirmPassword = document.getElementsByClassName(
-    "confirm_password"
-  )[0];
+  const confirmPassword =
+      document.getElementsByClassName("confirm_password")[0];
   const formError = document.getElementsByClassName("form_error");
-  password.addEventListener("input", () => {
-    formError[0].innerHTML = "";
-  });
-  confirmPassword.addEventListener("input", () => {
-    formError[1].innerHTML = "";
-  });
+  password.addEventListener("input", () => { formError[0].innerHTML = ""; });
+  confirmPassword.addEventListener("input",
+                                   () => { formError[1].innerHTML = ""; });
   resetPasswordForm.addEventListener("submit", (e) => {
     const validation = isValidPassword(password.value, confirmPassword.value);
     formError[0].innerHTML = formError[1].innerHTML = "";
