@@ -30,7 +30,7 @@ pipenv shell
 ```
 If your environment is activated then run following command to start webserver.
 ```console
-python run.py
+python app.py
 ```
 
 ### Migrating
