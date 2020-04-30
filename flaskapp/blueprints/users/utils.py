@@ -1,14 +1,11 @@
 import os
 
-from flask import current_app
-from flask import render_template
-from flask import url_for
+from PIL import Image
+from flask import current_app, render_template, url_for
 from flask_login import current_user
 from flask_mail import Message
-from PIL import Image
 
-from flaskapp import APP_PATH
-from flaskapp import mail
+from flaskapp import APP_PATH, mail
 
 
 def save_picture(form_picture):
@@ -46,19 +43,19 @@ def send_reset_email(user):
     with open(mail_file, "r") as f:
         msg_text = f.read()
     msg_text = msg_text.format(
-        name=user.username,
-        action_url=url_for("users.reset_token", token=token, _external=True),
-        support_url=url_for("main.index"),
-        operating_system="linux",
-        browser_name="firefox",
+            name=user.username,
+            action_url=url_for("users.reset_token", token=token, _external=True),
+            support_url=url_for("main.index"),
+            operating_system="linux",
+            browser_name="firefox",
     )
     msg_html = render_template(
-        "users/password-reset/content.html",
-        name=user.username,
-        action_url=url_for("users.reset_token", token=token, _external=True),
-        support_url=url_for("main.index"),
-        operating_system="linux",
-        browser_name="firefox",
+            "users/password-reset/content.html",
+            name=user.username,
+            action_url=url_for("users.reset_token", token=token, _external=True),
+            support_url=url_for("main.index"),
+            operating_system="linux",
+            browser_name="firefox",
     )
     msg = Message("Password Reset Request",
                   sender="setnow@tuta.io",

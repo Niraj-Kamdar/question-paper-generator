@@ -18,11 +18,11 @@ class UserAccountTestCase(BaseUser):
     def test_conflicting_username(self):
         # add dummy user
         new_user = dict(
-            username="nr.nutron",
-            email="nutron@gmail.com",
-            password="nutron@101",
-            confirm_password="nutron@101",
-            submit="Sign Up",
+                username="nr.nutron",
+                email="nutron@gmail.com",
+                password="nutron@101",
+                confirm_password="nutron@101",
+                submit="Sign Up",
         )
         test_post_request(self, "/register", new_user, models.User, 2)
 
@@ -32,13 +32,13 @@ class UserAccountTestCase(BaseUser):
                             email="proton@gmail.com",
                             submit="submit")
         self.assertRaises(
-            AssertionError,
-            test_post_request,
-            self,
-            "/account",
-            current_user,
-            models.User,
-            1,
+                AssertionError,
+                test_post_request,
+                self,
+                "/account",
+                current_user,
+                models.User,
+                1,
         )
 
     def test_forgot_password(self):
@@ -48,8 +48,8 @@ class UserAccountTestCase(BaseUser):
             data = dict(email="proton@gmail.com")
             response, _ = test_post_request(self, "/reset_password", data)
             self.assertIn(
-                b"An email has been sent with instructions to reset your password.",
-                response.data,
+                    b"An email has been sent with instructions to reset your password.",
+                    response.data,
             )
             self.assertEqual(1, len(outbox))
             self.assertEqual("Password Reset Request", outbox[0].subject)
@@ -64,15 +64,15 @@ class UserAccountTestCase(BaseUser):
             response, _ = test_post_request(self, "/reset_password/" + token,
                                             new_password)
             self.assertIn(
-                b"Your password has been updated! You are now able to log in",
-                response.data,
+                    b"Your password has been updated! You are now able to log in",
+                    response.data,
             )
 
             user = dict(
-                email="proton@gmail.com",
-                password="VeryDumb@123",
-                remember=True,
-                submit="Login",
+                    email="proton@gmail.com",
+                    password="VeryDumb@123",
+                    remember=True,
+                    submit="Login",
             )
             test_post_request(self, "/login", user)
 
@@ -93,6 +93,6 @@ class UserAccountTestCase(BaseUser):
         data = dict(email="doesn't@exit.com")
         response, _ = test_post_request(self, "/reset_password", data)
         self.assertIn(
-            b"There is no account with that email. You must register first.",
-            response.data,
+                b"There is no account with that email. You must register first.",
+                response.data,
         )
