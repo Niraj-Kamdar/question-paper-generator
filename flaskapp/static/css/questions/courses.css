@@ -19,6 +19,9 @@
   cursor: pointer;
 }
 
+#add_course_container {
+  margin-left: auto;
+}
 #course_container {
   display: flex;
 }

@@ -16,10 +16,13 @@
   color: #b0b0b0;
   font-size: 30px;
   font-weight: bolder;
+  color: #b0b0b0;
+  text-align: center;
 }
 
 #policy_content {
   color: #808080;
+  text-align: justify;
 }
 
 #policy_content > p {

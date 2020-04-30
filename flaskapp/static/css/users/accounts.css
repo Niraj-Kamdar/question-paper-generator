@@ -22,12 +22,16 @@
 
 .content-section {
   display: flex;
+  justify-content: center;
 }
 
 .child {
   width: 40%;
 }
 
+.first {
+  text-align: right;
+}
 .form_client_error {
   color: red;
   margin-bottom: 16px;
@@ -54,7 +58,7 @@ label {
 
 .media {
   text-align: center;
-
+  width: 100%;
   height: 100%;
   background: #9000f026;
 

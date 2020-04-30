@@ -2,6 +2,8 @@
   transition-property: visibility, opacity;
   transition-duration: 0s, 0.5s;
   overflow: auto;
+  margin: 0;
+  padding: 0;
 }
 
 #content > div {
@@ -18,6 +20,15 @@
   margin-top: 20px;
 }
 
+#get_start_container > h3 {
+  font-size: 32px;
+}
+#get_start_container > div {
+  text-align: center;
+}
+#glimpse_container i {
+  font-size: 1.75rem;
+}
 .feature_link {
   flex-shrink: 0;
   margin-right: 16px;
@@ -97,6 +108,9 @@
   animation: spin 1s linear infinite;
 }
 
+#para p {
+  text-indent: 5%;
+}
 #register {
   margin-bottom: 30px;
   text-align: center;

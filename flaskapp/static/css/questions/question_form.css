@@ -143,6 +143,7 @@
   color: rgba(88, 88, 88, 1);
   font-size: 40px;
   margin: 0 20px;
+  font-weight: 500;
 }
 
 #imp_checkbox {
@@ -241,6 +242,9 @@ label {
   cursor: pointer;
 }
 
+#submit_reset_container {
+  text-align: right;
+}
 #toggle_container {
   align-items: center;
   border-radius: 30px;

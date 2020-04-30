@@ -1,3 +1,8 @@
+#copyright_setnow {
+  display: block;
+  width: 100%;
+}
+
 #index_page_link {
   color: #9000f026;
   font-size: 4vh;
@@ -23,6 +28,7 @@
 #services_content {
   color: #808080;
   padding: 0.5rem 32px;
+  text-align: justify;
 }
 
 #services_content > h3 {

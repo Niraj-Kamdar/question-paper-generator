@@ -67,6 +67,10 @@ body {
   justify-content: flex-end;
 }
 
+.col3 > div {
+  margin: 0;
+  padding: 0;
+}
 .col3 > .row {
   display: flex;
   justify-content: flex-end;
@@ -112,6 +116,9 @@ body {
   box-shadow: none;
 }
 
+#copyright {
+  color: white;
+}
 #course_link {
   cursor: pointer;
 }
@@ -125,6 +132,8 @@ body {
   background-color: rgba(144, 0, 240, 1);
   display: none;
   left: 0;
+  margin: 0;
+  padding: 0;
   position: absolute;
   right: -100%;
   top: calc(26px + 1rem);
@@ -203,6 +212,11 @@ header {
   z-index: 2;
 }
 
+#header_footer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
 #home_link {
   cursor: pointer;
 }
@@ -279,6 +293,7 @@ header {
 
 .side_navigation_items {
   color: white;
+  cursor: pointer;
   direction: ltr;
   display: block;
   font-family: "Montserrat", sans-serif;

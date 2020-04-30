@@ -54,6 +54,7 @@
 
 #wrapper > .row {
   margin: 0;
+  justify-content: center;
 }
 
 @media (max-width: 960px) {

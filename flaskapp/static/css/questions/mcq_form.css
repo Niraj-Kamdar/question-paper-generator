@@ -95,6 +95,9 @@
   opacity: 0.4;
 }
 
+.each_option {
+  width: 100%;
+}
 .edit_question {
   background-color: white;
   cursor: pointer;
@@ -133,6 +136,10 @@
 .fake_label {
   display: block;
   width: 100%;
+}
+
+.fake_label span {
+  display: none;
 }
 
 .form__error {
@@ -176,6 +183,7 @@
   color: rgba(88, 88, 88, 1);
   font-size: 40px;
   margin: 0 20px;
+  font-weight: 500;
 }
 
 #imp_checkbox {
@@ -299,6 +307,10 @@ label {
 
 #submit_btn:hover {
   cursor: pointer;
+}
+
+#submit_reset_container {
+  text-align: right;
 }
 
 .second_row {

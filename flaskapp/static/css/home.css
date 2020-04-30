@@ -7,6 +7,7 @@
 
 #home_content {
   background-color: #9000f026;
+  border: 2px solid red;
   height: 100%;
   padding-top: 5px !important;
   padding-bottom: 5px !important;
@@ -24,6 +25,7 @@
   padding: 0;
   height: 100%;
   position: relative;
+  border: 2px solid red;
 }
 
 #home_nav > .row {
@@ -73,6 +75,14 @@
 
 #page_container {
   padding-top: 100px;
+}
+
+#papers_container {
+  border: 2px solid red;
+}
+
+#wrapper {
+  border: 2px solid green;
 }
 
 @media (max-width: 960px) {
