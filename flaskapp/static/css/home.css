@@ -46,7 +46,7 @@
   margin: 0;
   font-size: 48px;
   font-weight: bolder;
-  /*border:1px solid red;*/
+
   font-family: sans-serif;
   padding-left: 0 !important;
 }
@@ -59,14 +59,12 @@
   margin: 0;
   font-size: 24px;
   font-weight: bolder;
-  /*border:1px solid red;*/
 }
 
 #home_nav > .row > .col > h5 {
   margin: 0;
   font-size: 12px;
   font-weight: lighter;
-  /*border:1px solid red;*/
 }
 
 #manage_courses_btn {

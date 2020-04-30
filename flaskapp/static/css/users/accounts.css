@@ -6,8 +6,7 @@
 
 #account_form {
   background-color: rgba(144, 0, 240, 0.15);
-  /*box-shadow: 0 4px 12px 0;*/
-  /* height: 300px; */
+
   overflow-y: auto;
   padding: 10px;
   scrollbar-width: none;
@@ -17,8 +16,7 @@
   background-color: rgba(144, 0, 240, 0.76);
   color: white;
   font-size: 20px;
-  /* margin: 10px; */
-  /* text-align: center; */
+
   padding: 10px;
 }
 
@@ -56,11 +54,10 @@ label {
 
 .media {
   text-align: center;
-  /* width: 50%; */
+
   height: 100%;
   background: #9000f026;
-  /* align-items: center; */
-  /*box-shadow: 0 4px 12px 0;*/
+
   display: inline-block;
   flex-direction: column;
   padding-top: 20px;
