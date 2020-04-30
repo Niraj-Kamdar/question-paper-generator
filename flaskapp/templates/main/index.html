@@ -9,12 +9,12 @@
 
 
 {% block backgroundImage %}
-    <img src="{{ url_for('static',filename='images/background1.png') }}" class="img1" alt="background Image">
-    <div class="overlape"></div>
+    {% cache 24*3600 %}
+        <img src="{{ url_for('static',filename='images/background1.png') }}" class="img1" alt="background Image">
+        <div class="overlape"></div>
+    {% endcache %}
 {% endblock backgroundImage %}
 
-<!-- <div class="container-fluid" style="padding: 0;"> -->
-<!-- </div> -->
 {% block body %}
     <main>
         <div class="row pl-4 pt-2 text-white" id="content" style="margin: 0;padding: 0;">
