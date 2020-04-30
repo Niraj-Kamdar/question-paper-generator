@@ -15,7 +15,7 @@ class ErrorHandlerTestCase(BaseCourse):
         self.assertIn(b"<title>404</title>", response.data)
 
     def test_403_error(self):
-        response = self.client.get("/course/2/question/sub/new",
+        response = self.client.get("/course/2/unit/1/question/sub/new",
                                    follow_redirects=True)
         self.assertEqual(403, response.status_code)
         self.assertIn(b"<title>403</title>", response.data)
