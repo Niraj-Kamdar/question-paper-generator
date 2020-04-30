@@ -8,6 +8,8 @@ beautifulsoup4 = "*"
 lxml = "*"
 coverage = "*"
 pylint = "*"
+black = "*"
+yapf = "*"
 
 [packages]
 alembic = "*"
@@ -40,6 +42,8 @@ WTForms = "*"
 sentry-sdk = {extras = ["flask"],version = "==0.14.3"}
 flask-weasyprint = "*"
 email-validator = "*"
+autopep8 = "*"
+isort = "*"
 
 [requires]
 python_version = "3.7"

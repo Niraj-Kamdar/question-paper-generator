@@ -1,39 +1,39 @@
 {% extends "base.html" %}
 {% block image %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
 {% endblock image %}
 {% block image2 %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
 {% endblock image2 %}
 {% block flashes %}
-{% with messages = get_flashed_messages(with_categories=true) %} {% if
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
 messages %}
-<ul class="flashes flashes_question">
-    {% for category, message in messages %}
-    <li class="{{ category }}">{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %} {% endwith %}
+        <ul class="flashes flashes_question">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endwith %}
 {% endblock flashes %}
 {% block main %}
 
-<div id="course_container">
-    <div class="course_items">
-        {% for _course in courses %}
+    <div id="course_container">
+        <div class="course_items">
+            {% for _course in courses %}
 
-        <a class="course_item" href='{{ url_for("questions.question" ,
+                <a class="course_item" href='{{ url_for("questions.question" ,
             qtype="sub" ,
             course_id=_course.id) }}'>{{ _course.name }}</a>
-        <br>
+                <br>
 
-        {% endfor %}
+            {% endfor %}
+        </div>
+        <div style="margin-left : auto">
+            <a id="add_course" href="/course/new">
+                <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img" alt="add">Add Course
+                </div>
+            </a>
+        </div>
     </div>
-    <div style="margin-left : auto">
-        <a id="add_course" href="/course/new">
-            <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img" alt="add">Add Course
-            </div>
-        </a>
-    </div>
-</div>
 
 {% endblock main %}
