@@ -36,9 +36,13 @@ def about_us():
     Returns:
         HTML  -- It will redirect to about us page.
     """
-    return render_template("main/about.html",
-                           title="About Us",
-                           css_file="css/main/about.css")
+
+    return render_template(
+        "main/about.html",
+        title="About Us",
+        css_file="css/main/about.css",
+        loggedIn=current_user.is_authenticated,
+    )
 
 
 @main.route("/privacy-policy")
@@ -47,6 +51,7 @@ def policy_page():
         "main/privacy-policy.html",
         title="Privacy Policy",
         css_file="css/main/privacy_policy.css",
+        loggedIn=current_user.is_authenticated,
     )
 
 
@@ -56,6 +61,7 @@ def terms_of_service_page():
         "main/terms-of-service.html",
         title="Terms Of Service",
         css_file="css/main/terms_of_service.css",
+        loggedIn=current_user.is_authenticated,
     )
 
 
@@ -66,9 +72,13 @@ def help_page():
     Returns:
         HTML - It will redirect to help page.
     """
-    return render_template("main/help.html",
-                           title="Help",
-                           css_file="css/main/help.css")
+
+    return render_template(
+        "main/help.html",
+        title="Help",
+        css_file="css/main/help.css",
+        loggedIn=current_user.is_authenticated,
+    )
 
 
 @main.route("/contact-us")
@@ -99,4 +109,5 @@ def contact_us():
         form=form,
         css_file="css/contact_us/main.css",
         css_file2="css/contact_us/util.css",
+        loggedIn=current_user.is_authenticated,
     )

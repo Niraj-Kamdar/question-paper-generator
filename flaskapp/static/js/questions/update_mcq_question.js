@@ -70,7 +70,10 @@
     }
   }
 
-  if (activeBtn) pageNo = Number(activeBtn.innerText);
+  if (activeBtn) {
+    pageNo = Number(activeBtn.innerText);
+    activeBtn.addEventListener("click", (e) => e.preventDefault());
+  }
 
   for (let i = 0; i < qids.length; i++) {
     qids[i].innerText = (pageNo - 1) * qids.length + (i + 1);
