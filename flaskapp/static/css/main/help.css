@@ -61,3 +61,23 @@
     padding-top: 40px;
   }
 }
+
+@media (max-width: 768px) {
+  .about_logo {
+    width: 300px;
+  }
+  #page_title .col > h2,
+  #faq_title {
+    font-size: 24px;
+  }
+  #wrapper {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .about_logo {
+    width: 100%;
+  }
+}

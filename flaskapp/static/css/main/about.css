@@ -26,25 +26,30 @@
   padding-top: 70px;
 }
 
-#m_name {
+.m_name {
   border-radius: 10px 10px 0 0;
   margin: 0;
   background: #9000f0;
   color: #ffffff;
-  font-size: 1vw;
+  font-size: 16px;
 }
 
-#m_speciality {
+.m_speciality {
   margin: 0;
-  font-size: 0.9vw;
+  font-size: 14px;
 }
 
 #m_speciality > .col-1 {
   color: #9000f0;
+  margin-right: 5px;
 }
 
 #m_speciality > div {
   padding: 0;
+}
+
+#page_title {
+  margin-bottom: 0 !important;
 }
 
 #page_title .col > h2 {
@@ -60,23 +65,29 @@
 #team_title {
   border-bottom: 1px solid #b0b0b0;
   color: #b0b0b0;
-  font-size: 2vw;
+  font-size: 30px;
+  margin: 0 !important;
+  padding-top: 0 !important;
   text-align: center;
   width: 100%;
   font-weight: lighter;
 }
 
+#team {
+  justify-content: center;
+}
 #team > .row {
   width: 100%;
   position: relative;
   margin: 0;
 }
 
-#team_card {
+.team_card {
   padding: 0;
   background: #9000f026;
   border: 1px solid #9000f0;
   border-radius: 10px;
+  width: 300px;
 }
 
 #wrapper {
@@ -93,6 +104,27 @@
 
 @media (max-width: 960px) {
   #main_container > div {
-    padding-top: 40px;
+    padding-top: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .about_logo {
+    width: 300px;
+  }
+
+  #page_title .col > h2,
+  #team_title {
+    font-size: 24px;
+  }
+  #wrapper {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .about_logo {
+    width: 100%;
   }
 }
