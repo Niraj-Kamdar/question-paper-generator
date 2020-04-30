@@ -109,7 +109,7 @@ body {
   box-shadow: 0 0 10px 2px #ffffff;
   cursor: pointer;
   height: 80px;
-  width: 100%;
+  width: 80px;
 }
 
 .col4 img:hover {
@@ -223,6 +223,10 @@ header {
 
 #main_container {
   flex-grow: 1;
+}
+
+#logged_in {
+  display: none;
 }
 
 #logo_container {
@@ -353,6 +357,7 @@ header {
 
   .col4 img {
     height: 48px;
+    width: 48px;
   }
 
   #logo_container > .col1 {

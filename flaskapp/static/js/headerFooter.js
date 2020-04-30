@@ -57,6 +57,8 @@ const profilePage = document.getElementsByClassName("profile_page");
 const topNavigationItems = document.getElementsByClassName(
   "top_navigation_items"
 );
+const isLoggedIn =
+  document.getElementById("logged_in").innerText === "True" ? true : false;
 const logo = document.getElementsByClassName("logo");
 let startDropX = 0;
 let startDropY = 0;
@@ -119,7 +121,7 @@ for (let page of additionalPages) {
   }
 }
 
-if (isHomePage || areAdditionalPages || isLogin) {
+if (isHomePage || (areAdditionalPages && !isLoggedIn) || isLogin) {
   exploreContainer.style.display = "none";
   addContainer.style.display = "none";
   courseContainer.style.display = "none";
@@ -188,6 +190,8 @@ for (let i = 0; i < sideNavigationItems.length; i++) {
         e.target.href + "/" === window.location.href
       )
         e.preventDefault();
+      if (e.target.getAttribute("href") === "/logout")
+        window.history.pushState(null, null, "/");
     }
   });
 }
@@ -214,7 +218,7 @@ for (let i = 0; i < profilePage.length; i++) {
   });
 }
 
-if (isHomePage || areAdditionalPages) {
+if (isHomePage || (areAdditionalPages && !isLoggedIn)) {
   topNavigationItems[5].parentNode.parentNode.style.display = "none";
   topNavigationItems[1].style.display = topNavigationItems[9].style.display =
     "none";
@@ -234,6 +238,8 @@ for (let i = 0; i < topNavigationItems.length; i++) {
       e.target.parentNode.href + "/" === window.location.href
     )
       e.preventDefault();
+    if (e.target.parentNode.getAttribute("href") === "/logout")
+      window.history.pushState(null, null, "/");
   });
 }
 

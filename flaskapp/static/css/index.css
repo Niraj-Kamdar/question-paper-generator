@@ -147,6 +147,9 @@
   #content > div {
     margin-top: 40px;
   }
+  #get_start_container {
+    width: 100%;
+  }
 }
 
 @media (max-width: 896px) {
