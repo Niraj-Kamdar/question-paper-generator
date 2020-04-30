@@ -125,7 +125,6 @@
   for (let i = 1; i < children.length; i++) {
     rNavCourseName.push(children[i]);
   }
-  // console.log(courseName);
   assignDynamicLink(rNavCourseName, window.location.href, true);
 
   assignDynamicLink(navCourseName, window.location.href, false);
