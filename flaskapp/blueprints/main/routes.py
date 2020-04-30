@@ -1,5 +1,3 @@
-from time import sleep
-
 from flask import Blueprint
 from flask import flash
 from flask import redirect
@@ -7,7 +5,6 @@ from flask import render_template
 from flask import url_for
 from flask_login import current_user
 
-from flaskapp import cache
 from flaskapp.blueprints.main.forms import ContactUs
 from flaskapp.blueprints.main.utils import send_contact_us_email
 from flaskapp.blueprints.main.utils import send_contact_us_receipt_email
@@ -33,7 +30,6 @@ def index():
 
 
 @main.route("/about-us")
-@cache.cached(24*3600, key_prefix="about-us")
 def about_us():
     """Render about us page
 
@@ -46,7 +42,6 @@ def about_us():
 
 
 @main.route("/privacy-policy")
-@cache.cached(24*3600, key_prefix="about-us")
 def policy_page():
     return render_template(
         "main/privacy-policy.html",
@@ -56,7 +51,6 @@ def policy_page():
 
 
 @main.route("/terms-of-service")
-@cache.cached(24*3600, key_prefix="about-us")
 def terms_of_service_page():
     return render_template(
         "main/terms-of-service.html",
@@ -66,7 +60,6 @@ def terms_of_service_page():
 
 
 @main.route("/help")
-@cache.cached(24*3600, key_prefix="about-us")
 def help_page():
     """Render help page
 
