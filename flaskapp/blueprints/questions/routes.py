@@ -1,22 +1,10 @@
-from flask import (
-    render_template,
-    flash,
-    redirect,
-    url_for,
-    json,
-    Blueprint,
-    abort,
-    request,
-)
-from flask_login import login_required, current_user
-
+from flask import (Blueprint, abort, flash, json, redirect, render_template,
+                   request, url_for)
+from flask_login import current_user, login_required
 from flaskapp import db
-from flaskapp.blueprints.questions.forms import (
-    CourseForm,
-    MCQQuestionForm,
-    QuestionForm,
-)
-from flaskapp.models import MCQQuestion, Question, Course
+from flaskapp.blueprints.questions.forms import (CourseForm, MCQQuestionForm,
+                                                 QuestionForm)
+from flaskapp.models import Course, MCQQuestion, Question
 
 questions = Blueprint("questions", __name__)
 

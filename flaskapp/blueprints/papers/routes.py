@@ -1,5 +1,5 @@
-from flask import render_template, Blueprint, url_for
-from flask_login import login_required, current_user
+from flask import Blueprint, render_template, url_for
+from flask_login import current_user, login_required
 
 papers = Blueprint("papers", __name__)
 
