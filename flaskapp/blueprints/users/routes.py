@@ -90,7 +90,7 @@ def login():
 @users.route("/logout")
 @login_required
 def logout():
-    """For Logout 
+    """For Logout
 
     Returns:
         Page -- It will redirect to mail index page
@@ -137,7 +137,7 @@ def reset_request():
     """For reset password
 
     Returns:
-        Page -- If user want to reset password it will allow it by email verification.Mail will 
+        Page -- If user want to reset password it will allow it by email verification.Mail will
         sent to user's mail and page will render to home login page.
     """
     if current_user.is_authenticated:
