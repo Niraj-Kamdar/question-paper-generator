@@ -277,7 +277,8 @@ def update_question(course_id, unit_id, qtype, question_id):
         if form.validate_on_submit():
             _question.question = form.question.data
             _question.mark = form.mark.data
-            _question.difficulty = form.difficulty.data
+            _question.difficulty = DifficultyLevel(form.difficulty.data)
+            _question.cognitive_level = CognitiveLevel(form.cognitive_level.data)
             _question.imp = form.imp.data
             _question.option1 = form.option1.data
             _question.option2 = form.option2.data
@@ -317,7 +318,8 @@ def update_question(course_id, unit_id, qtype, question_id):
         if form.validate_on_submit():
             _question.question = form.question.data
             _question.mark = form.mark.data
-            _question.difficulty = form.difficulty.data
+            _question.difficulty = DifficultyLevel(form.difficulty.data)
+            _question.cognitive_level = CognitiveLevel(form.cognitive_level.data)
             _question.imp = form.imp.data
             db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")

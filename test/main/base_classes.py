@@ -99,7 +99,7 @@ class BaseSubQuestion(BaseUnit):
         new_question = dict(question="What is it?",
                             mark=2,
                             difficulty="medium",
-                            cognitive_level="Knowledge",
+                            cognitive_level="knowledge",
                             imp=None,
                             submit="submit")
         test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question,
@@ -117,7 +117,7 @@ class BaseSubQuestion(BaseUnit):
         new_question = dict(question="How are you?",
                             mark=2,
                             difficulty="easy",
-                            cognitive_level="Knowledge",
+                            cognitive_level="knowledge",
                             imp=True,
                             submit="submit")
         test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question,
@@ -132,7 +132,7 @@ class BaseMCQQuestion(BaseUnit):
                 question="Is it okay?",
                 mark=8,
                 difficulty="easy",
-                cognitive_level="Knowledge",
+                cognitive_level="knowledge",
                 imp=None,
                 submit="submit",
                 option1="A",
@@ -140,7 +140,7 @@ class BaseMCQQuestion(BaseUnit):
                 option3="C",
                 option4="D",
         )
-        test_post_request(self, "/course/1/question/mcq/new/", new_question,
+        test_post_request(self, "/course/1/unit/1/question/mcq/new/", new_question,
                           models.MCQQuestion, 1)
 
         new_question = dict(
@@ -155,7 +155,7 @@ class BaseMCQQuestion(BaseUnit):
                 option3="C",
                 option4="D",
         )
-        test_post_request(self, "/course/1/question/mcq/new/", new_question,
+        test_post_request(self, "/course/1/unit/1/question/mcq/new/", new_question,
                           models.MCQQuestion, 2)
 
         new_question = dict(
@@ -170,7 +170,7 @@ class BaseMCQQuestion(BaseUnit):
                 option3="C",
                 option4="D",
         )
-        test_post_request(self, "/course/1/question/mcq/new/", new_question,
+        test_post_request(self, "/course/1/unit/1/question/mcq/new/", new_question,
                           models.MCQQuestion, 3)
 
         new_question = dict(
@@ -185,7 +185,7 @@ class BaseMCQQuestion(BaseUnit):
                 option3="C",
                 option4="D",
         )
-        test_post_request(self, "/course/1/question/mcq/new/", new_question,
+        test_post_request(self, "/course/1/unit/1/question/mcq/new/", new_question,
                           models.MCQQuestion, 4)
 
         new_question = dict(
@@ -200,5 +200,5 @@ class BaseMCQQuestion(BaseUnit):
                 option3="C",
                 option4="D",
         )
-        test_post_request(self, "/course/1/question/mcq/new/", new_question,
+        test_post_request(self, "/course/1/unit/1/question/mcq/new/", new_question,
                           models.MCQQuestion, 5)
