@@ -1,5 +1,8 @@
-from flask import Blueprint, render_template, url_for
-from flask_login import current_user, login_required
+from flask import Blueprint
+from flask import render_template
+from flask import url_for
+from flask_login import current_user
+from flask_login import login_required
 
 papers = Blueprint("papers", __name__)
 
