@@ -146,8 +146,6 @@
     }
   });
 
-  /** for question update form */
-
   if (window.location.href.indexOf("new") === -1)
     resetBtn.style.display = "none";
 

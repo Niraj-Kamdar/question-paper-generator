@@ -1,21 +1,21 @@
 const sideNavigationContainer = document.getElementById(
   "side_navigation_container"
 );
-let sideTouchStartX = 0; // x coordinate of first touch of side nav
-let sideTouchStartY = 0; // y coordinate of first touch of side nav
-let preSidePageX = 0; // previous x coordinate for side nav
+let sideTouchStartX = 0;
+let sideTouchStartY = 0;
+let preSidePageX = 0;
 let sideI = 0;
 let sideFlag = false;
 let sNetDistance = 0;
-const mainContainer = document.getElementById("main_container"); // main page
+const mainContainer = document.getElementById("main_container");
 
 const initialLeft = parseInt(
   window.getComputedStyle(sideNavigationContainer).left
-); // initial left style of side nav
+);
 
-let mainTouchStartX = 0; // x coordinate of first touch of main page
-let mainTouchStartY = 0; // y coordinate of first touch of main page
-let preMainPageX = 0; // previous x coordinate for main page
+let mainTouchStartX = 0;
+let mainTouchStartY = 0;
+let preMainPageX = 0;
 let mainI = 0;
 let mainFlag = false;
 let mNetDistance = 0;
@@ -162,7 +162,6 @@ if (isHomePage || areAdditionalPages || isLogin) {
   }
 }
 
-// disable links if href and window location is same for side navigation links
 for (let i = 0; i < sideNavigationItems.length; i++) {
   sideNavigationItems[i].addEventListener("click", (e) => {
     let url2 = url;
@@ -186,7 +185,7 @@ for (let i = 0; i < sideNavigationItems.length; i++) {
       if (
         e.target.href === window.location.href ||
         e.target.href + "home" === window.location.href ||
-        e.target.href + "/" === window.location.href // for course/
+        e.target.href + "/" === window.location.href
       )
         e.preventDefault();
     }
@@ -227,13 +226,12 @@ if (isHomePage || areAdditionalPages) {
   topNavigationItems[2].style.display = topNavigationItems[3].style.display = topNavigationItems[8].style.display = topNavigationItems[4].style.display =
     "none";
 }
-// disable links if href and window location is same for top navigation links
 for (let i = 0; i < topNavigationItems.length; i++) {
   topNavigationItems[i].addEventListener("click", function (e) {
     if (
       e.target.parentNode.href === window.location.href ||
       e.target.parentNode.href + "home" === window.location.href ||
-      e.target.parentNode.href + "/" === window.location.href // for course/
+      e.target.parentNode.href + "/" === window.location.href
     )
       e.preventDefault();
   });
@@ -284,29 +282,26 @@ document
     document.body.style.overflowY = "hidden";
   });
 
-// hide side nav on resizing
 window.addEventListener("resize", function () {
   if (window.innerWidth > 960) sideNavigationContainer.style.left = "";
   document.body.style.overflowY = "";
 });
 
-// close side nav
 document.getElementById("close_link").addEventListener("click", function (e) {
-  e.preventDefault(); // prevent link from clicking
+  e.preventDefault();
   sideNavigationContainer.style.left = "";
   document.body.style.overflowY = "";
 });
 
 sideNavigationContainer.addEventListener("touchstart", function (e) {
   let touchObj = {};
-  touchObj = e.changedTouches[0]; // html element which has been touched
-  sideTouchStartX = preSidePageX = touchObj.pageX; // x coordinate of touch
+  touchObj = e.changedTouches[0];
+  sideTouchStartX = preSidePageX = touchObj.pageX;
   sideTouchStartY = touchObj.pageY;
-  // reset for every touch start event
+
   sideFlag = false;
   sideI = 0;
   sNetDistance = 0;
-  // }
 });
 
 sideNavigationContainer.addEventListener("touchmove", function (e) {
@@ -322,7 +317,7 @@ sideNavigationContainer.addEventListener("touchmove", function (e) {
     sideI++;
     yDiff = Math.abs(touchObj.pageY - sideTouchStartY);
     if (yDiff > Math.abs(distance)) {
-      sideFlag = true; // mark flag if user has done swipe with angle > 45
+      sideFlag = true;
       return;
     }
   }
@@ -332,8 +327,7 @@ sideNavigationContainer.addEventListener("touchmove", function (e) {
   if (left + distance <= 0) {
     sideNavigationContainer.style.left = `${left + distance}px`;
   } else sideNavigationContainer.style.left = "0px";
-  e.preventDefault(); // to avoid scroll
-  // }
+  e.preventDefault();
 });
 
 sideNavigationContainer.addEventListener("touchend", function (e) {
@@ -359,7 +353,7 @@ sideNavigationContainer.addEventListener("touchend", function (e) {
 
 mainContainer.addEventListener("touchstart", function (e) {
   let touchObj = {};
-  if (window.innerWidth > 960) return; // do not process if screen width is greater than 960
+  if (window.innerWidth > 960) return;
   touchObj = e.changedTouches[0];
   mainTouchStartX = touchObj.pageX;
   mainTouchStartY = touchObj.pageY;
@@ -383,14 +377,12 @@ mainContainer.addEventListener("touchmove", function (e) {
     mainI++;
     yDiff = Math.abs(touchObj.pageY - mainTouchStartY);
     if (yDiff > Math.abs(distance)) {
-      // mark flag if user has done swipe with angle > 45
       mainFlag = true;
       return;
     }
   }
-  if (mainTouchStartX > 100) return; // if user touched from screen at distance greater than 100px then
-  // do not process it
-  e.preventDefault(); // avoid scroll
+  if (mainTouchStartX > 100) return;
+  e.preventDefault();
   preMainPageX = touchObj.pageX;
   left = parseInt(sideNavigationContainer.style.left || initialLeft);
   if (left + distance <= 0)
@@ -403,16 +395,11 @@ mainContainer.addEventListener("touchend", function (e) {
   let distance = 0;
   if (
     mainTouchStartX > 100 ||
-    sideNavigationContainer.style.left >= "0px" || // if already side nav is present at correct position
+    sideNavigationContainer.style.left >= "0px" ||
     mainFlag ||
     window.innerWidth > 960
   )
     return;
-
-  // if (initialLeft > parseInt(sideNavigationContainer.style.left)) {
-  //   sideNavigationContainer.style.left = `${initialLeft}px`;
-  //   return;
-  // }
   try {
     touchObj = e.changedTouches[0];
 

@@ -1,89 +1,88 @@
 .courses_container,
 .explore_container,
 .add_container {
-    margin-bottom: 20px;
-    min-width: 150px;
+  margin-bottom: 20px;
+  min-width: 150px;
 }
 
 #explore_title,
 #add_title,
 #courses_title {
-    align-items: center;
-    background-color: rgba(144, 0, 240, 0.76);
-    color: white;
-    display: flex;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    padding: 10px;
+  align-items: center;
+  background-color: rgba(144, 0, 240, 0.76);
+  color: white;
+  display: flex;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  padding: 10px;
 }
 
 .explore_items_container,
 .add_items_container,
 .courses_items_container {
-    background-color: rgba(144, 0, 240, 0.15);
-    padding: 5px;
-    /* display: none; */
-    margin: 0;
-    /* margin-bottom: 20px; */
+  background-color: rgba(144, 0, 240, 0.15);
+  padding: 5px;
+
+  margin: 0;
 }
 
 .explore_items,
 .add_items,
 .courses_items {
-    background-color: white;
-    color: rgba(76, 76, 76, 1);
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 5px;
-    padding: 5px;
+  background-color: white;
+  color: rgba(76, 76, 76, 1);
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+  padding: 5px;
 }
 
 .explore_items:last-child,
 .add_items:last-child,
 .courses_items:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .explore_items img,
 .add_items img,
 .courses_items img {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .list_img,
 .add_img {
-    margin-right: 16px;
-    width: 30px;
+  margin-right: 16px;
+  width: 30px;
 }
 
 .nav_link,
 .course_link {
-    color: rgba(76, 76, 76, 1) !important;
-    cursor: pointer;
-    text-decoration: none !important;
+  color: rgba(76, 76, 76, 1) !important;
+  cursor: pointer;
+  text-decoration: none !important;
 }
 
 .active {
-    font-style: italic;
+  font-style: italic;
 }
 
 .course_id {
-    display: none;
+  display: none;
 }
 
 #sideNav {
-    margin-right: 10px;
-    min-width: 270px;
+  margin-right: 10px;
+  min-width: 270px;
 }
 
 @media (max-width: 960px) {
-    .explore_container,
-    .add_container,
-    .courses_container {
-        display: none;
-    }
+  .explore_container,
+  .add_container,
+  .courses_container {
+    display: none;
+  }
 
-    #page_container {
-        padding-top: 70px;
-    }
+  #page_container {
+    padding-top: 70px;
+  }
 }

@@ -1,85 +1,86 @@
 .about_logo {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
 }
 
 .card-header {
-    background: #9000f026;
+  background: #9000f026;
 }
 
 .card-header > h5 > button {
-    color: #5c0099;
+  color: #5c0099;
 }
 
 #faq_title {
-    border-bottom: 1px solid #b0b0b0;
-    color: #b0b0b0;
-    font-size: 30px;
-    width: 100%;
-    font-weight: lighter;
+  border-bottom: 1px solid #b0b0b0;
+  color: #b0b0b0;
+  font-size: 30px;
+  width: 100%;
+  font-weight: lighter;
 }
 
 #help_content {
-    text-indent: 5%;
-    text-align: justify;
+  text-indent: 5%;
+  text-align: justify;
 }
 
 #help_content > p {
-    width: 100%;
+  width: 100%;
 }
 
 #index_page_link {
-    color: #9000f026;
-    font-size: 4vh;
-    font-weight: bolder;
+  color: #9000f026;
+  font-size: 4vh;
+  font-weight: bolder;
 }
 
 #index_page_link:hover {
-    color: #9000f0;
+  color: #9000f0;
 }
 
 #main_container > div {
-    padding-top: 70px;
+  padding-top: 70px;
 }
 
 #page_title .col > h2 {
-    color: #b0b0b0;
-    font-size: 30px;
-    font-weight: bolder;
+  color: #b0b0b0;
+  font-size: 30px;
+  font-weight: bolder;
 }
 
 #wrapper {
-    max-width: 90%;
+  max-width: 90%;
 }
 
 #wrapper > .row {
-    margin: 0;
+  margin: 0;
+  justify-content: center;
 }
 
 @media (max-width: 960px) {
-    #main_container > div {
-        padding-top: 40px;
-    }
+  #main_container > div {
+    padding-top: 40px;
+  }
 }
 
 @media (max-width: 768px) {
-    .about_logo {
-        width: 300px;
-    }
+  .about_logo {
+    width: 300px;
+  }
 
-    #page_title .col > h2,
-    #faq_title {
-        font-size: 24px;
-    }
+  #page_title .col > h2,
+  #faq_title {
+    font-size: 24px;
+  }
 
-    #wrapper {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
+  #wrapper {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 
 @media (max-width: 400px) {
-    .about_logo {
-        width: 100%;
-    }
+  .about_logo {
+    width: 100%;
+  }
 }
