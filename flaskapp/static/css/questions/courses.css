@@ -68,20 +68,25 @@
     padding-right: 0 !important;
   }
 }
+
 @media (max-width: 595px) {
   #body_container {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+
   .course_items {
     justify-content: center;
   }
+
   .course_items + div {
     display: none;
   }
+
   .hide {
     display: block;
   }
+
   #page_display {
     padding-left: 0 !important;
     padding-right: 0 !important;

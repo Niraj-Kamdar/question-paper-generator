@@ -12,11 +12,11 @@ questions = Blueprint('questions', __name__)
 @login_required
 def question(course_id, qtype):
     """Rendering Question page
-    
+
     Arguments:
         course_id {Object} -- Id for course
         qtype {Subjective/mcq} -- Specification about question is subjective or MCQ type
-    
+
     Returns:
         HTML Function -- According to choosen type of question render page
     """
@@ -32,30 +32,30 @@ def question(course_id, qtype):
         return render_template("questions/mcq_questions.html",
                                questions=_mcq_questions,
                                courses=_courses,
+                               course_id=course_id,
+                               qtype=qtype,
                                css_file='css/base.css',
                                css_file2='css/questions/mcq_form.css',
                                css_file3='css/questions/sideNav.css',
                                js_file='js/questions/update_mcq_question.js',
                                js_file2='js/sideNav.js',
                                image_file=image_file,
-                               title='Objective Questions',
-                               course_id=course_id,
-                               qtype=qtype
+                               title='Objective Questions'
                                )
     elif qtype == "sub":
         _questions = Question.query.filter(Question.course_id == course_id).paginate(page=main_page, per_page=1)
         return render_template("questions/questions.html",
                                questions=_questions,
                                courses=_courses,
+                               course_id=course_id,
+                               qtype=qtype,
                                css_file='css/base.css',
                                css_file2='css/questions/question_form.css',
                                css_file3='css/questions/sideNav.css',
                                js_file='js/questions/update_question.js',
                                js_file2='js/sideNav.js',
                                image_file=image_file,
-                               title='Subjective Questions',
-                               course_id=course_id,
-                               qtype=qtype
+                               title='Subjective Questions'
                                )
     abort(404)
 
@@ -64,9 +64,9 @@ def question(course_id, qtype):
 @login_required
 def add_course():
     """Rendering to add course page
-    
+
     Returns:
-        HTML function -- For adding new course to user's account. After submitting new course redirect to courses page.Else show form which 
+        HTML function -- For adding new course to user's account. After submitting new course redirect to courses page.Else show form which
         shows add course feild.
     """
     form = CourseForm()
@@ -91,7 +91,7 @@ def add_course():
 @login_required
 def courses():
     """Show listed down course of user
-    
+
     Returns:
         HTML function -- Redirect to courses pages where listed down all courses.
     """
@@ -110,15 +110,15 @@ def courses():
 @login_required
 def add_question(course_id, qtype):
     """Adding question
-    
+
     Arguments:
         course_id {Object} -- Course ID which uniquley defined.
         qtype {Subjective/MCQ} -- What is the type of question ? subjective or MCQ
-    
+
     Returns:
-        HTML function -- If the course instructor is not user than it will throw error 403 then 
+        HTML function -- If the course instructor is not user than it will throw error 403 then
         according to type of question eg : if type is MCQ then difficulty, mark, options, IMP flag
-        and if type is subjective then difficulty,mark,IMP flag added with question to the database 
+        and if type is subjective then difficulty,mark,IMP flag added with question to the database
         and will add to UI and listdown on screen.
     """
     _course = Course.query.filter(Course.id == course_id).first()
@@ -183,7 +183,7 @@ def add_question(course_id, qtype):
 @login_required
 def update_question(course_id, qtype, question_id):
     """For updating question
-    
+
     Returns:
         Render template -- for updating questions if that question is exist then update it by id.And update marks , difficulty and IMP flag accorging to input.
        And do changes in database accordingly.
@@ -240,7 +240,7 @@ def update_question(course_id, qtype, question_id):
 @login_required
 def imp_question(course_id, qtype, impq):
     """Set an IMP flag to question
-    
+
     Returns:
         Same page with flag or without flag -- set an IMP flag to particular question.And do changes in database also.
     """
@@ -269,9 +269,9 @@ def imp_question(course_id, qtype, impq):
 @login_required
 def delete_question(course_id, qtype, deleteq):
     """Delete question
-    
+
     Returns:
-        page -- If current user is not an instructor of that subject then throw erroe else 
+        page -- If current user is not an instructor of that subject then throw erroe else
         delete question's data. and update UI.
     """
     _course = Course.query.filter(Course.id == course_id).first()

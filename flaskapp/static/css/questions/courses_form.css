@@ -60,25 +60,31 @@
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+
   #content {
     margin: 0 10px !important;
   }
+
   #form_question_paper {
     width: 550px;
   }
+
   #page_display {
     align-items: center;
   }
+
   #template_display {
     margin-right: 0 !important;
   }
 }
+
 @media (max-width: 568px) {
   #page_display {
     align-items: initial;
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+
   #course_form,
   #form_question_paper {
     width: 100%;

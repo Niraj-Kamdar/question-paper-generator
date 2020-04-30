@@ -82,15 +82,18 @@
     padding-top: 70px;
   }
 }
+
 @media (max-width: 700px) {
   #body_container {
     padding-left: 10px !important;
     padding-right: 10px !important;
   }
+
   #page_display {
     padding-left: 10px !important;
     padding-right: 10px !important;
   }
+
   #home_nav {
     display: none;
     margin-left: 0 !important;
