@@ -10,7 +10,7 @@ main = Blueprint('main', __name__)
 @main.route("/")
 def index():
     """Render Home page
-    
+
     Returns:
         HTML-- If the current user is authenticated then render to home page of site.
     """
@@ -22,7 +22,7 @@ def index():
 @main.route("/about-us")
 def about_us():
     """Render about us page
-    
+
     Returns:
         HTML  -- It will redirect to about us page.
     """
@@ -43,7 +43,7 @@ def terms_of_service_page():
 @main.route("/help")
 def help_page():
     """Render help page
-    
+
     Returns:
         HTML - It will redirect to help page.
     """
@@ -53,7 +53,7 @@ def help_page():
 @main.route("/contact-us")
 def contact_us():
     """Render Contact us page
-    
+
     Returns:
         HTML-- To collect Info from user for suggestion or bug or any comment about web-app.
     """
