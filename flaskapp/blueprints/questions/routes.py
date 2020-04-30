@@ -295,6 +295,9 @@ def update_question(course_id, unit_id, qtype, question_id):
         return render_template(
                 "questions/mcq_question_form.html",
                 form=form,
+                qtype=qtype,
+                course_id=course_id,
+                unit_id=unit_id,
                 css_file="css/questions/question_form.css",
                 js_file="js/questions/question_form.js",
         )
@@ -328,6 +331,9 @@ def update_question(course_id, unit_id, qtype, question_id):
         return render_template(
                 "questions/question_form.html",
                 form=form,
+                qtype=qtype,
+                course_id=course_id,
+                unit_id=unit_id,
                 css_file="css/questions/question_form.css",
                 js_file="js/questions/question_form.js",
         )
