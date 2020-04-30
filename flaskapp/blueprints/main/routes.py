@@ -46,6 +46,7 @@ def about_us():
 
 
 @main.route("/privacy-policy")
+@cache.cached(24*3600, key_prefix="about-us")
 def policy_page():
     return render_template(
         "main/privacy-policy.html",
@@ -55,6 +56,7 @@ def policy_page():
 
 
 @main.route("/terms-of-service")
+@cache.cached(24*3600, key_prefix="about-us")
 def terms_of_service_page():
     return render_template(
         "main/terms-of-service.html",
@@ -64,6 +66,7 @@ def terms_of_service_page():
 
 
 @main.route("/help")
+@cache.cached(24*3600, key_prefix="about-us")
 def help_page():
     """Render help page
 
