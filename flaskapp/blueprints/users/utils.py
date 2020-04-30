@@ -43,19 +43,20 @@ def send_reset_email(user):
     with open(mail_file, "r") as f:
         msg_text = f.read()
     msg_text = msg_text.format(
-            name=user.username,
-            action_url=url_for("users.reset_token", token=token, _external=True),
-            support_url=url_for("main.index"),
-            operating_system="linux",
-            browser_name="firefox",
+        name=user.username,
+        action_url=url_for("users.reset_token", token=token, _external=True),
+        support_url=url_for("main.index"),
+        operating_system="linux",
+        browser_name="firefox",
     )
     msg_html = render_template(
-            "users/password-reset/content.html",
-            name=user.username,
-            action_url=url_for("users.reset_token", token=token, _external=True),
-            support_url=url_for("main.index"),
-            operating_system="linux",
-            browser_name="firefox",
+        "users/password-reset/content.html",
+        name=user.username,
+        action_url=url_for("users.reset_token",
+                           token=token, _external=True),
+        support_url=url_for("main.index"),
+        operating_system="linux",
+        browser_name="firefox",
     )
     msg = Message("Password Reset Request",
                   sender="setnow@tuta.io",

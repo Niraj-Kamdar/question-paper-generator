@@ -24,7 +24,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(
-                form.password.data).decode("utf-8")
+            form.password.data).decode("utf-8")
         user = User(username=form.username.data,
                     email=form.email.data,
                     password=hashed_password)
@@ -34,12 +34,12 @@ def register():
               "success")
         return redirect(url_for("users.login"))
     return render_template(
-            "users/register.html",
-            title="Register",
-            form=form,
-            css_file="css/users/register.css",
-            js_file="js/users/register.js",
-            btn_name="Back",
+        "users/register.html",
+        title="Register",
+        form=form,
+        css_file="css/users/register.css",
+        js_file="js/users/register.js",
+        btn_name="Back",
     )
 
 
@@ -65,12 +65,12 @@ def login():
                     url_for("papers.home")))
         flash("Login Unsuccessful. Please check email and password", "danger")
     return render_template(
-            "users/login.html",
-            title="Login",
-            form=form,
-            css_file="css/users/login.css",
-            js_file="js/users/login.js",
-            btn_name="Back",
+        "users/login.html",
+        title="Login",
+        form=form,
+        css_file="css/users/login.css",
+        js_file="js/users/login.js",
+        btn_name="Back",
     )
 
 
@@ -110,13 +110,13 @@ def account():
     image_file = url_for("static",
                          filename="profile_pics/" + current_user.image_file)
     return render_template(
-            "users/account.html",
-            title="Account",
-            css_file="css/base.css",
-            css_file2="css/users/accounts.css",
-            image_file=image_file,
-            form=form,
-            js_file="js/users/account.js",
+        "users/account.html",
+        title="Account",
+        css_file="css/base.css",
+        css_file2="css/users/accounts.css",
+        image_file=image_file,
+        form=form,
+        js_file="js/users/account.js",
     )
 
 
@@ -135,14 +135,14 @@ def reset_request():
         user = User.query.filter_by(email=form.email.data).first()
         send_reset_email(user)
         flash(
-                "An email has been sent with instructions to reset your password.",
-                "info")
+            "An email has been sent with instructions to reset your password.",
+            "info")
         return redirect(url_for("users.login"))
     return render_template(
-            "users/reset_request.html",
-            title="Reset Password",
-            form=form,
-            js_file="js/users/reset_password.js",
+        "users/reset_request.html",
+        title="Reset Password",
+        form=form,
+        js_file="js/users/reset_password.js",
     )
 
 
@@ -167,15 +167,15 @@ def reset_token(token):
     form = ResetPasswordForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(
-                form.password.data).decode("utf-8")
+            form.password.data).decode("utf-8")
         user.password = hashed_password
         db.session.commit()
         flash("Your password has been updated! You are now able to log in",
               "success")
         return redirect(url_for("users.login"))
     return render_template(
-            "users/reset_token.html",
-            title="Reset Password",
-            form=form,
-            js_file="js/users/reset_password.js",
+        "users/reset_token.html",
+        title="Reset Password",
+        form=form,
+        js_file="js/users/reset_password.js",
     )

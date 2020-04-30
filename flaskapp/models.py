@@ -43,10 +43,10 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         return dict(
-                id=self.id,
-                username=self.username,
-                email=self.email,
-                image_file=self.image_file,
+            id=self.id,
+            username=self.username,
+            email=self.email,
+            image_file=self.image_file,
         )
 
 
@@ -79,11 +79,11 @@ class Question(db.Model):
 
     def to_dict(self):
         return dict(
-                id=self.id,
-                question=self.question,
-                mark=self.mark,
-                difficulty=self.difficulty,
-                imp=self.imp,
+            id=self.id,
+            question=self.question,
+            mark=self.mark,
+            difficulty=self.difficulty,
+            imp=self.imp,
         )
 
 
@@ -109,13 +109,13 @@ class MCQQuestion(db.Model):
 
     def to_dict(self):
         return dict(
-                id=self.id,
-                question=self.question,
-                mark=self.mark,
-                difficulty=self.difficulty,
-                imp=self.imp,
-                option1=self.option1,
-                option2=self.option2,
-                option3=self.option3,
-                option4=self.option4,
+            id=self.id,
+            question=self.question,
+            mark=self.mark,
+            difficulty=self.difficulty,
+            imp=self.imp,
+            option1=self.option1,
+            option2=self.option2,
+            option3=self.option3,
+            option4=self.option4,
         )

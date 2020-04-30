@@ -35,9 +35,9 @@ def send_contact_us_receipt_email(**data):
         msg_text = f.read()
     msg_html = render_template("main/contact-us-receipt/content.html")
     msg = Message(
-            f'[SetNow Support] Re: {data["subject"]}',
-            sender="setnow@tuta.io",
-            recipients=[data["email"]],
+        f'[SetNow Support] Re: {data["subject"]}',
+        sender="setnow@tuta.io",
+        recipients=[data["email"]],
     )
     msg.body = msg_text
     msg.html = msg_html
