@@ -1,6 +1,7 @@
 import os
 
-from flaskapp import models, APP_PATH
+from flaskapp import APP_PATH
+from flaskapp import models
 from test import TEST_PATH
 from test.main.base_classes import BaseUser
 from test.main.utils import test_post_request
@@ -22,5 +23,6 @@ class UserAccountTestCase(BaseUser):
         with self.client.get("/static/profile_pics/1.png") as response:
             self.assertGreater(len(response.data), 1)
 
-        remove_profile = os.path.join(APP_PATH, "static", "profile_pics", "1.png")
+        remove_profile = os.path.join(APP_PATH, "static", "profile_pics",
+                                      "1.png")
         os.remove(remove_profile)

@@ -1,6 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, IntegerField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, Length, NumberRange
+from wtforms import BooleanField
+from wtforms import IntegerField
+from wtforms import StringField
+from wtforms import SubmitField
+from wtforms import TextAreaField
+from wtforms.validators import DataRequired
+from wtforms.validators import Length
+from wtforms.validators import NumberRange
 
 
 class CourseForm(FlaskForm):
@@ -9,10 +15,15 @@ class CourseForm(FlaskForm):
 
 
 class QuestionForm(FlaskForm):
-    question = TextAreaField("Question", validators=[DataRequired(), Length(min=2)])
+    question = TextAreaField("Question",
+                             validators=[DataRequired(),
+                                         Length(min=2)])
     mark = IntegerField(
         "Mark",
-        validators=[DataRequired(), NumberRange(1, 101, "Not in a valid mark range")],
+        validators=[
+            DataRequired(),
+            NumberRange(1, 101, "Not in a valid mark range")
+        ],
     )
     difficulty = IntegerField(
         "Difficulty",

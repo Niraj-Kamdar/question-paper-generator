@@ -1,6 +1,7 @@
 from flaskapp import models
 from test.main.base_classes import BaseMCQQuestion
-from test.main.utils import test_post_request, test_get_request
+from test.main.utils import test_get_request
+from test.main.utils import test_post_request
 
 
 class MCQOperationTestCase(BaseMCQQuestion):
@@ -51,7 +52,7 @@ class MCQOperationTestCase(BaseMCQQuestion):
         )
 
         # test invalid data
-        response, _ = test_post_request(
-            self, "/course/1/question/mcq/update/8", update_question
-        )
+        response, _ = test_post_request(self,
+                                        "/course/1/question/mcq/update/8",
+                                        update_question)
         self.assertIn(b"Question:8 Does not exist", response.data)

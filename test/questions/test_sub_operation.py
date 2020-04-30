@@ -1,7 +1,7 @@
 from flaskapp import models
-
 from test.main.base_classes import BaseSubQuestion
-from test.main.utils import test_post_request, test_get_request
+from test.main.utils import test_get_request
+from test.main.utils import test_post_request
 
 
 class SubOperationTestCase(BaseSubQuestion):
@@ -14,14 +14,13 @@ class SubOperationTestCase(BaseSubQuestion):
             imp=True,
             submit="submit",
         )
-        test_post_request(
-            self, "/course/1/question/sub/update/2", update_question, models.Question, 2
-        )
+        test_post_request(self, "/course/1/question/sub/update/2",
+                          update_question, models.Question, 2)
 
         # test invalid data
-        response, _ = test_post_request(
-            self, "/course/1/question/sub/update/8", update_question
-        )
+        response, _ = test_post_request(self,
+                                        "/course/1/question/sub/update/8",
+                                        update_question)
         self.assertIn(b"Question:8 Does not exist", response.data)
 
     def test_delete_question(self):
