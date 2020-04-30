@@ -12,20 +12,13 @@
 
 #features {
   display: flex;
-  flex-direction: column;
-  align-content: center;
+  justify-content: center;
   flex-wrap: wrap;
   font-size: 20px;
 
   margin-top: 20px;
 }
 
-#get_start_container > h3 {
-  font-size: 32px;
-}
-#get_start_container > div {
-  text-align: center;
-}
 #glimpse_container i {
   font-size: 1.75rem;
 }
@@ -42,7 +35,7 @@
 #get_start_container {
   padding: 0 !important;
   text-align: left;
-  width: 100%;
+  width: 75%;
 }
 
 #get_start_link {
@@ -63,6 +56,13 @@
   color: white;
   margin-left: 16px;
   text-decoration: none;
+}
+#get_start_container > h3 {
+  font-size: 32px;
+  text-align: center;
+}
+#get_start_container > div {
+  text-align: center;
 }
 .img1 {
   position: fixed;
@@ -146,6 +146,10 @@
   }
 }
 @media (max-width: 896px) {
+  #features {
+    align-content: center;
+    flex-direction: column;
+  }
   #get_start_container h3 {
     font-size: 24px;
   }
