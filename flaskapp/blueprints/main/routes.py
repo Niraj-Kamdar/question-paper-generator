@@ -16,8 +16,7 @@ def index():
     """
     if current_user.is_authenticated:
         return redirect(url_for('papers.home'))
-    return render_template("main/index.html", title='Index', css_file='css/index.css', js_file='js/index.js',
-                           js_file2='js/users/login.js')
+    return render_template("main/index.html", title='Index', css_file='css/index.css', js_file='js/index.js')
 
 
 @main.route("/about-us")

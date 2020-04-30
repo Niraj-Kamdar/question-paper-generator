@@ -1,92 +1,92 @@
-#form_question_paper {
-    padding-left: 10px;
-}
-
 #course_form {
-    background-color: rgba(144, 0, 240, 0.15);
-    box-shadow: 4px 4px 2px 0;
-    /* margin: 10px; */
-    padding: 10px;
-    width: 550px;
-}
-
-#page_container {
-    padding-top: 100px;
+  background-color: rgba(144, 0, 240, 0.15);
+  box-shadow: 4px 4px 2px 0;
+  /* margin: 10px; */
+  padding: 10px;
+  width: 550px;
 }
 
 #form_content {
-    background-color: white;
-    padding: 10px;
+  background-color: white;
+  padding: 10px;
+}
+
+#form_question_paper {
+  padding-left: 10px;
 }
 
 .form__fields {
-    background-color: rgba(144, 0, 240, 0.15);
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
+  background-color: rgba(144, 0, 240, 0.15);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
 .form__fields label {
-    color: rgba(88, 88, 88, 1);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
+  color: rgba(88, 88, 88, 1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
 }
 
 .form__fields input {
-    padding: 10px;
+  padding: 10px;
 }
 
 .form__client_error {
-    color: red;
-    margin: 0;
+  color: red;
+  margin: 0;
+}
+
+#page_container {
+  padding-top: 100px;
 }
 
 #submit_btn {
-    text-align: right;
+  text-align: right;
 }
 
 #submit {
-    background-color: rgba(144, 0, 240, 0.15);
-    border: 0;
-    color: rgba(88, 88, 88, 1);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    margin: 10px 0;
-    padding: 10px;
+  background-color: rgba(144, 0, 240, 0.15);
+  border: 0;
+  color: rgba(88, 88, 88, 1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  margin: 10px 0;
+  padding: 10px;
 }
 
 @media (max-width: 786px) {
-    #body_container {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
+  #body_container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 
-    #content {
-        margin: 0 10px !important;
-    }
+  #content {
+    margin: 0 10px !important;
+  }
 
-    #form_question_paper {
-        width: 550px;
-    }
+  #form_question_paper {
+    width: 550px;
+  }
 
-    #page_display {
-        align-items: center;
-    }
+  #page_display {
+    align-items: center;
+  }
 
-    #template_display {
-        margin-right: 0 !important;
-    }
+  #template_display {
+    margin-right: 0 !important;
+  }
 }
 
 @media (max-width: 568px) {
-    #page_display {
-        align-items: initial;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
+  #page_display {
+    align-items: initial;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 
-    #course_form,
-    #form_question_paper {
-        width: 100%;
-    }
+  #course_form,
+  #form_question_paper {
+    width: 100%;
+  }
 }

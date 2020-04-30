@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <title>{% if title %} {{ title }} {% else %} Set Now : Home {% endif %}</title>
-    <meta charset="utf-8"/>
+    <title>{% if title %} {{title}} {%else %} Set Now : Home {% endif%}</title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1,
-      shrink-to-fit=no"/>
+      shrink-to-fit=no" />
     <script src="https://browser.sentry-cdn.com/5.15.4/bundle.min.js"
-            integrity="sha384-Nrg+xiw+qRl3grVrxJtWazjeZmUwoSt0FAVsbthlJ5OMpx0G08bqIq3b/v0hPjhB" crossorigin="anonymous">
+        integrity="sha384-Nrg+xiw+qRl3grVrxJtWazjeZmUwoSt0FAVsbthlJ5OMpx0G08bqIq3b/v0hPjhB" crossorigin="anonymous">
     </script>
     <script>
         Sentry.init({
@@ -15,250 +15,251 @@
         });
     </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
 
     <link rel=“stylesheet” href=“https://use.fontawesome.com/releases/v5.5.0/css/all.css”
-          integrity=“sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU” crossorigin=“anonymous”>
+        integrity=“sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU” crossorigin=“anonymous”>
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',
-      filename='css/headerFooter.css') }}"/>
+      filename='css/headerFooter.css') }}" />
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',
-      filename=css_file) }}"/>
+      filename=css_file) }}" />
     {% if css_file2 %}
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static',
-      filename=css_file2) }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename=css_file2) }}" />
     {% endif %} {% if css_file3 %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',
-      filename=css_file3) }}"/>
-{% endif %} {% block links %} {% endblock links %}
+      filename=css_file3) }}" />
+    {% endif%} {% block links %} {% endblock links %}
 </head>
 
 <body>
 
-{% block loader %} {% endblock loader %}
-{% block backgroundImage %} {% endblock backgroundImage %}
-<div id="opacity_container">
-    {% block flashes %} {% endblock flashes %}
-</div>
-<div style="position: absolute; height: 100%; width: 100%;">
-    <header>
-        <div class="row px-4 py-2 text-white sticky-top" id="header">
-            <div id="bars_container"><i class="fa fa-bars"></i></div>
-            <div class="col1">
-                <a href="/"><img src="{{ url_for('static',
-                filename='images/logo.svg') }}" class="logo" alt="logo" id="logo"/>
-                </a>
-            </div>
-            <div class="col2">
-                <h2>SetNow</h2>
-                <h4>Question Paper Generator</h4>
-            </div>
-            <div class="col3">
-                <div class="row" style="margin: 0; padding: 0;">
-                    <a href="/" class="top_navigation_items">
-                        <h4 class="py-2 mx-3">Home</h4>
+    {%block loader %} {%endblock loader %}
+    {%block backgroundImage %} {%endblock backgroundImage %}
+    <div id="opacity_container">
+        {% block flashes %} {% endblock flashes %}
+    </div>
+    <div style="position: absolute; height: 100%; width: 100%;">
+        <header>
+            <div class="row px-4 py-2 text-white sticky-top" id="header">
+                <div id="bars_container"><i class="fa fa-bars"></i></div>
+                <div class="col1">
+                    <a href="/"><img src="{{ url_for('static',
+                filename='images/logo.svg') }}" class="logo" alt="logo" id="logo" />
                     </a>
+                </div>
+                <div class="col2">
+                    <h2>SetNow</h2>
+                    <h4>Question Paper Generator</h4>
+                </div>
+                <div class="col3">
+                    <div class="row" style="margin: 0; padding: 0;">
+                        <a href="/" class="top_navigation_items">
+                            <h4 class="py-2 mx-3">Home</h4>
+                        </a>
 
-                    <a href="/course" class="top_navigation_items">
-                        <h4 class="py-2 mx-3">Courses</h4>
-                    </a>
-                    <a href="/about-us" class="top_navigation_items">
-                        <h4 class="py-2 mx-3">About Us</h4>
-                    </a>
-                    <a href="/help" class="top_navigation_items">
-                        <h4 class="py-2 mx-3">Help</h4>
-                    </a>
-                    <a href="/contact-us" class="top_navigation_items">
-                        <h4 class="py-2 mx-3">Contact Us</h4>
-                    </a>
-                    <div class="dropdown_container">
-                        <h4 class="py-2 mx-3">More <i class="fa fa-caret-down"></i></h4>
-                        <div class="dropdown_items_container" style="margin: 0; padding:
+                        <a href="/course" class="top_navigation_items">
+                            <h4 class="py-2 mx-3">Courses</h4>
+                        </a>
+                        <a href="/about-us" class="top_navigation_items">
+                            <h4 class="py-2 mx-3">About Us</h4>
+                        </a>
+                        <a href="/help" class="top_navigation_items">
+                            <h4 class="py-2 mx-3">Help</h4>
+                        </a>
+                        <a href="/contact-us" class="top_navigation_items">
+                            <h4 class="py-2 mx-3">Contact Us</h4>
+                        </a>
+                        <div class="dropdown_container">
+                            <h4 class="py-2 mx-3">More <i class="fa fa-caret-down"></i></h4>
+                            <div class="dropdown_items_container" style="margin: 0; padding:
                   0;">
-                            <a href="/about-us" class="top_navigation_items">
-                                <h4 class="py-2 mx-3">About Us</h4>
-                            </a>
-                            <a href="/help" class="top_navigation_items">
-                                <h4 class="py-2 mx-3">Help</h4>
-                            </a>
-                            <a href="/contact-us" class="top_navigation_items">
-                                <h4 class="py-2 mx-3">Contact Us</h4>
-                            </a>
+                                <a href="/about-us" class="top_navigation_items">
+                                    <h4 class="py-2 mx-3">About Us</h4>
+                                </a>
+                                <a href="/help" class="top_navigation_items">
+                                    <h4 class="py-2 mx-3">Help</h4>
+                                </a>
+                                <a href="/contact-us" class="top_navigation_items">
+                                    <h4 class="py-2 mx-3">Contact Us</h4>
+                                </a>
 
+                            </div>
+                        </div>
+                        <a href="/login" class="top_navigation_items">
+                            <h4 class="py-2 mx-3">Log In</h4>
+                        </a>
+                        <a href="/logout" class="top_navigation_items">
+                            <h4 class="py-2 mx-3">Log Out</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="col4">
+                    <a href="/account" class="profile_page">
+                        {% block image %} {% endblock image %}
+                    </a>
+                </div>
+                <div id="side_navigation_container">
+                    <div id="logo_container">
+                        <div class="col1">
+                            <a href="/">
+                                <img src="{{ url_for('static',
+                    filename='images/logo.svg') }}" class="logo" alt="logo" />
+                            </a>
+                        </div>
+
+                        <div class="col2">
+                            <h2>SetNow</h2>
+                            <h4>Question Paper Generator</h4>
+                        </div>
+                        <div class="col4">
+                            <a href="/account" class="profile_page">
+                                {% block image2 %} {% endblock image2 %}
+                            </a>
                         </div>
                     </div>
-                    <a href="/login" class="top_navigation_items">
-                        <h4 class="py-2 mx-3">Log In</h4>
-                    </a>
-                    <a href="/logout" class="top_navigation_items">
-                        <h4 class="py-2 mx-3">Log Out</h4>
-                    </a>
-                </div>
-            </div>
-            <div class="col4">
-                <a href="/account" class="profile_page">
-                    {% block image %} {% endblock image %}
-                </a>
-            </div>
-            <div id="side_navigation_container">
-                <div id="logo_container">
-                    <div class="col1">
-                        <a href="/">
-                            <img src="{{ url_for('static',
-                    filename='images/logo.svg') }}" class="logo" alt="logo"/>
-                        </a>
-                    </div>
+                    <div id="side_navigation_items_container">
 
-                    <div class="col2">
-                        <h2>SetNow</h2>
-                        <h4>Question Paper Generator</h4>
-                    </div>
-                    <div class="col4">
-                        <a href="/account" class="profile_page">
-                            {% block image2 %} {% endblock image2 %}
-                        </a>
-                    </div>
-                </div>
-                <div id="side_navigation_items_container">
-
-                    <div id="course_container" class="bb">
-                        <div class="side_navigation_items">Current Courses <i class="fa
+                        <div id="course_container" class="bb">
+                            <div class="side_navigation_items">Current Courses <i class="fa
                     fa-caret-down"></i></div>
-                        {% for course in courses %}
-                            <a href="#" class="side_navigation_items" data-id="{{ course.id }}">{{ course.name }}</a>
-                        {% endfor %}
-                        <a href="/course" class="side_navigation_items">More...</a>
-                    </div>
+                            {%for course in courses %}
+                            <a href="#" class="side_navigation_items" data-id="{{course.id}}">{{course.name}}</a>
+                            {%endfor %}
+                            <a href="/course" class="side_navigation_items">More...</a>
+                        </div>
 
-                    <div id="explore_container" class="bb">
-                        <div class="side_navigation_items">Explore <i class="fa
+                        <div id="explore_container" class="bb">
+                            <div class="side_navigation_items">Explore <i class="fa
                     fa-caret-down"></i></div>
-                        <a href="#" class="side_navigation_items">Multiple Choice
-                            Question</a>
-                        <a href="#" class="side_navigation_items">Subjective Question</a>
-                    </div>
+                            <a href="#" class="side_navigation_items">Multiple Choice
+                                Question</a>
+                            <a href="#" class="side_navigation_items">Subjective Question</a>
+                        </div>
 
-                    <div id="add_container" class="bb">
-                        <div class="side_navigation_items">Add <i class="fa
+                        <div id="add_container" class="bb">
+                            <div class="side_navigation_items">Add <i class="fa
                     fa-caret-down"></i></div>
-                        <a href="#" class="side_navigation_items">Multiple Choice
-                            Question</a>
-                        <a href="#" class="side_navigation_items">Subjective Question</a>
-                    </div>
+                            <a href="#" class="side_navigation_items">Multiple Choice
+                                Question</a>
+                            <a href="#" class="side_navigation_items">Subjective Question</a>
+                        </div>
 
-                    <a href="/course/new" class="side_navigation_items hide">Add
-                        Course</a>
-                    <a href="#" class="side_navigation_items hide bb">Remove Course</a>
-                    <a href="/" class="side_navigation_items">Home</a>
+                        <a href="/course/new" class="side_navigation_items hide">Add
+                            Course</a>
+                        <a href="#" class="side_navigation_items hide bb">Remove Course</a>
+                        <a href="/" class="side_navigation_items">Home</a>
 
-                    <a href="/course" class="side_navigation_items">Courses</a>
+                        <a href="/course" class="side_navigation_items">Courses</a>
 
-                    <a href="/about-us" class="side_navigation_items bt">
-                        About Us
-                    </a>
-
-                    <a href="/help" class="side_navigation_items">
-                        Help
-                    </a>
-
-                    <a href="/contact-us" class="side_navigation_items bb">
-                        Contact Us
-                    </a>
-
-                    <div class="dropdown_container_2 bb bt">
-              <span class="side_navigation_items" style="cursor: pointer;">More
-                <i class="fa fa-caret-down"></i></span>
-
-                        <a href="/about-us" class="side_navigation_items">
+                        <a href="/about-us" class="side_navigation_items bt">
                             About Us
                         </a>
+
                         <a href="/help" class="side_navigation_items">
                             Help
                         </a>
-                        <a href="/contact-us" class="side_navigation_items">
+
+                        <a href="/contact-us" class="side_navigation_items bb">
                             Contact Us
                         </a>
 
-                    </div>
-                    <a href="/login" class="side_navigation_items">
-                        Log In
-                    </a>
-                    <a href="/logout" class="side_navigation_items">Log Out</a>
+                        <div class="dropdown_container_2 bb bt">
+                            <span class="side_navigation_items" style="cursor: pointer;">More
+                                <i class="fa fa-caret-down"></i></span>
 
-                    <a href="#" class="side_navigation_items bb" id="close_link">Close</a>
+                            <a href="/about-us" class="side_navigation_items">
+                                About Us
+                            </a>
+                            <a href="/help" class="side_navigation_items">
+                                Help
+                            </a>
+                            <a href="/contact-us" class="side_navigation_items">
+                                Contact Us
+                            </a>
+
+                        </div>
+                        <a href="/login" class="side_navigation_items">
+                            Log In
+                        </a>
+                        <a href="/logout" class="side_navigation_items">Log Out</a>
+
+                        <a href="#" class="side_navigation_items bb" id="close_link">Close</a>
+                    </div>
                 </div>
-            </div>
-            <!-- <div>
+                <!-- <div>
                     {% block page %} {% endblock page %}
                 </div> -->
-        </div>
-    </header>
-    <div id="page_container">
-        <div id="main_container">
-            {% block body %} {% endblock body %}
-        </div>
-        <footer>
-            <div class="row" id="footer">
-                <div class="row" id="social_links">
-                    <div class="col py-3 text-center" id="footercontent">
-                        <div class="footer_items">
-                <span class="mr-3 span_color" style="color: white;">© 2020
-                  Copyright :
-                  <a href="/" class="fl">setnow.herokuapp.com</a>
-                </span>
-                        </div>
+            </div>
+        </header>
+        <div id="page_container">
+            <div id="main_container">
+                {%block body %} {%endblock body%}
+            </div>
+            <footer>
+                <div class="row" id="footer">
+                    <div class="row" id="social_links">
+                        <div class="col py-3 text-center" id="footercontent">
+                            <div class="footer_items">
+                                <span class="mr-3 span_color" style="color: white;">© 2020
+                                    Copyright :
+                                    <a href="/" class="fl">setnow.herokuapp.com</a>
+                                </span>
+                            </div>
 
-                        <div class="footer_items">
-                            <a href="#" class="fl"><i class="fab fa-facebook-f"> </i></a>
-                            <a href="#" class="fl"><i class="fab fa-twitter"> </i></a>
+                            <div class="footer_items">
+                                <a href="#" class="fl"><i class="fab fa-facebook-f"> </i></a>
+                                <a href="#" class="fl"><i class="fab fa-twitter"> </i></a>
 
-                            <a href="#" class="fl"><i class="fab fa-google-plus-g"> </i></a>
-                            <a href="#" class="fl"><i class="fab fa-linkedin-in"> </i></a>
-                            <a href="#" class="fl"><i class="fab fa-instagram"> </i></a>
-                        </div>
+                                <a href="#" class="fl"><i class="fab fa-google-plus-g"> </i></a>
+                                <a href="#" class="fl"><i class="fab fa-linkedin-in"> </i></a>
+                                <a href="#" class="fl"><i class="fab fa-instagram"> </i></a>
+                            </div>
 
-                        <div class="footer_items">
-                <span class="span_color">
-                  <a href="/privacy-policy" class="fl" id="policy_page_link">Privacy
-                    Policy</a>
-                </span>
+                            <div class="footer_items">
+                                <span class="span_color">
+                                    <a href="/privacy-policy" class="fl" id="policy_page_link">Privacy
+                                        Policy</a>
+                                </span>
 
-                            <span class="span_color">
-                  <a href="/terms-of-service" class="fl" id="services_page_link">Terms Of Services</a>
-                </span>
+                                <span class="span_color">
+                                    <a href="/terms-of-service" class="fl" id="services_page_link">Terms Of Services</a>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </div>
-</div>
-<script src="https://kit.fontawesome.com/84a8728d56.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    <script src="https://kit.fontawesome.com/84a8728d56.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-</script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-</script>
+    </script>
 
-<script type="text/javascript" src="{{ url_for('static',
+    <script type="text/javascript" src="{{ url_for('static',
       filename='js/headerFooter.js') }}" defer="defer"></script>
-{% if js_file %}
+    {% if js_file%}
     <script type="text/javascript" src="{{ url_for('static',
       filename=js_file) }}" defer="defer"></script>
-{% endif %} {% if js_file2 %}
-    <script type="text/javascript" src="{{ url_for('static',filename=js_file2) }}" defer="defer"></script>
-{% endif %} {% block script %} {% endblock script %}
+    {% endif %} {% if js_file2 %}
+    <script type="text/javascript" src="{{
+      url_for('static',filename=js_file2) }}" defer="defer"></script>
+    {% endif %} {%block script%} {%endblock script %}
 </body>
 
 </html>
