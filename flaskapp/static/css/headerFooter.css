@@ -321,39 +321,50 @@ header {
   #bars_container {
     display: block;
   }
+
   #close_link {
     display: block;
   }
+
   .col3 {
     display: none;
   }
+
   .col1 {
     display: none;
   }
+
   .col2 {
     display: none;
   }
+
   .col2 > h2 {
     font-size: 24px;
   }
+
   .col2 > h4 {
     font-size: 12px;
   }
+
   .col4 {
     margin-left: auto;
     width: 48px;
   }
+
   .col4 img {
     height: 48px;
   }
+
   #logo_container > .col1 {
     margin-right: 10px;
     width: 48px;
   }
+
   #logo_container > .col1,
   #logo_container > .col2 {
     display: block;
   }
+
   .logo {
     height: 48px;
     width: 48px;

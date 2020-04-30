@@ -76,6 +76,7 @@ const rdropdownMoreTitle = document.getElementsByClassName(
 const rDropdownCourseTitle = document.getElementById("course_container")
   .firstElementChild;
 const flash = document.getElementsByClassName("flashes_question")[0];
+
 function handleQuestionNav(e) {
   let target = {};
   let classList = {};
@@ -184,7 +185,7 @@ for (let i = 0; i < sideNavigationItems.length; i++) {
       if (
         e.target.href === window.location.href ||
         e.target.href + "home" === window.location.href ||
-        e.target.href + "/" === window.location.href //for course/
+        e.target.href + "/" === window.location.href
       )
         e.preventDefault();
     }
@@ -225,13 +226,12 @@ if (isHomePage || areAdditionalPages) {
   topNavigationItems[2].style.display = topNavigationItems[3].style.display = topNavigationItems[8].style.display = topNavigationItems[4].style.display =
     "none";
 }
-
 for (let i = 0; i < topNavigationItems.length; i++) {
   topNavigationItems[i].addEventListener("click", function (e) {
     if (
       e.target.parentNode.href === window.location.href ||
       e.target.parentNode.href + "home" === window.location.href ||
-      e.target.parentNode.href + "/" === window.location.href //for course/
+      e.target.parentNode.href + "/" === window.location.href
     )
       e.preventDefault();
   });
@@ -302,7 +302,6 @@ sideNavigationContainer.addEventListener("touchstart", function (e) {
   sideFlag = false;
   sideI = 0;
   sNetDistance = 0;
-  // }
 });
 
 sideNavigationContainer.addEventListener("touchmove", function (e) {
@@ -382,8 +381,8 @@ mainContainer.addEventListener("touchmove", function (e) {
       return;
     }
   }
-  if (mainTouchStartX > 100) return; // if user touched from screen at distance greater than 100px then do not process it
-  e.preventDefault(); //avoid scroll
+  if (mainTouchStartX > 100) return;
+  e.preventDefault();
   preMainPageX = touchObj.pageX;
   left = parseInt(sideNavigationContainer.style.left || initialLeft);
   if (left + distance <= 0)
@@ -396,7 +395,7 @@ mainContainer.addEventListener("touchend", function (e) {
   let distance = 0;
   if (
     mainTouchStartX > 100 ||
-    sideNavigationContainer.style.left >= "0px" || //if already side nav is present at correct position
+    sideNavigationContainer.style.left >= "0px" ||
     mainFlag ||
     window.innerWidth > 960
   )

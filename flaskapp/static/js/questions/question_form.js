@@ -11,6 +11,7 @@
   const form = document.getElementsByTagName("form")[0];
 
   let tabindex = 1;
+
   function isValid(question, mark, difficulty) {
     let validation = {
       isValid: true,

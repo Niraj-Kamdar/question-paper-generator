@@ -288,79 +288,98 @@ label {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+
   #new_question {
     margin: 0;
   }
+
   #page_display {
     padding: 0 20px !important;
   }
+
   #template_display {
     margin-right: 16px !important;
   }
 }
+
 @media (max-width: 960px) {
   #sideNav {
     display: none;
   }
+
   #template_display,
   #questions {
     margin-right: 0 !important;
   }
 }
+
 @media (max-width: 700px) {
   .first_row_column_1,
   .second_row_column_1 {
     width: 140px;
   }
+
   .header {
     font-size: 30px;
   }
+
   .question_container {
     font-size: 20px;
   }
 }
+
 @media (max-width: 575px) {
   .form_field_question_label,
   #marks_label,
   #difficulty_label {
     font-size: 20px;
   }
+
   #form_field_question_value,
   #marks_value,
   #difficulty_value,
   .form__client_error {
     font-size: 16px;
   }
+
   #submit_btn,
   #reset_btn {
     font-size: 16px;
     padding: 8px 16px;
   }
+
   .first_row {
     border-bottom: 0;
   }
+
   .first_row_column_1 {
     border-right: 0;
     padding-left: 10px;
     width: auto;
   }
+
   .header {
     font-size: 24px;
     margin: 0;
   }
+
   input[type="checkbox"] {
     height: 16px;
     width: 16px;
   }
+
   #page_display {
     padding: 0 10px !important;
   }
+
   .question_container {
     font-size: 16px;
   }
+
   .second_row {
     flex-direction: column;
   }
+
   .second_row_column_1 {
     border-right: 0;
     border-top: 1px solid black;
@@ -369,16 +388,19 @@ label {
     padding: 0 10px;
     width: 100%;
   }
+
   .second_row_column_2 {
     border-top: 1px solid black;
     padding-right: 10px;
   }
 }
+
 @media (max-width: 445px) {
   #marks_label,
   #difficulty_label {
     width: 100%;
   }
+
   #form_attributes {
     flex-direction: column;
   }
@@ -389,24 +411,30 @@ label {
   .difficulty {
     padding-bottom: 5px;
   }
+
   #submit_btn,
   #reset_btn {
     padding: 5px 10px;
   }
+
   .header {
     font-size: 20px;
   }
+
   .second_row_column_1 {
     flex-direction: column;
   }
+
   .second_row_column_2 {
     padding-top: 0;
   }
 }
+
 @media (max-width: 337px) {
   .header {
     font-size: 18px;
   }
+
   .question_container {
     font-size: 18px;
   }
