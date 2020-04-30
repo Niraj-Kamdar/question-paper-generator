@@ -1,6 +1,6 @@
-from bs4 import BeautifulSoup
-
 from test.main.base_classes import BaseUser
+
+from bs4 import BeautifulSoup
 
 
 class LoginUserTestCase(BaseUser):

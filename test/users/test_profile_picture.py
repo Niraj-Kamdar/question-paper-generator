@@ -1,9 +1,9 @@
 import os
-
-from flaskapp import APP_PATH, models
 from test import TEST_PATH
 from test.main.base_classes import BaseUser
 from test.main.utils import test_post_request
+
+from flaskapp import APP_PATH, models
 
 
 class UserAccountTestCase(BaseUser):

@@ -1,10 +1,11 @@
 from flask_login import current_user
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
-from wtforms import BooleanField, FileField, PasswordField, StringField, SubmitField
-from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
-
 from flaskapp.models import User
+from wtforms import (BooleanField, FileField, PasswordField, StringField,
+                     SubmitField)
+from wtforms.validators import (DataRequired, Email, EqualTo, Length,
+                                ValidationError)
 
 
 def validate_email_exists(form, email):
