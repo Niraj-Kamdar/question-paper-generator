@@ -1,8 +1,10 @@
 import os
 import unittest
-from test.main.base_classes import BaseDatabase
 
-from flaskapp import APP_PATH, TEST_DB, create_app
+from flaskapp import APP_PATH
+from flaskapp import create_app
+from flaskapp import TEST_DB
+from test.main.base_classes import BaseDatabase
 
 
 class BasicTestCase(unittest.TestCase):
