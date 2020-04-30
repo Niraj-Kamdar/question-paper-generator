@@ -6,79 +6,6 @@
   color: red;
   margin-bottom: 16px;
 }
-.container {
-  background-color: rgba(144, 0, 240, 0.15);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-  max-width: 540px;
-}
-
-.login_page {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  right: 0;
-  width: 30%;
-  height: 100%;
-  position: fixed;
-}
-
-label {
-  margin-bottom: 8px;
-}
-
-/************************************************************************/
-
-/************************************************************************/
-
-/************************************************************************/
-
-.login_btn {
-  padding-top: 5%;
-  padding-bottom: 5%;
-  font-weight: bolder;
-  font-size: 1.5vw;
-  width: 100%;
-  position: relative;
-  background-color: #ffffff;
-  color: #9000f0;
-  border-top-left-radius: 20% 50%;
-  border-bottom-left-radius: 20% 50%;
-  border: none;
-  outline: none !important;
-}
-
-.register_page {
-  margin: 0 10px;
-  padding-top: 150px;
-  padding-bottom: 50px;
-}
-
-/**********************************************************************/
-
-@media (max-width: 920px) {
-  .register_page {
-    padding-top: 100px;
-  }
-}
-
-/*// Extra small devices (portrait phones, less than 576px)*/
-@media (max-width: 575.98px) {
-  .login_btn {
-    padding-top: 5%;
-    padding-bottom: 5%;
-    font-size: 3vw;
-  }
-}
-
-/*// Small devices (landscape phones, tablates, 576px and up)*/
-@media (min-width: 576px) and (max-width: 991.98px) {
-  .login_btn {
-    padding-top: 6%;
-    padding-bottom: 6%;
-    font-size: 2vw;
-  }
-}
 
 .avtar {
   margin: 0;
@@ -148,7 +75,7 @@ label {
 
 /**********************************************************************/
 
-@media (max-width: 920px) {
+@media (max-width: 960px) {
   .register_page {
     padding-top: 100px;
   }
