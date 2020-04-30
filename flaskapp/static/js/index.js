@@ -43,9 +43,9 @@
     //     const index2 = window.location.href.indexOf("/register");
     //     if (index1 !== -1 || index2 !== -1) {
     //       x.style.visibility = "visible";
-    //       document.getElementsByClassName("overlape")[0].style.marginLeft = "0%";
-    //       document.getElementsByClassName("img1")[0].style.marginLeft = "0%";
-    //       document.getElementsByClassName("col2")[0].style.width = "85%";
+    //       document.getElementsByClassName("overlape")[0].style.marginLeft =
+    //       "0%"; document.getElementsByClassName("img1")[0].style.marginLeft =
+    //       "0%"; document.getElementsByClassName("col2")[0].style.width = "85%";
     //       document.getElementById("footer").style.display = "block";
     //       document.getElementById("footercontent").style.marginLeft = "0%";
     //       x.style.height = "auto";
@@ -61,24 +61,27 @@
     //         } else if (index3 === -1 && (index1 !== -1 || index2 !== -1)) {
     //           if (index1 !== -1)
     //             window.location.href = window.location.href.substr(0, index1);
-    //           else window.location.href = window.location.href.substr(0, index2);
+    //           else window.location.href = window.location.href.substr(0,
+    //           index2);
     //         }
     //       }, 1000);
-    //     } else if (window.location.href.match(new RegExp("/", "g")).length === 3) {
+    //     } else if (window.location.href.match(new RegExp("/", "g")).length ===
+    //     3) {
     //       x.classList.add("hidden");
     //       setTimeout(() => {
     //         document.getElementsByClassName("overlape")[0].style.marginLeft =
     //           "-30%";
-    //         document.getElementsByClassName("img1")[0].style.marginLeft = "-30%";
-    //         document.getElementsByClassName("col2")[0].style.width = "55%";
-    //         document.getElementById("footer").style.display = "none";
+    //         document.getElementsByClassName("img1")[0].style.marginLeft =
+    //         "-30%"; document.getElementsByClassName("col2")[0].style.width =
+    //         "55%"; document.getElementById("footer").style.display = "none";
     //         document.getElementById("footercontent").style.marginLeft = "30%";
     //       }, 500);
     //       setTimeout(() => {
     //         x.style.height = "0px";
     //       }, 1000);
     //       setTimeout(() => {
-    //         if (window.location.href.match(new RegExp("/", "g")).length === 3) {
+    //         if (window.location.href.match(new RegExp("/", "g")).length ===
+    //         3) {
     //           window.location.href += "login";
     //         }
     //       }, 1500);

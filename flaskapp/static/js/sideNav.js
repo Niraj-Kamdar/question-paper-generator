@@ -14,9 +14,9 @@
   const viewSubjectiveQuestion = viewMCQ.nextElementSibling;
   const nav_links = document.getElementsByClassName("nav_link");
   const courseContainer = document.getElementById("course_container");
-  const rNavCourseName = []; //left side nav
+  const rNavCourseName = []; // left side nav
   const children = courseContainer.children;
-  const navCourseName = document.getElementsByClassName("course_link"); //right side links
+  const navCourseName = document.getElementsByClassName("course_link"); // right side links
   function assignStaticLink(
     addMCQ,
     addSubjectiveQuestion,
