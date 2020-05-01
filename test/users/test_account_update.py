@@ -15,7 +15,7 @@ class UserAccountTestCase(BaseUser):
                            submit="submit")
         response, _ = test_post_request(self, "/account", update_user, models.User, 1)
         # check div of paper set after login : home page test
-        self.assertIn(b"<div class="col pt-4" id="home_content">", response.data)
+        self.assertIn(b'<div class="col pt-4" id="home_content">', response.data)
 
     def test_conflicting_username(self):
         # add dummy user
