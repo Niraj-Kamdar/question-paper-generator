@@ -1,10 +1,9 @@
 import re
-
-from bs4 import BeautifulSoup
-
-from flaskapp import models
 from test.main.base_classes import BaseUser
 from test.main.utils import test_post_request
+
+from bs4 import BeautifulSoup
+from flaskapp import models
 
 
 class UserAccountTestCase(BaseUser):
