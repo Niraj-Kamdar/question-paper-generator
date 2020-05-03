@@ -1,15 +1,21 @@
+.block_main {
+  margin-bottom: 4%;
+}
+
 #content {
-    display: flex;
-    flex-direction: row;
-    margin: 0 10px;
+  display: flex;
+  flex-direction: row;
 }
 
 #page_display {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+#page_display > div {
+  margin: 0;
+}
 #template_display {
-    flex-grow: 1;
+  flex-grow: 1;
 }

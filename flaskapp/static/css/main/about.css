@@ -1,39 +1,3 @@
-#main_container > div {
-    padding-top: 70px;
-}
-
-#wrapper {
-    max-width: 90%;
-}
-
-#wrapper > .row {
-    margin: 0;
-}
-
-#wrapper > .row > .row > .col {
-    background: #9000f026;
-}
-
-.span_color {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-#page_title .col > h2 {
-    color: #b0b0b0;
-    font-size: 30px;
-    font-weight: bolder;
-}
-
-#index_page_link {
-    color: #9000f026;
-    font-size: 4vh;
-    font-weight: bolder;
-}
-
-#index_page_link:hover {
-    color: #9000f0;
-}
-
 .about_logo {
     width: 50%;
     margin: auto;
@@ -48,13 +12,69 @@
     width: 100%;
 }
 
+#index_page_link {
+    color: #9000f026;
+    font-size: 4vh;
+    font-weight: bolder;
+}
+
+#index_page_link:hover {
+    color: #9000f0;
+}
+
+#main_container > div {
+    padding-top: 70px;
+}
+
+.m_name {
+    border-radius: 10px 10px 0 0;
+    margin: 0;
+    background: #9000f0;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.m_speciality {
+    margin: 0;
+    font-size: 14px;
+}
+
+#m_speciality > .col-1 {
+    color: #9000f0;
+    margin-right: 5px;
+}
+
+#m_speciality > div {
+    padding: 0;
+}
+
+#page_title {
+    margin-bottom: 0 !important;
+}
+
+#page_title .col > h2 {
+    color: #b0b0b0;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.span_color {
+    color: rgba(255, 255, 255, 0.7);
+}
+
 #team_title {
     border-bottom: 1px solid #b0b0b0;
     color: #b0b0b0;
-    font-size: 2vw;
+    font-size: 30px;
+    margin: 0 !important;
+    padding-top: 0 !important;
     text-align: center;
     width: 100%;
     font-weight: lighter;
+}
+
+#team {
+    justify-content: center;
 }
 
 #team > .row {
@@ -63,39 +83,51 @@
     margin: 0;
 }
 
-#team_card {
+.team_card {
     padding: 0;
+    background: #9000f026;
     border: 1px solid #9000f0;
     border-radius: 10px;
+    width: 300px;
 }
 
-#team_card {
+#wrapper {
+    max-width: 90%;
+}
+
+#wrapper > .row {
+    margin: 0;
+}
+
+#wrapper > .row > .row > .col {
     background: #9000f026;
-}
-
-#m_name {
-    border-radius: 10px 10px 0 0;
-    margin: 0;
-    background: #9000f0;
-    color: #ffffff;
-    font-size: 1vw;
-}
-
-#m_speciality {
-    margin: 0;
-    font-size: 0.9vw;
-}
-
-#m_speciality > .col-1 {
-    color: #9000f0;
-}
-
-#m_speciality > div {
-    padding: 0;
 }
 
 @media (max-width: 960px) {
     #main_container > div {
-        padding-top: 40px;
+        padding-top: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about_logo {
+        width: 300px;
+    }
+
+    #page_title .col > h2,
+    #team_title {
+        font-size: 24px;
+    }
+
+    #wrapper {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .about_logo {
+        width: 100%;
     }
 }

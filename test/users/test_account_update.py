@@ -92,4 +92,7 @@ class UserAccountTestCase(BaseUser):
         # test unregistered email
         data = dict(email="doesn't@exit.com")
         response, _ = test_post_request(self, "/reset_password", data)
-        self.assertIn(b"There is no account with that email. You must register first.", response.data)
+        self.assertIn(
+            b"There is no account with that email. You must register first.",
+            response.data,
+        )

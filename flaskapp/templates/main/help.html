@@ -1,96 +1,94 @@
 {% extends "main/general.html" %}
 
 {% block main %}
-    <div class="row m-5 mb-2" id="page_title">
-        <div class="col">
-            <h2>Help & Support</h2>
-        </div>
+<div class="row m-5 mb-2" id="page_title">
+    <div class="col">
+        <h2>Help & Support</h2>
+    </div>
+</div>
+
+<div class="container pt-1 pb-5 mb-5" id="wrapper">
+
+    <div class="row p-2">
+        <img src="{{ url_for('static', filename='images/about_us.svg') }}" class="about_logo" alt="Image" />
     </div>
 
-    <div class="container pt-1 pb-5 mb-5" id="wrapper">
+    <div class="row p-2" id="help_content">
+        <p>Need Some Help? Below is some frequently asked questions which may help you. We're dedicated to giving
+            you the
+            very best of our service. If you have any other questions or comments, please don't hesitate to contact
+            us.</p>
+    </div>
 
-        <div class="row p-2" style="justify-content: center;">
-            <img src="{{ url_for('static', filename='images/about_us.svg') }}" class="about_logo" alt="Image"
-                 style="width:50%"/>
-        </div>
+    <h3 class="my-4 py-3" id="faq_title">FAQs</h3>
 
-        <div class="row p-2" id="help_content">
-            <p>Need Some Help? Below is some frequently asked questions which may help you. We're dedicated to giving
-                you the
-                very best of our service. If you have any other questions or comments, please don't hesitate to contact
-                us.</p>
-        </div>
-
-        <h3 class="my-4 py-3" id="faq_title">FAQs</h3>
-
-        <div id="accordion">
+    <div id="accordion">
 
 
-            <div class="card mb-3">
-                <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                                aria-expanded="true"
-                                aria-controls="collapseOne">
-                            Do i need to login to use your services ?
-                        </button>
-                    </h5>
-                </div>
-
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body pl-5">
-                        <p>Yes, you have to login to our system to use services provided by us. You can login/signup by
-                            email address
-                            and set password for your account.</p>
-                    </div>
-                </div>
+        <div class="card mb-3">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                        Do i need to login to use your services ?
+                    </button>
+                </h5>
             </div>
 
-
-            <div class="card my-3">
-                <div class="card-header" id="headingTwo">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
-                                aria-expanded="false" aria-controls="collapseTwo">
-                            What should i do if i forgot my Account Password ?
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                    <div class="card-body pl-5">
-                        <p>If you forget password then you can set new password. For setting new password click on
-                            forget password,
-                            you will get link for set new password if you can’t find in inbox then check spam
-                            folder.</p>
-                    </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body pl-5">
+                    <p>Yes, you have to login to our system to use services provided by us. You can login/signup by
+                        email address
+                        and set password for your account.</p>
                 </div>
             </div>
-
-
-            <div class="card mt-3">
-                <div class="card-header" id="headingThree">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
-                                aria-expanded="false" aria-controls="collapseThree">
-                            Why system giving error about generating question paper?
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                    <div class="card-body pl-5">
-                        <p>Maybe there are not enough question to meet your requirement (total marks or difficulty
-                            level)</p>
-                        <p><b>Or</b></p>
-                        <p>Maybe Too much questions are marked as ‘always include in papers’ so that total marks of
-                            marked questions
-                            will be more than required marks of question paper.</p>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
+
+
+        <div class="card my-3">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                        What should i do if i forgot my Account Password ?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body pl-5">
+                    <p>If you forget password then you can set new password. For setting new password click on
+                        forget password,
+                        you will get link for set new password if you can’t find in inbox then check spam
+                        folder.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card mt-3">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="false" aria-controls="collapseThree">
+                        Why system giving error about generating question paper?
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body pl-5">
+                    <p>Maybe there are not enough question to meet your requirement (total marks or difficulty
+                        level)</p>
+                    <p><b>Or</b></p>
+                    <p>Maybe Too much questions are marked as ‘always include in papers’ so that total marks of
+                        marked questions
+                        will be more than required marks of question paper.</p>
+                </div>
+            </div>
+        </div>
+
 
     </div>
+
+</div>
 
 {% endblock main %}

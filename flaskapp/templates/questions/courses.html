@@ -1,38 +1,38 @@
 {% extends "base.html" %}
 {% block image %}
-    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
 {% endblock image %}
 {% block image2 %}
-    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
 {% endblock image2 %}
 {% block flashes %}
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %}
-        <ul class="flashes flashes_question">
-            {% for category, message in messages %}
-                <li class="{{ category }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %} {% endwith %}
+{% with messages = get_flashed_messages(with_categories=true) %} {% if
+messages %}
+<ul class="flashes flashes_question">
+    {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %} {% endwith %}
 {% endblock flashes %}
 {% block main %}
 
-    <div id="course_container">
-        <div class="course_items">
-            {% for _course in courses %}
+<div id="course_container">
+    <div class="course_items">
+        {% for _course in courses %}
 
                 <a class="course_item"
                    href={{ url_for("questions.units", course_id=_course.id) }}>{{ _course.name }}</a>
                 <br>
 
-            {% endfor %}
-        </div>
-        <div style="margin-left : auto">
-            <div id="add_course">
-                <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img" alt="add">Add Course
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
+    <div id="add_course_container">
+        <a id="add_course" href="/course/new">
+            <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img" alt="add">Add Course
+            </div>
+        </a>
+    </div>
+</div>
 
 {% endblock main %}

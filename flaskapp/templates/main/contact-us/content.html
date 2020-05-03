@@ -1,14 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="x-apple-disable-message-reformatting"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title></title>
     <style type="text/css" rel="stylesheet" media="all">
-        /* Base ------------------------------ */
-
         @import url("https://fonts.googleapis.com/css?family=Nunito+Sans:400,700&display=swap");
 
         body {
@@ -16,6 +15,8 @@
             height: 100%;
             margin: 0;
             -webkit-text-size-adjust: none;
+            background-color: #F4F4F7;
+            color: #51545E;
         }
 
         a {
@@ -42,7 +43,7 @@
             overflow: hidden;
         }
 
-        /* Type ------------------------------ */
+
 
         body,
         td,
@@ -89,10 +90,11 @@
         }
 
         p.sub {
+            color: #6B6E76;
             font-size: 13px;
         }
 
-        /* Utilities ------------------------------ */
+
 
         .align-right {
             text-align: right;
@@ -106,7 +108,7 @@
             text-align: center;
         }
 
-        /* Buttons ------------------------------ */
+
 
         .button {
             background-color: #3869D4;
@@ -146,7 +148,7 @@
             }
         }
 
-        /* Attribute list ------------------------------ */
+
 
         .attributes {
             margin: 0 0 21px;
@@ -161,12 +163,12 @@
             padding: 0;
         }
 
-        /* Related Items ------------------------------ */
+
 
         .related {
             width: 100%;
             margin: 0;
-            padding: 25px 0 0 0;
+            padding: 25px 0 0;
             -premailer-width: 100%;
             -premailer-cellpadding: 0;
             -premailer-cellspacing: 0;
@@ -195,7 +197,7 @@
             padding: 25px 0 10px;
         }
 
-        /* Discount Code ------------------------------ */
+
 
         .discount {
             width: 100%;
@@ -217,7 +219,7 @@
             font-size: 15px;
         }
 
-        /* Social Icons ------------------------------ */
+
 
         .social {
             width: auto;
@@ -230,11 +232,11 @@
 
         .social_icon {
             height: 20px;
-            margin: 0 8px 10px 8px;
+            margin: 0 8px 10px;
             padding: 0;
         }
 
-        /* Data table ------------------------------ */
+
 
         .purchase {
             width: 100%;
@@ -248,7 +250,7 @@
         .purchase_content {
             width: 100%;
             margin: 0;
-            padding: 25px 0 0 0;
+            padding: 25px 0 0;
             -premailer-width: 100%;
             -premailer-cellpadding: 0;
             -premailer-cellspacing: 0;
@@ -288,18 +290,11 @@
             padding: 0 15px 0 0;
         }
 
-        body {
-            background-color: #F4F4F7;
-            color: #51545E;
-        }
 
         p {
             color: #51545E;
         }
 
-        p.sub {
-            color: #6B6E76;
-        }
 
         .email-wrapper {
             width: 100%;
@@ -320,7 +315,7 @@
             -premailer-cellspacing: 0;
         }
 
-        /* Masthead ----------------------- */
+
 
         .email-masthead {
             padding: 25px 0;
@@ -339,7 +334,7 @@
             text-shadow: 0 1px 0 white;
         }
 
-        /* Body ------------------------------ */
+
 
         .email-body {
             width: 100%;
@@ -395,9 +390,10 @@
             padding: 35px;
         }
 
-        /*Media Queries ------------------------------ */
+
 
         @media only screen and (max-width: 600px) {
+
             .email-body_inner,
             .email-footer {
                 width: 100% !important;
@@ -405,6 +401,7 @@
         }
 
         @media (prefers-color-scheme: dark) {
+
             body,
             .email-body,
             .email-body_inner,
@@ -436,67 +433,67 @@
             }
         }
     </style>
-    <!--[if mso]>
-    <style type="text/css">
-        .f-fallback {
-            font-family: Arial, sans-serif;
-        }
-    </style>
-    <![endif]-->
+
 </head>
+
 <body>
-<table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-    <tr>
-        <td align="center">
-            <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-                <tr>
-                    <td class="email-masthead">
-                        <a href="https://setnow.herokuapp.com/" class="f-fallback email-masthead_name">
-                            SetNow
-                        </a>
-                    </td>
-                </tr>
-                <!-- Email Body -->
-                <tr>
-                    <td class="email-body" width="100%" cellpadding="0" cellspacing="0">
-                        <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0"
-                               role="presentation">
-                            <!-- Body content -->
-                            <tr>
-                                <td class="content-cell">
-                                    <div class="f-fallback">
-                                        <h1>Contact US ticket</h1>
-                                        <p> Name: {{ name }} </p>
-                                        <p> Email: {{ email }} </p>
-                                        <p> Mobile: {{ mobile }} </p>
-                                        <p> Subject: {{ subject }}</p>
-                                        <p> Message: {{ message }} </p>
-                                        <p>Thanks,
-                                            <br>The SetNow Team</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0"
-                               role="presentation">
-                            <tr>
-                                <td class="content-cell" align="center">
-                                    <p class="f-fallback sub align-center">&copy; 2019 SetNow. All rights reserved.</p>
-                                    <p class="f-fallback sub align-center">
-                                        SetNow, LLC
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
+    <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+        <tr>
+            <td align="center">
+                <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                    <tr>
+                        <td class="email-masthead">
+                            <a href="https://setnow.herokuapp.com/" class="f-fallback email-masthead_name">
+                                SetNow
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="email-body" width="100%" cellpadding="0" cellspacing="0">
+                            <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0"
+                                role="presentation">
+
+                                <tr>
+                                    <td class="content-cell">
+                                        <div class="f-fallback">
+                                            <h1>Contact US ticket</h1>
+                                            <p> Name: {{ name }} </p>
+                                            <p> Email: {{ email }} </p>
+                                            <p> Mobile: {{ mobile }} </p>
+                                            <p> Subject: {{ subject }}</p>
+                                            <p> Message: {{ message }} </p>
+                                            <p>Thanks,
+                                                <br>The SetNow Team</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0"
+                                role="presentation">
+                                <tr>
+                                    <td class="content-cell" align="center">
+                                        <p class="f-fallback sub align-center">&copy; 2019 SetNow. All rights reserved.
+                                        </p>
+                                        <p class="f-fallback sub align-center">
+                                            SetNow, LLC
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 </html>

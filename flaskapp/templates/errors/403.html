@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>403</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/errors/403.css')}}" />
 </head>
-<body style="margin: 0;">
-<div>
-    <img style="min-width: 100vw; min-height: 100vh; position: fixed;"
-         src="{{ url_for('static', filename='images/403.svg') }}" class="error-403" alt="403"/>
-</div>
+
+<body>
+    <div>
+        <img src="{{ url_for('static', filename='images/403.svg') }}" class="error-403" alt="403" />
+    </div>
 </body>
+
 </html>

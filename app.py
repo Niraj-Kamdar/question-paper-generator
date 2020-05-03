@@ -5,9 +5,9 @@ from flaskapp import create_app
 from flaskapp.config import DevelopmentConfig
 
 sentry_sdk.init(
-        dsn=
-        "https://1fdf413ccfcc4a249f79519bfc269965@o374456.ingest.sentry.io/5192531",
-        integrations=[FlaskIntegration()],
+    dsn=
+    "https://1fdf413ccfcc4a249f79519bfc269965@o374456.ingest.sentry.io/5192531",
+    integrations=[FlaskIntegration()],
 )
 
 app = create_app(config_class=DevelopmentConfig)
@@ -20,6 +20,7 @@ def add_header(response):
     and also to cache the rendered page for 10 minutes.
     """
     response.headers["X-UA-Compatible"] = "IE=Edge,chrome=1"
+    response.headers["Cache-Control"] = "must-revalidate, max-age=0"
     return response
 
 
