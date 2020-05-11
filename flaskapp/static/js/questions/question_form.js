@@ -1,5 +1,5 @@
 (function () {
-  const formErrors = document.getElementsByClassName("form__client_error");
+  const clientErrors = document.getElementsByClassName("form__client_error");
   const question = document.getElementById("form_field_question_value");
   const mark = document.getElementById("marks_value");
   const difficulty = document.getElementById("difficulty_value");
@@ -9,6 +9,10 @@
   const toggleBtn = document.getElementById("toggle_btn");
   const impCheckbox = document.getElementById("imp_checkbox");
   const form = document.getElementsByTagName("form")[0];
+  const formError = document.querySelectorAll(".form__error li");
+  for (let err of formError) {
+    err.innerHTML = "";
+  }
 
   let tabindex = 1;
 
@@ -77,12 +81,14 @@
 
   mark.setAttribute("placeholder", "Enter marks here");
   mark.addEventListener("input", () => {
-    formErrors[1].innerHTML = "";
+    clientErrors[1].innerHTML = "";
+    formError[1].innerHTML = "";
   });
 
   difficulty.setAttribute("placeholder", "Enter difficulty here");
   difficulty.addEventListener("input", () => {
-    formErrors[2].innerHTML = "";
+    formError[2].innerHTML = "";
+    clientErrors[2].innerHTML = "";
   });
 
   question.setAttribute("placeholder", "Enter question here");
@@ -91,7 +97,8 @@
     "height:" + question.scrollHeight + "px;overflow-y:hidden;"
   );
   question.addEventListener("input", (e) => {
-    formErrors[0].innerHTML = "";
+    formError[0].innerHTML = "";
+    clientErrors[0].innerHTML = "";
     e.target.style.height = "";
     e.target.style.height = e.target.scrollHeight + "px";
   });
@@ -103,12 +110,13 @@
   form.addEventListener("submit", (e) => {
     let validation = {};
     for (let i = 0; i < formErrors.length; i++) {
-      formErrors[i].innerHTML = "";
+      formError[i].innerHTML = "";
+      clientErrors[i].innerHTML = "";
     }
     validation = isValid(question.value, mark.value, difficulty.value);
     if (!validation.isValid) {
       for (let i = 0; i < validation.errors.length; i++) {
-        formErrors[i].innerHTML = validation.errors[i];
+        clientErrors[i].innerHTML = validation.errors[i];
       }
       e.preventDefault();
     }

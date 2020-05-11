@@ -13,6 +13,10 @@
   let tabindex = 1;
   const submitBtn = document.getElementById("submit_btn");
   const form = document.getElementById("form");
+  const formError = document.querySelectorAll(".form__error li");
+  for (let err of formError) {
+    err.innerHTML = "";
+  }
 
   function isValid(question, marksValue, difficultyValue, ...options) {
     let validation = {
@@ -86,6 +90,7 @@
   for (let i = 0; i < optionsValue.length; i++) {
     fakeContainer[i].addEventListener("input", (e) => {
       clientErrors[i + 3].innerText = "";
+      formError[i + 3].innerHTML = "";
       e.target.style.height = "";
       e.target.style.height = e.target.scrollHeight + "px";
     });
@@ -98,11 +103,13 @@
   difficultyValue.setAttribute("placeholder", "Enter difficulty here");
   difficultyValue.addEventListener("input", () => {
     clientErrors[2].innerText = "";
+    formError[2].innerHTML = "";
   });
 
   marksValue.setAttribute("placeholder", "Enter marks here");
   marksValue.addEventListener("input", () => {
     clientErrors[1].innerText = "";
+    formError[1].innerHTML = "";
   });
 
   questionValue.setAttribute("placeholder", "Enter question here");
@@ -113,6 +120,7 @@
 
   questionValue.addEventListener("input", (e) => {
     clientErrors[0].innerText = "";
+    formError[0].innerHTML = "";
     e.target.style.height = "";
     e.target.style.height = e.target.scrollHeight + "px";
   });
@@ -153,6 +161,7 @@
     let validation = {};
     for (let i = 0; i < clientErrors.length; i++) {
       clientErrors[i].innerText = "";
+      formError[i].innerHTML = "";
     }
     validation = isValid(
       questionValue.value,

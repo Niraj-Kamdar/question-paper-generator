@@ -2,7 +2,10 @@
   const courseField = document.getElementById("form__fields__course");
   const clientError = document.getElementsByClassName("form__client_error");
   const courseForm = document.getElementById("course_form");
-
+  const formError = document.querySelectorAll(".form__error li");
+  for (let err of formError) {
+    err.innerHTML = "";
+  }
   function isValid(course) {
     let validation = {
       isValid: true,
@@ -17,12 +20,13 @@
 
   courseField.setAttribute("placeholder", "Add course");
   courseField.addEventListener("input", () => {
-    clientError[0].innerHTML = "";
+    clientError[0].innerHTML = formError[0].innerHTML = "";
   });
 
   courseForm.addEventListener("submit", (e) => {
     const validation = isValid(courseField.value);
     clientError[0].innerHTML = "";
+    formError[0].innerHTML = "";
     if (!validation.isValid) {
       e.preventDefault();
       clientError[0].innerText = validation.errors[0];

@@ -52,7 +52,6 @@ def courses():
             courses=_courses,
             css_file="css/base.css",
             css_file2="css/questions/courses.css",
-            js_file="js/questions/courses.js",
             image_file=profile_path(),
             title="Courses",
     )
@@ -64,7 +63,12 @@ def courses():
 def units(course_id):
     _course = Course.query.filter(Course.id == course_id).first()
     _units = Unit.query.filter(Unit.course == _course).all()
-    return render_template("questions/units.html", image_file=profile_path(), units=_units, title="Units")
+    return render_template("questions/units.html", 
+                            image_file=profile_path(), 
+                            units=_units, 
+                            title="Units",
+                            css_file="css/base.css",
+                            css_file2="css/questions/courses.css")
 
 
 @questions.route("/course/<course_id>/unit/new", methods=["GET", "POST"])
@@ -86,9 +90,9 @@ def add_unit(course_id):
             form=form,
             css_file="css/base.css",
             css_file2="css/questions/courses_form.css",
-            js_file="js/questions/add_course.js",
+            js_file="js/questions/add_unit.js",
             image_file=profile_path(),
-            title="Add Courses",
+            title="Add Units",
     )
 
 
