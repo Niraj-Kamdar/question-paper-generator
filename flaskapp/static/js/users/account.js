@@ -31,12 +31,12 @@
 
   userName.addEventListener("input", () => {
     clientError[0].innerHTML = "";
-    formError[0].innerHTML = "";
+    if (formError.length) formError[0].innerHTML = "";
   });
 
   email.addEventListener("input", () => {
     clientError[1].innerHTML = "";
-    formError[1].innerHTML = "";
+    if (formError.length) formError[1].innerHTML = "";
   });
 
   accountForm.addEventListener("submit", (e) => {

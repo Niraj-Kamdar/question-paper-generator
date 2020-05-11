@@ -32,12 +32,12 @@
 
   emailField.addEventListener("input", () => {
     emailError.innerHTML = "";
-    formError[0].innerHTML = "";
+    if (formError.length) formError[0].innerHTML = "";
   });
 
   passwordField.addEventListener("input", () => {
     passwordError.innerHTML = "";
-    formError[1].innerHTML = "";
+    if (formError.length) formError[1].innerHTML = "";
   });
 
   loginForm.addEventListener("submit", (e) => {

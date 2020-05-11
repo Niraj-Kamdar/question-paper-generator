@@ -54,22 +54,22 @@
 
   userNameField.addEventListener("input", () => {
     userNameError.innerText = "";
-    formError[0].innerHTML = "";
+    if (formError.length) formError[0].innerHTML = "";
   });
 
   emailField.addEventListener("input", () => {
     emailError.innerText = "";
-    formError[1].innerHTML = "";
+    if (formError.length) formError[1].innerHTML = "";
   });
 
   passwordField.addEventListener("input", () => {
     passwordError.innerText = "";
-    formError[2].innerHTML = "";
+    if (formError.length) formError[2].innerHTML = "";
   });
 
   confirmPasswordField.addEventListener("input", () => {
     confirmPasswordError.innerText = "";
-    formError[3].innerHTML = "";
+    if (formError.length) formError[3].innerHTML = "";
   });
 
   registerForm.addEventListener("submit", (e) => {

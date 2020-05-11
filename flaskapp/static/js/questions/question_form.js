@@ -82,12 +82,12 @@
   mark.setAttribute("placeholder", "Enter marks here");
   mark.addEventListener("input", () => {
     clientErrors[1].innerHTML = "";
-    formError[1].innerHTML = "";
+    if (formError.length) formError[1].innerHTML = "";
   });
 
   difficulty.setAttribute("placeholder", "Enter difficulty here");
   difficulty.addEventListener("input", () => {
-    formError[2].innerHTML = "";
+    if (formError.length) formError[2].innerHTML = "";
     clientErrors[2].innerHTML = "";
   });
 
@@ -97,7 +97,7 @@
     "height:" + question.scrollHeight + "px;overflow-y:hidden;"
   );
   question.addEventListener("input", (e) => {
-    formError[0].innerHTML = "";
+    if (formError.length) formError[0].innerHTML = "";
     clientErrors[0].innerHTML = "";
     e.target.style.height = "";
     e.target.style.height = e.target.scrollHeight + "px";
@@ -109,8 +109,8 @@
 
   form.addEventListener("submit", (e) => {
     let validation = {};
-    for (let i = 0; i < formErrors.length; i++) {
-      formError[i].innerHTML = "";
+    for (let i = 0; i < clientErrors.length; i++) {
+      if (formError.length) formError[i].innerHTML = "";
       clientErrors[i].innerHTML = "";
     }
     validation = isValid(question.value, mark.value, difficulty.value);

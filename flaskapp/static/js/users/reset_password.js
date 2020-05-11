@@ -52,12 +52,12 @@ if (resetForm) {
 
   emailField.addEventListener("input", () => {
     emailError.innerHTML = "";
-    formError[0].innerHTML = "";
+    if (formError.length) formError[0].innerHTML = "";
   });
   resetForm.addEventListener("submit", (e) => {
     const email = emailField.value;
     const validation = isValid(email);
-    formError[0].innerHTML = "";
+    if (formError.length) formError[0].innerHTML = "";
     emailError.innerHTML = "";
     if (!validation.isValid) {
       e.preventDefault();
@@ -79,11 +79,11 @@ if (resetPasswordForm) {
 
   password.addEventListener("input", () => {
     clientError[0].innerHTML = "";
-    formError[0].innerHTML = "";
+    if (formError.length) formError[0].innerHTML = "";
   });
   confirmPassword.addEventListener("input", () => {
     clientError[1].innerHTML = "";
-    formError[1].innerHTML = "";
+    if (formError.length) formError[1].innerHTML = "";
   });
   resetPasswordForm.addEventListener("submit", (e) => {
     const validation = isValidPassword(password.value, confirmPassword.value);
