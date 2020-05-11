@@ -3,6 +3,12 @@
   const clientError = document.getElementsByClassName("form__client_error");
   const courseForm = document.getElementById("course_form");
   const formError = document.querySelectorAll(".form__error li");
+  const resetBtn = document.getElementById("reset_btn");
+  resetBtn.addEventListener("click", function () {
+    courseField.value = "";
+    clientError[0].innerHTML = "";
+    formError[0].innerHTML = "";
+  });
   for (let err of formError) {
     err.innerHTML = "";
   }
