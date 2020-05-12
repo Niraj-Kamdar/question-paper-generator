@@ -230,7 +230,7 @@ def add_question(course_id, unit_id, qtype):
             )
             db.session.add(_question)
             db.session.commit()
-            print("         ******                 ")
+            
             flash("New question added successfully!", "success")
             return redirect(
                     url_for(
@@ -239,7 +239,7 @@ def add_question(course_id, unit_id, qtype):
                             course_id=course_id,
                             unit_id=unit_id,
                     ))
-        print("        invalid       ")
+        
         return render_template(
                 "questions/question_form.html",
                 form=form,
