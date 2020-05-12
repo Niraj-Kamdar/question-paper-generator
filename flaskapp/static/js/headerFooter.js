@@ -1,5 +1,6 @@
-const sideNavigationContainer =
-    document.getElementById("side_navigation_container");
+const sideNavigationContainer = document.getElementById(
+  "side_navigation_container"
+);
 let sideTouchStartX = 0;
 let sideTouchStartY = 0;
 let preSidePageX = 0;
@@ -8,8 +9,9 @@ let sideFlag = false;
 let sNetDistance = 0;
 const mainContainer = document.getElementById("main_container");
 
-const initialLeft =
-    parseInt(window.getComputedStyle(sideNavigationContainer).left);
+const initialLeft = parseInt(
+  window.getComputedStyle(sideNavigationContainer).left
+);
 
 let mainTouchStartX = 0;
 let mainTouchStartY = 0;
@@ -30,8 +32,9 @@ const additionalPages = [
   "contact-us",
 ];
 const url = window.location.href;
-const sideNavigationItems =
-    document.getElementsByClassName("side_navigation_items");
+const sideNavigationItems = document.getElementsByClassName(
+  "side_navigation_items"
+);
 const exploreContainer = document.getElementById("explore_container");
 const addContainer = document.getElementById("add_container");
 const courseContainer = document.getElementById("course_container");
@@ -51,27 +54,29 @@ const contactUs = sideNavigationItems[childrenLength + 12];
 const logIn = sideNavigationItems[childrenLength + 17];
 const logOut = sideNavigationItems[childrenLength + 18];
 const profilePage = document.getElementsByClassName("profile_page");
-const topNavigationItems =
-    document.getElementsByClassName("top_navigation_items");
+const topNavigationItems = document.getElementsByClassName(
+  "top_navigation_items"
+);
 const isLoggedIn =
-    document.getElementById("logged_in").innerText === "True" ? true : false;
+  document.getElementById("logged_in").innerText === "True" ? true : false;
 const logo = document.getElementsByClassName("logo");
 let startDropX = 0;
 let startDropY = 0;
 let dropFlag = false;
-const dropdownContainer =
-    document.getElementsByClassName("dropdown_container")[0];
+const dropdownContainer = document.getElementsByClassName(
+  "dropdown_container"
+)[0];
 const dropdownTitle = dropdownContainer.firstElementChild;
 const footerLinks = document.getElementsByClassName("fl");
-const rDropdownexploreTitle =
-    document.getElementById("explore_container").firstElementChild;
-const rDropdownAddTitle =
-    document.getElementById("add_container").firstElementChild;
-const rdropdownMoreTitle =
-    document.getElementsByClassName("dropdown_container_2")[0]
-        .firstElementChild;
-const rDropdownCourseTitle =
-    document.getElementById("course_container").firstElementChild;
+const rDropdownexploreTitle = document.getElementById("explore_container")
+  .firstElementChild;
+const rDropdownAddTitle = document.getElementById("add_container")
+  .firstElementChild;
+const rdropdownMoreTitle = document.getElementsByClassName(
+  "dropdown_container_2"
+)[0].firstElementChild;
+const rDropdownCourseTitle = document.getElementById("course_container")
+  .firstElementChild;
 const flash = document.getElementsByClassName("flashes_question")[0];
 
 function handleQuestionNav(e) {
@@ -80,8 +85,7 @@ function handleQuestionNav(e) {
   let children = {};
   if (Array.from(e.target.classList).includes("fa"))
     target = e.target.parentNode;
-  else
-    target = e.target;
+  else target = e.target;
   classList = target.lastElementChild.classList;
   children = target.parentNode.children;
   if (Array.from(target.lastElementChild.classList).includes("fa-caret-down")) {
@@ -99,11 +103,12 @@ function handleQuestionNav(e) {
   }
 }
 
-isHomePage = !!(url.match(new RegExp("/", "g")).length === 3 &&
-                url[url.length - 1] === "/");
+isHomePage = !!(
+  url.match(new RegExp("/", "g")).length === 3 && url[url.length - 1] === "/"
+);
 
-isLogin = url.indexOf("login") !== -1 || url.indexOf("register") !== -1 ? true
-                                                                        : false;
+isLogin =
+  url.indexOf("login") !== -1 || url.indexOf("register") !== -1 ? true : false;
 
 isQuestionPage = url.indexOf("question") !== -1 ? true : false;
 isCoursesPage = url.match(/.+course\/$/) ? true : false;
@@ -140,8 +145,8 @@ if (isHomePage || (areAdditionalPages && !isLoggedIn) || isLogin) {
     course.style.display = "none";
     addCourse.style.display = "block";
   }
-  aboutUs.style.display = help.style.display = contactUs.style.display =
-      logIn.style.display = "none";
+  aboutUs.style.display = help.style.display = contactUs.style.display = logIn.style.display =
+    "none";
   for (let i = 1; i < moreItemsContainer.children.length; i++) {
     moreItemsContainer.children[i].style.display = "none";
   }
@@ -179,9 +184,11 @@ for (let i = 0; i < sideNavigationItems.length; i++) {
         e.preventDefault();
       }
     } else {
-      if (e.target.href === window.location.href ||
-          e.target.href + "home" === window.location.href ||
-          e.target.href + "/" === window.location.href)
+      if (
+        e.target.href === window.location.href ||
+        e.target.href + "home" === window.location.href ||
+        e.target.href + "/" === window.location.href
+      )
         e.preventDefault();
       if (e.target.getAttribute("href") === "/logout")
         window.history.pushState(null, null, "/");
@@ -193,44 +200,43 @@ for (let i = 0; i < profilePage.length; i++) {
   if (isHomePage || areAdditionalPages || isLogin)
     profilePage[i].parentNode.style.display = "none";
 
-  profilePage[i].addEventListener("touchstart", function(e) {
-    if (window.location.href === e.target.parentNode.href)
-      e.preventDefault();
+  profilePage[i].addEventListener("touchstart", function (e) {
+    if (window.location.href === e.target.parentNode.href) e.preventDefault();
     e.target.style.boxShadow = "none";
   });
 
-  profilePage[i].addEventListener(
-      "touchend",
-      function(e) { e.target.style.boxShadow = "0 0 10px 2px #ffffff"; });
+  profilePage[i].addEventListener("touchend", function (e) {
+    e.target.style.boxShadow = "0 0 10px 2px #ffffff";
+  });
 
-  profilePage[i].addEventListener(
-      "mouseenter",
-      function(e) { e.target.firstElementChild.style.boxShadow = ""; });
+  profilePage[i].addEventListener("mouseenter", function (e) {
+    e.target.firstElementChild.style.boxShadow = "";
+  });
 
-  profilePage[i].addEventListener("click", function(e) {
-    if (window.location.href === e.target.parentNode.href)
-      e.preventDefault();
+  profilePage[i].addEventListener("click", function (e) {
+    if (window.location.href === e.target.parentNode.href) e.preventDefault();
   });
 }
 
 if (isHomePage || (areAdditionalPages && !isLoggedIn)) {
   topNavigationItems[5].parentNode.parentNode.style.display = "none";
   topNavigationItems[1].style.display = topNavigationItems[9].style.display =
-      "none";
+    "none";
 } else if (isLogin) {
   topNavigationItems[5].parentNode.parentNode.style.display = "none";
-  topNavigationItems[1].style.display = topNavigationItems[9].style.display =
-      topNavigationItems[8].style.display = "none";
+  topNavigationItems[1].style.display = topNavigationItems[9].style.display = topNavigationItems[8].style.display =
+    "none";
 } else {
-  topNavigationItems[2].style.display = topNavigationItems[3].style.display =
-      topNavigationItems[8].style.display =
-          topNavigationItems[4].style.display = "none";
+  topNavigationItems[2].style.display = topNavigationItems[3].style.display = topNavigationItems[8].style.display = topNavigationItems[4].style.display =
+    "none";
 }
 for (let i = 0; i < topNavigationItems.length; i++) {
-  topNavigationItems[i].addEventListener("click", function(e) {
-    if (e.target.parentNode.href === window.location.href ||
-        e.target.parentNode.href + "home" === window.location.href ||
-        e.target.parentNode.href + "/" === window.location.href)
+  topNavigationItems[i].addEventListener("click", function (e) {
+    if (
+      e.target.parentNode.href === window.location.href ||
+      e.target.parentNode.href + "home" === window.location.href ||
+      e.target.parentNode.href + "/" === window.location.href
+    )
       e.preventDefault();
     if (e.target.parentNode.getAttribute("href") === "/logout")
       window.history.pushState(null, null, "/");
@@ -238,17 +244,21 @@ for (let i = 0; i < topNavigationItems.length; i++) {
 }
 
 for (let i = 0; i < logo.length; i++) {
-  logo[i].addEventListener("click", function(e) {
-    if (e.target.parentNode.href === window.location.href ||
-        e.target.parentNode.href + "home" === window.location.href)
+  logo[i].addEventListener("click", function (e) {
+    if (
+      e.target.parentNode.href === window.location.href ||
+      e.target.parentNode.href + "home" === window.location.href
+    )
       e.preventDefault();
   });
 }
 
 for (let i = 0; i < footerLinks.length; i++) {
   footerLinks[i].addEventListener("click", (e) => {
-    if (e.target.href === window.location.href ||
-        e.target.href + "home" === window.location.href)
+    if (
+      e.target.href === window.location.href ||
+      e.target.href + "home" === window.location.href
+    )
       e.preventDefault();
   });
 }
@@ -271,24 +281,25 @@ if (flash) {
   }, 1000);
 }
 
-document.getElementById("bars_container").addEventListener("click", function() {
-  sideNavigationContainer.style.left = "0px";
-  document.body.style.overflowY = "hidden";
-});
+document
+  .getElementById("bars_container")
+  .addEventListener("click", function () {
+    sideNavigationContainer.style.left = "0px";
+    document.body.style.overflowY = "hidden";
+  });
 
-window.addEventListener("resize", function() {
-  if (window.innerWidth > 960)
-    sideNavigationContainer.style.left = "";
+window.addEventListener("resize", function () {
+  if (window.innerWidth > 960) sideNavigationContainer.style.left = "";
   document.body.style.overflowY = "";
 });
 
-document.getElementById("close_link").addEventListener("click", function(e) {
+document.getElementById("close_link").addEventListener("click", function (e) {
   e.preventDefault();
   sideNavigationContainer.style.left = "";
   document.body.style.overflowY = "";
 });
 
-sideNavigationContainer.addEventListener("touchstart", function(e) {
+sideNavigationContainer.addEventListener("touchstart", function (e) {
   let touchObj = {};
   touchObj = e.changedTouches[0];
   sideTouchStartX = preSidePageX = touchObj.pageX;
@@ -299,12 +310,11 @@ sideNavigationContainer.addEventListener("touchstart", function(e) {
   sNetDistance = 0;
 });
 
-sideNavigationContainer.addEventListener("touchmove", function(e) {
+sideNavigationContainer.addEventListener("touchmove", function (e) {
   let touchObj = {};
   let distance = 0;
   let left = 0;
-  if (sideFlag)
-    return;
+  if (sideFlag) return;
   touchObj = e.changedTouches[0];
   distance = touchObj.pageX - preSidePageX;
   sNetDistance += distance;
@@ -322,17 +332,15 @@ sideNavigationContainer.addEventListener("touchmove", function(e) {
   left = parseInt(sideNavigationContainer.style.left);
   if (left + distance <= 0) {
     sideNavigationContainer.style.left = `${left + distance}px`;
-  } else
-    sideNavigationContainer.style.left = "0px";
+  } else sideNavigationContainer.style.left = "0px";
   e.preventDefault();
 });
 
-sideNavigationContainer.addEventListener("touchend", function(e) {
+sideNavigationContainer.addEventListener("touchend", function (e) {
   let touchObj = {};
   let distance = 0;
 
-  if (sideFlag)
-    return;
+  if (sideFlag) return;
   try {
     touchObj = e.changedTouches[0];
     distance = touchObj.pageX - sideTouchStartX;
@@ -349,10 +357,9 @@ sideNavigationContainer.addEventListener("touchend", function(e) {
   }
 });
 
-mainContainer.addEventListener("touchstart", function(e) {
+mainContainer.addEventListener("touchstart", function (e) {
   let touchObj = {};
-  if (window.innerWidth > 960)
-    return;
+  if (window.innerWidth > 960) return;
   touchObj = e.changedTouches[0];
   mainTouchStartX = touchObj.pageX;
   mainTouchStartY = touchObj.pageY;
@@ -362,14 +369,12 @@ mainContainer.addEventListener("touchstart", function(e) {
   mNetDistance = 0;
 });
 
-mainContainer.addEventListener("touchmove", function(e) {
+mainContainer.addEventListener("touchmove", function (e) {
   let touchObj = {};
   let distance = 0;
   let left = 0;
-  if (mainFlag)
-    return;
-  if (window.innerWidth > 960)
-    return;
+  if (mainFlag) return;
+  if (window.innerWidth > 960) return;
   touchObj = e.changedTouches[0];
   distance = touchObj.pageX - preMainPageX;
   mNetDistance = mNetDistance + distance;
@@ -382,22 +387,24 @@ mainContainer.addEventListener("touchmove", function(e) {
       return;
     }
   }
-  if (mainTouchStartX > 100)
-    return;
+  if (mainTouchStartX > 100) return;
   e.preventDefault();
   preMainPageX = touchObj.pageX;
   left = parseInt(sideNavigationContainer.style.left || initialLeft);
   if (left + distance <= 0)
     sideNavigationContainer.style.left = `${left + distance}px`;
-  else
-    sideNavigationContainer.style.left = "0px";
+  else sideNavigationContainer.style.left = "0px";
 });
 
-mainContainer.addEventListener("touchend", function(e) {
+mainContainer.addEventListener("touchend", function (e) {
   let touchObj = {};
   let distance = 0;
-  if (mainTouchStartX > 100 || sideNavigationContainer.style.left >= "0px" ||
-      mainFlag || window.innerWidth > 960)
+  if (
+    mainTouchStartX > 100 ||
+    sideNavigationContainer.style.left >= "0px" ||
+    mainFlag ||
+    window.innerWidth > 960
+  )
     return;
   try {
     touchObj = e.changedTouches[0];
@@ -416,7 +423,7 @@ mainContainer.addEventListener("touchend", function(e) {
   }
 });
 
-dropdownContainer.addEventListener("mouseenter", function() {
+dropdownContainer.addEventListener("mouseenter", function () {
   const classList = dropdownTitle.lastElementChild.classList;
   if (!Array.from(classList).includes("fa-caret-up")) {
     classList.remove("fa-caret-down");
@@ -424,7 +431,7 @@ dropdownContainer.addEventListener("mouseenter", function() {
   }
 });
 
-dropdownContainer.addEventListener("mouseleave", function(e) {
+dropdownContainer.addEventListener("mouseleave", function (e) {
   const target = e.target;
   const classList = dropdownTitle.lastElementChild.classList;
   classList.remove("fa-caret-up");
@@ -432,22 +439,24 @@ dropdownContainer.addEventListener("mouseleave", function(e) {
   target.lastElementChild.style.display = "";
 });
 
-dropdownTitle.addEventListener("touchstart", function(e) {
+dropdownTitle.addEventListener("touchstart", function (e) {
   let touchObj = {};
   touchObj = e.changedTouches[0];
   startDropX = touchObj.pageX;
   startDropY = touchObj.pageY;
 });
 
-dropdownTitle.addEventListener("touchmove", function(e) {
+dropdownTitle.addEventListener("touchmove", function (e) {
   let touchObj = {};
   touchObj = e.changedTouches[0];
-  if (!(Math.abs(touchObj.pageX - startDropX) <= 10) ||
-      !(Math.abs(touchObj.pageY - startDropY) <= 10))
+  if (
+    !(Math.abs(touchObj.pageX - startDropX) <= 10) ||
+    !(Math.abs(touchObj.pageY - startDropY) <= 10)
+  )
     dropFlag = true;
 });
 
-dropdownTitle.addEventListener("touchend", function(e) {
+dropdownTitle.addEventListener("touchend", function (e) {
   let touchObj = {};
   let target = {};
   let dropdownItemsContainer = {};
@@ -457,17 +466,19 @@ dropdownTitle.addEventListener("touchend", function(e) {
   e.preventDefault();
   try {
     target = touchObj.target;
-    if (!(Math.abs(touchObj.pageX - startDropX) <= 10) ||
-        !(Math.abs(touchObj.pageY - startDropY) <= 10))
+    if (
+      !(Math.abs(touchObj.pageX - startDropX) <= 10) ||
+      !(Math.abs(touchObj.pageY - startDropY) <= 10)
+    )
       return;
   } catch (e) {
     target = dropdownTitle;
-    if (dropFlag)
-      return;
+    if (dropFlag) return;
   } finally {
     dropdownItemsContainer = target.nextElementSibling;
-    display = window.getComputedStyle(dropdownItemsContainer)
-                  .getPropertyValue("display");
+    display = window
+      .getComputedStyle(dropdownItemsContainer)
+      .getPropertyValue("display");
     classList = target.lastElementChild.classList;
     if (display === "block") {
       dropdownItemsContainer.style.display = "none";

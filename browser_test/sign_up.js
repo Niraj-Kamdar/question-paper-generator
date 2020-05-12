@@ -33,8 +33,10 @@ web.assertText("//form[@id='registerForm']/fieldset/div[3]/label", "Password");
 //   xpath:position: //div[4]/label
 //              css: css=#registerForm > fieldset > div.form-group.mt-3.mb-1 >
 //              label
-web.assertText("//form[@id='registerForm']/fieldset/div[4]/label",
-               "Confirm Password");
+web.assertText(
+  "//form[@id='registerForm']/fieldset/div[4]/label",
+  "Confirm Password"
+);
 web.assertTitle("Set Now");
 //               id: id=username
 //             name: name=username
