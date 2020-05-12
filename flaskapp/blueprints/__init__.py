@@ -1,1 +1,2 @@
+"""blueprints for the application"""
 
