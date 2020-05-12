@@ -1,6 +1,7 @@
 from flask import current_app
 from flask_login import UserMixin
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadSignature
+from itsdangerous import BadSignature
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 from flaskapp import db
 from flaskapp import login_manager
