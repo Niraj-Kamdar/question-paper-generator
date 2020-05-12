@@ -10,21 +10,15 @@
   }
   chapterNo.addEventListener("input", () => {
     clientError[0].innerHTML = "";
-    if (formError.length) formError[0].innerHTML = "";
   });
   name.addEventListener("input", () => {
     clientError[1].innerHTML = "";
-    if (formError.length) formError[1].innerHTML = "";
   });
   resetBtn.addEventListener("click", function () {
     chapterNo.value = "";
     name.value = "";
     clientError[0].innerHTML = "";
     clientError[1].innerHTML = "";
-    if (formError.length) {
-      formError[0].innerHTML = "";
-      formError[1].innerHTML = "";
-    }
   });
   form.addEventListener("submit", function (e) {
     let valid = {};

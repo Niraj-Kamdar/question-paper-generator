@@ -3,10 +3,7 @@
   const userName = document.getElementById("username");
   const email = document.getElementById("email");
   const clientError = document.getElementsByClassName("form_client_error");
-  const formError = document.getElementsByClassName("invalid-feedback");
-  for (let err of formError) {
-    err.innerHTML = "";
-  }
+
   function isValid(user, email) {
     let validation = {
       isValid: true,
@@ -31,20 +28,15 @@
 
   userName.addEventListener("input", () => {
     clientError[0].innerHTML = "";
-    if (formError.length) formError[0].innerHTML = "";
   });
 
   email.addEventListener("input", () => {
     clientError[1].innerHTML = "";
-    if (formError.length) formError[1].innerHTML = "";
   });
 
   accountForm.addEventListener("submit", (e) => {
     const validation = isValid(userName.value, email.value);
     clientError[0].innerHTML = clientError[1].innerHTML = "";
-    for (let err of formError) {
-      err.innerHTML = "";
-    }
 
     if (!validation.isValid) {
       e.preventDefault();

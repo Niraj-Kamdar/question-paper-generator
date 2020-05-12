@@ -3,20 +3,17 @@
   const question = document.getElementById("form_field_question_value");
   const mark = document.getElementById("marks_value");
   const difficulty = document.getElementById("difficulty_value");
+  const congnitiveValue = document.getElementById("cognitive_value");
   const toggleContainer = document.getElementById("toggle_container");
   const submitBtn = document.getElementById("submit_btn");
   const resetBtn = document.getElementById("reset_btn");
   const toggleBtn = document.getElementById("toggle_btn");
   const impCheckbox = document.getElementById("imp_checkbox");
   const form = document.getElementsByTagName("form")[0];
-  const formError = document.querySelectorAll(".form__error li");
-  for (let err of formError) {
-    err.innerHTML = "";
-  }
 
   let tabindex = 1;
 
-  function isValid(question, mark, difficulty) {
+  function isValid(question, mark) {
     let validation = {
       isValid: true,
       errors: [],
@@ -40,21 +37,13 @@
     } else {
       validation.errors.push("");
     }
-    if (Number(difficulty) < 1 || Number(difficulty) > 100) {
-      validation.errors.push("enter difficulty level between 1 and 100");
-      validation.isValid = false;
-    } else if (isNaN(Number(difficulty))) {
-      validation.errors.push("Invalid difficulty level!!");
-      validation.isValid = false;
-    } else {
-      validation.errors.push("");
-    }
     return validation;
   }
 
   question.setAttribute("tabindex", tabindex++);
   mark.setAttribute("tabindex", tabindex++);
   difficulty.setAttribute("tabindex", tabindex++);
+  congnitiveValue.setAttribute("tabindex", tabindex++);
   toggleContainer.setAttribute("tabindex", tabindex++);
   submitBtn.setAttribute("tabindex", tabindex++);
   resetBtn.setAttribute("tabindex", tabindex++);
@@ -82,13 +71,6 @@
   mark.setAttribute("placeholder", "Enter marks here");
   mark.addEventListener("input", () => {
     clientErrors[1].innerHTML = "";
-    if (formError.length) formError[1].innerHTML = "";
-  });
-
-  difficulty.setAttribute("placeholder", "Enter difficulty here");
-  difficulty.addEventListener("input", () => {
-    if (formError.length) formError[2].innerHTML = "";
-    clientErrors[2].innerHTML = "";
   });
 
   question.setAttribute("placeholder", "Enter question here");
@@ -97,7 +79,6 @@
     "height:" + question.scrollHeight + "px;overflow-y:hidden;"
   );
   question.addEventListener("input", (e) => {
-    if (formError.length) formError[0].innerHTML = "";
     clientErrors[0].innerHTML = "";
     e.target.style.height = "";
     e.target.style.height = e.target.scrollHeight + "px";
@@ -110,15 +91,14 @@
   form.addEventListener("submit", (e) => {
     let validation = {};
     for (let i = 0; i < clientErrors.length; i++) {
-      if (formError.length) formError[i].innerHTML = "";
       clientErrors[i].innerHTML = "";
     }
-    validation = isValid(question.value, mark.value, difficulty.value);
+    validation = isValid(question.value, mark.value);
     if (!validation.isValid) {
+      e.preventDefault();
       for (let i = 0; i < validation.errors.length; i++) {
         clientErrors[i].innerHTML = validation.errors[i];
       }
-      e.preventDefault();
     }
   });
 })();

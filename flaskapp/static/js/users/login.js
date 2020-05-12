@@ -4,10 +4,6 @@
   const emailError = document.getElementById("form_email_error");
   const passwordError = document.getElementById("form_password_error");
   const loginForm = document.getElementsByTagName("form")[0];
-  const formError = document.getElementsByClassName("invalid-feedback");
-  for (let err of formError) {
-    err.innerHTML = "";
-  }
 
   function isValid(email, password) {
     const validation = {
@@ -32,21 +28,16 @@
 
   emailField.addEventListener("input", () => {
     emailError.innerHTML = "";
-    if (formError.length) formError[0].innerHTML = "";
   });
 
   passwordField.addEventListener("input", () => {
     passwordError.innerHTML = "";
-    if (formError.length) formError[1].innerHTML = "";
   });
 
   loginForm.addEventListener("submit", (e) => {
     const validation = isValid(emailField.value, passwordField.value);
     emailError.innerHTML = "";
     passwordError.innerHTML = "";
-    for (let err of formError) {
-      err.innerHTML = "";
-    }
     if (!validation.isValid) {
       e.preventDefault();
       emailError.innerText = validation.errors[0];

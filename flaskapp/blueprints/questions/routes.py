@@ -125,8 +125,11 @@ def question(course_id, unit_id, qtype):
                 unit_id=unit_id,
                 qtype=qtype,
                 css_file="css/base.css",
-                css_file2="css/questions/mcq_form.css",
+                css_file2="css/questions/mcqs.css",
                 css_file3="css/questions/sideNav.css",
+                css_file4="css/questions/questions.css",
+                css_file5="css/questions/mcq_form.css",
+                css_file6="css/questions/question_form.css",
                 js_file="js/questions/update_mcq_question.js",
                 js_file2="js/sideNav.js",
                 image_file=profile_path(),
@@ -143,8 +146,9 @@ def question(course_id, unit_id, qtype):
                 unit_id=unit_id,
                 qtype=qtype,
                 css_file="css/base.css",
-                css_file2="css/questions/question_form.css",
+                css_file2="css/questions/questions.css",
                 css_file3="css/questions/sideNav.css",
+                css_file4="css/questions/question_form.css",
                 js_file="js/questions/update_question.js",
                 js_file2="js/sideNav.js",
                 image_file=profile_path(),
@@ -207,6 +211,7 @@ def add_question(course_id, unit_id, qtype):
                 css_file="css/base.css",
                 css_file2="css/questions/mcq_form.css",
                 css_file3="css/questions/sideNav.css",
+                css_file4="css/questions/question_form.css",
                 js_file="js/questions/mcq_question_form.js",
                 js_file2="js/sideNav.js",
                 image_file=profile_path(),
@@ -225,6 +230,7 @@ def add_question(course_id, unit_id, qtype):
             )
             db.session.add(_question)
             db.session.commit()
+            print("         ******                 ")
             flash("New question added successfully!", "success")
             return redirect(
                     url_for(
@@ -233,6 +239,7 @@ def add_question(course_id, unit_id, qtype):
                             course_id=course_id,
                             unit_id=unit_id,
                     ))
+        print("        invalid       ")
         return render_template(
                 "questions/question_form.html",
                 form=form,

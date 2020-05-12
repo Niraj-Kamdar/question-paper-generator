@@ -10,10 +10,6 @@
     "user_confirm_password_error"
   );
   const registerForm = document.getElementById("registerForm");
-  const formError = document.getElementsByClassName("invalid-feedback");
-  for (let err of formError) {
-    err.innerHTML = "";
-  }
 
   function isValid(email, username, password, confirmPassword) {
     const validation = {
@@ -54,22 +50,18 @@
 
   userNameField.addEventListener("input", () => {
     userNameError.innerText = "";
-    if (formError.length) formError[0].innerHTML = "";
   });
 
   emailField.addEventListener("input", () => {
     emailError.innerText = "";
-    if (formError.length) formError[1].innerHTML = "";
   });
 
   passwordField.addEventListener("input", () => {
     passwordError.innerText = "";
-    if (formError.length) formError[2].innerHTML = "";
   });
 
   confirmPasswordField.addEventListener("input", () => {
     confirmPasswordError.innerText = "";
-    if (formError.length) formError[3].innerHTML = "";
   });
 
   registerForm.addEventListener("submit", (e) => {
@@ -80,10 +72,6 @@
     const validation = isValid(email, userName, password, confirmPassword);
     userNameError.innerHTML = emailError.innerHTML = passwordError.innerHTML = confirmPasswordError.innerHTML =
       "";
-
-    for (let err of formError) {
-      err.innerHTML = "";
-    }
     if (!validation.isValid) {
       e.preventDefault();
       [

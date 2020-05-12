@@ -35,7 +35,20 @@
   {% endif %} {% if css_file3 %}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',
       filename=css_file3) }}" />
-  {% endif%} {% block links %} {% endblock links %}
+  {% endif%}
+  {% if css_file4 %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename=css_file4) }}" />
+  {% endif%}
+  {% if css_file5 %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename=css_file5) }}" />
+  {% endif%}
+  {% if css_file6 %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename=css_file6) }}" />
+  {% endif%}
+  {% block links %} {% endblock links %}
 </head>
 
 <body>
