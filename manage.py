@@ -1,5 +1,4 @@
-from flask_migrate import Migrate
-from flask_migrate import MigrateCommand
+from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
 from flaskapp import create_app, db

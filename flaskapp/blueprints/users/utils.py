@@ -1,14 +1,11 @@
 import os
 
-from flask import current_app
-from flask import render_template
-from flask import url_for
+from PIL import Image
+from flask import current_app, render_template, url_for
 from flask_login import current_user
 from flask_mail import Message
-from PIL import Image
 
-from flaskapp import APP_PATH
-from flaskapp import mail
+from flaskapp import APP_PATH, mail
 
 
 def save_picture(form_picture):
