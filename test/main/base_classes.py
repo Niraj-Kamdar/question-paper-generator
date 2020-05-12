@@ -1,7 +1,7 @@
 import unittest
+from test.main.utils import test_post_request
 
 from flaskapp import config, create_app, db, mail, models
-from test.main.utils import test_post_request
 
 
 class BaseDatabase(unittest.TestCase):

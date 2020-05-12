@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template
 from flask_login import current_user, login_required
-
 from flaskapp.utils import profile_path
 
 papers = Blueprint("papers", __name__)

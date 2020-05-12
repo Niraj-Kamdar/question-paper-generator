@@ -1,10 +1,10 @@
 from __future__ import with_statement
 
-from flask import current_app
 import logging
 from logging.config import fileConfig
 
 from alembic import context
+from flask import current_app
 from sqlalchemy import engine_from_config, pool
 
 # this is the Alembic Config object, which provides
