@@ -72,7 +72,6 @@
     const validation = isValid(email, userName, password, confirmPassword);
     userNameError.innerHTML = emailError.innerHTML = passwordError.innerHTML = confirmPasswordError.innerHTML =
       "";
-
     if (!validation.isValid) {
       e.preventDefault();
       [

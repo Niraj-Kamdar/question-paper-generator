@@ -32,7 +32,8 @@
 .first {
   text-align: right;
 }
-.form_client_error {
+.form_client_error,
+.invalid-feedback {
   color: red;
   margin-bottom: 16px;
 }
@@ -49,6 +50,10 @@
   font-size: 20px;
   margin-bottom: 10px;
   padding: 10px;
+}
+
+.invalid-feedback {
+  margin: 0;
 }
 
 label {

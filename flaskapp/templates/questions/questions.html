@@ -1,112 +1,119 @@
 {% extends "sideNav.html" %}
 
 {% block image %}
-    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
 {% endblock image %}
 
 {% block image2 %}
-    <img src="{{ image_file }}" class="user" alt="user" title="profile"/>
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
 {% endblock image2 %}
 
 {% block header %}
-    <h1 class="header">Subjective Questions</h1>
+<h1 class="header">Subjective Questions</h1>
 {% endblock header %}
 
 {% block flashes %}
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+{% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %}
-        <ul class="flashes flashes_question">
-            {% for category, message in messages %}
-                <li class="{{ category }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %} {% endwith %}
+<ul class="flashes flashes_question">
+    {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %} {% endwith %}
 {% endblock flashes %}
 
 {% block main %}
-    <div id="questions">
-        {% block content %}
-            <div class="control_btns">
-                <div id="mark_imp" title="mark imp">
-                    <img src="{{ url_for('static',
-                filename='images/imp.svg') }}" alt="imp" class="control_btns_img"/>
-                </div>
+<div id="questions">
+    {% block content %}
+    <div class="control_btns">
+        <div id="mark_imp" title="mark imp">
+            <img src="{{ url_for('static',
+                filename='images/imp.svg') }}" alt="imp" class="control_btns_img" />
+        </div>
 
-                <div id="delete_btn" title="delete">
-                    <img src="{{ url_for('static',
-                filename='images/bin.png') }}" alt="delete" class="control_btns_img"/>
-                </div>
+        <div id="delete_btn" title="delete">
+            <img src="{{ url_for('static',
+                filename='images/bin.png') }}" alt="delete" class="control_btns_img" />
+        </div>
 
-                <div id="cancel_btn" title="Cancel">
-                    <img src="{{ url_for('static',
-                filename='images/cancel.svg') }}" alt="cancel" class="control_btns_img"/>
+        <div id="cancel_btn" title="Cancel">
+            <img src="{{ url_for('static',
+                filename='images/cancel.svg') }}" alt="cancel" class="control_btns_img" />
+        </div>
+
+    </div>
+    <div>
+
+        {% for q in questions.items %}
+        <div class="question_container">
+            <div class="delete_question">
+                <label><input type="checkbox" class="delete_checkbox" /></label>
+            </div>
+            <div class="question_info">
+                <div class="first_row">
+                    <div class="first_row_column_1" data-id="{{ q.id }}"></div>
+                    <div class="first_row_column_2">
+
+                        {{ q.imp }}</div>
+                    <div class="first_row_column_3">
+                        <label><span class="mark_label"></span><input type="checkbox" name="isimp" value="false"
+                                class="imp_checkbox" /></label>
+                    </div>
+                </div>
+                <div class="second_row">
+                    <div><span class="left">Marks</span>:
+                        <span class="marks">{{ q.mark }}</span></div>
+                </div>
+                <div class="third_row">
+                    <div><span class="left">Difficulty</span>:
+                        <span class="difficulty">{{ q.difficulty }}</span></div>
+                </div>
+                <div class="fourth_row">
+                    <div><span class="left">Cognitive
+                            level</span>: <span class="cognitive"> {{
+                            q.cognitive_level }}</span></div>
+                </div>
+                <div class="fifth_row">
+                    <div class="question_description">
+                        {{ q.question }}
+                    </div>
                 </div>
 
             </div>
-            <div>
-
-            {% for q in questions.items %}
-                <div class="question_container">
-                    <div class="delete_question">
-                        <label><input type="checkbox" class="delete_checkbox"/></label>
-                    </div>
-                    <div class="question_info">
-                        <div class="first_row">
-                            <div class="first_row_column_1" data-id="{{ q.id }}"></div>
-                            <div class="first_row_column_2">
-
-                                {{ q.imp }}</div>
-                            <div class="first_row_column_3">
-                                <label><span class="mark_label"></span><input type="checkbox" name="isimp" value="false"
-                                                                              class="imp_checkbox"/></label>
-                            </div>
-                        </div>
-
-                        <div class="second_row">
-                            <div class="second_row_column_1">
-                                <div class="marks">Marks : {{ q.mark }}</div>
-                                <div class="difficulty">Difficulty : {{ q.difficulty }}</div>
-                            </div>
-                            <div class="second_row_column_2">
-                                <div class="question_description">
-                                    {{ q.question }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="update_question">
-                        <div class="edit_question">
-                            <img src="{{ url_for('static',
-                    filename='images/edit.png') }}" alt="edit" class="update_question_img"/>
-                        </div>
-                    </div>
+            <div class="update_question">
+                <div class="edit_question">
+                    <img src="{{ url_for('static',
+                    filename='images/edit.png') }}" alt="edit" class="update_question_img" />
                 </div>
-
-            {% endfor %} {% endblock %}
-
-
+            </div>
         </div>
+
+        {% endfor %} {% endblock %}
+
+
     </div>
+</div>
 {% endblock %}
 {% block page %}
-    {% if questions %}
-        <div id="pagination">
-            {% for page_num in questions.iter_pages(left_edge=1,
+{% if questions %}
+<div id="pagination">
+    {% for page_num in questions.iter_pages(left_edge=1,
                                                 right_edge=1,
                                                 left_current=1,
                                                 right_current=2) %}
-                {% if page_num %}
-                    {% if questions.page == page_num %}
-                        <a class="btn btn-info mb-4"
-                           href="{{ url_for('questions.question', page=page_num, course_id=course_id, unit_id=unit_id, qtype=qtype) }}">{{ page_num }}</a>
-                    {% else %}
-                        <a class="btn btn-outline-info mb-4"
-                           href="{{ url_for('questions.question', page=page_num, course_id=course_id, unit_id=unit_id, qtype=qtype) }}">{{ page_num }}</a>
-                    {% endif %}
-                {% else %}
-                    ...
-                {% endif %}
-            {% endfor %}
-        </div>
+    {% if page_num %}
+    {% if questions.page == page_num %}
+    <a class="btn btn-info mb-4"
+        href="{{ url_for('questions.question', page=page_num, course_id=course_id, unit_id=unit_id, qtype=qtype) }}">{{ page_num }}</a>
+    {% else %}
+    <a class="btn btn-outline-info mb-4"
+        href="{{ url_for('questions.question', page=page_num, course_id=course_id, unit_id=unit_id, qtype=qtype) }}">{{ page_num }}</a>
     {% endif %}
+    {% else %}
+    ...
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
 {% endblock %}
