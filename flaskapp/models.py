@@ -1,6 +1,6 @@
 from flask import current_app
 from flask_login import UserMixin
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadSignature
 
 from flaskapp import db, login_manager
 from flaskapp.utils import default_instructions, DifficultyEnum, CognitiveEnum
@@ -38,7 +38,7 @@ class User(db.Model, UserMixin):
         s = Serializer(current_app.config["SECRET_KEY"])
         try:
             user_id = s.loads(token)["user_id"]
-        except:
+        except BadSignature:
             return None
         return User.query.get(user_id)
 
