@@ -7,12 +7,12 @@ class SubOperationTestCase(BaseSubQuestion):
     def test_update_question(self):
         # test valid data
         update_question = dict(
-                question="How many prime numbers between 1 to 100?",
-                mark=5,
-                difficulty="easy",
-                cognitive_level="knowledge",
-                imp=True,
-                submit="submit",
+            question="How many prime numbers between 1 to 100?",
+            mark=5,
+            difficulty="easy",
+            cognitive_level="knowledge",
+            imp=True,
+            submit="submit",
         )
         test_post_request(self, "/course/1/unit/1/question/sub/update/2",
                           update_question, models.Question, 2)
@@ -25,7 +25,8 @@ class SubOperationTestCase(BaseSubQuestion):
 
     def test_delete_question(self):
         delete_list = [1, 4]
-        test_get_request(self, "/course/1/unit/1/question/sub/delete/", delete_list)
+        test_get_request(
+            self, "/course/1/unit/1/question/sub/delete/", delete_list)
 
         # check changes are reflected in database
         q1 = self.db.session.query(models.Question).get(1)

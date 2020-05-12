@@ -6,7 +6,8 @@ from test.main.utils import test_get_request, test_post_request
 class MCQOperationTestCase(BaseMCQQuestion):
     def test_delete_mcq(self):
         delete_list = [1, 3, 5]
-        test_get_request(self, "/course/1/unit/1/question/mcq/delete/", delete_list)
+        test_get_request(
+            self, "/course/1/unit/1/question/mcq/delete/", delete_list)
 
         # check changes are reflected in database
         q1 = self.db.session.query(models.MCQQuestion).get(1)
@@ -32,23 +33,23 @@ class MCQOperationTestCase(BaseMCQQuestion):
     def test_update_question(self):
         # test valid data
         update_question = dict(
-                question="moon is ...?",
-                mark=8,
-                difficulty="easy",
-                cognitive_level="application",
-                imp=None,
-                submit="submit",
-                option1="Planet",
-                option2="Satellite",
-                option3="meteor",
-                option4="star",
+            question="moon is ...?",
+            mark=8,
+            difficulty="easy",
+            cognitive_level="application",
+            imp=None,
+            submit="submit",
+            option1="Planet",
+            option2="Satellite",
+            option3="meteor",
+            option4="star",
         )
         test_post_request(
-                self,
-                "/course/1/unit/1/question/mcq/update/2",
-                update_question,
-                models.MCQQuestion,
-                2,
+            self,
+            "/course/1/unit/1/question/mcq/update/2",
+            update_question,
+            models.MCQQuestion,
+            2,
         )
 
         # test invalid data

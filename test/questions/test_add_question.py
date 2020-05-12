@@ -21,36 +21,36 @@ class AddQuestionTestCase(BaseUnit):
 
         # Test invalid data
         new_question = dict(
-                question="Isn't it okay?",
-                mark=None,
-                imp=False,
-                difficulty="easy",
-                cognitive_level="application",
-                submit="submit",
+            question="Isn't it okay?",
+            mark=None,
+            imp=False,
+            difficulty="easy",
+            cognitive_level="application",
+            submit="submit",
         )
 
         self.assertRaises(
-                AttributeError,
-                test_post_request,
-                self,
-                "/course/1/unit/1/question/sub/new/",
-                new_question,
-                models.Question,
-                2,
+            AttributeError,
+            test_post_request,
+            self,
+            "/course/1/unit/1/question/sub/new/",
+            new_question,
+            models.Question,
+            2,
         )
 
     def test_add_mcq_question(self):
         # test valid data
         new_mcq = dict(
-                question="Rate it",
-                mark=8,
-                difficulty="easy",
-                cognitive_level="application",
-                imp=None,
-                option1="10",
-                option2="9",
-                option3="8",
-                option4="7",
+            question="Rate it",
+            mark=8,
+            difficulty="easy",
+            cognitive_level="application",
+            imp=None,
+            option1="10",
+            option2="9",
+            option3="8",
+            option4="7",
         )
         _, mcq = test_post_request(self, "/course/1/unit/1/question/mcq/new/",
                                    new_mcq, models.MCQQuestion, 1)
@@ -59,24 +59,24 @@ class AddQuestionTestCase(BaseUnit):
                          "MCQQuestion(Rate it, 8, DifficultyEnum.Easy, CognitiveEnum.Application, False, 10, 9, 8, 7)")
         # test invalid data
         new_mcq = dict(
-                question=None,
-                mark=8,
-                difficulty="easy",
-                cognitive_level="application",
-                imp=True,
-                submit="submit",
-                option1="A",
-                option2="B",
-                option3="C",
-                option4="D",
+            question=None,
+            mark=8,
+            difficulty="easy",
+            cognitive_level="application",
+            imp=True,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
         )
 
         self.assertRaises(
-                AttributeError,
-                test_post_request,
-                self,
-                "/course/1/unit/1/question/mcq/new/",
-                new_mcq,
-                models.MCQQuestion,
-                2,
+            AttributeError,
+            test_post_request,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_mcq,
+            models.MCQQuestion,
+            2,
         )
