@@ -4,7 +4,8 @@ from flask import abort
 from flask_login import current_user
 
 from flaskapp import db
-from flaskapp.models import Course, Unit
+from flaskapp.models import Course
+from flaskapp.models import Unit
 
 
 def check_valid_course(func):
@@ -42,7 +43,7 @@ def check_valid_question_type(func):
 
 def update_imp(question, obj):
     db.session.query(question).filter(question.id.in_(obj["imp"])).update(
-            dict(imp=True), synchronize_session="fetch")
+        dict(imp=True), synchronize_session="fetch")
     db.session.query(question).filter(question.id.in_(obj["notimp"])).update(
-            dict(imp=False), synchronize_session="fetch")
+        dict(imp=False), synchronize_session="fetch")
     db.session.commit()

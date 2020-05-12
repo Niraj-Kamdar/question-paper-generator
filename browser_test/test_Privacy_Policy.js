@@ -21,8 +21,8 @@ web.click("id=policy_content");
 //   xpath:position: //p[3]
 //              css: css=#policy_content > p:nth-child(3)
 web.assertText(
-    "//div[@id='policy_content']/p[3]",
-    `We only retain collected information for as long as necessary to provide you with your requested service.
+  "//div[@id='policy_content']/p[3]",
+  `We only retain collected information for as long as necessary to provide you with your requested service.
  What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as
  well as unauthorized access, disclosure, copying, use or modification.`
 );
