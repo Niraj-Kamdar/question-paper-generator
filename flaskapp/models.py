@@ -1,12 +1,9 @@
 from flask import current_app
 from flask_login import UserMixin
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadSignature
-
-from flaskapp import db
-from flaskapp import login_manager
-from flaskapp.utils import CognitiveEnum
-from flaskapp.utils import default_instructions
-from flaskapp.utils import DifficultyEnum
+from flaskapp import db, login_manager
+from flaskapp.utils import CognitiveEnum, DifficultyEnum, default_instructions
+from itsdangerous import BadSignature
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 
 @login_manager.user_loader
