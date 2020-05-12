@@ -32,16 +32,19 @@ messages %}
     <div class="control_btns">
         <div id="mark_imp" title="update imp">
             <img src="{{ url_for('static',
-                filename='images/imp.svg') }}" alt="imp" class="control_btns_img" />
+                filename='images/imp.svg') }}" alt="imp"
+                class="control_btns_img" />
         </div>
 
         <div id="delete_btn" title="delete">
             <img src="{{ url_for('static',
-                filename='images/bin.png') }}" alt="delete" class="control_btns_img" />
+                filename='images/bin.png') }}" alt="delete"
+                class="control_btns_img" />
         </div>
         <div id="cancel_btn" title="Cancel">
             <img src="{{ url_for('static',
-                filename='images/cancel.svg') }}" alt="cancel" class="control_btns_img" />
+                filename='images/cancel.svg') }}" alt="cancel"
+                class="control_btns_img" />
         </div>
     </div>
     <div>
@@ -57,34 +60,46 @@ messages %}
 
                         {{ q.imp }}</div>
                     <div class="first_row_column_3">
-                        <label><span class="mark_label"></span><input type="checkbox" name="isimp" value="false"
+                        <label><span class="mark_label"></span><input
+                                type="checkbox" name="isimp" value="false"
                                 class="imp_checkbox" /></label>
                     </div>
                 </div>
+
                 <div class="second_row">
-                    <div class="second_row_column_1">
-                        <div class="marks">Marks : {{ q.mark }}</div>
-                        <div class="difficulty">Difficulty : {{ q.difficulty }}</div>
-                    </div>
-                    <div class="second_row_column_2">
-                        <div class="question_description">
-                            {{ q.question }}
-                            <div class="options_container">
-
-                                <div class="options_final_value">{{ q.option1 }}</div>
-                                <div class="options_final_value">{{ q.option2 }}</div>
-                                <div class="options_final_value">{{ q.option3 }}</div>
-                                <div class="options_final_value">{{ q.option4 }}</div>
-                            </div>
-                        </div>
-
+                    <div><span class="left">Marks</span>:
+                        <span class="marks">{{ q.mark }}</span></div>
+                </div>
+                <div class="third_row">
+                    <div><span class="left">Difficulty</span>:
+                        <span class="difficulty">{{ q.difficulty }}</span></div>
+                </div>
+                <div class="fourth_row">
+                    <div><span class="left">Cognitive
+                            level</span>: <span class="cognitive"> {{
+                            q.cognitive_level }}</span></div>
+                </div>
+                <div class="fifth_row">
+                    <div class="question_description">
+                        {{ q.question }}
                     </div>
                 </div>
+
+
+                <div class="options_container">
+
+                    <div class="options_final_value">{{ q.option1 }}</div>
+                    <div class="options_final_value">{{ q.option2 }}</div>
+                    <div class="options_final_value">{{ q.option3 }}</div>
+                    <div class="options_final_value">{{ q.option4 }}</div>
+                </div>
+
             </div>
             <div class="update_question">
                 <div class="edit_question">
                     <img src="{{ url_for('static',
-                        filename='images/edit.png') }}" alt="edit" class="update_question_img" />
+                        filename='images/edit.png') }}" alt="edit"
+                        class="update_question_img" />
                 </div>
 
             </div>
@@ -112,14 +127,16 @@ messages %}
     {% if questions.page == page_num %}
     <a class="btn btn-info mb-4" href="{{ url_for('questions.question',
         page=page_num,
-        course_id=course_id,
+        course_id=course_id, unit_id=unit_id,
         qtype=qtype) }}">{{ page_num }}</a>
     {% else %}
     <a class="btn btn-outline-info mb-4" href="{{ url_for('questions.question',
         page=page_num,
-        course_id=course_id,
+        course_id=course_id, unit_id=unit_id,
+
         qtype=qtype) }}">{{ page_num }}</a>
     {% endif %}
+
     {% else %}
     ...
     {% endif %}

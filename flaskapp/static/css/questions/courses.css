@@ -1,4 +1,5 @@
-#add_course {
+#add_course,
+#add_unit {
   background-color: rgba(144, 0, 240, 0.76);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   color: white;
@@ -14,26 +15,35 @@
   width: 240px;
 }
 
-#add_course:hover {
+#add_course:hover,
+#add_unit:hover {
   box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
-#add_course_container {
+#add_course_container,
+#add_unit_container {
   margin-left: auto;
 }
-#course_container {
+
+#add_img {
+  margin-right: 15px;
+}
+#course_container,
+#unit_container {
   display: flex;
 }
 
-.course_items {
+.course_items,
+.unit_items {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   font-size: 20px;
 }
 
-.course_item {
+.course_item,
+.unit_item {
   background-color: rgba(144, 0, 240, 0.15);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   color: rgba(88, 88, 88, 1) !important;
@@ -44,7 +54,8 @@
   width: 200px;
 }
 
-.course_item:hover {
+.course_item:hover,
+.unit_item:hover {
   box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -76,11 +87,13 @@
     padding-right: 0 !important;
   }
 
-  .course_items {
+  .course_items,
+  .unit_items {
     justify-content: center;
   }
 
-  .course_items + div {
+  .course_items + div,
+  .unit_items + div {
     display: none;
   }
 

@@ -13,10 +13,7 @@
     .nextElementSibling;
   const viewSubjectiveQuestion = viewMCQ.nextElementSibling;
   const nav_links = document.getElementsByClassName("nav_link");
-  const courseContainer = document.getElementById("course_container");
-  const rNavCourseName = []; // left side nav
-  const children = courseContainer.children;
-  const navCourseName = document.getElementsByClassName("course_link"); // right side links
+
   function assignStaticLink(
     addMCQ,
     addSubjectiveQuestion,
@@ -60,33 +57,6 @@
     );
   }
 
-  function assignDynamicLink(courseName, url, flag) {
-    const courseIndex = url.indexOf("course");
-    const laterUrl = url.substr(courseIndex);
-    const cid = /(\d+)/.exec(laterUrl)[1];
-    const subIndex = url.indexOf("sub");
-    const newIndex = url.indexOf("new");
-
-    for (let i = 0; i < courseName.length - 1; i++) {
-      let completeUrl = "";
-      const courseId = courseName[i].getAttribute("data-id");
-      if (cid === courseId) courseName[i].classList.add("active");
-      if (subIndex !== -1 && newIndex !== -1)
-        completeUrl = "/course/" + courseId + "/question/sub/new/";
-      else if (subIndex !== -1 && newIndex === -1)
-        completeUrl = "/course/" + courseId + "/question/sub/";
-      else if (subIndex === -1 && newIndex !== -1)
-        completeUrl = "/course/" + courseId + "/question/mcq/new/";
-      else completeUrl = "/course/" + courseId + "/question/mcq/";
-      courseName[i].setAttribute("href", completeUrl);
-      if (!flag) {
-        courseName[i].addEventListener("click", (e) => {
-          if (cid === courseId) e.preventDefault();
-        });
-      }
-    }
-  }
-
   if (index2 !== -1) option = "Subjective Question";
   else option = "Multiple Choice Question";
 
@@ -121,11 +91,4 @@
     window.location.href,
     false
   );
-
-  for (let i = 1; i < children.length; i++) {
-    rNavCourseName.push(children[i]);
-  }
-  assignDynamicLink(rNavCourseName, window.location.href, true);
-
-  assignDynamicLink(navCourseName, window.location.href, false);
 })();

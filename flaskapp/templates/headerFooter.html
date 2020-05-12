@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1,
       shrink-to-fit=no" />
-  <link rel="shortcut icon" href="{{ url_for("static", filename="images/favicon.ico") }}" type="image/x-icon">
+  <link rel="shortcut icon" href='{{ url_for("static" ,filename="images/favicon.ico" ) }}' type="image/x-icon">
   <script src="https://browser.sentry-cdn.com/5.15.4/bundle.min.js"
     integrity="sha384-Nrg+xiw+qRl3grVrxJtWazjeZmUwoSt0FAVsbthlJ5OMpx0G08bqIq3b/v0hPjhB" crossorigin="anonymous">
   </script>
@@ -35,7 +35,20 @@
   {% endif %} {% if css_file3 %}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',
       filename=css_file3) }}" />
-  {% endif%} {% block links %} {% endblock links %}
+  {% endif%}
+  {% if css_file4 %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename=css_file4) }}" />
+  {% endif%}
+  {% if css_file5 %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename=css_file5) }}" />
+  {% endif%}
+  {% if css_file6 %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename=css_file6) }}" />
+  {% endif%}
+  {% block links %} {% endblock links %}
 </head>
 
 <body>
@@ -128,7 +141,7 @@
                 Current Courses <i class="fa fa-caret-down"></i>
               </div>
               {%for course in courses %}
-              <a href="#" class="side_navigation_items" data-id="{{course.id}}">{{course.name}}</a>
+              <a href="/course/{{course.id}}/unit" class="side_navigation_items">{{course.name}}</a>
               {%endfor %}
               <a href="/course" class="side_navigation_items">More...</a>
             </div>
@@ -137,7 +150,8 @@
               <div class="side_navigation_items">
                 Explore <i class="fa fa-caret-down"></i>
               </div>
-              <a href="#" class="side_navigation_items">Multiple Choice Question</a>
+              <a href="#" class="side_navigation_items">Multiple Choice
+                Question</a>
               <a href="#" class="side_navigation_items">Subjective Question</a>
             </div>
 
@@ -145,11 +159,13 @@
               <div class="side_navigation_items">
                 Add <i class="fa fa-caret-down"></i>
               </div>
-              <a href="#" class="side_navigation_items">Multiple Choice Question</a>
+              <a href="#" class="side_navigation_items">Multiple Choice
+                Question</a>
               <a href="#" class="side_navigation_items">Subjective Question</a>
             </div>
 
-            <a href="/course/new" class="side_navigation_items hide">Add Course</a>
+            <a href="/course/new" class="side_navigation_items hide">Add
+              Course</a>
             <a href="#" class="side_navigation_items hide bb">Remove Course</a>
             <a href="/" class="side_navigation_items">Home</a>
 
@@ -168,7 +184,8 @@
             </a>
 
             <div class="dropdown_container_2 bb bt">
-              <span class="side_navigation_items">More <i class="fa fa-caret-down"></i></span>
+              <span class="side_navigation_items">More <i class="fa
+                    fa-caret-down"></i></span>
 
               <a href="/about-us" class="side_navigation_items">
                 About Us
@@ -199,7 +216,8 @@
           <div class="row" id="social_links">
             <div class="col py-3 text-center" id="footercontent">
               <div class="footer_items">
-                <span class="mr-3 span_color" id="copyright">© 2020 Copyright :
+                <span class="mr-3 span_color" id="copyright">© 2020 Copyright
+                  :
                   <a href="/" class="fl">setnow.herokuapp.com</a>
                 </span>
               </div>
@@ -215,7 +233,8 @@
 
               <div class="footer_items">
                 <span class="span_color">
-                  <a href="/privacy-policy" class="fl" id="policy_page_link">Privacy Policy</a>
+                  <a href="/privacy-policy" class="fl" id="policy_page_link">Privacy
+                    Policy</a>
                 </span>
 
                 <span class="span_color">
