@@ -31,8 +31,7 @@ web.assertText(
     `Need Some Help? Below is some frequently asked questions which may help you. We're dedicated to giving
  you the
  very best of our service. If you have any other questions or comments, please don't hesitate to contact
- us.`
-);
+ us.`);
 web.assertTitle("Help");
 // xpath:idRelative: //div[@id=\'headingTwo\']/h5/button
 //   xpath:position: //div[2]/div[1]/h5/button
@@ -65,8 +64,7 @@ web.assertText(
     "//div[@id='collapseOne']/div",
     `Yes, you have to login to our system to use services provided by us. You can login/signup by
  email address
- and set password for your account.`
-);
+ and set password for your account.`);
 // xpath:idRelative: //div[@id=\'headingOne\']/h5
 //   xpath:position: //div[1]/div[1]/h5
 //              css: css=#headingOne > h5

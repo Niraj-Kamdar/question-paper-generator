@@ -38,8 +38,7 @@ web.assertText(
     "//div[@id='services_content']/p[4]",
     `The above copyright notice and this permission notice shall be included in all copies or substantial
  portions
- of the Software.`
-);
+ of the Software.`);
 //   xpath:position: //body/div
 //              css: css=body > div
 web.click("//body/div");
@@ -61,8 +60,7 @@ web.waitForText(
  or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on
  implied warranties, or limitations of liability for consequential or incidental damages, these
  limitations
- may not apply to you.`
-);
+ may not apply to you.`);
 //               id: id=services_content
 // xpath:attributes: //div[@id=\'services_content\']
 // xpath:idRelative: //div[@id=\'wrapper\']/div
@@ -76,8 +74,7 @@ web.assertText(
     "//div[@id='services_content']/p[9]",
     `SetNow may revise these terms of service for its website at any time without notice. By using this
  website
- you are agreeing to be bound by the then current version of these terms of service.`
-);
+ you are agreeing to be bound by the then current version of these terms of service.`);
 //   xpath:position: //body/div
 //              css: css=body > div
 web.click("//body/div");
