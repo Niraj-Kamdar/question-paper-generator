@@ -1,6 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import BooleanField, SelectField, IntegerField, StringField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, Length, NumberRange
+from wtforms import BooleanField
+from wtforms import IntegerField
+from wtforms import SelectField
+from wtforms import StringField
+from wtforms import SubmitField
+from wtforms import TextAreaField
+from wtforms.validators import DataRequired
+from wtforms.validators import Length
+from wtforms.validators import NumberRange
 
 
 class CourseForm(FlaskForm):
@@ -10,11 +17,11 @@ class CourseForm(FlaskForm):
 
 class UnitForm(FlaskForm):
     chapter_no = IntegerField(
-            "Chapter No.",
-            validators=[
-                DataRequired(),
-                NumberRange(1, 101, "Units can't be more than 100"),
-            ],
+        "Chapter No.",
+        validators=[
+            DataRequired(),
+            NumberRange(1, 101, "Units can't be more than 100"),
+        ],
     )
     name = StringField("Name", validators=[DataRequired()])
     submit = SubmitField("submit")
@@ -25,23 +32,23 @@ class QuestionForm(FlaskForm):
                              validators=[DataRequired(),
                                          Length(min=2)])
     mark = IntegerField(
-            "Mark",
-            validators=[
-                DataRequired(),
-                NumberRange(1, 101, "Not in a valid mark range")
-            ],
+        "Mark",
+        validators=[
+            DataRequired(),
+            NumberRange(1, 101, "Not in a valid mark range")
+        ],
     )
     difficulty = SelectField(
-            "Difficulty Level",
-            choices=[("easy", "Easy"),
-                     ("medium", "Medium"),
-                     ("hard", "Hard")]
+        "Difficulty Level",
+        choices=[("easy", "Easy"), ("medium", "Medium"), ("hard", "Hard")],
     )
     cognitive_level = SelectField(
-            "Cognitive Level",
-            choices=[("application", "Application"),
-                     ("comprehension", "Comprehension"),
-                     ("knowledge", "Knowledge")]
+        "Cognitive Level",
+        choices=[
+            ("application", "Application"),
+            ("comprehension", "Comprehension"),
+            ("knowledge", "Knowledge"),
+        ],
     )
     imp = BooleanField("Mark As IMP")
     submit = SubmitField("submit")

@@ -91,8 +91,8 @@ web.click("//div[@id='main_container']/div/div/div[1]/h3");
 //   xpath:position: //h3
 //              css: css=#main_container > div > div > div.row.mb-2 > h3
 web.assertText(
-    "//div[@id='main_container']/div/div/div[1]/h3",
-    "Add Multiple Choice Question"
+  "//div[@id='main_container']/div/div/div[1]/h3",
+  "Add Multiple Choice Question"
 );
 // xpath:idRelative: //div[@id=\'main_container\']/div
 //   xpath:position: //body/div/div/div
@@ -289,8 +289,8 @@ web.click("//div[@id='main_container']/div/div/div[1]");
 //   xpath:position: //h1
 //              css: css=#main_container > div > div > div.row.mb-2 > h1
 web.assertText(
-    "//div[@id='main_container']/div/div/div[1]/h1",
-    "Multiple Choice Question"
+  "//div[@id='main_container']/div/div/div[1]/h1",
+  "Multiple Choice Question"
 );
 //               id: id=template_display
 // xpath:attributes: //div[@id=\'template_display\']
