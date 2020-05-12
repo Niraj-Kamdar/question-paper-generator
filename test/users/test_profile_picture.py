@@ -23,5 +23,6 @@ class UserAccountTestCase(BaseUser):
         with self.client.get("/static/profile_pics/1.png") as response:
             self.assertGreater(len(response.data), 1)
 
-        remove_profile = os.path.join(APP_PATH, "static", "profile_pics", "1.png")
+        remove_profile = os.path.join(APP_PATH, "static", "profile_pics",
+                                      "1.png")
         os.remove(remove_profile)

@@ -28,10 +28,15 @@ class UnitForm(FlaskForm):
 
 
 class QuestionForm(FlaskForm):
-    question = TextAreaField("Question", validators=[DataRequired(), Length(min=2)])
+    question = TextAreaField("Question",
+                             validators=[DataRequired(),
+                                         Length(min=2)])
     mark = IntegerField(
         "Mark",
-        validators=[DataRequired(), NumberRange(1, 101, "Not in a valid mark range")],
+        validators=[
+            DataRequired(),
+            NumberRange(1, 101, "Not in a valid mark range")
+        ],
     )
     difficulty = SelectField(
         "Difficulty Level",
