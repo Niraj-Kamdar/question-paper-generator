@@ -10,9 +10,9 @@ from test.main.utils import test_post_request
 class UserAccountTestCase(BaseUser):
     def test_update_account(self):
         self.login()
-        update_user = dict(username="nr.nutron",
-                           email="nutron@gmail.com",
-                           submit="submit")
+        update_user = dict(
+            username="nr.nutron", email="nutron@gmail.com", submit="submit"
+        )
         test_post_request(self, "/account", update_user, models.User, 1)
 
     def test_conflicting_username(self):
@@ -28,9 +28,9 @@ class UserAccountTestCase(BaseUser):
 
         self.login()
         # test changing current_user's username with already registered user's username
-        current_user = dict(username="nr.nutron",
-                            email="proton@gmail.com",
-                            submit="submit")
+        current_user = dict(
+            username="nr.nutron", email="proton@gmail.com", submit="submit"
+        )
         self.assertRaises(
             AssertionError,
             test_post_request,
@@ -59,10 +59,12 @@ class UserAccountTestCase(BaseUser):
             self.assertIsNotNone(link)
             token = link.group(1)
 
-            new_password = dict(password="VeryDumb@123",
-                                confirm_password="VeryDumb@123")
-            response, _ = test_post_request(self, "/reset_password/" + token,
-                                            new_password)
+            new_password = dict(
+                password="VeryDumb@123", confirm_password="VeryDumb@123"
+            )
+            response, _ = test_post_request(
+                self, "/reset_password/" + token, new_password
+            )
             self.assertIn(
                 b"Your password has been updated! You are now able to log in",
                 response.data,
@@ -83,8 +85,7 @@ class UserAccountTestCase(BaseUser):
             self.logout()
 
         # test invalid token
-        response, _ = test_post_request(self, "/reset_password/fakeToken",
-                                        new_password)
+        response, _ = test_post_request(self, "/reset_password/fakeToken", new_password)
         self.assertIn(b"<title>SetNow : Reset Password</title>", response.data)
         # FIXME: add flash in frontend: enable this test once fixed
         # self.assertIn(b"That is an invalid or expired token", response.data)
