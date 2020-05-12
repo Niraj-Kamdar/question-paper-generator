@@ -1,2 +1,1 @@
 """questions blueprint"""
-

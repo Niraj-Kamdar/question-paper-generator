@@ -1,2 +1,1 @@
 """papers blueprint"""
-
