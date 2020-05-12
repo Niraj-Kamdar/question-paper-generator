@@ -1,5 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import BooleanField, SelectField, IntegerField, StringField, SubmitField, TextAreaField
+from wtforms import (
+    BooleanField,
+    SelectField,
+    IntegerField,
+    StringField,
+    SubmitField,
+    TextAreaField,
+)
 from wtforms.validators import DataRequired, Length, NumberRange
 
 
@@ -21,27 +28,22 @@ class UnitForm(FlaskForm):
 
 
 class QuestionForm(FlaskForm):
-    question = TextAreaField("Question",
-                             validators=[DataRequired(),
-                                         Length(min=2)])
+    question = TextAreaField("Question", validators=[DataRequired(), Length(min=2)])
     mark = IntegerField(
         "Mark",
-        validators=[
-            DataRequired(),
-            NumberRange(1, 101, "Not in a valid mark range")
-        ],
+        validators=[DataRequired(), NumberRange(1, 101, "Not in a valid mark range")],
     )
     difficulty = SelectField(
         "Difficulty Level",
-        choices=[("easy", "Easy"),
-                 ("medium", "Medium"),
-                 ("hard", "Hard")]
+        choices=[("easy", "Easy"), ("medium", "Medium"), ("hard", "Hard")],
     )
     cognitive_level = SelectField(
         "Cognitive Level",
-        choices=[("application", "Application"),
-                 ("comprehension", "Comprehension"),
-                 ("knowledge", "Knowledge")]
+        choices=[
+            ("application", "Application"),
+            ("comprehension", "Comprehension"),
+            ("knowledge", "Knowledge"),
+        ],
     )
     imp = BooleanField("Mark As IMP")
     submit = SubmitField("submit")

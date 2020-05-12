@@ -14,19 +14,23 @@ class SubOperationTestCase(BaseSubQuestion):
             imp=True,
             submit="submit",
         )
-        test_post_request(self, "/course/1/unit/1/question/sub/update/2",
-                          update_question, models.Question, 2)
+        test_post_request(
+            self,
+            "/course/1/unit/1/question/sub/update/2",
+            update_question,
+            models.Question,
+            2,
+        )
 
         # test invalid data
-        response, _ = test_post_request(self,
-                                        "/course/1/unit/1/question/sub/update/12",
-                                        update_question)
+        response, _ = test_post_request(
+            self, "/course/1/unit/1/question/sub/update/12", update_question
+        )
         self.assertIn(b"Question:12 Does not exist", response.data)
 
     def test_delete_question(self):
         delete_list = [1, 4]
-        test_get_request(
-            self, "/course/1/unit/1/question/sub/delete/", delete_list)
+        test_get_request(self, "/course/1/unit/1/question/sub/delete/", delete_list)
 
         # check changes are reflected in database
         q1 = self.db.session.query(models.Question).get(1)

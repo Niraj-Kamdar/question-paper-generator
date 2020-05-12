@@ -2,7 +2,10 @@ from flask import Blueprint, flash, redirect, render_template, url_for
 from flask_login import current_user
 
 from flaskapp.blueprints.main.forms import ContactUs
-from flaskapp.blueprints.main.utils import send_contact_us_email, send_contact_us_receipt_email
+from flaskapp.blueprints.main.utils import (
+    send_contact_us_email,
+    send_contact_us_receipt_email,
+)
 
 main = Blueprint("main", __name__)
 
@@ -95,8 +98,8 @@ def contact_us():
         send_contact_us_email(**data)
         send_contact_us_receipt_email(**data)
         flash(
-            "Your Message has recorded successfully! We will reach out soon.",
-            "success")
+            "Your Message has recorded successfully! We will reach out soon.", "success"
+        )
         return redirect(url_for("main.contact_us"))
     return render_template(
         "main/contact-us/contact_us_form.html",
