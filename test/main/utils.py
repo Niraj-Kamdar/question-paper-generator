@@ -1,8 +1,5 @@
 from flask import json
 
-from flaskapp.utils import CognitiveLevel
-from flaskapp.utils import DifficultyLevel
-
 
 def compare_dict(self, dict1, dict2):
     """Compare to objects
