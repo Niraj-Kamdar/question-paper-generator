@@ -36,18 +36,18 @@ class DifficultyEnum(Enum):
 
 def DifficultyLevel(value):
     translate = {
-        "easy": DifficultyEnum.Easy,
-        "medium": DifficultyEnum.Medium,
-        "hard": DifficultyEnum.Hard,
+        "Easy": DifficultyEnum.Easy,
+        "Medium": DifficultyEnum.Medium,
+        "Hard": DifficultyEnum.Hard,
     }
     return translate[value]
 
 
 def CognitiveLevel(value):
     translate = {
-        "application": CognitiveEnum.Application,
-        "comprehension": CognitiveEnum.Comprehension,
-        "knowledge": CognitiveEnum.Knowledge,
+        "Application": CognitiveEnum.Application,
+        "Comprehension": CognitiveEnum.Comprehension,
+        "Knowledge": CognitiveEnum.Knowledge,
     }
     return translate[value]
 

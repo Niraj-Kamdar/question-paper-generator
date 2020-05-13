@@ -9,8 +9,8 @@ class AddQuestionTestCase(BaseUnit):
         new_question = dict(
             question="Is it okay?",
             mark=8,
-            difficulty="easy",
-            cognitive_level="application",
+            difficulty="Easy",
+            cognitive_level="Application",
             imp=True,
             submit="submit",
         )
@@ -29,8 +29,8 @@ class AddQuestionTestCase(BaseUnit):
             question="Isn't it okay?",
             mark=None,
             imp=False,
-            difficulty="easy",
-            cognitive_level="application",
+            difficulty="Easy",
+            cognitive_level="Application",
             submit="submit",
         )
 
@@ -49,8 +49,8 @@ class AddQuestionTestCase(BaseUnit):
         new_mcq = dict(
             question="Rate it",
             mark=8,
-            difficulty="easy",
-            cognitive_level="application",
+            difficulty="Easy",
+            cognitive_level="Application",
             imp=None,
             option1="10",
             option2="9",
@@ -68,8 +68,8 @@ class AddQuestionTestCase(BaseUnit):
         new_mcq = dict(
             question=None,
             mark=8,
-            difficulty="easy",
-            cognitive_level="application",
+            difficulty="Easy",
+            cognitive_level="Application",
             imp=True,
             submit="submit",
             option1="A",

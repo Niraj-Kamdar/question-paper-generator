@@ -36,8 +36,8 @@ class MCQOperationTestCase(BaseMCQQuestion):
         update_question = dict(
             question="moon is ...?",
             mark=8,
-            difficulty="easy",
-            cognitive_level="application",
+            difficulty="Easy",
+            cognitive_level="Application",
             imp=None,
             submit="submit",
             option1="Planet",

@@ -40,14 +40,14 @@ class QuestionForm(FlaskForm):
     )
     difficulty = SelectField(
         "Difficulty Level",
-        choices=[("easy", "Easy"), ("medium", "Medium"), ("hard", "Hard")],
+        choices=[("Easy", "Easy"), ("Medium", "Medium"), ("Hard", "Hard")],
     )
     cognitive_level = SelectField(
         "Cognitive Level",
         choices=[
-            ("application", "Application"),
-            ("comprehension", "Comprehension"),
-            ("knowledge", "Knowledge"),
+            ("Application", "Application"),
+            ("Comprehension", "Comprehension"),
+            ("Knowledge", "Knowledge"),
         ],
     )
     imp = BooleanField("Mark As IMP")

@@ -85,8 +85,8 @@ class BaseSubQuestion(BaseUnit):
         new_question = dict(
             question="Is it okay?",
             mark=8,
-            difficulty="easy",
-            cognitive_level="comprehension",
+            difficulty="Easy",
+            cognitive_level="Comprehension",
             imp=None,
             submit="submit",
         )
@@ -96,8 +96,8 @@ class BaseSubQuestion(BaseUnit):
         new_question = dict(
             question="Is it question?",
             mark=7,
-            difficulty="hard",
-            cognitive_level="application",
+            difficulty="Hard",
+            cognitive_level="Application",
             imp=True,
             submit="submit",
         )
@@ -107,8 +107,8 @@ class BaseSubQuestion(BaseUnit):
         new_question = dict(
             question="What is it?",
             mark=2,
-            difficulty="medium",
-            cognitive_level="knowledge",
+            difficulty="Medium",
+            cognitive_level="Knowledge",
             imp=None,
             submit="submit",
         )
@@ -118,8 +118,8 @@ class BaseSubQuestion(BaseUnit):
         new_question = dict(
             question="What was that?",
             mark=6,
-            difficulty="medium",
-            cognitive_level="application",
+            difficulty="Medium",
+            cognitive_level="Application",
             imp=None,
             submit="submit",
         )
@@ -129,8 +129,8 @@ class BaseSubQuestion(BaseUnit):
         new_question = dict(
             question="How are you?",
             mark=2,
-            difficulty="easy",
-            cognitive_level="knowledge",
+            difficulty="Easy",
+            cognitive_level="Knowledge",
             imp=True,
             submit="submit",
         )
@@ -145,8 +145,8 @@ class BaseMCQQuestion(BaseUnit):
         new_question = dict(
             question="Is it okay?",
             mark=8,
-            difficulty="easy",
-            cognitive_level="knowledge",
+            difficulty="Easy",
+            cognitive_level="Knowledge",
             imp=None,
             submit="submit",
             option1="A",
@@ -165,8 +165,8 @@ class BaseMCQQuestion(BaseUnit):
         new_question = dict(
             question="Is it question?",
             mark=7,
-            difficulty="medium",
-            cognitive_level="application",
+            difficulty="Medium",
+            cognitive_level="Application",
             imp=True,
             submit="submit",
             option1="A",
@@ -185,8 +185,8 @@ class BaseMCQQuestion(BaseUnit):
         new_question = dict(
             question="What is it?",
             mark=2,
-            difficulty="hard",
-            cognitive_level="application",
+            difficulty="Hard",
+            cognitive_level="Application",
             imp=None,
             submit="submit",
             option1="A",
@@ -205,8 +205,8 @@ class BaseMCQQuestion(BaseUnit):
         new_question = dict(
             question="What was that?",
             mark=6,
-            difficulty="easy",
-            cognitive_level="knowledge",
+            difficulty="Easy",
+            cognitive_level="Knowledge",
             imp=None,
             submit="submit",
             option1="A",
@@ -225,8 +225,8 @@ class BaseMCQQuestion(BaseUnit):
         new_question = dict(
             question="How are you?",
             mark=2,
-            difficulty="easy",
-            cognitive_level="knowledge",
+            difficulty="Easy",
+            cognitive_level="Knowledge",
             imp=True,
             submit="submit",
             option1="A",

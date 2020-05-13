@@ -10,8 +10,8 @@ class SubOperationTestCase(BaseSubQuestion):
         update_question = dict(
             question="How many prime numbers between 1 to 100?",
             mark=5,
-            difficulty="easy",
-            cognitive_level="knowledge",
+            difficulty="Easy",
+            cognitive_level="Knowledge",
             imp=True,
             submit="submit",
         )

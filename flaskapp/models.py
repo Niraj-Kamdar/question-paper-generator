@@ -121,8 +121,8 @@ class Question(db.Model):
             id=self.id,
             question=self.question,
             mark=self.mark,
-            difficulty=self.difficulty,
-            cognitive_level=self.cognitive_level,
+            difficulty=self.difficulty.name,
+            cognitive_level=self.cognitive_level.name,
             imp=self.imp,
         )
 
@@ -154,8 +154,8 @@ class MCQQuestion(db.Model):
             id=self.id,
             question=self.question,
             mark=self.mark,
-            difficulty=self.difficulty,
-            cognitive_level=self.cognitive_level,
+            difficulty=self.difficulty.name,
+            cognitive_level=self.cognitive_level.name,
             imp=self.imp,
             option1=self.option1,
             option2=self.option2,
