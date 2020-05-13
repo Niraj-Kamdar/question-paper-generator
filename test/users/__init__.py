@@ -1,2 +1,1 @@
 """users test suite"""
-
