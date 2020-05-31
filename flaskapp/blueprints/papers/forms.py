@@ -91,10 +91,10 @@ class MarkDistributionForm:
     def translate(self, constraint, field):
         if constraint == "cognitive":
             return CognitiveEnum.__members__[field].value
-        elif constraint == "difficulty":
+        if constraint == "difficulty":
             return DifficultyEnum.__members__[field].value
-        elif constraint == "units":
+        if constraint == "units":
             return int(self.unit_field_regex.search(field).group(1))
-        else:
+        if constraint == "questions":
             matched = self.question_field_regex.search(field)
             return int(matched.group(1)) + ord(matched.group(2)) - ord("@")
