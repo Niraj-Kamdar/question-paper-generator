@@ -10,7 +10,7 @@ from flaskapp.models import Course, Unit
 from flaskapp.utils import CognitiveEnum, DifficultyEnum
 
 
-class IsSumOf(object):
+class IsSumOf:
     """
     Compares if the sum of values of fields are equal to current field.
 

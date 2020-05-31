@@ -26,7 +26,7 @@ def home():
     )
 
 
-@papers.route("course/<course_id>/papers/generate/request", methods=["GET", "POST"])
+@papers.route("/course/<course_id>/papers/generate/request", methods=["GET", "POST"])
 @login_required
 @check_valid_course
 def paper_generate_request(course_id):
@@ -41,7 +41,7 @@ def paper_generate_request(course_id):
                            image_file=profile_path())
 
 
-@papers.route("course/<course_id>/papers/generate/form", methods=["GET", "POST"])
+@papers.route("/course/<course_id>/papers/generate/form", methods=["GET", "POST"])
 @login_required
 @check_valid_course
 def mark_distribution_form(course_id, **data):
