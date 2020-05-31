@@ -17,12 +17,12 @@ def home():
         HTML -- It will render home page.
     """
     return render_template(
-            "papers/home.html",
-            css_file="css/base.css",
-            css_file2="css/home.css",
-            title="Home",
-            image_file=profile_path(),
-            profile_pic="profile_pics/" + current_user.image_file,
+        "papers/home.html",
+        css_file="css/base.css",
+        css_file2="css/home.css",
+        title="Home",
+        image_file=profile_path(),
+        profile_pic="profile_pics/" + current_user.image_file,
     )
 
 
@@ -47,7 +47,8 @@ def paper_generate_request(course_id):
 def mark_distribution_form(course_id, **data):
     if data is None:
         return redirect(url_for("papers.paper_generate_request", course_id=course_id))
-    mdf = MarkDistributionForm(course_id, data["questions"], data["total_marks"])
+    mdf = MarkDistributionForm(
+        course_id, data["questions"], data["total_marks"])
     if mdf.form.validate_on_submit():
         return jsonify(mdf.flatten_data)
     return render_template("papers/mark_distribution_form.html",
