@@ -2,12 +2,11 @@ import re
 from collections import defaultdict
 from string import ascii_uppercase
 
+from flaskapp.models import Course, Unit
+from flaskapp.utils import CognitiveEnum, DifficultyEnum
 from wtforms import IntegerField
 from wtforms.form import BaseForm
 from wtforms.validators import DataRequired, ValidationError
-
-from flaskapp.models import Course, Unit
-from flaskapp.utils import CognitiveEnum, DifficultyEnum
 
 
 class IsSumOf:
