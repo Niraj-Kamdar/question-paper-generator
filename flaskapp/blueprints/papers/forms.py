@@ -97,11 +97,15 @@ class MarkDistributionForm:
         self.flatten_data = flatten_data
         self.unit_field_regex = re.compile(r"Unit:(\d\d)")
         self.question_field_regex = re.compile(r"Que.(\d+).([A-Z])")
+
+    @property
+    def data(self):
         for constraint in self.fields:
             for field in self.fields[constraint]:
                 field_attr = getattr(self.form, field)
                 self.flatten_data[constraint][self.translate(
                     constraint, field)] = int(field_attr.data)
+        return self.flatten_data
 
     def translate(self, constraint, field):
         if constraint == "cognitive":

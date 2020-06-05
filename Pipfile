@@ -43,6 +43,7 @@ flask-weasyprint = "*"
 email-validator = "*"
 flask-minify = "*"
 flask-caching = "*"
+qpt-generator = "*"
 
 [requires]
 python_version = "3.7"
