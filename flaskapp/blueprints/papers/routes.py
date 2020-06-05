@@ -1,19 +1,9 @@
-import base64
-
-from flask import Blueprint
-from flask import flash
-from flask import json
-from flask import jsonify
-from flask import redirect
-from flask import render_template
-from flask import request
-from flask import url_for
-from flask_login import current_user
-from flask_login import login_required
+from flask import Blueprint, flash, jsonify, redirect, render_template, request, url_for
+from flask_login import current_user, login_required
 
 from flaskapp.blueprints.papers.forms import MarkDistributionForm
 from flaskapp.blueprints.questions.utils import check_valid_course
-from flaskapp.utils import profile_path
+from flaskapp.utils import profile_path, json_url
 
 papers = Blueprint("papers", __name__)
 
@@ -46,8 +36,7 @@ def paper_generate_request(course_id):
     if request.method == "POST":
         data = request.get_json()
         if data:
-            data = base64.standard_b64encode(
-                json.dumps(data).encode()).decode()
+            data = json_url.dumps(data)
             return redirect(
                 url_for("papers.mark_distribution_form",
                         course_id=course_id,
@@ -65,7 +54,7 @@ def mark_distribution_form(course_id, data):
     if not data:
         return redirect(
             url_for("papers.paper_generate_request", course_id=course_id))
-    data = json.loads(base64.standard_b64decode(data.encode()).decode())
+    data = json_url.loads(data)
     mdf = MarkDistributionForm(course_id, data["questions"],
                                data["total_marks"])
     if mdf.form.validate_on_submit():
