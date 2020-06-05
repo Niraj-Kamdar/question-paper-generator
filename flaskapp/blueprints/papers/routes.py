@@ -1,7 +1,8 @@
 import base64
 
-from flask import Blueprint, json
+from flask import Blueprint
 from flask import flash
+from flask import json
 from flask import jsonify
 from flask import redirect
 from flask import render_template
@@ -45,7 +46,8 @@ def paper_generate_request(course_id):
     if request.method == "POST":
         data = request.get_json()
         if data:
-            data = base64.standard_b64encode(json.dumps(data).encode()).decode()
+            data = base64.standard_b64encode(
+                json.dumps(data).encode()).decode()
             return redirect(
                 url_for("papers.mark_distribution_form",
                         course_id=course_id,
