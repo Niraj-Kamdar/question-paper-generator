@@ -1,6 +1,6 @@
 # question-paper-generator
 
-[![GitHub Actions](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fatrox%2Fsync-dotenv%2Fbadge&label=build&logo=none)](https://actions-badge.atrox.dev/Niraj-Kamdar/question-paper-generator/goto)
+![Python application](https://github.com/Niraj-Kamdar/question-paper-generator/workflows/Python%20application/badge.svg)
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/Niraj-Kamdar/question-paper-generator)
 [![codecov](https://codecov.io/gh/Niraj-Kamdar/question-paper-generator/branch/develop/graph/badge.svg)](https://codecov.io/gh/Niraj-Kamdar/question-paper-generator)
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/Niraj-Kamdar/question-paper-generator/?ref=repository-badge)
