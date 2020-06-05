@@ -1,9 +1,9 @@
-from flask import Blueprint, flash, jsonify, redirect, render_template, request, url_for
+from flask import (Blueprint, flash, jsonify, redirect, render_template,
+                   request, url_for)
 from flask_login import current_user, login_required
-
 from flaskapp.blueprints.papers.forms import MarkDistributionForm
 from flaskapp.blueprints.questions.utils import check_valid_course
-from flaskapp.utils import profile_path, json_url
+from flaskapp.utils import json_url, profile_path
 
 papers = Blueprint("papers", __name__)
 
