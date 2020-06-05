@@ -9,13 +9,13 @@ coverage:
     patch:
       default:
         # basic
-        target: auto
-        threshold: 10%
+        target: 50
+        threshold: 70%
         base: auto
     project:
       default:
         # basic
-        target: auto
+        target: 50
         threshold: 10%
         base: auto
 
