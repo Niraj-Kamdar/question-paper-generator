@@ -83,9 +83,11 @@ function handleQuestionNav(e) {
   let target = {};
   let classList = {};
   let children = {};
-  if (Array.from(e.target.classList).includes("fa"))
+  if (Array.from(e.target.classList).includes("fa")) {
     target = e.target.parentNode;
-  else target = e.target;
+  }else {
+    target = e.target;
+  }
   classList = target.lastElementChild.classList;
   children = target.parentNode.children;
   if (Array.from(target.lastElementChild.classList).includes("fa-caret-down")) {
@@ -332,7 +334,7 @@ sideNavigationContainer.addEventListener("touchmove", function (e) {
   left = parseInt(sideNavigationContainer.style.left);
   if (left + distance <= 0) {
     sideNavigationContainer.style.left = `${left + distance}px`;
-  } else sideNavigationContainer.style.left = "0px";
+  } else {sideNavigationContainer.style.left = "0px";}
   e.preventDefault();
 });
 
@@ -391,9 +393,11 @@ mainContainer.addEventListener("touchmove", function (e) {
   e.preventDefault();
   preMainPageX = touchObj.pageX;
   left = parseInt(sideNavigationContainer.style.left || initialLeft);
-  if (left + distance <= 0)
+  if (left + distance <= 0){
     sideNavigationContainer.style.left = `${left + distance}px`;
-  else sideNavigationContainer.style.left = "0px";
+  } else {
+    sideNavigationContainer.style.left = "0px";
+  }
 });
 
 mainContainer.addEventListener("touchend", function (e) {

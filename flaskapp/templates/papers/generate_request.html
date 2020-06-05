@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block image %}
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+{% endblock image %}
+{% block image2 %}
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+{% endblock image2 %}
+{% block header %}
+<h1 class="header">Questions</h1>
+{% endblock header %}
+
+{% block main %}
+<div id="part_1">
+  <form method="POST" action="" novalidate id="questions">
+    <label>Enter Number of Questions
+        <input type="number" id="number_of_questions"/>
+    </label>
+    <div id="questions_err"></div>
+    
+ </form>
+
+  <div class="navigation_btns">
+    <button id="next_1">Next</button>
+  </div>
+</div>
+
+<div id="part_2">
+  <form method="POST" action="" novalidate id="subquestions">
+      <label>Enter Marks : <input type="number" id="marks"/></label>
+      <div id="marks_err"></div>
+  </form>
+
+  <div class="navigation_btns">
+    <button id="back_1">Back</button>
+    <button id="next_2">Next</button>
+  </div>
+</div>
+
+<div id="part_3">
+    
+</div>
+{% endblock main %}
