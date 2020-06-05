@@ -1,7 +1,11 @@
+import os
 from enum import Enum
 
 from flask import url_for
 from flask_login import current_user
+from itsdangerous import URLSafeSerializer
+
+json_url = URLSafeSerializer(os.environ.get("SECRET_KEY", "secret_key"))
 
 default_instructions = [
     "Write your name and student number in the space provided",
