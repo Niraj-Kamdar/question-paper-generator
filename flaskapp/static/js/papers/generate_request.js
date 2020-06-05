@@ -1,4 +1,4 @@
-const questionForm = document.getElementById("questions");
+
 
 const numberOfQuestions = document.getElementById("number_of_questions");
 
