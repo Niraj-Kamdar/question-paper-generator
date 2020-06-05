@@ -66,5 +66,5 @@ def mark_distribution_form(course_id, **data):
     mdf = MarkDistributionForm(course_id, data["questions"],
                                data["total_marks"])
     if mdf.form.validate_on_submit():
-        return jsonify(mdf.flatten_data)
+        return jsonify(mdf.data)
     return render_template("papers/mark_distribution_form.html", form=mdf.form)
