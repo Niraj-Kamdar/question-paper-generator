@@ -34,7 +34,8 @@ def home():
     )
 
 
-@papers.route("/course/<course_id>/papers/generate/request", methods=["GET", "POST"])
+@papers.route("/course/<course_id>/papers/generate/request",
+              methods=["GET", "POST"])
 @login_required
 @check_valid_course
 def paper_generate_request(course_id):
@@ -45,22 +46,25 @@ def paper_generate_request(course_id):
         if data:
             data = json_url.dumps(data)
             return redirect(
-                url_for("papers.mark_distribution_form", course_id=course_id, data=data)
-            )
+                url_for("papers.mark_distribution_form",
+                        course_id=course_id,
+                        data=data))
         flash("Form can't be empty!")
-    return render_template("papers/generate_request.html", image_file=profile_path())
+    return render_template("papers/generate_request.html",
+                           image_file=profile_path())
 
 
-@papers.route(
-    "/course/<course_id>/papers/generate/form/<data>", methods=["GET", "POST"]
-)
+@papers.route("/course/<course_id>/papers/generate/form/<data>",
+              methods=["GET", "POST"])
 @login_required
 @check_valid_course
 def mark_distribution_form(course_id, data):
     if not data:
-        return redirect(url_for("papers.paper_generate_request", course_id=course_id))
+        return redirect(
+            url_for("papers.paper_generate_request", course_id=course_id))
     data = json_url.loads(data)
-    mdf = MarkDistributionForm(course_id, data["questions"], data["total_marks"])
+    mdf = MarkDistributionForm(course_id, data["questions"],
+                               data["total_marks"])
     if mdf.form.validate_on_submit():
         return jsonify(mdf.data)
     return render_template("papers/mark_distribution_form.html", form=mdf.form)
