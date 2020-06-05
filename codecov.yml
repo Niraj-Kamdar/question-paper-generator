@@ -6,16 +6,10 @@ coverage:
   round: down
   range: "50...100"
   status:
-    patch:
-      default:
-        # basic
-        target: 50
-        threshold: 70%
-        base: auto
+    patch: off
     project:
       default:
-        # basic
-        target: 50
+        target: auto
         threshold: 10%
         base: auto
 
