@@ -63,8 +63,8 @@ def mark_distribution_form(course_id, data):
         return redirect(
             url_for("papers.paper_generate_request", course_id=course_id))
     data = json_url.loads(data)
-    mdf = MarkDistributionForm(course_id, data["questions"],
+    form = MarkDistributionForm(course_id, data["questions"],
                                data["total_marks"])
-    if mdf.form.validate_on_submit():
-        return jsonify(mdf.data)
+    if form.validate_on_submit():
+        return jsonify(form.data)
     return render_template("papers/mark_distribution_form.html", form=mdf.form)
