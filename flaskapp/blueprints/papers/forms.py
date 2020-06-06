@@ -32,19 +32,17 @@ class IsSumOf:
 
     def __call__(self, form, field):
         try:
-            expected_sum = sum(map(lambda fieldname: form[fieldname], self.fieldnames))
+            expected_sum = sum(
+                map(lambda fieldname: form[fieldname], self.fieldnames))
         except KeyError:
             raise ValidationError(
-                field.gettext("Invalid field name in {}.").format(
-                    ", ".join(self.fieldnames)
-                )
-            )
+                field.gettext("Invalid field name in {}.").format(", ".join(
+                    self.fieldnames)))
         if field.data != expected_sum:
             message = self.message
             if message is None:
                 message = field.gettext(
-                    "Field must be equal to {}.".format(expected_sum)
-                )
+                    "Field must be equal to {}.".format(expected_sum))
 
             raise ValidationError(message)
 
@@ -60,43 +58,38 @@ class MarkDistributionForm:
 
         flatten_data["units"].extend([0] * len(units))
         flatten_data["cognitive"].extend([0] * len(CognitiveEnum.__members__))
-        flatten_data["difficulty"].extend([0] * len(DifficultyEnum.__members__))
+        flatten_data["difficulty"].extend([0] *
+                                          len(DifficultyEnum.__members__))
         flatten_data["questions"].extend([0] * sum(questions))
 
         for unit in units:
             field = f"Unit:{unit.chapter_no:02d}"
             form_fields.update(
-                {field: IntegerField(field, validators=[DataRequired()])}
-            )
+                {field: IntegerField(field, validators=[DataRequired()])})
             validators[0].append(field)
         for c_level in CognitiveEnum.__members__:
             form_fields.update(
-                {c_level: IntegerField(c_level, validators=[DataRequired()])}
-            )
+                {c_level: IntegerField(c_level, validators=[DataRequired()])})
             validators[1].append(c_level)
         for d_level in DifficultyEnum.__members__:
             form_fields.update(
-                {d_level: IntegerField(d_level, validators=[DataRequired()])}
-            )
+                {d_level: IntegerField(d_level, validators=[DataRequired()])})
             validators[2].append(d_level)
         for question in questions:
             for subquestion in range(question):
                 field = f"Que.{question}.{ascii_uppercase[subquestion]}"
                 form_fields.update(
-                    {field: IntegerField(field, validators=[DataRequired()])}
-                )
+                    {field: IntegerField(field, validators=[DataRequired()])})
                 validators[3].append(field)
 
         for i, validator in enumerate(validators):
             validators[i] = IsSumOf(*validator)
 
-        form_fields.update(
-            {
-                "total_marks": IntegerField(
-                    "total_marks", validators=[DataRequired(), *validators]
-                )
-            }
-        )
+        form_fields.update({
+            "total_marks":
+            IntegerField("total_marks",
+                         validators=[DataRequired(), *validators])
+        })
         self.form = BaseForm(form_fields)
         self.flatten_data = flatten_data
         self.form._fields["total_marks"].process_data(total_marks)
@@ -108,9 +101,8 @@ class MarkDistributionForm:
     def data(self):
         for constraint in self.fields:
             for field in self.fields[constraint]:
-                self.flatten_data[constraint][
-                    self.translate(constraint, field.name)
-                ] = int(field.data)
+                self.flatten_data[constraint][self.translate(
+                    constraint, field.name)] = int(field.data)
         return self.flatten_data
 
     @property
