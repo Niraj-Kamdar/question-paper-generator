@@ -101,7 +101,8 @@ class MarkDistributionForm:
     def data(self):
         for constraint in self.fields:
             for field in self.fields[constraint]:
-                self.flatten_data[constraint][self.translate(constraint, field.name)] = int(field.data)
+                self.flatten_data[constraint][self.translate(
+                    constraint, field.name)] = int(field.data)
         return self.flatten_data
 
     @property
