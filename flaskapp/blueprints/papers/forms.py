@@ -131,4 +131,5 @@ class MarkDistributionForm:
             return int(matched.group(1)) + ord(matched.group(2)) - ord("@")
 
     def validate_on_submit(self):
+        self.form.process(request.form)
         return request.method == "POST" and self.form.validate()
