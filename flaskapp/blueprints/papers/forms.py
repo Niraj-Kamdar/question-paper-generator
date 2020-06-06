@@ -99,24 +99,25 @@ class MarkDistributionForm:
 
     @property
     def data(self):
+        for constraint in self.fields:
+            for field in self.fields[constraint]:
+                self.flatten_data[constraint][self.translate(
+                    constraint, field.name)] = int(field.data)
+        return self.flatten_data
+
+    @property
+    def fields(self):
+        fields = defaultdict(list)
         for field in self.form._fields:
             if "Unit" in field:
-                field_attr = self.form._fields[field.data]
-                self.flatten_data["unit"][self.translate(
-                    "unit", field)] = int(field_attr)
+                fields["units"].append(self.form._fields[field])
             elif "Que" in field:
-                field_attr = self.form._fields[field.data]
-                self.flatten_data["unit"][self.translate(
-                    "unit", field)] = int(field_attr)
+                fields["questions"].append(self.form._fields[field])
             elif field in CognitiveEnum.__members__:
-                field_attr = self.form._fields[field.data]
-                self.flatten_data["cognitive"][self.translate(
-                    "cognitive", field)] = int(field_attr)
+                fields["cognitive"].append(self.form._fields[field])
             elif field in DifficultyEnum.__members__:
-                field_attr = self.form._fields[field.data]
-                self.flatten_data["difficulty"][self.translate(
-                    "difficulty", field)] = int(field_attr)
-        return self.flatten_data
+                fields["difficulty"].append(self.form._fields[field])
+        return fields
 
     def translate(self, constraint, field):
         if constraint == "cognitive":
@@ -130,4 +131,4 @@ class MarkDistributionForm:
             return int(matched.group(1)) + ord(matched.group(2)) - ord("@")
 
     def validate_on_submit(self):
-        return request.POST and self.form.validate()
+        return request.method == "POST" and self.form.validate()
