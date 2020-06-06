@@ -2,6 +2,7 @@ import re
 from collections import defaultdict
 from string import ascii_uppercase
 
+from flask import request
 from wtforms import IntegerField
 from wtforms.form import BaseForm
 from wtforms.validators import DataRequired
@@ -87,11 +88,11 @@ class MarkDistributionForm:
 
         data.update({
             "total_marks":
-            IntegerField(total_marks,
+            IntegerField("total_marks",
                          validators=[DataRequired(), *validators.values()])
         })
         self.form = BaseForm(data)
-        self.total_marks = total_marks
+        self.form.total_marks.data = total_marks
         self.course = course
         self.fields = fields
         self.flatten_data = flatten_data
@@ -117,3 +118,6 @@ class MarkDistributionForm:
         if constraint == "questions":
             matched = self.question_field_regex.search(field)
             return int(matched.group(1)) + ord(matched.group(2)) - ord("@")
+
+    def validate_on_submit(self):
+        return request.POST and self.form.validate()
