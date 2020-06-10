@@ -103,14 +103,27 @@ secondNextBtn.addEventListener("click",function(){
       }
     //   const jsonData = JSON.stringify(data);
       const url="/course/1/papers/generate/request";
+      let responseUrl = "";
       fetch(url,{
           method : 'POST',
           body: JSON.stringify(data),
           headers : {
               'Content-Type' : 'application/json'
           },
-      }).then((data)=> data.text()).then((data)=>{
+      }).then((data)=> {
+          responseUrl = data.url;
+          return data.text();
+      }).then((data)=>{
+          const startIndex = data.indexOf("<form");
+          const endIndex = data.indexOf("</form>");
+          data = data.substr(startIndex,endIndex - startIndex + 1 + 6);
           part3.innerHTML = data;
+          const jsFileUrl = "/static/js/papers/mark_distribution_form.js";
+          const newScript = document.createElement("script");
+          newScript.setAttribute("src",jsFileUrl);
+          document.body.appendChild(newScript);
+          const markForm = document.getElementById("mark_form");
+          markForm.setAttribute("action",responseUrl);
       }).catch((err)=>{
           console.log(err);
       });

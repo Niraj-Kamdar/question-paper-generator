@@ -69,6 +69,7 @@ def mark_distribution_form(course_id, data):
     data = json_url.loads(data)
     form = MarkDistributionForm(course_id, data["questions"],
                                 data["total_marks"])
+    print(form.validate_on_submit(),request.method)
     if form.validate_on_submit():
         return jsonify(form.data)
     return render_template("papers/mark_distribution_form.html", form=form)

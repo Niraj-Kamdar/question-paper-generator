@@ -10,5 +10,31 @@
 {% endblock header %}
 
 {% block main %}
-<h1>Hello There</h1>
+<form id="mark_form" method="post" action="/course/{{course_id}}/papers/generate/form" novalidate>
+
+{% for constraint in form.fields%}
+  <div class="pages">
+    {% if loop.index==4 %}
+      <div id="general_err_msg"></div>
+    {% endif %}
+    <h3 class="field_header">{{constraint}}</h3>
+    {% for field in form.fields[constraint]%}
+    {{field.label(class="label")}}
+    <input type="number" class="input_field {{constraint}}" min="1" step="1" />
+    <div class="err"></div>
+    {% endfor %}
+    <div class="navigation">
+      {% if loop.index!=1 %}
+        <button type="button" class="back_btn">Back</button>
+      {% endif %}
+      {% if loop.index!=4%}
+        <button type="button" class="next_btn">Next</button>
+      {% else %}
+        <button type="submit" class="next_btn">Submit</button>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+
+</form>
 {% endblock main %}

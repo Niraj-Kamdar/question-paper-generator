@@ -33,7 +33,7 @@ class IsSumOf:
     def __call__(self, form, field):
         try:
             expected_sum = sum(
-                map(lambda fieldname: form[fieldname], self.fieldnames))
+                map(lambda fieldname: form[fieldname].data, self.fieldnames))
         except KeyError:
             raise ValidationError(
                 field.gettext("Invalid field name in {}.").format(", ".join(

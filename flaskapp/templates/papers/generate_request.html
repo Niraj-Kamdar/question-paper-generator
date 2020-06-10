@@ -10,21 +10,22 @@
 {% endblock header %}
 
 {% block main %}
-<div id="part_1">
-  <form method="POST" action="" novalidate id="questions">
-    <label>Enter Number of Questions
+<div id="part_3">
+ <div id="part_1">
+   <form method="POST" action="" novalidate id="questions">
+     <label>Enter Number of Questions
         <input type="number" id="number_of_questions"/>
-    </label>
-    <div id="questions_err"></div>
+     </label>
+     <div id="questions_err"></div>
     
- </form>
+   </form>
 
-  <div class="navigation_btns">
-    <button id="next_1">Next</button>
-  </div>
-</div>
+   <div class="navigation_btns">
+     <button id="next_1">Next</button>
+   </div>
+ </div>
 
-<div id="part_2">
+ <div id="part_2">
   <form method="POST" action="" novalidate id="subquestions">
       <label>Enter Marks : <input type="number" id="marks"/></label>
       <div id="marks_err"></div>
@@ -34,9 +35,9 @@
     <button id="back_1">Back</button>
     <button id="next_2">Next</button>
   </div>
-</div>
+ </div>
 
-<div id="part_3">
+
     
 </div>
 {% endblock main %}

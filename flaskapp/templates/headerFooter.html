@@ -26,9 +26,10 @@
 
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',
       filename='css/headerFooter.css') }}" />
-
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+ {% if css_file %}
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static',
       filename=css_file) }}" />
+ {% endif %}
   {% if css_file2 %}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',
       filename=css_file2) }}" />
