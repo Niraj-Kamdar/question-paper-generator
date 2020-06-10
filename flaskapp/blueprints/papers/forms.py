@@ -92,8 +92,8 @@ class MarkDistributionForm:
         })
         self.form = BaseForm(form_fields)
         self.flatten_data = flatten_data
-        self.form._fields["total_marks"].process_data(total_marks)
         self.course = course
+        self.total_marks = total_marks
         self.unit_field_regex = re.compile(r"Unit:(\d\d)")
         self.question_field_regex = re.compile(r"Que.(\d+).([A-Z])")
 
@@ -132,4 +132,5 @@ class MarkDistributionForm:
 
     def validate_on_submit(self):
         self.form.process(request.form)
+        self.form._fields["total_marks"].process_data(self.total_marks)
         return request.method == "POST" and self.form.validate()
