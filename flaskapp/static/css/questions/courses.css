@@ -42,12 +42,11 @@
   font-size: 20px;
 }
 
-.course_item,
-.unit_item {
+.course_item,.unit_item {
   background-color: rgba(144, 0, 240, 0.15);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  color: rgba(88, 88, 88, 1) !important;
-
+  /*color: rgba(88, 88, 88, 1);*/
+  color : #585858 !important;
   padding: 10px;
   margin: 10px 10px auto;
   text-decoration: none !important;

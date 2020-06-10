@@ -2,13 +2,11 @@ const markForm = document.getElementById("mark_form");
 const hiddenLabel = Array.from(document.getElementsByClassName("hidden_label"));
 const labels = Array.from(document.getElementsByClassName("label"));
 const inputField = Array.from(document.getElementsByClassName("input_field"));
-const backBtn = document.getElementsByClassName("back_btn");
-const nextBtn = document.getElementsByClassName("next_btn");
+const backBtn = Array.from(document.getElementsByClassName("back_btn"));
+const nextBtn = Array.from(document.getElementsByClassName("next_btn"));
 const pages = document.getElementsByClassName("pages");
 const errFields = document.getElementsByClassName("err");
 const generalErrMsg = document.getElementById("general_err_msg");
-const totalNextBtns = nextBtn.length - 1;
-const totalBackBtns = backBtn.length;
 
 
 const labelLength = labels.length;
@@ -53,26 +51,28 @@ markForm.addEventListener("submit",function(e){
 
 });
 
-for(let i=0;i<labelLength;i++){
-    inputField[i].addEventListener('input',function(){
-       errFields[i].innerHTML = "";
-       generalErrMsg.innerHTML = "";
-    });
-}
+inputField.forEach(function(node,index){
+  node.addEventListener('input',function(){
+     errFields[index].innerHTML = "";
+     generalErrMsg.innerHTML = "";
+  });
+});
 
-for(let i=0;i<totalNextBtns;i++){
-    nextBtn[i].addEventListener('click',function(){
-       pages[i].style.display = "none";
-       pages[i+1].style.display = "";
-    });
-}
+nextBtn.forEach(function(node,index){
+   if(index!==3){
+       node.addEventListener('click',function(){
+          pages[index].style.display = "none";
+          pages[index + 1].style.display = "";
+       });
+   }
+});
 
-for(let i=0;i<totalBackBtns;i++){
-    backBtn[i].addEventListener('click',function(){
-       pages[i+1].style.display = "none";
-       pages[i].style.display = "";
-    });
-}
+backBtn.forEach(function(node,index){
+  node.addEventListener('click',function(){
+      pages[index+1].style.display = "none";
+      pages[index].style.display = "";
+  })
+});
 
 
 function isValidNumber(number){

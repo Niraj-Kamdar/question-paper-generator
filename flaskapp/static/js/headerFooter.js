@@ -32,9 +32,7 @@ const additionalPages = [
   "contact-us",
 ];
 const url = window.location.href;
-const sideNavigationItems = document.getElementsByClassName(
-  "side_navigation_items"
-);
+const sideNavigationItems = Array.from(document.getElementsByClassName("side_navigation_items"));
 const exploreContainer = document.getElementById("explore_container");
 const addContainer = document.getElementById("add_container");
 const courseContainer = document.getElementById("course_container");
@@ -58,7 +56,7 @@ const topNavigationItems = document.getElementsByClassName(
   "top_navigation_items"
 );
 const isLoggedIn =
-  document.getElementById("logged_in").innerText === "True" ? true : false;
+  document.getElementById("logged_in").innerText === "True";
 const logo = document.getElementsByClassName("logo");
 let startDropX = 0;
 let startDropY = 0;
@@ -110,10 +108,10 @@ isHomePage = !!(
 );
 
 isLogin =
-  url.indexOf("login") !== -1 || url.indexOf("register") !== -1 ? true : false;
+  url.indexOf("login") !== -1 || url.indexOf("register") !== -1;
 
-isQuestionPage = url.indexOf("question") !== -1 ? true : false;
-isCoursesPage = url.match(/.+course\/$/) ? true : false;
+isQuestionPage = url.indexOf("question") !== -1;
+isCoursesPage = !!url.match(/.+course\/$/);
 
 for (let page of additionalPages) {
   const index = url.indexOf(page);
@@ -166,42 +164,18 @@ if (isHomePage || (areAdditionalPages && !isLoggedIn) || isLogin) {
   }
 }
 
-for (let i = 0; i < sideNavigationItems.length; i++) {
-  sideNavigationItems[i].addEventListener("click", (e) => {
-    let url2 = url;
-    let mcqIndex = -1;
-    let subIndex = -1;
-    let newIndex = -1;
-    mcqIndex = url2.indexOf("/mcq");
-    subIndex = url2.indexOf("/sub");
-    newIndex = url2.indexOf("new");
-    if (mcqIndex !== -1 && newIndex === -1) {
-      url2 = url2.substr(0, mcqIndex + 4 + 1);
-      if (url2 === e.target.href) {
-        e.preventDefault();
-      }
-    } else if (subIndex !== -1 && newIndex === -1) {
-      url2 = url2.substr(0, subIndex + 4 + 1);
-      if (url2 === e.target.href) {
-        e.preventDefault();
-      }
-    } else {
-      if (
-        e.target.href === window.location.href ||
-        e.target.href + "home" === window.location.href ||
-        e.target.href + "/" === window.location.href
-      )
-        e.preventDefault();
-      if (e.target.getAttribute("href") === "/logout")
-        window.history.pushState(null, null, "/");
+sideNavigationItems.forEach(function(node){
+  node.addEventListener('click',function(e){
+    if(e.target.href === window.location.href || e.target.href + "home" === window.location.href){
+      e.preventDefault();
     }
   });
-}
+});
 
 for (let i = 0; i < profilePage.length; i++) {
-  if (isHomePage || areAdditionalPages || isLogin)
+  if (isHomePage || areAdditionalPages || isLogin) {
     profilePage[i].parentNode.style.display = "none";
-
+  }
   profilePage[i].addEventListener("touchstart", function (e) {
     if (window.location.href === e.target.parentNode.href) e.preventDefault();
     e.target.style.boxShadow = "none";
@@ -238,10 +212,12 @@ for (let i = 0; i < topNavigationItems.length; i++) {
       e.target.parentNode.href === window.location.href ||
       e.target.parentNode.href + "home" === window.location.href ||
       e.target.parentNode.href + "/" === window.location.href
-    )
+    ) {
       e.preventDefault();
-    if (e.target.parentNode.getAttribute("href") === "/logout")
+    }
+    if (e.target.parentNode.getAttribute("href") === "/logout") {
       window.history.pushState(null, null, "/");
+    }
   });
 }
 
@@ -250,8 +226,9 @@ for (let i = 0; i < logo.length; i++) {
     if (
       e.target.parentNode.href === window.location.href ||
       e.target.parentNode.href + "home" === window.location.href
-    )
+    ) {
       e.preventDefault();
+    }
   });
 }
 
@@ -260,8 +237,9 @@ for (let i = 0; i < footerLinks.length; i++) {
     if (
       e.target.href === window.location.href ||
       e.target.href + "home" === window.location.href
-    )
+    ) {
       e.preventDefault();
+    }
   });
 }
 
@@ -408,8 +386,9 @@ mainContainer.addEventListener("touchend", function (e) {
     sideNavigationContainer.style.left >= "0px" ||
     mainFlag ||
     window.innerWidth > 960
-  )
+  ) {
     return;
+  }
   try {
     touchObj = e.changedTouches[0];
 
@@ -456,8 +435,9 @@ dropdownTitle.addEventListener("touchmove", function (e) {
   if (
     !(Math.abs(touchObj.pageX - startDropX) <= 10) ||
     !(Math.abs(touchObj.pageY - startDropY) <= 10)
-  )
+  ) {
     dropFlag = true;
+  }
 });
 
 dropdownTitle.addEventListener("touchend", function (e) {
@@ -473,8 +453,9 @@ dropdownTitle.addEventListener("touchend", function (e) {
     if (
       !(Math.abs(touchObj.pageX - startDropX) <= 10) ||
       !(Math.abs(touchObj.pageY - startDropY) <= 10)
-    )
+    ) {
       return;
+    }
   } catch (e) {
     target = dropdownTitle;
     if (dropFlag) return;

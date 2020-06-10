@@ -28,15 +28,16 @@
 
 #options {
   background-color: rgba(144, 0, 240, 0.15);
-  color: rgba(88, 88, 88, 1);
+  /*color: rgba(88, 88, 88, 1);*/
+  color : #585858;
   font-size: 25px;
   padding: 10px 10px 5px;
 }
 
 .options_row {
   align-items: center;
-
-  color: rgba(88, 88, 88, 1);
+  /*color: rgba(88, 88, 88, 1);*/
+  color : #585858;
   display: flex;
 }
 
