@@ -75,9 +75,9 @@ class MarkDistributionForm:
             form_fields.update(
                 {d_level: IntegerField(d_level, validators=[DataRequired()])})
             validators[2].append(d_level)
-        for question in questions:
-            for subquestion in range(question):
-                field = f"Que.{question}.{ascii_uppercase[subquestion]}"
+        for question_no, subquestions in enumerate(questions):
+            for subquestion in range(subquestions):
+                field = f"Que.{question_no+1}.{ascii_uppercase[subquestion]}"
                 form_fields.update(
                     {field: IntegerField(field, validators=[DataRequired()])})
                 validators[3].append(field)
@@ -121,14 +121,14 @@ class MarkDistributionForm:
 
     def translate(self, constraint, field):
         if constraint == "cognitive":
-            return CognitiveEnum.__members__[field].value
+            return CognitiveEnum.__members__[field].value - 1
         if constraint == "difficulty":
-            return DifficultyEnum.__members__[field].value
+            return DifficultyEnum.__members__[field].value - 1
         if constraint == "units":
-            return int(self.unit_field_regex.search(field).group(1))
+            return int(self.unit_field_regex.search(field).group(1)) - 1
         if constraint == "questions":
             matched = self.question_field_regex.search(field)
-            return int(matched.group(1)) + ord(matched.group(2)) - ord("@")
+            return int(matched.group(1)) + ord(matched.group(2)) - ord("A") - 1
 
     def validate_on_submit(self):
         self.form.process(request.form)
