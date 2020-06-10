@@ -97,7 +97,7 @@ secondNextBtn.addEventListener("click",function(){
       const data = {
           questions : [],
           total_marks : marks
-      }
+      };
       for(let i=0;i<len;i++){
           data.questions.push(Number(subquestions[i].value));
       }
