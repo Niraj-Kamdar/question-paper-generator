@@ -19,7 +19,8 @@
     {% endif %}
     <h3 class="field_header">{{constraint}}</h3>
     {% for field in form.fields[constraint]%}
-    {{field.label(class="label")}}
+    {{field.label(class="hidden_label")}}
+    <label for="" class="label"></label>
     <input type="number" class="input_field {{constraint}}" min="1" step="1" />
     <div class="err"></div>
     {% endfor %}

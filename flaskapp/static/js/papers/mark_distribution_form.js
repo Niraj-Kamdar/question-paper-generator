@@ -1,5 +1,6 @@
 const markForm = document.getElementById("mark_form");
-const labels = document.getElementsByClassName("label");
+const hiddenLabel = Array.from(document.getElementsByClassName("hidden_label"));
+const labels = Array.from(document.getElementsByClassName("label"));
 const inputField = Array.from(document.getElementsByClassName("input_field"));
 const backBtn = document.getElementsByClassName("back_btn");
 const nextBtn = document.getElementsByClassName("next_btn");
@@ -12,8 +13,17 @@ const totalBackBtns = backBtn.length;
 
 const labelLength = labels.length;
 
+hiddenLabel.forEach(function(node){
+    node.style.display = "none";
+});
+
+labels.forEach(function(node,index){
+    node.setAttribute("for",hiddenLabel[index].getAttribute("for"));
+    node.innerHTML = hiddenLabel[index].innerHTML;
+});
+
 inputField.forEach(function(node,index){
-   const forAttribute = labels[index].getAttribute("for");
+   const forAttribute = hiddenLabel[index].getAttribute("for");
    node.setAttribute("id",forAttribute);
    node.setAttribute("name",forAttribute);
 });
