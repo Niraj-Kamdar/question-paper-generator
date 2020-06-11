@@ -6,7 +6,8 @@ from test.main.utils import test_post_request
 class PaperGenerateRequest(BaseUnit):
     def test_paper_generate_request(self):
         data = dict(questions=[1, 2, 3], total_marks=10)
-        response, _ = test_post_request(self, "/course/1/papers/generate/request", data)
+        response, _ = test_post_request(
+            self, "/course/1/papers/generate/request", data)
         # FIXME: assert something here: response.data
 
     def test_mark_distribution_form(self):
@@ -16,5 +17,6 @@ class PaperGenerateRequest(BaseUnit):
                 'Que.3.B': '5', 'Que.3.C': '5'}
 
         token = json_url.dumps(dict(questions=questions, total_marks=30))
-        response, _ = test_post_request(self, f"/course/1/papers/generate/form/{token}", data)
+        response, _ = test_post_request(
+            self, f"/course/1/papers/generate/form/{token}", data)
         # FIXME: do some assertion here
