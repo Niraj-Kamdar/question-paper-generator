@@ -33,7 +33,7 @@ class IsSumOf:
     def __call__(self, form, field):
         try:
             expected_sum = sum(
-                map(lambda fieldname: form[fieldname], self.fieldnames))
+                map(lambda fieldname: form[fieldname].data, self.fieldnames))
         except KeyError:
             raise ValidationError(
                 field.gettext("Invalid field name in {}.").format(", ".join(
@@ -52,8 +52,9 @@ class MarkDistributionForm:
         course = Course.query.filter(Course.id == course_id).first()
         units = Unit.query.filter(Unit.course == course).all()
 
+        question_translator = defaultdict(dict)
         form_fields = {}
-        validators = [[]] * 4
+        validators = defaultdict(list)
         flatten_data = defaultdict(list)
 
         flatten_data["units"].extend([0] * len(units))
@@ -66,36 +67,44 @@ class MarkDistributionForm:
             field = f"Unit:{unit.chapter_no:02d}"
             form_fields.update(
                 {field: IntegerField(field, validators=[DataRequired()])})
-            validators[0].append(field)
+            validators["units"].append(field)
         for c_level in CognitiveEnum.__members__:
             form_fields.update(
                 {c_level: IntegerField(c_level, validators=[DataRequired()])})
-            validators[1].append(c_level)
+            validators["cognitive"].append(c_level)
         for d_level in DifficultyEnum.__members__:
             form_fields.update(
                 {d_level: IntegerField(d_level, validators=[DataRequired()])})
-            validators[2].append(d_level)
+            validators["difficulty"].append(d_level)
+
+        idx = 0
         for question_no, subquestions in enumerate(questions):
             for subquestion in range(subquestions):
-                field = f"Que.{question_no+1}.{ascii_uppercase[subquestion]}"
+                field = f"Que.{question_no + 1}.{ascii_uppercase[subquestion]}"
                 form_fields.update(
                     {field: IntegerField(field, validators=[DataRequired()])})
-                validators[3].append(field)
+                validators["questions"].append(field)
+                question_translator[question_no +
+                                    1][ascii_uppercase[subquestion]] = idx
+                idx += 1
 
-        for i, validator in enumerate(validators):
+        for i, validator in validators.items():
             validators[i] = IsSumOf(*validator)
 
         form_fields.update({
             "total_marks":
             IntegerField("total_marks",
-                         validators=[DataRequired(), *validators])
+                         validators=[DataRequired(),
+                                     *validators.values()])  # *validators
         })
+
         self.form = BaseForm(form_fields)
         self.flatten_data = flatten_data
         self.course = course
         self.total_marks = total_marks
         self.unit_field_regex = re.compile(r"Unit:(\d\d)")
         self.question_field_regex = re.compile(r"Que.(\d+).([A-Z])")
+        self.question_translator = question_translator
 
     @property
     def data(self):
@@ -128,7 +137,8 @@ class MarkDistributionForm:
             return int(self.unit_field_regex.search(field).group(1)) - 1
         if constraint == "questions":
             matched = self.question_field_regex.search(field)
-            return int(matched.group(1)) + ord(matched.group(2)) - ord("A") - 1
+            return self.question_translator[int(
+                matched.group(1))][matched.group(2)]
 
     def validate_on_submit(self):
         self.form.process(request.form)
