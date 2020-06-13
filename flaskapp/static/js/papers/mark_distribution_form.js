@@ -5,11 +5,18 @@ const inputField = Array.from(document.getElementsByClassName("input_field"));
 const backBtn = Array.from(document.getElementsByClassName("back_btn"));
 const nextBtn = Array.from(document.getElementsByClassName("next_btn"));
 const pages = document.getElementsByClassName("pages");
-const errFields = document.getElementsByClassName("err");
-const generalErrMsg = document.getElementById("general_err_msg");
-
-
-const labelLength = labels.length;
+const marks = Number(document.getElementById("total_marks").innerHTML);
+const unitFields = Array.from(document.getElementsByClassName("units"));
+const cognitiveFields = Array.from(document.getElementsByClassName("cognitive"));
+const difficultyFields = Array.from(document.getElementsByClassName("difficulty"));
+const questionsFields = Array.from(document.getElementsByClassName("questions"));
+const unitFieldsErr = Array.from(document.getElementsByClassName("units_err"));
+const cognitiveFieldsErr = Array.from(document.getElementsByClassName("cognitive_err"));
+const difficultyFieldsErr = Array.from(document.getElementsByClassName("difficulty_err"));
+const questionsFieldsErr = Array.from(document.getElementsByClassName("questions_err"));
+const marksErr = document.getElementsByClassName("marks_err");
+const formParts = [unitFields,cognitiveFields,difficultyFields,questionsFields];
+const formPartsErr = [unitFieldsErr,cognitiveFieldsErr,difficultyFieldsErr,questionsFieldsErr];
 
 hiddenLabel.forEach(function(node){
     node.style.display = "none";
@@ -32,46 +39,30 @@ pages[3].style.display = "none";
 
 
 markForm.addEventListener("submit",function(e){
-    let validFields = 0;
-
-    inputField.forEach(function(node,index){
-        const [isValid,err] = isValidNumber(node.value);
-        if(!isValid){
-          errFields[index].innerHTML = err;
-        }else{
-          validFields++;
-        }
-     });
-
-
-    if(validFields!==labelLength){
-        generalErrMsg.innerHTML = "Enter valid marks in all input fields";
-        e.preventDefault();
-    }
-
+   navigationHandler(3,false,e);
 });
 
-inputField.forEach(function(node,index){
-  node.addEventListener('input',function(){
-     errFields[index].innerHTML = "";
-     generalErrMsg.innerHTML = "";
-  });
+formParts.forEach(function(element,index){
+   element.forEach(function(node,index2){
+     node.addEventListener('input',function () {
+        formPartsErr[index][index2].innerHTML = "";
+        marksErr[index].innerHTML = "";
+     });
+   });
 });
 
 nextBtn.forEach(function(node,index){
    if(index!==3){
        node.addEventListener('click',function(){
-          pages[index].style.display = "none";
-          pages[index + 1].style.display = "";
+           navigationHandler(index,false);
        });
    }
 });
 
 backBtn.forEach(function(node,index){
   node.addEventListener('click',function(){
-      pages[index+1].style.display = "none";
-      pages[index].style.display = "";
-  })
+      navigationHandler(index,true);
+  });
 });
 
 
@@ -93,4 +84,45 @@ function isValidNumber(number){
         isValid = true;
     }
     return [isValid,err];
+}
+
+function isValidTotalMarks(element){
+    const total_marks = element.map(node=>Number(node.value)).reduce((acc,cur)=>acc+cur);
+    return total_marks === marks;
+}
+
+function isErrExists(...element){
+    return element.map((node)=>node.innerHTML).reduce((acc,cur)=>acc + cur);
+}
+
+function navigationHandler(index,back,event){
+    if(back) index++;
+    const s = isErrExists(...formPartsErr[index],marksErr[index]);
+    if(!s) {
+        let validFields = 0;
+        formParts[index].forEach(function (node,index2) {
+            const [isValid, err] = isValidNumber(node.value);
+            if (!isValid) {
+                formPartsErr[index][index2].innerHTML = err;
+            } else {
+                validFields++;
+            }
+        });
+        const status = isValidTotalMarks(formParts[index]);
+        if (status) {
+            validFields++;
+        } else {
+            marksErr[index].innerHTML = "Total marks are not equal to paper marks!!";
+        }
+        if (validFields === formParts[index].length + 1) {
+            pages[index].style.display = "none";
+            if(back){
+                pages[index - 1].style.display = "";
+            }else {
+                pages[index + 1].style.display = "";
+            }
+        }else{
+            if(event) event.preventDefault();
+        }
+    }
 }

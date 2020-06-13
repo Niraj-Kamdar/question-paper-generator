@@ -12,7 +12,7 @@
 
 {% block main %}
 <form id="mark_form" method="post" action="/course/{{course_id}}/papers/generate/form" novalidate>
-
+  <div>Paper Marks: <span id="total_marks">{{form.total_marks}}</span></div>
 {% for constraint in form.fields%}
   <div class="pages">
     {% if loop.index==4 %}
@@ -23,8 +23,9 @@
     {{field.label(class="hidden_label")}}
     <label for="" class="label"></label>
     <input type="number" class="input_field {{constraint}}" min="1" step="1" />
-    <div class="err"></div>
+    <div class="err {{constraint}}_err"></div>
     {% endfor %}
+    <div class="marks_err"></div>
     <div class="navigation">
       {% if loop.index!=1 %}
         <button type="button" class="back_btn">Back</button>
