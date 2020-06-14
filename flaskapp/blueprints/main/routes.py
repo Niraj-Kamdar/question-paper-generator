@@ -42,7 +42,7 @@ def about_us():
         "main/about.html",
         title="About Us",
         css_file="css/main/about.css",
-        image_file=profile_path()
+        image_file=profile_path(),
     )
 
 
@@ -52,7 +52,7 @@ def policy_page():
         "main/privacy-policy.html",
         title="Privacy Policy",
         css_file="css/main/privacy_policy.css",
-        image_file=profile_path()
+        image_file=profile_path(),
     )
 
 
@@ -62,7 +62,7 @@ def terms_of_service_page():
         "main/terms-of-service.html",
         title="Terms Of Service",
         css_file="css/main/terms_of_service.css",
-        image_file=profile_path()
+        image_file=profile_path(),
     )
 
 
@@ -77,7 +77,7 @@ def help_page():
         "main/help.html",
         title="Help",
         css_file="css/main/help.css",
-        image_file=profile_path()
+        image_file=profile_path(),
     )
 
 
@@ -100,8 +100,8 @@ def contact_us():
         send_contact_us_email(**data)
         send_contact_us_receipt_email(**data)
         flash(
-            "Your Message has recorded successfully! We will reach out soon.",
-            "success")
+            "Your Message has recorded successfully! We will reach out soon.", "success"
+        )
         return redirect(url_for("main.contact_us"))
     return render_template(
         "main/contact-us/contact_us_form.html",
@@ -109,5 +109,5 @@ def contact_us():
         form=form,
         css_file="css/contact_us/main.css",
         css_file2="css/contact_us/util.css",
-        image_file=profile_path()
+        image_file=profile_path(),
     )
