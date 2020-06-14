@@ -1,7 +1,15 @@
-{% extends "base.html" %}
-{% block content %}
-    <div class="content-section">
-        <h1>You don't have permission to do that (403)</h1>
-        <p>Please check your account and try again</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>403</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/errors/403.css')}}" />
+</head>
+
+<body>
+    <div>
+        <img src="{{ url_for('static', filename='images/403.svg') }}" class="error-403" alt="403" />
     </div>
-{% endblock content %}
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+#index_page_link {
+  color: #9000f026;
+  font-size: 4vh;
+  font-weight: bolder;
+}
+
+#index_page_link:hover {
+  color: #9000f0;
+}
+
+#main_container > div {
+  padding-top: 70px;
+}
+
+#page_title .col > h2 {
+  color: #b0b0b0;
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+#policy_content {
+  color: #808080;
+  text-align: justify;
+}
+
+#policy_content > p {
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+@media (max-width: 920px) {
+  #main_container > div {
+    padding-top: 40px;
+  }
+}

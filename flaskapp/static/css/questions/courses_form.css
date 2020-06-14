@@ -1,52 +1,112 @@
-#form_question_paper {
-    padding-left: 10px;
+#course_form,
+#unit_form {
+  background-color: rgba(144, 0, 240, 0.15);
+  box-shadow: 4px 4px 2px 0;
+
+  padding: 10px;
+  width: 550px;
 }
 
-#course_form {
-    background-color: rgba(144, 0, 240, 0.15);
-    box-shadow: 4px 4px 2px 0;
-    /* margin: 10px; */
-    padding: 10px;
-    width: 50%;
+#submit_btn,
+#reset_btn {
+  background-color: rgba(144, 0, 240, 0.15);
+  border: none;
+  color: rgba(88, 88, 88, 1);
+  font-size: 20px;
+  padding: 10px 20px;
 }
 
 #form_content {
-    background-color: white;
-    padding: 10px;
+  background-color: white;
+  padding: 10px;
+}
+
+#form_question_paper {
+  padding-left: 10px;
+}
+
+.form__error {
+  list-style-type: none;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 .form__fields {
-    background-color: rgba(144, 0, 240, 0.15);
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
+  background-color: rgba(144, 0, 240, 0.15);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
 .form__fields label {
-    color: rgba(88, 88, 88, 1);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
+  color: rgba(88, 88, 88, 1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
 }
 
 .form__fields input {
-    padding: 10px;
+  padding: 10px;
 }
 
-.form__client_error {
-    color: red;
-    margin: 0;
+.form__client_error,
+.form__error li {
+  color: red;
+  margin: 0;
 }
 
-#submit_btn {
-    text-align: right;
+#page_container {
+  padding-top: 100px;
 }
 
-#submit {
-    background-color: rgba(144, 0, 240, 0.15);
-    border: 0;
-    color: rgba(88, 88, 88, 1);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    margin: 10px 0;
-    padding: 10px;
+#reset_btn:hover {
+  cursor: pointer;
+}
+
+#submit_reset_container {
+  margin-top: 15px;
+  text-align: right;
+}
+
+@media (max-width: 786px) {
+  #body_container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #content {
+    margin: 0 10px !important;
+  }
+
+  #form_question_paper {
+    width: 550px;
+  }
+
+  #page_display {
+    align-items: center;
+  }
+
+  #template_display {
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 568px) {
+  #page_display {
+    align-items: initial;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #course_form,
+  #unit_form,
+  #form_question_paper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  #submit_btn,
+  #reset_btn {
+    padding: 5px 10px;
+  }
 }

@@ -1,7 +1,15 @@
-{% extends "base.html" %}
-{% block content %}
-    <div class="content-section">
-        <h1>Something went wrong (500)</h1>
-        <p>We're experiencing some trouble on our end. Please try again in the near future</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>500</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/errors/403.css')}}" />
+</head>
+
+<body>
+    <div>
+        <img src="{{ url_for('static', filename='images/500.svg') }}" class="error-500" alt="500" />
     </div>
-{% endblock content %}
+</body>
+
+</html>

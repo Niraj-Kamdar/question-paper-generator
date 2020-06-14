@@ -7,6 +7,8 @@ verify_ssl = true
 beautifulsoup4 = "*"
 lxml = "*"
 coverage = "*"
+pylint = "*"
+flake8 = "*"
 
 [packages]
 alembic = "*"
@@ -37,6 +39,11 @@ SQLAlchemy = "*"
 Werkzeug = "*"
 WTForms = "*"
 sentry-sdk = {extras = ["flask"],version = "==0.14.3"}
+flask-weasyprint = "*"
+email-validator = "*"
+flask-minify = "*"
+flask-caching = "*"
+qpt-generator = "*"
 
 [requires]
 python_version = "3.7"
