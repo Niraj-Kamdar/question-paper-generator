@@ -41,10 +41,8 @@ def home():
 def paper_generate_request(course_id):
     """ generate paper from json data
     """
-    print(request.method)
     if request.method == "POST":
         data = request.get_json()
-        print(data)
         if data:
             data = json_url.dumps(data)
             return redirect(
@@ -52,7 +50,7 @@ def paper_generate_request(course_id):
                         course_id=course_id,
                         data=data))
         flash("Form can't be empty!")
-    return render_template("papers/generate_request.html",js_file="js/papers/generate_request.js",css_file="css/papers/generate_request.css",
+    return render_template("papers/generate_request.html",js_file="js/papers/generate_request.js",css_file="css/papers/generate_request.css",css_file2="css/base.css",
                            image_file=profile_path())
 
 
@@ -69,7 +67,6 @@ def mark_distribution_form(course_id, data):
     data = json_url.loads(data)
     form = MarkDistributionForm(course_id, data["questions"],
                                 data["total_marks"])
-    print(form.validate_on_submit(),request.method)
     if form.validate_on_submit():
         return jsonify(form.data)
     return render_template("papers/mark_distribution_form.html", form=form)

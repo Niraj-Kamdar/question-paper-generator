@@ -1,5 +1,5 @@
 #add_course,
-#add_unit {
+#add_unit,#generate_paper {
   background-color: rgba(144, 0, 240, 0.76);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   color: white;

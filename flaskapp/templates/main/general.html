@@ -1,7 +1,113 @@
 {% extends "headerFooter.html" %}
+
+{% block general_top_links %}
+ <a href="/" class="top_navigation_items">
+     <h4 class="py-2 mx-3">Home</h4>
+ </a>
+{% if loggedIn %}
+  <div class="dropdown_container">
+     <h4 class="py-2 mx-3">More <i class="fa fa-caret-down"></i></h4>
+     <div class="dropdown_items_container">
+         <a href="/about-us" class="top_navigation_items">
+             <h4 class="py-2 mx-3">About Us</h4>
+         </a>
+         <a href="/help" class="top_navigation_items">
+             <h4 class="py-2 mx-3">Help</h4>
+         </a>
+         <a href="/contact-us" class="top_navigation_items">
+             <h4 class="py-2 mx-3">Contact Us</h4>
+         </a>
+     </div>
+ </div>
+ <a href="/logout" class="top_navigation_items">
+     <h4 class="py-2 mx-3">Log Out</h4>
+ </a>
+{% else %}
+ <a href="/about-us" class="top_navigation_items">
+     <h4 class="py-2 mx-3">About Us</h4>
+ </a>
+ <a href="/help" class="top_navigation_items">
+     <h4 class="py-2 mx-3">Help</h4>
+ </a>
+ <a href="/contact-us" class="top_navigation_items">
+     <h4 class="py-2 mx-3">Contact Us</h4>
+ </a>
+ <a href="/login" class="top_navigation_items">
+     <h4 class="py-2 mx-3">Log In</h4>
+ </a>
+
+{% endif %}
+
+
+{% endblock general_top_links %}
+
+{% block general_side_links%}
+  <a href="/" class="side_navigation_items">Home</a>
+  {% if loggedIn %}
+    <div class="dropdown_container_2 bb bt">
+      <span class="side_navigation_items">More <i class="fa fa-caret-down"></i></span>
+      <a href="/about-us" class="side_navigation_items hide">
+          About Us
+      </a>
+      <a href="/help" class="side_navigation_items hide">
+          Help
+      </a>
+      <a href="/contact-us" class="side_navigation_items hide">
+          Contact Us
+      </a>
+  </div>
+  <a href="/logout" class="side_navigation_items">Log Out</a>
+  {% else %}
+  <a href="/about-us" class="side_navigation_items bt">
+      About Us
+  </a>
+  <a href="/help" class="side_navigation_items">
+      Help
+  </a>
+  <a href="/contact-us" class="side_navigation_items bb">
+      Contact Us
+  </a>
+  <a href="/login" class="side_navigation_items">
+      Log In
+  </a>
+  {% endif %}
+
+  <a href="#" class="side_navigation_items bb" id="close_link">Close</a>
+{% endblock general_side_links %}
+
 {% block body %}
     <div>
         {% block main %}
         {% endblock main %}
     </div>
 {% endblock body %}
+
+
+
+{% block top_profile %}
+{% if loggedIn %}
+ <div class="col4">
+     <a href="/account" class="profile_page">
+         <img src="{{ image_file }}" class="user" alt="{{loggedIn}}" title="profile" />
+     </a>
+ </div>
+{% endif %}
+{% endblock top_profile %}
+
+{% block side_profile %}
+ {% if loggedIn %}
+ <div class="col4">
+     <a href="/account" class="profile_page">
+         <img src="{{ image_file }}" class="user" alt="user" title="profile" />
+     </a>
+ </div>
+{% endif %}
+{% endblock side_profile %}
+
+
+
+{% block general_scripts %}
+{% if loggedIn %}
+  <script type="text/javascript" src="{{ url_for('static',filename='js/base.js') }}" defer="defer"></script>
+{% endif %}
+{% endblock general_scripts%}

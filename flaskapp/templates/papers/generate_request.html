@@ -1,40 +1,51 @@
 {% extends "base.html" %}
-{% block image %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
-{% endblock image %}
-{% block image2 %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
-{% endblock image2 %}
+
 {% block header %}
-<h1 class="header">Questions</h1>
+<h3 class="header">Questions</h3>
 {% endblock header %}
 
 {% block main %}
 <div id="part_3">
  <div id="part_1">
    <form method="POST" action="" novalidate id="questions">
-     <label>Enter Number of Questions
-        <input type="number" id="number_of_questions"/>
-     </label>
-     <div id="questions_err"></div>
-    
+       <div class="form_content">
+           <div class="form__fields">
+               <label for="number_of_questions">Number of Questions</label>
+               <input type="number" id="number_of_questions"/>
+               <div id="questions_err"></div>
+            </div>
+
+            <div class="navigation_btns">
+               <button type="button" id="next_1">Next</button>
+            </div>
+       </div>
    </form>
 
-   <div class="navigation_btns">
-     <button id="next_1">Next</button>
-   </div>
+
  </div>
 
  <div id="part_2">
   <form method="POST" action="" novalidate id="subquestions">
-      <label>Enter Marks : <input type="number" id="marks"/></label>
-      <div id="marks_err"></div>
+      <div class="form_content">
+          <div id="dynamic_content">
+
+          </div>
+          <div class="form__fields">
+              <label for="marks">Enter total Marks :</label>
+              <input type="number" id="marks"/>
+              <div id="marks_err"></div>
+          </div>
+          <div class="navigation_btns">
+              <button id="back_1" type="button" >Back</button>
+              <button id="next_2" type="button" >Next</button>
+          </div>
+      </div>
+
+
+
+
   </form>
 
-  <div class="navigation_btns">
-    <button id="back_1">Back</button>
-    <button id="next_2">Next</button>
-  </div>
  </div>
 
  <div id="network_err"></div>

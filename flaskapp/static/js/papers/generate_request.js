@@ -8,8 +8,10 @@ const secondNextBtn = document.getElementById("next_2");
 const part1 = document.getElementById("part_1");
 const part2 = document.getElementById("part_2");
 const part3 = document.getElementById("part_3");
-const subQuestionForm = document.getElementById("subquestions");
+const marks = document.getElementById("marks");
+const marksErr = document.getElementById("marks_err");
 const subquestions = document.getElementsByClassName("subquestions");
+const dynamicContent = document.getElementById("dynamic_content");
 
 part2.style.display = "none";
 
@@ -23,12 +25,15 @@ firstNextBtn.addEventListener("click",function(e){
     if(!isValid){
        questionsErr.innerHTML = err;
     } else {
-        e.target.parentNode.parentNode.style.display = "none";
+        part1.style.display = "none";
         part2.style.display = "";
         generateSubQuestionForm(value);
     }
 });
 
+marks.addEventListener('input', function () {
+    marksErr.innerHTML = "";
+});
 
 secondNextBtn.addEventListener("click",function(){
   const len = subquestions.length;
@@ -38,7 +43,7 @@ secondNextBtn.addEventListener("click",function(){
   Array.from(subquestions).forEach(function(node,index){
       const [isValid,err] = isValidNumber(node.value);
       if(!isValid) {
-          subquestionsErr[index].innerHTML = err.replace("Questions","Sub Questions");
+          subquestionsErr[index].innerHTML = err.replace("Questions","Subquestions");
       }else{
           correct++;
       }
@@ -70,17 +75,15 @@ const generateSubQuestionForm = (function(){
      });
 
     return function(value){
-      let content = "";
-      for(let i=1;i<=value;i++){
-            let s = `<label>Enter subquestion for Question ${i}: <input type="number" class="subquestions" value="${buffer[i - 1] ? buffer[i - 1] : ""}" /></label>`;
-            s = s + '<div class="subquestions_err"></div>';
+       let content = "";
+       for(let i=1;i<=value;i++){
+            let s = `<div class="form__fields"><label for="subquestions_${i}">Enter subquestions for Q${i}: </label>` +
+                `<input type="number" id="subquestions_${i}" class="subquestions" value="${buffer[i - 1] ? buffer[i - 1] : ""}" />`;
+            s = s + '<div class="subquestions_err"></div></div>';
             content = content + s;
         }
-        subQuestionForm.innerHTML = content + subQuestionForm.innerHTML;
 
-        document.getElementById("marks").addEventListener('input', function () {
-            document.getElementById("marks_err").innerHTML = "";
-        });
+        dynamicContent.innerHTML = content;
 
         Array.from(subquestions).forEach(function(node,index){
             node.addEventListener('input',function(){
@@ -94,14 +97,14 @@ function isValidNumber(number){
     let isValid = false;
     let err = "";
     if(number===""){
-        err = "Enter Number of Questions in Integers";
+        err = "Number of Questions should be Integer";
     } else if(Number(number)<=0) {
         err = "Number of Questions should be positive";
     } else{
         const indexOfDecimal = number.indexOf(".");
         const indexOfExp = number.indexOf("e");
         if(indexOfDecimal!==-1 || indexOfExp!==-1){
-            err = "Enter Number of Questions in Integers";
+            err = "Number of Questions should be Integer";
         }
     }
     if(!err){

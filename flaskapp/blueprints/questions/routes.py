@@ -87,6 +87,7 @@ def units(course_id):
         title="Units",
         css_file="css/base.css",
         css_file2="css/questions/courses.css",
+        course_id = course_id
     )
 
 
@@ -112,6 +113,7 @@ def add_unit(course_id):
         js_file="js/questions/add_unit.js",
         image_file=profile_path(),
         title="Add Units",
+        course_id=course_id
     )
 
 

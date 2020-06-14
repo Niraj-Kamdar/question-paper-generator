@@ -1,16 +1,38 @@
 (function () {
-  const addMCQ = document.getElementById("add_container").firstElementChild
-    .nextElementSibling;
-  const addSubjectiveQuestion = addMCQ.nextElementSibling;
-  const viewMCQ = document.getElementById("explore_container").firstElementChild
-    .nextElementSibling;
-  const viewSubjectiveQuestion = viewMCQ.nextElementSibling;
+  const exploreContainer = document.getElementById("explore_container");
+  const addContainer = document.getElementById("add_container");
+  const courseContainer = document.getElementById("course_container");
+  const rDropdownexploreTitle = exploreContainer.firstElementChild;
+  const rDropdownAddTitle = addContainer.firstElementChild;
+  const rDropdownCourseTitle = courseContainer.firstElementChild;
+  const childrenLength = courseContainer.children.length;
   const navLinks = Array.from(document.getElementsByClassName("nav_link"));
 
-  addMCQ.setAttribute("href",navLinks[2].getAttribute("href"));
-  addSubjectiveQuestion.setAttribute("href",navLinks[3].getAttribute("href"));
-  viewMCQ.setAttribute("href",navLinks[0].getAttribute("href"));
-  viewSubjectiveQuestion.setAttribute("href",navLinks[1].getAttribute("href"));
+  function handleQuestionNav(e) {
+  let target = {};
+  let classList = {};
+  let children = {};
+  if (Array.from(e.target.classList).includes("fa")) {
+    target = e.target.parentNode;
+  }else {
+    target = e.target;
+  }
+  classList = target.lastElementChild.classList;
+  children = target.parentNode.children;
+  if (Array.from(target.lastElementChild.classList).includes("fa-caret-down")) {
+    for (let i = 1; i < children.length; i++) {
+      children[i].style.display = "block";
+    }
+    classList.remove("fa-caret-down");
+    classList.add("fa-caret-up");
+  } else {
+    for (let i = 1; i < children.length; i++) {
+      children[i].style.display = "none";
+    }
+    classList.remove("fa-caret-up");
+    classList.add("fa-caret-down");
+  }
+}
 
   navLinks.forEach(function(node){
     if(node.href === window.location.href){
@@ -20,6 +42,10 @@
       if(e.target.href===window.location.href){
         e.preventDefault();
       }
-    })
+    });
   });
+
+  rDropdownexploreTitle.addEventListener("click", handleQuestionNav);
+  rDropdownAddTitle.addEventListener("click", handleQuestionNav);
+  rDropdownCourseTitle.addEventListener("click", handleQuestionNav);
 })();

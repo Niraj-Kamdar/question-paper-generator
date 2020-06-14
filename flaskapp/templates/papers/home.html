@@ -1,14 +1,12 @@
 {% extends "base.html" %}
-{% block image %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
-{% endblock image %}
-{% block image2 %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
-{% endblock image2 %}
+
 {% block header %}
 <h1 class="header">Recent</h1>
 {% endblock header %}
 
+{% block special_side_links %}
+  <a href="/course/" class="side_navigation_items">Courses</a>
+{% endblock special_side_links %}
 
 {% block flashes %}
 {% with messages = get_flashed_messages(with_categories=true) %} {% if
@@ -45,6 +43,7 @@
     <a class="row my-3 p-3" href="#">Paper 20</a>
 </div>
 {% endblock main %}
+
 {% block sideNav %}
 <div class="ml-4" id="home_nav">
     <a class="row pl-2" id="manage_courses_btn" href="/course">

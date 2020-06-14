@@ -1,4 +1,37 @@
-{% extends "base.html" %} {% block sideNav %}
+{% extends "base.html" %}
+
+{%block special_side_links%}
+<div id="course_container" class="bb bt">
+    <div class="side_navigation_items">
+        Current Courses <i class="fa fa-caret-down"></i>
+    </div>
+    {%for course in courses %}
+    <a href="/course/{{course.id}}/unit" class="side_navigation_items hide">{{course.name}}</a>
+    {%endfor %}
+    <a href="/course/" class="side_navigation_items hide">More...</a>
+</div>
+
+<div id="explore_container" class="bb">
+    <div class="side_navigation_items">
+        Explore <i class="fa fa-caret-down"></i>
+    </div>
+    <a href="/course/{{course_id}}/unit/{{unit_id}}/question/mcq/" class="side_navigation_items hide">Multiple Choice
+        Question</a>
+    <a href="/course/{{course_id}}/unit/{{unit_id}}/question/sub/" class="side_navigation_items hide">Subjective Question</a>
+</div>
+
+<div id="add_container" class="bb">
+    <div class="side_navigation_items">
+        Add <i class="fa fa-caret-down"></i>
+    </div>
+    <a href="/course/{{course_id}}/unit/{{unit_id}}/question/mcq/new/" class="side_navigation_items hide">Multiple Choice
+        Question</a>
+    <a href="/course/{{course_id}}/unit/{{unit_id}}/question/sub/new/" class="side_navigation_items hide">Subjective Question</a>
+</div>
+
+{%endblock special_side_links %}
+
+{% block sideNav %}
 
 <div id="sideNav">
     <div class="courses_container">
@@ -13,7 +46,7 @@
             </div>
             {% endfor %}
             <div class="courses_items">
-                <a href="/course" class="course_link">More...</a>
+                <a href="/course/" class="course_link">More...</a>
             </div>
         </div>
     </div>

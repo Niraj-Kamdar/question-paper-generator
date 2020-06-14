@@ -1,10 +1,17 @@
 {% extends "base.html" %}
-{% block image %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
-{% endblock image %}
-{% block image2 %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
-{% endblock image2 %}
+
+{% block special_top_links %}
+ <a href="/course/" class="top_navigation_items">
+     <h4 class="py-2 mx-3">Courses</h4>
+ </a>
+{% endblock special_top_links %}
+
+{% block special_side_links %}
+  <a href="/course/{{course_id}}/unit/new" class="side_navigation_items">Add Unit</a>
+  <a href="/course/{{course_id}}/papers/generate/request" class="side_navigation_items">Generate Paper</a>
+  <a href="/course/" class="side_navigation_items">Courses</a>
+{% endblock special_side_links %}
+
 {% block flashes %}
 {% with messages = get_flashed_messages(with_categories=true) %} {% if
 messages %}
@@ -15,6 +22,7 @@ messages %}
 </ul>
 {% endif %} {% endwith %}
 {% endblock flashes %}
+
 {% block main %}
 
 <div id="unit_container">
@@ -27,9 +35,12 @@ messages %}
         {% endfor %}
     </div>
     <div id="add_unit_container">
-        <a id="add_unit" href="new">
+        <a id="add_unit" href="/course/{{course_id}}/unit/new">
             <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img" alt="add">Add Unit
             </div>
+        </a>
+        <a id="generate_paper" href="/course/{{course_id}}/papers/generate/request">
+            <div>Generate Paper</div>
         </a>
     </div>
 </div>
