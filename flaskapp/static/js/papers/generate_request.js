@@ -1,4 +1,3 @@
-
 const numberOfQuestions = document.getElementById("number_of_questions");
 const questionsErr = document.getElementById("questions_err");
 const subquestionsErr = document.getElementsByClassName("subquestions_err");
@@ -15,10 +14,11 @@ const dynamicContent = document.getElementById("dynamic_content");
 
 part2.style.display = "none";
 
-numberOfQuestions.addEventListener('input',
-                                   function() { questionsErr.innerHTML = ""; });
+numberOfQuestions.addEventListener("input", function () {
+  questionsErr.innerHTML = "";
+});
 
-firstNextBtn.addEventListener("click", function(e) {
+firstNextBtn.addEventListener("click", function (e) {
   const value = numberOfQuestions.value;
   const [isValid, err] = isValidNumber(value);
   if (!isValid) {
@@ -30,18 +30,22 @@ firstNextBtn.addEventListener("click", function(e) {
   }
 });
 
-marks.addEventListener('input', function() { marksErr.innerHTML = ""; });
+marks.addEventListener("input", function () {
+  marksErr.innerHTML = "";
+});
 
-secondNextBtn.addEventListener("click", function() {
+secondNextBtn.addEventListener("click", function () {
   const len = subquestions.length;
   const marks = document.getElementById("marks").value;
   let correct = 0;
 
-  Array.from(subquestions).forEach(function(node, index) {
+  Array.from(subquestions).forEach(function (node, index) {
     const [isValid, err] = isValidNumber(node.value);
     if (!isValid) {
-      subquestionsErr[index].innerHTML =
-          err.replace("Questions", "Subquestions");
+      subquestionsErr[index].innerHTML = err.replace(
+        "Questions",
+        "Subquestions"
+      );
     } else {
       correct++;
     }
@@ -49,45 +53,48 @@ secondNextBtn.addEventListener("click", function() {
 
   const [isValid, err] = isValidNumber(marks);
   if (!isValid) {
-    document.getElementById("marks_err").innerHTML =
-        err.replace("Number of Questions", "marks");
+    document.getElementById("marks_err").innerHTML = err.replace(
+      "Number of Questions",
+      "marks"
+    );
   }
 
   if (correct === len && isValid) {
-    const data = {questions : [], total_marks : marks};
-    data.questions = Array.from(subquestions).map(node => Number(node.value));
+    const data = { questions: [], total_marks: marks };
+    data.questions = Array.from(subquestions).map((node) => Number(node.value));
     generateMarksForm(data);
   }
 });
 
-const generateSubQuestionForm = (function() {
+const generateSubQuestionForm = (function () {
   let buffer = [];
 
-  firstBackBtn.addEventListener('click', function() {
+  firstBackBtn.addEventListener("click", function () {
     buffer = Array.from(subquestions).map((node) => node.value);
     part2.style.display = "none";
     part1.style.display = "";
   });
 
-  return function(value) {
+  return function (value) {
     let content = "";
     for (let i = 1; i <= value; i++) {
-      let s = `<div class="form__fields"><label for="subquestions_${
-                  i}">Enter subquestions for Q${i}: </label>` +
-              `<input type="number" id="subquestions_${
-                  i}" class="subquestions" value="${
-                  buffer[i - 1] ? buffer[i - 1] : ""}" />`;
+      let s =
+        `<div class="form__fields"><label for="subquestions_${i}">Enter subquestions for Q${i}: </label>` +
+        `<input type="number" id="subquestions_${i}" class="subquestions" value="${
+          buffer[i - 1] ? buffer[i - 1] : ""
+        }" />`;
       s = s + '<div class="subquestions_err"></div></div>';
       content = content + s;
     }
 
     dynamicContent.innerHTML = content;
 
-    Array.from(subquestions).forEach(function(node, index) {
-      node.addEventListener(
-          'input', function() { subquestionsErr[index].innerHTML = ""; });
+    Array.from(subquestions).forEach(function (node, index) {
+      node.addEventListener("input", function () {
+        subquestionsErr[index].innerHTML = "";
+      });
     });
-  }
+  };
 })();
 
 function isValidNumber(number) {
@@ -107,7 +114,7 @@ function isValidNumber(number) {
   if (!err) {
     isValid = true;
   }
-  return [ isValid, err ];
+  return [isValid, err];
 }
 
 async function generateMarksForm(data) {
@@ -119,11 +126,10 @@ async function generateMarksForm(data) {
   let responseUrl = "";
   const data2 = data;
   try {
-
     const response = await fetch(url, {
-      method : 'POST',
-      body : JSON.stringify(data2),
-      headers : {'Content-Type' : 'application/json'},
+      method: "POST",
+      body: JSON.stringify(data2),
+      headers: { "Content-Type": "application/json" },
     });
     responseUrl = response.url;
     const data = await response.text();
