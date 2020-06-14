@@ -57,5 +57,7 @@ def CognitiveLevel(value):
 
 
 def profile_path():
-    return url_for("static",
-                   filename="profile_pics/" + current_user.image_file)
+    if current_user.is_authenticated:
+        return url_for("static",
+                       filename="profile_pics/" + current_user.image_file)
+    return ""

@@ -30,7 +30,8 @@
 .add_items,
 .courses_items {
   background-color: white;
-  color: rgba(76, 76, 76, 1);
+  /*color: rgba(76, 76, 76, 1);*/
+  color : #4c4c4c;
   display: flex;
   flex-direction: row;
   margin-bottom: 5px;
@@ -57,7 +58,7 @@
 
 .nav_link,
 .course_link {
-  color: rgba(76, 76, 76, 1) !important;
+  color: #4c4c4c !important;
   cursor: pointer;
   text-decoration: none !important;
 }
