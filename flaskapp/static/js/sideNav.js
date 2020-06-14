@@ -1,19 +1,19 @@
-(function () {
-  const exploreContainer = document.getElementById("explore_container");
-  const addContainer = document.getElementById("add_container");
-  const courseContainer = document.getElementById("course_container");
-  const rDropdownexploreTitle = exploreContainer.firstElementChild;
-  const rDropdownAddTitle = addContainer.firstElementChild;
-  const rDropdownCourseTitle = courseContainer.firstElementChild;
-  const navLinks = Array.from(document.getElementsByClassName("nav_link"));
+(function() {
+const exploreContainer = document.getElementById("explore_container");
+const addContainer = document.getElementById("add_container");
+const courseContainer = document.getElementById("course_container");
+const rDropdownexploreTitle = exploreContainer.firstElementChild;
+const rDropdownAddTitle = addContainer.firstElementChild;
+const rDropdownCourseTitle = courseContainer.firstElementChild;
+const navLinks = Array.from(document.getElementsByClassName("nav_link"));
 
-  function handleQuestionNav(e) {
+function handleQuestionNav(e) {
   let target = {};
   let classList = {};
   let children = {};
   if (Array.from(e.target.classList).includes("fa")) {
     target = e.target.parentNode;
-  }else {
+  } else {
     target = e.target;
   }
   classList = target.lastElementChild.classList;
@@ -33,18 +33,18 @@
   }
 }
 
-  navLinks.forEach(function(node){
-    if(node.href === window.location.href){
-      node.parentElement.classList.add("active");
+navLinks.forEach(function(node) {
+  if (node.href === window.location.href) {
+    node.parentElement.classList.add("active");
+  }
+  node.addEventListener('click', function(e) {
+    if (e.target.href === window.location.href) {
+      e.preventDefault();
     }
-    node.addEventListener('click',function(e){
-      if(e.target.href===window.location.href){
-        e.preventDefault();
-      }
-    });
   });
+});
 
-  rDropdownexploreTitle.addEventListener("click", handleQuestionNav);
-  rDropdownAddTitle.addEventListener("click", handleQuestionNav);
-  rDropdownCourseTitle.addEventListener("click", handleQuestionNav);
+rDropdownexploreTitle.addEventListener("click", handleQuestionNav);
+rDropdownAddTitle.addEventListener("click", handleQuestionNav);
+rDropdownCourseTitle.addEventListener("click", handleQuestionNav);
 })();
