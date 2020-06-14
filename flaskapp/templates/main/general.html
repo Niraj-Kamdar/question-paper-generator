@@ -4,7 +4,7 @@
  <a href="/" class="top_navigation_items">
      <h4 class="py-2 mx-3">Home</h4>
  </a>
-{% if loggedIn %}
+{% if image_file!="" %}
   <div class="dropdown_container">
      <h4 class="py-2 mx-3">More <i class="fa fa-caret-down"></i></h4>
      <div class="dropdown_items_container">
@@ -43,7 +43,7 @@
 
 {% block general_side_links%}
   <a href="/" class="side_navigation_items">Home</a>
-  {% if loggedIn %}
+  {% if image_file!="" %}
     <div class="dropdown_container_2 bb bt">
       <span class="side_navigation_items">More <i class="fa fa-caret-down"></i></span>
       <a href="/about-us" class="side_navigation_items hide">
@@ -85,7 +85,7 @@
 
 
 {% block top_profile %}
-{% if loggedIn %}
+{% if image_file!="" %}
  <div class="col4">
      <a href="/account" class="profile_page">
          <img src="{{ image_file }}" class="user" alt="{{loggedIn}}" title="profile" />
@@ -95,7 +95,7 @@
 {% endblock top_profile %}
 
 {% block side_profile %}
- {% if loggedIn %}
+ {% if image_file!="" %}
  <div class="col4">
      <a href="/account" class="profile_page">
          <img src="{{ image_file }}" class="user" alt="user" title="profile" />
@@ -107,7 +107,7 @@
 
 
 {% block general_scripts %}
-{% if loggedIn %}
+{% if image_file!="" %}
   <script type="text/javascript" src="{{ url_for('static',filename='js/base.js') }}" defer="defer"></script>
 {% endif %}
 {% endblock general_scripts%}

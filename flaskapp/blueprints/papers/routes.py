@@ -30,7 +30,6 @@ def home():
         css_file2="css/home.css",
         title="Home",
         image_file=profile_path(),
-        profile_pic="profile_pics/" + current_user.image_file,
     )
 
 

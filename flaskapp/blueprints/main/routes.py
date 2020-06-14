@@ -37,55 +37,33 @@ def about_us():
     Returns:
         HTML  -- It will redirect to about us page.
     """
-    if current_user.is_authenticated:
-        return render_template(
-            "main/about.html",
-            css_file='css/main/about.css',
-            loggedIn=True,
-            image_file=profile_path()
-        )
+
     return render_template(
             "main/about.html",
             title="About Us",
             css_file="css/main/about.css",
-            loggedIn=False
+            image_file=profile_path()
         )
 
 
 
 @main.route("/privacy-policy")
 def policy_page():
-    if current_user.is_authenticated:
-        return render_template(
-            "main/privacy-policy.html",
-             title="Privacy Policy",
-             css_file="css/main/privacy_policy.css",
-             loggedIn=True,
-             image_file=profile_path()
-        )
     return render_template(
             "main/privacy-policy.html",
             title="Privacy Policy",
             css_file="css/main/privacy_policy.css",
-            loggedIn=False
+            image_file=profile_path()
         )
 
 
 @main.route("/terms-of-service")
 def terms_of_service_page():
-    if current_user.is_authenticated:
-        return render_template(
-        "main/terms-of-service.html",
-        title="Terms Of Service",
-        css_file="css/main/terms_of_service.css",
-        loggedIn=True,
-        image_file=profile_path()
-        )
     return render_template(
         "main/terms-of-service.html",
         title="Terms Of Service",
         css_file="css/main/terms_of_service.css",
-        loggedIn=False
+        image_file=profile_path()
         )
 
 
@@ -97,20 +75,11 @@ def help_page():
     Returns:
         HTML - It will redirect to help page.
     """
-    if current_user.is_authenticated:
-        render_template(
+    return render_template(
             "main/help.html",
             title="Help",
             css_file="css/main/help.css",
-            loggedIn=True,
             image_file=profile_path()
-        )
-
-    render_template(
-            "main/help.html",
-            title="Help",
-            css_file="css/main/help.css",
-            loggedIn=False
         )
 
 
@@ -137,22 +106,12 @@ def contact_us():
             "Your Message has recorded successfully! We will reach out soon.",
             "success")
         return redirect(url_for("main.contact_us"))
-    if current_user.is_authenticated:
-        return render_template(
-        "main/contact-us/contact_us_form.html",
-        title="Contact Us",
-        form=form,
-        css_file="css/contact_us/main.css",
-        css_file2="css/contact_us/util.css",
-        loggedIn=True,
-        image_file=profile_path()
-        )
     return render_template(
         "main/contact-us/contact_us_form.html",
         title="Contact Us",
         form=form,
         css_file="css/contact_us/main.css",
         css_file2="css/contact_us/util.css",
-        loggedIn=False,
+        image_file=profile_path()
         )
 
