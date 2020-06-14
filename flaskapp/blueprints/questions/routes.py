@@ -1,20 +1,13 @@
-from flask import Blueprint, flash, json, redirect, render_template, request, url_for
+from flask import (Blueprint, flash, json, redirect, render_template, request,
+                   url_for)
 from flask_login import current_user, login_required
-
 from flaskapp import db
 from flaskapp.blueprints.questions.forms import MCQQuestionForm, QuestionForm
 from flaskapp.blueprints.questions.utils import update_imp
-from flaskapp.checkers import (
-    check_valid_unit,
-    check_valid_question_type,
-    check_valid_course,
-)
+from flaskapp.checkers import (check_valid_course, check_valid_question_type,
+                               check_valid_unit)
 from flaskapp.models import Course, MCQQuestion, Question
-from flaskapp.utils import (
-    CognitiveLevel,
-    DifficultyLevel,
-    profile_path,
-)
+from flaskapp.utils import CognitiveLevel, DifficultyLevel, profile_path
 
 questions = Blueprint("questions", __name__)
 
