@@ -1,12 +1,18 @@
-from flask import url_for, render_template, flash, request, Blueprint
-from flask_login import login_required, current_user
+from flask import Blueprint
+from flask import flash
+from flask import render_template
+from flask import request
+from flask import url_for
+from flask_login import current_user
+from flask_login import login_required
 from werkzeug.utils import redirect
 
 from flaskapp import db
-from flaskapp.blueprints.courses.forms import UnitForm, CourseForm
+from flaskapp.blueprints.courses.forms import CourseForm
+from flaskapp.blueprints.courses.forms import UnitForm
 from flaskapp.checkers import check_valid_course
-
-from flaskapp.models import Unit, Course
+from flaskapp.models import Course
+from flaskapp.models import Unit
 from flaskapp.utils import profile_path
 
 courses = Blueprint("courses", __name__)
@@ -64,9 +70,8 @@ def all_courses():
 def remove_course(course_id):
     if request.method == "POST":
         course_ids = request.get_json()
-        db.session.query(Course).filter(Course.id.in_(course_ids)).delete(
-            synchronize_session="fetch"
-        )
+        db.session.query(Course).filter(
+            Course.id.in_(course_ids)).delete(synchronize_session="fetch")
         db.session.commit()
 
 
@@ -93,9 +98,9 @@ def add_unit(course_id):
     form = UnitForm()
     _course = Course.query.filter(Course.id == course_id).first()
     if form.validate_on_submit():
-        unit = Unit(
-            chapter_no=form.chapter_no.data, name=form.name.data, course=_course
-        )
+        unit = Unit(chapter_no=form.chapter_no.data,
+                    name=form.name.data,
+                    course=_course)
         db.session.add(unit)
         db.session.commit()
         flash("New unit added successfully!", "success")

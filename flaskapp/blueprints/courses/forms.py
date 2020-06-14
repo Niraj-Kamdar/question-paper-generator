@@ -1,6 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, SubmitField, IntegerField
-from wtforms.validators import DataRequired, NumberRange
+from wtforms import BooleanField
+from wtforms import IntegerField
+from wtforms import StringField
+from wtforms import SubmitField
+from wtforms.validators import DataRequired
+from wtforms.validators import NumberRange
 
 
 class CourseForm(FlaskForm):
