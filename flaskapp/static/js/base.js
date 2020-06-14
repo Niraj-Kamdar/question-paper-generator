@@ -3,8 +3,9 @@
     const dropdownTitle = dropdownContainer.firstElementChild;
     const rdropdownMoreTitle = document.getElementsByClassName("dropdown_container_2")[0].firstElementChild;
     const profilePage = document.getElementsByClassName("profile_page");
-
-
+    let dropFlag = false;
+    let startDropX = 0;
+    let startDropY = 0;
 
     function handleQuestionNav(e) {
         let target = {};

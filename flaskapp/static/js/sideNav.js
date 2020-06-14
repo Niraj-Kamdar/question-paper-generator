@@ -5,7 +5,6 @@
   const rDropdownexploreTitle = exploreContainer.firstElementChild;
   const rDropdownAddTitle = addContainer.firstElementChild;
   const rDropdownCourseTitle = courseContainer.firstElementChild;
-  const childrenLength = courseContainer.children.length;
   const navLinks = Array.from(document.getElementsByClassName("nav_link"));
 
   function handleQuestionNav(e) {

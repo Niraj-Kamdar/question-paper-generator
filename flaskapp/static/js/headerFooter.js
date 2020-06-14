@@ -20,7 +20,6 @@ let mainI = 0;
 let mainFlag = false;
 let mNetDistance = 0;
 
-const url = window.location.href;
 const sideNavigationItems = Array.from(document.getElementsByClassName("side_navigation_items"));
 
 
@@ -30,9 +29,7 @@ const topNavigationItems = document.getElementsByClassName(
 );
 
 const logo = document.getElementsByClassName("logo");
-let startDropX = 0;
-let startDropY = 0;
-let dropFlag = false;
+
 
 const footerLinks = document.getElementsByClassName("fl");
 

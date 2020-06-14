@@ -44,8 +44,7 @@ def about_us():
             loggedIn=True,
             image_file=profile_path()
         )
-    else:
-        return render_template(
+    return render_template(
             "main/about.html",
             title="About Us",
             css_file="css/main/about.css",
@@ -64,8 +63,7 @@ def policy_page():
              loggedIn=True,
              image_file=profile_path()
         )
-    else:
-        return render_template(
+    return render_template(
             "main/privacy-policy.html",
             title="Privacy Policy",
             css_file="css/main/privacy_policy.css",
@@ -83,8 +81,7 @@ def terms_of_service_page():
         loggedIn=True,
         image_file=profile_path()
         )
-    else:
-        return render_template(
+    return render_template(
         "main/terms-of-service.html",
         title="Terms Of Service",
         css_file="css/main/terms_of_service.css",
@@ -108,8 +105,8 @@ def help_page():
             loggedIn=True,
             image_file=profile_path()
         )
-    else:
-        render_template(
+
+    render_template(
             "main/help.html",
             title="Help",
             css_file="css/main/help.css",
@@ -150,8 +147,7 @@ def contact_us():
         loggedIn=True,
         image_file=profile_path()
         )
-    else:
-        return render_template(
+    return render_template(
         "main/contact-us/contact_us_form.html",
         title="Contact Us",
         form=form,
