@@ -70,9 +70,8 @@ def all_courses():
 def remove_course(course_id):
     if request.method == "POST":
         course_ids = request.get_json()
-        db.session.query(Course).filter(Course.id.in_(course_ids)).delete(
-            synchronize_session="fetch"
-        )
+        db.session.query(Course).filter(
+            Course.id.in_(course_ids)).delete(synchronize_session="fetch")
         db.session.commit()
 
 
@@ -99,9 +98,9 @@ def add_unit(course_id):
     form = UnitForm()
     _course = Course.query.filter(Course.id == course_id).first()
     if form.validate_on_submit():
-        unit = Unit(
-            chapter_no=form.chapter_no.data, name=form.name.data, course=_course
-        )
+        unit = Unit(chapter_no=form.chapter_no.data,
+                    name=form.name.data,
+                    course=_course)
         db.session.add(unit)
         db.session.commit()
         flash("New unit added successfully!", "success")
