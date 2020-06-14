@@ -1,7 +1,6 @@
+from flaskapp.utils import json_url
 from test.main.base_classes import BaseUnit
 from test.main.utils import test_post_request
-
-from flaskapp.utils import json_url
 
 
 class PaperGenerateRequest(BaseUnit):
