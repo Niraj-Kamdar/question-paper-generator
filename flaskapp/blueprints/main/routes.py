@@ -39,22 +39,21 @@ def about_us():
     """
 
     return render_template(
-            "main/about.html",
-            title="About Us",
-            css_file="css/main/about.css",
-            image_file=profile_path()
-        )
-
+        "main/about.html",
+        title="About Us",
+        css_file="css/main/about.css",
+        image_file=profile_path()
+    )
 
 
 @main.route("/privacy-policy")
 def policy_page():
     return render_template(
-            "main/privacy-policy.html",
-            title="Privacy Policy",
-            css_file="css/main/privacy_policy.css",
-            image_file=profile_path()
-        )
+        "main/privacy-policy.html",
+        title="Privacy Policy",
+        css_file="css/main/privacy_policy.css",
+        image_file=profile_path()
+    )
 
 
 @main.route("/terms-of-service")
@@ -64,8 +63,7 @@ def terms_of_service_page():
         title="Terms Of Service",
         css_file="css/main/terms_of_service.css",
         image_file=profile_path()
-        )
-
+    )
 
 
 @main.route("/help")
@@ -76,12 +74,11 @@ def help_page():
         HTML - It will redirect to help page.
     """
     return render_template(
-            "main/help.html",
-            title="Help",
-            css_file="css/main/help.css",
-            image_file=profile_path()
-        )
-
+        "main/help.html",
+        title="Help",
+        css_file="css/main/help.css",
+        image_file=profile_path()
+    )
 
 
 @main.route("/contact-us")
@@ -113,5 +110,4 @@ def contact_us():
         css_file="css/contact_us/main.css",
         css_file2="css/contact_us/util.css",
         image_file=profile_path()
-        )
-
+    )

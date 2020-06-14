@@ -87,7 +87,7 @@ def units(course_id):
         title="Units",
         css_file="css/base.css",
         css_file2="css/questions/courses.css",
-        course_id = course_id
+        course_id=course_id
     )
 
 
