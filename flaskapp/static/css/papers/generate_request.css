@@ -1,0 +1,84 @@
+#page_display {
+    padding-top : 100px;
+}
+
+#page_display>div {
+    width: 550px;
+}
+#questions,#subquestions,#mark_form {
+    background-color: rgba(144,0,240,0.15);
+    box-shadow: 4px 4px 2px 0;
+    padding: 10px;
+    width: 550px;
+}
+
+#questions_err,#marks_err,.subquestions_err,.err {
+    color : red;
+}
+
+#next_1,#next_2,#back_1,.back_btn,.next_btn {
+    background-color: rgba(144,0,240,0.15);
+    border: none;
+    color: #585858;
+    font-size: 20px;
+    padding: 10px 20px;
+}
+
+.form_content {
+    background-color: white;
+    padding: 10px;
+}
+
+.form__fields,.marks_err {
+    background-color: rgba(144,0,240,0.15);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+input {
+    display: block;
+    padding: 10px;
+    width: 100%;
+}
+
+label {
+    color: #585858;
+    font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+    font-size: 20px;
+    margin-bottom: 0.5rem;
+}
+
+.marks_err{
+    color : red;
+    padding : 0 10px;
+}
+
+.navigation_btns{
+    padding-top: 15px;
+    text-align: right;
+}
+
+@media (max-width: 786px) {
+    #page_display {
+        align-items: center;
+    }
+}
+
+@media(max-width: 580px){
+    #body_container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    #content {
+        width : 100%;
+    }
+    #page_display {
+        display: initial;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    #questions,#subquestions,#page_display>div,#mark_form {
+        width: 100%;
+    }
+}

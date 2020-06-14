@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% block image %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
-{% endblock image %}
-{% block image2 %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
-{% endblock image2 %}
+
+{% block special_side_links %}
+  <a href="/course/new" class="side_navigation_items bt">Add Course</a>
+  <a href="#" class="side_navigation_items bb">Remove Course</a>
+{% endblock special_side_links %}
+
 {% block flashes %}
 {% with messages = get_flashed_messages(with_categories=true) %} {% if
 messages %}
