@@ -63,7 +63,8 @@ class MarkDistributionForm:
 
         flatten_data["units"].extend([0] * len(units))
         flatten_data["cognitive"].extend([0] * len(CognitiveEnum.__members__))
-        flatten_data["difficulty"].extend([0] * len(DifficultyEnum.__members__))
+        flatten_data["difficulty"].extend(
+            [0] * len(DifficultyEnum.__members__))
         flatten_data["questions"].extend([0] * sum(questions))
 
         for unit in units:
@@ -91,7 +92,8 @@ class MarkDistributionForm:
                     {field: IntegerField(field, validators=[DataRequired()])}
                 )
                 validators["questions"].append(field)
-                question_translator[question_no + 1][ascii_uppercase[subquestion]] = idx
+                question_translator[question_no +
+                                    1][ascii_uppercase[subquestion]] = idx
                 idx += 1
 
         for i, validator in validators.items():

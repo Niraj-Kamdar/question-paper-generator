@@ -31,7 +31,8 @@ class SubOperationTestCase(BaseSubQuestion):
 
     def test_delete_question(self):
         delete_list = [1, 4]
-        test_get_request(self, "/course/1/unit/1/question/sub/delete/", delete_list)
+        test_get_request(
+            self, "/course/1/unit/1/question/sub/delete/", delete_list)
 
         # check changes are reflected in database
         q1 = self.db.session.query(models.Question).get(1)
