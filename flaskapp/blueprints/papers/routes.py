@@ -44,8 +44,7 @@ def paper_generate_request(course_id):
         if data:
             data = json_url.dumps(data)
             return redirect(
-                url_for("papers.mark_distribution_form",
-                        course_id=course_id, data=data)
+                url_for("papers.mark_distribution_form", course_id=course_id, data=data)
             )
         flash("Form can't be empty!")
     return render_template(
@@ -66,8 +65,7 @@ def mark_distribution_form(course_id, data):
     if not data:
         return redirect(url_for("papers.paper_generate_request", course_id=course_id))
     data = json_url.loads(data)
-    form = MarkDistributionForm(
-        course_id, data["questions"], data["total_marks"])
+    form = MarkDistributionForm(course_id, data["questions"], data["total_marks"])
     if form.validate_on_submit():
         return jsonify(form.data)
     return render_template("papers/mark_distribution_form.html", form=form)

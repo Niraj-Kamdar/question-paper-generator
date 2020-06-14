@@ -200,8 +200,7 @@ def update_question(course_id, unit_id, qtype, question_id):
        And do changes in database accordingly.
     """
     if qtype == "mcq":
-        _question = db.session.query(
-            MCQQuestion).filter_by(id=question_id).first()
+        _question = db.session.query(MCQQuestion).filter_by(id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(
@@ -217,8 +216,7 @@ def update_question(course_id, unit_id, qtype, question_id):
             _question.question = form.question.data
             _question.mark = form.mark.data
             _question.difficulty = DifficultyLevel(form.difficulty.data)
-            _question.cognitive_level = CognitiveLevel(
-                form.cognitive_level.data)
+            _question.cognitive_level = CognitiveLevel(form.cognitive_level.data)
             _question.imp = form.imp.data
             _question.option1 = form.option1.data
             _question.option2 = form.option2.data
@@ -244,8 +242,7 @@ def update_question(course_id, unit_id, qtype, question_id):
             js_file="js/questions/question_form.js",
         )
     else:
-        _question = db.session.query(
-            Question).filter_by(id=question_id).first()
+        _question = db.session.query(Question).filter_by(id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(
@@ -261,8 +258,7 @@ def update_question(course_id, unit_id, qtype, question_id):
             _question.question = form.question.data
             _question.mark = form.mark.data
             _question.difficulty = DifficultyLevel(form.difficulty.data)
-            _question.cognitive_level = CognitiveLevel(
-                form.cognitive_level.data)
+            _question.cognitive_level = CognitiveLevel(form.cognitive_level.data)
             _question.imp = form.imp.data
             db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")
@@ -303,14 +299,20 @@ def imp_question(course_id, unit_id, qtype, impq):
         update_imp(MCQQuestion, obj)
         return redirect(
             url_for(
-                "questions.all_questions", qtype=qtype, course_id=course_id, unit_id=unit_id
+                "questions.all_questions",
+                qtype=qtype,
+                course_id=course_id,
+                unit_id=unit_id,
             )
         )
     else:
         update_imp(Question, obj)
         return redirect(
             url_for(
-                "questions.all_questions", qtype=qtype, course_id=course_id, unit_id=unit_id
+                "questions.all_questions",
+                qtype=qtype,
+                course_id=course_id,
+                unit_id=unit_id,
             )
         )
 
@@ -338,7 +340,10 @@ def delete_question(course_id, unit_id, qtype, deleteq):
         db.session.commit()
         return redirect(
             url_for(
-                "questions.all_questions", qtype="mcq", course_id=course_id, unit_id=unit_id
+                "questions.all_questions",
+                qtype="mcq",
+                course_id=course_id,
+                unit_id=unit_id,
             )
         )
     else:
@@ -349,6 +354,9 @@ def delete_question(course_id, unit_id, qtype, deleteq):
         db.session.commit()
         return redirect(
             url_for(
-                "questions.all_questions", qtype="sub", course_id=course_id, unit_id=unit_id
+                "questions.all_questions",
+                qtype="sub",
+                course_id=course_id,
+                unit_id=unit_id,
             )
         )

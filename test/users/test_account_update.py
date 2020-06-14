@@ -85,8 +85,7 @@ class UserAccountTestCase(BaseUser):
             self.logout()
 
         # test invalid token
-        response, _ = test_post_request(
-            self, "/reset_password/fakeToken", new_password)
+        response, _ = test_post_request(self, "/reset_password/fakeToken", new_password)
         self.assertIn(b"<title>SetNow : Reset Password</title>", response.data)
         # FIXME: add flash in frontend: enable this test once fixed
         # self.assertIn(b"That is an invalid or expired token", response.data)

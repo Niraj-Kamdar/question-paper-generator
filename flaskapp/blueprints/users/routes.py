@@ -74,8 +74,7 @@ def login():
             login_user(user, remember=form.remember.data)
             next_page = request.args.get("next")
             return (
-                redirect(next_page) if next_page else redirect(
-                    url_for("papers.home"))
+                redirect(next_page) if next_page else redirect(url_for("papers.home"))
             )
         flash("Login Unsuccessful. Please check email and password", "danger")
     return render_template(
@@ -121,8 +120,7 @@ def account():
         return redirect(url_for("users.account"))
     form.username.data = current_user.username
     form.email.data = current_user.email
-    image_file = url_for(
-        "static", filename="profile_pics/" + current_user.image_file)
+    image_file = url_for("static", filename="profile_pics/" + current_user.image_file)
     return render_template(
         "users/account.html",
         title="Account",
