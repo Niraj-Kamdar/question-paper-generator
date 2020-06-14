@@ -1,10 +1,13 @@
+import os
 import unittest
 
+from flaskapp import APP_PATH
 from flaskapp import config
 from flaskapp import create_app
 from flaskapp import db
 from flaskapp import mail
 from flaskapp import models
+from flaskapp import TEST_DB
 from test.main.utils import test_post_request
 
 
@@ -21,7 +24,8 @@ class BaseDatabase(unittest.TestCase):
 
     def tearDown(self):
         """Destroy blank temp database after each test"""
-        db.drop_all()
+        db.close_all_sessions()
+        os.remove(os.path.join(APP_PATH, TEST_DB))
 
 
 class BaseUser(BaseDatabase):

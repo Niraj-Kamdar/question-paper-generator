@@ -9,18 +9,15 @@ from flask_login import current_user
 from flask_login import login_required
 
 from flaskapp import db
-from flaskapp.blueprints.questions.forms import CourseForm
 from flaskapp.blueprints.questions.forms import MCQQuestionForm
 from flaskapp.blueprints.questions.forms import QuestionForm
-from flaskapp.blueprints.questions.forms import UnitForm
-from flaskapp.blueprints.questions.utils import check_valid_course
-from flaskapp.blueprints.questions.utils import check_valid_question_type
-from flaskapp.blueprints.questions.utils import check_valid_unit
 from flaskapp.blueprints.questions.utils import update_imp
+from flaskapp.checkers import check_valid_course
+from flaskapp.checkers import check_valid_question_type
+from flaskapp.checkers import check_valid_unit
 from flaskapp.models import Course
 from flaskapp.models import MCQQuestion
 from flaskapp.models import Question
-from flaskapp.models import Unit
 from flaskapp.utils import CognitiveLevel
 from flaskapp.utils import DifficultyLevel
 from flaskapp.utils import profile_path
@@ -28,101 +25,12 @@ from flaskapp.utils import profile_path
 questions = Blueprint("questions", __name__)
 
 
-@questions.route("/course/new/", methods=["GET", "POST"])
-@login_required
-def add_course():
-    """Rendering to add course page
-
-    Returns:
-        HTML function -- For adding new course to user's account. After submitting new course redirect to courses page.Else show form which
-        shows add course feild.
-    """
-    form = CourseForm()
-    if form.validate_on_submit():
-        course = Course(name=form.course.data, teacher=current_user)
-        db.session.add(course)
-        db.session.commit()
-        flash("New course added successfully!", "success")
-        return redirect(url_for("questions.courses"))
-    return render_template(
-        "questions/course_form.html",
-        form=form,
-        css_file="css/base.css",
-        css_file2="css/questions/courses_form.css",
-        js_file="js/questions/add_course.js",
-        image_file=profile_path(),
-        title="Add Courses",
-    )
-
-
-@questions.route("/course/")
-@login_required
-def courses():
-    """Show listed down course of user
-
-    Returns:
-        HTML function -- Redirect to courses pages where listed down all courses.
-    """
-    _courses = Course.query.filter(Course.teacher == current_user).all()
-    return render_template(
-        "questions/courses.html",
-        courses=_courses,
-        css_file="css/base.css",
-        css_file2="css/questions/courses.css",
-        image_file=profile_path(),
-        title="Courses",
-    )
-
-
-@questions.route("/course/<course_id>/unit/")
-@login_required
-@check_valid_course
-def units(course_id):
-    _course = Course.query.filter(Course.id == course_id).first()
-    _units = Unit.query.filter(Unit.course == _course).all()
-    return render_template(
-        "questions/units.html",
-        image_file=profile_path(),
-        units=_units,
-        title="Units",
-        css_file="css/base.css",
-        css_file2="css/questions/courses.css",
-        course_id=course_id,
-    )
-
-
-@questions.route("/course/<course_id>/unit/new", methods=["GET", "POST"])
-@login_required
-@check_valid_course
-def add_unit(course_id):
-    form = UnitForm()
-    _course = Course.query.filter(Course.id == course_id).first()
-    if form.validate_on_submit():
-        unit = Unit(chapter_no=form.chapter_no.data,
-                    name=form.name.data,
-                    course=_course)
-        db.session.add(unit)
-        db.session.commit()
-        flash("New unit added successfully!", "success")
-        return redirect(url_for("questions.units", course_id=course_id))
-    return render_template(
-        "questions/unit_form.html",
-        form=form,
-        css_file="css/base.css",
-        css_file2="css/questions/courses_form.css",
-        js_file="js/questions/add_unit.js",
-        image_file=profile_path(),
-        title="Add Units",
-        course_id=course_id,
-    )
-
-
 @questions.route("/course/<course_id>/unit/<unit_id>/question/<qtype>/")
 @login_required
 @check_valid_course
 @check_valid_unit
 @check_valid_question_type
-def question(course_id, unit_id, qtype):
+def all_questions(course_id, unit_id, qtype):
     """Rendering Question page
 
     Arguments:
@@ -217,7 +125,7 @@ def add_question(course_id, unit_id, qtype):
             flash("New question added successfully!", "success")
             return redirect(
                 url_for(
-                    "questions.question",
+                    "questions.all_questions",
                     qtype="mcq",
                     course_id=course_id,
                     unit_id=unit_id,
@@ -255,7 +163,7 @@ def add_question(course_id, unit_id, qtype):
             flash("New question added successfully!", "success")
             return redirect(
                 url_for(
-                    "questions.question",
+                    "questions.all_questions",
                     qtype="sub",
                     course_id=course_id,
                     unit_id=unit_id,
@@ -300,7 +208,7 @@ def update_question(course_id, unit_id, qtype, question_id):
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(
                 url_for(
-                    "questions.question",
+                    "questions.all_questions",
                     qtype=qtype,
                     course_id=course_id,
                     unit_id=unit_id,
@@ -321,7 +229,7 @@ def update_question(course_id, unit_id, qtype, question_id):
             flash(f"Question:{question_id} updated successfully!", "success")
             return redirect(
                 url_for(
-                    "questions.question",
+                    "questions.all_questions",
                     qtype=qtype,
                     course_id=course_id,
                     unit_id=unit_id,
@@ -342,7 +250,7 @@ def update_question(course_id, unit_id, qtype, question_id):
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(
                 url_for(
-                    "questions.question",
+                    "questions.all_questions",
                     qtype="sub",
                     course_id=course_id,
                     unit_id=unit_id,
@@ -359,7 +267,7 @@ def update_question(course_id, unit_id, qtype, question_id):
             flash(f"Question:{question_id} updated successfully!", "success")
             return redirect(
                 url_for(
-                    "questions.question",
+                    "questions.all_questions",
                     qtype="sub",
                     course_id=course_id,
                     unit_id=unit_id,
@@ -392,17 +300,21 @@ def imp_question(course_id, unit_id, qtype, impq):
     if qtype == "mcq":
         update_imp(MCQQuestion, obj)
         return redirect(
-            url_for("questions.question",
-                    qtype=qtype,
-                    course_id=course_id,
-                    unit_id=unit_id))
+            url_for(
+                "questions.all_questions",
+                qtype=qtype,
+                course_id=course_id,
+                unit_id=unit_id,
+            ))
     else:
         update_imp(Question, obj)
         return redirect(
-            url_for("questions.question",
-                    qtype=qtype,
-                    course_id=course_id,
-                    unit_id=unit_id))
+            url_for(
+                "questions.all_questions",
+                qtype=qtype,
+                course_id=course_id,
+                unit_id=unit_id,
+            ))
 
 
 @questions.route(
@@ -426,17 +338,21 @@ def delete_question(course_id, unit_id, qtype, deleteq):
             MCQQuestion.id.in_(del_ids)).delete(synchronize_session="fetch")
         db.session.commit()
         return redirect(
-            url_for("questions.question",
-                    qtype="mcq",
-                    course_id=course_id,
-                    unit_id=unit_id))
+            url_for(
+                "questions.all_questions",
+                qtype="mcq",
+                course_id=course_id,
+                unit_id=unit_id,
+            ))
     else:
         del_ids = json.loads(deleteq)
         db.session.query(Question).filter(
             Question.id.in_(del_ids)).delete(synchronize_session="fetch")
         db.session.commit()
         return redirect(
-            url_for("questions.question",
-                    qtype="sub",
-                    course_id=course_id,
-                    unit_id=unit_id))
+            url_for(
+                "questions.all_questions",
+                qtype="sub",
+                course_id=course_id,
+                unit_id=unit_id,
+            ))

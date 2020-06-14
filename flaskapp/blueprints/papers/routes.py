@@ -8,7 +8,7 @@ from flask import url_for
 from flask_login import login_required
 
 from flaskapp.blueprints.papers.forms import MarkDistributionForm
-from flaskapp.blueprints.questions.utils import check_valid_course
+from flaskapp.checkers import check_valid_course
 from flaskapp.utils import json_url
 from flaskapp.utils import profile_path
 

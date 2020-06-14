@@ -1,48 +1,50 @@
 {% extends "base.html" %}
 
 {% block special_top_links %}
- <a href="/course/" class="top_navigation_items">
-     <h4 class="py-2 mx-3">Courses</h4>
- </a>
+    <a class="top_navigation_items" href={{ url_for("courses.all_courses") }}>
+        <h4 class="py-2 mx-3">Courses</h4>
+    </a>
 {% endblock special_top_links %}
 
 {% block special_side_links %}
-  <a href="/course/{{course_id}}/unit/new" class="side_navigation_items">Add Unit</a>
-  <a href="/course/{{course_id}}/papers/generate/request" class="side_navigation_items">Generate Paper</a>
-  <a href="/course/" class="side_navigation_items">Courses</a>
+    <a class="side_navigation_items" href={{ url_for("courses.add_unit", course_id=course_id) }}>Add Unit</a>
+    <a class="side_navigation_items" href={{ url_for("papers.paper_generate_request", course_id=course_id) }}>Generate
+        Paper</a>
+    <a class="side_navigation_items" href={{ url_for("courses.all_courses") }}>Courses</a>
 {% endblock special_side_links %}
 
 {% block flashes %}
-{% with messages = get_flashed_messages(with_categories=true) %} {% if
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
 messages %}
-<ul class="flashes flashes_question">
-    {% for category, message in messages %}
-    <li class="{{ category }}">{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %} {% endwith %}
+        <ul class="flashes flashes_question">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endwith %}
 {% endblock flashes %}
 
 {% block main %}
 
-<div id="unit_container">
-    <div class="unit_items">
-        {% for _unit in units %}
+    <div id="unit_container">
+        <div class="unit_items">
+            {% for _unit in units %}
 
-        <a class="unit_item" href='{{_unit.id}}/question/sub'>{{_unit.id}}. {{ _unit.name }}</a>
-        <br>
+                <a class="unit_item" href=
+                        {{ url_for("questions.all_questions", qtype="sub", course_id=course_id, unit_id=unit_id)}}>{{ _unit.id }}. {{ _unit.name }}</a>
+                <br>
 
-        {% endfor %}
+            {% endfor %}
+        </div>
+        <div id="add_unit_container">
+            <a id="add_unit" href={{ url_for("courses.add_unit", course_id=course_id) }}>
+                <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img" alt="add">Add Unit
+                </div>
+            </a>
+            <a id="generate_paper" href={{ url_for("papers.paper_generate_request", course_id=course_id) }}>
+                <div>Generate Paper</div>
+            </a>
+        </div>
     </div>
-    <div id="add_unit_container">
-        <a id="add_unit" href="/course/{{course_id}}/unit/new">
-            <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img" alt="add">Add Unit
-            </div>
-        </a>
-        <a id="generate_paper" href="/course/{{course_id}}/papers/generate/request">
-            <div>Generate Paper</div>
-        </a>
-    </div>
-</div>
 
 {% endblock main %}
