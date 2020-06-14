@@ -1,7 +1,7 @@
-from test.main.base_classes import BaseUnit, BaseUser
-from test.main.utils import test_post_request
-
 from flaskapp import models
+from test.main.base_classes import BaseUnit
+from test.main.base_classes import BaseUser
+from test.main.utils import test_post_request
 
 
 class AddQuestionTestCase(BaseUnit):

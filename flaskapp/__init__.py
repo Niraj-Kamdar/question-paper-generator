@@ -7,6 +7,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_minify import minify
 from flask_sqlalchemy import SQLAlchemy
+
 from flaskapp.config import Config
 
 db = SQLAlchemy()
