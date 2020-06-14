@@ -4,8 +4,8 @@ from werkzeug.utils import redirect
 
 from flaskapp import db
 from flaskapp.blueprints.courses.forms import UnitForm, CourseForm
-# from flaskapp.blueprints.questions.routes import questions
-from flaskapp.blueprints.questions.utils import check_valid_course
+from flaskapp.checkers import check_valid_course
+
 from flaskapp.models import Unit, Course
 from flaskapp.utils import profile_path
 
@@ -27,15 +27,15 @@ def add_course():
         db.session.add(_course)
         db.session.commit()
         flash("New course added successfully!", "success")
-        return redirect(url_for("questions.courses"))
+        return redirect(url_for("courses.all_courses"))
     return render_template(
-            "questions/course_form.html",
-            form=form,
-            css_file="css/base.css",
-            css_file2="css/questions/courses_form.css",
-            js_file="js/questions/add_course.js",
-            image_file=profile_path(),
-            title="Add Courses",
+        "questions/course_form.html",
+        form=form,
+        css_file="css/base.css",
+        css_file2="css/questions/courses_form.css",
+        js_file="js/questions/add_course.js",
+        image_file=profile_path(),
+        title="Add Courses",
     )
 
 
@@ -49,12 +49,12 @@ def all_courses():
     """
     _courses = Course.query.filter(Course.teacher == current_user).all()
     return render_template(
-            "questions/courses.html",
-            courses=_courses,
-            css_file="css/base.css",
-            css_file2="css/questions/courses.css",
-            image_file=profile_path(),
-            title="Courses",
+        "questions/courses.html",
+        courses=_courses,
+        css_file="css/base.css",
+        css_file2="css/questions/courses.css",
+        image_file=profile_path(),
+        title="Courses",
     )
 
 
@@ -64,8 +64,9 @@ def all_courses():
 def remove_course(course_id):
     if request.method == "POST":
         course_ids = request.get_json()
-        db.session.query(Course).filter(
-                Course.id.in_(course_ids)).delete(synchronize_session="fetch")
+        db.session.query(Course).filter(Course.id.in_(course_ids)).delete(
+            synchronize_session="fetch"
+        )
         db.session.commit()
 
 
@@ -76,12 +77,12 @@ def all_units(course_id):
     _course = Course.query.filter(Course.id == course_id).first()
     _units = Unit.query.filter(Unit.course == _course).all()
     return render_template(
-            "questions/units.html",
-            image_file=profile_path(),
-            units=_units,
-            title="Units",
-            css_file="css/base.css",
-            css_file2="css/questions/courses.css",
+        "questions/units.html",
+        image_file=profile_path(),
+        units=_units,
+        title="Units",
+        css_file="css/base.css",
+        css_file2="css/questions/courses.css",
     )
 
 
@@ -92,19 +93,19 @@ def add_unit(course_id):
     form = UnitForm()
     _course = Course.query.filter(Course.id == course_id).first()
     if form.validate_on_submit():
-        unit = Unit(chapter_no=form.chapter_no.data,
-                    name=form.name.data,
-                    course=_course)
+        unit = Unit(
+            chapter_no=form.chapter_no.data, name=form.name.data, course=_course
+        )
         db.session.add(unit)
         db.session.commit()
         flash("New unit added successfully!", "success")
-        return redirect(url_for("questions.units", course_id=course_id))
+        return redirect(url_for("courses.all_units", course_id=course_id))
     return render_template(
-            "questions/unit_form.html",
-            form=form,
-            css_file="css/base.css",
-            css_file2="css/questions/courses_form.css",
-            js_file="js/questions/add_unit.js",
-            image_file=profile_path(),
-            title="Add Units",
+        "questions/unit_form.html",
+        form=form,
+        css_file="css/base.css",
+        css_file2="css/questions/courses_form.css",
+        js_file="js/questions/add_unit.js",
+        image_file=profile_path(),
+        title="Add Units",
     )

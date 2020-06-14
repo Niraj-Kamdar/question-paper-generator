@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block special_top_links %}
- <a href="/course/{{course_id}}/unit/" class="top_navigation_items">
+ <a class="top_navigation_items" href={{ url_for("courses.all_units", course_id=course_id) }} >
      <h4 class="py-2 mx-3">Units</h4>
  </a>
 {% endblock special_top_links %}
 
 {% block special_side_links %}
-  <a href="/course/{{course_id}}/unit/" class="side_navigation_items">Units</a>
+  <a class="side_navigation_items" href={{ url_for("courses.all_units", course_id=course_id) }}>Units</a>
 {% endblock special_side_links %}
 
 {% block header %}

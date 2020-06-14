@@ -1,7 +1,7 @@
 {% extends "headerFooter.html" %}
 
 {% block general_top_links %}
- <a href="/" class="top_navigation_items">
+ <a class="top_navigation_items" href={{ url_for("main.index") }}>
      <h4 class="py-2 mx-3">Home</h4>
  </a>
 
@@ -11,46 +11,46 @@
  <div class="dropdown_container">
      <h4 class="py-2 mx-3">More <i class="fa fa-caret-down"></i></h4>
      <div class="dropdown_items_container">
-         <a href="/about-us" class="top_navigation_items">
+         <a class="top_navigation_items" href={{ url_for("main.about_us") }}>
              <h4 class="py-2 mx-3">About Us</h4>
          </a>
-         <a href="/help" class="top_navigation_items">
+         <a class="top_navigation_items" href={{ url_for("main.help_page") }}>
              <h4 class="py-2 mx-3">Help</h4>
          </a>
-         <a href="/contact-us" class="top_navigation_items">
+         <a class="top_navigation_items" href={{ url_for("main.contact_us") }}>
              <h4 class="py-2 mx-3">Contact Us</h4>
          </a>
      </div>
  </div>
 
- <a href="/logout" class="top_navigation_items">
+ <a class="top_navigation_items" href={{ url_for("users.logout") }}>
      <h4 class="py-2 mx-3">Log Out</h4>
  </a>
 {% endblock general_top_links %}
 
 {% block general_side_links%}
-  <a href="/" class="side_navigation_items">Home</a>
+  <a class="side_navigation_items" href={{ url_for("main.index") }}>Home</a>
   {% block special_side_links%}
   {% endblock special_side_links%}
   <div class="dropdown_container_2 bb bt">
       <span class="side_navigation_items">More <i class="fa fa-caret-down"></i></span>
-      <a href="/about-us" class="side_navigation_items hide">
+      <a class="side_navigation_items hide" href={{ url_for("main.about_us") }}>
           About Us
       </a>
-      <a href="/help" class="side_navigation_items hide">
+      <a class="side_navigation_items hide" href={{ url_for("main.help_page") }}>
           Help
       </a>
-      <a href="/contact-us" class="side_navigation_items hide">
+      <a class="side_navigation_items hide" href={{ url_for("main.contact_us") }}>
           Contact Us
       </a>
   </div>
-  <a href="/logout" class="side_navigation_items">Log Out</a>
+  <a class="side_navigation_items" href={{ url_for("users.logout") }}>Log Out</a>
   <a href="#" class="side_navigation_items bb" id="close_link">Close</a>
 {% endblock general_side_links%}
 
 {% block top_profile %}
  <div class="col4">
-     <a href="/account" class="profile_page">
+     <a class="profile_page" href={{ url_for("users.account") }}>
          <img src="{{ image_file }}" class="user" alt="user" title="profile" />
      </a>
  </div>
@@ -58,7 +58,7 @@
 
 {% block side_profile %}
  <div class="col4">
-     <a href="/account" class="profile_page">
+     <a class="profile_page" href={{ url_for("users.account") }}>
          <img src="{{ image_file }}" class="user" alt="user" title="profile" />
      </a>
  </div>
