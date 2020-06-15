@@ -11,13 +11,10 @@ class WebpageTestCase(BaseUser):
                 email="proton@gmail.com",
                 mobile="123456789",
                 subject="Test01",
-                message="This is test mail"
+                message="This is test mail",
             )
-            response, _ = test_post_request(self, '/contact-us', data)
-            self.assertIn(
-                b"Get in touch",
-                response.data
-            )
+            response, _ = test_post_request(self, "/contact-us", data)
+            self.assertIn(b"Get in touch", response.data)
             self.assertEqual(2, len(outbox))
             self.assertEqual("[SetNow Support] Re: Test01", outbox[1].subject)
             self.assertEqual("Test01", outbox[0].subject)
