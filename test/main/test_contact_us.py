@@ -3,7 +3,7 @@ from test.main.base_classes import BaseUser
 from test.main.utils import test_post_request
 
 
-class WebpageTestCase(BaseUser):
+class ContactUsTestCase(BaseUser):
     def test_contact_us(self):
         with self.mail.record_messages() as outbox:
             data = dict(
