@@ -64,10 +64,9 @@ def all_courses():
     )
 
 
-@courses.route("/course/delete/")
+@courses.route("/course/delete/", methods=["GET", "POST"])
 @login_required
-@check_valid_course
-def remove_course(course_id):
+def remove_course():
     if request.method == "POST":
         course_ids = request.get_json()
         db.session.query(Course).filter(
@@ -95,8 +94,8 @@ def all_units(course_id):
 @login_required
 @check_valid_course
 def add_unit(course_id):
-    form = UnitForm()
     _course = Course.query.filter(Course.id == course_id).first()
+    form = UnitForm(_course)
     if form.validate_on_submit():
         unit = Unit(chapter_no=form.chapter_no.data,
                     name=form.name.data,
@@ -114,3 +113,14 @@ def add_unit(course_id):
         image_file=profile_path(),
         title="Add Units",
     )
+
+
+@courses.route("/course/<course_id>/unit/delete/", methods=["GET", "POST"])
+@login_required
+@check_valid_course
+def remove_course(course_id):
+    if request.method == "POST":
+        unit_ids = request.get_json()
+        db.session.query(Course).filter(
+            Unit.id.in_(unit_ids)).delete(synchronize_session="fetch")
+        db.session.commit()
