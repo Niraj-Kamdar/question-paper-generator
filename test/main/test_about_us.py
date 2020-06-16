@@ -7,11 +7,17 @@ class AboutUsTestCase(BaseUser):
     def test_about_us(self):
         response = self.client.get("/about-us")
         self.assertIn(
-            b"Welcome to SetNow, We're dedicated to giving you the very best of our service.", response.data)
+            b"Welcome to SetNow, We're dedicated to giving you the very best of our service.",
+            response.data,
+        )
         self.assertIn(
-            b"This website is created by students of DA-IICT (Gandhinagar, Gujrat).", response.data)
+            b"This website is created by students of DA-IICT (Gandhinagar, Gujrat).",
+            response.data,
+        )
         self.assertIn(
-            b"This effort was made under the guidence of Prof. Saurabh Tiwari.", response.data)
+            b"This effort was made under the guidence of Prof. Saurabh Tiwari.",
+            response.data,
+        )
         self.assertIn(b"Our Team", response.data)
         self.assertIn(b"Niraj Kamdar [201701184]", response.data)
         self.assertIn(b"UI/UX designer", response.data)
