@@ -118,7 +118,7 @@ def add_unit(course_id):
 @courses.route("/course/<course_id>/unit/delete/", methods=["GET", "POST"])
 @login_required
 @check_valid_course
-def remove_course(course_id):
+def remove_unit(course_id):
     if request.method == "POST":
         unit_ids = request.get_json()
         db.session.query(Course).filter(

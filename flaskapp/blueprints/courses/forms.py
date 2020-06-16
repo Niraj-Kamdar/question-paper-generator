@@ -8,7 +8,7 @@ from flaskapp.models import Course, Unit
 
 
 def validate_course_name(form, course_name):
-    course = Course.query.filter(and_(Course.course == course_name.data, Course.teacher == current_user)).first()
+    course = Course.query.filter(and_(Course.name == course_name.data, Course.teacher == current_user)).first()
     if course:
         raise ValidationError(
                 "That Course is already exist. Please choose a different one.")
@@ -48,3 +48,4 @@ class UnitForm(FlaskForm):
 
     def __init__(self, course):
         self.course = course
+        super().__init__()
