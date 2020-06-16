@@ -8,7 +8,7 @@ from flask import url_for
 from flask_login import login_required
 
 from flaskapp.blueprints.papers.forms import MarkDistributionForm
-from flaskapp.blueprints.questions.utils import check_valid_course
+from flaskapp.checkers import check_valid_course
 from flaskapp.utils import json_url
 from flaskapp.utils import profile_path
 
@@ -19,7 +19,6 @@ papers = Blueprint("papers", __name__)
 @login_required
 def home():
     """Render Home page
-
     Returns:
         HTML -- It will render home page.
     """
@@ -48,16 +47,19 @@ def paper_generate_request(course_id):
                         course_id=course_id,
                         data=data))
         flash("Form can't be empty!")
-    return render_template("papers/generate_request.html",js_file="js/papers/generate_request.js",css_file="css/papers/generate_request.css",css_file2="css/base.css",
-                           image_file=profile_path())
+    return render_template(
+        "papers/generate_request.html",
+        js_file="js/papers/generate_request.js",
+        css_file="css/papers/generate_request.css",
+        css_file2="css/base.css",
+        image_file=profile_path(),
+    )
 
 
 @papers.route("/course/<course_id>/papers/generate/form/<data>",
               methods=["GET", "POST"])
 @login_required
 @check_valid_course
-
-
 def mark_distribution_form(course_id, data):
     if not data:
         return redirect(

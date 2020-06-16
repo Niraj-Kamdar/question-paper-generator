@@ -192,3 +192,11 @@ def reset_token(token):
         form=form,
         js_file="js/users/reset_password.js",
     )
+
+
+@users.route("/account/delete/")
+@login_required
+def delete_account():
+    db.session.query(User).filter_by(id=current_user.id).delete(
+        synchronize_session="fetch")
+    db.session.commit()

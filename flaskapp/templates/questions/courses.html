@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block special_side_links %}
-  <a href="/course/new" class="side_navigation_items bt">Add Course</a>
+
+  <a class="side_navigation_items bt" href={{ url_for('courses.add_course') }}>Add Course</a>
   <a href="#" class="side_navigation_items bb">Remove Course</a>
 {% endblock special_side_links %}
 
@@ -22,13 +23,13 @@ messages %}
         {% for _course in courses %}
 
                 <a class="course_item"
-                   href={{ url_for("questions.units", course_id=_course.id) }}>{{ _course.name }}</a>
+                   href={{ url_for("courses.all_units", course_id=_course.id) }}>{{ _course.name }}</a>
                 <br>
 
         {% endfor %}
     </div>
     <div id="add_course_container">
-        <a id="add_course" href="/course/new">
+        <a id="add_course" href={{ url_for('courses.add_course') }}>
             <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img" alt="add">Add Course
             </div>
         </a>

@@ -65,20 +65,23 @@ label {
     }
 }
 
-@media(max-width: 580px){
+@media(max-width: 580px) {
     #body_container {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
+
     #content {
-        width : 100%;
+        width: 100%;
     }
+
     #page_display {
         display: initial;
         padding-left: 10px !important;
         padding-right: 10px !important;
     }
-    #questions,#subquestions,#page_display>div,#mark_form {
+
+    #questions, #subquestions, #page_display > div, #mark_form {
         width: 100%;
     }
 }

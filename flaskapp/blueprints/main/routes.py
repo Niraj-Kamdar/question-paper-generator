@@ -16,7 +16,6 @@ main = Blueprint("main", __name__)
 @main.route("/")
 def index():
     """Render Home page
-
     Returns:
         HTML-- If the current user is authenticated then render to home page of site.
     """
@@ -33,28 +32,26 @@ def index():
 @main.route("/about-us")
 def about_us():
     """Render about us page
-
     Returns:
         HTML  -- It will redirect to about us page.
     """
 
     return render_template(
-            "main/about.html",
-            title="About Us",
-            css_file="css/main/about.css",
-            image_file=profile_path()
-        )
-
+        "main/about.html",
+        title="About Us",
+        css_file="css/main/about.css",
+        image_file=profile_path(),
+    )
 
 
 @main.route("/privacy-policy")
 def policy_page():
     return render_template(
-            "main/privacy-policy.html",
-            title="Privacy Policy",
-            css_file="css/main/privacy_policy.css",
-            image_file=profile_path()
-        )
+        "main/privacy-policy.html",
+        title="Privacy Policy",
+        css_file="css/main/privacy_policy.css",
+        image_file=profile_path(),
+    )
 
 
 @main.route("/terms-of-service")
@@ -63,31 +60,27 @@ def terms_of_service_page():
         "main/terms-of-service.html",
         title="Terms Of Service",
         css_file="css/main/terms_of_service.css",
-        image_file=profile_path()
-        )
-
+        image_file=profile_path(),
+    )
 
 
 @main.route("/help")
 def help_page():
     """Render help page
-
     Returns:
         HTML - It will redirect to help page.
     """
     return render_template(
-            "main/help.html",
-            title="Help",
-            css_file="css/main/help.css",
-            image_file=profile_path()
-        )
+        "main/help.html",
+        title="Help",
+        css_file="css/main/help.css",
+        image_file=profile_path(),
+    )
 
 
-
-@main.route("/contact-us")
+@main.route("/contact-us", methods=["GET", "POST"])
 def contact_us():
     """Render Contact us page
-
     Returns:
         HTML-- To collect Info from user for suggestion or bug or any comment about web-app.
     """
@@ -112,6 +105,5 @@ def contact_us():
         form=form,
         css_file="css/contact_us/main.css",
         css_file2="css/contact_us/util.css",
-        image_file=profile_path()
-        )
-
+        image_file=profile_path(),
+    )
