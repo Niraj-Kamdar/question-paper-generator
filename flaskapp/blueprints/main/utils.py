@@ -8,8 +8,7 @@ from flaskapp import mail
 
 
 def send_contact_us_email(**data):
-    """
-    It will send an email with name, email, subject and message filled by our user on contact us page to ourselves.
+    """It will send an email with name, email, subject and message filled by our user on contact us page to ourselves.
     """
     mail_file = os.path.join(APP_PATH, "templates", "main", "contact-us",
                              "content.txt")

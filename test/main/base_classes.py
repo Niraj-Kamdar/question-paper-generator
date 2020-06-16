@@ -47,7 +47,7 @@ class BaseUser(BaseDatabase):
         test_post_request(self, "/register", new_user, models.User, 1)
 
     def login(self):
-        """[User login]
+        """User login
         """
         user = dict(
             email="proton@gmail.com",

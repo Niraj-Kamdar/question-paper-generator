@@ -37,7 +37,13 @@ def home():
 @login_required
 @check_valid_course
 def paper_generate_request(course_id):
-    """ generate paper from json data
+    """Generate paper request 
+
+    Args:
+        course_id (Int): Course ID of registered course
+
+    Returns:
+        HTML: Go to marks distribution page and then generate page.
     """
     if request.method == "POST":
         data = request.get_json()
