@@ -62,6 +62,15 @@ def paper_generate_request(course_id):
 @login_required
 @check_valid_course
 def mark_distribution_form(course_id, data):
+    """Mark distribution for given course id
+
+    Args:
+        course_id (int): Id for valid course
+        data (object): description of marks distribution
+
+    Returns:
+        HTML: If valid form then reder to marks distribution page else 
+    """
     if not data:
         return redirect(
             url_for("papers.paper_generate_request", course_id=course_id))

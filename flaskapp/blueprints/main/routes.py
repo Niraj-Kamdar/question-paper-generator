@@ -48,6 +48,11 @@ def about_us():
 
 @main.route("/privacy-policy")
 def policy_page():
+    """Render template of policy page
+
+    Returns:
+        HTML: Go to privacy policy HTML page 
+    """
     return render_template(
         "main/privacy-policy.html",
         title="Privacy Policy",
@@ -58,6 +63,11 @@ def policy_page():
 
 @main.route("/terms-of-service")
 def terms_of_service_page():
+    """Render to terms of service page
+
+    Returns:
+        HTML: Go to terms of service page
+    """
     return render_template(
         "main/terms-of-service.html",
         title="Terms Of Service",

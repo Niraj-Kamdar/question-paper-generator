@@ -78,6 +78,14 @@ def delete_course():
 @login_required
 @check_valid_course
 def all_units(course_id):
+    """Render to unit page of given course_id
+
+    Args:
+        course_id (int): ID of given course
+
+    Returns:
+        HTML
+    """    
     _course = Course.query.filter(Course.id == course_id).first()
     _units = Unit.query.filter(Unit.course == _course).all()
     return render_template(
@@ -94,6 +102,14 @@ def all_units(course_id):
 @login_required
 @check_valid_course
 def add_unit(course_id):
+    """Add unit to given course id
+
+    Args:
+        course_id (int): 
+
+    Returns:
+        url page: If form is validate than add unit and show mesage of successfully added else render template of units.
+    """
     _course = Course.query.filter(Course.id == course_id).first()
     form = UnitForm(_course)
     if form.validate_on_submit():
@@ -119,6 +135,11 @@ def add_unit(course_id):
 @login_required
 @check_valid_course
 def delete_unit(course_id):
+    """Delete the current course from list
+
+    Args:
+        course_id (int): Delete the course from user account
+    """    
     if request.method == "POST":
         unit_ids = request.get_json()
         db.session.query(Course).filter(
