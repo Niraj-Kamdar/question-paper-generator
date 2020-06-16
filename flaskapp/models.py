@@ -61,6 +61,7 @@ class User(db.Model, UserMixin):
 class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False)
+    include_asked = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     units = db.relationship("Unit",
                             backref="course",
