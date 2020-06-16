@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block special_top_links %}
+ <a class="top_navigation_items" href={{ url_for("courses.all_units", course_id=course_id) }} >
+     <h4 class="py-2 mx-3">Units</h4>
+ </a>
+{% endblock special_top_links %}
+
+{% block special_side_links %}
+  <a class="side_navigation_items" href={{ url_for("courses.all_units", course_id=course_id) }}>Units</a>
+{% endblock special_side_links %}
+
+{% block header %}
+<h3 id="form_question_paper">Add Unit</h3>
+{% endblock header %}
+
+{% block flashes %}
+{% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+<ul class="flashes flashes_question">
+    {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %} {% endwith %}
+{% endblock flashes %}
+
+
+{% block main %}
+<div id="form">
+
+
+    <form method="POST" action="" novalidate id="unit_form">
+        {{ form.hidden_tag() }}
+        <div id="form_content">
+            <div class="form__fields">
+                {{ form.chapter_no.label(class="form__fields__label") }}
+                {{ form.chapter_no(id="form__fields__chapter_no") }}
+
+                {% if form.chapter_no.errors %}
+                <ul class="form__error">
+                    {% for error in form.chapter_no.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="form__client_error"></div>
+            </div>
+            <div class="form__fields">
+                {{ form.name.label(class="form__fields__label") }}
+                {{ form.name(id="form__fields__name") }}
+
+                {% if form.name.errors %}
+                <ul class="form__error">
+                    {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="form__client_error"></div>
+            </div>
+
+            <div id="submit_reset_container">
+                {{ form.submit(id="submit_btn") }}
+                <button type="reset" id="reset_btn">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock main %}

@@ -8,6 +8,7 @@ from flask_login import current_user
 from flaskapp.blueprints.main.forms import ContactUs
 from flaskapp.blueprints.main.utils import send_contact_us_email
 from flaskapp.blueprints.main.utils import send_contact_us_receipt_email
+from flaskapp.utils import profile_path
 
 main = Blueprint("main", __name__)
 
@@ -41,7 +42,7 @@ def about_us():
         "main/about.html",
         title="About Us",
         css_file="css/main/about.css",
-        loggedIn=current_user.is_authenticated,
+        image_file=profile_path(),
     )
 
 
@@ -51,7 +52,7 @@ def policy_page():
         "main/privacy-policy.html",
         title="Privacy Policy",
         css_file="css/main/privacy_policy.css",
-        loggedIn=current_user.is_authenticated,
+        image_file=profile_path(),
     )
 
 
@@ -61,7 +62,7 @@ def terms_of_service_page():
         "main/terms-of-service.html",
         title="Terms Of Service",
         css_file="css/main/terms_of_service.css",
-        loggedIn=current_user.is_authenticated,
+        image_file=profile_path(),
     )
 
 
@@ -72,16 +73,15 @@ def help_page():
     Returns:
         HTML - It will redirect to help page.
     """
-
     return render_template(
         "main/help.html",
         title="Help",
         css_file="css/main/help.css",
-        loggedIn=current_user.is_authenticated,
+        image_file=profile_path(),
     )
 
 
-@main.route("/contact-us")
+@main.route("/contact-us", methods=["GET", "POST"])
 def contact_us():
     """Render Contact us page
 
@@ -109,5 +109,5 @@ def contact_us():
         form=form,
         css_file="css/contact_us/main.css",
         css_file2="css/contact_us/util.css",
-        loggedIn=current_user.is_authenticated,
+        image_file=profile_path(),
     )
