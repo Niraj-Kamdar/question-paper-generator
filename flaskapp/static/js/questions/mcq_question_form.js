@@ -3,6 +3,7 @@
   const questionValue = document.getElementById("form_field_question_value");
   const marksValue = document.getElementById("marks_value");
   const difficultyValue = document.getElementById("difficulty_value");
+  const cognitiveValue = document.getElementById("cognitive_value");
   const optionsValue = document.getElementsByClassName("options_value");
   const fakeContainer = document.getElementsByClassName("fake_container");
   const toggleContainer = document.getElementById("toggle_container");
@@ -14,13 +15,13 @@
   const submitBtn = document.getElementById("submit_btn");
   const form = document.getElementById("form");
 
-  function isValid(question, marksValue, difficultyValue, ...options) {
+  function isValid(question, marksValue, ...options) {
     let validation = {
       isValid: true,
       errors: [],
     };
     const marks = Number(marksValue);
-    const difficulty = Number(difficultyValue);
+
     if (question.trim() === "") {
       validation.errors.push("This field is required");
       validation.isValid = false;
@@ -41,16 +42,6 @@
       validation.errors.push("");
     }
 
-    if (difficulty < 1 || difficulty > 100) {
-      validation.errors.push("Enter difficulty between 1 and 100");
-      validation.isValid = false;
-    } else if (isNaN(difficulty)) {
-      validation.errors.push("Invalid difficulty level!!");
-      validation.isValid = false;
-    } else {
-      validation.errors.push("");
-    }
-
     for (let i = 0; i < options.length; i++) {
       if (options[i].trim() === "") {
         validation.errors.push("Options are required!!");
@@ -65,6 +56,7 @@
   questionValue.setAttribute("tabindex", tabindex++);
   marksValue.setAttribute("tabindex", tabindex++);
   difficultyValue.setAttribute("tabindex", tabindex++);
+  cognitiveValue.setAttribute("tabindex", tabindex++);
   fakeContainer[0].setAttribute("tabindex", tabindex++);
   fakeContainer[1].setAttribute("tabindex", tabindex++);
   fakeContainer[2].setAttribute("tabindex", tabindex++);
@@ -86,6 +78,7 @@
   for (let i = 0; i < optionsValue.length; i++) {
     fakeContainer[i].addEventListener("input", (e) => {
       clientErrors[i + 3].innerText = "";
+
       e.target.style.height = "";
       e.target.style.height = e.target.scrollHeight + "px";
     });
@@ -94,11 +87,6 @@
       fakeContainer[i].style.height = fakeContainer[i].scrollHeight + "px";
     });
   }
-
-  difficultyValue.setAttribute("placeholder", "Enter difficulty here");
-  difficultyValue.addEventListener("input", () => {
-    clientErrors[2].innerText = "";
-  });
 
   marksValue.setAttribute("placeholder", "Enter marks here");
   marksValue.addEventListener("input", () => {
@@ -157,7 +145,6 @@
     validation = isValid(
       questionValue.value,
       marksValue.value,
-      difficultyValue.value,
       fakeContainer[0].value,
       fakeContainer[1].value,
       fakeContainer[2].value,

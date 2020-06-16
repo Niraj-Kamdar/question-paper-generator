@@ -1,8 +1,9 @@
 (function () {
-  const formErrors = document.getElementsByClassName("form__client_error");
+  const clientErrors = document.getElementsByClassName("form__client_error");
   const question = document.getElementById("form_field_question_value");
   const mark = document.getElementById("marks_value");
   const difficulty = document.getElementById("difficulty_value");
+  const congnitiveValue = document.getElementById("cognitive_value");
   const toggleContainer = document.getElementById("toggle_container");
   const submitBtn = document.getElementById("submit_btn");
   const resetBtn = document.getElementById("reset_btn");
@@ -12,7 +13,7 @@
 
   let tabindex = 1;
 
-  function isValid(question, mark, difficulty) {
+  function isValid(question, mark) {
     let validation = {
       isValid: true,
       errors: [],
@@ -36,21 +37,13 @@
     } else {
       validation.errors.push("");
     }
-    if (Number(difficulty) < 1 || Number(difficulty) > 100) {
-      validation.errors.push("enter difficulty level between 1 and 100");
-      validation.isValid = false;
-    } else if (isNaN(Number(difficulty))) {
-      validation.errors.push("Invalid difficulty level!!");
-      validation.isValid = false;
-    } else {
-      validation.errors.push("");
-    }
     return validation;
   }
 
   question.setAttribute("tabindex", tabindex++);
   mark.setAttribute("tabindex", tabindex++);
   difficulty.setAttribute("tabindex", tabindex++);
+  congnitiveValue.setAttribute("tabindex", tabindex++);
   toggleContainer.setAttribute("tabindex", tabindex++);
   submitBtn.setAttribute("tabindex", tabindex++);
   resetBtn.setAttribute("tabindex", tabindex++);
@@ -77,12 +70,7 @@
 
   mark.setAttribute("placeholder", "Enter marks here");
   mark.addEventListener("input", () => {
-    formErrors[1].innerHTML = "";
-  });
-
-  difficulty.setAttribute("placeholder", "Enter difficulty here");
-  difficulty.addEventListener("input", () => {
-    formErrors[2].innerHTML = "";
+    clientErrors[1].innerHTML = "";
   });
 
   question.setAttribute("placeholder", "Enter question here");
@@ -91,7 +79,7 @@
     "height:" + question.scrollHeight + "px;overflow-y:hidden;"
   );
   question.addEventListener("input", (e) => {
-    formErrors[0].innerHTML = "";
+    clientErrors[0].innerHTML = "";
     e.target.style.height = "";
     e.target.style.height = e.target.scrollHeight + "px";
   });
@@ -102,15 +90,15 @@
 
   form.addEventListener("submit", (e) => {
     let validation = {};
-    for (let i = 0; i < formErrors.length; i++) {
-      formErrors[i].innerHTML = "";
+    for (let i = 0; i < clientErrors.length; i++) {
+      clientErrors[i].innerHTML = "";
     }
-    validation = isValid(question.value, mark.value, difficulty.value);
+    validation = isValid(question.value, mark.value);
     if (!validation.isValid) {
-      for (let i = 0; i < validation.errors.length; i++) {
-        formErrors[i].innerHTML = validation.errors[i];
-      }
       e.preventDefault();
+      for (let i = 0; i < validation.errors.length; i++) {
+        clientErrors[i].innerHTML = validation.errors[i];
+      }
     }
   });
 })();

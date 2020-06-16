@@ -1,17 +1,13 @@
 from flask_wtf import FlaskForm
 from wtforms import BooleanField
 from wtforms import IntegerField
+from wtforms import SelectField
 from wtforms import StringField
 from wtforms import SubmitField
 from wtforms import TextAreaField
 from wtforms.validators import DataRequired
 from wtforms.validators import Length
 from wtforms.validators import NumberRange
-
-
-class CourseForm(FlaskForm):
-    course = StringField("Course", validators=[DataRequired()])
-    submit = SubmitField("submit")
 
 
 class QuestionForm(FlaskForm):
@@ -25,11 +21,16 @@ class QuestionForm(FlaskForm):
             NumberRange(1, 101, "Not in a valid mark range")
         ],
     )
-    difficulty = IntegerField(
-        "Difficulty",
-        validators=[
-            DataRequired(),
-            NumberRange(1, 101, "Not in a valid difficulty range"),
+    difficulty = SelectField(
+        "Difficulty Level",
+        choices=[("Easy", "Easy"), ("Medium", "Medium"), ("Hard", "Hard")],
+    )
+    cognitive_level = SelectField(
+        "Cognitive Level",
+        choices=[
+            ("Application", "Application"),
+            ("Comprehension", "Comprehension"),
+            ("Knowledge", "Knowledge"),
         ],
     )
     imp = BooleanField("Mark As IMP")

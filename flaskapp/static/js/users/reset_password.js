@@ -45,6 +45,7 @@ function isValidPassword(password, confirmPassword) {
 if (resetForm) {
   const emailField = document.getElementById("email");
   const emailError = document.getElementById("email_error");
+
   emailField.addEventListener("input", () => {
     emailError.innerHTML = "";
   });
@@ -64,20 +65,21 @@ if (resetPasswordForm) {
   const confirmPassword = document.getElementsByClassName(
     "confirm_password"
   )[0];
-  const formError = document.getElementsByClassName("form_error");
+  const clientError = document.getElementsByClassName("form_error");
+
   password.addEventListener("input", () => {
-    formError[0].innerHTML = "";
+    clientError[0].innerHTML = "";
   });
   confirmPassword.addEventListener("input", () => {
-    formError[1].innerHTML = "";
+    clientError[1].innerHTML = "";
   });
   resetPasswordForm.addEventListener("submit", (e) => {
     const validation = isValidPassword(password.value, confirmPassword.value);
-    formError[0].innerHTML = formError[1].innerHTML = "";
+    clientError[0].innerHTML = clientError[1].innerHTML = "";
 
     if (!validation.isValid) {
       e.preventDefault();
-      [formError[0].innerHTML, formError[1].innerHTML] = validation.errors;
+      [clientError[0].innerHTML, clientError[1].innerHTML] = validation.errors;
     }
   });
 }
