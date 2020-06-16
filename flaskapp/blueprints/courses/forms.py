@@ -15,36 +15,33 @@ from flaskapp.models import Unit
 
 def validate_course_name(form, course_name):
     course = Course.query.filter(
-        and_(Course.name == course_name.data, Course.teacher == current_user)
-    ).first()
+        and_(Course.name == course_name.data,
+             Course.teacher == current_user)).first()
     if course:
         raise ValidationError(
-            "That Course is already exist. Please choose a different one."
-        )
+            "That Course is already exist. Please choose a different one.")
 
 
 def validate_unit_name(form, unit_name):
     unit = Unit.query.filter(
-        and_(Unit.name == unit_name.data, Unit.course == form.course)
-    ).first()
+        and_(Unit.name == unit_name.data, Unit.course == form.course)).first()
     if unit:
         raise ValidationError(
-            "That Unit is already exist. Please choose a different one."
-        )
+            "That Unit is already exist. Please choose a different one.")
 
 
 def validate_chapter_no(form, chapter_no):
     unit = Unit.query.filter(
-        and_(Unit.chapter_no == chapter_no.data, Unit.course == form.course)
-    ).first()
+        and_(Unit.chapter_no == chapter_no.data,
+             Unit.course == form.course)).first()
     if unit:
         raise ValidationError(
-            "That Unit is already exist. Please choose a different one."
-        )
+            "That Unit is already exist. Please choose a different one.")
 
 
 class CourseForm(FlaskForm):
-    course = StringField("Course", validators=[DataRequired(), validate_course_name])
+    course = StringField("Course",
+                         validators=[DataRequired(), validate_course_name])
     include_asked = BooleanField("Should paper include asked questions?")
     submit = SubmitField("submit")
 
