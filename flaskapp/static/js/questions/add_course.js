@@ -3,12 +3,6 @@
   const clientError = document.getElementsByClassName("form__client_error");
   const courseForm = document.getElementById("course_form");
 
-  const resetBtn = document.getElementById("reset_btn");
-  resetBtn.addEventListener("click", function () {
-    courseField.value = "";
-    clientError[0].innerHTML = "";
-  });
-
   function isValid(course) {
     let validation = {
       isValid: true,
@@ -29,7 +23,6 @@
   courseForm.addEventListener("submit", (e) => {
     const validation = isValid(courseField.value);
     clientError[0].innerHTML = "";
-
     if (!validation.isValid) {
       e.preventDefault();
       clientError[0].innerText = validation.errors[0];

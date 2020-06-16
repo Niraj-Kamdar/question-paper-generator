@@ -1,1 +1,0 @@
-"""blueprints for the application"""

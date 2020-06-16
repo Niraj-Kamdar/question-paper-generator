@@ -1,37 +1,28 @@
 from flaskapp import models
-from test.main.base_classes import BaseUnit
-from test.main.base_classes import BaseUser
+from test.main.base_classes import BaseCourse
 from test.main.utils import test_post_request
 
 
-class AddQuestionTestCase(BaseUnit):
+class AddQuestionTestCase(BaseCourse):
     def test_add_sub_question(self):
         # Test valid data
-        new_question = dict(
-            question="Is it okay?",
-            mark=8,
-            difficulty="Easy",
-            cognitive_level="Application",
-            imp=True,
-            submit="submit",
-        )
-        _, question = test_post_request(self,
-                                        "/course/1/unit/1/question/sub/new/",
+        new_question = dict(question="Is it okay?",
+                            mark=8,
+                            difficulty=10,
+                            imp=True,
+                            submit="submit")
+        _, question = test_post_request(self, "/course/1/question/sub/new/",
                                         new_question, models.Question, 1)
 
         # Testing if repr method is working
-        self.assertEqual(
-            str(question),
-            "Question(Is it okay?, 8, DifficultyEnum.Easy, CognitiveEnum.Application, True)",
-        )
+        self.assertEqual(str(question), "Question(Is it okay?, 8, 10, True)")
 
         # Test invalid data
         new_question = dict(
             question="Isn't it okay?",
             mark=None,
+            difficulty="1",
             imp=False,
-            difficulty="Easy",
-            cognitive_level="Application",
             submit="submit",
         )
 
@@ -39,7 +30,7 @@ class AddQuestionTestCase(BaseUnit):
             AttributeError,
             test_post_request,
             self,
-            "/course/1/unit/1/question/sub/new/",
+            "/course/1/question/sub/new/",
             new_question,
             models.Question,
             2,
@@ -50,27 +41,23 @@ class AddQuestionTestCase(BaseUnit):
         new_mcq = dict(
             question="Rate it",
             mark=8,
-            difficulty="Easy",
-            cognitive_level="Application",
+            difficulty=10,
             imp=None,
             option1="10",
             option2="9",
             option3="8",
             option4="7",
         )
-        _, mcq = test_post_request(self, "/course/1/unit/1/question/mcq/new/",
+        _, mcq = test_post_request(self, "/course/1/question/mcq/new/",
                                    new_mcq, models.MCQQuestion, 1)
         # test repr method
-        self.assertEqual(
-            str(mcq),
-            "MCQQuestion(Rate it, 8, DifficultyEnum.Easy, CognitiveEnum.Application, False, 10, 9, 8, 7)",
-        )
+        self.assertEqual(str(mcq),
+                         "MCQQuestion(Rate it, 8, 10, False, 10, 9, 8, 7)")
         # test invalid data
         new_mcq = dict(
             question=None,
             mark=8,
-            difficulty="Easy",
-            cognitive_level="Application",
+            difficulty=10,
             imp=True,
             submit="submit",
             option1="A",
@@ -83,7 +70,7 @@ class AddQuestionTestCase(BaseUnit):
             AttributeError,
             test_post_request,
             self,
-            "/course/1/unit/1/question/mcq/new/",
+            "/course/1/question/mcq/new/",
             new_mcq,
             models.MCQQuestion,
             2,

@@ -6,41 +6,6 @@
 </div>
 {% endblock loader %}
 
-{% block general_top_links %}
- <a class="top_navigation_items" href={{ url_for("main.index") }}>
-     <h4 class="py-2 mx-3">Home</h4>
- </a>
- <a class="top_navigation_items" href={{ url_for("main.about_us") }}>
-     <h4 class="py-2 mx-3">About Us</h4>
- </a>
- <a class="top_navigation_items" href={{ url_for("main.help_page") }}>
-     <h4 class="py-2 mx-3">Help</h4>
- </a>
- <a class="top_navigation_items" href={{ url_for("main.contact_us") }}>
-     <h4 class="py-2 mx-3">Contact Us</h4>
- </a>
- <a class="top_navigation_items" href={{ url_for("users.login") }}>
-     <h4 class="py-2 mx-3">Log In</h4>
- </a>
-{% endblock general_top_links %}
-
-{% block general_side_links%}
-  <a class="side_navigation_items" href={{ url_for("main.index") }}>Home</a>
-  <a class="side_navigation_items bt" href={{ url_for("main.about_us") }}>
-      About Us
-  </a>
-  <a class="side_navigation_items" href={{ url_for("main.help_page") }}>
-      Help
-  </a>
-  <a class="side_navigation_items bb" href={{ url_for("main.contact_us") }}>
-      Contact Us
-  </a>
-  <a class="side_navigation_items" href={{ url_for("users.login") }}>
-      Log In
-  </a>
-  <a href="#" class="side_navigation_items bb" id="close_link">Close</a>
-{% endblock general_side_links%}
-
 
 
 {% block backgroundImage %}
@@ -57,8 +22,8 @@
             <div id="get_start_container" class="mt-4">
                 <h3>Set papers online with ease now on setnow</h3>
                 <div>
-                    <a id="get_start_link" href={{ url_for("users.register") }}>Get Started</a>
-                    <h6>Already have an account?<a href={{ url_for("users.login") }}>Sign in</a></h6>
+                    <a href="/register" id="get_start_link">Get Started</a>
+                    <h6>Already have an account?<a href="/login">Sign in</a></h6>
                 </div>
                 <div id="features">
                     <div class="feature_link"><i class="fa fa-check-circle"></i>Supports Multiple Courses</div>

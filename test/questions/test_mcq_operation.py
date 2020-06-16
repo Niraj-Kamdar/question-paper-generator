@@ -7,8 +7,7 @@ from test.main.utils import test_post_request
 class MCQOperationTestCase(BaseMCQQuestion):
     def test_delete_mcq(self):
         delete_list = [1, 3, 5]
-        test_get_request(self, "/course/1/unit/1/question/mcq/delete/",
-                         delete_list)
+        test_get_request(self, "/course/1/question/mcq/delete/", delete_list)
 
         # check changes are reflected in database
         q1 = self.db.session.query(models.MCQQuestion).get(1)
@@ -21,7 +20,7 @@ class MCQOperationTestCase(BaseMCQQuestion):
     def test_imp_question(self):
         # Actual set imp get request.
         imp_dict = dict(imp=[1, 3], notimp=[2])
-        test_get_request(self, "/course/1/unit/1/question/mcq/imp/", imp_dict)
+        test_get_request(self, "/course/1/question/mcq/imp/", imp_dict)
 
         # check changes are reflected in database
         q1 = self.db.session.query(models.MCQQuestion).get(1)
@@ -36,8 +35,7 @@ class MCQOperationTestCase(BaseMCQQuestion):
         update_question = dict(
             question="moon is ...?",
             mark=8,
-            difficulty="Easy",
-            cognitive_level="Application",
+            difficulty=10,
             imp=None,
             submit="submit",
             option1="Planet",
@@ -47,13 +45,14 @@ class MCQOperationTestCase(BaseMCQQuestion):
         )
         test_post_request(
             self,
-            "/course/1/unit/1/question/mcq/update/2",
+            "/course/1/question/mcq/update/2",
             update_question,
             models.MCQQuestion,
             2,
         )
 
         # test invalid data
-        response, _ = test_post_request(
-            self, "/course/1/unit/1/question/mcq/update/8", update_question)
+        response, _ = test_post_request(self,
+                                        "/course/1/question/mcq/update/8",
+                                        update_question)
         self.assertIn(b"Question:8 Does not exist", response.data)

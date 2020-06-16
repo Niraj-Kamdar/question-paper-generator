@@ -1,40 +1,5 @@
 {% extends "headerFooter.html" %}
 
-{% block general_top_links %}
- <a href="/" class="top_navigation_items">
-     <h4 class="py-2 mx-3">Home</h4>
- </a>
- <a href="/about-us" class="top_navigation_items">
-     <h4 class="py-2 mx-3">About Us</h4>
- </a>
- <a href="/help" class="top_navigation_items">
-     <h4 class="py-2 mx-3">Help</h4>
- </a>
- <a href="/contact-us" class="top_navigation_items">
-     <h4 class="py-2 mx-3">Contact Us</h4>
- </a>
- <a href="/login" class="top_navigation_items">
-     <h4 class="py-2 mx-3">Log In</h4>
- </a>
-{% endblock general_top_links %}
-
-{% block general_side_links%}
-  <a href="/" class="side_navigation_items">Home</a>
-  <a href="/about-us" class="side_navigation_items bt">
-      About Us
-  </a>
-  <a href="/help" class="side_navigation_items">
-      Help
-  </a>
-  <a href="/contact-us" class="side_navigation_items bb">
-      Contact Us
-  </a>
-  <a href="/login" class="side_navigation_items">
-      Log In
-  </a>
-  <a href="#" class="side_navigation_items bb" id="close_link">Close</a>
-{% endblock general_side_links%}
-
 <!--===============================================================================================-->
 <!-- <link rel="icon" type="image/png" href={{ url_for("static",
     filename="images/icons/favicon.ico") }} /> -->

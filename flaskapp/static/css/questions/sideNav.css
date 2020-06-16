@@ -30,8 +30,7 @@
 .add_items,
 .courses_items {
   background-color: white;
-  /*color: rgba(76, 76, 76, 1);*/
-  color : #4c4c4c;
+  color: rgba(76, 76, 76, 1);
   display: flex;
   flex-direction: row;
   margin-bottom: 5px;
@@ -58,7 +57,7 @@
 
 .nav_link,
 .course_link {
-  color: #4c4c4c !important;
+  color: rgba(76, 76, 76, 1) !important;
   cursor: pointer;
   text-decoration: none !important;
 }
@@ -75,37 +74,15 @@
   margin-right: 10px;
   min-width: 270px;
 }
-@media (max-width: 1200px) {
-  #body_container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  #page_display {
-    padding: 0 20px !important;
-  }
 
-  #template_display {
-    margin-right: 16px !important;
-  }
-}
 @media (max-width: 960px) {
   .explore_container,
   .add_container,
   .courses_container {
     display: none;
   }
-  #template_display {
-    margin-right: 0 !important;
-  }
+
   #page_container {
     padding-top: 70px;
-  }
-  #sideNav {
-    display: none;
-  }
-}
-@media (max-width: 575px) {
-  #page_display {
-    padding: 0 10px !important;
   }
 }

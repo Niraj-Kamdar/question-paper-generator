@@ -1,5 +1,10 @@
 {% extends "sideNav.html" %}
-
+{% block image %}
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+{% endblock image %}
+{% block image2 %}
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+{% endblock image2 %}
 {% block header %}
 <h3 class="header">Add Subjective Question</h3>
 {% endblock header %}
@@ -36,7 +41,7 @@
                 {% endif %}
                 <div class="form__client_error"></div>
             </div>
-            <div class="form_attributes">
+            <div id="form_attributes">
                 <div id="marks_label">
                     {{ form.mark.label }} :
                     <div>
@@ -56,18 +61,16 @@
                     <div>
                         {{ form.difficulty(id="difficulty_value") }}
                     </div>
+                    {% if form.difficulty.errors %}
+                    <ul class="form__error">
+                        {% for error in form.difficulty.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <div class="form__client_error"></div>
                 </div>
-
             </div>
-            <div class="form_attributes">
-                <div id="cognitive_label">
-                    {{ form.cognitive_level.label }} :
-                    <div>
-                        {{ form.cognitive_level(id="cognitive_value") }}
-                    </div>
-                </div>
-            </div>
-
             <div class="form__fields">
                 {{ form.imp.label(id="mark_as_imp") }}
                 {{ form.imp(id="imp_checkbox") }}
@@ -81,6 +84,7 @@
                 <button type="reset" id="reset_btn">Cancel</button>
             </div>
         </div>
+
     </form>
 
 </div>

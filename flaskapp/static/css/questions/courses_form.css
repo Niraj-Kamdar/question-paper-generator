@@ -1,20 +1,9 @@
-#course_form,
-#unit_form {
+#course_form {
   background-color: rgba(144, 0, 240, 0.15);
   box-shadow: 4px 4px 2px 0;
 
   padding: 10px;
   width: 550px;
-}
-
-#submit_btn,
-#reset_btn {
-  background-color: rgba(144, 0, 240, 0.15);
-  border: none;
-  /*color: rgba(88, 88, 88, 1);*/
-  color : #585858;
-  font-size: 20px;
-  padding: 10px 20px;
 }
 
 #form_content {
@@ -26,12 +15,6 @@
   padding-left: 10px;
 }
 
-.form__error {
-  list-style-type: none;
-  margin-bottom: 0;
-  padding: 0;
-}
-
 .form__fields {
   background-color: rgba(144, 0, 240, 0.15);
   display: flex;
@@ -40,8 +23,7 @@
 }
 
 .form__fields label {
-  /*color: rgba(88, 88, 88, 1);*/
-  color : #585858;
+  color: rgba(88, 88, 88, 1);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
 }
@@ -50,8 +32,7 @@
   padding: 10px;
 }
 
-.form__client_error,
-.form__error li {
+.form__client_error {
   color: red;
   margin: 0;
 }
@@ -60,13 +41,18 @@
   padding-top: 100px;
 }
 
-#reset_btn:hover {
-  cursor: pointer;
+#submit_btn {
+  text-align: right;
 }
 
-#submit_reset_container {
-  margin-top: 15px;
-  text-align: right;
+#submit {
+  background-color: rgba(144, 0, 240, 0.15);
+  border: 0;
+  color: rgba(88, 88, 88, 1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  margin: 10px 0;
+  padding: 10px;
 }
 
 @media (max-width: 786px) {
@@ -100,15 +86,7 @@
   }
 
   #course_form,
-  #unit_form,
   #form_question_paper {
     width: 100%;
-  }
-}
-
-@media (max-width: 400px) {
-  #submit_btn,
-  #reset_btn {
-    padding: 5px 10px;
   }
 }

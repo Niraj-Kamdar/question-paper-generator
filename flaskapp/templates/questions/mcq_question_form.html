@@ -1,5 +1,10 @@
 {% extends "sideNav.html" %}
-
+{% block image %}
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+{% endblock image %}
+{% block image2 %}
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+{% endblock image2 %}
 {% block flashes %}
 {% with messages = get_flashed_messages(with_categories=true) %} {% if
 messages %}
@@ -35,7 +40,7 @@ messages %}
             </div>
 
 
-            <div class="form_attributes">
+            <div id="form_attributes">
                 <div id="marks_label">
                     {{ form.mark.label }} :
                     <div>
@@ -55,16 +60,17 @@ messages %}
                     <div>
                         {{ form.difficulty(id="difficulty_value") }}
                     </div>
+                    {% if form.difficulty.errors %}
+                    <ul class="form__error">
+                        {% for error in form.difficulty.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <div class="form__client_error"></div>
                 </div>
             </div>
-            <div class="form_attributes">
-                <div id="cognitive_label">
-                    {{ form.cognitive_level.label }} :
-                    <div>
-                        {{ form.cognitive_level(id="cognitive_value") }}
-                    </div>
-                </div>
-            </div>
+
 
             <div id="options">Options :
                 <div class="options_row">

@@ -8,7 +8,6 @@ beautifulsoup4 = "*"
 lxml = "*"
 coverage = "*"
 pylint = "*"
-flake8 = "*"
 
 [packages]
 alembic = "*"

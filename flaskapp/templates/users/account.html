@@ -1,15 +1,11 @@
 {% extends "base.html" %}
 
-{% block special_top_links %}
- <a href="/course/" class="top_navigation_items">
-     <h4 class="py-2 mx-3">Courses</h4>
- </a>
-{% endblock special_top_links %}
-
-{% block special_side_links %}
-    <a href="/course/" class="side_navigation_items">Courses</a>
-{% endblock special_side_links %}
-
+{% block image %}
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+{% endblock image %}
+{% block image2 %}
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+{% endblock image2 %}
 {% block flashes %}
 
 {% with messages = get_flashed_messages(with_categories=true) %} {% if

@@ -1,5 +1,13 @@
 {% extends "sideNav.html" %}
 
+{% block image %}
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+{% endblock image %}
+
+{% block image2 %}
+<img src="{{ image_file }}" class="user" alt="user" title="profile" />
+{% endblock image2 %}
+
 {% block header %}
 <h1 class="header">Subjective Questions</h1>
 {% endblock header %}
@@ -53,25 +61,19 @@
                                 class="imp_checkbox" /></label>
                     </div>
                 </div>
+
                 <div class="second_row">
-                    <div><span class="left">Marks</span>:
-                        <span class="marks">{{ q.mark }}</span></div>
-                </div>
-                <div class="third_row">
-                    <div><span class="left">Difficulty</span>:
-                        <span class="difficulty">{{ q.difficulty }}</span></div>
-                </div>
-                <div class="fourth_row">
-                    <div><span class="left">Cognitive
-                            level</span>: <span class="cognitive"> {{
-                            q.cognitive_level }}</span></div>
-                </div>
-                <div class="fifth_row">
-                    <div class="question_description">
-                        {{ q.question }}
+                    <div class="second_row_column_1">
+                        <div class="marks">Marks : {{ q.mark }}</div>
+                        <div class="difficulty">Difficulty : {{ q.difficulty }}</div>
+                    </div>
+                    <div class="second_row_column_2">
+                        <div class="question_description">
+                            {{ q.question }}
+                        </div>
+
                     </div>
                 </div>
-
             </div>
             <div class="update_question">
                 <div class="edit_question">
@@ -97,10 +99,10 @@
     {% if page_num %}
     {% if questions.page == page_num %}
     <a class="btn btn-info mb-4"
-        href="{{ url_for('questions.all_questions', page=page_num, course_id=course_id, unit_id=unit_id, qtype=qtype) }}">{{ page_num }}</a>
+        href="{{ url_for('questions.question', page=page_num, course_id=course_id, qtype=qtype) }}">{{ page_num }}</a>
     {% else %}
     <a class="btn btn-outline-info mb-4"
-        href="{{ url_for('questions.all_questions', page=page_num, course_id=course_id, unit_id=unit_id, qtype=qtype) }}">{{ page_num }}</a>
+        href="{{ url_for('questions.question', page=page_num, course_id=course_id, qtype=qtype) }}">{{ page_num }}</a>
     {% endif %}
     {% else %}
     ...

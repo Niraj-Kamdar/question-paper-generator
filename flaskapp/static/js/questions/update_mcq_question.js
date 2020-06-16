@@ -14,16 +14,6 @@
   const cancelBtn = document.getElementById("cancel_btn");
   const mark = document.getElementById("mark_imp");
   const deleteBtn = document.getElementById("delete_btn");
-  const difficultyField = document.getElementsByClassName("difficulty");
-  const cognitiveField = document.getElementsByClassName("cognitive");
-  for (let val of difficultyField) {
-    val.innerHTML = val.innerHTML.substr(val.innerHTML.indexOf(".") + 1);
-    val.classList.add(val.innerText.toLowerCase());
-  }
-  for (let val of cognitiveField) {
-    val.innerHTML = val.innerHTML.substr(val.innerHTML.indexOf(".") + 1);
-    val.classList.add(val.innerText.toLowerCase());
-  }
   const buffer = {
     data: "",
     index: -1,

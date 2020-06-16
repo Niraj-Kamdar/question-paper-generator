@@ -5,11 +5,11 @@ https://setnow.herokuapp.com/
 Contact US ticket
 ************
 
-Name: {name}
-Email: {email}
-Mobile: {mobile}
+Name: {name} 
+Email: {email} 
+Mobile: {mobile} 
 Subject: {subject}
-Message: {message}
+Message: {message} 
 
 Thanks,
 The SetNow Team
