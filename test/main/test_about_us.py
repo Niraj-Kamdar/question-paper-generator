@@ -5,7 +5,7 @@ from test.main.utils import test_post_request
 
 class AboutUsTestCase(BaseUser):
     def test_about_us(self):
-        response, _ = test_post_request(self, "/about-us")
+        response = self.client.get("/about-us")
         self.assertIn(b"Welcome to SetNow, We're dedicated to giving you the very best of our service.", response.data)
         self.assertIn(b"This website is created by students of DA-IICT (Gandhinagar, Gujrat).", response.data)
         self.assertIn(b"This effort was made under the guidence of Prof. Saurabh Tiwari.", response.data)
