@@ -73,7 +73,10 @@ def mark_distribution_form(course_id, data):
                                 data["total_marks"])
     if form.validate_on_submit():
         question_no = list(
-            itertools.chain(*map(lambda x: list(itertools.repeat(x[0] + 1, x[1])), enumerate(data["questions"]))))
+            itertools.chain(*map(
+                lambda x: list(itertools.repeat(x[0] + 1, x[1])),
+                enumerate(data["questions"]),
+            )))
         paper_template = QPTGenerator(dict(form.data), question_no).generate()
         return jsonify(paper_template)
     return render_template("papers/mark_distribution_form.html", form=form)
