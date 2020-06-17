@@ -33,3 +33,4 @@ class PaperGenerateRequest(BaseUnit):
         response, _ = test_post_request(
             self, f"/course/1/papers/generate/form/{token}", data)
         # FIXME: do some assertion here
+        print(response.data)

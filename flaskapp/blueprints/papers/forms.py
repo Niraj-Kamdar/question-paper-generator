@@ -57,17 +57,17 @@ class MarkDistributionForm:
         validators = defaultdict(list)
         flatten_data = defaultdict(list)
 
-        flatten_data["units"].extend([0] * len(units))
+        flatten_data["unit"].extend([0] * len(units))
         flatten_data["cognitive"].extend([0] * len(CognitiveEnum.__members__))
         flatten_data["difficulty"].extend([0] *
                                           len(DifficultyEnum.__members__))
-        flatten_data["questions"].extend([0] * sum(questions))
+        flatten_data["question"].extend([0] * sum(questions))
 
         for unit in units:
             field = f"Unit:{unit.chapter_no:02d}"
             form_fields.update(
                 {field: IntegerField(field, validators=[DataRequired()])})
-            validators["units"].append(field)
+            validators["unit"].append(field)
         for c_level in CognitiveEnum.__members__:
             form_fields.update(
                 {c_level: IntegerField(c_level, validators=[DataRequired()])})
@@ -83,7 +83,7 @@ class MarkDistributionForm:
                 field = f"Que.{question_no + 1}.{ascii_uppercase[subquestion]}"
                 form_fields.update(
                     {field: IntegerField(field, validators=[DataRequired()])})
-                validators["questions"].append(field)
+                validators["question"].append(field)
                 question_translator[question_no +
                                     1][ascii_uppercase[subquestion]] = idx
                 idx += 1
@@ -119,9 +119,9 @@ class MarkDistributionForm:
         fields = defaultdict(list)
         for field in self.form._fields:
             if "Unit" in field:
-                fields["units"].append(self.form._fields[field])
+                fields["unit"].append(self.form._fields[field])
             elif "Que" in field:
-                fields["questions"].append(self.form._fields[field])
+                fields["question"].append(self.form._fields[field])
             elif field in CognitiveEnum.__members__:
                 fields["cognitive"].append(self.form._fields[field])
             elif field in DifficultyEnum.__members__:
@@ -133,9 +133,9 @@ class MarkDistributionForm:
             return CognitiveEnum.__members__[field].value - 1
         if constraint == "difficulty":
             return DifficultyEnum.__members__[field].value - 1
-        if constraint == "units":
+        if constraint == "unit":
             return int(self.unit_field_regex.search(field).group(1)) - 1
-        if constraint == "questions":
+        if constraint == "question":
             matched = self.question_field_regex.search(field)
             return self.question_translator[int(
                 matched.group(1))][matched.group(2)]
