@@ -40,7 +40,7 @@ def validate_unit_name(form, unit_name):
 
     Raises:
         ValidationError: If unit is already exist then give error for that.
-    """    
+    """
     unit = Unit.query.filter(
         and_(Unit.name == unit_name.data, Unit.course == form.course)).first()
     if unit:
@@ -57,7 +57,7 @@ def validate_chapter_no(form, chapter_no):
 
     Raises:
         ValidationError: This unit is alresady exist. Please choose different 
-    """    
+    """
     unit = Unit.query.filter(
         and_(Unit.chapter_no == chapter_no.data,
              Unit.course == form.course)).first()

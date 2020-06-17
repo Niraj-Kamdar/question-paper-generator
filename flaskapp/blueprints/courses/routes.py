@@ -85,7 +85,7 @@ def all_units(course_id):
 
     Returns:
         HTML
-    """    
+    """
     _course = Course.query.filter(Course.id == course_id).first()
     _units = Unit.query.filter(Unit.course == _course).all()
     return render_template(
@@ -139,7 +139,7 @@ def delete_unit(course_id):
 
     Args:
         course_id (int): Delete the course from user account
-    """    
+    """
     if request.method == "POST":
         unit_ids = request.get_json()
         db.session.query(Course).filter(

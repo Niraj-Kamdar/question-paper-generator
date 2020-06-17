@@ -198,7 +198,7 @@ def reset_token(token):
 @login_required
 def delete_account():
     """To delete account from site.
-    """    
+    """
     db.session.query(User).filter_by(id=current_user.id).delete(
         synchronize_session="fetch")
     db.session.commit()
