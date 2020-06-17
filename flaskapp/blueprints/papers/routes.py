@@ -62,6 +62,15 @@ def paper_generate_request(course_id):
 @login_required
 @check_valid_course
 def mark_distribution_form(course_id, data):
+    """Mark distribution of form
+
+    Args:
+        course_id (int): Course ID of course
+        data (object): Description of marks 
+
+    Returns:
+        HTML: Go to mark distribuion form page
+    """
     if not data:
         return redirect(
             url_for("papers.paper_generate_request", course_id=course_id))
@@ -77,7 +86,14 @@ def mark_distribution_form(course_id, data):
 @papers.route("/Paper-to-PDF")
 @login_required
 def ptp():
+    """Convert Paper to pdf format
 
+    Raises:
+        your: Final paper
+
+    Returns:
+        PDF: Pdf of final paper
+    """
     course_name = "Software Engineering"
     prefix = "Final"
     term = "Autumn 2020"

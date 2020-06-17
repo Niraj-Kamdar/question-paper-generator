@@ -8,6 +8,14 @@ from flaskapp.models import Unit
 
 
 def check_valid_course(func):
+    """Validation of course 
+
+    Args:
+        func (Object): description about course
+
+    Returns:
+        error: if not valid course thrw an error of 403
+    """
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         _course = Course.query.filter(Course.id == kwargs["course_id"]).first()
@@ -19,6 +27,14 @@ def check_valid_course(func):
 
 
 def check_valid_unit(func):
+    """Validation to unit
+
+    Args:
+        func (Object): description of unit  
+
+    Returns:
+        error : if not in course throw an error of 403 
+    """
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         _course = Course.query.filter(Course.id == kwargs["course_id"]).first()
@@ -31,6 +47,14 @@ def check_valid_unit(func):
 
 
 def check_valid_question_type(func):
+    """Validation to question type  
+
+    Args:
+        func (Object): Desceription of question type
+
+    Returns:
+        error: If not valid(subjective or mcq) then abort 404 error else return wrapper for question
+    """
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         if kwargs["qtype"] not in ["sub", "mcq"]:
