@@ -1,19 +1,12 @@
 import itertools
 
-from flask import Blueprint
-from flask import flash
-from flask import jsonify
-from flask import redirect
-from flask import render_template
-from flask import request
-from flask import url_for
+from flask import (Blueprint, flash, jsonify, redirect, render_template,
+                   request, url_for)
 from flask_login import login_required
-from qpt_generator import QPTGenerator
-
 from flaskapp.blueprints.papers.forms import MarkDistributionForm
 from flaskapp.checkers import check_valid_course
-from flaskapp.utils import json_url
-from flaskapp.utils import profile_path
+from flaskapp.utils import json_url, profile_path
+from qpt_generator import QPTGenerator
 
 papers = Blueprint("papers", __name__)
 
