@@ -21,7 +21,7 @@ class TermsOfServiceTestCase(BaseUser):
         self.assertIn(b"or non-infringement of intellectual property or other", response.data)
         self.assertIn(b"of the materials on its website or otherwise", response.data)
         self.assertIn(b"no event shall SetNow or its suppliers be", response.data)
-        self.assertIn(b"(including, without limitation, damages for loss of data", response.data)
+        self.assertIn(b"including, without limitation, damages for loss of data", response.data)
         self.assertIn(b"However SetNow does not make any commitment to", response.data)
         self.assertIn(b"SetNow has not reviewed all of the sites linked to its", response.data)
         self.assertIn(b"linked site. The inclusion of any link does not imply", response.data)

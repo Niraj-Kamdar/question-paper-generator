@@ -12,7 +12,7 @@ class PrivacyPolicyTestCase(BaseUser):
         self.assertIn(b"necessary to provide you with your requested service.", response.data)
         self.assertIn(b"This policy is effective as of 9 April 2020.", response.data)
         self.assertIn(b"Our website may link to external sites that are not", response.data)
-        self.assertIn(b"What data we store, we’ll protect within commercially", response.data)
+        self.assertIn(b"protect within commercially", response.data)
         self.assertIn(b"to prevent loss and theft, as well as unauthorized", response.data)
         self.assertIn(b"access, disclosure, copying, use or modification.", response.data)
         self.assertIn(b"Your continued use of our website will be regarded as acceptance", response.data)
