@@ -2,9 +2,7 @@ import os
 
 from flask import render_template
 from flask_mail import Message
-
-from flaskapp import APP_PATH
-from flaskapp import mail
+from flaskapp import APP_PATH, mail
 
 
 def send_contact_us_email(**data):
