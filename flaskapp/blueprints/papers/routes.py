@@ -1,19 +1,14 @@
 import itertools
+from collections import Counter, defaultdict
+from string import ascii_lowercase
 
-from flask import Blueprint
-from flask import flash
-from flask import jsonify
-from flask import redirect
-from flask import render_template
-from flask import request
-from flask import url_for
+from flask import Blueprint, flash, jsonify, redirect, render_template, request, url_for
 from flask_login import login_required
 from qpt_generator import QPTGenerator
 
 from flaskapp.blueprints.papers.forms import MarkDistributionForm
 from flaskapp.checkers import check_valid_course
-from flaskapp.utils import json_url
-from flaskapp.utils import profile_path
+from flaskapp.utils import json_url, CognitiveEnum, DifficultyEnum, profile_path
 
 papers = Blueprint("papers", __name__)
 
@@ -27,11 +22,11 @@ def home():
         HTML -- It will render home page.
     """
     return render_template(
-        "papers/home.html",
-        css_file="css/base.css",
-        css_file2="css/home.css",
-        title="Home",
-        image_file=profile_path(),
+            "papers/home.html",
+            css_file="css/base.css",
+            css_file2="css/home.css",
+            title="Home",
+            image_file=profile_path(),
     )
 
 
@@ -47,16 +42,16 @@ def paper_generate_request(course_id):
         if data:
             data = json_url.dumps(data)
             return redirect(
-                url_for("papers.mark_distribution_form",
-                        course_id=course_id,
-                        data=data))
+                    url_for("papers.mark_distribution_form",
+                            course_id=course_id,
+                            data=data))
         flash("Form can't be empty!")
     return render_template(
-        "papers/generate_request.html",
-        js_file="js/papers/generate_request.js",
-        css_file="css/papers/generate_request.css",
-        css_file2="css/base.css",
-        image_file=profile_path(),
+            "papers/generate_request.html",
+            js_file="js/papers/generate_request.js",
+            css_file="css/papers/generate_request.css",
+            css_file2="css/base.css",
+            image_file=profile_path(),
     )
 
 
@@ -67,17 +62,28 @@ def paper_generate_request(course_id):
 def mark_distribution_form(course_id, data):
     if not data:
         return redirect(
-            url_for("papers.paper_generate_request", course_id=course_id))
+                url_for("papers.paper_generate_request", course_id=course_id))
     data = json_url.loads(data)
     form = MarkDistributionForm(course_id, data["questions"],
                                 data["total_marks"])
     if form.validate_on_submit():
         question_no = list(
-            itertools.chain(*map(
-                lambda x: list(itertools.repeat(x[0] + 1, x[1])),
-                enumerate(data["questions"]),
-            )))
-        paper_template = QPTGenerator(dict(form.data), question_no).generate()
+                itertools.chain(*map(
+                        lambda x: list(itertools.repeat(x[0] + 1, x[1])),
+                        enumerate(data["questions"]),
+                )))
+        raw_template = QPTGenerator(dict(form.data), question_no).generate()
+        paper_template = defaultdict(dict)
+        subque_counter = Counter()
+        for i in range(len(raw_template["question_no"])):
+            current_que = raw_template["question_no"][i]
+            subque_counter[current_que] += 1
+            data = dict(mark=raw_template["question"][i],
+                        cognitive=CognitiveEnum(raw_template["cognitive"][i]).name,
+                        difficulty=DifficultyEnum(raw_template["difficulty"][i]).name,
+                        unit=raw_template["unit"][i])
+            current_subque = ascii_lowercase[subque_counter[current_que]]
+            paper_template[current_que][current_subque] = data
         return jsonify(paper_template)
     return render_template("papers/mark_distribution_form.html", form=form)
 
@@ -86,7 +92,6 @@ def mark_distribution_form(course_id, data):
 @papers.route("/Paper-to-PDF")
 @login_required
 def ptp():
-
     course_name = "Software Engineering"
     prefix = "Final"
     term = "Autumn 2020"
@@ -108,9 +113,9 @@ def ptp():
     questions = {
         1: {
             "question":
-            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+                "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
             "marks":
-            10,
+                10,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -120,9 +125,9 @@ def ptp():
         },
         2: {
             "question":
-            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+                "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
             "marks":
-            15,
+                15,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -132,9 +137,9 @@ def ptp():
         },
         3: {
             "question":
-            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+                "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
             "marks":
-            18,
+                18,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -144,9 +149,9 @@ def ptp():
         },
         4: {
             "question":
-            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+                "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
             "marks":
-            10,
+                10,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -156,9 +161,9 @@ def ptp():
         },
         5: {
             "question":
-            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+                "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
             "marks":
-            15,
+                15,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -168,9 +173,9 @@ def ptp():
         },
         6: {
             "question":
-            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+                "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
             "marks":
-            18,
+                18,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -181,14 +186,14 @@ def ptp():
     }
 
     return render_template(
-        "papers/ptp.html",
-        css_file="css/ptp.css",
-        title="Paper-to-PDF",
-        course_name=course_name,
-        prefix=prefix,
-        term=term,
-        date=date,
-        time_limit=time_limit,
-        instructions=instructions,
-        questions=questions,
+            "papers/ptp.html",
+            css_file="css/ptp.css",
+            title="Paper-to-PDF",
+            course_name=course_name,
+            prefix=prefix,
+            term=term,
+            date=date,
+            time_limit=time_limit,
+            instructions=instructions,
+            questions=questions,
     )
