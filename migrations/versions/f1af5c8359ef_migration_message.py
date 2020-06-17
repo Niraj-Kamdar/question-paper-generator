@@ -33,7 +33,10 @@ def upgrade():
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("name", sa.Text(), nullable=False),
         sa.Column("user_id", sa.Integer(), nullable=False),
-        sa.ForeignKeyConstraint(["user_id"], ["user.id"],),
+        sa.ForeignKeyConstraint(
+            ["user_id"],
+            ["user.id"],
+        ),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_table(
@@ -49,7 +52,10 @@ def upgrade():
         sa.Column("time_limit", sa.Text(), nullable=False),
         sa.Column("instructions", sa.JSON(), nullable=True),
         sa.Column("course_id", sa.Integer(), nullable=False),
-        sa.ForeignKeyConstraint(["course_id"], ["course.id"],),
+        sa.ForeignKeyConstraint(
+            ["course_id"],
+            ["course.id"],
+        ),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_table(
@@ -58,7 +64,10 @@ def upgrade():
         sa.Column("chapter_no", sa.Integer(), nullable=False),
         sa.Column("name", sa.Text(), nullable=True),
         sa.Column("course_id", sa.Integer(), nullable=False),
-        sa.ForeignKeyConstraint(["course_id"], ["course.id"],),
+        sa.ForeignKeyConstraint(
+            ["course_id"],
+            ["course.id"],
+        ),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_table(
@@ -73,7 +82,10 @@ def upgrade():
         ),
         sa.Column(
             "cognitive_level",
-            sa.Enum("Knowledge", "Comprehension", "Application", name="cognitiveenum"),
+            sa.Enum("Knowledge",
+                    "Comprehension",
+                    "Application",
+                    name="cognitiveenum"),
             nullable=False,
         ),
         sa.Column("imp", sa.Boolean(), nullable=True),
@@ -82,7 +94,10 @@ def upgrade():
         sa.Column("option3", sa.Text(), nullable=False),
         sa.Column("option4", sa.Text(), nullable=False),
         sa.Column("unit_id", sa.Integer(), nullable=False),
-        sa.ForeignKeyConstraint(["unit_id"], ["unit.id"],),
+        sa.ForeignKeyConstraint(
+            ["unit_id"],
+            ["unit.id"],
+        ),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_table(
@@ -97,12 +112,18 @@ def upgrade():
         ),
         sa.Column(
             "cognitive_level",
-            sa.Enum("Knowledge", "Comprehension", "Application", name="cognitiveenum"),
+            sa.Enum("Knowledge",
+                    "Comprehension",
+                    "Application",
+                    name="cognitiveenum"),
             nullable=False,
         ),
         sa.Column("imp", sa.Boolean(), nullable=True),
         sa.Column("unit_id", sa.Integer(), nullable=False),
-        sa.ForeignKeyConstraint(["unit_id"], ["unit.id"],),
+        sa.ForeignKeyConstraint(
+            ["unit_id"],
+            ["unit.id"],
+        ),
         sa.PrimaryKeyConstraint("id"),
     )
     # ### end Alembic commands ###
