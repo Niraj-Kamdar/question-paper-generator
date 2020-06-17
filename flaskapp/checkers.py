@@ -16,6 +16,7 @@ def check_valid_course(func):
     Returns:
         Function: If validate then return function otherwise give erroer of 403
     """
+
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         _course = Course.query.filter(Course.id == kwargs["course_id"]).first()
@@ -35,6 +36,7 @@ def check_valid_unit(func):
     Returns:
         Function: If unit is valid otherwise give error ot 403
     """
+
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         _course = Course.query.filter(Course.id == kwargs["course_id"]).first()
@@ -55,6 +57,7 @@ def check_valid_question_type(func):
     Returns:
         Function call: For valid question type i.e. subjective or mcq otherwise give error 404
     """
+
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         if kwargs["qtype"] not in ["sub", "mcq"]:
