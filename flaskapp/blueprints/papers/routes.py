@@ -94,13 +94,63 @@ def ptp():
                     "(Remember to collect all your belongings from holding rooms.) You must remain silent until after you have exited the building.",
                     "Remember! Any form of cheating is not allowed and action will be taken."]
 
-    q1 = "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 &#176 C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement."
-    m1 = 10
-    qs1 = ["Heating at constant volume until the pressure is 208 kPa",
-           "Polytropic compression to 0.006 m3, where n = 1.6",
-           "Heating at constant volume until the pressure is 208 kPa",
-           "Polytropic compression to 0.006 m3, where n = 1.6"]
+    questions = {
 
+        1 : {
+            "question" : "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks" : 10,
+            "sub_questions" : [ "Heating at constant volume until the pressure is 208 kPa",
+                               "Polytropic compression to 0.006 m3, where n = 1.6",
+                               "Heating at constant volume until the pressure is 208 kPa",
+                               "Polytropic compression to 0.006 m3, where n = 1.6"]
+        },
+
+        2 : {
+            "question" : "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks" : 15,
+            "sub_questions" : [ "Heating at constant volume until the pressure is 208 kPa",
+                               "Polytropic compression to 0.006 m3, where n = 1.6",
+                               "Heating at constant volume until the pressure is 208 kPa",
+                               "Polytropic compression to 0.006 m3, where n = 1.6"]
+        },
+
+        3 : {
+            "question" : "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks" : 18,
+            "sub_questions" : [ "Heating at constant volume until the pressure is 208 kPa",
+                               "Polytropic compression to 0.006 m3, where n = 1.6",
+                               "Heating at constant volume until the pressure is 208 kPa",
+                               "Polytropic compression to 0.006 m3, where n = 1.6"]
+        },
+
+        4 : {
+            "question" : "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks" : 10,
+            "sub_questions" : [ "Heating at constant volume until the pressure is 208 kPa",
+                               "Polytropic compression to 0.006 m3, where n = 1.6",
+                               "Heating at constant volume until the pressure is 208 kPa",
+                               "Polytropic compression to 0.006 m3, where n = 1.6"]
+        },
+
+        5 : {
+            "question" : "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks" : 15,
+            "sub_questions" : [ "Heating at constant volume until the pressure is 208 kPa",
+                               "Polytropic compression to 0.006 m3, where n = 1.6",
+                               "Heating at constant volume until the pressure is 208 kPa",
+                               "Polytropic compression to 0.006 m3, where n = 1.6"]
+        },
+
+        6 : {
+            "question" : "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks" : 18,
+            "sub_questions" : [ "Heating at constant volume until the pressure is 208 kPa",
+                               "Polytropic compression to 0.006 m3, where n = 1.6",
+                               "Heating at constant volume until the pressure is 208 kPa",
+                               "Polytropic compression to 0.006 m3, where n = 1.6"]
+        }
+
+    }
 
     return render_template("papers/ptp.html",
                            css_file='css/ptp.css',
@@ -111,6 +161,4 @@ def ptp():
                            date = date,
                            time_limit = time_limit,
                            instructions = instructions,
-                           Question = q1,
-                           Mark = m1,
-                           SubQuestions = qs1)
+                           questions = questions)

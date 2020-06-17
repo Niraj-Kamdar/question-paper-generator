@@ -54,7 +54,7 @@
 		<div class="row pt-3 px-4" style="border-bottom: 2px solid black;">
 			<h5 style="width: 100%; font-weight: bold;">Instructions :</h5>
 			<div class="container" style="max-width: 97%;text-align: justify;">
-				<ul>
+				<ul style="font-weight: bold;">
 					{% for instruction in instructions %}
 						<li>{{instruction}}</li>
 					{% endfor %}
@@ -62,36 +62,19 @@
 			</div>
 		</div>
 		<div class="row mt-4" style="text-align: justify;">
-
+			
 			<ol type="1">
 
-				<li style="padding-left: 10px">{{ Question }}<b>[{{ Mark }}]</b></li>
-				<ol class="mb-4" type="A">
-				  	{% for q in SubQuestions %}
-						<li style="padding-left: 10px">{{ q }}</li>
-					{% endfor %}
-				</ol>
+				{% for q in questions %}
 
-				<li style="padding-left: 10px">{{ Question }}<b>[{{ Mark }}]</b></li>
-				<ol class="mb-4" type="A">
-				  	{% for q in SubQuestions %}
-						<li style="padding-left: 10px">{{ q }}</li>
-					{% endfor %}
-				</ol>
+					<li style="padding-left: 10px">{{ questions[q]['question'] }} <b>[{{ questions[q]['marks'] }}] </b></li>
+					<ol class="mb-4" type="A">
+					  	{% for sub_q in questions[q]['sub_questions'] %}
+							<li style="padding-left: 10px">{{ sub_q }}</li>
+						{% endfor %}
+					</ol>
 
-				<li style="padding-left: 10px">{{ Question }}<b>[{{ Mark }}]</b></li>
-				<ol class="mb-4" type="A">
-				  	{% for q in SubQuestions %}
-						<li style="padding-left: 10px">{{ q }}</li>
-					{% endfor %}
-				</ol>
-
-				<li style="padding-left: 10px">{{ Question }}<b>[{{ Mark }}]</b></li>
-				<ol class="mb-4" type="A">
-				  	{% for q in SubQuestions %}
-						<li style="padding-left: 10px">{{ q }}</li>
-					{% endfor %}
-				</ol>
+				{% endfor %}
 
 			</ol>
 
