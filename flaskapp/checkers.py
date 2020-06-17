@@ -52,7 +52,7 @@ def check_valid_question_type(func):
     """Validation to question type
 
     Args:
-        func (object): To verify question type  
+        func (object): To verify question type
 
     Returns:
         Function call: For valid question type i.e. subjective or mcq otherwise give error 404

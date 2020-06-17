@@ -106,7 +106,7 @@ def add_unit(course_id):
     """Add unit to given course id
 
     Args:
-        course_id (int): 
+        course_id (int):
 
     Returns:
         url page: If form is validate than add unit and show mesage of successfully added else render template of units.

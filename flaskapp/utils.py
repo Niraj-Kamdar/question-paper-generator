@@ -73,7 +73,7 @@ def CognitiveLevel(value):
 
 
 def profile_path():
-    """Give profile path of user 
+    """Give profile path of user
 
     Returns:
         URL: If user is authenticated then return else return NULL

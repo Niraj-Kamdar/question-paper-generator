@@ -19,7 +19,7 @@ def validate_email_exists(form, email):
     """Validation for existance of email
 
     Args:
-        form (Object): Inn which details of user 
+        form (Object): Inn which details of user
         email (string): Mail-Id of user
 
     Raises:
@@ -36,7 +36,7 @@ def validate_username(form, username):
     """Validation to username
 
     Args:
-        form (Object): In which details of user 
+        form (Object): In which details of user
         username (string): Username sggested by user
 
     Raises:
@@ -54,8 +54,8 @@ def validate_email(form, email):
     """Validation to email
 
     Args:
-        form (object): form in which details of user    
-        email (string): email of user   
+        form (object): form in which details of user
+        email (string): email of user
 
     Raises:
         ValidationError: if email is not taken set email for user else throw an error of email is taken. Please choose different one.

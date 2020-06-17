@@ -51,7 +51,7 @@ def policy_page():
     """Render template of policy page
 
     Returns:
-        HTML: Go to privacy policy HTML page 
+        HTML: Go to privacy policy HTML page
     """
     return render_template(
         "main/privacy-policy.html",
