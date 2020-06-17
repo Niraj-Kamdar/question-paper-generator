@@ -2,13 +2,14 @@ import itertools
 from collections import Counter, defaultdict
 from string import ascii_lowercase
 
-from flask import Blueprint, flash, jsonify, redirect, render_template, request, url_for
+from flask import (Blueprint, flash, jsonify, redirect, render_template,
+                   request, url_for)
 from flask_login import login_required
-from qpt_generator import QPTGenerator
-
 from flaskapp.blueprints.papers.forms import MarkDistributionForm
 from flaskapp.checkers import check_valid_course
-from flaskapp.utils import json_url, CognitiveEnum, DifficultyEnum, profile_path
+from flaskapp.utils import (CognitiveEnum, DifficultyEnum, json_url,
+                            profile_path)
+from qpt_generator import QPTGenerator
 
 papers = Blueprint("papers", __name__)
 
