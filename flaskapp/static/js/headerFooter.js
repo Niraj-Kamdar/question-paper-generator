@@ -1,5 +1,6 @@
-const sideNavigationContainer =
-    document.getElementById("side_navigation_container");
+const sideNavigationContainer = document.getElementById(
+  "side_navigation_container"
+);
 let sideTouchStartX = 0;
 let sideTouchStartY = 0;
 let preSidePageX = 0;
@@ -8,8 +9,9 @@ let sideFlag = false;
 let sNetDistance = 0;
 const mainContainer = document.getElementById("main_container");
 
-const initialLeft =
-    parseInt(window.getComputedStyle(sideNavigationContainer).left);
+const initialLeft = parseInt(
+  window.getComputedStyle(sideNavigationContainer).left
+);
 
 let mainTouchStartX = 0;
 let mainTouchStartY = 0;
@@ -18,11 +20,13 @@ let mainI = 0;
 let mainFlag = false;
 let mNetDistance = 0;
 
-const sideNavigationItems =
-    Array.from(document.getElementsByClassName("side_navigation_items"));
+const sideNavigationItems = Array.from(
+  document.getElementsByClassName("side_navigation_items")
+);
 
-const topNavigationItems =
-    document.getElementsByClassName("top_navigation_items");
+const topNavigationItems = document.getElementsByClassName(
+  "top_navigation_items"
+);
 
 const logo = document.getElementsByClassName("logo");
 
@@ -30,20 +34,24 @@ const footerLinks = document.getElementsByClassName("fl");
 
 const flash = document.getElementsByClassName("flashes_question")[0];
 
-sideNavigationItems.forEach(function(node) {
-  node.addEventListener("click", function(e) {
-    if (e.target.href === window.location.href ||
-        e.target.href + "home" === window.location.href) {
+sideNavigationItems.forEach(function (node) {
+  node.addEventListener("click", function (e) {
+    if (
+      e.target.href === window.location.href ||
+      e.target.href + "home" === window.location.href
+    ) {
       e.preventDefault();
     }
   });
 });
 
 for (let i = 0; i < topNavigationItems.length; i++) {
-  topNavigationItems[i].addEventListener("click", function(e) {
-    if (e.target.parentNode.href === window.location.href ||
-        e.target.parentNode.href + "home" === window.location.href ||
-        e.target.parentNode.href + "/" === window.location.href) {
+  topNavigationItems[i].addEventListener("click", function (e) {
+    if (
+      e.target.parentNode.href === window.location.href ||
+      e.target.parentNode.href + "home" === window.location.href ||
+      e.target.parentNode.href + "/" === window.location.href
+    ) {
       e.preventDefault();
     }
     if (e.target.parentNode.getAttribute("href") === "/logout") {
@@ -53,9 +61,11 @@ for (let i = 0; i < topNavigationItems.length; i++) {
 }
 
 for (let i = 0; i < logo.length; i++) {
-  logo[i].addEventListener("click", function(e) {
-    if (e.target.parentNode.href === window.location.href ||
-        e.target.parentNode.href + "home" === window.location.href) {
+  logo[i].addEventListener("click", function (e) {
+    if (
+      e.target.parentNode.href === window.location.href ||
+      e.target.parentNode.href + "home" === window.location.href
+    ) {
       e.preventDefault();
     }
   });
@@ -63,8 +73,10 @@ for (let i = 0; i < logo.length; i++) {
 
 for (let i = 0; i < footerLinks.length; i++) {
   footerLinks[i].addEventListener("click", (e) => {
-    if (e.target.href === window.location.href ||
-        e.target.href + "home" === window.location.href) {
+    if (
+      e.target.href === window.location.href ||
+      e.target.href + "home" === window.location.href
+    ) {
       e.preventDefault();
     }
   });
@@ -80,24 +92,25 @@ if (flash) {
   }, 1000);
 }
 
-document.getElementById("bars_container").addEventListener("click", function() {
-  sideNavigationContainer.style.left = "0px";
-  document.body.style.overflowY = "hidden";
-});
+document
+  .getElementById("bars_container")
+  .addEventListener("click", function () {
+    sideNavigationContainer.style.left = "0px";
+    document.body.style.overflowY = "hidden";
+  });
 
-window.addEventListener("resize", function() {
-  if (window.innerWidth > 960)
-    sideNavigationContainer.style.left = "";
+window.addEventListener("resize", function () {
+  if (window.innerWidth > 960) sideNavigationContainer.style.left = "";
   document.body.style.overflowY = "";
 });
 
-document.getElementById("close_link").addEventListener("click", function(e) {
+document.getElementById("close_link").addEventListener("click", function (e) {
   e.preventDefault();
   sideNavigationContainer.style.left = "";
   document.body.style.overflowY = "";
 });
 
-sideNavigationContainer.addEventListener("touchstart", function(e) {
+sideNavigationContainer.addEventListener("touchstart", function (e) {
   let touchObj = {};
   touchObj = e.changedTouches[0];
   sideTouchStartX = preSidePageX = touchObj.pageX;
@@ -108,12 +121,11 @@ sideNavigationContainer.addEventListener("touchstart", function(e) {
   sNetDistance = 0;
 });
 
-sideNavigationContainer.addEventListener("touchmove", function(e) {
+sideNavigationContainer.addEventListener("touchmove", function (e) {
   let touchObj = {};
   let distance = 0;
   let left = 0;
-  if (sideFlag)
-    return;
+  if (sideFlag) return;
   touchObj = e.changedTouches[0];
   distance = touchObj.pageX - preSidePageX;
   sNetDistance += distance;
@@ -137,12 +149,11 @@ sideNavigationContainer.addEventListener("touchmove", function(e) {
   e.preventDefault();
 });
 
-sideNavigationContainer.addEventListener("touchend", function(e) {
+sideNavigationContainer.addEventListener("touchend", function (e) {
   let touchObj = {};
   let distance = 0;
 
-  if (sideFlag)
-    return;
+  if (sideFlag) return;
   try {
     touchObj = e.changedTouches[0];
     distance = touchObj.pageX - sideTouchStartX;
@@ -159,10 +170,9 @@ sideNavigationContainer.addEventListener("touchend", function(e) {
   }
 });
 
-mainContainer.addEventListener("touchstart", function(e) {
+mainContainer.addEventListener("touchstart", function (e) {
   let touchObj = {};
-  if (window.innerWidth > 960)
-    return;
+  if (window.innerWidth > 960) return;
   touchObj = e.changedTouches[0];
   mainTouchStartX = touchObj.pageX;
   mainTouchStartY = touchObj.pageY;
@@ -172,14 +182,12 @@ mainContainer.addEventListener("touchstart", function(e) {
   mNetDistance = 0;
 });
 
-mainContainer.addEventListener("touchmove", function(e) {
+mainContainer.addEventListener("touchmove", function (e) {
   let touchObj = {};
   let distance = 0;
   let left = 0;
-  if (mainFlag)
-    return;
-  if (window.innerWidth > 960)
-    return;
+  if (mainFlag) return;
+  if (window.innerWidth > 960) return;
   touchObj = e.changedTouches[0];
   distance = touchObj.pageX - preMainPageX;
   mNetDistance = mNetDistance + distance;
@@ -192,8 +200,7 @@ mainContainer.addEventListener("touchmove", function(e) {
       return;
     }
   }
-  if (mainTouchStartX > 100)
-    return;
+  if (mainTouchStartX > 100) return;
   e.preventDefault();
   preMainPageX = touchObj.pageX;
   left = parseInt(sideNavigationContainer.style.left || initialLeft);
@@ -204,11 +211,15 @@ mainContainer.addEventListener("touchmove", function(e) {
   }
 });
 
-mainContainer.addEventListener("touchend", function(e) {
+mainContainer.addEventListener("touchend", function (e) {
   let touchObj = {};
   let distance = 0;
-  if (mainTouchStartX > 100 || sideNavigationContainer.style.left >= "0px" ||
-      mainFlag || window.innerWidth > 960) {
+  if (
+    mainTouchStartX > 100 ||
+    sideNavigationContainer.style.left >= "0px" ||
+    mainFlag ||
+    window.innerWidth > 960
+  ) {
     return;
   }
   try {
