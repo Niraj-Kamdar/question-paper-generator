@@ -71,3 +71,115 @@ def mark_distribution_form(course_id, data):
     if form.validate_on_submit():
         return jsonify(form.data)
     return render_template("papers/mark_distribution_form.html", form=form)
+
+
+# Temporary route for paper tamplate in HTML
+@papers.route("/Paper-to-PDF")
+@login_required
+def ptp():
+
+    course_name = "Software Engineering"
+    prefix = "Final"
+    term = "Autumn 2020"
+    date = "15th July, 2020"
+    time_limit = "2 hours 30 minuts"
+    instructions = [
+        "Write your name and student number in the space provided.",
+        "Make sure your mobile phone is switched off and place it at the front together with any bags, books, coats etc. Then find your seat.",
+        "Remember that talking is not allowed at any time in the exam hall.",
+        "Listen carefully to instructions. Students are required to comply with the instructions of invigilators at all times.",
+        "You are not permitted to share stationery, calculators or any other materials during the examination.",
+        "If you have a question or need more papers, raise your hand and a teacher will come to you. Teachers will not give hints or answers, so please do not ask for them.",
+        "Stop writing immediately when the teacher says it is the end of the exam.",
+        "Leave the exam hall quickly and quietly. Remember to take all your belongings with you.",
+        "(Remember to collect all your belongings from holding rooms.) You must remain silent until after you have exited the building.",
+        "Remember! Any form of cheating is not allowed and action will be taken.",
+    ]
+
+    questions = {
+        1: {
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            10,
+            "sub_questions": [
+                "Heating at constant volume until the pressure is 208 kPa",
+                "Polytropic compression to 0.006 m3, where n = 1.6",
+                "Heating at constant volume until the pressure is 208 kPa",
+                "Polytropic compression to 0.006 m3, where n = 1.6",
+            ],
+        },
+        2: {
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            15,
+            "sub_questions": [
+                "Heating at constant volume until the pressure is 208 kPa",
+                "Polytropic compression to 0.006 m3, where n = 1.6",
+                "Heating at constant volume until the pressure is 208 kPa",
+                "Polytropic compression to 0.006 m3, where n = 1.6",
+            ],
+        },
+        3: {
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            18,
+            "sub_questions": [
+                "Heating at constant volume until the pressure is 208 kPa",
+                "Polytropic compression to 0.006 m3, where n = 1.6",
+                "Heating at constant volume until the pressure is 208 kPa",
+                "Polytropic compression to 0.006 m3, where n = 1.6",
+            ],
+        },
+        4: {
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            10,
+            "sub_questions": [
+                "Heating at constant volume until the pressure is 208 kPa",
+                "Polytropic compression to 0.006 m3, where n = 1.6",
+                "Heating at constant volume until the pressure is 208 kPa",
+                "Polytropic compression to 0.006 m3, where n = 1.6",
+            ],
+        },
+        5: {
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            15,
+            "sub_questions": [
+                "Heating at constant volume until the pressure is 208 kPa",
+                "Polytropic compression to 0.006 m3, where n = 1.6",
+                "Heating at constant volume until the pressure is 208 kPa",
+                "Polytropic compression to 0.006 m3, where n = 1.6",
+            ],
+        },
+        6: {
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            18,
+            "sub_questions": [
+                "Heating at constant volume until the pressure is 208 kPa",
+                "Polytropic compression to 0.006 m3, where n = 1.6",
+                "Heating at constant volume until the pressure is 208 kPa",
+                "Polytropic compression to 0.006 m3, where n = 1.6",
+            ],
+        },
+    }
+
+    return render_template(
+        "papers/ptp.html",
+        css_file="css/ptp.css",
+        title="Paper-to-PDF",
+        course_name=course_name,
+        prefix=prefix,
+        term=term,
+        date=date,
+        time_limit=time_limit,
+        instructions=instructions,
+        questions=questions,
+    )
