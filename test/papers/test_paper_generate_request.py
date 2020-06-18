@@ -33,5 +33,5 @@ class PaperGenerateRequest(BaseUnit):
 
         token = json_url.dumps(dict(questions=questions, total_marks=30))
         response, _ = test_post_request(
-                self, f"/course/1/papers/generate/form/{token}", data)
+            self, f"/course/1/papers/generate/form/{token}", data)
         # FIXME: do some assertion here
