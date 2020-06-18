@@ -1,23 +1,17 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, flash, render_template, request
 from flask_login import current_user, login_required
-from sqlalchemy import and_
-
 from flaskapp import db
 from flaskapp.blueprints.questions.forms import MCQQuestionForm, QuestionForm
-from flaskapp.blueprints.questions.utils import (
-    redirect_to_all_questions,
-    update_question_in_db,
-    add_question_to_db,
-    update_imp_in_db,
-    delete_question_from_db,
-)
-from flaskapp.checkers import (
-    check_valid_course,
-    check_valid_question_type,
-    check_valid_unit,
-)
+from flaskapp.blueprints.questions.utils import (add_question_to_db,
+                                                 delete_question_from_db,
+                                                 redirect_to_all_questions,
+                                                 update_imp_in_db,
+                                                 update_question_in_db)
+from flaskapp.checkers import (check_valid_course, check_valid_question_type,
+                               check_valid_unit)
 from flaskapp.models import Course, Question
-from flaskapp.utils import profile_path, QuestionTypeEnum
+from flaskapp.utils import QuestionTypeEnum, profile_path
+from sqlalchemy import and_
 
 questions = Blueprint("questions", __name__)
 

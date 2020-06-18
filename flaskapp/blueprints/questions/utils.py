@@ -1,8 +1,7 @@
-from flask import url_for, redirect
-
+from flask import redirect, url_for
 from flaskapp import db
 from flaskapp.models import Question
-from flaskapp.utils import DifficultyEnum, CognitiveEnum, QuestionTypeEnum
+from flaskapp.utils import CognitiveEnum, DifficultyEnum, QuestionTypeEnum
 
 
 def update_imp_in_db(obj):
