@@ -74,7 +74,7 @@ def all_questions(course_id, unit_id, qtype):
                 "css/questions/sideNav.css",
                 "css/questions/question_form.css",
             ],
-            js_files=["js/questions/update_question.js", "js/sideNav.js",],
+            js_files=["js/questions/update_question.js", "js/sideNav.js", ],
             title="Subjective Questions",
             **common_args,
         )
