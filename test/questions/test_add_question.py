@@ -15,9 +15,9 @@ class AddQuestionTestCase(BaseUnit):
             imp=True,
             submit="submit",
         )
-        _, question = test_post_request(
-            self, "/course/1/unit/1/question/sub/new/", new_question, models.Question, 1
-        )
+        _, question = test_post_request(self,
+                                        "/course/1/unit/1/question/sub/new/",
+                                        new_question, models.Question, 1)
 
         # Testing if repr method is working
         self.assertEqual(
@@ -58,9 +58,8 @@ class AddQuestionTestCase(BaseUnit):
             option3="8",
             option4="7",
         )
-        _, mcq = test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_mcq, models.Question, 1
-        )
+        _, mcq = test_post_request(self, "/course/1/unit/1/question/mcq/new/",
+                                   new_mcq, models.Question, 1)
         # test repr method
         self.assertEqual(
             str(mcq),
