@@ -6,17 +6,21 @@ from test.main.utils import test_post_request
 class TermsOfServiceTestCase(BaseUser):
     def test_terms_of_service(self):
         response = self.client.get("/terms-of-service")
-        self.assertIn(b"you are agreeing to be bound by these terms of", response.data)
+        self.assertIn(
+            b"you are agreeing to be bound by these terms of", response.data)
         self.assertIn(
             b"responsible for compliance with any applicable local laws.", response.data
         )
         self.assertIn(
             b"The materials contained in this website are protected", response.data
         )
-        self.assertIn(b"by applicable copyright and trademark law.", response.data)
-        self.assertIn(b"Permission is hereby granted, free of charge,", response.data)
+        self.assertIn(
+            b"by applicable copyright and trademark law.", response.data)
+        self.assertIn(
+            b"Permission is hereby granted, free of charge,", response.data)
         self.assertIn(b"a copy of this software and associated", response.data)
-        self.assertIn(b"The above copyright notice and this permission", response.data)
+        self.assertIn(
+            b"The above copyright notice and this permission", response.data)
         self.assertIn(
             b"be included in all copies or substantial portion", response.data
         )
@@ -35,12 +39,15 @@ class TermsOfServiceTestCase(BaseUser):
         self.assertIn(
             b"or non-infringement of intellectual property or other", response.data
         )
-        self.assertIn(b"of the materials on its website or otherwise", response.data)
-        self.assertIn(b"no event shall SetNow or its suppliers be", response.data)
+        self.assertIn(
+            b"of the materials on its website or otherwise", response.data)
+        self.assertIn(
+            b"no event shall SetNow or its suppliers be", response.data)
         self.assertIn(
             b"including, without limitation, damages for loss of data", response.data
         )
-        self.assertIn(b"However SetNow does not make any commitment to", response.data)
+        self.assertIn(
+            b"However SetNow does not make any commitment to", response.data)
         self.assertIn(
             b"SetNow has not reviewed all of the sites linked to its", response.data
         )

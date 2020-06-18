@@ -73,7 +73,8 @@ def upgrade():
         ),
         sa.Column(
             "cognitive_level",
-            sa.Enum("Knowledge", "Comprehension", "Application", name="cognitiveenum"),
+            sa.Enum("Knowledge", "Comprehension",
+                    "Application", name="cognitiveenum"),
             nullable=False,
         ),
         sa.Column("imp", sa.Boolean(), nullable=True),
@@ -97,7 +98,8 @@ def upgrade():
         ),
         sa.Column(
             "cognitive_level",
-            sa.Enum("Knowledge", "Comprehension", "Application", name="cognitiveenum"),
+            sa.Enum("Knowledge", "Comprehension",
+                    "Application", name="cognitiveenum"),
             nullable=False,
         ),
         sa.Column("imp", sa.Boolean(), nullable=True),

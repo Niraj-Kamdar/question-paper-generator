@@ -32,11 +32,11 @@ def home():
         HTML -- It will render home page.
     """
     return render_template(
-            "papers/home.html",
-            css_file="css/base.css",
-            css_file2="css/home.css",
-            title="Home",
-            image_file=profile_path(),
+        "papers/home.html",
+        css_file="css/base.css",
+        css_file2="css/home.css",
+        title="Home",
+        image_file=profile_path(),
     )
 
 
@@ -51,34 +51,36 @@ def paper_generate_request(course_id):
         if data:
             data = json_url.dumps(data)
             return redirect(
-                    url_for("papers.mark_distribution_form", course_id=course_id, data=data)
+                url_for("papers.mark_distribution_form",
+                        course_id=course_id, data=data)
             )
         flash("Form can't be empty!")
     return render_template(
-            "papers/generate_request.html",
-            js_file="js/papers/generate_request.js",
-            css_file="css/papers/generate_request.css",
-            css_file2="css/base.css",
-            image_file=profile_path(),
+        "papers/generate_request.html",
+        js_file="js/papers/generate_request.js",
+        css_file="css/papers/generate_request.css",
+        css_file2="css/base.css",
+        image_file=profile_path(),
     )
 
 
 @papers.route(
-        "/course/<course_id>/papers/generate/form/<data>", methods=["GET", "POST"]
+    "/course/<course_id>/papers/generate/form/<data>", methods=["GET", "POST"]
 )
 @login_required
 @check_valid_course
 @check_valid_data
 def mark_distribution_form(course_id, data):
-    form = MarkDistributionForm(course_id, data["questions"], data["total_marks"])
+    form = MarkDistributionForm(
+        course_id, data["questions"], data["total_marks"])
     if form.validate_on_submit():
         question_no = list(
-                itertools.chain(
-                        *map(
-                                lambda x: list(itertools.repeat(x[0] + 1, x[1])),
-                                enumerate(data["questions"]),
-                        )
+            itertools.chain(
+                *map(
+                    lambda x: list(itertools.repeat(x[0] + 1, x[1])),
+                    enumerate(data["questions"]),
                 )
+            )
         )
         raw_template = QPTGenerator(dict(form.data), question_no).generate()
         paper_template = defaultdict(dict)
@@ -86,10 +88,10 @@ def mark_distribution_form(course_id, data):
         for i in range(len(raw_template["question_no"])):
             current_que = raw_template["question_no"][i]
             data = dict(
-                    mark=raw_template["question"][i],
-                    cognitive=CognitiveEnum(raw_template["cognitive"][i]).name,
-                    difficulty=DifficultyEnum(raw_template["difficulty"][i]).name,
-                    unit=raw_template["unit"][i],
+                mark=raw_template["question"][i],
+                cognitive=CognitiveEnum(raw_template["cognitive"][i]).name,
+                difficulty=DifficultyEnum(raw_template["difficulty"][i]).name,
+                unit=raw_template["unit"][i],
             )
             current_subque = ascii_lowercase[subque_counter[current_que]]
             paper_template[current_que][current_subque] = data
@@ -110,7 +112,7 @@ def confirm_paper_template(course_id):
         flash("Form can't be empty!")
     paper_template = json_url.loads(session["paper_template"])
     return render_template(
-            "papers/confirm_paper_template.html", paper_template=paper_template
+        "papers/confirm_paper_template.html", paper_template=paper_template
     )
 
 
@@ -124,9 +126,12 @@ def generate_paper(course_id):
     for question in paper_template:
         for subquestion, constraints in paper_template[question].items():
             constraints["cognitive"] = CognitiveLevel(constraints["cognitive"])
-            constraints["difficulty"] = DifficultyLevel(constraints["difficulty"])
-            conflicting_questions.extend(find_conflicting_questions(Question, constraints, course_id))
-            conflicting_mcqs.extend(find_conflicting_questions(MCQQuestion, constraints, course_id))
+            constraints["difficulty"] = DifficultyLevel(
+                constraints["difficulty"])
+            conflicting_questions.extend(
+                find_conflicting_questions(Question, constraints, course_id))
+            conflicting_mcqs.extend(find_conflicting_questions(
+                MCQQuestion, constraints, course_id))
             paper_template[question][subquestion] = constraints
 
     form = PaperLogoForm()
@@ -158,10 +163,10 @@ def handle_conflicting_questions():
         for qtype in data:
             question = translate[qtype]
             db.session.query(question).filter(question.id.in_(data.get("imp", []))).update(
-                    dict(imp=False), synchronize_session="fetch"
+                dict(imp=False), synchronize_session="fetch"
             )
             db.session.query(question).filter(question.id.in_(data.get("is_asked", []))).update(
-                    dict(is_asked=False), synchronize_session="fetch"
+                dict(is_asked=False), synchronize_session="fetch"
             )
             db.session.commit()
         return jsonify(dict(status="OK"))
@@ -253,14 +258,14 @@ def ptp():
     }
 
     return render_template(
-            "papers/ptp.html",
-            css_file="css/ptp.css",
-            title="Paper-to-PDF",
-            course_name=course_name,
-            prefix=prefix,
-            term=term,
-            date=date,
-            time_limit=time_limit,
-            instructions=instructions,
-            questions=questions,
+        "papers/ptp.html",
+        css_file="css/ptp.css",
+        title="Paper-to-PDF",
+        course_name=course_name,
+        prefix=prefix,
+        term=term,
+        date=date,
+        time_limit=time_limit,
+        instructions=instructions,
+        questions=questions,
     )

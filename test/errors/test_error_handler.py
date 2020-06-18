@@ -9,7 +9,8 @@ class ErrorHandlerTestCase(BaseCourse):
         self.assertIn(b"<title>404</title>", response.data)
 
         # test question type that does not exist
-        response = self.client.get("/course/1/question/oops/new", follow_redirects=True)
+        response = self.client.get(
+            "/course/1/question/oops/new", follow_redirects=True)
         self.assertEqual(404, response.status_code)
         self.assertIn(b"<title>404</title>", response.data)
 
