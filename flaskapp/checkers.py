@@ -2,10 +2,9 @@ import functools
 
 from flask import abort, redirect, url_for
 from flask_login import current_user
-from itsdangerous import BadSignature
-
 from flaskapp.models import Course, Unit
 from flaskapp.utils import json_url
+from itsdangerous import BadSignature
 
 
 def check_valid_course(func):

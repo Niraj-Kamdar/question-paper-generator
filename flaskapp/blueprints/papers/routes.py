@@ -2,36 +2,19 @@ import itertools
 from collections import Counter, defaultdict
 from string import ascii_lowercase
 
-from flask import (
-    Blueprint,
-    session,
-    flash,
-    redirect,
-    render_template,
-    request,
-    url_for,
-    jsonify,
-)
+from flask import (Blueprint, flash, jsonify, redirect, render_template,
+                   request, session, url_for)
 from flask_login import login_required
-from qpt_generator import QPTGenerator
-
 from flaskapp import db
-from flaskapp.blueprints.papers.forms import MarkDistributionForm, PaperLogoForm
-from flaskapp.blueprints.papers.utils import (
-    find_conflicting_questions,
-    save_logo,
-    find_random_question,
-)
+from flaskapp.blueprints.papers.forms import (MarkDistributionForm,
+                                              PaperLogoForm)
+from flaskapp.blueprints.papers.utils import (find_conflicting_questions,
+                                              find_random_question, save_logo)
 from flaskapp.checkers import check_valid_course, check_valid_data
-from flaskapp.models import Question, MCQQuestion
-from flaskapp.utils import (
-    CognitiveEnum,
-    DifficultyEnum,
-    json_url,
-    profile_path,
-    CognitiveLevel,
-    DifficultyLevel,
-)
+from flaskapp.models import MCQQuestion, Question
+from flaskapp.utils import (CognitiveEnum, CognitiveLevel, DifficultyEnum,
+                            DifficultyLevel, json_url, profile_path)
+from qpt_generator import QPTGenerator
 
 papers = Blueprint("papers", __name__)
 
