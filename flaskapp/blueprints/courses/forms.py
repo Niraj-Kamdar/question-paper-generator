@@ -14,10 +14,10 @@ from flaskapp.models import Unit
 
 
 def validate_course_name(form, course_name):
-    """Valiadtion on course name
+    """Valiadtion of course name
 
     Args:
-        form (Object): In which given description abour course
+        form (Object): In which given description about course
         course_name (string): Name of course 
 
     Raises:
@@ -35,7 +35,7 @@ def validate_unit_name(form, unit_name):
     """Validation on unit name of the course 
 
     Args:
-        form (Object): Forn i which all the details of unit
+        form (Object): Form i which all the details of unit
         unit_name (string): Name of unit that user want to add
 
     Raises:

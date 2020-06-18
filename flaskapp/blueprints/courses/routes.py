@@ -67,7 +67,7 @@ def all_courses():
 @courses.route("/course/delete/", methods=["GET", "POST"])
 @login_required
 def delete_course():
-    """Delete course from list of user 
+    """Delete course from list of courses 
     """
     if request.method == "POST":
         course_ids = request.get_json()
@@ -80,7 +80,7 @@ def delete_course():
 @login_required
 @check_valid_course
 def all_units(course_id):
-    """Give all units list of course of given course ID
+    """With given all units list of course of given course ID
 
     Args:
         course_id (int): Course ID of Course 
