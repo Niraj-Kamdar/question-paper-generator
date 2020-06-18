@@ -8,9 +8,11 @@ from test.main.utils import test_post_request
 class MCQOperationTestCase(BaseMCQQuestion):
     def test_delete_mcq(self):
         delete_list = [1, 3, 5]
-        self.client.post("/course/1/unit/1/question/mcq/delete/",
-                         data=json.dumps(delete_list),
-                         headers={'Content-Type': 'application/json'})
+        self.client.post(
+            "/course/1/unit/1/question/mcq/delete/",
+            data=json.dumps(delete_list),
+            headers={"Content-Type": "application/json"},
+        )
         # check changes are reflected in database
         q1 = self.db.session.query(models.Question).get(1)
         q3 = self.db.session.query(models.Question).get(3)
@@ -22,9 +24,11 @@ class MCQOperationTestCase(BaseMCQQuestion):
     def test_imp_question(self):
         # Actual set imp get request.
         imp_dict = dict(imp=[1, 3], notimp=[2])
-        self.client.post("/course/1/unit/1/question/mcq/imp/",
-                         data=json.dumps(imp_dict),
-                         headers={'Content-Type': 'application/json'})
+        self.client.post(
+            "/course/1/unit/1/question/mcq/imp/",
+            data=json.dumps(imp_dict),
+            headers={"Content-Type": "application/json"},
+        )
         # check changes are reflected in database
         q1 = self.db.session.query(models.Question).get(1)
         q2 = self.db.session.query(models.Question).get(2)
