@@ -1,10 +1,11 @@
 import functools
 
-from flask import abort
+from flask import abort, redirect, url_for
 from flask_login import current_user
+from itsdangerous import BadSignature
 
-from flaskapp.models import Course
-from flaskapp.models import Unit
+from flaskapp.models import Course, Unit
+from flaskapp.utils import json_url
 
 
 def check_valid_course(func):
@@ -35,6 +36,22 @@ def check_valid_question_type(func):
     def wrapper(*args, **kwargs):
         if kwargs["qtype"] not in ["sub", "mcq"]:
             abort(404)
+        return func(*args, **kwargs)
+
+    return wrapper
+
+
+def check_valid_data(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        if not kwargs["data"]:
+            return redirect(
+                url_for("papers.paper_generate_request", course_id=kwargs["course_id"])
+            )
+        try:
+            kwargs["data"] = json_url.loads(kwargs["data"])
+        except BadSignature:
+            abort(406)
         return func(*args, **kwargs)
 
     return wrapper
