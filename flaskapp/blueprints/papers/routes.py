@@ -32,7 +32,8 @@ def home():
     )
 
 
-@papers.route("/course/<course_id>/papers/generate/request", methods=["GET", "POST"])
+@papers.route("/course/<course_id>/papers/generate/request",
+              methods=["GET", "POST"])
 @login_required
 @check_valid_course
 def paper_generate_request(course_id):
@@ -43,8 +44,9 @@ def paper_generate_request(course_id):
         if data:
             data = json_url.dumps(data)
             return redirect(
-                url_for("papers.mark_distribution_form", course_id=course_id, data=data)
-            )
+                url_for("papers.mark_distribution_form",
+                        course_id=course_id,
+                        data=data))
         flash("Form can't be empty!")
     return render_template(
         "papers/generate_request.html",
@@ -55,9 +57,8 @@ def paper_generate_request(course_id):
     )
 
 
-@papers.route(
-    "/course/<course_id>/papers/generate/form/<data>", methods=["GET", "POST"]
-)
+@papers.route("/course/<course_id>/papers/generate/form/<data>",
+              methods=["GET", "POST"])
 @login_required
 @check_valid_course
 def mark_distribution_form(course_id, data):
@@ -71,9 +72,11 @@ def mark_distribution_form(course_id, data):
         HTML: Go to mark distribuion form page
     """
     if not data:
-        return redirect(url_for("papers.paper_generate_request", course_id=course_id))
+        return redirect(
+            url_for("papers.paper_generate_request", course_id=course_id))
     data = json_url.loads(data)
-    form = MarkDistributionForm(course_id, data["questions"], data["total_marks"])
+    form = MarkDistributionForm(course_id, data["questions"],
+                                data["total_marks"])
     if form.validate_on_submit():
         return jsonify(form.data)
     return render_template("papers/mark_distribution_form.html", form=form)
@@ -111,8 +114,10 @@ def ptp():
 
     questions = {
         1: {
-            "question": "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks": 10,
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            10,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -121,8 +126,10 @@ def ptp():
             ],
         },
         2: {
-            "question": "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks": 15,
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            15,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -131,8 +138,10 @@ def ptp():
             ],
         },
         3: {
-            "question": "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks": 18,
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            18,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -141,8 +150,10 @@ def ptp():
             ],
         },
         4: {
-            "question": "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks": 10,
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            10,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -151,8 +162,10 @@ def ptp():
             ],
         },
         5: {
-            "question": "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks": 15,
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            15,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -161,8 +174,10 @@ def ptp():
             ],
         },
         6: {
-            "question": "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks": 18,
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            18,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",

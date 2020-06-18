@@ -79,5 +79,6 @@ def profile_path():
         URL : if user is authentic then return url of user
     """
     if current_user.is_authenticated:
-        return url_for("static", filename="profile_pics/" + current_user.image_file)
+        return url_for("static",
+                       filename="profile_pics/" + current_user.image_file)
     return ""
