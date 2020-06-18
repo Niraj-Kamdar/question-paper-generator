@@ -2,13 +2,26 @@ import itertools
 from collections import Counter, defaultdict
 from string import ascii_lowercase
 
-from flask import Blueprint, session, flash, redirect, render_template, request, url_for, jsonify
+from flask import (
+    Blueprint,
+    session,
+    flash,
+    redirect,
+    render_template,
+    request,
+    url_for,
+    jsonify,
+)
 from flask_login import login_required
 from qpt_generator import QPTGenerator
 
 from flaskapp import db
 from flaskapp.blueprints.papers.forms import MarkDistributionForm, PaperLogoForm
-from flaskapp.blueprints.papers.utils import find_conflicting_questions, save_logo, find_random_question
+from flaskapp.blueprints.papers.utils import (
+    find_conflicting_questions,
+    save_logo,
+    find_random_question,
+)
 from flaskapp.checkers import check_valid_course, check_valid_data
 from flaskapp.models import Question, MCQQuestion
 from flaskapp.utils import (
@@ -51,8 +64,7 @@ def paper_generate_request(course_id):
         if data:
             data = json_url.dumps(data)
             return redirect(
-                url_for("papers.mark_distribution_form",
-                        course_id=course_id, data=data)
+                url_for("papers.mark_distribution_form", course_id=course_id, data=data)
             )
         flash("Form can't be empty!")
     return render_template(
@@ -71,8 +83,7 @@ def paper_generate_request(course_id):
 @check_valid_course
 @check_valid_data
 def mark_distribution_form(course_id, data):
-    form = MarkDistributionForm(
-        course_id, data["questions"], data["total_marks"])
+    form = MarkDistributionForm(course_id, data["questions"], data["total_marks"])
     if form.validate_on_submit():
         question_no = list(
             itertools.chain(
@@ -126,12 +137,13 @@ def generate_paper(course_id):
     for question in paper_template:
         for subquestion, constraints in paper_template[question].items():
             constraints["cognitive"] = CognitiveLevel(constraints["cognitive"])
-            constraints["difficulty"] = DifficultyLevel(
-                constraints["difficulty"])
+            constraints["difficulty"] = DifficultyLevel(constraints["difficulty"])
             conflicting_questions.extend(
-                find_conflicting_questions(Question, constraints, course_id))
-            conflicting_mcqs.extend(find_conflicting_questions(
-                MCQQuestion, constraints, course_id))
+                find_conflicting_questions(Question, constraints, course_id)
+            )
+            conflicting_mcqs.extend(
+                find_conflicting_questions(MCQQuestion, constraints, course_id)
+            )
             paper_template[question][subquestion] = constraints
 
     form = PaperLogoForm()
@@ -148,10 +160,14 @@ def generate_paper(course_id):
         paper_data["paper_format"] = {}
         for question in paper_template:
             for subquestion, constraints in paper_template[question].items():
-                paper_data["paper_format"][question][subquestion] = find_random_question()
-    render_template("papers/generate_paper.html",
-                    conflicting_questions=conflicting_questions,
-                    conflicting_mcqs=conflicting_mcqs)
+                paper_data["paper_format"][question][
+                    subquestion
+                ] = find_random_question()
+    render_template(
+        "papers/generate_paper.html",
+        conflicting_questions=conflicting_questions,
+        conflicting_mcqs=conflicting_mcqs,
+    )
 
 
 @papers.route("/papers/handle/conflicts", methods=["GET", "POST"])
@@ -162,12 +178,12 @@ def handle_conflicting_questions():
         data = request.get_json()
         for qtype in data:
             question = translate[qtype]
-            db.session.query(question).filter(question.id.in_(data.get("imp", []))).update(
-                dict(imp=False), synchronize_session="fetch"
-            )
-            db.session.query(question).filter(question.id.in_(data.get("is_asked", []))).update(
-                dict(is_asked=False), synchronize_session="fetch"
-            )
+            db.session.query(question).filter(
+                question.id.in_(data.get("imp", []))
+            ).update(dict(imp=False), synchronize_session="fetch")
+            db.session.query(question).filter(
+                question.id.in_(data.get("is_asked", []))
+            ).update(dict(is_asked=False), synchronize_session="fetch")
             db.session.commit()
         return jsonify(dict(status="OK"))
 

@@ -44,8 +44,7 @@ def validate_chapter_no(form, chapter_no):
 
 
 class CourseForm(FlaskForm):
-    course = StringField("Course", validators=[
-                         DataRequired(), validate_course_name])
+    course = StringField("Course", validators=[DataRequired(), validate_course_name])
     include_asked = BooleanField("Should paper include asked questions?")
     submit = SubmitField("submit")
 

@@ -41,9 +41,7 @@ def save_logo(form_picture):
     """
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = secrets.token_urlsafe(10) + f_ext
-    picture_path = os.path.join(
-        current_app.root_path, "static/logos", picture_fn
-    )
+    picture_path = os.path.join(current_app.root_path, "static/logos", picture_fn)
 
     output_size = (400, 400)
     i = Image.open(form_picture)

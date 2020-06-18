@@ -206,8 +206,7 @@ def update_question(course_id, unit_id, qtype, question_id):
        And do changes in database accordingly.
     """
     if qtype == "mcq":
-        _question = db.session.query(
-            MCQQuestion).filter_by(id=question_id).first()
+        _question = db.session.query(MCQQuestion).filter_by(id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(
@@ -223,8 +222,7 @@ def update_question(course_id, unit_id, qtype, question_id):
             _question.question = form.question.data
             _question.mark = form.mark.data
             _question.difficulty = DifficultyLevel(form.difficulty.data)
-            _question.cognitive_level = CognitiveLevel(
-                form.cognitive_level.data)
+            _question.cognitive_level = CognitiveLevel(form.cognitive_level.data)
             _question.imp = form.imp.data
             _question.option1 = form.option1.data
             _question.option2 = form.option2.data
@@ -250,8 +248,7 @@ def update_question(course_id, unit_id, qtype, question_id):
             js_file="js/questions/question_form.js",
         )
     else:
-        _question = db.session.query(
-            Question).filter_by(id=question_id).first()
+        _question = db.session.query(Question).filter_by(id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(
@@ -267,8 +264,7 @@ def update_question(course_id, unit_id, qtype, question_id):
             _question.question = form.question.data
             _question.mark = form.mark.data
             _question.difficulty = DifficultyLevel(form.difficulty.data)
-            _question.cognitive_level = CognitiveLevel(
-                form.cognitive_level.data)
+            _question.cognitive_level = CognitiveLevel(form.cognitive_level.data)
             _question.imp = form.imp.data
             db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")

@@ -29,8 +29,7 @@ def validate_username(form, username):
         if current_user:
             if user == current_user:
                 return
-        raise ValidationError(
-            "That username is taken. Please choose a different one.")
+        raise ValidationError("That username is taken. Please choose a different one.")
 
 
 def validate_email(form, email):
@@ -39,8 +38,7 @@ def validate_email(form, email):
         if current_user:
             if user == current_user:
                 return
-        raise ValidationError(
-            "That email is taken. Please choose a different one.")
+        raise ValidationError("That email is taken. Please choose a different one.")
 
 
 class RegistrationForm(FlaskForm):
@@ -48,8 +46,7 @@ class RegistrationForm(FlaskForm):
         "Username",
         validators=[DataRequired(), Length(min=2, max=20), validate_username],
     )
-    email = StringField("Email", validators=[
-                        DataRequired(), Email(), validate_email])
+    email = StringField("Email", validators=[DataRequired(), Email(), validate_email])
     password = PasswordField("Password", validators=[DataRequired()])
     confirm_password = PasswordField(
         "Confirm Password", validators=[DataRequired(), EqualTo("password")]
@@ -62,8 +59,7 @@ class UpdateAccountForm(FlaskForm):
         "Username",
         validators=[DataRequired(), Length(min=2, max=20), validate_username],
     )
-    email = StringField("Email", validators=[
-                        DataRequired(), Email(), validate_email])
+    email = StringField("Email", validators=[DataRequired(), Email(), validate_email])
     picture = FileField(
         "Update Profile Picture", validators=[FileAllowed(["jpg", "png"])]
     )
