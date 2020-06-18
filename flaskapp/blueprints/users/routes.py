@@ -1,11 +1,23 @@
-from flask import Blueprint, flash, redirect, render_template, request, url_for
-from flask_login import current_user, login_required, login_user, logout_user
-from flaskapp import bcrypt, db
-from flaskapp.blueprints.users.forms import (LoginForm, RegistrationForm,
-                                             RequestResetForm,
-                                             ResetPasswordForm,
-                                             UpdateAccountForm)
-from flaskapp.blueprints.users.utils import save_picture, send_reset_email
+from flask import Blueprint
+from flask import flash
+from flask import redirect
+from flask import render_template
+from flask import request
+from flask import url_for
+from flask_login import current_user
+from flask_login import login_required
+from flask_login import login_user
+from flask_login import logout_user
+
+from flaskapp import bcrypt
+from flaskapp import db
+from flaskapp.blueprints.users.forms import LoginForm
+from flaskapp.blueprints.users.forms import RegistrationForm
+from flaskapp.blueprints.users.forms import RequestResetForm
+from flaskapp.blueprints.users.forms import ResetPasswordForm
+from flaskapp.blueprints.users.forms import UpdateAccountForm
+from flaskapp.blueprints.users.utils import save_picture
+from flaskapp.blueprints.users.utils import send_reset_email
 from flaskapp.models import User
 
 users = Blueprint("users", __name__)
