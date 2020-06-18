@@ -6,18 +6,19 @@ from PIL import Image
 from sqlalchemy import and_
 
 from flaskapp import db
+from flaskapp.models import Question
 
 
-def find_conflicting_questions(question, constraints, course_id):
-    return (db.session.Query(question).filter_by(
+def find_conflicting_questions(course_id, constraints):
+    return (db.session.Query(Question).filter_by(
         and_(
-            question.cognitive_level == constraints["cognitive"],
-            question.difficulty == constraints["difficulty"],
-            question.mark == constraints["mark"],
-            question.unit.chapter_no == constraints["unit"],
-            question.unit.course_id == course_id,
-            question.imp is True,
-            question.is_asked is True,
+                Question.cognitive_level == constraints["cognitive"],
+                Question.difficulty == constraints["difficulty"],
+                Question.mark == constraints["mark"],
+                Question.unit.chapter_no == constraints["unit"],
+                Question.unit.course_id == course_id,
+                Question.imp is True,
+                Question.is_asked is True,
         )).all())
 
 

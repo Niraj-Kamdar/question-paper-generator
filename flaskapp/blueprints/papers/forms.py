@@ -16,7 +16,7 @@ from wtforms.validators import ValidationError
 
 from flaskapp.models import Course
 from flaskapp.models import Unit
-from flaskapp.utils import CognitiveEnum
+from flaskapp.utils import CognitiveEnum, QuestionTypeEnum
 from flaskapp.utils import DifficultyEnum
 
 
@@ -67,6 +67,7 @@ class MarkDistributionForm:
         flatten_data["cognitive"].extend([0] * len(CognitiveEnum.__members__))
         flatten_data["difficulty"].extend([0] *
                                           len(DifficultyEnum.__members__))
+        flatten_data["question_type"].extend([0] * len(QuestionTypeEnum.__members__))
         flatten_data["question"].extend([0] * sum(questions))
 
         for unit in units:
@@ -82,6 +83,11 @@ class MarkDistributionForm:
             form_fields.update(
                 {d_level: IntegerField(d_level, validators=[DataRequired()])})
             validators["difficulty"].append(d_level)
+        for qtype in QuestionTypeEnum.__members__:
+            form_fields.update({
+                qtype: IntegerField(qtype, validators=[DataRequired()])
+            })
+            validators["question_type"].append(qtype)
 
         idx = 0
         for question_no, subquestions in enumerate(questions):
@@ -132,6 +138,8 @@ class MarkDistributionForm:
                 fields["cognitive"].append(self.form._fields[field])
             elif field in DifficultyEnum.__members__:
                 fields["difficulty"].append(self.form._fields[field])
+            elif field in QuestionTypeEnum.__members__:
+                fields["question_type"].append(self.form._fields[field])
         return fields
 
     def translate(self, constraint, field):
@@ -139,6 +147,8 @@ class MarkDistributionForm:
             return CognitiveEnum.__members__[field].value - 1
         if constraint == "difficulty":
             return DifficultyEnum.__members__[field].value - 1
+        if constraint == "question_type":
+            return QuestionTypeEnum.__members__[field].value - 1
         if constraint == "unit":
             return int(self.unit_field_regex.search(field).group(1)) - 1
         if constraint == "question":

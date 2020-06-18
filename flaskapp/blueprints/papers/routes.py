@@ -23,7 +23,7 @@ from flaskapp.blueprints.papers.utils import save_logo
 from flaskapp.checkers import check_valid_course
 from flaskapp.checkers import check_valid_data
 from flaskapp.models import Question
-from flaskapp.utils import CognitiveEnum
+from flaskapp.utils import CognitiveEnum, QuestionTypeEnum
 from flaskapp.utils import DifficultyEnum
 from flaskapp.utils import json_url
 from flaskapp.utils import profile_path
@@ -91,7 +91,7 @@ def mark_distribution_form(course_id):
                 enumerate(no_of_subquestions),
             )))
         raw_template = QPTGenerator(dict(form.data), question_no).generate()
-        paper_template = defaultdict(dict)
+        paper_template = defaultdict(lambda: defaultdict(dict))
         subque_counter = Counter()
         for i in range(len(raw_template["question_no"])):
             current_que = raw_template["question_no"][i]
@@ -99,6 +99,7 @@ def mark_distribution_form(course_id):
                 mark=raw_template["question"][i],
                 cognitive=CognitiveEnum(raw_template["cognitive"][i]).name,
                 difficulty=DifficultyEnum(raw_template["difficulty"][i]).name,
+                question_type=QuestionTypeEnum(raw_template["question_type"][i]).name,
                 unit=raw_template["unit"][i],
             )
             current_subque = ascii_lowercase[subque_counter[current_que]]
@@ -131,17 +132,13 @@ def confirm_paper_template(course_id):
 def generate_paper(course_id):
     paper_template = json_url.loads(session["paper_template"])
     conflicting_questions = []
-    conflicting_mcqs = []
     for question in paper_template:
         for subquestion, constraints in paper_template[question].items():
-            constraints["cognitive"] = CognitiveLevel(constraints["cognitive"])
-            constraints["difficulty"] = DifficultyLevel(
+            constraints["cognitive"] = CognitiveEnum.from_string(constraints["cognitive"])
+            constraints["difficulty"] = DifficultyEnum.from_string(
                 constraints["difficulty"])
-            conflicting_questions.extend(
-                find_conflicting_questions(Question, constraints, course_id))
-            conflicting_mcqs.extend(
-                find_conflicting_questions(MCQQuestion, constraints,
-                                           course_id))
+            constraints["question_type"] = QuestionTypeEnum.from_string(constraints["question_type"])
+            conflicting_questions.extend(find_conflicting_questions(course_id, constraints))
             paper_template[question][subquestion] = constraints
 
     form = PaperLogoForm()
@@ -163,23 +160,21 @@ def generate_paper(course_id):
     render_template(
         "papers/generate_paper.html",
         conflicting_questions=conflicting_questions,
-        conflicting_mcqs=conflicting_mcqs,
     )
 
 
 @papers.route("/papers/handle/conflicts", methods=["GET", "POST"])
 @login_required
 def handle_conflicting_questions():
+    # data = {"mcq":{"ask": [], "nask": []}, "sub": {"ask": [], "nask": []}}
     if request.method == "POST":
-        translate = dict(sub=Question, mcq=MCQQuestion)
         data = request.get_json()
         for qtype in data:
-            question = translate[qtype]
-            db.session.query(question).filter(
-                question.id.in_(data.get("imp", []))).update(
+            db.session.query(Question).filter(
+                Question.id.in_(data[qtype].get("nask", []))).update(
                     dict(imp=False), synchronize_session="fetch")
-            db.session.query(question).filter(
-                question.id.in_(data.get("is_asked", []))).update(
+            db.session.query(Question).filter(
+                Question.id.in_(data[qtype].get("ask", []))).update(
                     dict(is_asked=False), synchronize_session="fetch")
             db.session.commit()
         return jsonify(dict(status="OK"))
