@@ -67,7 +67,8 @@ class MarkDistributionForm:
         flatten_data["cognitive"].extend([0] * len(CognitiveEnum.__members__))
         flatten_data["difficulty"].extend([0] *
                                           len(DifficultyEnum.__members__))
-        flatten_data["question_type"].extend([0] * len(QuestionTypeEnum.__members__))
+        flatten_data["question_type"].extend(
+            [0] * len(QuestionTypeEnum.__members__))
         flatten_data["question"].extend([0] * sum(questions))
 
         for unit in units:
