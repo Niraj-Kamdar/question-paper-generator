@@ -12,13 +12,13 @@ from flaskapp.models import Question
 def find_conflicting_questions(course_id, constraints):
     return (db.session.Query(Question).filter_by(
         and_(
-                Question.cognitive_level == constraints["cognitive"],
-                Question.difficulty == constraints["difficulty"],
-                Question.mark == constraints["mark"],
-                Question.unit.chapter_no == constraints["unit"],
-                Question.unit.course_id == course_id,
-                Question.imp is True,
-                Question.is_asked is True,
+            Question.cognitive_level == constraints["cognitive"],
+            Question.difficulty == constraints["difficulty"],
+            Question.mark == constraints["mark"],
+            Question.unit.chapter_no == constraints["unit"],
+            Question.unit.course_id == course_id,
+            Question.imp is True,
+            Question.is_asked is True,
         )).all())
 
 

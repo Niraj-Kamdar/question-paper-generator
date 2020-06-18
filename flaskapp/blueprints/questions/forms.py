@@ -9,7 +9,8 @@ from wtforms.validators import DataRequired
 from wtforms.validators import Length
 from wtforms.validators import NumberRange
 
-from flaskapp.utils import DifficultyEnum, CognitiveEnum
+from flaskapp.utils import CognitiveEnum
+from flaskapp.utils import DifficultyEnum
 
 
 class QuestionForm(FlaskForm):
@@ -29,7 +30,7 @@ class QuestionForm(FlaskForm):
     )
     cognitive_level = SelectField(
         "Cognitive Level",
-        choices=[(member, member) for member in CognitiveEnum.__members__]
+        choices=[(member, member) for member in CognitiveEnum.__members__],
     )
     imp = BooleanField("Mark As IMP")
     submit = SubmitField("submit")

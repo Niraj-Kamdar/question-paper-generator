@@ -16,8 +16,9 @@ from wtforms.validators import ValidationError
 
 from flaskapp.models import Course
 from flaskapp.models import Unit
-from flaskapp.utils import CognitiveEnum, QuestionTypeEnum
+from flaskapp.utils import CognitiveEnum
 from flaskapp.utils import DifficultyEnum
+from flaskapp.utils import QuestionTypeEnum
 
 
 class IsSumOf:
@@ -67,7 +68,8 @@ class MarkDistributionForm:
         flatten_data["cognitive"].extend([0] * len(CognitiveEnum.__members__))
         flatten_data["difficulty"].extend([0] *
                                           len(DifficultyEnum.__members__))
-        flatten_data["question_type"].extend([0] * len(QuestionTypeEnum.__members__))
+        flatten_data["question_type"].extend([0] *
+                                             len(QuestionTypeEnum.__members__))
         flatten_data["question"].extend([0] * sum(questions))
 
         for unit in units:
@@ -84,9 +86,8 @@ class MarkDistributionForm:
                 {d_level: IntegerField(d_level, validators=[DataRequired()])})
             validators["difficulty"].append(d_level)
         for qtype in QuestionTypeEnum.__members__:
-            form_fields.update({
-                qtype: IntegerField(qtype, validators=[DataRequired()])
-            })
+            form_fields.update(
+                {qtype: IntegerField(qtype, validators=[DataRequired()])})
             validators["question_type"].append(qtype)
 
         idx = 0

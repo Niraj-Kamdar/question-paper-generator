@@ -23,10 +23,11 @@ from flaskapp.blueprints.papers.utils import save_logo
 from flaskapp.checkers import check_valid_course
 from flaskapp.checkers import check_valid_data
 from flaskapp.models import Question
-from flaskapp.utils import CognitiveEnum, QuestionTypeEnum
+from flaskapp.utils import CognitiveEnum
 from flaskapp.utils import DifficultyEnum
 from flaskapp.utils import json_url
 from flaskapp.utils import profile_path
+from flaskapp.utils import QuestionTypeEnum
 
 papers = Blueprint("papers", __name__)
 
@@ -99,7 +100,8 @@ def mark_distribution_form(course_id):
                 mark=raw_template["question"][i],
                 cognitive=CognitiveEnum(raw_template["cognitive"][i]).name,
                 difficulty=DifficultyEnum(raw_template["difficulty"][i]).name,
-                question_type=QuestionTypeEnum(raw_template["question_type"][i]).name,
+                question_type=QuestionTypeEnum(
+                    raw_template["question_type"][i]).name,
                 unit=raw_template["unit"][i],
             )
             current_subque = ascii_lowercase[subque_counter[current_que]]
@@ -134,11 +136,14 @@ def generate_paper(course_id):
     conflicting_questions = []
     for question in paper_template:
         for subquestion, constraints in paper_template[question].items():
-            constraints["cognitive"] = CognitiveEnum.from_string(constraints["cognitive"])
+            constraints["cognitive"] = CognitiveEnum.from_string(
+                constraints["cognitive"])
             constraints["difficulty"] = DifficultyEnum.from_string(
                 constraints["difficulty"])
-            constraints["question_type"] = QuestionTypeEnum.from_string(constraints["question_type"])
-            conflicting_questions.extend(find_conflicting_questions(course_id, constraints))
+            constraints["question_type"] = QuestionTypeEnum.from_string(
+                constraints["question_type"])
+            conflicting_questions.extend(
+                find_conflicting_questions(course_id, constraints))
             paper_template[question][subquestion] = constraints
 
     form = PaperLogoForm()
