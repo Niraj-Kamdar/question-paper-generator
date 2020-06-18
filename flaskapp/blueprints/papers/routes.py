@@ -61,9 +61,10 @@ def paper_generate_request(course_id):
             session["total_marks"] = json_url.dumps(data["total_marks"])
             session["no_of_subquestions"] = json_url.dumps(data["questions"])
             return redirect(
-                url_for("papers.mark_distribution_form",
-                        course_id=course_id,
-                        ))
+                url_for(
+                    "papers.mark_distribution_form",
+                    course_id=course_id,
+                ))
         flash("Form can't be empty!")
     return render_template(
         "papers/generate_request.html",
@@ -82,9 +83,7 @@ def paper_generate_request(course_id):
 def mark_distribution_form(course_id):
     total_marks = json_url.loads(session["total_marks"])
     no_of_subquestions = json_url.loads(session["no_of_subquestions"])
-    form = MarkDistributionForm(course_id,
-                                no_of_subquestions,
-                                total_marks)
+    form = MarkDistributionForm(course_id, no_of_subquestions, total_marks)
     if form.validate_on_submit():
         question_no = list(
             itertools.chain(*map(
