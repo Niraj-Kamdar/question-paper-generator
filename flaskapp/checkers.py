@@ -1,10 +1,13 @@
 import functools
 
-from flask import abort, redirect, url_for
+from flask import abort
+from flask import redirect
+from flask import url_for
 from flask_login import current_user
 from itsdangerous import BadSignature
 
-from flaskapp.models import Course, Unit
+from flaskapp.models import Course
+from flaskapp.models import Unit
 from flaskapp.utils import json_url
 
 
@@ -46,8 +49,8 @@ def check_valid_data(func):
     def wrapper(*args, **kwargs):
         if not kwargs["data"]:
             return redirect(
-                url_for("papers.paper_generate_request", course_id=kwargs["course_id"])
-            )
+                url_for("papers.paper_generate_request",
+                        course_id=kwargs["course_id"]))
         try:
             kwargs["data"] = json_url.loads(kwargs["data"])
         except BadSignature:

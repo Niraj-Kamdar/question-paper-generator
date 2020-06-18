@@ -44,8 +44,8 @@ def all_questions(course_id, unit_id, qtype):
     main_page = request.args.get("page", 1, type=int)
     if qtype == "mcq":
         _mcq_questions = MCQQuestion.query.filter(
-            MCQQuestion.unit_id == unit_id
-        ).paginate(page=main_page, per_page=1)
+            MCQQuestion.unit_id == unit_id).paginate(page=main_page,
+                                                     per_page=1)
         return render_template(
             "questions/mcq_questions.html",
             questions=_mcq_questions,
@@ -65,9 +65,8 @@ def all_questions(course_id, unit_id, qtype):
             title="Objective Questions",
         )
     else:
-        _questions = Question.query.filter(Question.unit_id == unit_id).paginate(
-            page=main_page, per_page=1
-        )
+        _questions = Question.query.filter(
+            Question.unit_id == unit_id).paginate(page=main_page, per_page=1)
         return render_template(
             "questions/questions.html",
             questions=_questions,
@@ -86,9 +85,8 @@ def all_questions(course_id, unit_id, qtype):
         )
 
 
-@questions.route(
-    "/course/<course_id>/unit/<unit_id>/question/<qtype>/new/", methods=["GET", "POST"]
-)
+@questions.route("/course/<course_id>/unit/<unit_id>/question/<qtype>/new/",
+                 methods=["GET", "POST"])
 @login_required
 @check_valid_course
 @check_valid_unit
@@ -131,8 +129,7 @@ def add_question(course_id, unit_id, qtype):
                     qtype="mcq",
                     course_id=course_id,
                     unit_id=unit_id,
-                )
-            )
+                ))
         return render_template(
             "questions/mcq_question_form.html",
             form=form,
@@ -170,8 +167,7 @@ def add_question(course_id, unit_id, qtype):
                     qtype="sub",
                     course_id=course_id,
                     unit_id=unit_id,
-                )
-            )
+                ))
 
         return render_template(
             "questions/question_form.html",
@@ -206,7 +202,8 @@ def update_question(course_id, unit_id, qtype, question_id):
        And do changes in database accordingly.
     """
     if qtype == "mcq":
-        _question = db.session.query(MCQQuestion).filter_by(id=question_id).first()
+        _question = db.session.query(MCQQuestion).filter_by(
+            id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(
@@ -215,14 +212,14 @@ def update_question(course_id, unit_id, qtype, question_id):
                     qtype=qtype,
                     course_id=course_id,
                     unit_id=unit_id,
-                )
-            )
+                ))
         form = MCQQuestionForm(**_question.to_dict())
         if form.validate_on_submit():
             _question.question = form.question.data
             _question.mark = form.mark.data
             _question.difficulty = DifficultyLevel(form.difficulty.data)
-            _question.cognitive_level = CognitiveLevel(form.cognitive_level.data)
+            _question.cognitive_level = CognitiveLevel(
+                form.cognitive_level.data)
             _question.imp = form.imp.data
             _question.option1 = form.option1.data
             _question.option2 = form.option2.data
@@ -236,8 +233,7 @@ def update_question(course_id, unit_id, qtype, question_id):
                     qtype=qtype,
                     course_id=course_id,
                     unit_id=unit_id,
-                )
-            )
+                ))
         return render_template(
             "questions/mcq_question_form.html",
             form=form,
@@ -248,7 +244,8 @@ def update_question(course_id, unit_id, qtype, question_id):
             js_file="js/questions/question_form.js",
         )
     else:
-        _question = db.session.query(Question).filter_by(id=question_id).first()
+        _question = db.session.query(Question).filter_by(
+            id=question_id).first()
         if _question is None:
             flash(f"Question:{question_id} Does not exist", "Failure")
             return redirect(
@@ -257,14 +254,14 @@ def update_question(course_id, unit_id, qtype, question_id):
                     qtype="sub",
                     course_id=course_id,
                     unit_id=unit_id,
-                )
-            )
+                ))
         form = QuestionForm(**_question.to_dict())
         if form.validate_on_submit():
             _question.question = form.question.data
             _question.mark = form.mark.data
             _question.difficulty = DifficultyLevel(form.difficulty.data)
-            _question.cognitive_level = CognitiveLevel(form.cognitive_level.data)
+            _question.cognitive_level = CognitiveLevel(
+                form.cognitive_level.data)
             _question.imp = form.imp.data
             db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")
@@ -274,8 +271,7 @@ def update_question(course_id, unit_id, qtype, question_id):
                     qtype="sub",
                     course_id=course_id,
                     unit_id=unit_id,
-                )
-            )
+                ))
         return render_template(
             "questions/question_form.html",
             form=form,
@@ -288,8 +284,8 @@ def update_question(course_id, unit_id, qtype, question_id):
 
 
 @questions.route(
-    "/course/<course_id>/unit/<unit_id>/question/<qtype>/imp/<impq>/", methods=["GET"]
-)
+    "/course/<course_id>/unit/<unit_id>/question/<qtype>/imp/<impq>/",
+    methods=["GET"])
 @login_required
 @check_valid_course
 @check_valid_unit
@@ -309,8 +305,7 @@ def imp_question(course_id, unit_id, qtype, impq):
                 qtype=qtype,
                 course_id=course_id,
                 unit_id=unit_id,
-            )
-        )
+            ))
     else:
         update_imp(Question, obj)
         return redirect(
@@ -319,8 +314,7 @@ def imp_question(course_id, unit_id, qtype, impq):
                 qtype=qtype,
                 course_id=course_id,
                 unit_id=unit_id,
-            )
-        )
+            ))
 
 
 @questions.route(
@@ -340,9 +334,8 @@ def delete_question(course_id, unit_id, qtype, deleteq):
     """
     if qtype == "mcq":
         del_ids = json.loads(deleteq)
-        db.session.query(MCQQuestion).filter(MCQQuestion.id.in_(del_ids)).delete(
-            synchronize_session="fetch"
-        )
+        db.session.query(MCQQuestion).filter(
+            MCQQuestion.id.in_(del_ids)).delete(synchronize_session="fetch")
         db.session.commit()
         return redirect(
             url_for(
@@ -350,13 +343,11 @@ def delete_question(course_id, unit_id, qtype, deleteq):
                 qtype="mcq",
                 course_id=course_id,
                 unit_id=unit_id,
-            )
-        )
+            ))
     else:
         del_ids = json.loads(deleteq)
-        db.session.query(Question).filter(Question.id.in_(del_ids)).delete(
-            synchronize_session="fetch"
-        )
+        db.session.query(Question).filter(
+            Question.id.in_(del_ids)).delete(synchronize_session="fetch")
         db.session.commit()
         return redirect(
             url_for(
@@ -364,5 +355,4 @@ def delete_question(course_id, unit_id, qtype, deleteq):
                 qtype="sub",
                 course_id=course_id,
                 unit_id=unit_id,
-            )
-        )
+            ))
