@@ -22,12 +22,9 @@ from flaskapp.blueprints.papers.utils import find_random_question
 from flaskapp.blueprints.papers.utils import save_logo
 from flaskapp.checkers import check_valid_course
 from flaskapp.checkers import check_valid_data
-from flaskapp.models import MCQQuestion
 from flaskapp.models import Question
 from flaskapp.utils import CognitiveEnum
-from flaskapp.utils import CognitiveLevel
 from flaskapp.utils import DifficultyEnum
-from flaskapp.utils import DifficultyLevel
 from flaskapp.utils import json_url
 from flaskapp.utils import profile_path
 
@@ -61,11 +58,12 @@ def paper_generate_request(course_id):
     if request.method == "POST":
         data = request.get_json()
         if data:
-            data = json_url.dumps(data)
+            session["total_marks"] = json_url.dumps(data["total_marks"])
+            session["no_of_subquestions"] = json_url.dumps(data["questions"])
             return redirect(
                 url_for("papers.mark_distribution_form",
                         course_id=course_id,
-                        data=data))
+                        ))
         flash("Form can't be empty!")
     return render_template(
         "papers/generate_request.html",
@@ -76,19 +74,22 @@ def paper_generate_request(course_id):
     )
 
 
-@papers.route("/course/<course_id>/papers/generate/form/<data>",
+@papers.route("/course/<course_id>/papers/generate/form/",
               methods=["GET", "POST"])
 @login_required
 @check_valid_course
 @check_valid_data
-def mark_distribution_form(course_id, data):
-    form = MarkDistributionForm(course_id, data["questions"],
-                                data["total_marks"])
+def mark_distribution_form(course_id):
+    total_marks = json_url.loads(session["total_marks"])
+    no_of_subquestions = json_url.loads(session["no_of_subquestions"])
+    form = MarkDistributionForm(course_id,
+                                no_of_subquestions,
+                                total_marks)
     if form.validate_on_submit():
         question_no = list(
             itertools.chain(*map(
                 lambda x: list(itertools.repeat(x[0] + 1, x[1])),
-                enumerate(data["questions"]),
+                enumerate(no_of_subquestions),
             )))
         raw_template = QPTGenerator(dict(form.data), question_no).generate()
         paper_template = defaultdict(dict)
@@ -105,7 +106,6 @@ def mark_distribution_form(course_id, data):
             paper_template[current_que][current_subque] = data
             subque_counter[current_que] += 1
         session["paper_template"] = json_url.dumps(paper_template)
-        session["total_marks"] = json_url.dumps(data["total_marks"])
         return redirect(
             url_for("papers.confirm_paper_template", course_id=course_id))
     return render_template("papers/mark_distribution_form.html", form=form)

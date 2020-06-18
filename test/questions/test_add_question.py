@@ -59,7 +59,7 @@ class AddQuestionTestCase(BaseUnit):
             option4="7",
         )
         _, mcq = test_post_request(self, "/course/1/unit/1/question/mcq/new/",
-                                   new_mcq, models.MCQQuestion, 1)
+                                   new_mcq, models.Question, 1)
         # test repr method
         self.assertEqual(
             str(mcq),
