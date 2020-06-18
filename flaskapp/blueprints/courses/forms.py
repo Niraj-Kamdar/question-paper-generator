@@ -14,7 +14,7 @@ from flaskapp.models import Unit
 
 
 def validate_course_name(form, course_name):
-    """Valiadtion of course name
+    """Validation of course name
 
     Args:
         form (Object): In which given description about course

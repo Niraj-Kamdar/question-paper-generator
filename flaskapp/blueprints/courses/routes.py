@@ -80,7 +80,7 @@ def delete_course():
 @login_required
 @check_valid_course
 def all_units(course_id):
-    """With given all units list of course of given course ID
+    """Give all units list of course with given course ID
 
     Args:
         course_id (int): Course ID of Course 
