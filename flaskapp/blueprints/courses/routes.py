@@ -1,19 +1,11 @@
-from flask import Blueprint
-from flask import flash
-from flask import render_template
-from flask import request
-from flask import url_for
-from flask_login import current_user
-from flask_login import login_required
-from werkzeug.utils import redirect
-
+from flask import Blueprint, flash, render_template, request, url_for
+from flask_login import current_user, login_required
 from flaskapp import db
-from flaskapp.blueprints.courses.forms import CourseForm
-from flaskapp.blueprints.courses.forms import UnitForm
+from flaskapp.blueprints.courses.forms import CourseForm, UnitForm
 from flaskapp.checkers import check_valid_course
-from flaskapp.models import Course
-from flaskapp.models import Unit
+from flaskapp.models import Course, Unit
 from flaskapp.utils import profile_path
+from werkzeug.utils import redirect
 
 courses = Blueprint("courses", __name__)
 
