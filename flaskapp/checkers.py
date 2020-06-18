@@ -49,8 +49,8 @@ def check_valid_data(func):
     def wrapper(*args, **kwargs):
         if not kwargs["data"]:
             return redirect(
-                url_for("papers.paper_generate_request",
-                        course_id=kwargs["course_id"]))
+                url_for("papers.paper_generate_request", course_id=kwargs["course_id"])
+            )
         try:
             kwargs["data"] = json_url.loads(kwargs["data"])
         except BadSignature:

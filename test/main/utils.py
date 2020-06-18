@@ -29,6 +29,7 @@ def test_post_request(self, path, data, model=None, entry_no=None):
         return response, obj
     return response, None
 
+
 #
 # def test_get_request(self, path, data):
 #     """Testing get request

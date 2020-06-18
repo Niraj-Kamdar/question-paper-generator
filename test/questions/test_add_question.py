@@ -14,14 +14,13 @@ class AddQuestionTestCase(BaseUnit):
             imp=True,
             submit="submit",
         )
-        _, question = test_post_request(self,
-                                        "/course/1/unit/1/question/sub/new/",
-                                        new_question, Question, 1)
+        _, question = test_post_request(
+            self, "/course/1/unit/1/question/sub/new/", new_question, Question, 1
+        )
 
         # Testing if repr method is working
         self.assertEqual(
-            str(question),
-            "Question(Is it okay?, 8, Easy, Application, sub, True)",
+            str(question), "Question(Is it okay?, 8, Easy, Application, sub, True)",
         )
 
         # Test invalid data
@@ -41,7 +40,7 @@ class AddQuestionTestCase(BaseUnit):
             "/course/1/unit/1/question/sub/new/",
             new_question,
             Question,
-            2
+            2,
         )
 
     def test_add_mcq_question(self):
@@ -58,11 +57,11 @@ class AddQuestionTestCase(BaseUnit):
             option4="7",
         )
         _, mcq = test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_mcq, Question, 1)
+            self, "/course/1/unit/1/question/mcq/new/", new_mcq, Question, 1
+        )
         # test repr method
         self.assertEqual(
-            str(mcq),
-            "Question(Rate it, 8, Easy, Application, mcq, False)",
+            str(mcq), "Question(Rate it, 8, Easy, Application, mcq, False)",
         )
         # test invalid data
         new_mcq = dict(
@@ -85,5 +84,5 @@ class AddQuestionTestCase(BaseUnit):
             "/course/1/unit/1/question/mcq/new/",
             new_mcq,
             Question,
-            2
+            2,
         )

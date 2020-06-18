@@ -46,7 +46,8 @@ def all_questions(course_id, unit_id, qtype):
         and_(
             Question.unit_id == unit_id,
             Question.question_type == QuestionTypeEnum.from_string(qtype),
-        )).paginate(page=main_page, per_page=1)
+        )
+    ).paginate(page=main_page, per_page=1)
     common_args = dict(
         courses=_courses,
         course_id=course_id,
@@ -80,18 +81,14 @@ def all_questions(course_id, unit_id, qtype):
                 "css/questions/sideNav.css",
                 "css/questions/question_form.css",
             ],
-            js_files=[
-                "js/questions/update_question.js",
-                "js/sideNav.js",
-            ],
+            js_files=["js/questions/update_question.js", "js/sideNav.js",],
             title="Subjective Questions",
             **common_args,
         )
 
 
 @questions.route(
-    "/course/<course_id>/unit/<unit_id>/question/<qtype>/new/",
-    methods=["GET", "POST"],
+    "/course/<course_id>/unit/<unit_id>/question/<qtype>/new/", methods=["GET", "POST"],
 )
 @login_required
 @check_valid_course
@@ -181,10 +178,7 @@ def update_question(course_id, unit_id, qtype, question_id):
        And do changes in database accordingly.
     """
     common_args = dict(
-        course_id=course_id,
-        unit_id=unit_id,
-        qtype=qtype,
-        image_file=profile_path(),
+        course_id=course_id, unit_id=unit_id, qtype=qtype, image_file=profile_path(),
     )
     _question = db.session.query(Question).filter_by(id=question_id).first()
     if _question is None:
@@ -226,8 +220,9 @@ def update_question(course_id, unit_id, qtype, question_id):
         )
 
 
-@questions.route("/course/<course_id>/unit/<unit_id>/question/<qtype>/imp/",
-                 methods=["GET", "POST"])
+@questions.route(
+    "/course/<course_id>/unit/<unit_id>/question/<qtype>/imp/", methods=["GET", "POST"]
+)
 @login_required
 @check_valid_course
 @check_valid_unit
