@@ -65,7 +65,7 @@ def mark_distribution_form(course_id, data):
 
     Args:
         course_id (int): Course ID of course
-        data (object): Description of marks 
+        data (object): Description of marks
 
     Returns:
         HTML: Go to mark distribuion form page

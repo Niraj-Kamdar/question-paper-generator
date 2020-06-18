@@ -8,7 +8,7 @@ from flaskapp.models import Unit
 
 
 def check_valid_course(func):
-    """Validation of course 
+    """Validation of course
 
     Args:
         func (Object): description about course
@@ -31,10 +31,10 @@ def check_valid_unit(func):
     """Validation to unit
 
     Args:
-        func (Object): description of unit  
+        func (Object): description of unit
 
     Returns:
-        error : if not in course throw an error of 403 
+        error : if not in course throw an error of 403
     """
 
     @functools.wraps(func)
@@ -49,7 +49,7 @@ def check_valid_unit(func):
 
 
 def check_valid_question_type(func):
-    """Validation to question type  
+    """Validation to question type
 
     Args:
         func (Object): Desceription of question type

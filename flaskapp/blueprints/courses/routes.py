@@ -67,7 +67,7 @@ def all_courses():
 @courses.route("/course/delete/", methods=["GET", "POST"])
 @login_required
 def delete_course():
-    """Delete course from list of courses 
+    """Delete course from list of courses
     """
     if request.method == "POST":
         course_ids = request.get_json()
@@ -84,10 +84,10 @@ def all_units(course_id):
     """Give all units list of course with given course ID
 
     Args:
-        course_id (int): Course ID of Course 
+        course_id (int): Course ID of Course
 
     Returns:
-        HTML: returns question page for course 
+        HTML: returns question page for course
     """
     _course = Course.query.filter(Course.id == course_id).first()
     _units = Unit.query.filter(Unit.course == _course).all()
@@ -108,7 +108,7 @@ def add_unit(course_id):
     """Add unit to course
 
     Args:
-        course_id (int): ID of course 
+        course_id (int): ID of course
 
     Returns:
         HTML: Go to question of units template

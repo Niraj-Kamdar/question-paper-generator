@@ -18,7 +18,7 @@ def validate_course_name(form, course_name):
 
     Args:
         form (Object): In which given description about course
-        course_name (string): Name of course 
+        course_name (string): Name of course
 
     Raises:
         ValidationError: If already exist then error of That Course is already exist. Please choose a different one. else add the course
@@ -33,7 +33,7 @@ def validate_course_name(form, course_name):
 
 
 def validate_unit_name(form, unit_name):
-    """Validation on unit name of the course 
+    """Validation on unit name of the course
 
     Args:
         form (Object): Form i which all the details of unit

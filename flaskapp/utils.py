@@ -39,7 +39,7 @@ class DifficultyEnum(Enum):
 
 
 def DifficultyLevel(value):
-    """Set difficulty level of question 
+    """Set difficulty level of question
 
     Args:
         value (String): Level of difficulty of question from easy, medium or hard
@@ -56,7 +56,7 @@ def DifficultyLevel(value):
 
 
 def CognitiveLevel(value):
-    """Set cognitive level of question 
+    """Set cognitive level of question
 
     Args:
         value (String): Level of cognitive of question from application, comprehension or knowledge
