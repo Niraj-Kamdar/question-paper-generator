@@ -1,3 +1,8 @@
+import itertools
+from collections import Counter
+from collections import defaultdict
+from string import ascii_lowercase
+
 from flask import Blueprint
 from flask import flash
 from flask import jsonify
@@ -6,9 +11,12 @@ from flask import render_template
 from flask import request
 from flask import url_for
 from flask_login import login_required
+from qpt_generator import QPTGenerator
 
 from flaskapp.blueprints.papers.forms import MarkDistributionForm
 from flaskapp.checkers import check_valid_course
+from flaskapp.utils import CognitiveEnum
+from flaskapp.utils import DifficultyEnum
 from flaskapp.utils import json_url
 from flaskapp.utils import profile_path
 
@@ -78,7 +86,26 @@ def mark_distribution_form(course_id, data):
     form = MarkDistributionForm(course_id, data["questions"],
                                 data["total_marks"])
     if form.validate_on_submit():
-        return jsonify(form.data)
+        question_no = list(
+            itertools.chain(*map(
+                lambda x: list(itertools.repeat(x[0] + 1, x[1])),
+                enumerate(data["questions"]),
+            )))
+        raw_template = QPTGenerator(dict(form.data), question_no).generate()
+        paper_template = defaultdict(dict)
+        subque_counter = Counter()
+        for i in range(len(raw_template["question_no"])):
+            current_que = raw_template["question_no"][i]
+            subque_counter[current_que] += 1
+            data = dict(
+                mark=raw_template["question"][i],
+                cognitive=CognitiveEnum(raw_template["cognitive"][i]).name,
+                difficulty=DifficultyEnum(raw_template["difficulty"][i]).name,
+                unit=raw_template["unit"][i],
+            )
+            current_subque = ascii_lowercase[subque_counter[current_que]]
+            paper_template[current_que][current_subque] = data
+        return jsonify(paper_template)
     return render_template("papers/mark_distribution_form.html", form=form)
 
 
