@@ -39,6 +39,14 @@ class DifficultyEnum(Enum):
 
 
 def DifficultyLevel(value):
+    """Set difficulty level of question
+
+    Args:
+        value (String): Level of difficulty of question from easy, medium or hard
+
+    Returns:
+        string: Set the difficulty level of question
+    """
     translate = {
         "Easy": DifficultyEnum.Easy,
         "Medium": DifficultyEnum.Medium,
@@ -48,6 +56,14 @@ def DifficultyLevel(value):
 
 
 def CognitiveLevel(value):
+    """Set cognitive level of question
+
+    Args:
+        value (String): Level of cognitive of question from application, comprehension or knowledge
+
+    Returns:
+        string: Set the cognitive level of question
+    """
     translate = {
         "Application": CognitiveEnum.Application,
         "Comprehension": CognitiveEnum.Comprehension,
@@ -57,6 +73,11 @@ def CognitiveLevel(value):
 
 
 def profile_path():
+    """get the profile path of user
+
+    Returns:
+        URL : if user is authentic then return url of user
+    """
     if current_user.is_authenticated:
         return url_for("static",
                        filename="profile_pics/" + current_user.image_file)

@@ -67,6 +67,8 @@ def all_courses():
 @courses.route("/course/delete/", methods=["GET", "POST"])
 @login_required
 def delete_course():
+    """Delete course from list of courses
+    """
     if request.method == "POST":
         course_ids = request.get_json()
         db.session.query(Course).filter(
@@ -78,6 +80,14 @@ def delete_course():
 @login_required
 @check_valid_course
 def all_units(course_id):
+    """Give all units list of course with given course ID
+
+    Args:
+        course_id (int): Course ID of Course
+
+    Returns:
+        HTML: returns question page for course
+    """
     _course = Course.query.filter(Course.id == course_id).first()
     _units = Unit.query.filter(Unit.course == _course).all()
     return render_template(
@@ -94,6 +104,14 @@ def all_units(course_id):
 @login_required
 @check_valid_course
 def add_unit(course_id):
+    """Add unit to course
+
+    Args:
+        course_id (int): ID of course
+
+    Returns:
+        HTML: Go to question of units template
+    """
     _course = Course.query.filter(Course.id == course_id).first()
     form = UnitForm(_course)
     if form.validate_on_submit():
@@ -119,6 +137,11 @@ def add_unit(course_id):
 @login_required
 @check_valid_course
 def delete_unit(course_id):
+    """Delete unit for given course
+
+    Args:
+        course_id (int): Course id which user want to delete
+    """
     if request.method == "POST":
         unit_ids = request.get_json()
         db.session.query(Course).filter(
