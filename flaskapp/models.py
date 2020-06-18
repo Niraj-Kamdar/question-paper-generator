@@ -114,17 +114,24 @@ class Question(db.Model):
     unit_id = db.Column(db.Integer, db.ForeignKey("unit.id"), nullable=False)
 
     def __repr__(self):
-        return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.cognitive_level}, {self.imp})"
+        return (f"Question({self.question['question']},"
+                f" {self.mark},"
+                f" {self.difficulty.name},"
+                f" {self.cognitive_level.name},"
+                f" {self.question_type.name},"
+                f" {self.imp})")
 
     def to_dict(self):
-        return dict(
+        data = dict(
             id=self.id,
-            question=self.question,
             mark=self.mark,
             difficulty=self.difficulty.name,
             cognitive_level=self.cognitive_level.name,
+            question_type=self.question_type.name,
             imp=self.imp,
         )
+        data.update(self.question)
+        return data
 
 
 class Paper(db.Model):
