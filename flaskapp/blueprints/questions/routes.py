@@ -5,7 +5,11 @@ from sqlalchemy import and_
 from flaskapp import db
 from flaskapp.blueprints.questions.forms import MCQQuestionForm, QuestionForm
 from flaskapp.blueprints.questions.utils import (
-    redirect_to_all_questions, update_question_in_db, add_question_to_db, update_imp_in_db, delete_question_from_db,
+    redirect_to_all_questions,
+    update_question_in_db,
+    add_question_to_db,
+    update_imp_in_db,
+    delete_question_from_db,
 )
 from flaskapp.checkers import (
     check_valid_course,
@@ -74,7 +78,7 @@ def all_questions(course_id, unit_id, qtype):
                 "css/questions/sideNav.css",
                 "css/questions/question_form.css",
             ],
-            js_files=["js/questions/update_question.js", "js/sideNav.js", ],
+            js_files=["js/questions/update_question.js", "js/sideNav.js",],
             title="Subjective Questions",
             **common_args,
         )
@@ -171,10 +175,7 @@ def update_question(course_id, unit_id, qtype, question_id):
        And do changes in database accordingly.
     """
     common_args = dict(
-        course_id=course_id,
-        unit_id=unit_id,
-        qtype=qtype,
-        image_file=profile_path(),
+        course_id=course_id, unit_id=unit_id, qtype=qtype, image_file=profile_path(),
     )
     _question = db.session.query(Question).filter_by(id=question_id).first()
     if _question is None:

@@ -6,10 +6,12 @@ from flaskapp.utils import DifficultyEnum, CognitiveEnum, QuestionTypeEnum
 
 
 def update_imp_in_db(obj):
-    db.session.query(Question).filter(Question.id.in_(obj.get(
-        "imp", []))).update(dict(imp=True), synchronize_session="fetch")
-    db.session.query(Question).filter(Question.id.in_(obj.get(
-        "notimp", []))).update(dict(imp=False), synchronize_session="fetch")
+    db.session.query(Question).filter(Question.id.in_(obj.get("imp", []))).update(
+        dict(imp=True), synchronize_session="fetch"
+    )
+    db.session.query(Question).filter(Question.id.in_(obj.get("notimp", []))).update(
+        dict(imp=False), synchronize_session="fetch"
+    )
     db.session.commit()
 
 
@@ -37,8 +39,7 @@ def add_question_to_db(form, question, unit_id, qtype):
 def update_question_in_db(form, question, qtype):
     question.mark = form.mark.data
     question.difficulty = DifficultyEnum.from_string(form.difficulty.data)
-    question.cognitive_level = CognitiveEnum.from_string(
-        form.cognitive_level.data)
+    question.cognitive_level = CognitiveEnum.from_string(form.cognitive_level.data)
     question.question_type = QuestionTypeEnum.from_string(qtype)
     question.imp = form.imp.data
     db.session.commit()
@@ -51,4 +52,5 @@ def redirect_to_all_questions(course_id, unit_id, qtype):
             qtype=qtype,
             course_id=course_id,
             unit_id=unit_id,
-        ))
+        )
+    )
