@@ -1,14 +1,8 @@
 import os
 import unittest
-
-from flaskapp import APP_PATH
-from flaskapp import config
-from flaskapp import create_app
-from flaskapp import db
-from flaskapp import mail
-from flaskapp import models
-from flaskapp import TEST_DB
 from test.main.utils import test_post_request
+
+from flaskapp import APP_PATH, TEST_DB, config, create_app, db, mail, models
 
 
 class BaseDatabase(unittest.TestCase):
