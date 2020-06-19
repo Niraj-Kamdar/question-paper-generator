@@ -1,7 +1,7 @@
-from flask import json
-
 from test.main.base_classes import BaseUnit
 from test.main.utils import test_post_request
+
+from flask import json
 
 
 class PaperGenerateRequest(BaseUnit):
