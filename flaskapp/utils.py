@@ -33,7 +33,8 @@ class QuestionTypeEnum(AbstractEnum):
 
 def profile_path():
     if current_user.is_authenticated:
-        return url_for("static", filename="profile_pics/" + current_user.image_file)
+        return url_for("static",
+                       filename="profile_pics/" + current_user.image_file)
     return ""
 
 
