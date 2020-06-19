@@ -5,20 +5,31 @@ from string import ascii_lowercase
 
 from flask import Blueprint
 from flask import flash
+from flask import json
 from flask import jsonify
 from flask import redirect
 from flask import render_template
 from flask import request
+from flask import session
 from flask import url_for
 from flask_login import login_required
 from qpt_generator import QPTGenerator
 
+from flaskapp import db
 from flaskapp.blueprints.papers.forms import MarkDistributionForm
+from flaskapp.blueprints.papers.forms import PaperLogoForm
+from flaskapp.blueprints.papers.utils import find_conflicting_questions
+from flaskapp.blueprints.papers.utils import find_random_question
+from flaskapp.blueprints.papers.utils import save_logo
 from flaskapp.checkers import check_valid_course
+from flaskapp.checkers import check_valid_session
+from flaskapp.models import Paper
+from flaskapp.models import Question
 from flaskapp.utils import CognitiveEnum
 from flaskapp.utils import DifficultyEnum
 from flaskapp.utils import json_url
 from flaskapp.utils import profile_path
+from flaskapp.utils import QuestionTypeEnum
 
 papers = Blueprint("papers", __name__)
 
@@ -50,11 +61,14 @@ def paper_generate_request(course_id):
     if request.method == "POST":
         data = request.get_json()
         if data:
-            data = json_url.dumps(data)
+            session["total_marks"] = json_url.dumps(data["total_marks"])
+            session["no_of_subquestions"] = json_url.dumps(
+                json.loads(data["questions"]))
             return redirect(
-                url_for("papers.mark_distribution_form",
-                        course_id=course_id,
-                        data=data))
+                url_for(
+                    "papers.mark_distribution_form",
+                    course_id=course_id,
+                ))
         flash("Form can't be empty!")
     return render_template(
         "papers/generate_request.html",
@@ -65,51 +79,132 @@ def paper_generate_request(course_id):
     )
 
 
-@papers.route("/course/<course_id>/papers/generate/form/<data>",
+@papers.route("/course/<course_id>/papers/generate/form/",
               methods=["GET", "POST"])
 @login_required
 @check_valid_course
-def mark_distribution_form(course_id, data):
+@check_valid_session(session_keys=("total_marks", "no_of_subquestions"))
+def mark_distribution_form(course_id):
     """Mark distribution of form
 
     Args:
         course_id (int): Course ID of course
-        data (object): Description of marks
 
     Returns:
-        HTML: Go to mark distribuion form page
+        HTML: Go to mark distribution form page
     """
-    if not data:
-        return redirect(
-            url_for("papers.paper_generate_request", course_id=course_id))
-    data = json_url.loads(data)
-    form = MarkDistributionForm(course_id, data["questions"],
-                                data["total_marks"])
+    total_marks = json_url.loads(session["total_marks"])
+    no_of_subquestions = json_url.loads(session["no_of_subquestions"])
+    form = MarkDistributionForm(course_id, no_of_subquestions, total_marks)
+
     if form.validate_on_submit():
         question_no = list(
             itertools.chain(*map(
                 lambda x: list(itertools.repeat(x[0] + 1, x[1])),
-                enumerate(data["questions"]),
+                enumerate(no_of_subquestions),
             )))
         raw_template = QPTGenerator(dict(form.data), question_no).generate()
-        paper_template = defaultdict(dict)
+        paper_template = defaultdict(lambda: defaultdict(dict))
         subque_counter = Counter()
         for i in range(len(raw_template["question_no"])):
             current_que = raw_template["question_no"][i]
-            subque_counter[current_que] += 1
             data = dict(
                 mark=raw_template["question"][i],
                 cognitive=CognitiveEnum(raw_template["cognitive"][i]).name,
                 difficulty=DifficultyEnum(raw_template["difficulty"][i]).name,
+                question_type=QuestionTypeEnum(
+                    raw_template["question_type"][i]).name,
                 unit=raw_template["unit"][i],
             )
             current_subque = ascii_lowercase[subque_counter[current_que]]
             paper_template[current_que][current_subque] = data
-        return jsonify(paper_template)
+            subque_counter[current_que] += 1
+        session["paper_template"] = json_url.dumps(paper_template)
+        return redirect(
+            url_for("papers.confirm_paper_template", course_id=course_id))
     return render_template("papers/mark_distribution_form.html", form=form)
 
 
-# Temporary route for paper tamplate in HTML
+@papers.route("/course/<course_id>/papers/confirm/template/",
+              methods=["GET", "POST"])
+@login_required
+@check_valid_course
+@check_valid_session(session_keys=("paper_template", ))
+def confirm_paper_template(course_id):
+    if request.method == "POST":
+        if request.get_json():
+            return redirect(
+                url_for("papers.generate_paper", course_id=course_id))
+        flash("Form can't be empty!")
+    paper_template = json_url.loads(session["paper_template"])
+    return render_template("papers/confirm_paper_template.html",
+                           paper_template=paper_template)
+
+
+@papers.route("/course/<course_id>/papers/generate/")
+@login_required
+@check_valid_course
+@check_valid_session(session_keys=("paper_template", "total_marks"))
+def generate_paper(course_id):
+    paper_template = json_url.loads(session["paper_template"])
+    conflicting_questions = []
+    for question in paper_template:
+        for subquestion, constraints in paper_template[question].items():
+            constraints["cognitive"] = CognitiveEnum.from_string(
+                constraints["cognitive"])
+            constraints["difficulty"] = DifficultyEnum.from_string(
+                constraints["difficulty"])
+            constraints["question_type"] = QuestionTypeEnum.from_string(
+                constraints["question_type"])
+            conflicting_questions.extend(
+                find_conflicting_questions(course_id, constraints))
+            paper_template[question][subquestion] = constraints
+
+    form = PaperLogoForm()
+    if form.validate_on_submit():
+        paper_data = {}
+        if form.picture.data:
+            paper_data["paper_logo"] = save_logo(form.picture.data)
+        paper_data["name"] = form.name.data
+        paper_data["term"] = form.name.data
+        paper_data["mark"] = json_url.loads(session["total_marks"])
+        paper_data["exam_date"] = form.exam_date.data
+        paper_data["time_limit"] = form.time_limit.data
+        paper_data["course_id"] = course_id
+        paper_data["paper_format"] = {}
+        for question in paper_template:
+            for subquestion, constraints in paper_template[question].items():
+                paper_data["paper_format"][question][
+                    subquestion] = find_random_question(
+                        course_id, constraints)
+        paper = Paper(**paper_data)
+        db.session.add(paper)
+        db.session.commit()
+        return jsonify(paper_data)
+    return render_template(
+        "papers/generate_paper.html",
+        conflicting_questions=conflicting_questions,
+    )
+
+
+@papers.route("/papers/handle/conflicts", methods=["GET", "POST"])
+@login_required
+def handle_conflicting_questions():
+    # data = {"mcq":{"ask": [], "nask": []}, "sub": {"ask": [], "nask": []}}
+    if request.method == "POST":
+        data = request.get_json()
+        for qtype in data:
+            db.session.query(Question).filter(
+                Question.id.in_(data[qtype].get("nask", []))).update(
+                    dict(imp=False), synchronize_session="fetch")
+            db.session.query(Question).filter(
+                Question.id.in_(data[qtype].get("ask", []))).update(
+                    dict(is_asked=False), synchronize_session="fetch")
+            db.session.commit()
+        return jsonify(dict(status="OK"))
+
+
+# Temporary route for paper template in HTML
 @papers.route("/Paper-to-PDF")
 @login_required
 def ptp():

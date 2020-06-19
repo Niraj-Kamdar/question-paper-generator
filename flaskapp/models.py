@@ -8,6 +8,7 @@ from flaskapp import login_manager
 from flaskapp.utils import CognitiveEnum
 from flaskapp.utils import default_instructions
 from flaskapp.utils import DifficultyEnum
+from flaskapp.utils import QuestionTypeEnum
 
 
 @login_manager.user_loader
@@ -90,10 +91,6 @@ class Unit(db.Model):
                                 backref="unit",
                                 lazy=True,
                                 cascade="all, delete-orphan")
-    mcq_questions = db.relationship("MCQQuestion",
-                                    backref="unit",
-                                    lazy=True,
-                                    cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"Unit({self.chapter_no, self.name})"
@@ -104,65 +101,37 @@ class Unit(db.Model):
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    question = db.Column(db.Text, nullable=False)
+    question = db.Column(db.JSON, nullable=False)
     mark = db.Column(db.Integer, nullable=False)
     difficulty = db.Column(db.Enum(DifficultyEnum), nullable=False)
     cognitive_level = db.Column(
         db.Enum(CognitiveEnum),
         nullable=False,
     )
+    question_type = db.Column(db.Enum(QuestionTypeEnum), nullable=False)
     imp = db.Column(db.Boolean, default=False)
+    is_asked = db.Column(db.Boolean, default=False)
     unit_id = db.Column(db.Integer, db.ForeignKey("unit.id"), nullable=False)
 
     def __repr__(self):
-        return f"Question({self.question}, {self.mark}, {self.difficulty}, {self.cognitive_level}, {self.imp})"
+        return (f"Question({self.question['question']},"
+                f" {self.mark},"
+                f" {self.difficulty.name},"
+                f" {self.cognitive_level.name},"
+                f" {self.question_type.name},"
+                f" {self.imp})")
 
     def to_dict(self):
-        return dict(
+        data = dict(
             id=self.id,
-            question=self.question,
             mark=self.mark,
             difficulty=self.difficulty.name,
             cognitive_level=self.cognitive_level.name,
+            question_type=self.question_type.name,
             imp=self.imp,
         )
-
-
-class MCQQuestion(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    question = db.Column(db.Text, nullable=False)
-    mark = db.Column(db.Integer, nullable=False)
-    difficulty = db.Column(db.Enum(DifficultyEnum), nullable=False)
-    cognitive_level = db.Column(
-        db.Enum(CognitiveEnum),
-        nullable=False,
-    )
-    imp = db.Column(db.Boolean, default=False)
-    option1 = db.Column(db.Text, nullable=False)
-    option2 = db.Column(db.Text, nullable=False)
-    option3 = db.Column(db.Text, nullable=False)
-    option4 = db.Column(db.Text, nullable=False)
-    unit_id = db.Column(db.Integer, db.ForeignKey("unit.id"), nullable=False)
-
-    def __repr__(self):
-        return (
-            f"MCQQuestion({self.question}, {self.mark}, {self.difficulty}, {self.cognitive_level}, {self.imp},"
-            f" {self.option1}, {self.option2}, {self.option3}, {self.option4})"
-        )
-
-    def to_dict(self):
-        return dict(
-            id=self.id,
-            question=self.question,
-            mark=self.mark,
-            difficulty=self.difficulty.name,
-            cognitive_level=self.cognitive_level.name,
-            imp=self.imp,
-            option1=self.option1,
-            option2=self.option2,
-            option3=self.option3,
-            option4=self.option4,
-        )
+        data.update(self.question)
+        return data
 
 
 class Paper(db.Model):
@@ -174,14 +143,10 @@ class Paper(db.Model):
     """
 
     id = db.Column(db.Integer, primary_key=True)
+    # Metadata
     name = db.Column(db.Text, nullable=False)
-    mark = db.Column(db.Integer, nullable=False)
-    # {easy: 30 mark, medium: 10 mark, hard: 10 mark }
-    difficulty = db.Column(db.JSON, nullable=False)
-    # {K: 30 mark, C: 10 mark, A: 10 mark }
-    cognitive_level = db.Column(db.JSON, nullable=False)
-    paper_format = db.Column(db.JSON, nullable=False)
     paper_logo = db.Column(db.Text, nullable=False, default="logo.svg")
+    term = db.Column(db.Text, nullable=False)
     exam_date = db.Column(db.Date, nullable=False)
     time_limit = db.Column(db.Text, nullable=False)
     instructions = db.Column(db.JSON,
@@ -191,10 +156,14 @@ class Paper(db.Model):
                           db.ForeignKey("course.id"),
                           nullable=False)
 
+    mark = db.Column(db.Integer, nullable=False)
+    paper_format = db.Column(db.JSON, nullable=False)
+
     def to_dict(self):
         return dict(
             id=self.id,
             name=self.name,
+            term=self.term,
             mark=self.mark,
             difficulty=self.difficulty,
             cognitive_level=self.cognitive_level,
