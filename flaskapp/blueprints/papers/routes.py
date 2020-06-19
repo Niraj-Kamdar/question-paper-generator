@@ -106,20 +106,23 @@ def mark_distribution_form(course_id):
         raw_template = QPTGenerator(dict(form.data), question_no).generate()
         paper_template = defaultdict(lambda: defaultdict(dict))
         subque_counter = Counter()
+        que_counter = Counter()
         for i in range(len(raw_template["question_no"])):
-            current_que = raw_template["question_no"][i]
             data = dict(
                 mark=raw_template["question"][i],
                 cognitive=CognitiveEnum(raw_template["cognitive"][i]).name,
                 difficulty=DifficultyEnum(raw_template["difficulty"][i]).name,
-                question_type=QuestionTypeEnum(
-                    raw_template["question_type"][i]).name,
                 unit=raw_template["unit"][i],
             )
-            current_subque = ascii_lowercase[subque_counter[current_que]]
-            paper_template[current_que][current_subque] = data
-            subque_counter[current_que] += 1
-        session["paper_template"] = json_url.dumps(paper_template)
+            question_type = QuestionTypeEnum(
+                raw_template["question_type"][i]).name
+            que_counter[question_type] += 1
+            current_que = que_counter[question_type]
+            current_subque = ascii_lowercase[subque_counter[(question_type,
+                                                             current_que)]]
+            paper_template[question_type][current_que][current_subque] = data
+            subque_counter[(question_type, current_que)] += 1
+        session["paper_template"] = json_url.dumps(dict(paper_template))
         return redirect(
             url_for("papers.confirm_paper_template", course_id=course_id))
     return render_template("papers/mark_distribution_form.html", form=form)
@@ -148,17 +151,19 @@ def confirm_paper_template(course_id):
 def generate_paper(course_id):
     paper_template = json_url.loads(session["paper_template"])
     conflicting_questions = []
-    for question in paper_template:
-        for subquestion, constraints in paper_template[question].items():
-            constraints["cognitive"] = CognitiveEnum.from_string(
-                constraints["cognitive"])
-            constraints["difficulty"] = DifficultyEnum.from_string(
-                constraints["difficulty"])
-            constraints["question_type"] = QuestionTypeEnum.from_string(
-                constraints["question_type"])
-            conflicting_questions.extend(
-                find_conflicting_questions(course_id, constraints))
-            paper_template[question][subquestion] = constraints
+    for qtype in paper_template:
+        for question in paper_template[qtype]:
+            for subquestion, constraints in paper_template[qtype][
+                    question].items():
+                constraints["cognitive"] = CognitiveEnum.from_string(
+                    constraints["cognitive"])
+                constraints["difficulty"] = DifficultyEnum.from_string(
+                    constraints["difficulty"])
+                constraints["question_type"] = QuestionTypeEnum.from_string(
+                    qtype)
+                conflicting_questions.extend(
+                    find_conflicting_questions(course_id, constraints))
+                paper_template[qtype][question][subquestion] = constraints
 
     form = PaperLogoForm()
     if form.validate_on_submit():
@@ -172,11 +177,14 @@ def generate_paper(course_id):
         paper_data["time_limit"] = form.time_limit.data
         paper_data["course_id"] = course_id
         paper_data["paper_format"] = {}
-        for question in paper_template:
-            for subquestion, constraints in paper_template[question].items():
-                paper_data["paper_format"][question][
-                    subquestion] = find_random_question(
-                        course_id, constraints)
+        for qtype in paper_template:
+            for question in paper_template[qtype]:
+                for subquestion, constraints in paper_template[qtype][
+                        question].items():
+                    paper_data["paper_format"].update(
+                        dict(qtype=dict(question=dict(
+                            subquestion=find_random_question(
+                                course_id, constraints)))))
         paper = Paper(**paper_data)
         db.session.add(paper)
         db.session.commit()
