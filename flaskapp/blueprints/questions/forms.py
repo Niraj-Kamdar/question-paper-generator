@@ -1,8 +1,16 @@
 from flask_wtf import FlaskForm
-from flaskapp.utils import CognitiveEnum, DifficultyEnum
-from wtforms import (BooleanField, IntegerField, SelectField, StringField,
-                     SubmitField, TextAreaField)
-from wtforms.validators import DataRequired, Length, NumberRange
+from wtforms import BooleanField
+from wtforms import IntegerField
+from wtforms import SelectField
+from wtforms import StringField
+from wtforms import SubmitField
+from wtforms import TextAreaField
+from wtforms.validators import DataRequired
+from wtforms.validators import Length
+from wtforms.validators import NumberRange
+
+from flaskapp.utils import CognitiveEnum
+from flaskapp.utils import DifficultyEnum
 
 
 class QuestionForm(FlaskForm):
