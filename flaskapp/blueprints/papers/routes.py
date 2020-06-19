@@ -3,7 +3,7 @@ from collections import Counter
 from collections import defaultdict
 from string import ascii_lowercase
 
-from flask import Blueprint
+from flask import Blueprint, json
 from flask import flash
 from flask import jsonify
 from flask import redirect
@@ -20,8 +20,7 @@ from flaskapp.blueprints.papers.forms import PaperLogoForm
 from flaskapp.blueprints.papers.utils import find_conflicting_questions
 from flaskapp.blueprints.papers.utils import find_random_question
 from flaskapp.blueprints.papers.utils import save_logo
-from flaskapp.checkers import check_valid_course
-from flaskapp.checkers import check_valid_data
+from flaskapp.checkers import check_valid_course, check_valid_session
 from flaskapp.models import Question
 from flaskapp.utils import CognitiveEnum
 from flaskapp.utils import DifficultyEnum
@@ -60,7 +59,7 @@ def paper_generate_request(course_id):
         data = request.get_json()
         if data:
             session["total_marks"] = json_url.dumps(data["total_marks"])
-            session["no_of_subquestions"] = json_url.dumps(data["questions"])
+            session["no_of_subquestions"] = json_url.dumps(json.loads(data["questions"]))
             return redirect(
                 url_for(
                     "papers.mark_distribution_form",
@@ -80,7 +79,7 @@ def paper_generate_request(course_id):
               methods=["GET", "POST"])
 @login_required
 @check_valid_course
-@check_valid_data
+@check_valid_session(session_keys=("total_marks", "no_of_subquestions"))
 def mark_distribution_form(course_id):
     total_marks = json_url.loads(session["total_marks"])
     no_of_subquestions = json_url.loads(session["no_of_subquestions"])
@@ -117,11 +116,12 @@ def mark_distribution_form(course_id):
               methods=["GET", "POST"])
 @login_required
 @check_valid_course
+@check_valid_session(session_keys=("paper_template", ))
 def confirm_paper_template(course_id):
     if request.method == "POST":
         if request.get_json():
             return redirect(
-                url_for("papers.prepare_to_generate", course_id=course_id))
+                url_for("papers.generate_paper", course_id=course_id))
         flash("Form can't be empty!")
     paper_template = json_url.loads(session["paper_template"])
     return render_template("papers/confirm_paper_template.html",
@@ -131,6 +131,7 @@ def confirm_paper_template(course_id):
 @papers.route("/course/<course_id>/papers/generate/")
 @login_required
 @check_valid_course
+@check_valid_session(session_keys=("paper_template", "total_marks"))
 def generate_paper(course_id):
     paper_template = json_url.loads(session["paper_template"])
     conflicting_questions = []

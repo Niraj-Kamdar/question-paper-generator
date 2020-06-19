@@ -1,26 +1,14 @@
-from flask import Blueprint
-from flask import flash
-from flask import render_template
-from flask import request
-from flask_login import current_user
-from flask_login import login_required
+from flask import Blueprint, flash, render_template, request
+from flask_login import current_user, login_required
 from sqlalchemy import and_
 
 from flaskapp import db
-from flaskapp.blueprints.questions.forms import MCQQuestionForm
-from flaskapp.blueprints.questions.forms import QuestionForm
-from flaskapp.blueprints.questions.utils import add_question_to_db
-from flaskapp.blueprints.questions.utils import delete_question_from_db
-from flaskapp.blueprints.questions.utils import redirect_to_all_questions
-from flaskapp.blueprints.questions.utils import update_imp_in_db
-from flaskapp.blueprints.questions.utils import update_question_in_db
-from flaskapp.checkers import check_valid_course
-from flaskapp.checkers import check_valid_question_type
-from flaskapp.checkers import check_valid_unit
-from flaskapp.models import Course
-from flaskapp.models import Question
-from flaskapp.utils import profile_path
-from flaskapp.utils import QuestionTypeEnum
+from flaskapp.blueprints.questions.forms import MCQQuestionForm, QuestionForm
+from flaskapp.blueprints.questions.utils import add_question_to_db, update_question_in_db, delete_question_from_db, \
+    redirect_to_all_questions, update_imp_in_db
+from flaskapp.checkers import check_valid_course, check_valid_question_type, check_valid_unit
+from flaskapp.models import Course, Question
+from flaskapp.utils import profile_path, QuestionTypeEnum
 
 questions = Blueprint("questions", __name__)
 
@@ -43,55 +31,55 @@ def all_questions(course_id, unit_id, qtype):
     main_page = request.args.get("page", 1, type=int)
     _courses = Course.query.filter(Course.teacher == current_user).all()
     _questions = Question.query.filter(
-        and_(
-            Question.unit_id == unit_id,
-            Question.question_type == QuestionTypeEnum.from_string(qtype),
-        )).paginate(page=main_page, per_page=1)
+            and_(
+                    Question.unit_id == unit_id,
+                    Question.question_type == QuestionTypeEnum.from_string(qtype),
+            )).paginate(page=main_page, per_page=1)
     common_args = dict(
-        courses=_courses,
-        course_id=course_id,
-        unit_id=unit_id,
-        qtype=qtype,
-        image_file=profile_path(),
+            courses=_courses,
+            course_id=course_id,
+            unit_id=unit_id,
+            qtype=qtype,
+            image_file=profile_path(),
     )
     if qtype == "mcq":
         return render_template(
-            "questions/mcq_questions.html",
-            questions=_questions,
-            css_files=[
-                "css/base.css",
-                "css/questions/mcqs.css",
-                "css/questions/sideNav.css",
-                "css/questions/questions.css",
-                "css/questions/mcq_form.css",
-                "css/questions/question_form.css",
-            ],
-            js_files=["js/questions/update_mcq_question.js", "js/sideNav.js"],
-            title="Objective Questions",
-            **common_args,
+                "questions/mcq_questions.html",
+                questions=_questions,
+                css_files=[
+                    "css/base.css",
+                    "css/questions/mcqs.css",
+                    "css/questions/sideNav.css",
+                    "css/questions/questions.css",
+                    "css/questions/mcq_form.css",
+                    "css/questions/question_form.css",
+                ],
+                js_files=["js/questions/update_mcq_question.js", "js/sideNav.js"],
+                title="Objective Questions",
+                **common_args,
         )
     else:
         return render_template(
-            "questions/questions.html",
-            questions=_questions,
-            css_file=[
-                "css/base.css",
-                "css/questions/questions.css",
-                "css/questions/sideNav.css",
-                "css/questions/question_form.css",
-            ],
-            js_files=[
-                "js/questions/update_question.js",
-                "js/sideNav.js",
-            ],
-            title="Subjective Questions",
-            **common_args,
+                "questions/questions.html",
+                questions=_questions,
+                css_file=[
+                    "css/base.css",
+                    "css/questions/questions.css",
+                    "css/questions/sideNav.css",
+                    "css/questions/question_form.css",
+                ],
+                js_files=[
+                    "js/questions/update_question.js",
+                    "js/sideNav.js",
+                ],
+                title="Subjective Questions",
+                **common_args,
         )
 
 
 @questions.route(
-    "/course/<course_id>/unit/<unit_id>/question/<qtype>/new/",
-    methods=["GET", "POST"],
+        "/course/<course_id>/unit/<unit_id>/question/<qtype>/new/",
+        methods=["GET", "POST"],
 )
 @login_required
 @check_valid_course
@@ -112,37 +100,37 @@ def add_question(course_id, unit_id, qtype):
     """
     _courses = Course.query.filter(Course.teacher == current_user).all()
     common_args = dict(
-        courses=_courses,
-        course_id=course_id,
-        unit_id=unit_id,
-        qtype=qtype,
-        image_file=profile_path(),
+            courses=_courses,
+            course_id=course_id,
+            unit_id=unit_id,
+            qtype=qtype,
+            image_file=profile_path(),
     )
     if qtype == "mcq":
         form = MCQQuestionForm()
         if form.validate_on_submit():
             question = dict(
-                question=form.question.data,
-                option1=form.option1.data,
-                option2=form.option2.data,
-                option3=form.option3.data,
-                option4=form.option4.data,
+                    question=form.question.data,
+                    option1=form.option1.data,
+                    option2=form.option2.data,
+                    option3=form.option3.data,
+                    option4=form.option4.data,
             )
             flash("New question added successfully!", "success")
             add_question_to_db(form, question, unit_id, qtype)
             return redirect_to_all_questions(course_id, unit_id, qtype)
         return render_template(
-            "questions/mcq_question_form.html",
-            form=form,
-            css_files=[
-                "css/base.css",
-                "css/questions/mcq_form.css",
-                "css/questions/sideNav.css",
-                "css/questions/question_form.css",
-            ],
-            js_files=["js/questions/mcq_question_form.js", "js/sideNav.js"],
-            title="Add Objective Question",
-            **common_args,
+                "questions/mcq_question_form.html",
+                form=form,
+                css_files=[
+                    "css/base.css",
+                    "css/questions/mcq_form.css",
+                    "css/questions/sideNav.css",
+                    "css/questions/question_form.css",
+                ],
+                js_files=["js/questions/mcq_question_form.js", "js/sideNav.js"],
+                title="Add Objective Question",
+                **common_args,
         )
     else:
         form = QuestionForm()
@@ -152,22 +140,22 @@ def add_question(course_id, unit_id, qtype):
             add_question_to_db(form, question, unit_id, qtype)
             return redirect_to_all_questions(course_id, unit_id, qtype)
         return render_template(
-            "questions/question_form.html",
-            form=form,
-            css_files=[
-                "css/base.css",
-                "css/questions/question_form.css",
-                "css/questions/sideNav.css",
-            ],
-            js_files=["js/questions/question_form.js", "js/sideNav.js"],
-            title="Add Subjective Question",
-            **common_args,
+                "questions/question_form.html",
+                form=form,
+                css_files=[
+                    "css/base.css",
+                    "css/questions/question_form.css",
+                    "css/questions/sideNav.css",
+                ],
+                js_files=["js/questions/question_form.js", "js/sideNav.js"],
+                title="Add Subjective Question",
+                **common_args,
         )
 
 
 @questions.route(
-    "/course/<course_id>/unit/<unit_id>/question/<qtype>/update/<int:question_id>/",
-    methods=["GET", "POST"],
+        "/course/<course_id>/unit/<unit_id>/question/<qtype>/update/<int:question_id>/",
+        methods=["GET", "POST"],
 )
 @login_required
 @check_valid_course
@@ -181,10 +169,10 @@ def update_question(course_id, unit_id, qtype, question_id):
        And do changes in database accordingly.
     """
     common_args = dict(
-        course_id=course_id,
-        unit_id=unit_id,
-        qtype=qtype,
-        image_file=profile_path(),
+            course_id=course_id,
+            unit_id=unit_id,
+            qtype=qtype,
+            image_file=profile_path(),
     )
     _question = db.session.query(Question).filter_by(id=question_id).first()
     if _question is None:
@@ -195,34 +183,34 @@ def update_question(course_id, unit_id, qtype, question_id):
     if qtype == "mcq":
         form = MCQQuestionForm(**data)
         if form.validate_on_submit():
-            _question.question["question"] = form.question.data
-            _question.question["option1"] = form.option1.data
-            _question.question["option2"] = form.option2.data
-            _question.question["option3"] = form.option3.data
-            _question.question["option4"] = form.option4.data
+            _question.question = dict(question=form.question.data,
+                                      option1=form.option1.data,
+                                      option2=form.option2.data,
+                                      option3=form.option3.data,
+                                      option4=form.option4.data)
             update_question_in_db(form, _question, qtype)
             flash(f"Question:{question_id} updated successfully!", "success")
             return redirect_to_all_questions(course_id, unit_id, qtype)
         return render_template(
-            "questions/mcq_question_form.html",
-            form=form,
-            css_files=["css/questions/question_form.css"],
-            js_files=["js/questions/question_form.js"],
-            **common_args,
+                "questions/mcq_question_form.html",
+                form=form,
+                css_files=["css/questions/question_form.css"],
+                js_files=["js/questions/question_form.js"],
+                **common_args,
         )
     else:
         form = QuestionForm(**data)
         if form.validate_on_submit():
-            _question.question["question"] = form.question.data
+            _question.question = dict(question=form.question.data)
             update_question_in_db(form, _question, qtype)
             flash(f"Question:{question_id} updated successfully!", "success")
             return redirect_to_all_questions(course_id, unit_id, qtype)
         return render_template(
-            "questions/question_form.html",
-            form=form,
-            css_files=["css/questions/question_form.css"],
-            js_files=["js/questions/question_form.js"],
-            **common_args,
+                "questions/question_form.html",
+                form=form,
+                css_files=["css/questions/question_form.css"],
+                js_files=["js/questions/question_form.js"],
+                **common_args,
         )
 
 
@@ -244,8 +232,8 @@ def imp_question(course_id, unit_id, qtype):
 
 
 @questions.route(
-    "/course/<course_id>/unit/<unit_id>/question/<qtype>/delete/",
-    methods=["GET", "POST"],
+        "/course/<course_id>/unit/<unit_id>/question/<qtype>/delete/",
+        methods=["GET", "POST"],
 )
 @login_required
 @check_valid_course
