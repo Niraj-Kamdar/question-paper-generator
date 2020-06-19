@@ -13,7 +13,7 @@ class PaperGenerateRequest(BaseUnit):
             headers={"Content-Type": "application/json"},
         )
         self.assertIn((b"You should be redirected automatically to target URL: "
-                      b"<a href=/course/1/papers/generate/form/ >"),
+                       b"<a href=/course/1/papers/generate/form/ >"),
                       response.data)
 
     def test_mark_distribution_form(self):
@@ -38,12 +38,13 @@ class PaperGenerateRequest(BaseUnit):
         response, _ = test_post_request(self,
                                         "/course/1/papers/generate/form/",
                                         data)
-        self.assertIn(b"<title>Title</title>", response.data)   # FIXME: update assertion here
+        # FIXME: update assertion here
+        self.assertIn(b"<title>Title</title>", response.data)
         response = self.client.post(
             "/course/1/papers/confirm/template/",
             data=json.dumps(dict(status="OK")),
             headers={"Content-Type": "application/json"},
         )
         self.assertIn((b"You should be redirected automatically to target URL: "
-                      b"<a href=/course/1/papers/generate/ >"),
+                       b"<a href=/course/1/papers/generate/ >"),
                       response.data)
