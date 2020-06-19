@@ -2,11 +2,10 @@ import os
 import secrets
 
 from flask import current_app
-from PIL import Image
-from sqlalchemy import and_
-
 from flaskapp import db
 from flaskapp.models import Question
+from PIL import Image
+from sqlalchemy import and_
 
 
 def find_conflicting_questions(course_id, constraints):

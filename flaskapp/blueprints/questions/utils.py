@@ -1,5 +1,4 @@
 from flask import redirect, url_for
-
 from flaskapp import db
 from flaskapp.models import Question
 from flaskapp.utils import CognitiveEnum, DifficultyEnum, QuestionTypeEnum
