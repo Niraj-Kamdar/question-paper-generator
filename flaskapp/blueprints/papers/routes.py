@@ -3,8 +3,9 @@ from collections import Counter
 from collections import defaultdict
 from string import ascii_lowercase
 
-from flask import Blueprint, json
+from flask import Blueprint
 from flask import flash
+from flask import json
 from flask import jsonify
 from flask import redirect
 from flask import render_template
@@ -20,7 +21,8 @@ from flaskapp.blueprints.papers.forms import PaperLogoForm
 from flaskapp.blueprints.papers.utils import find_conflicting_questions
 from flaskapp.blueprints.papers.utils import find_random_question
 from flaskapp.blueprints.papers.utils import save_logo
-from flaskapp.checkers import check_valid_course, check_valid_session
+from flaskapp.checkers import check_valid_course
+from flaskapp.checkers import check_valid_session
 from flaskapp.models import Question
 from flaskapp.utils import CognitiveEnum
 from flaskapp.utils import DifficultyEnum
@@ -59,7 +61,8 @@ def paper_generate_request(course_id):
         data = request.get_json()
         if data:
             session["total_marks"] = json_url.dumps(data["total_marks"])
-            session["no_of_subquestions"] = json_url.dumps(json.loads(data["questions"]))
+            session["no_of_subquestions"] = json_url.dumps(
+                json.loads(data["questions"]))
             return redirect(
                 url_for(
                     "papers.mark_distribution_form",
