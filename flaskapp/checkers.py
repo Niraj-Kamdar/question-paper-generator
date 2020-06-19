@@ -51,8 +51,8 @@ def check_valid_session(func=None, *, session_keys=()):
             data = session.get(session_key, None)
             if not data:
                 return redirect(
-                        url_for("papers.paper_generate_request",
-                                course_id=kwargs["course_id"]))
+                    url_for("papers.paper_generate_request",
+                            course_id=kwargs["course_id"]))
             try:
                 json_url.loads(data)
             except BadSignature:

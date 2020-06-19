@@ -59,7 +59,8 @@ def paper_generate_request(course_id):
         data = request.get_json()
         if data:
             session["total_marks"] = json_url.dumps(data["total_marks"])
-            session["no_of_subquestions"] = json_url.dumps(json.loads(data["questions"]))
+            session["no_of_subquestions"] = json_url.dumps(
+                json.loads(data["questions"]))
             return redirect(
                 url_for(
                     "papers.mark_distribution_form",
