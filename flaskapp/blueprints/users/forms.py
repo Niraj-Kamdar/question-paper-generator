@@ -16,6 +16,15 @@ from flaskapp.models import User
 
 
 def validate_email_exists(form, email):
+    """Validation on existance of e-mail ID
+
+    Args:
+        form (Object): Description of user's detail
+        email (String): email which user entered
+
+    Raises:
+        ValidationError: If there's no account with that email then retrun error of There is no account with that email. You must register first.
+    """
     user = User.query.filter_by(email=email.data).first()
     if user is None:
         raise ValidationError(
@@ -23,6 +32,15 @@ def validate_email_exists(form, email):
 
 
 def validate_username(form, username):
+    """Validation on username
+
+    Args:
+        form (Object): Description of user
+        username (string): username  of user
+
+    Raises:
+        ValidationError: If username is taken throw error of That username is taken. Please choose a different one.
+    """
     user = User.query.filter_by(username=username.data).first()
     if user:
         if current_user:
@@ -33,6 +51,15 @@ def validate_username(form, username):
 
 
 def validate_email(form, email):
+    """Validation on email
+
+    Args:
+        form (Object): Description of user
+        email (string): Email ID of user
+
+    Raises:
+        ValidationError: If email is taken throw error of That email is taken. Please choose a different one.
+    """
     user = User.query.filter_by(email=email.data).first()
     if user:
         if current_user:

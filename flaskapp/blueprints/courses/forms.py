@@ -14,6 +14,15 @@ from flaskapp.models import Unit
 
 
 def validate_course_name(form, course_name):
+    """Validation of course name
+
+    Args:
+        form (Object): In which given description about course
+        course_name (string): Name of course
+
+    Raises:
+        ValidationError: If already exist then error of That Course is already exist. Please choose a different one. else add the course
+    """
     course = Course.query.filter(
         and_(Course.name == course_name.data,
              Course.teacher == current_user)).first()
@@ -23,6 +32,15 @@ def validate_course_name(form, course_name):
 
 
 def validate_unit_name(form, unit_name):
+    """Validation on unit name of the course
+
+    Args:
+        form (Object): Form i which all the details of unit
+        unit_name (string): Name of unit that user want to add
+
+    Raises:
+        ValidationError: If already there then give error of That Unit is already exist. Please choose a different one. else add name of unit
+    """
     unit = Unit.query.filter(
         and_(Unit.name == unit_name.data, Unit.course == form.course)).first()
     if unit:

@@ -84,9 +84,18 @@ def paper_generate_request(course_id):
 @check_valid_course
 @check_valid_session(session_keys=("total_marks", "no_of_subquestions"))
 def mark_distribution_form(course_id):
+    """Mark distribution of form
+
+    Args:
+        course_id (int): Course ID of course
+
+    Returns:
+        HTML: Go to mark distribuion form page
+    """
     total_marks = json_url.loads(session["total_marks"])
     no_of_subquestions = json_url.loads(session["no_of_subquestions"])
     form = MarkDistributionForm(course_id, no_of_subquestions, total_marks)
+
     if form.validate_on_submit():
         question_no = list(
             itertools.chain(*map(
@@ -193,6 +202,14 @@ def handle_conflicting_questions():
 @papers.route("/Paper-to-PDF")
 @login_required
 def ptp():
+    """Convert Paper to pdf format
+
+    Raises:
+        your: Final paper
+
+    Returns:
+        PDF: Pdf of final paper
+    """
     course_name = "Software Engineering"
     prefix = "Final"
     term = "Autumn 2020"

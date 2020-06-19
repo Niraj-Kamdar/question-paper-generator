@@ -197,6 +197,8 @@ def reset_token(token):
 @users.route("/account/delete/")
 @login_required
 def delete_account():
+    """To delete account of user
+    """
     db.session.query(User).filter_by(id=current_user.id).delete(
         synchronize_session="fetch")
     db.session.commit()

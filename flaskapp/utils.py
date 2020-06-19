@@ -32,6 +32,11 @@ class QuestionTypeEnum(AbstractEnum):
 
 
 def profile_path():
+    """get the profile path of user
+
+    Returns:
+        URL : if user is authentic then return url of user
+    """
     if current_user.is_authenticated:
         return url_for("static",
                        filename="profile_pics/" + current_user.image_file)
