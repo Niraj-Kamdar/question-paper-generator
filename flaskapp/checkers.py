@@ -74,7 +74,8 @@ def check_valid_question_type(func):
 
 def check_valid_session(func=None, *, session_keys=()):
     if func is None:
-        return functools.partial(check_valid_session, session_keys=session_keys)
+        return functools.partial(check_valid_session,
+                                 session_keys=session_keys)
 
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
@@ -82,10 +83,8 @@ def check_valid_session(func=None, *, session_keys=()):
             data = session.get(session_key, None)
             if not data:
                 return redirect(
-                    url_for(
-                        "papers.paper_generate_request", course_id=kwargs["course_id"]
-                    )
-                )
+                    url_for("papers.paper_generate_request",
+                            course_id=kwargs["course_id"]))
             try:
                 json_url.loads(data)
             except BadSignature:
