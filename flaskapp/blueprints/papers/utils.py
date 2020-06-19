@@ -18,6 +18,7 @@ def find_conflicting_questions(course_id, constraints):
             Question.mark == constraints["mark"],
             Question.unit.chapter_no == constraints["unit"],
             Question.unit.course_id == course_id,
+            Question.question_type == constraints["question_type"],
             Question.imp is True,
             Question.is_asked is True,
         )).all())
