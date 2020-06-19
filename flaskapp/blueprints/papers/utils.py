@@ -23,7 +23,7 @@ def find_conflicting_questions(course_id, constraints):
 
 
 def find_random_question():
-    pass
+    return
 
 
 def save_logo(form_picture):
