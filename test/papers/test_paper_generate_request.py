@@ -34,9 +34,7 @@ class PaperGenerateRequest(BaseUnit):
             "sub": 15,
             "mcq": 15,
         }
-        response, _ = test_post_request(self,
-                                        "/course/1/papers/generate/form/",
-                                        data)
+        response, _ = test_post_request(self, "/course/1/papers/generate/form/", data)
         # print(response.data.decode().split("title")[1])
         response = self.client.post(
             "/course/1/papers/confirm/template/",
