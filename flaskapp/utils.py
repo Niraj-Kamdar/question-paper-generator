@@ -7,6 +7,42 @@ from itsdangerous import URLSafeSerializer
 
 json_url = URLSafeSerializer(os.environ.get("SECRET_KEY", "secret_key"))
 
+
+class AbstractEnum(Enum):
+    @classmethod
+    def from_string(cls, value):
+        return cls.__members__[value]
+
+
+class CognitiveEnum(AbstractEnum):
+    Knowledge = 1
+    Comprehension = 2
+    Application = 3
+
+
+class DifficultyEnum(AbstractEnum):
+    Easy = 1
+    Medium = 2
+    Hard = 3
+
+
+class QuestionTypeEnum(AbstractEnum):
+    sub = 1
+    mcq = 2
+
+
+def profile_path():
+    """get the profile path of user
+
+    Returns:
+        URL : if user is authentic then return url of user
+    """
+    if current_user.is_authenticated:
+        return url_for("static",
+                       filename="profile_pics/" + current_user.image_file)
+    return ""
+
+
 default_instructions = [
     "Write your name and student number in the space provided",
     "Make sure your mobile phone is switched off and place it at the front together with\
@@ -24,40 +60,3 @@ default_instructions = [
                           You must remain silent until after you have exited the building.",
     "Remember! Any form of cheating is not allowed and action will be taken.",
 ]
-
-
-class CognitiveEnum(Enum):
-    Knowledge = 1
-    Comprehension = 2
-    Application = 3
-
-
-class DifficultyEnum(Enum):
-    Easy = 1
-    Medium = 2
-    Hard = 3
-
-
-def DifficultyLevel(value):
-    translate = {
-        "Easy": DifficultyEnum.Easy,
-        "Medium": DifficultyEnum.Medium,
-        "Hard": DifficultyEnum.Hard,
-    }
-    return translate[value]
-
-
-def CognitiveLevel(value):
-    translate = {
-        "Application": CognitiveEnum.Application,
-        "Comprehension": CognitiveEnum.Comprehension,
-        "Knowledge": CognitiveEnum.Knowledge,
-    }
-    return translate[value]
-
-
-def profile_path():
-    if current_user.is_authenticated:
-        return url_for("static",
-                       filename="profile_pics/" + current_user.image_file)
-    return ""
