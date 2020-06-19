@@ -61,6 +61,5 @@ class MCQOperationTestCase(BaseMCQQuestion):
 
         # test invalid data
         response, _ = test_post_request(
-            self, "/course/1/unit/1/question/mcq/update/8", update_question
-        )
+            self, "/course/1/unit/1/question/mcq/update/8", update_question)
         self.assertIn(b"Question:8 Does not exist", response.data)

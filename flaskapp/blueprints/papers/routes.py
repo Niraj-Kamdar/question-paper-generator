@@ -50,7 +50,8 @@ def home():
     )
 
 
-@papers.route("/course/<course_id>/papers/generate/request", methods=["GET", "POST"])
+@papers.route("/course/<course_id>/papers/generate/request",
+              methods=["GET", "POST"])
 @login_required
 @check_valid_course
 def paper_generate_request(course_id):
@@ -61,11 +62,12 @@ def paper_generate_request(course_id):
         if data:
             session["total_marks"] = json_url.dumps(data["total_marks"])
             session["no_of_subquestions"] = json_url.dumps(
-                json.loads(data["questions"])
-            )
+                json.loads(data["questions"]))
             return redirect(
-                url_for("papers.mark_distribution_form", course_id=course_id,)
-            )
+                url_for(
+                    "papers.mark_distribution_form",
+                    course_id=course_id,
+                ))
         flash("Form can't be empty!")
     return render_template(
         "papers/generate_request.html",
@@ -76,7 +78,8 @@ def paper_generate_request(course_id):
     )
 
 
-@papers.route("/course/<course_id>/papers/generate/form/", methods=["GET", "POST"])
+@papers.route("/course/<course_id>/papers/generate/form/",
+              methods=["GET", "POST"])
 @login_required
 @check_valid_course
 @check_valid_session(session_keys=("total_marks", "no_of_subquestions"))
@@ -95,13 +98,10 @@ def mark_distribution_form(course_id):
 
     if form.validate_on_submit():
         question_no = list(
-            itertools.chain(
-                *map(
-                    lambda x: list(itertools.repeat(x[0] + 1, x[1])),
-                    enumerate(no_of_subquestions),
-                )
-            )
-        )
+            itertools.chain(*map(
+                lambda x: list(itertools.repeat(x[0] + 1, x[1])),
+                enumerate(no_of_subquestions),
+            )))
         raw_template = QPTGenerator(dict(form.data), question_no).generate()
         paper_template = defaultdict(lambda: defaultdict(dict))
         subque_counter = Counter()
@@ -111,30 +111,33 @@ def mark_distribution_form(course_id):
                 mark=raw_template["question"][i],
                 cognitive=CognitiveEnum(raw_template["cognitive"][i]).name,
                 difficulty=DifficultyEnum(raw_template["difficulty"][i]).name,
-                question_type=QuestionTypeEnum(raw_template["question_type"][i]).name,
+                question_type=QuestionTypeEnum(
+                    raw_template["question_type"][i]).name,
                 unit=raw_template["unit"][i],
             )
             current_subque = ascii_lowercase[subque_counter[current_que]]
             paper_template[current_que][current_subque] = data
             subque_counter[current_que] += 1
         session["paper_template"] = json_url.dumps(paper_template)
-        return redirect(url_for("papers.confirm_paper_template", course_id=course_id))
+        return redirect(
+            url_for("papers.confirm_paper_template", course_id=course_id))
     return render_template("papers/mark_distribution_form.html", form=form)
 
 
-@papers.route("/course/<course_id>/papers/confirm/template/", methods=["GET", "POST"])
+@papers.route("/course/<course_id>/papers/confirm/template/",
+              methods=["GET", "POST"])
 @login_required
 @check_valid_course
-@check_valid_session(session_keys=("paper_template",))
+@check_valid_session(session_keys=("paper_template", ))
 def confirm_paper_template(course_id):
     if request.method == "POST":
         if request.get_json():
-            return redirect(url_for("papers.generate_paper", course_id=course_id))
+            return redirect(
+                url_for("papers.generate_paper", course_id=course_id))
         flash("Form can't be empty!")
     paper_template = json_url.loads(session["paper_template"])
-    return render_template(
-        "papers/confirm_paper_template.html", paper_template=paper_template
-    )
+    return render_template("papers/confirm_paper_template.html",
+                           paper_template=paper_template)
 
 
 @papers.route("/course/<course_id>/papers/generate/")
@@ -147,17 +150,13 @@ def generate_paper(course_id):
     for question in paper_template:
         for subquestion, constraints in paper_template[question].items():
             constraints["cognitive"] = CognitiveEnum.from_string(
-                constraints["cognitive"]
-            )
+                constraints["cognitive"])
             constraints["difficulty"] = DifficultyEnum.from_string(
-                constraints["difficulty"]
-            )
+                constraints["difficulty"])
             constraints["question_type"] = QuestionTypeEnum.from_string(
-                constraints["question_type"]
-            )
+                constraints["question_type"])
             conflicting_questions.extend(
-                find_conflicting_questions(course_id, constraints)
-            )
+                find_conflicting_questions(course_id, constraints))
             paper_template[question][subquestion] = constraints
 
     form = PaperLogoForm()
@@ -175,10 +174,10 @@ def generate_paper(course_id):
         for question in paper_template:
             for subquestion, constraints in paper_template[question].items():
                 paper_data["paper_format"][question][
-                    subquestion
-                ] = find_random_question()
+                    subquestion] = find_random_question()
     render_template(
-        "papers/generate_paper.html", conflicting_questions=conflicting_questions,
+        "papers/generate_paper.html",
+        conflicting_questions=conflicting_questions,
     )
 
 
@@ -190,11 +189,11 @@ def handle_conflicting_questions():
         data = request.get_json()
         for qtype in data:
             db.session.query(Question).filter(
-                Question.id.in_(data[qtype].get("nask", []))
-            ).update(dict(imp=False), synchronize_session="fetch")
+                Question.id.in_(data[qtype].get("nask", []))).update(
+                    dict(imp=False), synchronize_session="fetch")
             db.session.query(Question).filter(
-                Question.id.in_(data[qtype].get("ask", []))
-            ).update(dict(is_asked=False), synchronize_session="fetch")
+                Question.id.in_(data[qtype].get("ask", []))).update(
+                    dict(is_asked=False), synchronize_session="fetch")
             db.session.commit()
         return jsonify(dict(status="OK"))
 
@@ -231,8 +230,10 @@ def ptp():
 
     questions = {
         1: {
-            "question": "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks": 10,
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            10,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -241,8 +242,10 @@ def ptp():
             ],
         },
         2: {
-            "question": "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks": 15,
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            15,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -251,8 +254,10 @@ def ptp():
             ],
         },
         3: {
-            "question": "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks": 18,
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            18,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -261,8 +266,10 @@ def ptp():
             ],
         },
         4: {
-            "question": "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks": 10,
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            10,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -271,8 +278,10 @@ def ptp():
             ],
         },
         5: {
-            "question": "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks": 15,
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            15,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
@@ -281,8 +290,10 @@ def ptp():
             ],
         },
         6: {
-            "question": "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks": 18,
+            "question":
+            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
+            "marks":
+            18,
             "sub_questions": [
                 "Heating at constant volume until the pressure is 208 kPa",
                 "Polytropic compression to 0.006 m3, where n = 1.6",
