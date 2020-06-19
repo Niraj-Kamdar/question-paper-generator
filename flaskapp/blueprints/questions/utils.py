@@ -45,6 +45,7 @@ def update_question_in_db(form, question, qtype):
             form.cognitive_level.data)
     question.question_type = QuestionTypeEnum.from_string(qtype)
     question.imp = form.imp.data
+    db.session.commit()
 
 
 def redirect_to_all_questions(course_id, unit_id, qtype):

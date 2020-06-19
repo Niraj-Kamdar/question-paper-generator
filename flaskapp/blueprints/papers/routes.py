@@ -90,7 +90,7 @@ def mark_distribution_form(course_id):
         course_id (int): Course ID of course
 
     Returns:
-        HTML: Go to mark distribuion form page
+        HTML: Go to mark distribution form page
     """
     total_marks = json_url.loads(session["total_marks"])
     no_of_subquestions = json_url.loads(session["no_of_subquestions"])
