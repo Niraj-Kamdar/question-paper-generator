@@ -3,7 +3,7 @@ import secrets
 
 from flask import current_app
 from PIL import Image
-from sqlalchemy import and_
+from sqlalchemy import and_, func
 
 from flaskapp import db
 from flaskapp.models import Question
@@ -22,8 +22,15 @@ def find_conflicting_questions(course_id, constraints):
         )).all())
 
 
-def find_random_question():
-    return
+def find_random_question(course_id, constraints):
+    return (db.session.Query(Question).filter_by(
+        and_(
+            Question.cognitive_level == constraints["cognitive"],
+            Question.difficulty == constraints["difficulty"],
+            Question.mark == constraints["mark"],
+            Question.unit.chapter_no == constraints["unit"],
+            Question.unit.course_id == course_id,
+        )).order_by(func.random()).first().id)
 
 
 def save_logo(form_picture):

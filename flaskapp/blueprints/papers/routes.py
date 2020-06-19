@@ -23,7 +23,7 @@ from flaskapp.blueprints.papers.utils import find_random_question
 from flaskapp.blueprints.papers.utils import save_logo
 from flaskapp.checkers import check_valid_course
 from flaskapp.checkers import check_valid_session
-from flaskapp.models import Question
+from flaskapp.models import Question, Paper
 from flaskapp.utils import CognitiveEnum
 from flaskapp.utils import DifficultyEnum
 from flaskapp.utils import json_url
@@ -174,8 +174,12 @@ def generate_paper(course_id):
         for question in paper_template:
             for subquestion, constraints in paper_template[question].items():
                 paper_data["paper_format"][question][
-                    subquestion] = find_random_question()
-    render_template(
+                    subquestion] = find_random_question(course_id, constraints)
+        paper = Paper(**paper_data)
+        db.session.add(paper)
+        db.session.commit()
+        return jsonify(paper_data)
+    return render_template(
         "papers/generate_paper.html",
         conflicting_questions=conflicting_questions,
     )
