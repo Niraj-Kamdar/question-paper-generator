@@ -54,8 +54,8 @@
 
                 {% if form.name.errors %}
                 <ul class="form__error">
-                    {% for error in form.name.errors %}
-                    <li>{{ error }}</li>
+                    {% for err in form.name.errors %}
+                    <li>{{ err }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}
