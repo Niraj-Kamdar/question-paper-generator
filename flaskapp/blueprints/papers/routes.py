@@ -43,8 +43,7 @@ def home():
     """
     return render_template(
         "papers/home.html",
-        css_file="css/base.css",
-        css_file2="css/home.css",
+        css_files=["css/base.css","css/home.css"],
         title="Home",
         image_file=profile_path(),
     )
@@ -59,10 +58,10 @@ def paper_generate_request(course_id):
     """
     if request.method == "POST":
         data = request.get_json()
+        print(data)
         if data:
             session["total_marks"] = json_url.dumps(data["total_marks"])
-            session["no_of_subquestions"] = json_url.dumps(
-                json.loads(data["questions"]))
+            session["no_of_subquestions"] = json_url.dumps(data["questions"])
             return redirect(
                 url_for(
                     "papers.mark_distribution_form",
@@ -71,9 +70,8 @@ def paper_generate_request(course_id):
         flash("Form can't be empty!")
     return render_template(
         "papers/generate_request.html",
-        js_file="js/papers/generate_request.js",
-        css_file="css/papers/generate_request.css",
-        css_file2="css/base.css",
+        js_files=["js/papers/generate_request.js"],
+        css_files=["css/papers/generate_request.css","css/base.css"],
         image_file=profile_path(),
     )
 
@@ -314,7 +312,7 @@ def ptp():
 
     return render_template(
         "papers/ptp.html",
-        css_file="css/ptp.css",
+        css_files=["css/ptp.css"],
         title="Paper-to-PDF",
         course_name=course_name,
         prefix=prefix,

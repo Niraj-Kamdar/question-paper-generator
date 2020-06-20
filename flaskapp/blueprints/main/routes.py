@@ -24,8 +24,8 @@ def index():
     return render_template(
         "main/index.html",
         title="Index",
-        css_file="css/index.css",
-        js_file="js/index.js",
+        css_files=["css/index.css"],
+        js_files=["js/index.js"],
     )
 
 
@@ -39,7 +39,7 @@ def about_us():
     return render_template(
         "main/about.html",
         title="About Us",
-        css_file="css/main/about.css",
+        css_files=["css/main/about.css"],
         image_file=profile_path(),
     )
 
@@ -54,7 +54,7 @@ def policy_page():
     return render_template(
         "main/privacy-policy.html",
         title="Privacy Policy",
-        css_file="css/main/privacy_policy.css",
+        css_files=["css/main/privacy_policy.css"],
         image_file=profile_path(),
     )
 
@@ -69,7 +69,7 @@ def terms_of_service_page():
     return render_template(
         "main/terms-of-service.html",
         title="Terms Of Service",
-        css_file="css/main/terms_of_service.css",
+        css_files=["css/main/terms_of_service.css"],
         image_file=profile_path(),
     )
 
@@ -83,7 +83,7 @@ def help_page():
     return render_template(
         "main/help.html",
         title="Help",
-        css_file="css/main/help.css",
+        css_files=["css/main/help.css"],
         image_file=profile_path(),
     )
 
@@ -113,7 +113,6 @@ def contact_us():
         "main/contact-us/contact_us_form.html",
         title="Contact Us",
         form=form,
-        css_file="css/contact_us/main.css",
-        css_file2="css/contact_us/util.css",
+        css_files=["css/contact_us/main.css","css/contact_us/util.css"],
         image_file=profile_path(),
     )

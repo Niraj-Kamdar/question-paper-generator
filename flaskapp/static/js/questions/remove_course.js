@@ -1,0 +1,52 @@
+(function(){
+    const deleteCourseBtn = document.getElementById("delete_course");
+    const deleteCourseBox = document.getElementsByClassName("delete_course_box");
+    const deleteUnitBtn = document.getElementById("delete_unit");
+    const deleteUnitBox = document.getElementsByClassName("delete_unit_box");
+    const sideDeleteCourseBtn = document.getElementById("side_delete_course");
+    const sideDeleteUnitBtn = document.getElementById("side_delete_unit");
+    let courseId = document.getElementById("course_id");
+    if(courseId) courseId = courseId.innerHTML;
+
+    function deleteCoursesandUnits(deleteBtns,deleteBox,url){
+        let isVisible = false;
+        deleteBtns.forEach(function(node) {
+            node.addEventListener('click', function () {
+                if (!isVisible) {
+                    isVisible = true;
+                    Array.from(deleteBox).forEach((node) => {
+                        node.style.display = "initial";
+                    });
+                } else {
+                    isVisible = false;
+                    const selectedNodes = Array.from(deleteBox).filter((node) => node.checked);
+                    const ids = selectedNodes.map((node) => {
+                        return node.parentNode.parentNode.lastElementChild.getAttribute("data-id");
+                    }).map((node) => Number(node));
+                    console.log(ids);
+                    fetch(url, {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(ids)
+                    }).then(function () {
+                        selectedNodes.forEach((node) => {
+                            const target = node.parentElement.parentElement;
+                            target.parentElement.removeChild(target);
+                        });
+                        Array.from(deleteBox).forEach((node) => {
+                            node.style.display = "";
+                        });
+                    }).catch(function (err) {
+                        document.getElementById("page_display").firstElementChild.innerHTML = err;
+                    });
+                }
+            });
+        });
+    }
+    deleteCourseBox && deleteCourseBtn && deleteCoursesandUnits([sideDeleteCourseBtn,deleteCourseBtn],deleteCourseBox,'/course/delete/');
+
+    deleteUnitBox && deleteUnitBtn && deleteCoursesandUnits([sideDeleteUnitBtn,deleteUnitBtn],deleteUnitBox,'/course/' + courseId + '/unit/delete/');
+
+})();

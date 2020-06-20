@@ -72,7 +72,7 @@ def all_questions(course_id, unit_id, qtype):
         return render_template(
             "questions/questions.html",
             questions=_questions,
-            css_file=[
+            css_files=[
                 "css/base.css",
                 "css/questions/questions.css",
                 "css/questions/sideNav.css",
