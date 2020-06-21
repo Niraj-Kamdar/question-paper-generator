@@ -78,6 +78,8 @@ def mark_distribution_form(course_id, data):
 @login_required
 def ptp():
 
+    logo = "paper_logo.png"
+    logo_url = url_for('static', filename='images/' + logo)
     course_name = "Software Engineering"
     prefix = "Final"
     term = "Autumn 2020"
@@ -186,6 +188,7 @@ def ptp():
     return render_template("papers/ptp.html",
                            css_file='css/ptp.css',
                            title='Paper-to-PDF',
+                           logo = logo_url,
                            course_name = course_name,
                            prefix = prefix,
                            term = term,

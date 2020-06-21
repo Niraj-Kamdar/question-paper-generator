@@ -29,15 +29,17 @@
 
 	<div class="container-fluid p-5" style="border:1px solid green;">
 
+		{% if logo %}
 		<div class="row">
 
 			<div class="col"></div>
 			<div class="col-2">
-            	<img src="{{ url_for('static', filename='images/paper_logo.png') }}" class="paper_logo" alt="paper logo"/>
+            	<img src={{logo}} class="paper_logo" alt="paper logo"/>
             </div>
 			<div class="col"></div>
 
 		</div>
+		{% endif %}
 
 		<div class="row" style="display: flex;justify-content: center; font-weight: bold;">
 			<p style="margin: 0;">Subject : {{ course_name }}</p>
