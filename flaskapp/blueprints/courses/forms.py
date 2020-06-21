@@ -43,7 +43,7 @@ def validate_unit_name(form, unit_name):
     Raises:
         ValidationError: If already there then give error of That Unit is already exist. Please choose a different one. else add name of unit
     """
-    unit = Unit.query.filter_by(
+    unit = Unit.query.filter(
         and_(Unit.name == unit_name.data, Unit.course == form.course)).first()
 
     if unit:
