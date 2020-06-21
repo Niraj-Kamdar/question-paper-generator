@@ -58,7 +58,7 @@ def validate_chapter_no(form, chapter_no):
     if unit:
         raise ValidationError(
             "That Unit is already exist. Please choose a different one.")
-    if (max_chapter_no - chapter_no) > 1:
+    if max_chapter_no and (max_chapter_no - chapter_no) > 1:
         raise ValidationError(
             f"Please crete unit:{max_chapter_no + 1} first.")
 
