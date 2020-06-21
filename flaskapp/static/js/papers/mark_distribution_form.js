@@ -8,19 +8,21 @@
     const nextBtn = Array.from(document.getElementsByClassName("next_btn"));
     const pages = document.getElementsByClassName("pages");
     const marks = Number(document.getElementById("total_marks").innerHTML);
-    const unitFields = Array.from(document.getElementsByClassName("units"));
+    const unitFields = Array.from(document.getElementsByClassName("unit"));
     const cognitiveFields = Array.from(document.getElementsByClassName("cognitive"));
     const difficultyFields = Array.from(document.getElementsByClassName("difficulty"));
-    const questionsFields = Array.from(document.getElementsByClassName("questions"));
-    const unitFieldsErr = Array.from(document.getElementsByClassName("units_err"));
+    const questionsFields = Array.from(document.getElementsByClassName("question"));
+    const questionTypeFields = Array.from(document.getElementsByClassName("question_type"));
+    const unitFieldsErr = Array.from(document.getElementsByClassName("unit_err"));
     const cognitiveFieldsErr = Array.from(document.getElementsByClassName("cognitive_err"));
     const difficultyFieldsErr = Array.from(document.getElementsByClassName("difficulty_err"));
-    const questionsFieldsErr = Array.from(document.getElementsByClassName("questions_err"));
+    const questionTypeFieldsErr = Array.from(document.getElementsByClassName("question_type_err"));
+    const questionsFieldsErr = Array.from(document.getElementsByClassName("question_err"));
     const marksErr = document.getElementsByClassName("marks_err");
     const header = document.getElementsByClassName("header")[0];
     const fieldHeader = Array.from(document.getElementsByClassName("field_header"));
-    const formParts = [unitFields, cognitiveFields, difficultyFields, questionsFields];
-    const formPartsErr = [unitFieldsErr, cognitiveFieldsErr, difficultyFieldsErr, questionsFieldsErr];
+    const formParts = [unitFields, cognitiveFields, difficultyFields,questionTypeFields, questionsFields];
+    const formPartsErr = [unitFieldsErr, cognitiveFieldsErr, difficultyFieldsErr,questionTypeFieldsErr, questionsFieldsErr];
 
     hiddenLabel.forEach(function (node) {
         node.style.display = "none";
@@ -41,9 +43,11 @@
        node.style.display = "none";
     });
 
-    pages[1].style.display = "none";
-    pages[2].style.display = "none";
-    pages[3].style.display = "none";
+    Array.from(pages).forEach(function(node,index){
+       if(index) {
+           node.style.display = "none";
+       }
+    });
     header.innerHTML = fieldHeader[0].innerHTML;
 
     markForm.addEventListener("submit", function (e) {
@@ -60,7 +64,7 @@
     });
 
     nextBtn.forEach(function (node, index) {
-        if (index !== 3) {
+        if (index !== 4) {
             node.addEventListener('click', function () {
                 navigationHandler(index, false);
             });
@@ -116,6 +120,7 @@
                     validFields++;
                 }
             });
+            console.log(formParts,formParts[index]);
             const status = isValidTotalMarks(formParts[index]);
             if (status) {
                 validFields++;
@@ -128,7 +133,7 @@
                     pages[index - 1].style.display = "";
                     header.innerHTML = fieldHeader[index-1].innerHTML;
                 } else {
-                    if(index + 1<4) {
+                    if(index + 1<5) {
                         pages[index + 1].style.display = "";
                         header.innerHTML = fieldHeader[index + 1].innerHTML;
                     }

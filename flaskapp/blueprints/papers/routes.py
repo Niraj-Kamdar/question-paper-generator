@@ -91,7 +91,6 @@ def mark_distribution_form(course_id):
     total_marks = json_url.loads(session["total_marks"])
     no_of_subquestions = json_url.loads(session["no_of_subquestions"])
     form = MarkDistributionForm(course_id, no_of_subquestions, total_marks)
-
     if form.validate_on_submit():
         question_no = list(
             itertools.chain(*map(
@@ -136,7 +135,11 @@ def confirm_paper_template(course_id):
         flash("Form can't be empty!")
     paper_template = json_url.loads(session["paper_template"])
     return render_template("papers/confirm_paper_template.html",
-                           paper_template=paper_template)
+                           course_id=course_id,
+                           paper_template=paper_template,
+                           css_files=["/css/papers/confirm_paper_template.css"],
+                           js_files=["/js/papers/confirm_paper_template.js"],
+                           image_file=profile_path())
 
 
 @papers.route("/course/<course_id>/papers/generate/")

@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block header %}
+  <h3>Mark Distribution</h3>
+{% endblock header %}
+
+{% block main %}
+
+<div id="mark_distribution_container">
+    <div id="subjective_part">
+        <div id="subjective_part_title">Subjective Question</div>
+        <div id="subjective_mark_distribution"></div>
+    </div>
+    <div id="mcq_part">
+        <div id="mcq_part_title">MCQs</div>
+        <div id="mcq_mark_distribution"></div>
+    </div>
+</div>
+<a href='{{url_for("papers.paper_generate_request", course_id=course_id)}}' id="go_back">
+    Try Again
+</a>
+<button id="generate_paper" data-id="{{course_id}}">
+    Generate Paper
+</button>
+<script type="text/javascript" id="trial">
+    const markDistribution = {{ paper_template|tojson|safe }}
+</script>
+{% endblock main %}
