@@ -11,34 +11,34 @@ from flaskapp.models import Question, Unit
 
 def find_conflicting_questions(course_id, constraints):
     unit = db.session.Query(Unit).filter_by(
-            and_(
-                    Unit.chapter_no == constraints["unit"],
-                    Unit.course_id == course_id
-            )).first()
+        and_(
+            Unit.chapter_no == constraints["unit"],
+            Unit.course_id == course_id
+        )).first()
     return (db.session.Query(Question).filter_by(
             and_(
-                    Question.cognitive_level == constraints["cognitive"],
-                    Question.difficulty == constraints["difficulty"],
-                    Question.mark == constraints["mark"],
-                    Question.unit_id == unit.id,
-                    Question.question_type == constraints["question_type"],
-                    Question.imp is True,
-                    Question.is_asked is True,
+                Question.cognitive_level == constraints["cognitive"],
+                Question.difficulty == constraints["difficulty"],
+                Question.mark == constraints["mark"],
+                Question.unit_id == unit.id,
+                Question.question_type == constraints["question_type"],
+                Question.imp is True,
+                Question.is_asked is True,
             )).all())
 
 
 def find_random_question(course_id, constraints):
     unit = db.session.Query(Unit).filter_by(
-            and_(
-                    Unit.chapter_no == constraints["unit"],
-                    Unit.course_id == course_id
-            )).first()
+        and_(
+            Unit.chapter_no == constraints["unit"],
+            Unit.course_id == course_id
+        )).first()
     return (db.session.Query(Question).filter_by(
             and_(
-                    Question.cognitive_level == constraints["cognitive"],
-                    Question.difficulty == constraints["difficulty"],
-                    Question.mark == constraints["mark"],
-                    Question.unit_id == unit.id
+                Question.cognitive_level == constraints["cognitive"],
+                Question.difficulty == constraints["difficulty"],
+                Question.mark == constraints["mark"],
+                Question.unit_id == unit.id
             )).order_by(func.random()).first().id)
 
 
