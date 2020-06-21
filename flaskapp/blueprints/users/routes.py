@@ -19,6 +19,7 @@ from flaskapp.blueprints.users.forms import UpdateAccountForm
 from flaskapp.blueprints.users.utils import save_picture
 from flaskapp.blueprints.users.utils import send_reset_email
 from flaskapp.models import User
+from flaskapp.utils import profile_path
 
 users = Blueprint("users", __name__)
 
@@ -120,8 +121,7 @@ def account():
         return redirect(url_for("users.account"))
     form.username.data = current_user.username
     form.email.data = current_user.email
-    image_file = url_for("static",
-                         filename="profile_pics/" + current_user.image_file)
+    image_file = profile_path()
     return render_template(
         "users/account.html",
         title="Account",
@@ -192,3 +192,13 @@ def reset_token(token):
         form=form,
         js_file="js/users/reset_password.js",
     )
+
+
+@users.route("/account/delete/")
+@login_required
+def delete_account():
+    """To delete account of user
+    """
+    db.session.query(User).filter_by(id=current_user.id).delete(
+        synchronize_session="fetch")
+    db.session.commit()

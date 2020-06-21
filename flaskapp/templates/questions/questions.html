@@ -1,13 +1,5 @@
 {% extends "sideNav.html" %}
 
-{% block image %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
-{% endblock image %}
-
-{% block image2 %}
-<img src="{{ image_file }}" class="user" alt="user" title="profile" />
-{% endblock image2 %}
-
 {% block header %}
 <h1 class="header">Subjective Questions</h1>
 {% endblock header %}
@@ -105,10 +97,10 @@
     {% if page_num %}
     {% if questions.page == page_num %}
     <a class="btn btn-info mb-4"
-        href="{{ url_for('questions.question', page=page_num, course_id=course_id, unit_id=unit_id, qtype=qtype) }}">{{ page_num }}</a>
+        href="{{ url_for('questions.all_questions', page=page_num, course_id=course_id, unit_id=unit_id, qtype=qtype) }}">{{ page_num }}</a>
     {% else %}
     <a class="btn btn-outline-info mb-4"
-        href="{{ url_for('questions.question', page=page_num, course_id=course_id, unit_id=unit_id, qtype=qtype) }}">{{ page_num }}</a>
+        href="{{ url_for('questions.all_questions', page=page_num, course_id=course_id, unit_id=unit_id, qtype=qtype) }}">{{ page_num }}</a>
     {% endif %}
     {% else %}
     ...

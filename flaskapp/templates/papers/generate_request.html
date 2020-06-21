@@ -1,1 +1,54 @@
+{% extends "base.html" %}
 
+{% block header %}
+<h3 class="header">Questions</h3>
+{% endblock header %}
+
+{% block main %}
+<div id="part_3">
+ <div id="part_1">
+   <form method="POST" action="" novalidate id="questions">
+       <div class="form_content">
+           <div class="form__fields">
+               <label for="number_of_questions">Number of Questions</label>
+               <input type="number" id="number_of_questions"/>
+               <div id="questions_err"></div>
+            </div>
+
+            <div class="navigation_btns">
+               <button type="button" id="next_1">Next</button>
+            </div>
+       </div>
+   </form>
+
+
+ </div>
+
+ <div id="part_2">
+  <form method="POST" action="" novalidate id="subquestions">
+      <div class="form_content">
+          <div id="dynamic_content">
+
+          </div>
+          <div class="form__fields">
+              <label for="marks">Enter total Marks :</label>
+              <input type="number" id="marks"/>
+              <div id="marks_err"></div>
+          </div>
+          <div class="navigation_btns">
+              <button id="back_1" type="button" >Back</button>
+              <button id="next_2" type="button" >Next</button>
+          </div>
+      </div>
+
+
+
+
+  </form>
+
+ </div>
+
+ <div id="network_err"></div>
+
+</div>
+{% endblock main %}

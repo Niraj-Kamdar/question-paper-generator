@@ -41,12 +41,14 @@ def create_app(config_class=Config):
     minify(app=app, html=True, js=True, cssless=True)
 
     from flaskapp.blueprints.users.routes import users
+    from flaskapp.blueprints.courses.routes import courses
     from flaskapp.blueprints.questions.routes import questions
     from flaskapp.blueprints.main.routes import main
     from flaskapp.blueprints.errors.routes import errors
     from flaskapp.blueprints.papers.routes import papers
 
     app.register_blueprint(users)
+    app.register_blueprint(courses)
     app.register_blueprint(questions)
     app.register_blueprint(main)
     app.register_blueprint(errors)

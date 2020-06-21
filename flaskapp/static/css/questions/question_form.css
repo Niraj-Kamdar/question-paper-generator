@@ -3,7 +3,7 @@
 #difficulty_label,
 #cognitive_label {
   background-color: rgba(144, 0, 240, 0.15);
-  color: rgba(88, 88, 88, 1);
+  color: #585858;
   font-size: 25px;
   padding: 10px;
 }
@@ -32,7 +32,8 @@
 #reset_btn {
   background-color: rgba(144, 0, 240, 0.15);
   border: none;
-  color: rgba(88, 88, 88, 1);
+  /*color: rgba(88, 88, 88, 1);*/
+  color : #585858;
   font-size: 20px;
   padding: 10px 20px;
 }
@@ -80,7 +81,8 @@
 }
 
 .header {
-  color: rgba(88, 88, 88, 1);
+  /*color: rgba(88, 88, 88, 1);*/
+  color : #585858;
   font-size: 40px;
   margin: 0 20px;
   font-weight: 500;

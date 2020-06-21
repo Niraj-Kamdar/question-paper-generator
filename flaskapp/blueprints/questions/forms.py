@@ -9,22 +9,8 @@ from wtforms.validators import DataRequired
 from wtforms.validators import Length
 from wtforms.validators import NumberRange
 
-
-class CourseForm(FlaskForm):
-    course = StringField("Course", validators=[DataRequired()])
-    submit = SubmitField("submit")
-
-
-class UnitForm(FlaskForm):
-    chapter_no = IntegerField(
-        "Chapter No.",
-        validators=[
-            DataRequired(),
-            NumberRange(1, 101, "Units can't be more than 100"),
-        ],
-    )
-    name = StringField("Name", validators=[DataRequired()])
-    submit = SubmitField("submit")
+from flaskapp.utils import CognitiveEnum
+from flaskapp.utils import DifficultyEnum
 
 
 class QuestionForm(FlaskForm):
@@ -40,15 +26,11 @@ class QuestionForm(FlaskForm):
     )
     difficulty = SelectField(
         "Difficulty Level",
-        choices=[("Easy", "Easy"), ("Medium", "Medium"), ("Hard", "Hard")],
+        choices=[(member, member) for member in DifficultyEnum.__members__],
     )
     cognitive_level = SelectField(
         "Cognitive Level",
-        choices=[
-            ("Application", "Application"),
-            ("Comprehension", "Comprehension"),
-            ("Knowledge", "Knowledge"),
-        ],
+        choices=[(member, member) for member in CognitiveEnum.__members__],
     )
     imp = BooleanField("Mark As IMP")
     submit = SubmitField("submit")

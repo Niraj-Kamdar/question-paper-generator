@@ -1,49 +1,61 @@
-import functools
-
-from flask import abort
-from flask_login import current_user
+from flask import redirect
+from flask import url_for
 
 from flaskapp import db
-from flaskapp.models import Course
-from flaskapp.models import Unit
+from flaskapp.models import Question
+from flaskapp.utils import CognitiveEnum
+from flaskapp.utils import DifficultyEnum
+from flaskapp.utils import QuestionTypeEnum
 
 
-def check_valid_course(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        _course = Course.query.filter(Course.id == kwargs["course_id"]).first()
-        if _course is None or _course.teacher != current_user:
-            abort(403)
-        return func(*args, **kwargs)
+def update_imp_in_db(obj):
+    """Update given IMP flag of given question
 
-    return wrapper
-
-
-def check_valid_unit(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        _course = Course.query.filter(Course.id == kwargs["course_id"]).first()
-        _unit = Unit.query.filter(Unit.id == kwargs["unit_id"]).first()
-        if _unit is None or _unit.course != _course:
-            abort(403)
-        return func(*args, **kwargs)
-
-    return wrapper
-
-
-def check_valid_question_type(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        if kwargs["qtype"] not in ["sub", "mcq"]:
-            abort(404)
-        return func(*args, **kwargs)
-
-    return wrapper
-
-
-def update_imp(question, obj):
-    db.session.query(question).filter(question.id.in_(obj["imp"])).update(
-        dict(imp=True), synchronize_session="fetch")
-    db.session.query(question).filter(question.id.in_(obj["notimp"])).update(
-        dict(imp=False), synchronize_session="fetch")
+    Args:
+        obj (dict): Description of setting flag
+    """
+    db.session.query(Question).filter(Question.id.in_(obj.get(
+        "imp", []))).update(dict(imp=True), synchronize_session="fetch")
+    db.session.query(Question).filter(Question.id.in_(obj.get(
+        "notimp", []))).update(dict(imp=False), synchronize_session="fetch")
     db.session.commit()
+
+
+def delete_question_from_db(obj):
+    db.session.query(Question).filter(
+        Question.id.in_(obj)).delete(synchronize_session="fetch")
+    db.session.commit()
+
+
+def add_question_to_db(form, question, unit_id, qtype):
+    _question = Question(
+        question=question,
+        mark=form.mark.data,
+        difficulty=DifficultyEnum.from_string(form.difficulty.data),
+        cognitive_level=CognitiveEnum.from_string(form.cognitive_level.data),
+        question_type=QuestionTypeEnum.from_string(qtype),
+        imp=form.imp.data,
+        unit_id=unit_id,
+    )
+    db.session.add(_question)
+    db.session.commit()
+
+
+def update_question_in_db(form, question, qtype):
+    question.mark = form.mark.data
+    question.difficulty = DifficultyEnum.from_string(form.difficulty.data)
+    question.cognitive_level = CognitiveEnum.from_string(
+        form.cognitive_level.data)
+    question.question_type = QuestionTypeEnum.from_string(qtype)
+    question.imp = form.imp.data
+    db.session.commit()
+
+
+def redirect_to_all_questions(course_id, unit_id, qtype):
+    return redirect(
+        url_for(
+            "questions.all_questions",
+            qtype=qtype,
+            course_id=course_id,
+            unit_id=unit_id,
+        ))
