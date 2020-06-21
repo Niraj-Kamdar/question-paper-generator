@@ -13,10 +13,8 @@ class PaperGenerateRequest(BaseUnit):
             headers={"Content-Type": "application/json"},
         )
         self.assertIn(
-            (
-                b"You should be redirected automatically to target URL: "
-                b"<a href=/course/1/papers/generate/form/ >"
-            ),
+            (b"You should be redirected automatically to target URL: "
+             b"<a href=/course/1/papers/generate/form/ >"),
             response.data,
         )
 
@@ -39,7 +37,9 @@ class PaperGenerateRequest(BaseUnit):
             "sub": 15,
             "mcq": 15,
         }
-        response, _ = test_post_request(self, "/course/1/papers/generate/form/", data)
+        response, _ = test_post_request(self,
+                                        "/course/1/papers/generate/form/",
+                                        data)
         # FIXME: update assertion here
         self.assertIn(b"<title>Title</title>", response.data)
         response = self.client.post(
@@ -48,9 +48,7 @@ class PaperGenerateRequest(BaseUnit):
             headers={"Content-Type": "application/json"},
         )
         self.assertIn(
-            (
-                b"You should be redirected automatically to target URL: "
-                b"<a href=/course/1/papers/generate/ >"
-            ),
+            (b"You should be redirected automatically to target URL: "
+             b"<a href=/course/1/papers/generate/ >"),
             response.data,
         )
