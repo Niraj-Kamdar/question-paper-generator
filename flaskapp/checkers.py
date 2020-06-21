@@ -2,7 +2,9 @@ import functools
 
 from flask import abort
 from flask_login import current_user
-from flaskapp.models import Course, Unit
+
+from flaskapp.models import Course
+from flaskapp.models import Unit
 
 
 def check_valid_course(func):
