@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: 03bbcd7763e1
-Revises: 
+Revises:
 Create Date: 2020-06-21 22:46:55.814462
 
 """
