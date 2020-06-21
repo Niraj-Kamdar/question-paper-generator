@@ -1,10 +1,10 @@
 (function(){
-    const deleteCourseBtn = document.getElementById("delete_course");
+    const deleteCourseBtn = document.getElementsByClassName("delete_course")[0];
     const deleteCourseBox = document.getElementsByClassName("delete_course_box");
     const deleteUnitBtn = document.getElementById("delete_unit");
     const deleteUnitBox = document.getElementsByClassName("delete_unit_box");
-    const sideDeleteCourseBtn = document.getElementById("side_delete_course");
-    const sideDeleteUnitBtn = document.getElementById("side_delete_unit");
+    const smallDeleteCourseBtn = document.getElementById("delete_course_small");
+    const smallDeleteUnitBtn = document.getElementById("delete_unit_small");
     let courseId = document.getElementById("course_id");
     if(courseId) courseId = courseId.innerHTML;
 
@@ -23,7 +23,6 @@
                     const ids = selectedNodes.map((node) => {
                         return node.parentNode.parentNode.lastElementChild.getAttribute("data-id");
                     }).map((node) => Number(node));
-                    console.log(ids);
                     fetch(url, {
                         method: 'post',
                         headers: {
@@ -45,8 +44,8 @@
             });
         });
     }
-    deleteCourseBox && deleteCourseBtn && deleteCoursesandUnits([sideDeleteCourseBtn,deleteCourseBtn],deleteCourseBox,'/course/delete/');
+    deleteCourseBox && deleteCourseBtn && deleteCoursesandUnits([smallDeleteCourseBtn,deleteCourseBtn],deleteCourseBox,'/course/delete/');
 
-    deleteUnitBox && deleteUnitBtn && deleteCoursesandUnits([sideDeleteUnitBtn,deleteUnitBtn],deleteUnitBox,'/course/' + courseId + '/unit/delete/');
+    deleteUnitBox && deleteUnitBtn && deleteCoursesandUnits([smallDeleteUnitBtn,deleteUnitBtn],deleteUnitBox,'/course/' + courseId + '/unit/delete/');
 
 })();
