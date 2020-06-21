@@ -5,7 +5,6 @@ from string import ascii_lowercase
 
 from flask import Blueprint
 from flask import flash
-from flask import json
 from flask import jsonify
 from flask import redirect
 from flask import render_template
@@ -95,7 +94,6 @@ def mark_distribution_form(course_id):
     total_marks = json_url.loads(session["total_marks"])
     no_of_subquestions = json_url.loads(session["no_of_subquestions"])
     form = MarkDistributionForm(course_id, no_of_subquestions, total_marks)
-
     if form.validate_on_submit():
         question_no = list(
             itertools.chain(*map(
@@ -105,7 +103,7 @@ def mark_distribution_form(course_id):
         raw_template = QPTGenerator(dict(form.data), question_no).generate()
         paper_template = defaultdict(lambda: defaultdict(dict))
         subque_counter = Counter()
-        que_counter = Counter()
+        que_counter = defaultdict(dict)
         for i in range(len(raw_template["question_no"])):
             data = dict(
                 mark=raw_template["question"][i],
@@ -115,8 +113,9 @@ def mark_distribution_form(course_id):
             )
             question_type = QuestionTypeEnum(
                 raw_template["question_type"][i]).name
-            que_counter[question_type] += 1
-            current_que = que_counter[question_type]
+            if raw_template["question_no"][i] not in que_counter[question_type]:
+                que_counter[question_type][raw_template["question_no"][i]] = len(que_counter[question_type]) + 1
+            current_que = que_counter[question_type][raw_template["question_no"][i]]
             current_subque = ascii_lowercase[subque_counter[(question_type,
                                                              current_que)]]
             paper_template[question_type][current_que][current_subque] = data
