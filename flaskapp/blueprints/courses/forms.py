@@ -1,6 +1,7 @@
 from flask_login import current_user
 from flask_wtf import FlaskForm
-from sqlalchemy import and_, func
+from sqlalchemy import and_
+from sqlalchemy import func
 from wtforms import BooleanField
 from wtforms import IntegerField
 from wtforms import StringField
@@ -59,8 +60,7 @@ def validate_chapter_no(form, chapter_no):
         raise ValidationError(
             "That Unit is already exist. Please choose a different one.")
     if (max_chapter_no - chapter_no) > 1:
-        raise ValidationError(
-            f"Please crete unit:{max_chapter_no + 1} first.")
+        raise ValidationError(f"Please crete unit:{max_chapter_no + 1} first.")
 
 
 class CourseForm(FlaskForm):

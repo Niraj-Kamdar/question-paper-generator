@@ -113,9 +113,12 @@ def mark_distribution_form(course_id):
             )
             question_type = QuestionTypeEnum(
                 raw_template["question_type"][i]).name
-            if raw_template["question_no"][i] not in que_counter[question_type]:
-                que_counter[question_type][raw_template["question_no"][i]] = len(que_counter[question_type]) + 1
-            current_que = que_counter[question_type][raw_template["question_no"][i]]
+            if raw_template["question_no"][i] not in que_counter[
+                    question_type]:
+                que_counter[question_type][raw_template["question_no"][i]] = (
+                    len(que_counter[question_type]) + 1)
+            current_que = que_counter[question_type][
+                raw_template["question_no"][i]]
             current_subque = ascii_lowercase[subque_counter[(question_type,
                                                              current_que)]]
             paper_template[question_type][current_que][current_subque] = data
