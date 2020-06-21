@@ -30,14 +30,13 @@ def test_post_request(self, path, data, model=None, entry_no=None):
     return response, None
 
 
-#
-# def test_get_request(self, path, data):
-#     """Testing get request
-#
-#     Returns:
-#         Response of test -- It will test if the get request is occuring or not.
-#     """
-#     data = json.dumps(data)
-#     response = self.client.get(f"{path}{data}", follow_redirects=True)
-#     self.assertEqual(response.status_code, 200)
-#     return response
+def test_get_request(self, path, data):
+    """Testing get request
+
+    Returns:
+        Response of test -- It will test if the get request is occuring or not.
+    """
+    data = json.dumps(data)
+    response = self.client.get(f"{path}{data}", follow_redirects=True)
+    self.assertEqual(response.status_code, 200)
+    return response

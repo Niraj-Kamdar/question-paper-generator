@@ -162,7 +162,7 @@ class BaseMCQQuestion(BaseUnit):
             self,
             "/course/1/unit/1/question/mcq/new/",
             new_question,
-            models.Question,
+            models.MCQQuestion,
             1,
         )
 
@@ -182,7 +182,7 @@ class BaseMCQQuestion(BaseUnit):
             self,
             "/course/1/unit/1/question/mcq/new/",
             new_question,
-            models.Question,
+            models.MCQQuestion,
             2,
         )
 
@@ -202,7 +202,7 @@ class BaseMCQQuestion(BaseUnit):
             self,
             "/course/1/unit/1/question/mcq/new/",
             new_question,
-            models.Question,
+            models.MCQQuestion,
             3,
         )
 
@@ -222,7 +222,7 @@ class BaseMCQQuestion(BaseUnit):
             self,
             "/course/1/unit/1/question/mcq/new/",
             new_question,
-            models.Question,
+            models.MCQQuestion,
             4,
         )
 
@@ -242,6 +242,6 @@ class BaseMCQQuestion(BaseUnit):
             self,
             "/course/1/unit/1/question/mcq/new/",
             new_question,
-            models.Question,
+            models.MCQQuestion,
             5,
         )

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Generated Paper</title>
+    <title>Generated Question Paper</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <script src="https://browser.sentry-cdn.com/5.15.4/bundle.min.js"
@@ -41,10 +41,10 @@
 
 		<div class="row" style="display: flex;justify-content: center; font-weight: bold;">
 			<p style="margin: 0;">Subject : {{ course_name }}</p>
-		</div>
+		</div>	
 		<div class="row" style="display: flex;justify-content: center; font-weight: bold;">
 			<p style="margin: 0;">{{ prefix }} Examination</p>
-		</div>
+		</div>	
 		<div class="row pb-3" style="font-weight: bold; border-bottom: 2px solid black;">
 			<div class="col" style="text-align: left;"><p style="margin: 0;">Date : {{ date }}</p></div>
 			<div class="col" style="text-align: center;"><p style="margin: 0;">{{ term }}</p></div>
@@ -63,13 +63,33 @@
 		</div>
 		<div class="row mt-4" style="text-align: justify;">
 
-			<ol type="1">
+			<h5 style="font-weight: bold; width: 100%; height: auto;">Answer the following Multiple choice questions.</h5>
 
-				{% for q in questions %}
+			<ol class="mt-4" type="1">
 
-					<li style="padding-left: 10px">{{ questions[q]['question'] }} <b>[{{ questions[q]['marks'] }}] </b></li>
+				{% for m in mcq_questions %}
+
+					<li style="padding-left: 10px">{{ mcq_questions[m]['question'] }} <b>[{{ mcq_questions[m]['marks'] }}] </b></li>
 					<ol class="mb-4" type="A">
-					  	{% for sub_q in questions[q]['sub_questions'] %}
+						<li style="padding-left: 10px">{{ mcq_questions[m]['A'] }}</li>
+						<li style="padding-left: 10px">{{ mcq_questions[m]['B'] }}</li>
+						<li style="padding-left: 10px">{{ mcq_questions[m]['C'] }}</li>
+						<li style="padding-left: 10px">{{ mcq_questions[m]['D'] }}</li>
+					</ol>
+
+				{% endfor %}
+
+			</ol>
+
+			<h5 style="font-weight: bold; width: 100%; height: auto;">Answer the following subjective questions.</h5>
+			
+			<ol class="mt-4" type="1">
+
+				{% for q in s_questions %}
+
+					<li style="padding-left: 10px">{{ s_questions[q]['question'] }} <b>[{{ s_questions[q]['marks'] }}] </b></li>
+					<ol class="mb-4" type="i">
+					  	{% for sub_q in s_questions[q]['sub_questions'] %}
 							<li style="padding-left: 10px">{{ sub_q }}</li>
 						{% endfor %}
 					</ol>
@@ -77,7 +97,6 @@
 				{% endfor %}
 
 			</ol>
-
 
 		</div>
     </div>

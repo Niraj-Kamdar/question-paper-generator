@@ -1,26 +1,26 @@
 from flask import Blueprint
 from flask import flash
+from flask import json
+from flask import redirect
 from flask import render_template
 from flask import request
+from flask import url_for
 from flask_login import current_user
 from flask_login import login_required
-from sqlalchemy import and_
 
 from flaskapp import db
 from flaskapp.blueprints.questions.forms import MCQQuestionForm
 from flaskapp.blueprints.questions.forms import QuestionForm
-from flaskapp.blueprints.questions.utils import add_question_to_db
-from flaskapp.blueprints.questions.utils import delete_question_from_db
-from flaskapp.blueprints.questions.utils import redirect_to_all_questions
-from flaskapp.blueprints.questions.utils import update_imp_in_db
-from flaskapp.blueprints.questions.utils import update_question_in_db
+from flaskapp.blueprints.questions.utils import update_imp
 from flaskapp.checkers import check_valid_course
 from flaskapp.checkers import check_valid_question_type
 from flaskapp.checkers import check_valid_unit
 from flaskapp.models import Course
+from flaskapp.models import MCQQuestion
 from flaskapp.models import Question
+from flaskapp.utils import CognitiveLevel
+from flaskapp.utils import DifficultyLevel
 from flaskapp.utils import profile_path
-from flaskapp.utils import QuestionTypeEnum
 
 questions = Blueprint("questions", __name__)
 
@@ -38,61 +38,55 @@ def all_questions(course_id, unit_id, qtype):
         qtype {Subjective/mcq} -- Specification about question is subjective or MCQ type
 
     Returns:
-        HTML Function -- According to chosen type of question render page
+        HTML Function -- According to choosen type of question render page
     """
-    main_page = request.args.get("page", 1, type=int)
     _courses = Course.query.filter(Course.teacher == current_user).all()
-    _questions = Question.query.filter(
-        and_(
-            Question.unit_id == unit_id,
-            Question.question_type == QuestionTypeEnum.from_string(qtype),
-        )).paginate(page=main_page, per_page=1)
-    common_args = dict(
-        courses=_courses,
-        course_id=course_id,
-        unit_id=unit_id,
-        qtype=qtype,
-        image_file=profile_path(),
-    )
+    main_page = request.args.get("page", 1, type=int)
     if qtype == "mcq":
+        _mcq_questions = MCQQuestion.query.filter(
+            MCQQuestion.unit_id == unit_id).paginate(page=main_page,
+                                                     per_page=1)
         return render_template(
             "questions/mcq_questions.html",
-            questions=_questions,
-            css_files=[
-                "css/base.css",
-                "css/questions/mcqs.css",
-                "css/questions/sideNav.css",
-                "css/questions/questions.css",
-                "css/questions/mcq_form.css",
-                "css/questions/question_form.css",
-            ],
-            js_files=["js/questions/update_mcq_question.js", "js/sideNav.js"],
+            questions=_mcq_questions,
+            courses=_courses,
+            course_id=course_id,
+            unit_id=unit_id,
+            qtype=qtype,
+            css_file="css/base.css",
+            css_file2="css/questions/mcqs.css",
+            css_file3="css/questions/sideNav.css",
+            css_file4="css/questions/questions.css",
+            css_file5="css/questions/mcq_form.css",
+            css_file6="css/questions/question_form.css",
+            js_file="js/questions/update_mcq_question.js",
+            js_file2="js/sideNav.js",
+            image_file=profile_path(),
             title="Objective Questions",
-            **common_args,
         )
     else:
+        _questions = Question.query.filter(
+            Question.unit_id == unit_id).paginate(page=main_page, per_page=1)
         return render_template(
             "questions/questions.html",
             questions=_questions,
-            css_file=[
-                "css/base.css",
-                "css/questions/questions.css",
-                "css/questions/sideNav.css",
-                "css/questions/question_form.css",
-            ],
-            js_files=[
-                "js/questions/update_question.js",
-                "js/sideNav.js",
-            ],
+            courses=_courses,
+            course_id=course_id,
+            unit_id=unit_id,
+            qtype=qtype,
+            css_file="css/base.css",
+            css_file2="css/questions/questions.css",
+            css_file3="css/questions/sideNav.css",
+            css_file4="css/questions/question_form.css",
+            js_file="js/questions/update_question.js",
+            js_file2="js/sideNav.js",
+            image_file=profile_path(),
             title="Subjective Questions",
-            **common_args,
         )
 
 
-@questions.route(
-    "/course/<course_id>/unit/<unit_id>/question/<qtype>/new/",
-    methods=["GET", "POST"],
-)
+@questions.route("/course/<course_id>/unit/<unit_id>/question/<qtype>/new/",
+                 methods=["GET", "POST"])
 @login_required
 @check_valid_course
 @check_valid_unit
@@ -101,67 +95,94 @@ def add_question(course_id, unit_id, qtype):
     """Adding question
 
     Arguments:
-        course_id {Object} -- Course ID which uniquely defined.
-        question_type {Subjective/MCQ} -- What is the type of question ? subjective or MCQ
+        course_id {Object} -- Course ID which uniquley defined.
+        qtype {Subjective/MCQ} -- What is the type of question ? subjective or MCQ
 
     Returns:
         HTML function -- If the course instructor is not user than it will throw error 403 then
         according to type of question eg : if type is MCQ then difficulty, mark, options, IMP flag
         and if type is subjective then difficulty,mark,IMP flag added with question to the database
-        and will add to UI and list down on screen.
+        and will add to UI and listdown on screen.
     """
     _courses = Course.query.filter(Course.teacher == current_user).all()
-    common_args = dict(
-        courses=_courses,
-        course_id=course_id,
-        unit_id=unit_id,
-        qtype=qtype,
-        image_file=profile_path(),
-    )
     if qtype == "mcq":
         form = MCQQuestionForm()
         if form.validate_on_submit():
-            question = dict(
+            _question = MCQQuestion(
                 question=form.question.data,
+                mark=form.mark.data,
+                difficulty=DifficultyLevel(form.difficulty.data),
+                cognitive_level=CognitiveLevel(form.cognitive_level.data),
+                imp=form.imp.data,
                 option1=form.option1.data,
                 option2=form.option2.data,
                 option3=form.option3.data,
                 option4=form.option4.data,
+                unit_id=unit_id,
             )
+            db.session.add(_question)
+            db.session.commit()
             flash("New question added successfully!", "success")
-            add_question_to_db(form, question, unit_id, qtype)
-            return redirect_to_all_questions(course_id, unit_id, qtype)
+            return redirect(
+                url_for(
+                    "questions.all_questions",
+                    qtype="mcq",
+                    course_id=course_id,
+                    unit_id=unit_id,
+                ))
         return render_template(
             "questions/mcq_question_form.html",
             form=form,
-            css_files=[
-                "css/base.css",
-                "css/questions/mcq_form.css",
-                "css/questions/sideNav.css",
-                "css/questions/question_form.css",
-            ],
-            js_files=["js/questions/mcq_question_form.js", "js/sideNav.js"],
+            courses=_courses,
+            course_id=course_id,
+            unit_id=unit_id,
+            qtype=qtype,
+            css_file="css/base.css",
+            css_file2="css/questions/mcq_form.css",
+            css_file3="css/questions/sideNav.css",
+            css_file4="css/questions/question_form.css",
+            js_file="js/questions/mcq_question_form.js",
+            js_file2="js/sideNav.js",
+            image_file=profile_path(),
             title="Add Objective Question",
-            **common_args,
         )
     else:
         form = QuestionForm()
         if form.validate_on_submit():
-            question = dict(question=form.question.data)
+            _question = Question(
+                question=form.question.data,
+                mark=form.mark.data,
+                difficulty=DifficultyLevel(form.difficulty.data),
+                cognitive_level=CognitiveLevel(form.cognitive_level.data),
+                imp=form.imp.data,
+                unit_id=unit_id,
+            )
+            db.session.add(_question)
+            db.session.commit()
+
             flash("New question added successfully!", "success")
-            add_question_to_db(form, question, unit_id, qtype)
-            return redirect_to_all_questions(course_id, unit_id, qtype)
+            return redirect(
+                url_for(
+                    "questions.all_questions",
+                    qtype="sub",
+                    course_id=course_id,
+                    unit_id=unit_id,
+                ))
+
         return render_template(
             "questions/question_form.html",
             form=form,
-            css_files=[
-                "css/base.css",
-                "css/questions/question_form.css",
-                "css/questions/sideNav.css",
-            ],
-            js_files=["js/questions/question_form.js", "js/sideNav.js"],
+            courses=_courses,
+            course_id=course_id,
+            unit_id=unit_id,
+            qtype=qtype,
+            css_file="css/base.css",
+            css_file2="css/questions/question_form.css",
+            css_file3="css/questions/sideNav.css",
+            js_file="js/questions/question_form.js",
+            js_file2="js/sideNav.js",
+            image_file=profile_path(),
             title="Add Subjective Question",
-            **common_args,
         )
 
 
@@ -180,86 +201,158 @@ def update_question(course_id, unit_id, qtype, question_id):
         Render template -- for updating questions if that question is exist then update it by id.And update marks , difficulty and IMP flag accorging to input.
        And do changes in database accordingly.
     """
-    common_args = dict(
-        course_id=course_id,
-        unit_id=unit_id,
-        qtype=qtype,
-        image_file=profile_path(),
-    )
-    _question = db.session.query(Question).filter_by(id=question_id).first()
-    if _question is None:
-        flash(f"Question:{question_id} Does not exist", "Failure")
-        return redirect_to_all_questions(course_id, unit_id, qtype)
-    data = _question.to_dict()
-    data.update(_question.question)
     if qtype == "mcq":
-        form = MCQQuestionForm(**data)
+        _question = db.session.query(MCQQuestion).filter_by(
+            id=question_id).first()
+        if _question is None:
+            flash(f"Question:{question_id} Does not exist", "Failure")
+            return redirect(
+                url_for(
+                    "questions.all_questions",
+                    qtype=qtype,
+                    course_id=course_id,
+                    unit_id=unit_id,
+                ))
+        form = MCQQuestionForm(**_question.to_dict())
         if form.validate_on_submit():
-            _question.question = dict(
-                question=form.question.data,
-                option1=form.option1.data,
-                option2=form.option2.data,
-                option3=form.option3.data,
-                option4=form.option4.data,
-            )
-            update_question_in_db(form, _question, qtype)
+            _question.question = form.question.data
+            _question.mark = form.mark.data
+            _question.difficulty = DifficultyLevel(form.difficulty.data)
+            _question.cognitive_level = CognitiveLevel(
+                form.cognitive_level.data)
+            _question.imp = form.imp.data
+            _question.option1 = form.option1.data
+            _question.option2 = form.option2.data
+            _question.option3 = form.option3.data
+            _question.option4 = form.option4.data
+            db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")
-            return redirect_to_all_questions(course_id, unit_id, qtype)
+            return redirect(
+                url_for(
+                    "questions.all_questions",
+                    qtype=qtype,
+                    course_id=course_id,
+                    unit_id=unit_id,
+                ))
         return render_template(
             "questions/mcq_question_form.html",
             form=form,
-            css_files=["css/questions/question_form.css"],
-            js_files=["js/questions/question_form.js"],
-            **common_args,
+            qtype=qtype,
+            course_id=course_id,
+            unit_id=unit_id,
+            css_file="css/questions/question_form.css",
+            js_file="js/questions/question_form.js",
         )
     else:
-        form = QuestionForm(**data)
+        _question = db.session.query(Question).filter_by(
+            id=question_id).first()
+        if _question is None:
+            flash(f"Question:{question_id} Does not exist", "Failure")
+            return redirect(
+                url_for(
+                    "questions.all_questions",
+                    qtype="sub",
+                    course_id=course_id,
+                    unit_id=unit_id,
+                ))
+        form = QuestionForm(**_question.to_dict())
         if form.validate_on_submit():
-            _question.question = dict(question=form.question.data)
-            update_question_in_db(form, _question, qtype)
+            _question.question = form.question.data
+            _question.mark = form.mark.data
+            _question.difficulty = DifficultyLevel(form.difficulty.data)
+            _question.cognitive_level = CognitiveLevel(
+                form.cognitive_level.data)
+            _question.imp = form.imp.data
+            db.session.commit()
             flash(f"Question:{question_id} updated successfully!", "success")
-            return redirect_to_all_questions(course_id, unit_id, qtype)
+            return redirect(
+                url_for(
+                    "questions.all_questions",
+                    qtype="sub",
+                    course_id=course_id,
+                    unit_id=unit_id,
+                ))
         return render_template(
             "questions/question_form.html",
             form=form,
-            css_files=["css/questions/question_form.css"],
-            js_files=["js/questions/question_form.js"],
-            **common_args,
+            qtype=qtype,
+            course_id=course_id,
+            unit_id=unit_id,
+            css_file="css/questions/question_form.css",
+            js_file="js/questions/question_form.js",
         )
 
 
-@questions.route("/course/<course_id>/unit/<unit_id>/question/<qtype>/imp/",
-                 methods=["GET", "POST"])
+@questions.route(
+    "/course/<course_id>/unit/<unit_id>/question/<qtype>/imp/<impq>/",
+    methods=["GET"])
 @login_required
 @check_valid_course
 @check_valid_unit
 @check_valid_question_type
-def imp_question(course_id, unit_id, qtype):
+def imp_question(course_id, unit_id, qtype, impq):
     """Set an IMP flag to question
 
     Returns:
         Same page with flag or without flag -- set an IMP flag to particular question.And do changes in database also.
     """
-    if request.method == "POST":
-        update_imp_in_db(request.get_json())
-        return redirect_to_all_questions(course_id, unit_id, qtype)
+    obj = json.loads(impq)
+    if qtype == "mcq":
+        update_imp(MCQQuestion, obj)
+        return redirect(
+            url_for(
+                "questions.all_questions",
+                qtype=qtype,
+                course_id=course_id,
+                unit_id=unit_id,
+            ))
+    else:
+        update_imp(Question, obj)
+        return redirect(
+            url_for(
+                "questions.all_questions",
+                qtype=qtype,
+                course_id=course_id,
+                unit_id=unit_id,
+            ))
 
 
 @questions.route(
-    "/course/<course_id>/unit/<unit_id>/question/<qtype>/delete/",
-    methods=["GET", "POST"],
+    "/course/<course_id>/unit/<unit_id>/question/<qtype>/delete/<deleteq>/",
+    methods=["GET"],
 )
 @login_required
 @check_valid_course
 @check_valid_unit
 @check_valid_question_type
-def delete_question(course_id, unit_id, qtype):
+def delete_question(course_id, unit_id, qtype, deleteq):
     """Delete question
 
     Returns:
         page -- If current user is not an instructor of that subject then throw erroe else
         delete question's data. and update UI.
     """
-    if request.method == "POST":
-        delete_question_from_db(request.get_json())
-        return redirect_to_all_questions(course_id, unit_id, qtype)
+    if qtype == "mcq":
+        del_ids = json.loads(deleteq)
+        db.session.query(MCQQuestion).filter(
+            MCQQuestion.id.in_(del_ids)).delete(synchronize_session="fetch")
+        db.session.commit()
+        return redirect(
+            url_for(
+                "questions.all_questions",
+                qtype="mcq",
+                course_id=course_id,
+                unit_id=unit_id,
+            ))
+    else:
+        del_ids = json.loads(deleteq)
+        db.session.query(Question).filter(
+            Question.id.in_(del_ids)).delete(synchronize_session="fetch")
+        db.session.commit()
+        return redirect(
+            url_for(
+                "questions.all_questions",
+                qtype="sub",
+                course_id=course_id,
+                unit_id=unit_id,
+            ))

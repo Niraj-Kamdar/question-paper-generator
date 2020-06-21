@@ -26,10 +26,29 @@
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',
       filename='css/headerFooter.css') }}"/>
-    {% for css_file in css_files %}
+    {% if css_file %}
         <link rel="stylesheet" type="text/css" href="{{ url_for('static',
       filename=css_file) }}"/>
-    {% endfor %}
+    {% endif %}
+    {% if css_file2 %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename=css_file2) }}"/>
+    {% endif %} {% if css_file3 %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename=css_file3) }}"/>
+{% endif %}
+    {% if css_file4 %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename=css_file4) }}"/>
+    {% endif %}
+    {% if css_file5 %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename=css_file5) }}"/>
+    {% endif %}
+    {% if css_file6 %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+      filename=css_file6) }}"/>
+    {% endif %}
     {% block links %} {% endblock links %}
 </head>
 
@@ -140,10 +159,12 @@
       filename='js/headerFooter.js') }}" defer="defer"></script>
 {% block general_scripts %}
 {% endblock general_scripts %}
-{% for js_file in js_files %}
+{% if js_file %}
     <script type="text/javascript" src="{{ url_for('static',
       filename=js_file) }}" defer="defer"></script>
-{% endfor %} {% block script %} {% endblock script %}
+{% endif %} {% if js_file2 %}
+    <script type="text/javascript" src="{{ url_for('static',filename=js_file2) }}" defer="defer"></script>
+{% endif %} {% block script %} {% endblock script %}
 </body>
 
 </html>

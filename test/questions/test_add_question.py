@@ -1,5 +1,6 @@
-from flaskapp.models import Question
+from flaskapp import models
 from test.main.base_classes import BaseUnit
+from test.main.base_classes import BaseUser
 from test.main.utils import test_post_request
 
 
@@ -16,12 +17,12 @@ class AddQuestionTestCase(BaseUnit):
         )
         _, question = test_post_request(self,
                                         "/course/1/unit/1/question/sub/new/",
-                                        new_question, Question, 1)
+                                        new_question, models.Question, 1)
 
         # Testing if repr method is working
         self.assertEqual(
             str(question),
-            "Question(Is it okay?, 8, Easy, Application, sub, True)",
+            "Question(Is it okay?, 8, DifficultyEnum.Easy, CognitiveEnum.Application, True)",
         )
 
         # Test invalid data
@@ -40,7 +41,7 @@ class AddQuestionTestCase(BaseUnit):
             self,
             "/course/1/unit/1/question/sub/new/",
             new_question,
-            Question,
+            models.Question,
             2,
         )
 
@@ -58,11 +59,11 @@ class AddQuestionTestCase(BaseUnit):
             option4="7",
         )
         _, mcq = test_post_request(self, "/course/1/unit/1/question/mcq/new/",
-                                   new_mcq, Question, 1)
+                                   new_mcq, models.MCQQuestion, 1)
         # test repr method
         self.assertEqual(
             str(mcq),
-            "Question(Rate it, 8, Easy, Application, mcq, False)",
+            "MCQQuestion(Rate it, 8, DifficultyEnum.Easy, CognitiveEnum.Application, False, 10, 9, 8, 7)",
         )
         # test invalid data
         new_mcq = dict(
@@ -84,6 +85,6 @@ class AddQuestionTestCase(BaseUnit):
             self,
             "/course/1/unit/1/question/mcq/new/",
             new_mcq,
-            Question,
+            models.MCQQuestion,
             2,
         )
