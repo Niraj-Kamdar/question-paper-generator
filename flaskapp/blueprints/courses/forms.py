@@ -1,6 +1,7 @@
 from flask_login import current_user
 from flask_wtf import FlaskForm
-from sqlalchemy import and_, func
+from sqlalchemy import and_
+from sqlalchemy import func
 from wtforms import BooleanField
 from wtforms import IntegerField
 from wtforms import StringField
