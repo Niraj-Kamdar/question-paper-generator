@@ -11,7 +11,7 @@ from flaskapp.models import Question
 
 
 def find_conflicting_questions(course_id, constraints):
-    return (db.session.Query(Question).filter_by(
+    return (db.session.query(Question).filter_by(
         and_(
             Question.cognitive_level == constraints["cognitive"],
             Question.difficulty == constraints["difficulty"],

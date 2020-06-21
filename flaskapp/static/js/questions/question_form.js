@@ -87,6 +87,13 @@
     question.style.height = "";
     question.style.height = question.scrollHeight + "px";
   });
+    resetBtn.addEventListener("click", () => {
+    toggleBtn.style.left = "4px";
+    toggleContainer.style.backgroundColor = "#ccc";
+    for (let i = 0; i < clientErrors.length; i++) {
+      clientErrors[i].innerText = "";
+    }
+  });
 
   form.addEventListener("submit", (e) => {
     let validation = {};
