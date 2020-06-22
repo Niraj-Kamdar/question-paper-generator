@@ -1,0 +1,184 @@
+.application {
+  color: chocolate;
+}
+
+.comprehension {
+  color: darkorchid;
+}
+
+.easy {
+  color: blue;
+}
+
+.first_row {
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: row;
+}
+
+.first_row_column_1 {
+  color: blue;
+}
+.first_row_column_2 {
+  color: blue;
+  flex-grow: 1;
+  text-align: right;
+}
+
+.first_row_column_3 {
+  display: none;
+  flex-grow: 1;
+  text-align: right;
+}
+
+.fourth_row {
+  border-bottom: 1px solid black;
+}
+
+.sixth_row {
+  display: flex;
+}
+
+.header {
+  color: #585858;
+  font-size: 40px;
+  margin: 0 20px;
+  font-weight: 500;
+}
+
+.hard {
+  color: red;
+}
+
+.knowledge {
+  color: forestgreen;
+}
+
+.left {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 190px;
+}
+
+.marks {
+  color: firebrick;
+}
+
+.medium {
+  color: orange;
+}
+
+#page_container {
+  padding-top: 100px;
+}
+
+#pagination {
+  display: flex;
+  justify-content: center;
+}
+
+#pagination a {
+  margin-right: 10px;
+}
+
+.question_info {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 5px;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: 10px;
+}
+
+.question_description {
+  color: blue;
+  flex-grow: 1;
+  word-break: break-word;
+}
+
+.toggle_container {
+  align-items: center;
+  border-radius: 30px;
+  background-color: #ccc;
+  display: flex;
+  flex-shrink: 0;
+  height: 24px;
+  margin-right: 10px;
+  width: 48px;
+}
+
+.toggle_container:hover {
+  cursor: pointer;
+}
+
+.toggle_btn {
+  background-color: white;
+  border-radius: 50%;
+  left: 4px;
+  height: 16px;
+  position: relative;
+  transition: left 0.4s;
+  width: 16px;
+}
+
+#generate_paper,
+#fix_conflicts {
+  background-color: rgba(144, 0, 240, 0.15);
+  border: none;
+  /*color: rgba(88, 88, 88, 1);*/
+  color : #585858;
+  font-size: 20px;
+  padding: 10px 20px;
+}
+
+.label_checkbox,
+.add_checkbox {
+  display: none;
+}
+
+#logoform {
+  background-color: rgba(144,0,240,0.15);
+  box-shadow: 4px 4px 2px 0;
+  padding: 10px;
+  width: 550px;
+}
+
+#form_content {
+  background-color: white;
+  padding: 10px;
+}
+
+.form__fields {
+  background-color: rgba(144,0,240,0.15);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.form__fields label {
+  color: #585858;
+  font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+  font-size: 20px;
+}
+
+.form__fields input {
+  padding: 10px;
+}
+
+#submit_container {
+  text-align: right;
+  margin-top: 15px;
+}
+
+#template_display {
+  padding-top: 0;
+}
+
+input[type='file']{
+  padding: 0;
+}
+
+.form_client_error {
+  color: red;
+  margin-bottom: 16px;
+}

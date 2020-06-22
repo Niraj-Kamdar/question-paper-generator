@@ -145,7 +145,7 @@ def confirm_paper_template(course_id):
                            image_file=profile_path())
 
 
-@papers.route("/course/<course_id>/papers/generate/")
+@papers.route("/course/<course_id>/papers/generate/",methods=["GET", "POST"])
 @login_required
 @check_valid_course
 @check_valid_session(session_keys=("paper_template", "total_marks"))
@@ -167,12 +167,14 @@ def generate_paper(course_id):
                 paper_template[qtype][question][subquestion] = constraints
 
     form = PaperLogoForm()
+    form.process(request.form)
+    print(form.validate_on_submit(),request.form,form._fields)
     if form.validate_on_submit():
         paper_data = {}
         if form.picture.data:
             paper_data["paper_logo"] = save_logo(form.picture.data)
         paper_data["name"] = form.name.data
-        paper_data["term"] = form.name.data
+        paper_data["term"] = form.term.data
         paper_data["mark"] = json_url.loads(session["total_marks"])
         paper_data["exam_date"] = form.exam_date.data
         paper_data["time_limit"] = form.time_limit.data
@@ -193,6 +195,8 @@ def generate_paper(course_id):
     return render_template(
         "papers/generate_paper.html",
         conflicting_questions=conflicting_questions,
+        course_id = course_id,
+        form = form
     )
 
 

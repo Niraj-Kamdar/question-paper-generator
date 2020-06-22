@@ -69,8 +69,18 @@
                'Content-Type':'application/json'
            },
            body : JSON.stringify(markDistribution)
-       }).then((val)=>{
-           console.log(val);
+       }).then((val)=>val.text()).then((paper)=>{
+           let index1 = paper.indexOf("<hr");
+           const index2 = paper.lastIndexOf("<hr");
+           index1 = paper.indexOf(">",index1);
+           document.getElementById("template_display").innerHTML = paper.substr(index1 + 1,index2 - index1 - 1 + 1 - 1);
+           const link = document.createElement("link");
+           link.setAttribute("rel","stylesheet");
+           link.setAttribute("href","/static/css/papers/generate_paper.css");
+           document.head.appendChild(link);
+           const script = document.createElement("script");
+           script.setAttribute("src","/static/js/papers/generate_paper.js");
+           document.body.appendChild(script);
        }).catch((e)=>{
            console.log(e);
        })

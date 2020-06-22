@@ -1,10 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{%block main %}
+<hr id="start"/>
+<div id="conflicts_container">
+    {% for q in conflicting_questions %}
+    <div class="question_info">
+                <div class="first_row">
+                    <div class="first_row_column_1" data-id="{{ q.id }}"></div>
+                    <div class="first_row_column_2">
+                        {{ q.imp }}</div>
+                    <div class="first_row_column_3">
+                        {{q.question_type}}
+                    </div>
+                </div>
+                <div class="second_row">
+                    <div><span class="left">Marks</span>:
+                        <span class="marks">{{ q.mark }}</span></div>
+                </div>
+                <div class="third_row">
+                    <div><span class="left">Difficulty</span>:
+                        <span class="difficulty">{{ q.difficulty }}</span></div>
+                </div>
+                <div class="fourth_row">
+                    <div><span class="left">Cognitive
+                            level</span>: <span class="cognitive"> {{
+                            q.cognitive_level }}</span></div>
+                </div>
+                <div class="fifth_row">
+                        <span class="left">Unit</span>:
+                        <span class="cognitive">
+                            {{ q.unit_id }}
+                        </span>
+                </div>
+                <div class="sixth_row">
+                        <span class="left">Question</span>: <div class="question_description">
+                            {{ q.question.question }}
+                        </div>
+                </div>
+                {%if q.question_type=='mcq' %}
+                <div class="options_container">
+                            <div class="options_final_value">{{ q.question.option1 }}</div>
+                            <div class="options_final_value">{{ q.question.option2 }}</div>
+                            <div class="options_final_value">{{ q.question.option3 }}</div>
+                            <div class="options_final_value">{{ q.question.option4 }}</div>
+                </div>
+                {% endif %}
+                <div class="form__fields">
+                <label for="checkbox_label_{{loop.index}}" class="label_checkbox">Add into Paper</label>
+                    <input type="checkbox" class="add_checkbox" id="checkbox_label_{{loop.index}}"/>
+                <div class="toggle_container">
+                    <div class="toggle_btn"></div>
+                </div>
+                include in Papers
+            </div>
+            </div>
+    {% endfor %}
+    <button id="fix_conflicts">Fix Conflicts</button>
+</div>
+
+<div id="paper_logo">
+    <form id="logoform" method="post" action='{{url_for("papers.generate_paper", course_id=course_id)}}' novalidate enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div id="form_content">
+            <div class="form__fields">
+                {{ form.name.label() }}
+                {{ form.name(class='paper_fields') }}
+                <div class="form_client_error"></div>
+                {% if form and form.name.errors %}
+                    <ul class="form__error">
+                        {% for error in form.name.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+            </div>
+            <div class="form__fields">
+                {{ form.term.label() }}
+                {{ form.term(class='paper_fields') }}
+                <div class="form_client_error"></div>
+                {% if form and form.term.errors %}
+                    <ul class="form__error">
+                        {% for error in form.term.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+            </div>
+            <div class="form__fields">
+                {{ form.exam_date.label() }}
+                {{ form.exam_date(class='paper_fields') }}
+                <div class="form_client_error"></div>
+                {% if form and form.exam_date.errors %}
+                    <ul class="form__error">
+                        {% for error in form.exam_date.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+            </div>
+            <div class="form__fields">
+                {{ form.time_limit.label() }}
+                {{ form.time_limit(class='paper_fields') }}
+                <div class="form_client_error"></div>
+                {% if form and form.time_limit.errors %}
+                    <ul class="form__error">
+                        {% for error in form.time_limit.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+            </div>
+            <div class="form__fields">
+                {{ form.picture.label() }}
+                {{ form.picture(class='paper_fields') }}
+                <div class="form_client_error"></div>
+                {% if form and form.picture.errors %}
+                    <ul class="form__error">
+                        {% for error in form.picture.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+            </div>
+            <div id="submit_container">
+                {{ form.submit(id="generate_paper") }}
+            </div>
+        </div>
+    </form>
+</div>
+<hr id="end"/>
+{%endblock main %}
