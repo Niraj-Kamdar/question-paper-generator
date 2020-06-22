@@ -77,7 +77,7 @@
       let validation = {
           isValid : true,
           err : []
-      }
+      };
       values.forEach(function(value,index){
          if(index!==4){
              if(!value){
