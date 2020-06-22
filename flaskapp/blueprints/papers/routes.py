@@ -57,7 +57,6 @@ def paper_generate_request(course_id):
     """
     if request.method == "POST":
         data = request.get_json()
-        print(data)
         if data:
             session["total_marks"] = json_url.dumps(data["total_marks"])
             session["no_of_subquestions"] = json_url.dumps(data["questions"])
@@ -122,7 +121,7 @@ def mark_distribution_form(course_id):
         session["paper_template"] = json_url.dumps(dict(paper_template))
         return redirect(
             url_for("papers.confirm_paper_template", course_id=course_id))
-    return render_template("papers/mark_distribution_form.html", form=form)
+    return render_template("papers/mark_distribution_form.html", form=form,title='Mark Distribution')
 
 
 @papers.route("/course/<course_id>/papers/confirm/template/",
@@ -140,9 +139,10 @@ def confirm_paper_template(course_id):
     return render_template("papers/confirm_paper_template.html",
                            course_id=course_id,
                            paper_template=paper_template,
-                           css_files=["/css/papers/confirm_paper_template.css"],
-                           js_files=["/js/papers/confirm_paper_template.js"],
-                           image_file=profile_path())
+                           css_files=["css/papers/confirm_paper_template.css"],
+                           js_files=["js/papers/confirm_paper_template.js"],
+                           image_file=profile_path(),
+                           title='Mark Distribution')
 
 
 @papers.route("/course/<course_id>/papers/generate/",methods=["GET", "POST"])
@@ -168,7 +168,6 @@ def generate_paper(course_id):
 
     form = PaperLogoForm()
     form.process(request.form)
-    print(form.validate_on_submit(),request.form,form._fields)
     if form.validate_on_submit():
         paper_data = {}
         if form.picture.data:

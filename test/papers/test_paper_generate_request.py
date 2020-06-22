@@ -40,8 +40,7 @@ class PaperGenerateRequest(BaseUnit):
         response, _ = test_post_request(self,
                                         "/course/1/papers/generate/form/",
                                         data)
-        # FIXME: update assertion here
-        self.assertIn(b"<title>Title</title>", response.data)
+        self.assertIn(b"<title>Mark Distribution</title>", response.data)
         response = self.client.post(
             "/course/1/papers/confirm/template/",
             data=json.dumps(dict(status="OK")),
