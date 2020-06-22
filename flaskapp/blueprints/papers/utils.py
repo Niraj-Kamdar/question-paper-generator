@@ -12,7 +12,7 @@ from flaskapp.models import Unit
 
 
 def find_conflicting_questions(course_id, constraints):
-    unit = (db.session.Query(Unit).filter_by(
+    unit = (db.session.query(Unit).filter_by(
         and_(Unit.chapter_no == constraints["unit"],
              Unit.course_id == course_id)).first())
     return (db.session.Query(Question).filter_by(
