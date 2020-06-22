@@ -13,7 +13,6 @@ from wtforms import SubmitField
 from wtforms.form import BaseForm
 from wtforms.validators import DataRequired
 from wtforms.validators import ValidationError
-from wtforms.validators import Optional
 from flaskapp.models import Course
 from flaskapp.models import Unit
 from flaskapp.utils import CognitiveEnum
