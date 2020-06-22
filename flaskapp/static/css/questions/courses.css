@@ -26,6 +26,7 @@
 #delete_course_small,
 #add_unit_small,
 #delete_unit_small{
+  display: none;
   width : 200px
 }
 
@@ -46,14 +47,6 @@
   color : white;
   text-decoration: none;
   cursor: pointer;
-}
-
-#add_course_small,
-#delete_course_small,
-#add_unit_small,
-#delete_unit_small
-{
-  display: none;
 }
 
 #add_course_container,
