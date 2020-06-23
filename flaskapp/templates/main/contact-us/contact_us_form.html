@@ -1,46 +1,81 @@
 {% extends "headerFooter.html" %}
 
 {% block general_top_links %}
- <a href="/" class="top_navigation_items">
+ <a class="top_navigation_items" href={{ url_for("main.index") }}>
      <h4 class="py-2 mx-3">Home</h4>
  </a>
- <a href="/about-us" class="top_navigation_items">
+{% if image_file!="" %}
+  <div class="dropdown_container">
+     <h4 class="py-2 mx-3">More <i class="fa fa-caret-down"></i></h4>
+     <div class="dropdown_items_container">
+         <a class="top_navigation_items" href={{ url_for("main.about_us") }}>
+             <h4 class="py-2 mx-3">About Us</h4>
+         </a>
+         <a class="top_navigation_items" href={{ url_for("main.help_page") }}>
+             <h4 class="py-2 mx-3">Help</h4>
+         </a>
+         <a class="top_navigation_items" href={{ url_for("main.contact_us") }}>
+             <h4 class="py-2 mx-3">Contact Us</h4>
+         </a>
+     </div>
+ </div>
+
+ <a class="top_navigation_items" href={{ url_for("users.logout") }}>
+     <h4 class="py-2 mx-3">Log Out</h4>
+ </a>
+{% else %}
+ <a class="top_navigation_items" href={{ url_for("main.about_us") }}>
      <h4 class="py-2 mx-3">About Us</h4>
  </a>
- <a href="/help" class="top_navigation_items">
+ <a class="top_navigation_items" href={{ url_for("main.help_page") }}>
      <h4 class="py-2 mx-3">Help</h4>
  </a>
- <a href="/contact-us" class="top_navigation_items">
+ <a class="top_navigation_items" href={{ url_for("main.contact_us") }}>
      <h4 class="py-2 mx-3">Contact Us</h4>
  </a>
- <a href="/login" class="top_navigation_items">
+ <a class="top_navigation_items" href={{ url_for("users.login") }}>
      <h4 class="py-2 mx-3">Log In</h4>
  </a>
+
+{% endif %}
+
+
 {% endblock general_top_links %}
 
 {% block general_side_links%}
-  <a href="/" class="side_navigation_items">Home</a>
-  <a href="/about-us" class="side_navigation_items bt">
+
+  <a class="side_navigation_items" href={{ url_for("main.index") }}>Home</a>
+  {% if image_file!="" %}
+    <div class="dropdown_container_2 bb bt">
+      <span class="side_navigation_items">More <i class="fa fa-caret-down"></i></span>
+      <a class="side_navigation_items hide" href={{ url_for("main.about_us") }}>
+          About Us
+      </a>
+      <a class="side_navigation_items hide" href={{ url_for("main.help_page") }}>
+          Help
+      </a>
+      <a class="side_navigation_items hide" href={{ url_for("main.contact_us") }}>
+          Contact Us
+      </a>
+  </div>
+  <a class="side_navigation_items" href={{ url_for("users.logout") }}>Log Out</a>
+  {% else %}
+  <a class="side_navigation_items bt" href={{ url_for("main.about_us") }}>
       About Us
   </a>
-  <a href="/help" class="side_navigation_items">
+  <a class="side_navigation_items" href={{ url_for("main.help_page") }}>
       Help
   </a>
-  <a href="/contact-us" class="side_navigation_items bb">
+  <a class="side_navigation_items bb" href={{ url_for("main.contact_us") }}>
       Contact Us
   </a>
-  <a href="/login" class="side_navigation_items">
+  <a class="side_navigation_items" href={{ url_for("users.login") }}>
       Log In
   </a>
+  {% endif %}
+
   <a href="#" class="side_navigation_items bb" id="close_link">Close</a>
-{% endblock general_side_links%}
-
-<!--===============================================================================================-->
-<!-- <link rel="icon" type="image/png" href={{ url_for("static",
-    filename="images/icons/favicon.ico") }} /> -->
-
-<!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" /> -->
+{% endblock general_side_links %}
 
 <div id="flash">
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
@@ -135,6 +170,26 @@
     </div>
 </div>
 {% endblock body %}
+
+{% block top_profile %}
+{% if image_file!="" %}
+ <div class="col4">
+     <a class="profile_page" href={{ url_for("users.account") }}>
+         <img src="{{ image_file }}" class="user" alt="{{loggedIn}}" title="profile" />
+     </a>
+ </div>
+{% endif %}
+{% endblock top_profile %}
+
+{% block side_profile %}
+ {% if image_file!="" %}
+ <div class="col4">
+     <a class="profile_page" href={{ url_for("users.account") }}>
+         <img src="{{ image_file }}" class="user" alt="user" title="profile" />
+     </a>
+ </div>
+{% endif %}
+{% endblock side_profile %}
 
 
 

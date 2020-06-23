@@ -59,7 +59,7 @@ def all_questions(course_id, unit_id, qtype):
             css_files=[
                 "css/base.css",
                 "css/questions/mcqs.css",
-                "css/questions/sideNav.css",
+                "css/sideNav.css",
                 "css/questions/questions.css",
                 "css/questions/mcq_form.css",
                 "css/questions/question_form.css",
@@ -75,7 +75,7 @@ def all_questions(course_id, unit_id, qtype):
             css_files=[
                 "css/base.css",
                 "css/questions/questions.css",
-                "css/questions/sideNav.css",
+                "css/sideNav.css",
                 "css/questions/question_form.css",
             ],
             js_files=[
@@ -134,7 +134,7 @@ def add_question(course_id, unit_id, qtype):
             css_files=[
                 "css/base.css",
                 "css/questions/mcq_form.css",
-                "css/questions/sideNav.css",
+                "css/sideNav.css",
                 "css/questions/question_form.css",
             ],
             js_files=["js/questions/mcq_question_form.js", "js/sideNav.js"],
@@ -154,7 +154,7 @@ def add_question(course_id, unit_id, qtype):
             css_files=[
                 "css/base.css",
                 "css/questions/question_form.css",
-                "css/questions/sideNav.css",
+                "css/sideNav.css",
             ],
             js_files=["js/questions/question_form.js", "js/sideNav.js"],
             title="Add Subjective Question",
