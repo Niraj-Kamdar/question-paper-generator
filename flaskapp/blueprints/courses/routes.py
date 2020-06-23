@@ -38,7 +38,7 @@ def add_course():
         "course/course_form.html",
         form=form,
 
-        css_files=["css/base.css","css/course/courses_form.css"],
+        css_files=["css/base.css", "css/course/courses_form.css"],
         js_files=["js/course/add_course.js"],
         image_file=profile_path(),
         title="Add Courses",
@@ -58,7 +58,7 @@ def all_courses():
         "course/courses.html",
         courses=_courses,
 
-        css_files=["css/base.css","css/course/courses.css"],
+        css_files=["css/base.css", "css/course/courses.css"],
         js_files=["js/course/remove_course.js"],
         image_file=profile_path(),
         title="Courses",
@@ -97,7 +97,7 @@ def all_units(course_id):
         image_file=profile_path(),
         units=_units,
         title="Units",
-        css_files=["css/base.css","css/course/courses.css"],
+        css_files=["css/base.css", "css/course/courses.css"],
         js_files=["js/course/remove_course.js"]
     )
 
@@ -128,8 +128,8 @@ def add_unit(course_id):
         "course/unit_form.html",
         course_id=course_id,
         form=form,
-        css_files = ["css/base.css","css/course/courses_form.css"],
-        js_files = ["js/course/add_unit.js"],
+        css_files=["css/base.css", "css/course/courses_form.css"],
+        js_files=["js/course/add_unit.js"],
         image_file=profile_path(),
         title="Add Units",
     )
