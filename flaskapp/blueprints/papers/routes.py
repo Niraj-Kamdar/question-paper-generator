@@ -17,8 +17,9 @@ from qpt_generator import QPTGenerator
 from flaskapp import db
 from flaskapp.blueprints.papers.forms import MarkDistributionForm
 from flaskapp.blueprints.papers.forms import PaperLogoForm
-from flaskapp.blueprints.papers.utils import find_conflicting_questions, QuestionNotFoundError
+from flaskapp.blueprints.papers.utils import find_conflicting_questions
 from flaskapp.blueprints.papers.utils import find_random_question
+from flaskapp.blueprints.papers.utils import QuestionNotFoundError
 from flaskapp.blueprints.papers.utils import save_logo
 from flaskapp.checkers import check_valid_course
 from flaskapp.checkers import check_valid_session
@@ -193,7 +194,9 @@ def generate_paper(course_id):
                                 subquestion=find_random_question(
                                     course_id, constraints)))))
                     except QuestionNotFoundError:
-                        flash("Question that satisfies all given constraints doesn't exist in database.")
+                        flash(
+                            "Question that satisfies all given constraints doesn't exist in database."
+                        )
                         redirect(url_for("papers.home"))
         paper = Paper(**paper_data)
         db.session.add(paper)
