@@ -1,7 +1,7 @@
 """Migration message
 
 Revision ID: b7353badcce5
-Revises: 
+Revises:
 Create Date: 2020-06-21 23:06:46.328489
 
 """
