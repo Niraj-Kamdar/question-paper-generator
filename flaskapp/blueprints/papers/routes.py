@@ -42,7 +42,7 @@ def home():
     """
     return render_template(
         "papers/home.html",
-        css_files=["css/base.css","css/home.css"],
+        css_files=["css/base.css", "css/home.css"],
         title="Home",
         image_file=profile_path(),
     )
@@ -69,7 +69,7 @@ def paper_generate_request(course_id):
     return render_template(
         "papers/generate_request.html",
         js_files=["js/papers/generate_request.js"],
-        css_files=["css/papers/generate_request.css","css/base.css"],
+        css_files=["css/papers/generate_request.css", "css/base.css"],
         image_file=profile_path(),
     )
 
@@ -121,7 +121,7 @@ def mark_distribution_form(course_id):
         session["paper_template"] = json_url.dumps(dict(paper_template))
         return redirect(
             url_for("papers.confirm_paper_template", course_id=course_id))
-    return render_template("papers/mark_distribution_form.html", form=form,title='Mark Distribution')
+    return render_template("papers/mark_distribution_form.html", form=form, title='Mark Distribution')
 
 
 @papers.route("/course/<course_id>/papers/confirm/template/",
@@ -145,7 +145,7 @@ def confirm_paper_template(course_id):
                            title='Mark Distribution')
 
 
-@papers.route("/course/<course_id>/papers/generate/",methods=["GET", "POST"])
+@papers.route("/course/<course_id>/papers/generate/", methods=["GET", "POST"])
 @login_required
 @check_valid_course
 @check_valid_session(session_keys=("paper_template", "total_marks"))
@@ -194,8 +194,8 @@ def generate_paper(course_id):
     return render_template(
         "papers/generate_paper.html",
         conflicting_questions=conflicting_questions,
-        course_id = course_id,
-        form = form
+        course_id=course_id,
+        form=form
     )
 
 

@@ -165,7 +165,7 @@ class MarkDistributionForm:
 class PaperLogoForm(FlaskForm):
     name = StringField("Paper name", validators=[DataRequired()])
     term = StringField("Term name", validators=[DataRequired()])
-    exam_date = DateField("Date of the exam",format='%Y-%m-%d')
+    exam_date = DateField("Date of the exam", format='%Y-%m-%d')
     time_limit = StringField("Time length", validators=[DataRequired()])
     picture = FileField("Upload logo for paper",
                         validators=[FileAllowed(["jpg", "png"])])

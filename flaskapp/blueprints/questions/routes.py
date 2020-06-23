@@ -258,4 +258,3 @@ def delete_question(course_id, unit_id, qtype):
     if request.method == "POST":
         delete_question_from_db(request.get_json())
         return redirect_to_all_questions(course_id, unit_id, qtype)
-

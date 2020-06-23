@@ -113,6 +113,6 @@ def contact_us():
         "main/contact-us/contact_us_form.html",
         title="Contact Us",
         form=form,
-        css_files=["css/contact_us/main.css","css/contact_us/util.css"],
+        css_files=["css/contact_us/main.css", "css/contact_us/util.css"],
         image_file=profile_path(),
     )

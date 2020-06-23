@@ -26,6 +26,7 @@ def find_conflicting_questions(course_id, constraints):
             Question.is_asked is True,
         )).all())
 
+
 def find_random_question(course_id, constraints):
     unit = (db.session.query(Unit).filter(
         and_(Unit.chapter_no == constraints["unit"],

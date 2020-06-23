@@ -125,7 +125,7 @@ def account():
     return render_template(
         "users/account.html",
         title="Account",
-        css_files=["css/base.css","css/users/accounts.css"],
+        css_files=["css/base.css", "css/users/accounts.css"],
         image_file=image_file,
         form=form,
         js_files=["js/users/account.js"],
