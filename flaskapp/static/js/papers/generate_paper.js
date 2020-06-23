@@ -32,8 +32,7 @@
   );
   const conflictsContainer = document.getElementById("conflicts_container");
 
-  // document.getElementById("page_display").firstElementChild.firstElementChild.innerHTML
-  // = "Conflicts";
+  document.getElementById("page_display").firstElementChild.firstElementChild.innerHTML = "Conflicts";
   logoContent.style.display = "none";
 
   qidContainer.forEach(function (node, index) {
@@ -61,35 +60,45 @@
     });
   });
 
-  if (!addCheckbox.length) {
-    const data = { mcq: { ask: [], nask: [] }, sub: { ask: [], nask: [] } };
-    ajax(data);
-  } else {
-    conflictsButton.addEventListener("click", function () {
-      const mcqAskId = qids.filter(
-        (node, index) => addCheckbox[index].checked && qtypes[index] === "mcq"
-      );
-      const mcqNaskId = qids.filter(
-        (node, index) => !addCheckbox[index].checked && qtypes[index] === "mcq"
-      );
-      const subAskId = qids.filter(
-        (node, index) => addCheckbox[index].checked && qtypes[index] === "sub"
-      );
-      const subNaskId = qids.filter(
-        (node, index) => !addCheckbox[index].checked && qtypes[index] === "sub"
-      );
-      const data = {
-        mcq: {
-          ask: mcqAskId,
-          nask: mcqNaskId,
-        },
-        sub: {
-          ask: subAskId,
-          nask: subNaskId,
-        },
+  if(!addCheckbox.length){
+      const data ={
+          mcq : {
+              ask: [],
+              nask : []
+          },
+          sub : {
+              ask: [],
+              nask : []
+          }
       };
       ajax(data);
-    });
+  } else {
+
+      conflictsButton.addEventListener("click", function () {
+          const mcqAskId = qids.filter(
+              (node, index) => addCheckbox[index].checked && qtypes[index] === "mcq"
+          );
+          const mcqNaskId = qids.filter(
+              (node, index) => !addCheckbox[index].checked && qtypes[index] === "mcq"
+          );
+          const subAskId = qids.filter(
+              (node, index) => addCheckbox[index].checked && qtypes[index] === "sub"
+          );
+          const subNaskId = qids.filter(
+              (node, index) => !addCheckbox[index].checked && qtypes[index] === "sub"
+          );
+          const data = {
+              mcq: {
+                  ask: mcqAskId,
+                  nask: mcqNaskId,
+              },
+              sub: {
+                  ask: subAskId,
+                  nask: subNaskId,
+              },
+          };
+          ajax(data);
+      });
   }
 
   paperFields.forEach(function (node, index) {
@@ -142,24 +151,24 @@
     return validation;
   }
 
-  function ajax(data) {
-    fetch("/papers/handle/conflicts", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        const { status } = res;
-        if (status === "OK") {
-          logoContent.style.display = "";
-          conflictsContainer.style.display = "none";
-        }
+  function ajax(data){
+      fetch("/papers/handle/conflicts", {
+          method: "post",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
       })
-      .catch((err) => {
-        console.log(err);
-      });
+          .then((res) => res.json())
+          .then((res) => {
+              const { status } = res;
+              if (status === "OK") {
+                  logoContent.style.display = "";
+                  conflictsContainer.style.display = "none";
+              }
+          })
+          .catch((err) => {
+              console.log(err);
+          });
   }
 })();
