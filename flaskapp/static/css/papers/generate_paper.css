@@ -2,8 +2,24 @@
   color: chocolate;
 }
 
+.btn_container {
+  text-align: right;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
 .comprehension {
   color: darkorchid;
+}
+
+#conflicts_container {
+  background-color: rgba(144, 0, 240, 0.15);
+  padding: 10px;
+}
+
+#conflicts_message {
+  padding-left: 15px;
+  font-size: 25px;
 }
 
 .easy {
@@ -31,7 +47,7 @@
   text-align: right;
 }
 
-.fourth_row {
+.fifth_row {
   border-bottom: 1px solid black;
 }
 
@@ -72,27 +88,33 @@
   padding-top: 100px;
 }
 
-#pagination {
-  display: flex;
-  justify-content: center;
-}
-
-#pagination a {
-  margin-right: 10px;
+.options_final_value {
+  background-color: rgba(144, 0, 240, 0.15);
+  border-radius: 20px;
+  color: #585858;
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+  word-break: break-word;
 }
 
 .question_info {
   background-color: white;
+  color: #585858;
   border-radius: 10px;
   padding: 10px 5px;
   flex-direction: column;
   flex-grow: 1;
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  font-weight: 400;
   margin: 10px;
 }
 
 .question_description {
   color: blue;
   flex-grow: 1;
+  padding-left: 5px;
   word-break: break-word;
 }
 
@@ -165,9 +187,9 @@
   padding: 10px;
 }
 
-#submit_container {
-  text-align: right;
-  margin-top: 15px;
+.include {
+  display: flex;
+  align-items: baseline;
 }
 
 #template_display {
@@ -178,7 +200,61 @@ input[type='file']{
   padding: 0;
 }
 
-.form_client_error {
-  color: red;
-  margin-bottom: 16px;
+@media (max-width: 700px) {
+  .left {
+    width: 150px;
+  }
+
+  .question_info,
+  #conflicts_message {
+    font-size: 20px;
+  }
+
+  .options_final_value {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 575px) {
+  .left {
+    width: 120px;
+  }
+
+  .question_info,
+  #conflicts_message {
+    font-size: 16px;
+  }
+
+  .second_row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 400px) {
+  .marks,
+  .difficulty {
+    padding-bottom: 5px;
+  }
+}
+
+@media (max-width: 370px) {
+  .question_info {
+    margin-right: 0;
+  }
+  .update_question {
+    padding: 10px 5px;
+  }
+}
+@media (max-width: 337px) {
+  .cognitive {
+    margin-left: 5px;
+  }
+  .fourth_row div {
+    display: flex;
+    align-items: center;
+  }
+
+  .left {
+    width: 90px;
+  }
 }

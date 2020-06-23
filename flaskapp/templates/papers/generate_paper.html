@@ -4,6 +4,9 @@
 <hr id="start"/>
 <div id="conflicts_container">
     {% for q in conflicting_questions %}
+    {% if loop.index==1%}
+    <div id="conflicts_message">These questions are previously asked. Select questions to include in current paper</div>
+    {% endif %}
     <div class="question_info">
                 <div class="first_row">
                     <div class="first_row_column_1" data-id="{{ q.id }}"></div>
@@ -45,17 +48,21 @@
                             <div class="options_final_value">{{ q.question.option4 }}</div>
                 </div>
                 {% endif %}
-                <div class="form__fields">
+                <div class="include">
                 <label for="checkbox_label_{{loop.index}}" class="label_checkbox">Add into Paper</label>
                     <input type="checkbox" class="add_checkbox" id="checkbox_label_{{loop.index}}"/>
                 <div class="toggle_container">
                     <div class="toggle_btn"></div>
                 </div>
                 include in Papers
-            </div>
+                </div>
+                {% if loop.index==loop.length %}
+                <div class="btn_container">
+                    <button id="fix_conflicts">Fix Conflicts</button>
+                </div>
+                {% endif %}
             </div>
     {% endfor %}
-    <button id="fix_conflicts">Fix Conflicts</button>
 </div>
 
 <div id="paper_logo">
@@ -122,7 +129,7 @@
                     </ul>
                     {% endif %}
             </div>
-            <div id="submit_container">
+            <div class="btn_container">
                 {{ form.submit(id="generate_paper") }}
             </div>
         </div>
