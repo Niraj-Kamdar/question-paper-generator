@@ -1,17 +1,26 @@
-from flask import Blueprint, flash, render_template, request
-from flask_login import current_user, login_required
-from flaskapp import db
-from flaskapp.blueprints.questions.forms import MCQQuestionForm, QuestionForm
-from flaskapp.blueprints.questions.utils import (add_question_to_db,
-                                                 delete_question_from_db,
-                                                 redirect_to_all_questions,
-                                                 update_imp_in_db,
-                                                 update_question_in_db)
-from flaskapp.checkers import (check_valid_course, check_valid_question_type,
-                               check_valid_unit)
-from flaskapp.models import Course, Question
-from flaskapp.utils import QuestionTypeEnum, profile_path
+from flask import Blueprint
+from flask import flash
+from flask import render_template
+from flask import request
+from flask_login import current_user
+from flask_login import login_required
 from sqlalchemy import and_
+
+from flaskapp import db
+from flaskapp.blueprints.questions.forms import MCQQuestionForm
+from flaskapp.blueprints.questions.forms import QuestionForm
+from flaskapp.blueprints.questions.utils import add_question_to_db
+from flaskapp.blueprints.questions.utils import delete_question_from_db
+from flaskapp.blueprints.questions.utils import redirect_to_all_questions
+from flaskapp.blueprints.questions.utils import update_imp_in_db
+from flaskapp.blueprints.questions.utils import update_question_in_db
+from flaskapp.checkers import check_valid_course
+from flaskapp.checkers import check_valid_question_type
+from flaskapp.checkers import check_valid_unit
+from flaskapp.models import Course
+from flaskapp.models import Question
+from flaskapp.utils import profile_path
+from flaskapp.utils import QuestionTypeEnum
 
 questions = Blueprint("questions", __name__)
 
