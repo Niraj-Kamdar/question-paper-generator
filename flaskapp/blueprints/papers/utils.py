@@ -40,9 +40,10 @@ def find_random_question(course_id, constraints):
                     Question.mark == constraints["mark"],
                     Question.unit_id == unit.id,
                     Question.imp is True,
+                    Question.question_type == constraints["question_type"]
             )).order_by(func.random()).first().id)
     if imp_question:
-        return imp_question
+        return imp_question.to_dict()
     question = (db.session.query(Question).filter(
             and_(
                     Question.cognitive_level == constraints["cognitive"],
@@ -50,9 +51,10 @@ def find_random_question(course_id, constraints):
                     Question.mark == constraints["mark"],
                     Question.unit_id == unit.id,
                     Question.is_asked is False,
+                    Question.question_type == constraints["question_type"]
             )).order_by(func.random()).first().id)
     if question:
-        return question
+        return question.to_dict()
     raise QuestionNotFoundError()
 
 
