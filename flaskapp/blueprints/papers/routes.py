@@ -193,7 +193,8 @@ def generate_paper(course_id):
                                 subquestion=find_random_question(
                                     course_id, constraints)))))
                     except QuestionNotFoundError:
-                        flash("Question that satisfies all given constraints doesn't exist in database.")
+                        flash(
+                            "Question that satisfies all given constraints doesn't exist in database.")
                         redirect(url_for("papers.home"))
         paper = Paper(**paper_data)
         db.session.add(paper)
