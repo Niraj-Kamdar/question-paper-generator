@@ -24,8 +24,8 @@ def index():
     return render_template(
         "main/index.html",
         title="Index",
-        css_files=["css/index.css"],
-        js_files=["js/index.js"],
+        css_files=["css/main/index.css"],
+        js_files=["js/main/index.js"],
     )
 
 

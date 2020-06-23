@@ -32,8 +32,9 @@
   );
   const conflictsContainer = document.getElementById("conflicts_container");
 
-  // document.getElementById("page_display").firstElementChild.firstElementChild.innerHTML
-  // = "Conflicts";
+  document.getElementById(
+    "page_display"
+  ).firstElementChild.firstElementChild.innerHTML = "Conflicts";
   logoContent.style.display = "none";
 
   qidContainer.forEach(function (node, index) {

@@ -35,10 +35,10 @@ def add_course():
         flash("New course added successfully!", "success")
         return redirect(url_for("courses.all_courses"))
     return render_template(
-        "questions/course_form.html",
+        "course/course_form.html",
         form=form,
-        css_files=["css/base.css", "css/questions/courses_form.css"],
-        js_files=["js/questions/add_course.js"],
+        css_files=["css/base.css", "css/course/courses_form.css"],
+        js_files=["js/course/add_course.js"],
         image_file=profile_path(),
         title="Add Courses",
     )
@@ -54,10 +54,10 @@ def all_courses():
     """
     _courses = Course.query.filter(Course.teacher == current_user).all()
     return render_template(
-        "questions/courses.html",
+        "course/courses.html",
         courses=_courses,
-        css_files=["css/base.css", "css/questions/courses.css"],
-        js_files=["js/questions/remove_course.js"],
+        css_files=["css/base.css", "css/course/courses.css"],
+        js_files=["js/course/remove_course.js"],
         image_file=profile_path(),
         title="Courses",
     )
@@ -90,13 +90,13 @@ def all_units(course_id):
     _course = Course.query.filter(Course.id == course_id).first()
     _units = Unit.query.filter(Unit.course == _course).all()
     return render_template(
-        "questions/units.html",
+        "course/units.html",
         course_id=course_id,
         image_file=profile_path(),
         units=_units,
         title="Units",
-        css_files=["css/base.css", "css/questions/courses.css"],
-        js_files=["js/questions/remove_course.js"],
+        css_files=["css/base.css", "css/course/courses.css"],
+        js_files=["js/course/remove_course.js"],
     )
 
 
@@ -123,11 +123,11 @@ def add_unit(course_id):
         flash("New unit added successfully!", "success")
         return redirect(url_for("courses.all_units", course_id=course_id))
     return render_template(
-        "questions/unit_form.html",
+        "course/unit_form.html",
         course_id=course_id,
         form=form,
-        css_files=["css/base.css", "css/questions/courses_form.css"],
-        js_files=["js/questions/add_unit.js"],
+        css_files=["css/base.css", "css/course/courses_form.css"],
+        js_files=["js/course/add_unit.js"],
         image_file=profile_path(),
         title="Add Units",
     )
