@@ -1,12 +1,11 @@
 import os
 import secrets
 
-from PIL import Image
 from flask import current_app
-from sqlalchemy import and_, func
-
 from flaskapp import db
 from flaskapp.models import Question, Unit
+from PIL import Image
+from sqlalchemy import and_, func
 
 
 class QuestionNotFoundError(Exception):
