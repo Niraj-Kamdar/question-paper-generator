@@ -1,9 +1,5 @@
 {% extends "base.html" %}
 
-{% block special_side_links %}
-  <a class="side_navigation_items bt" href={{ url_for('courses.add_course') }}>Add Course</a>
-  <a href="#" class="side_navigation_items bb">Remove Course</a>
-{% endblock special_side_links %}
 
 {% block flashes %}
 {% with messages = get_flashed_messages(with_categories=true) %} {% if
@@ -18,20 +14,37 @@ messages %}
 {% block main %}
 
 <div id="course_container">
+
     <div class="course_items">
+        <a id="add_course_small" href={{ url_for('courses.add_course') }}>
+        <div>
+<!--            <img src="{{ url_for('static',filename='images/add.svg') }}" class="add_img" alt="add">-->Add Course
+        </div>
+        </a>
+        <button id="delete_course_small">
+            <div>Remove Course</div>
+        </button>
         {% for _course in courses %}
 
+          <div class="course_item_container">
+                <label><span class="hide">Delete Course</span> <input type="checkbox" class="delete_course_box hide"/></label>
                 <a class="course_item"
-                   href={{ url_for("courses.all_units", course_id=_course.id) }}>{{ _course.name }}</a>
-                <br>
+                   href='{{ url_for("courses.all_units", course_id=_course.id) }}' data-id="{{_course.id}}">{{ _course.name }}</a>
+          </div>
+
 
         {% endfor %}
     </div>
     <div id="add_course_container">
-        <a id="add_course" href={{ url_for('courses.add_course') }}>
-            <div><img src="{{ url_for('static',filename='images/add.svg') }}" id="add_img" alt="add">Add Course
+        <a class="add_course" href={{ url_for('courses.add_course') }}>
+            <div>
+<!--                <img src="{{ url_for('static',filename='images/add.svg') }}" class="add_img" alt="add">-->
+                Add Course
             </div>
         </a>
+        <button class="delete_course">
+            <div>Remove Course</div>
+        </button>
     </div>
 </div>
 

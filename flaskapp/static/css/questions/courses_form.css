@@ -17,6 +17,16 @@
   padding: 10px 20px;
 }
 
+#checkbox_label,
+#checkbox {
+  display: none;
+}
+
+#checkbox {
+  height : 20px;
+  width : 20px;
+}
+
 #form_content {
   background-color: white;
   padding: 10px;
@@ -37,6 +47,10 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
+}
+
+.form__checkbox {
+  flex-direction: row;
 }
 
 .form__fields label {
@@ -67,6 +81,31 @@
 #submit_reset_container {
   margin-top: 15px;
   text-align: right;
+}
+
+#toggle_container {
+  align-items: center;
+  border-radius: 30px;
+  background-color: #ccc;
+  display: flex;
+  flex-shrink: 0;
+  height: 24px;
+  margin-right: 10px;
+  width: 48px;
+}
+
+#toggle_container:hover {
+  cursor: pointer;
+}
+
+#toggle_btn {
+  background-color: white;
+  border-radius: 50%;
+  left: 4px;
+  height: 16px;
+  position: relative;
+  transition: left 0.4s;
+  width: 16px;
 }
 
 @media (max-width: 786px) {
@@ -103,6 +142,13 @@
   #unit_form,
   #form_question_paper {
     width: 100%;
+  }
+}
+
+@media (max-width: 575px){
+  #checkbox {
+    height: 16px;
+    width: 16px;
   }
 }
 

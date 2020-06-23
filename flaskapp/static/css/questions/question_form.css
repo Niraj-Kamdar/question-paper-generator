@@ -100,6 +100,7 @@ input[type="checkbox"] {
 #mark_as_imp {
   display: none;
 }
+
 label {
   margin: 0 !important;
 }
@@ -148,6 +149,7 @@ label {
   transition: left 0.4s;
   width: 16px;
 }
+
 @media (max-width: 1200px) {
   #new_question {
     margin: 0;

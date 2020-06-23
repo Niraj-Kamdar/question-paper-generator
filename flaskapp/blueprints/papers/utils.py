@@ -37,6 +37,7 @@ def find_random_question(course_id, constraints):
             Question.difficulty == constraints["difficulty"],
             Question.mark == constraints["mark"],
             Question.unit_id == unit.id,
+            Question.question_type == constraints["question_type"],
         )).order_by(func.random()).first().id)
 
 

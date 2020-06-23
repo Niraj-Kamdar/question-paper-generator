@@ -37,9 +37,8 @@ def add_course():
     return render_template(
         "questions/course_form.html",
         form=form,
-        css_file="css/base.css",
-        css_file2="css/questions/courses_form.css",
-        js_file="js/questions/add_course.js",
+        css_files=["css/base.css", "css/questions/courses_form.css"],
+        js_files=["js/questions/add_course.js"],
         image_file=profile_path(),
         title="Add Courses",
     )
@@ -57,8 +56,8 @@ def all_courses():
     return render_template(
         "questions/courses.html",
         courses=_courses,
-        css_file="css/base.css",
-        css_file2="css/questions/courses.css",
+        css_files=["css/base.css", "css/questions/courses.css"],
+        js_files=["js/questions/remove_course.js"],
         image_file=profile_path(),
         title="Courses",
     )
@@ -92,11 +91,12 @@ def all_units(course_id):
     _units = Unit.query.filter(Unit.course == _course).all()
     return render_template(
         "questions/units.html",
+        course_id=course_id,
         image_file=profile_path(),
         units=_units,
         title="Units",
-        css_file="css/base.css",
-        css_file2="css/questions/courses.css",
+        css_files=["css/base.css", "css/questions/courses.css"],
+        js_files=["js/questions/remove_course.js"],
     )
 
 
@@ -124,10 +124,10 @@ def add_unit(course_id):
         return redirect(url_for("courses.all_units", course_id=course_id))
     return render_template(
         "questions/unit_form.html",
+        course_id=course_id,
         form=form,
-        css_file="css/base.css",
-        css_file2="css/questions/courses_form.css",
-        js_file="js/questions/add_unit.js",
+        css_files=["css/base.css", "css/questions/courses_form.css"],
+        js_files=["js/questions/add_unit.js"],
         image_file=profile_path(),
         title="Add Units",
     )

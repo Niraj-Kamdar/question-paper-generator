@@ -37,14 +37,12 @@ papers = Blueprint("papers", __name__)
 @login_required
 def home():
     """Render Home page
-
     Returns:
         HTML -- It will render home page.
     """
     return render_template(
         "papers/home.html",
-        css_file="css/base.css",
-        css_file2="css/home.css",
+        css_files=["css/base.css", "css/home.css"],
         title="Home",
         image_file=profile_path(),
     )
@@ -70,9 +68,8 @@ def paper_generate_request(course_id):
         flash("Form can't be empty!")
     return render_template(
         "papers/generate_request.html",
-        js_file="js/papers/generate_request.js",
-        css_file="css/papers/generate_request.css",
-        css_file2="css/base.css",
+        js_files=["js/papers/generate_request.js"],
+        css_files=["css/papers/generate_request.css", "css/base.css"],
         image_file=profile_path(),
     )
 
@@ -84,10 +81,8 @@ def paper_generate_request(course_id):
 @check_valid_session(session_keys=("total_marks", "no_of_subquestions"))
 def mark_distribution_form(course_id):
     """Mark distribution of form
-
     Args:
         course_id (int): Course ID of course
-
     Returns:
         HTML: Go to mark distribution form page
     """
@@ -126,7 +121,9 @@ def mark_distribution_form(course_id):
         session["paper_template"] = json_url.dumps(dict(paper_template))
         return redirect(
             url_for("papers.confirm_paper_template", course_id=course_id))
-    return render_template("papers/mark_distribution_form.html", form=form)
+    return render_template("papers/mark_distribution_form.html",
+                           form=form,
+                           title="Mark Distribution")
 
 
 @papers.route("/course/<course_id>/papers/confirm/template/",
@@ -141,11 +138,18 @@ def confirm_paper_template(course_id):
                 url_for("papers.generate_paper", course_id=course_id))
         flash("Form can't be empty!")
     paper_template = json_url.loads(session["paper_template"])
-    return render_template("papers/confirm_paper_template.html",
-                           paper_template=paper_template)
+    return render_template(
+        "papers/confirm_paper_template.html",
+        course_id=course_id,
+        paper_template=paper_template,
+        css_files=["css/papers/confirm_paper_template.css"],
+        js_files=["js/papers/confirm_paper_template.js"],
+        image_file=profile_path(),
+        title="Mark Distribution",
+    )
 
 
-@papers.route("/course/<course_id>/papers/generate/")
+@papers.route("/course/<course_id>/papers/generate/", methods=["GET", "POST"])
 @login_required
 @check_valid_course
 @check_valid_session(session_keys=("paper_template", "total_marks"))
@@ -167,12 +171,13 @@ def generate_paper(course_id):
                 paper_template[qtype][question][subquestion] = constraints
 
     form = PaperLogoForm()
+    form.process(request.form)
     if form.validate_on_submit():
         paper_data = {}
         if form.picture.data:
             paper_data["paper_logo"] = save_logo(form.picture.data)
         paper_data["name"] = form.name.data
-        paper_data["term"] = form.name.data
+        paper_data["term"] = form.term.data
         paper_data["mark"] = json_url.loads(session["total_marks"])
         paper_data["exam_date"] = form.exam_date.data
         paper_data["time_limit"] = form.time_limit.data
@@ -193,6 +198,8 @@ def generate_paper(course_id):
     return render_template(
         "papers/generate_paper.html",
         conflicting_questions=conflicting_questions,
+        course_id=course_id,
+        form=form,
     )
 
 
@@ -218,10 +225,8 @@ def handle_conflicting_questions():
 @login_required
 def ptp():
     """Convert Paper to pdf format
-
     Raises:
         your: Final paper
-
     Returns:
         PDF: Pdf of final paper
     """
@@ -320,7 +325,7 @@ def ptp():
 
     return render_template(
         "papers/ptp.html",
-        css_file="css/ptp.css",
+        css_files=["css/ptp.css"],
         title="Paper-to-PDF",
         course_name=course_name,
         prefix=prefix,

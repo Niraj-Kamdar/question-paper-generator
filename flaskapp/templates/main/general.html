@@ -19,6 +19,7 @@
          </a>
      </div>
  </div>
+
  <a class="top_navigation_items" href={{ url_for("users.logout") }}>
      <h4 class="py-2 mx-3">Log Out</h4>
  </a>
@@ -42,6 +43,7 @@
 {% endblock general_top_links %}
 
 {% block general_side_links%}
+
   <a class="side_navigation_items" href={{ url_for("main.index") }}>Home</a>
   {% if image_file!="" %}
     <div class="dropdown_container_2 bb bt">
