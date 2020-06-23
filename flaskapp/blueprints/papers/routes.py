@@ -19,6 +19,7 @@ from flaskapp.blueprints.papers.forms import MarkDistributionForm
 from flaskapp.blueprints.papers.forms import PaperLogoForm
 from flaskapp.blueprints.papers.utils import find_conflicting_questions
 from flaskapp.blueprints.papers.utils import find_random_question
+from flaskapp.blueprints.papers.utils import QuestionNotFoundError
 from flaskapp.blueprints.papers.utils import save_logo
 from flaskapp.checkers import check_valid_course
 from flaskapp.checkers import check_valid_session
@@ -187,10 +188,16 @@ def generate_paper(course_id):
             for question in paper_template[qtype]:
                 for subquestion, constraints in paper_template[qtype][
                         question].items():
-                    paper_data["paper_format"].update(
-                        dict(qtype=dict(question=dict(
-                            subquestion=find_random_question(
-                                course_id, constraints)))))
+                    try:
+                        paper_data["paper_format"].update(
+                            dict(qtype=dict(question=dict(
+                                subquestion=find_random_question(
+                                    course_id, constraints)))))
+                    except QuestionNotFoundError:
+                        flash(
+                            "Question that satisfies all given constraints doesn't exist in database."
+                        )
+                        redirect(url_for("papers.home"))
         paper = Paper(**paper_data)
         db.session.add(paper)
         db.session.commit()
@@ -220,118 +227,20 @@ def handle_conflicting_questions():
         return jsonify(dict(status="OK"))
 
 
-# Temporary route for paper template in HTML
-@papers.route("/Paper-to-PDF")
+@papers.route("/papers/html/<paper_id>")
 @login_required
-def ptp():
-    """Convert Paper to pdf format
+def html_paper(paper_id):
+    """Create HTML paper
     Raises:
         your: Final paper
     Returns:
         PDF: Pdf of final paper
     """
-    course_name = "Software Engineering"
-    prefix = "Final"
-    term = "Autumn 2020"
-    date = "15th July, 2020"
-    time_limit = "2 hours 30 minuts"
-    instructions = [
-        "Write your name and student number in the space provided.",
-        "Make sure your mobile phone is switched off and place it at the front together with any bags, books, coats etc. Then find your seat.",
-        "Remember that talking is not allowed at any time in the exam hall.",
-        "Listen carefully to instructions. Students are required to comply with the instructions of invigilators at all times.",
-        "You are not permitted to share stationery, calculators or any other materials during the examination.",
-        "If you have a question or need more papers, raise your hand and a teacher will come to you. Teachers will not give hints or answers, so please do not ask for them.",
-        "Stop writing immediately when the teacher says it is the end of the exam.",
-        "Leave the exam hall quickly and quietly. Remember to take all your belongings with you.",
-        "(Remember to collect all your belongings from holding rooms.) You must remain silent until after you have exited the building.",
-        "Remember! Any form of cheating is not allowed and action will be taken.",
-    ]
-
-    questions = {
-        1: {
-            "question":
-            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks":
-            10,
-            "sub_questions": [
-                "Heating at constant volume until the pressure is 208 kPa",
-                "Polytropic compression to 0.006 m3, where n = 1.6",
-                "Heating at constant volume until the pressure is 208 kPa",
-                "Polytropic compression to 0.006 m3, where n = 1.6",
-            ],
-        },
-        2: {
-            "question":
-            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks":
-            15,
-            "sub_questions": [
-                "Heating at constant volume until the pressure is 208 kPa",
-                "Polytropic compression to 0.006 m3, where n = 1.6",
-                "Heating at constant volume until the pressure is 208 kPa",
-                "Polytropic compression to 0.006 m3, where n = 1.6",
-            ],
-        },
-        3: {
-            "question":
-            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks":
-            18,
-            "sub_questions": [
-                "Heating at constant volume until the pressure is 208 kPa",
-                "Polytropic compression to 0.006 m3, where n = 1.6",
-                "Heating at constant volume until the pressure is 208 kPa",
-                "Polytropic compression to 0.006 m3, where n = 1.6",
-            ],
-        },
-        4: {
-            "question":
-            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks":
-            10,
-            "sub_questions": [
-                "Heating at constant volume until the pressure is 208 kPa",
-                "Polytropic compression to 0.006 m3, where n = 1.6",
-                "Heating at constant volume until the pressure is 208 kPa",
-                "Polytropic compression to 0.006 m3, where n = 1.6",
-            ],
-        },
-        5: {
-            "question":
-            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks":
-            15,
-            "sub_questions": [
-                "Heating at constant volume until the pressure is 208 kPa",
-                "Polytropic compression to 0.006 m3, where n = 1.6",
-                "Heating at constant volume until the pressure is 208 kPa",
-                "Polytropic compression to 0.006 m3, where n = 1.6",
-            ],
-        },
-        6: {
-            "question":
-            "A quantity of air has a pressure, temprature and volume of 104 kPa, 38 °C and 0.03 m3, respectively. The tempreture of the air is raised by following to ways, for each of the above cases calculate the final tempreture, work requirement, change in internal energy and heat requirement.",
-            "marks":
-            18,
-            "sub_questions": [
-                "Heating at constant volume until the pressure is 208 kPa",
-                "Polytropic compression to 0.006 m3, where n = 1.6",
-                "Heating at constant volume until the pressure is 208 kPa",
-                "Polytropic compression to 0.006 m3, where n = 1.6",
-            ],
-        },
-    }
+    paper = Paper.query.filter_by(id=paper_id)
 
     return render_template(
         "papers/ptp.html",
         css_files=["css/ptp.css"],
         title="Paper-to-PDF",
-        course_name=course_name,
-        prefix=prefix,
-        term=term,
-        date=date,
-        time_limit=time_limit,
-        instructions=instructions,
-        questions=questions,
+        paper=paper,
     )
