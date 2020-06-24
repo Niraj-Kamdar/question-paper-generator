@@ -1,7 +1,8 @@
+import json
 from test.main.base_classes import BaseCourse
 from test.main.utils import test_post_request
+
 from flaskapp import models
-import json
 
 
 class CourseUnitTestCase(BaseCourse):
