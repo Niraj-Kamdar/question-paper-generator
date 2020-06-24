@@ -88,11 +88,7 @@ def help_page():
     )
 
 
-<<<<<<< HEAD
-@main.route("/contact-us",methods=['GET','POST'])
-=======
 @main.route("/contact-us", methods=["GET", "POST"])
->>>>>>> 20bf0d7916384c5d7ac9663a12427477e530ccc1
 def contact_us():
     """Render Contact us page
     Returns:
