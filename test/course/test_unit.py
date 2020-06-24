@@ -7,17 +7,15 @@ import json
 class CourseUnitTestCase(BaseCourse):
     def test_delete_unit(self):
 
-         # Add new unit to course maths
+        # Add new unit to course maths
         new_unit = dict(chapter_no=1, name="Permutations")
-        _, res = test_post_request(
-            self, "/course/1/unit/new", new_unit, models.Unit, 1)
+        _, res = test_post_request(self, "/course/1/unit/new", new_unit, models.Unit, 1)
         # Test repr method
         self.assertEqual(str(res), "Unit((1, 'Permutations'))")
 
         # Add second unit
         new_unit = dict(chapter_no=2, name="Combition")
-        _, res = test_post_request(
-            self, "/course/1/unit/new", new_unit, models.Unit, 2)
+        _, res = test_post_request(self, "/course/1/unit/new", new_unit, models.Unit, 2)
         # Test repr method
         self.assertEqual(str(res), "Unit((2, 'Combition'))")
 
