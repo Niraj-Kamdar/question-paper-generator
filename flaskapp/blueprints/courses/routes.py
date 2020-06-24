@@ -73,6 +73,7 @@ def delete_course():
         db.session.query(Course).filter(
             Course.id.in_(course_ids)).delete(synchronize_session="fetch")
         db.session.commit()
+    return redirect(url_for("courses.all_courses"))
 
 
 @courses.route("/course/<course_id>/unit/")
@@ -144,6 +145,7 @@ def delete_unit(course_id):
     """
     if request.method == "POST":
         unit_ids = request.get_json()
-        db.session.query(Course).filter(
+        db.session.query(Unit).filter(
             Unit.id.in_(unit_ids)).delete(synchronize_session="fetch")
         db.session.commit()
+    return redirect(url_for("courses.all_units", course_id=course_id))
