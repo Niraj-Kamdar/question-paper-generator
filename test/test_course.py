@@ -3,7 +3,7 @@ from test.main.utils import test_post_request
 from flaskapp import models
 from flask import json
 
-class CourseTestcase(BaseUser):
+class CourseTestCase(BaseUser):
     def test_delete_course(self):
         BaseUser.setUp(self)
         self.login()
