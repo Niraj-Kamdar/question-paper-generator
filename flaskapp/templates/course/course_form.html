@@ -46,6 +46,14 @@
                 {% endif %}
                 <div class="form__client_error"></div>
             </div>
+            <div class="form__fields form__checkbox">
+                {{form.include_asked.label(id="checkbox_label") }}
+                {{form.include_asked(id="checkbox")}}
+                <div id="toggle_container">
+                    <div id="toggle_btn"></div>
+                </div>
+                Include Asked Questions in Paper
+            </div>
             <div id="submit_reset_container">
                 {{ form.submit(id="submit_btn") }}
                 <button type="reset" id="reset_btn">Cancel</button>

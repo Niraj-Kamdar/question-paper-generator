@@ -51,8 +51,8 @@ def register():
         "users/register.html",
         title="Register",
         form=form,
-        css_file="css/users/register.css",
-        js_file="js/users/register.js",
+        css_files=["css/users/register.css"],
+        js_files=["js/users/register.js"],
         btn_name="Back",
     )
 
@@ -82,8 +82,8 @@ def login():
         "users/login.html",
         title="Login",
         form=form,
-        css_file="css/users/login.css",
-        js_file="js/users/login.js",
+        css_files=["css/users/login.css"],
+        js_files=["js/users/login.js"],
         btn_name="Back",
     )
 
@@ -125,11 +125,10 @@ def account():
     return render_template(
         "users/account.html",
         title="Account",
-        css_file="css/base.css",
-        css_file2="css/users/accounts.css",
+        css_files=["css/base.css", "css/users/accounts.css"],
         image_file=image_file,
         form=form,
-        js_file="js/users/account.js",
+        js_files=["js/users/account.js"],
     )
 
 
@@ -155,7 +154,7 @@ def reset_request():
         "users/reset_request.html",
         title="Reset Password",
         form=form,
-        js_file="js/users/reset_password.js",
+        js_files=["js/users/reset_password.js"],
     )
 
 
@@ -190,7 +189,7 @@ def reset_token(token):
         "users/reset_token.html",
         title="Reset Password",
         form=form,
-        js_file="js/users/reset_password.js",
+        js_files=["js/users/reset_password.js"],
     )
 
 

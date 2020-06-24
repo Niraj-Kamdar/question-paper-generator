@@ -7,7 +7,9 @@
 {% endblock special_top_links %}
 
 {% block special_side_links %}
+
   <a class="side_navigation_items" href={{ url_for("courses.all_units", course_id=course_id) }}>Units</a>
+
 {% endblock special_side_links %}
 
 {% block header %}
@@ -52,8 +54,8 @@
 
                 {% if form.name.errors %}
                 <ul class="form__error">
-                    {% for error in form.name.errors %}
-                    <li>{{ error }}</li>
+                    {% for err in form.name.errors %}
+                    <li>{{ err }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}

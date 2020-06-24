@@ -16,7 +16,6 @@ main = Blueprint("main", __name__)
 @main.route("/")
 def index():
     """Render Home page
-
     Returns:
         HTML-- If the current user is authenticated then render to home page of site.
     """
@@ -25,15 +24,14 @@ def index():
     return render_template(
         "main/index.html",
         title="Index",
-        css_file="css/index.css",
-        js_file="js/index.js",
+        css_files=["css/main/index.css"],
+        js_files=["js/main/index.js"],
     )
 
 
 @main.route("/about-us")
 def about_us():
     """Render about us page
-
     Returns:
         HTML  -- It will redirect to about us page.
     """
@@ -41,7 +39,7 @@ def about_us():
     return render_template(
         "main/about.html",
         title="About Us",
-        css_file="css/main/about.css",
+        css_files=["css/main/about.css"],
         image_file=profile_path(),
     )
 
@@ -56,7 +54,7 @@ def policy_page():
     return render_template(
         "main/privacy-policy.html",
         title="Privacy Policy",
-        css_file="css/main/privacy_policy.css",
+        css_files=["css/main/privacy_policy.css"],
         image_file=profile_path(),
     )
 
@@ -71,7 +69,7 @@ def terms_of_service_page():
     return render_template(
         "main/terms-of-service.html",
         title="Terms Of Service",
-        css_file="css/main/terms_of_service.css",
+        css_files=["css/main/terms_of_service.css"],
         image_file=profile_path(),
     )
 
@@ -79,14 +77,13 @@ def terms_of_service_page():
 @main.route("/help")
 def help_page():
     """Render help page
-
     Returns:
         HTML - It will redirect to help page.
     """
     return render_template(
         "main/help.html",
         title="Help",
-        css_file="css/main/help.css",
+        css_files=["css/main/help.css"],
         image_file=profile_path(),
     )
 
@@ -98,7 +95,6 @@ def help_page():
 >>>>>>> 20bf0d7916384c5d7ac9663a12427477e530ccc1
 def contact_us():
     """Render Contact us page
-
     Returns:
         HTML-- To collect Info from user for suggestion or bug or any comment about web-app.
     """
@@ -121,7 +117,6 @@ def contact_us():
         "main/contact-us/contact_us_form.html",
         title="Contact Us",
         form=form,
-        css_file="css/contact_us/main.css",
-        css_file2="css/contact_us/util.css",
+        css_files=["css/contact_us/main.css", "css/contact_us/util.css"],
         image_file=profile_path(),
     )

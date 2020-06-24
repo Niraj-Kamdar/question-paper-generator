@@ -5,11 +5,11 @@ from string import ascii_uppercase
 from flask import request
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
-from wtforms import DateField
 from wtforms import FileField
 from wtforms import IntegerField
 from wtforms import StringField
 from wtforms import SubmitField
+from wtforms.fields.html5 import DateField
 from wtforms.form import BaseForm
 from wtforms.validators import DataRequired
 from wtforms.validators import ValidationError
@@ -166,7 +166,7 @@ class MarkDistributionForm:
 class PaperLogoForm(FlaskForm):
     name = StringField("Paper name", validators=[DataRequired()])
     term = StringField("Term name", validators=[DataRequired()])
-    exam_date = DateField("Date of the exam")
+    exam_date = DateField("Date of the exam", format="%Y-%m-%d")
     time_limit = StringField("Time length", validators=[DataRequired()])
     picture = FileField("Upload logo for paper",
                         validators=[FileAllowed(["jpg", "png"])])

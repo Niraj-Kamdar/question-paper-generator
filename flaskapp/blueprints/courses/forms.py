@@ -1,6 +1,7 @@
 from flask_login import current_user
 from flask_wtf import FlaskForm
 from sqlalchemy import and_
+from sqlalchemy import func
 from wtforms import BooleanField
 from wtforms import IntegerField
 from wtforms import StringField
@@ -9,6 +10,7 @@ from wtforms.validators import DataRequired
 from wtforms.validators import NumberRange
 from wtforms.validators import ValidationError
 
+from flaskapp import db
 from flaskapp.models import Course
 from flaskapp.models import Unit
 
@@ -17,8 +19,8 @@ def validate_course_name(form, course_name):
     """Validation of course name
 
     Args:
-        form (Object): In which given description about course
-        course_name (string): Name of course
+        form (FlaskForm): In which given description about course
+        course_name (StringField): Name of course
 
     Raises:
         ValidationError: If already exist then error of That Course is already exist. Please choose a different one. else add the course
@@ -35,14 +37,15 @@ def validate_unit_name(form, unit_name):
     """Validation on unit name of the course
 
     Args:
-        form (Object): Form i which all the details of unit
-        unit_name (string): Name of unit that user want to add
+        form (FlaskForm): Form i which all the details of unit
+        unit_name (StringField): Name of unit that user want to add
 
     Raises:
         ValidationError: If already there then give error of That Unit is already exist. Please choose a different one. else add name of unit
     """
     unit = Unit.query.filter(
         and_(Unit.name == unit_name.data, Unit.course == form.course)).first()
+
     if unit:
         raise ValidationError(
             "That Unit is already exist. Please choose a different one.")
@@ -52,9 +55,12 @@ def validate_chapter_no(form, chapter_no):
     unit = Unit.query.filter(
         and_(Unit.chapter_no == chapter_no.data,
              Unit.course == form.course)).first()
+    max_chapter_no = db.session.query(func.max(Unit.chapter_no)).scalar()
     if unit:
         raise ValidationError(
             "That Unit is already exist. Please choose a different one.")
+    if max_chapter_no and (max_chapter_no - chapter_no.data) > 1:
+        raise ValidationError(f"Please crete unit:{max_chapter_no + 1} first.")
 
 
 class CourseForm(FlaskForm):

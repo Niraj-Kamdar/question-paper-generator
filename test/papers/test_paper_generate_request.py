@@ -6,7 +6,7 @@ from test.main.utils import test_post_request
 
 class PaperGenerateRequest(BaseUnit):
     def test_paper_generate_request(self):
-        data = dict(questions=json.dumps([1, 2, 3]), total_marks=30)
+        data = dict(questions=[1, 2, 3], total_marks=30)
         response = self.client.post(
             "/course/1/papers/generate/request",
             data=json.dumps(data),
@@ -40,8 +40,7 @@ class PaperGenerateRequest(BaseUnit):
         response, _ = test_post_request(self,
                                         "/course/1/papers/generate/form/",
                                         data)
-        # FIXME: update assertion here
-        self.assertIn(b"<title>Title</title>", response.data)
+        self.assertIn(b"<title>Mark Distribution</title>", response.data)
         response = self.client.post(
             "/course/1/papers/confirm/template/",
             data=json.dumps(dict(status="OK")),

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+
+{% block flashes %}
+{% with messages = get_flashed_messages(with_categories=true) %} {% if
+messages %}
+<ul class="flashes flashes_question">
+    {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %} {% endwith %}
+{% endblock flashes %}
+{% block main %}
+
+<div id="course_container">
+
+    <div class="course_items">
+        <a id="add_course_small" href={{ url_for('courses.add_course') }}>
+        <div>
+<!--            <img src="{{ url_for('static',filename='images/add.svg') }}" class="add_img" alt="add">-->Add Course
+        </div>
+        </a>
+        <button id="delete_course_small">
+            <div>Remove Course</div>
+        </button>
+        {% for _course in courses %}
+
+          <div class="course_item_container">
+                <label><span class="hide">Delete Course</span> <input type="checkbox" class="delete_course_box hide"/></label>
+                <a class="course_item"
+                   href='{{ url_for("courses.all_units", course_id=_course.id) }}' data-id="{{_course.id}}">{{ _course.name }}</a>
+          </div>
+
+
+        {% endfor %}
+    </div>
+    <div id="add_course_container">
+        <a class="add_course" href={{ url_for('courses.add_course') }}>
+            <div>
+<!--                <img src="{{ url_for('static',filename='images/add.svg') }}" class="add_img" alt="add">-->
+                Add Course
+            </div>
+        </a>
+        <button class="delete_course">
+            <div>Remove Course</div>
+        </button>
+    </div>
+</div>
+
+{% endblock main %}

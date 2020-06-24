@@ -32,11 +32,9 @@ questions = Blueprint("questions", __name__)
 @check_valid_question_type
 def all_questions(course_id, unit_id, qtype):
     """Rendering Question page
-
     Arguments:
         course_id {Object} -- Id for course
         qtype {Subjective/mcq} -- Specification about question is subjective or MCQ type
-
     Returns:
         HTML Function -- According to chosen type of question render page
     """
@@ -61,7 +59,7 @@ def all_questions(course_id, unit_id, qtype):
             css_files=[
                 "css/base.css",
                 "css/questions/mcqs.css",
-                "css/questions/sideNav.css",
+                "css/sideNav.css",
                 "css/questions/questions.css",
                 "css/questions/mcq_form.css",
                 "css/questions/question_form.css",
@@ -74,10 +72,10 @@ def all_questions(course_id, unit_id, qtype):
         return render_template(
             "questions/questions.html",
             questions=_questions,
-            css_file=[
+            css_files=[
                 "css/base.css",
                 "css/questions/questions.css",
-                "css/questions/sideNav.css",
+                "css/sideNav.css",
                 "css/questions/question_form.css",
             ],
             js_files=[
@@ -99,7 +97,6 @@ def all_questions(course_id, unit_id, qtype):
 @check_valid_question_type
 def add_question(course_id, unit_id, qtype):
     """Adding question
-
     Arguments:
         course_id {Object} -- Course ID which uniquely defined.
         question_type {Subjective/MCQ} -- What is the type of question ? subjective or MCQ
@@ -137,7 +134,7 @@ def add_question(course_id, unit_id, qtype):
             css_files=[
                 "css/base.css",
                 "css/questions/mcq_form.css",
-                "css/questions/sideNav.css",
+                "css/sideNav.css",
                 "css/questions/question_form.css",
             ],
             js_files=["js/questions/mcq_question_form.js", "js/sideNav.js"],
@@ -157,7 +154,7 @@ def add_question(course_id, unit_id, qtype):
             css_files=[
                 "css/base.css",
                 "css/questions/question_form.css",
-                "css/questions/sideNav.css",
+                "css/sideNav.css",
             ],
             js_files=["js/questions/question_form.js", "js/sideNav.js"],
             title="Add Subjective Question",
@@ -175,7 +172,6 @@ def add_question(course_id, unit_id, qtype):
 @check_valid_question_type
 def update_question(course_id, unit_id, qtype, question_id):
     """For updating question
-
     Returns:
         Render template -- for updating questions if that question is exist then update it by id.And update marks , difficulty and IMP flag accorging to input.
        And do changes in database accordingly.
@@ -236,7 +232,6 @@ def update_question(course_id, unit_id, qtype, question_id):
 @check_valid_question_type
 def imp_question(course_id, unit_id, qtype):
     """Set an IMP flag to question
-
     Returns:
         Same page with flag or without flag -- set an IMP flag to particular question.And do changes in database also.
     """
@@ -255,11 +250,11 @@ def imp_question(course_id, unit_id, qtype):
 @check_valid_question_type
 def delete_question(course_id, unit_id, qtype):
     """Delete question
-
     Returns:
         page -- If current user is not an instructor of that subject then throw erroe else
         delete question's data. and update UI.
     """
+
     if request.method == "POST":
         delete_question_from_db(request.get_json())
         return redirect_to_all_questions(course_id, unit_id, qtype)

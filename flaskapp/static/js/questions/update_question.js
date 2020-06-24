@@ -142,7 +142,6 @@
       });
       script = document.getElementById("updateScript");
       document.body.removeChild(script);
-      return;
     }
   });
 
@@ -167,8 +166,12 @@
         }
         jsonId = JSON.stringify(ids);
         url = urlGenerator();
-        url = url + "delete/" + jsonId;
-        fetch(url)
+        url = url + "delete/";
+        fetch(url, {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: jsonId,
+        })
           .then(() => {
             for (let i = 0; i < deleteCheckbox.length; i++) {
               if (!deleteCheckbox[i].checked) {
@@ -215,8 +218,12 @@
           notimp: notImpIds,
         };
         jsonData = JSON.stringify(data);
-        url = url + "imp/" + jsonData;
-        fetch(url)
+        url = url + "imp/";
+        fetch(url, {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: jsonData,
+        })
           .then(() => {
             for (let i = 0; i < impCheckbox.length; i++) {
               if (impCheckbox[i].checked) imps[i].innerText = "IMP";

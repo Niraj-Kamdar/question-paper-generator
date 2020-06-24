@@ -5,14 +5,14 @@
   const clientError = document.getElementsByClassName("form__client_error");
   const form = document.getElementById("unit_form");
   const resetBtn = document.getElementById("reset_btn");
-  for (let err of formError) {
-    err.innerHTML = "";
-  }
   chapterNo.addEventListener("input", () => {
     clientError[0].innerHTML = "";
   });
   name.addEventListener("input", () => {
     clientError[1].innerHTML = "";
+    for (let err of formError) {
+      err.innerHTML = "";
+    }
   });
   resetBtn.addEventListener("click", function () {
     chapterNo.value = "";

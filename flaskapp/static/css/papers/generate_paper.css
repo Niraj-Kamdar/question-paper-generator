@@ -2,53 +2,28 @@
   color: chocolate;
 }
 
-.control_btns {
-  margin: 10px;
-  padding: 5px 0;
-  border-radius: 25px;
-  background-color: white;
-  display: inline-flex;
-  flex-direction: row;
+.btn_container {
+  text-align: right;
+  margin-top: 15px;
+  margin-right: 15px;
 }
 
 .comprehension {
   color: darkorchid;
 }
 
-.control_btns div {
-  padding: 0 10px;
-  border-right: 1px solid black;
+#conflicts_container {
+  background-color: rgba(144, 0, 240, 0.15);
+  padding: 10px;
 }
 
-.control_btns div:hover {
-  cursor: pointer;
-}
-
-.control_btns div:last-child {
-  border: none;
-}
-
-.control_btns_img {
-  width: 20px;
-}
-.delete_question {
-  display: none;
-  padding: 10px 0 10px 5px;
-}
-
-#delete_btn img {
-  opacity: 0.4;
+#conflicts_message {
+  padding-left: 15px;
+  font-size: 25px;
 }
 
 .easy {
   color: blue;
-}
-
-.edit_question {
-  background-color: white;
-  border-radius: 25px;
-  cursor: pointer;
-  padding: 5px;
 }
 
 .first_row {
@@ -72,11 +47,11 @@
   text-align: right;
 }
 
-.fourth_row {
+.fifth_row {
   border-bottom: 1px solid black;
 }
 
-.fifth_row {
+.sixth_row {
   display: flex;
 }
 
@@ -113,73 +88,116 @@
   padding-top: 100px;
 }
 
-#pagination {
-  display: flex;
-  justify-content: center;
-}
-
-#pagination a {
-  margin-right: 10px;
-}
-
-#questions {
-  margin-right: 10px;
+.options_final_value {
   background-color: rgba(144, 0, 240, 0.15);
-}
-
-.question_container {
-  display: flex;
-  flex-direction: row;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 20px;
   color: #585858;
-  font-size: 25px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+  word-break: break-word;
 }
 
 .question_info {
   background-color: white;
+  color: #585858;
   border-radius: 10px;
   padding: 10px 5px;
   flex-direction: column;
   flex-grow: 1;
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  font-weight: 400;
   margin: 10px;
 }
 
 .question_description {
   color: blue;
   flex-grow: 1;
+  padding-left: 5px;
   word-break: break-word;
 }
 
-.question_properties {
+.toggle_container {
+  align-items: center;
+  border-radius: 30px;
+  background-color: #ccc;
   display: flex;
-  flex-direction: column;
   flex-shrink: 0;
-  text-align: right;
-  width: 200px;
+  height: 24px;
+  margin-right: 10px;
+  width: 48px;
 }
 
-.second_row {
-  display: flex;
-  flex-direction: row;
+.toggle_container:hover {
+  cursor: pointer;
 }
 
-.update_question {
-  border-radius: 10px;
-  color: black;
+.toggle_btn {
+  background-color: white;
+  border-radius: 50%;
+  left: 4px;
+  height: 16px;
+  position: relative;
+  transition: left 0.4s;
+  width: 16px;
+}
+
+#generate_paper,
+#fix_conflicts {
+  background-color: rgba(144, 0, 240, 0.15);
+  border: none;
+  /*color: rgba(88, 88, 88, 1);*/
+  color : #585858;
+  font-size: 20px;
+  padding: 10px 20px;
+}
+
+.label_checkbox,
+.add_checkbox {
+  display: none;
+}
+
+#logoform {
+  background-color: rgba(144,0,240,0.15);
+  box-shadow: 4px 4px 2px 0;
+  padding: 10px;
+  width: 550px;
+}
+
+#form_content {
+  background-color: white;
+  padding: 10px;
+}
+
+.form__fields {
+  background-color: rgba(144,0,240,0.15);
   display: flex;
   flex-direction: column;
-  padding: 10px 15px;
+  padding: 10px;
 }
 
-.update_question_img {
-  opacity: 0.4;
-  width: 20px;
+.form__fields label {
+  color: #585858;
+  font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+  font-size: 20px;
 }
 
-@media (max-width: 960px) {
-  #questions {
-    margin-right: 0 !important;
-  }
+.form__fields input {
+  padding: 10px;
+}
+
+.include {
+  display: flex;
+  align-items: baseline;
+}
+
+#template_display {
+  padding-top: 0;
+}
+
+input[type='file']{
+  padding: 0;
 }
 
 @media (max-width: 700px) {
@@ -187,8 +205,13 @@
     width: 150px;
   }
 
-  .question_container {
+  .question_info,
+  #conflicts_message {
     font-size: 20px;
+  }
+
+  .options_final_value {
+    font-size: 16px;
   }
 }
 
@@ -197,7 +220,8 @@
     width: 120px;
   }
 
-  .question_container {
+  .question_info,
+  #conflicts_message {
     font-size: 16px;
   }
 
@@ -232,9 +256,5 @@
 
   .left {
     width: 90px;
-  }
-
-  .question_container {
-    font-size: 18px;
   }
 }

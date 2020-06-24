@@ -71,18 +71,18 @@ messages %}
                             level</span>: <span class="cognitive"> {{ q.cognitive_level }}</span></div>
                         </div>
                         <div class="fifth_row">
+                            <span class="left">Question</span>:
                             <div class="question_description">
-                                {{ q.question }}
+                                {{ q.question.question }}
                             </div>
                         </div>
 
 
                         <div class="options_container">
-
-                            <div class="options_final_value">{{ q.option1 }}</div>
-                            <div class="options_final_value">{{ q.option2 }}</div>
-                            <div class="options_final_value">{{ q.option3 }}</div>
-                            <div class="options_final_value">{{ q.option4 }}</div>
+                            <div class="options_final_value">{{ q.question.option1 }}</div>
+                            <div class="options_final_value">{{ q.question.option2 }}</div>
+                            <div class="options_final_value">{{ q.question.option3 }}</div>
+                            <div class="options_final_value">{{ q.question.option4 }}</div>
                         </div>
 
                     </div>
