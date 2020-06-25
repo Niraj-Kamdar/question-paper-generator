@@ -45,7 +45,7 @@ def home():
     main_page = request.args.get("page", 1, type=int)
     _courses = Course.query.filter(Course.teacher == current_user).all()
     course_ids = [course.id for course in _courses]
-    _papers = Paper.query.filter(Course.course_id.in_(course_ids)).paginate(page=main_page, per_page=10)
+    _papers = Paper.query.filter(Paper.course_id.in_(course_ids)).paginate(page=main_page, per_page=10)
     return render_template(
         "papers/home.html",
         css_files=["css/base.css", "css/home.css"],
