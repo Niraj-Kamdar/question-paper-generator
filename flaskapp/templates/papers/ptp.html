@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Generated Paper</title>
+    <title>Generated Question Paper</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <script src="https://browser.sentry-cdn.com/5.15.4/bundle.min.js"
@@ -13,7 +13,7 @@
             dsn: "https://c9335936f879448e8ba64f062636caaf@o374456.ingest.sentry.io/5192852",
         });
     </script>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for("static", filename="images/favicon.ico") }}">
+    <link rel="shortcut icon" type="image/x-icon" href='{{ url_for("static", filename="images/favicon.ico") }}'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
 
@@ -21,7 +21,7 @@
 
     <link rel=“stylesheet” href=“https://use.fontawesome.com/releases/v5.5.0/css/all.css”
           integrity=“sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU” crossorigin=“anonymous”>
-	{% for css_file in css_files %}
+	{%for css_file in css_files %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename=css_file) }}"/>
 	{% endfor %}
 
@@ -31,33 +31,35 @@
 
 	<div class="container-fluid p-5" style="border:1px solid green;">
 
+		{% if paper.logo %}
 		<div class="row">
 
 			<div class="col"></div>
 			<div class="col-2">
-            	<img src="{{ url_for('static', filename='images/paper_logo.png') }}" class="paper_logo" alt="paper logo"/>
+            	<img src={{paper.logo}} class="paper_logo" alt="paper logo"/>
             </div>
 			<div class="col"></div>
 
 		</div>
+		{% endif %}
 
 		<div class="row" style="display: flex;justify-content: center; font-weight: bold;">
-			<p style="margin: 0;">Subject : {{ course_name }}</p>
-		</div>
+			<p style="margin: 0;">Subject : {{ paper.name }}</p>
+		</div>	
 		<div class="row" style="display: flex;justify-content: center; font-weight: bold;">
-			<p style="margin: 0;">{{ prefix }} Examination</p>
-		</div>
+			<p style="margin: 0;">{{ paper.term }} Examination</p>
+		</div>	
 		<div class="row pb-3" style="font-weight: bold; border-bottom: 2px solid black;">
-			<div class="col" style="text-align: left;"><p style="margin: 0;">Date : {{ date }}</p></div>
-			<div class="col" style="text-align: center;"><p style="margin: 0;">{{ term }}</p></div>
-			<div class="col" style="text-align: right;"><p style="margin: 0;">Time limit : {{ time_limit }}</p></div>
+			<div class="col" style="text-align: left;"><p style="margin: 0;">Date : {{ paper.exam_date }}</p></div>
+			<div class="col" style="text-align: center;"><p style="margin: 0;">{{ paper.term }}</p></div>
+			<div class="col" style="text-align: right;"><p style="margin: 0;">Time limit : {{ paper.time_limit }}</p></div>
 		</div>
 
 		<div class="row pt-3 px-4" style="border-bottom: 2px solid black;">
 			<h5 style="width: 100%; font-weight: bold;">Instructions :</h5>
 			<div class="container" style="max-width: 97%;text-align: justify;">
 				<ul style="font-weight: bold;">
-					{% for instruction in instructions %}
+					{% for instruction in paper.instructions %}
 						<li>{{instruction}}</li>
 					{% endfor %}
 				</ul>
@@ -65,21 +67,47 @@
 		</div>
 		<div class="row mt-4" style="text-align: justify;">
 
-			<ol type="1">
+			<h5 style="font-weight: bold; width: 100%; height: auto;">Answer the following Multiple choice questions.</h5>
 
-				{% for q in questions %}
+			<ol class="mt-4" type="1">
 
-					<li style="padding-left: 10px">{{ questions[q]['question'] }} <b>[{{ questions[q]['marks'] }}] </b></li>
-					<ol class="mb-4" type="A">
-					  	{% for sub_q in questions[q]['sub_questions'] %}
-							<li style="padding-left: 10px">{{ sub_q }}</li>
+				{% for q in paper.paper_format.mcq %}
+
+					<li>
+					<ol class="mb-4" type="a">
+					  	{% for sub_q in paper.paper_format.mcq[q] %}
+							<li style="padding-left: 10px">{{ paper.paper_format.mcq[q][sub_q]['question'] }}  <b>[{{ paper.paper_format.mcq[q][sub_q]['mark'] }}] </b></li>
+						<ol class="mb-4" type="A">
+							<li style="padding-left: 10px">{{ paper.paper_format.mcq[q][sub_q]['option1'] }}</li>
+							<li style="padding-left: 10px">{{ paper.paper_format.mcq[q][sub_q]['option2'] }}</li>
+							<li style="padding-left: 10px">{{ paper.paper_format.mcq[q][sub_q]['option3'] }}</li>
+							<li style="padding-left: 10px">{{ paper.paper_format.mcq[q][sub_q]['option4'] }}</li>
+						</ol>
+
+
 						{% endfor %}
 					</ol>
+						</li>
 
 				{% endfor %}
 
 			</ol>
 
+			<h5 style="font-weight: bold; width: 100%; height: auto;">Answer the following subjective questions.</h5>
+			
+			<ol class="mt-4" type="1">
+
+				{% for q in paper.paper_format.sub %}
+
+					<li><ol class="mb-4" type="a">
+					  	{% for sub_q in paper.paper_format.sub[q] %}
+							<li style="padding-left: 10px">{{ paper.paper_format.sub[q][sub_q]['question'] }}  <b>[{{ paper.paper_format.sub[q][sub_q]['mark'] }}] </b></li>
+						{% endfor %}
+					</ol></li>
+
+				{% endfor %}
+
+			</ol>
 
 		</div>
     </div>

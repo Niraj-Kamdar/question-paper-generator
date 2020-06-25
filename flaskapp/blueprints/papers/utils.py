@@ -35,29 +35,27 @@ def find_random_question(course_id, constraints):
     unit = (db.session.query(Unit).filter(
         and_(Unit.chapter_no == constraints["unit"],
              Unit.course_id == course_id)).first())
-    imp_question = (db.session.query(Question).filter(
-        and_(
-            Question.cognitive_level == constraints["cognitive"],
-            Question.difficulty == constraints["difficulty"],
-            Question.mark == constraints["mark"],
-            Question.unit_id == unit.id,
-            Question.imp is True,
-            Question.question_type == constraints["question_type"],
-        )).order_by(func.random()).first().id)
+    imp_question = (db.session.query(Question).filter_by(
+            cognitive_level = constraints["cognitive"],
+            difficulty = constraints["difficulty"],
+            mark = constraints["mark"],
+            unit_id = unit.id,
+            imp = True,
+            question_type = constraints["question_type"],
+        ).order_by(func.random()).first())
     if imp_question:
         return imp_question.to_dict()
-    question = (db.session.query(Question).filter(
-        and_(
-            Question.cognitive_level == constraints["cognitive"],
-            Question.difficulty == constraints["difficulty"],
-            Question.mark == constraints["mark"],
-            Question.unit_id == unit.id,
-            Question.is_asked is False,
-            Question.question_type == constraints["question_type"],
-        )).order_by(func.random()).first().id)
+    question = (db.session.query(Question).filter_by(
+            cognitive_level = constraints["cognitive"],
+            difficulty = constraints["difficulty"],
+            mark = constraints["mark"],
+            unit_id = unit.id,
+            is_asked = False,
+            question_type = constraints["question_type"],
+        ).order_by(func.random()).first())
     if question:
         return question.to_dict()
-    raise QuestionNotFoundError()
+    raise ValueError("question not found")
 
 
 def save_logo(form_picture):

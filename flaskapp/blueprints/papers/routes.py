@@ -156,6 +156,7 @@ def confirm_paper_template(course_id):
 @check_valid_session(session_keys=("paper_template", "total_marks"))
 def generate_paper(course_id):
     paper_template = json_url.loads(session["paper_template"])
+    print(paper_template)
     conflicting_questions = []
     for qtype in paper_template:
         for question in paper_template[qtype]:
@@ -183,21 +184,20 @@ def generate_paper(course_id):
         paper_data["exam_date"] = form.exam_date.data
         paper_data["time_limit"] = form.time_limit.data
         paper_data["course_id"] = course_id
-        paper_data["paper_format"] = {}
+        paper_data["paper_format"] = defaultdict(lambda: defaultdict(dict))
         for qtype in paper_template:
             for question in paper_template[qtype]:
                 for subquestion, constraints in paper_template[qtype][
                         question].items():
                     try:
-                        paper_data["paper_format"].update(
-                            dict(qtype=dict(question=dict(
-                                subquestion=find_random_question(
-                                    course_id, constraints)))))
-                    except QuestionNotFoundError:
+                        paper_data["paper_format"][qtype][question].update(
+                            {subquestion: find_random_question(course_id, constraints)})
+                    except ValueError:
                         flash(
                             "Question that satisfies all given constraints doesn't exist in database."
                         )
-                        redirect(url_for("papers.home"))
+                        return redirect(url_for("papers.home"))
+        paper_data["paper_format"] = dict(paper_data["paper_format"])
         paper = Paper(**paper_data)
         db.session.add(paper)
         db.session.commit()
@@ -236,8 +236,7 @@ def html_paper(paper_id):
     Returns:
         PDF: Pdf of final paper
     """
-    paper = Paper.query.filter_by(id=paper_id)
-
+    paper = Paper.query.filter_by(id=paper_id).first()
     return render_template(
         "papers/ptp.html",
         css_files=["css/ptp.css"],
