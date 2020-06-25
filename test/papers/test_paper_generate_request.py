@@ -19,8 +19,8 @@ class PaperGenerateRequest(BaseUnit):
         )
 
     def test_handle_conflicting_questions(self):
-        data = dict(mcq={"ask":[1,3], "nask":[2,4]},
-                     sub={"ask":[1,3], "nask":[2,4]})
+        data = dict(mcq={"ask": [1, 3], "nask": [2, 4]},
+                    sub={"ask": [1, 3], "nask": [2, 4]})
         response = self.client.post(
             "/papers/handle/conflicts",
             data=json.dumps(data),
