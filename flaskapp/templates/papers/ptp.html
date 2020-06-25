@@ -45,10 +45,10 @@
 
 		<div class="row" style="display: flex;justify-content: center; font-weight: bold;">
 			<p style="margin: 0;">Subject : {{ paper.name }}</p>
-		</div>	
+		</div>
 		<div class="row" style="display: flex;justify-content: center; font-weight: bold;">
 			<p style="margin: 0;">{{ paper.term }} Examination</p>
-		</div>	
+		</div>
 		<div class="row pb-3" style="font-weight: bold; border-bottom: 2px solid black;">
 			<div class="col" style="text-align: left;"><p style="margin: 0;">Date : {{ paper.exam_date }}</p></div>
 			<div class="col" style="text-align: center;"><p style="margin: 0;">{{ paper.term }}</p></div>
@@ -94,7 +94,7 @@
 			</ol>
 
 			<h5 style="font-weight: bold; width: 100%; height: auto;">Answer the following subjective questions.</h5>
-			
+
 			<ol class="mt-4" type="1">
 
 				{% for q in paper.paper_format.sub %}

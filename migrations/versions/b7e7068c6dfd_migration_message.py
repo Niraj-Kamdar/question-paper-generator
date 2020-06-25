@@ -1,7 +1,7 @@
 """Migration message
 
 Revision ID: b7e7068c6dfd
-Revises: 
+Revises:
 Create Date: 2020-06-25 17:58:53.534169
 
 """
