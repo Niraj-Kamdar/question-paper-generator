@@ -1,14 +1,13 @@
 import os
 import secrets
 
-from PIL import Image
 from flask import current_app, render_template
 from flask_mail import Message
-from flask_weasyprint import HTML, CSS
-from sqlalchemy import and_, func
-
-from flaskapp import db, APP_PATH, mail
+from flask_weasyprint import CSS, HTML
+from flaskapp import APP_PATH, db, mail
 from flaskapp.models import Question, Unit
+from PIL import Image
+from sqlalchemy import and_, func
 
 
 class QuestionNotFoundError(Exception):

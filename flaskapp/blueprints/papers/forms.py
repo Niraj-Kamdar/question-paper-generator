@@ -5,13 +5,13 @@ from string import ascii_uppercase
 from flask import request
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
-from wtforms import FileField, IntegerField, StringField, SubmitField, HiddenField
-from wtforms.fields.html5 import DateField
-from wtforms.form import BaseForm
-from wtforms.validators import DataRequired, ValidationError, Email
-
 from flaskapp.models import Course, Unit
 from flaskapp.utils import CognitiveEnum, DifficultyEnum, QuestionTypeEnum
+from wtforms import (FileField, HiddenField, IntegerField, StringField,
+                     SubmitField)
+from wtforms.fields.html5 import DateField
+from wtforms.form import BaseForm
+from wtforms.validators import DataRequired, Email, ValidationError
 
 
 class IsSumOf:
