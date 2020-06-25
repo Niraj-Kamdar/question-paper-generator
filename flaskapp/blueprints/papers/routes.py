@@ -45,7 +45,8 @@ def home():
     main_page = request.args.get("page", 1, type=int)
     _courses = Course.query.filter(Course.teacher == current_user).all()
     course_ids = [course.id for course in _courses]
-    _papers = Paper.query.filter(Course.course_id.in_(course_ids)).paginate(page=main_page, per_page=10)
+    _papers = Paper.query.filter(Course.course_id.in_(
+        course_ids)).paginate(page=main_page, per_page=10)
     return render_template(
         "papers/home.html",
         css_files=["css/base.css", "css/home.css"],
@@ -256,9 +257,11 @@ def confirm_generated_paper(paper_id):
     if form.validate_on_submit():
         if form.generate.data == "YES":
             email_pdf(form.examiner_email.data, current_user.email, paper_id)
-            flash("An email has been sent to you and examiner with generated pdf as an attachment.")
+            flash(
+                "An email has been sent to you and examiner with generated pdf as an attachment.")
             return redirect(url_for("papers.home"))
-        db.session.query(Question).filter_by(id=paper_id).delete(synchronize_session="fetch")
+        db.session.query(Question).filter_by(
+            id=paper_id).delete(synchronize_session="fetch")
         db.session.commit()
         flash("Paper generation aborted successfully!")
         return redirect(url_for("papers.home"))
@@ -271,5 +274,6 @@ def confirm_generated_paper(paper_id):
 @login_required
 def all_papers(course_id):
     main_page = request.args.get("page", 1, type=int)
-    _papers = Paper.query.filter_by(course_id=course_id).paginate(page=main_page, per_page=10)
+    _papers = Paper.query.filter_by(
+        course_id=course_id).paginate(page=main_page, per_page=10)
     return render_template("papers/papers.html", papers=_papers)

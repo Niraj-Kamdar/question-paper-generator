@@ -33,16 +33,16 @@ class IsSumOf:
     def __call__(self, form, field):
         try:
             expected_sum = sum(
-                    map(lambda fieldname: form[fieldname].data, self.fieldnames))
+                map(lambda fieldname: form[fieldname].data, self.fieldnames))
         except KeyError:
             raise ValidationError(
-                    field.gettext("Invalid field name in {}.").format(", ".join(
-                            self.fieldnames)))
+                field.gettext("Invalid field name in {}.").format(", ".join(
+                    self.fieldnames)))
         if field.data != expected_sum:
             message = self.message
             if message is None:
                 message = field.gettext(
-                        "Field must be equal to {}.".format(expected_sum))
+                    "Field must be equal to {}.".format(expected_sum))
 
             raise ValidationError(message)
 
@@ -68,19 +68,19 @@ class MarkDistributionForm:
         for unit in units:
             field = f"Unit:{unit.chapter_no:02d}"
             form_fields.update(
-                    {field: IntegerField(field, validators=[DataRequired()])})
+                {field: IntegerField(field, validators=[DataRequired()])})
             validators["unit"].append(field)
         for c_level in CognitiveEnum.__members__:
             form_fields.update(
-                    {c_level: IntegerField(c_level, validators=[DataRequired()])})
+                {c_level: IntegerField(c_level, validators=[DataRequired()])})
             validators["cognitive"].append(c_level)
         for d_level in DifficultyEnum.__members__:
             form_fields.update(
-                    {d_level: IntegerField(d_level, validators=[DataRequired()])})
+                {d_level: IntegerField(d_level, validators=[DataRequired()])})
             validators["difficulty"].append(d_level)
         for qtype in QuestionTypeEnum.__members__:
             form_fields.update(
-                    {qtype: IntegerField(qtype, validators=[DataRequired()])})
+                {qtype: IntegerField(qtype, validators=[DataRequired()])})
             validators["question_type"].append(qtype)
 
         idx = 0
@@ -88,7 +88,7 @@ class MarkDistributionForm:
             for subquestion in range(subquestions):
                 field = f"Que.{question_no + 1}.{ascii_uppercase[subquestion]}"
                 form_fields.update(
-                        {field: IntegerField(field, validators=[DataRequired()])})
+                    {field: IntegerField(field, validators=[DataRequired()])})
                 validators["question"].append(field)
                 question_translator[question_no +
                                     1][ascii_uppercase[subquestion]] = idx
@@ -117,7 +117,7 @@ class MarkDistributionForm:
         for constraint in self.fields:
             for field in self.fields[constraint]:
                 self.flatten_data[constraint][self.translate(
-                        constraint, field.name)] = int(field.data)
+                    constraint, field.name)] = int(field.data)
         return self.flatten_data
 
     @property
@@ -148,7 +148,7 @@ class MarkDistributionForm:
         if constraint == "question":
             matched = self.question_field_regex.search(field)
             return self.question_translator[int(
-                    matched.group(1))][matched.group(2)]
+                matched.group(1))][matched.group(2)]
 
     def validate_on_submit(self):
         self.form.process(request.form)
@@ -167,5 +167,6 @@ class PaperLogoForm(FlaskForm):
 
 
 class ExaminerEmailForm(FlaskForm):
-    examiner_email = StringField("Examiner's email", validators=[DataRequired(), Email()])
+    examiner_email = StringField("Examiner's email", validators=[
+                                 DataRequired(), Email()])
     generate = HiddenField("Generate", validators=[DataRequired()])
