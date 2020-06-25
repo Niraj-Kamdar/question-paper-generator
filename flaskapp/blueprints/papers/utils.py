@@ -1,13 +1,20 @@
 import os
 import secrets
 
-from flask import current_app, render_template
+from flask import current_app
+from flask import render_template
 from flask_mail import Message
-from flask_weasyprint import CSS, HTML
-from flaskapp import APP_PATH, db, mail
-from flaskapp.models import Question, Unit
+from flask_weasyprint import CSS
+from flask_weasyprint import HTML
 from PIL import Image
-from sqlalchemy import and_, func
+from sqlalchemy import and_
+from sqlalchemy import func
+
+from flaskapp import APP_PATH
+from flaskapp import db
+from flaskapp import mail
+from flaskapp.models import Question
+from flaskapp.models import Unit
 
 
 class QuestionNotFoundError(Exception):

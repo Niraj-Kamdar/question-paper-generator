@@ -1,10 +1,16 @@
 import functools
 
-from flask import abort, redirect, session, url_for
+from flask import abort
+from flask import redirect
+from flask import session
+from flask import url_for
 from flask_login import current_user
-from flaskapp.models import Course, Paper, Unit
-from flaskapp.utils import json_url
 from itsdangerous import BadSignature
+
+from flaskapp.models import Course
+from flaskapp.models import Paper
+from flaskapp.models import Unit
+from flaskapp.utils import json_url
 
 
 def check_valid_course(func):
