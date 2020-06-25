@@ -11,20 +11,27 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
-from flask_login import login_required, current_user
-from flask_weasyprint import render_pdf, HTML, CSS
+from flask_login import current_user
+from flask_login import login_required
+from flask_weasyprint import CSS
+from flask_weasyprint import HTML
+from flask_weasyprint import render_pdf
 from qpt_generator import QPTGenerator
 
 from flaskapp import db
-from flaskapp.blueprints.papers.forms import MarkDistributionForm, ExaminerEmailForm
+from flaskapp.blueprints.papers.forms import ExaminerEmailForm
+from flaskapp.blueprints.papers.forms import MarkDistributionForm
 from flaskapp.blueprints.papers.forms import PaperLogoForm
-from flaskapp.blueprints.papers.utils import find_conflicting_questions, email_pdf, render_paper
+from flaskapp.blueprints.papers.utils import email_pdf
+from flaskapp.blueprints.papers.utils import find_conflicting_questions
 from flaskapp.blueprints.papers.utils import find_random_question
 from flaskapp.blueprints.papers.utils import QuestionNotFoundError
+from flaskapp.blueprints.papers.utils import render_paper
 from flaskapp.blueprints.papers.utils import save_logo
 from flaskapp.checkers import check_valid_course
 from flaskapp.checkers import check_valid_session
-from flaskapp.models import Paper, Course
+from flaskapp.models import Course
+from flaskapp.models import Paper
 from flaskapp.models import Question
 from flaskapp.utils import CognitiveEnum
 from flaskapp.utils import DifficultyEnum
@@ -45,7 +52,8 @@ def home():
     main_page = request.args.get("page", 1, type=int)
     _courses = Course.query.filter(Course.teacher == current_user).all()
     course_ids = [course.id for course in _courses]
-    _papers = Paper.query.filter(Course.course_id.in_(course_ids)).paginate(page=main_page, per_page=10)
+    _papers = Paper.query.filter(Course.course_id.in_(course_ids)).paginate(
+        page=main_page, per_page=10)
     return render_template(
         "papers/home.html",
         css_files=["css/base.css", "css/home.css"],
@@ -256,9 +264,12 @@ def confirm_generated_paper(paper_id):
     if form.validate_on_submit():
         if form.generate.data == "YES":
             email_pdf(form.examiner_email.data, current_user.email, paper_id)
-            flash("An email has been sent to you and examiner with generated pdf as an attachment.")
+            flash(
+                "An email has been sent to you and examiner with generated pdf as an attachment."
+            )
             return redirect(url_for("papers.home"))
-        db.session.query(Question).filter_by(id=paper_id).delete(synchronize_session="fetch")
+        db.session.query(Question).filter_by(id=paper_id).delete(
+            synchronize_session="fetch")
         db.session.commit()
         flash("Paper generation aborted successfully!")
         return redirect(url_for("papers.home"))
@@ -271,5 +282,6 @@ def confirm_generated_paper(paper_id):
 @login_required
 def all_papers(course_id):
     main_page = request.args.get("page", 1, type=int)
-    _papers = Paper.query.filter_by(course_id=course_id).paginate(page=main_page, per_page=10)
+    _papers = Paper.query.filter_by(course_id=course_id).paginate(
+        page=main_page, per_page=10)
     return render_template("papers/papers.html", papers=_papers)

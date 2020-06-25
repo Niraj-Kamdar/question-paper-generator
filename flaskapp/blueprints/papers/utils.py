@@ -1,14 +1,20 @@
 import os
 import secrets
 
-from PIL import Image
-from flask import current_app, render_template
+from flask import current_app
+from flask import render_template
 from flask_mail import Message
-from flask_weasyprint import HTML, CSS
-from sqlalchemy import and_, func
+from flask_weasyprint import CSS
+from flask_weasyprint import HTML
+from PIL import Image
+from sqlalchemy import and_
+from sqlalchemy import func
 
-from flaskapp import db, APP_PATH, mail
-from flaskapp.models import Question, Unit
+from flaskapp import APP_PATH
+from flaskapp import db
+from flaskapp import mail
+from flaskapp.models import Question
+from flaskapp.models import Unit
 
 
 class QuestionNotFoundError(Exception):
@@ -101,14 +107,15 @@ def render_paper(paper):
 
 
 def email_pdf(examiner, user, paper):
-    mail_file = os.path.join(APP_PATH, "templates", "papers", "pdf-email-receipt",
-                             "content.txt")
+    mail_file = os.path.join(APP_PATH, "templates", "papers",
+                             "pdf-email-receipt", "content.txt")
     with open(mail_file, "r") as f:
         msg_text = f.read()
 
     msg_text = msg_text.format(exam=paper.name, date=paper.exam_date)
     msg_html = render_template("papers/pdf-email-receipt/content.html",
-                               exam=paper.name, date=paper.exam_date)
+                               exam=paper.name,
+                               date=paper.exam_date)
     msg = Message(f"Paper for {paper.name}",
                   sender="setnow@tuta.io",
                   recipients=[examiner, user])
@@ -117,5 +124,5 @@ def email_pdf(examiner, user, paper):
 
     filename, html, css = render_paper(paper)
     pdf = html.write_pdf(stylesheets=[css])
-    msg.attach(filename, 'application/pdf', pdf.read())
+    msg.attach(filename, "application/pdf", pdf.read())
     mail.send(msg)
