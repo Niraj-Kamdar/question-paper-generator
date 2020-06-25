@@ -1,50 +1,53 @@
-(function() {
-const forms = document.getElementsByTagName("form");
-const updateImp = document.getElementsByClassName("first_row_column_3");
-const deleteOption = document.getElementsByClassName("delete_question");
-const qids = document.getElementsByClassName("first_row_column_1");
-const questions = document.getElementsByClassName("question_container");
-const deleteCheckbox = document.getElementsByClassName("delete_checkbox");
-const imps = document.getElementsByClassName("first_row_column_2");
-const impCheckbox = document.getElementsByClassName("imp_checkbox");
-const markLabel = document.getElementsByClassName("mark_label");
-const editQuestion = document.getElementsByClassName("edit_question");
-let pageNo = 1;
-let activeBtn = {};
-const cancelBtn = document.getElementById("cancel_btn");
-const mark = document.getElementById("mark_imp");
-const deleteBtn = document.getElementById("delete_btn");
-const difficultyField = document.getElementsByClassName("difficulty");
-const cognitiveField = document.getElementsByClassName("cognitive");
-for (let val of difficultyField) {
-  val.innerHTML = val.innerHTML.substr(val.innerHTML.indexOf(".") + 1);
-  val.classList.add(val.innerText.toLowerCase());
-}
-for (let val of cognitiveField) {
-  val.innerHTML = val.innerHTML.substr(val.innerHTML.indexOf(".") + 1);
-  val.classList.add(val.innerText.toLowerCase());
-}
-const buffer = {
-  data : "",
-  index : -1,
-};
+(function () {
+  const forms = document.getElementsByTagName("form");
+  const updateImp = document.getElementsByClassName("first_row_column_3");
+  const deleteOption = document.getElementsByClassName("delete_question");
+  const qids = document.getElementsByClassName("first_row_column_1");
+  const questions = document.getElementsByClassName("question_container");
+  const deleteCheckbox = document.getElementsByClassName("delete_checkbox");
+  const imps = document.getElementsByClassName("first_row_column_2");
+  const impCheckbox = document.getElementsByClassName("imp_checkbox");
+  const markLabel = document.getElementsByClassName("mark_label");
+  const editQuestion = document.getElementsByClassName("edit_question");
+  let pageNo = 1;
+  let activeBtn = {};
+  const cancelBtn = document.getElementById("cancel_btn");
+  const mark = document.getElementById("mark_imp");
+  const deleteBtn = document.getElementById("delete_btn");
+  const difficultyField = document.getElementsByClassName("difficulty");
+  const cognitiveField = document.getElementsByClassName("cognitive");
+  for (let val of difficultyField) {
+    val.innerHTML = val.innerHTML.substr(val.innerHTML.indexOf(".") + 1);
+    val.classList.add(val.innerText.toLowerCase());
+  }
+  for (let val of cognitiveField) {
+    val.innerHTML = val.innerHTML.substr(val.innerHTML.indexOf(".") + 1);
+    val.classList.add(val.innerText.toLowerCase());
+  }
+  const buffer = {
+    data: "",
+    index: -1,
+  };
 
-function urlGenerator() {
-  let url = window.location.href;
-  let subIndex = url.indexOf("/sub");
-  url = url.substr(0, subIndex + 4 + 1);
-  return url;
-}
+  function urlGenerator() {
+    let url = window.location.href;
+    let subIndex = url.indexOf("/sub");
+    url = url.substr(0, subIndex + 4 + 1);
+    return url;
+  }
 
-function edit(i) {
-  if (!forms[0] && deleteOption[0].style.display !== "block" &&
-      updateImp[0].style.display !== "block") {
-    const qid = parseInt(qids[i].getAttribute("data-id"));
+  function edit(i) {
+    if (
+      !forms[0] &&
+      deleteOption[0].style.display !== "block" &&
+      updateImp[0].style.display !== "block"
+    ) {
+      const qid = parseInt(qids[i].getAttribute("data-id"));
 
-    let url = urlGenerator();
+      let url = urlGenerator();
 
-    url = url + "update/" + qid + "/";
-    fetch(url)
+      url = url + "update/" + qid + "/";
+      fetch(url)
         .then((data) => data.text())
         .then((data) => {
           let content = "";
@@ -68,148 +71,164 @@ function edit(i) {
           myscript.setAttribute("id", "updateScript");
           document.body.appendChild(myscript);
         })
-        .catch((e) => { throw new Error(e); });
-  }
-}
-
-activeBtn = document.querySelector("a.btn-info");
-if (activeBtn) {
-  pageNo = Number(activeBtn.innerText);
-  activeBtn.addEventListener("click", (e) => e.preventDefault());
-}
-
-for (let i = 0; i < qids.length; i++) {
-  qids[i].innerText = (pageNo - 1) * qids.length + (i + 1);
-}
-
-for (let i = 0; i < imps.length; i++) {
-  if (imps[i].innerText === "True") {
-    imps[i].innerText = "IMP";
-    impCheckbox[i].checked = true;
-  } else {
-    imps[i].innerText = "";
-  }
-  markLabel[i].innerText = "Set IMP";
-}
-
-Array.from(editQuestion).forEach((node) => {
-  node.addEventListener(
-      "click", () => { edit(Array.from(editQuestion).indexOf(node)); });
-});
-
-cancelBtn.addEventListener("click", () => {
-  let flag = false;
-
-  for (let j = 0; j < deleteOption.length; j++) {
-    if (deleteOption[j].style.display === "block") {
-      flag = true;
-      break;
+        .catch((e) => {
+          throw new Error(e);
+        });
     }
   }
-  if (flag) {
-    for (let i = 0; i < deleteOption.length; i++) {
-      deleteOption[i].style.display = "none";
-      deleteCheckbox[i].checked = false;
-    }
-    return;
-  }
-  for (let j = 0; j < updateImp.length; j++) {
-    if (updateImp[j].style.display === "block") {
-      flag = true;
-      break;
-    }
-  }
-  if (flag) {
-    for (let i = 0; i < updateImp.length; i++) {
-      updateImp[i].style.display = "none";
-      imps[i].style.display = "block";
-    }
-    return;
-  }
-  if (forms[0]) {
-    const index = buffer.index;
-    let script = "";
-    questions[buffer.index].innerHTML = buffer.data;
 
-    editQuestion[index].addEventListener("click", () => { edit(index); });
-    script = document.getElementById("updateScript");
-    document.body.removeChild(script);
+  activeBtn = document.querySelector("a.btn-info");
+  if (activeBtn) {
+    pageNo = Number(activeBtn.innerText);
+    activeBtn.addEventListener("click", (e) => e.preventDefault());
   }
-});
 
-deleteBtn.addEventListener("click", () => {
-  if (updateImp.length && updateImp[0].style.display !== "block" && !forms[0]) {
-    if (deleteOption[0].style.display !== "block") {
+  for (let i = 0; i < qids.length; i++) {
+    qids[i].innerText = (pageNo - 1) * qids.length + (i + 1);
+  }
+
+  for (let i = 0; i < imps.length; i++) {
+    if (imps[i].innerText === "True") {
+      imps[i].innerText = "IMP";
+      impCheckbox[i].checked = true;
+    } else {
+      imps[i].innerText = "";
+    }
+    markLabel[i].innerText = "Set IMP";
+  }
+
+  Array.from(editQuestion).forEach((node) => {
+    node.addEventListener("click", () => {
+      edit(Array.from(editQuestion).indexOf(node));
+    });
+  });
+
+  cancelBtn.addEventListener("click", () => {
+    let flag = false;
+
+    for (let j = 0; j < deleteOption.length; j++) {
+      if (deleteOption[j].style.display === "block") {
+        flag = true;
+        break;
+      }
+    }
+    if (flag) {
       for (let i = 0; i < deleteOption.length; i++) {
-        deleteOption[i].style.display = "block";
+        deleteOption[i].style.display = "none";
+        deleteCheckbox[i].checked = false;
       }
-    } else {
-      const ids = [];
-      let jsonId = "";
-      let url = "";
-      for (let i = 0; i < deleteCheckbox.length; i++) {
-        if (deleteCheckbox[i].checked) {
-          ids.push(parseInt(qids[i].getAttribute("data-id")));
-        }
-      }
-      jsonId = JSON.stringify(ids);
-      url = urlGenerator();
-      url = url + "delete/";
-      fetch(url, {
-        method : "post",
-        headers : {"Content-Type" : "application/json"},
-        body : jsonId,
-      })
-          .then(() => { window.location.reload(); })
-          .catch((e) => { throw new Error(e); });
+      return;
     }
-  }
-});
+    for (let j = 0; j < updateImp.length; j++) {
+      if (updateImp[j].style.display === "block") {
+        flag = true;
+        break;
+      }
+    }
+    if (flag) {
+      for (let i = 0; i < updateImp.length; i++) {
+        updateImp[i].style.display = "none";
+        imps[i].style.display = "block";
+      }
+      return;
+    }
+    if (forms[0]) {
+      const index = buffer.index;
+      let script = "";
+      questions[buffer.index].innerHTML = buffer.data;
 
-mark.addEventListener("click", () => {
-  if (!forms[0] && deleteOption.length &&
-      deleteOption[0].style.display !== "block") {
-    if (updateImp[0].style.display !== "block") {
-      for (let i = 0; i < imps.length; i++) {
-        imps[i].style.display = "none";
-        updateImp[i].style.display = "block";
-      }
-    } else {
-      const impIds = [];
-      const notImpIds = [];
-      let data = {};
-      let jsonData = "";
-      let url = urlGenerator();
-      for (let i = 0; i < impCheckbox.length; i++) {
-        if (impCheckbox[i].checked) {
-          impIds.push(qids[i].getAttribute("data-id"));
-        } else {
-          notImpIds.push(qids[i].getAttribute("data-id"));
+      editQuestion[index].addEventListener("click", () => {
+        edit(index);
+      });
+      script = document.getElementById("updateScript");
+      document.body.removeChild(script);
+    }
+  });
+
+  deleteBtn.addEventListener("click", () => {
+    if (
+      updateImp.length &&
+      updateImp[0].style.display !== "block" &&
+      !forms[0]
+    ) {
+      if (deleteOption[0].style.display !== "block") {
+        for (let i = 0; i < deleteOption.length; i++) {
+          deleteOption[i].style.display = "block";
         }
+      } else {
+        const ids = [];
+        let jsonId = "";
+        let url = "";
+        for (let i = 0; i < deleteCheckbox.length; i++) {
+          if (deleteCheckbox[i].checked) {
+            ids.push(parseInt(qids[i].getAttribute("data-id")));
+          }
+        }
+        jsonId = JSON.stringify(ids);
+        url = urlGenerator();
+        url = url + "delete/";
+        fetch(url, {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: jsonId,
+        })
+          .then(() => {
+            window.location.reload();
+          })
+          .catch((e) => {
+            throw new Error(e);
+          });
       }
-      data = {
-        imp : impIds,
-        notimp : notImpIds,
-      };
-      jsonData = JSON.stringify(data);
-      url = url + "imp/";
-      fetch(url, {
-        method : "post",
-        headers : {"Content-Type" : "application/json"},
-        body : jsonData,
-      })
+    }
+  });
+
+  mark.addEventListener("click", () => {
+    if (
+      !forms[0] &&
+      deleteOption.length &&
+      deleteOption[0].style.display !== "block"
+    ) {
+      if (updateImp[0].style.display !== "block") {
+        for (let i = 0; i < imps.length; i++) {
+          imps[i].style.display = "none";
+          updateImp[i].style.display = "block";
+        }
+      } else {
+        const impIds = [];
+        const notImpIds = [];
+        let data = {};
+        let jsonData = "";
+        let url = urlGenerator();
+        for (let i = 0; i < impCheckbox.length; i++) {
+          if (impCheckbox[i].checked) {
+            impIds.push(qids[i].getAttribute("data-id"));
+          } else {
+            notImpIds.push(qids[i].getAttribute("data-id"));
+          }
+        }
+        data = {
+          imp: impIds,
+          notimp: notImpIds,
+        };
+        jsonData = JSON.stringify(data);
+        url = url + "imp/";
+        fetch(url, {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: jsonData,
+        })
           .then(() => {
             for (let i = 0; i < impCheckbox.length; i++) {
-              if (impCheckbox[i].checked)
-                imps[i].innerText = "IMP";
-              else
-                imps[i].innerText = "";
+              if (impCheckbox[i].checked) imps[i].innerText = "IMP";
+              else imps[i].innerText = "";
               imps[i].style.display = "block";
               updateImp[i].style.display = "none";
             }
           })
-          .catch((e) => { throw new Error(e); });
+          .catch((e) => {
+            throw new Error(e);
+          });
+      }
     }
-  }
-});
+  });
 })();
