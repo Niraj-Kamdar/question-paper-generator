@@ -19,11 +19,15 @@ class PaperGenerateRequest(BaseUnit):
         )
 
     def test_handle_conflicting_questions(self):
-        data = dict(mcq=dict(ask=[1,3], nask=[2,4]), sub=dict(ask=[1,3], nask=[2,4]))
-        response, _ = test_post_request(self,
-                                        "/papers/handle/conflicts",
-                                        data)
-        
+        data = dict(mcq={ask:[1,3], nask:[2,4]}, sub={ask:[1,3], nask:[2,4]})
+        response = self.client.post(
+            "/papers/handle/conflicts",
+            data=json.dumps(data),
+            headers={"Content-Type": "application/json"},
+        )
+        data1 = json.loads(response.get_data(as_text=True))
+        self.assertEqual(data1['status'], "OK")
+
     def test_mark_distribution_form(self):
         self.test_paper_generate_request()
         data = {
