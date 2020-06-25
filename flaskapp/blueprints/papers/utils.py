@@ -55,7 +55,7 @@ def find_random_question(course_id, constraints):
         ).order_by(func.random()).first())
     if question:
         return question.to_dict()
-    raise ValueError("question not found")
+    raise QuestionNotFoundError()
 
 
 def save_logo(form_picture):

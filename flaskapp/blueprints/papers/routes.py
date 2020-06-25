@@ -192,7 +192,7 @@ def generate_paper(course_id):
                     try:
                         paper_data["paper_format"][qtype][question].update(
                             {subquestion: find_random_question(course_id, constraints)})
-                    except ValueError:
+                    except QuestionNotFoundError:
                         flash(
                             "Question that satisfies all given constraints doesn't exist in database."
                         )
