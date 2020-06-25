@@ -6,12 +6,14 @@ from flask import request
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
 from wtforms import FileField
+from wtforms import HiddenField
 from wtforms import IntegerField
 from wtforms import StringField
 from wtforms import SubmitField
 from wtforms.fields.html5 import DateField
 from wtforms.form import BaseForm
 from wtforms.validators import DataRequired
+from wtforms.validators import Email
 from wtforms.validators import ValidationError
 
 from flaskapp.models import Course
@@ -171,3 +173,10 @@ class PaperLogoForm(FlaskForm):
     picture = FileField("Upload logo for paper",
                         validators=[FileAllowed(["jpg", "png"])])
     submit = SubmitField("generate now")
+
+
+class ExaminerEmailForm(FlaskForm):
+    examiner_email = StringField("Examiner's email",
+                                 validators=[DataRequired(),
+                                             Email()])
+    generate = HiddenField("Generate", validators=[DataRequired()])
