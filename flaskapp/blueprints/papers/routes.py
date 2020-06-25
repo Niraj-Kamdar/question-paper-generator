@@ -11,7 +11,7 @@ from flaskapp import db
 from flaskapp.blueprints.papers.forms import ExaminerEmailForm, MarkDistributionForm, PaperLogoForm
 from flaskapp.blueprints.papers.utils import email_pdf, find_conflicting_questions, find_random_question, \
     QuestionNotFoundError, render_paper, save_logo
-from flaskapp.checkers import check_valid_course, check_valid_session
+from flaskapp.checkers import check_valid_course, check_valid_session, check_valid_paper
 from flaskapp.models import Course, Paper, Question
 from flaskapp.utils import CognitiveEnum, DifficultyEnum, json_url, profile_path, QuestionTypeEnum
 
@@ -221,6 +221,7 @@ def handle_conflicting_questions():
 
 @papers.route("/papers/<paper_id>")
 @login_required
+@check_valid_paper
 def pdf_paper(paper_id):
     """Create PDF paper
     Raises:
@@ -235,6 +236,7 @@ def pdf_paper(paper_id):
 
 @papers.route("/papers/confirm/<paper_id>", methods=["GET", "POST"])
 @login_required
+@check_valid_paper
 def confirm_generated_paper(paper_id):
     form = ExaminerEmailForm()
     if form.validate_on_submit():
@@ -256,6 +258,7 @@ def confirm_generated_paper(paper_id):
 
 @papers.route("/course/<course_id>/papers/")
 @login_required
+@check_valid_course
 def all_papers(course_id):
     main_page = request.args.get("page", 1, type=int)
     _papers = Paper.query.filter_by(course_id=course_id).paginate(
