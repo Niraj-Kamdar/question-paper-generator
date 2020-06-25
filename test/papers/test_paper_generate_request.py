@@ -18,6 +18,12 @@ class PaperGenerateRequest(BaseUnit):
             response.data,
         )
 
+    def test_handle_conflicting_questions(self):
+        data = dict(mcq=dict(ask=[1,3], nask=[2,4]), sub=dict(ask=[1,3], nask=[2,4]))
+        response, _ = test_post_request(self,
+                                        "/papers/handle/conflicts",
+                                        data)
+        
     def test_mark_distribution_form(self):
         self.test_paper_generate_request()
         data = {
