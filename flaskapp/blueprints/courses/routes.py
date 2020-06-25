@@ -37,8 +37,7 @@ def add_course():
     return render_template(
         "course/course_form.html",
         form=form,
-
-        css_files=["css/base.css","css/course/courses_form.css"],
+        css_files=["css/base.css", "css/course/courses_form.css"],
         js_files=["js/course/add_course.js"],
         image_file=profile_path(),
         title="Add Courses",
@@ -57,8 +56,7 @@ def all_courses():
     return render_template(
         "course/courses.html",
         courses=_courses,
-
-        css_files=["css/base.css","css/course/courses.css"],
+        css_files=["css/base.css", "css/course/courses.css"],
         js_files=["js/course/remove_course.js"],
         image_file=profile_path(),
         title="Courses",
@@ -75,6 +73,7 @@ def delete_course():
         db.session.query(Course).filter(
             Course.id.in_(course_ids)).delete(synchronize_session="fetch")
         db.session.commit()
+    return redirect(url_for("courses.all_courses"))
 
 
 @courses.route("/course/<course_id>/unit/")
@@ -97,8 +96,8 @@ def all_units(course_id):
         image_file=profile_path(),
         units=_units,
         title="Units",
-        css_files=["css/base.css","css/course/courses.css"],
-        js_files=["js/course/remove_course.js"]
+        css_files=["css/base.css", "css/course/courses.css"],
+        js_files=["js/course/remove_course.js"],
     )
 
 
@@ -128,8 +127,8 @@ def add_unit(course_id):
         "course/unit_form.html",
         course_id=course_id,
         form=form,
-        css_files = ["css/base.css","css/course/courses_form.css"],
-        js_files = ["js/course/add_unit.js"],
+        css_files=["css/base.css", "css/course/courses_form.css"],
+        js_files=["js/course/add_unit.js"],
         image_file=profile_path(),
         title="Add Units",
     )
@@ -146,6 +145,7 @@ def delete_unit(course_id):
     """
     if request.method == "POST":
         unit_ids = request.get_json()
-        db.session.query(Course).filter(
+        db.session.query(Unit).filter(
             Unit.id.in_(unit_ids)).delete(synchronize_session="fetch")
         db.session.commit()
+    return redirect(url_for("courses.all_units", course_id=course_id))
