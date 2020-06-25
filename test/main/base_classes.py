@@ -95,9 +95,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=True,
             submit="submit",
         )
-        test_post_request(
-            self, "/course/1/unit/1/question/sub/new/", new_question, models.Question, 1
-        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 1)
 
         new_question = dict(
             question="Is it question?",
@@ -108,9 +107,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=False,
             submit="submit",
         )
-        test_post_request(
-            self, "/course/1/unit/1/question/sub/new/", new_question, models.Question, 2
-        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 2)
 
         new_question = dict(
             question="What is it?",
@@ -121,9 +119,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=True,
             submit="submit",
         )
-        test_post_request(
-            self, "/course/1/unit/1/question/sub/new/", new_question, models.Question, 3
-        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 3)
 
         new_question = dict(
             question="What was that?",
@@ -134,9 +131,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=False,
             submit="submit",
         )
-        test_post_request(
-            self, "/course/1/unit/1/question/sub/new/", new_question, models.Question, 4
-        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 4)
 
         new_question = dict(
             question="How are you?",
@@ -147,9 +143,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=True,
             submit="submit",
         )
-        test_post_request(
-            self, "/course/1/unit/1/question/sub/new/", new_question, models.Question, 5
-        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 5)
 
 
 class BaseMCQQuestion(BaseUnit):
