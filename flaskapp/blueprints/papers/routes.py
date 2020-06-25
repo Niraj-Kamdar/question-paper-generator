@@ -17,12 +17,26 @@ from flask_weasyprint import render_pdf
 from qpt_generator import QPTGenerator
 
 from flaskapp import db
-from flaskapp.blueprints.papers.forms import ExaminerEmailForm, MarkDistributionForm, PaperLogoForm
-from flaskapp.blueprints.papers.utils import email_pdf, find_conflicting_questions, find_random_question, \
-    QuestionNotFoundError, render_paper, save_logo
-from flaskapp.checkers import check_valid_course, check_valid_session, check_valid_paper
-from flaskapp.models import Course, Paper, Question
-from flaskapp.utils import CognitiveEnum, DifficultyEnum, json_url, profile_path, QuestionTypeEnum
+from flaskapp.blueprints.papers.forms import ExaminerEmailForm
+from flaskapp.blueprints.papers.forms import MarkDistributionForm
+from flaskapp.blueprints.papers.forms import PaperLogoForm
+from flaskapp.blueprints.papers.utils import email_pdf
+from flaskapp.blueprints.papers.utils import find_conflicting_questions
+from flaskapp.blueprints.papers.utils import find_random_question
+from flaskapp.blueprints.papers.utils import QuestionNotFoundError
+from flaskapp.blueprints.papers.utils import render_paper
+from flaskapp.blueprints.papers.utils import save_logo
+from flaskapp.checkers import check_valid_course
+from flaskapp.checkers import check_valid_paper
+from flaskapp.checkers import check_valid_session
+from flaskapp.models import Course
+from flaskapp.models import Paper
+from flaskapp.models import Question
+from flaskapp.utils import CognitiveEnum
+from flaskapp.utils import DifficultyEnum
+from flaskapp.utils import json_url
+from flaskapp.utils import profile_path
+from flaskapp.utils import QuestionTypeEnum
 
 papers = Blueprint("papers", __name__)
 

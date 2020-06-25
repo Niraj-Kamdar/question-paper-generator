@@ -7,7 +7,8 @@ from flask import url_for
 from flask_login import current_user
 from itsdangerous import BadSignature
 
-from flaskapp.models import Course, Paper
+from flaskapp.models import Course
+from flaskapp.models import Paper
 from flaskapp.models import Unit
 from flaskapp.utils import json_url
 
@@ -83,6 +84,7 @@ def check_valid_paper(func):
         if _paper.course_id not in _course_ids:
             abort(403)
         return func(*args, **kwargs)
+
     return wrapper
 
 
