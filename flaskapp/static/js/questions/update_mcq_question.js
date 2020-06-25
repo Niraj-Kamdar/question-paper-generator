@@ -225,14 +225,7 @@
           body: jsonId,
         })
           .then(() => {
-            for (let i = 0; i < deleteCheckbox.length; i++) {
-              if (!deleteCheckbox[i].checked) {
-                deleteOption[i].style.display = "none";
-              } else {
-                questions[i].parentNode.removeChild(questions[i]);
-                i--;
-              }
-            }
+            window.location.reload();
           })
           .catch((e) => {
             throw new Error(e);
