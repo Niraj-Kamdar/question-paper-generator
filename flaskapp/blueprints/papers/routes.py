@@ -52,7 +52,8 @@ def home():
     _courses = Course.query.filter(Course.teacher == current_user).all()
     course_ids = [course.id for course in _courses]
     _papers = Paper.query.filter(Paper.course_id.in_(course_ids)).paginate(
-        page=main_page, per_page=10)
+        page=main_page, per_page=10
+    )
     return render_template(
         "papers/home.html",
         css_files=["css/base.css", "css/papers/home.css"],
@@ -62,8 +63,7 @@ def home():
     )
 
 
-@papers.route("/course/<course_id>/papers/generate/request",
-              methods=["GET", "POST"])
+@papers.route("/course/<course_id>/papers/generate/request", methods=["GET", "POST"])
 @login_required
 @check_valid_course
 def paper_generate_request(course_id):
@@ -75,10 +75,8 @@ def paper_generate_request(course_id):
             session["total_marks"] = json_url.dumps(data["total_marks"])
             session["no_of_subquestions"] = json_url.dumps(data["questions"])
             return redirect(
-                url_for(
-                    "papers.mark_distribution_form",
-                    course_id=course_id,
-                ))
+                url_for("papers.mark_distribution_form", course_id=course_id,)
+            )
         flash("Form can't be empty!")
     return render_template(
         "papers/generate_request.html",
@@ -88,8 +86,7 @@ def paper_generate_request(course_id):
     )
 
 
-@papers.route("/course/<course_id>/papers/generate/form/",
-              methods=["GET", "POST"])
+@papers.route("/course/<course_id>/papers/generate/form/", methods=["GET", "POST"])
 @login_required
 @check_valid_course
 @check_valid_session(session_keys=("total_marks", "no_of_subquestions"))
@@ -105,10 +102,13 @@ def mark_distribution_form(course_id):
     form = MarkDistributionForm(course_id, no_of_subquestions, total_marks)
     if form.validate_on_submit():
         question_no = list(
-            itertools.chain(*map(
-                lambda x: list(itertools.repeat(x[0] + 1, x[1])),
-                enumerate(no_of_subquestions),
-            )))
+            itertools.chain(
+                *map(
+                    lambda x: list(itertools.repeat(x[0] + 1, x[1])),
+                    enumerate(no_of_subquestions),
+                )
+            )
+        )
         raw_template = QPTGenerator(dict(form.data), question_no).generate()
         paper_template = defaultdict(lambda: defaultdict(dict))
         subque_counter = Counter()
@@ -120,36 +120,32 @@ def mark_distribution_form(course_id):
                 difficulty=DifficultyEnum(raw_template["difficulty"][i]).name,
                 unit=raw_template["unit"][i],
             )
-            question_type = QuestionTypeEnum(
-                raw_template["question_type"][i]).name
-            if raw_template["question_no"][i] not in que_counter[
-                    question_type]:
+            question_type = QuestionTypeEnum(raw_template["question_type"][i]).name
+            if raw_template["question_no"][i] not in que_counter[question_type]:
                 que_counter[question_type][raw_template["question_no"][i]] = (
-                    len(que_counter[question_type]) + 1)
-            current_que = que_counter[question_type][
-                raw_template["question_no"][i]]
-            current_subque = ascii_lowercase[subque_counter[(question_type,
-                                                             current_que)]]
+                    len(que_counter[question_type]) + 1
+                )
+            current_que = que_counter[question_type][raw_template["question_no"][i]]
+            current_subque = ascii_lowercase[
+                subque_counter[(question_type, current_que)]
+            ]
             paper_template[question_type][current_que][current_subque] = data
             subque_counter[(question_type, current_que)] += 1
         session["paper_template"] = json_url.dumps(dict(paper_template))
-        return redirect(
-            url_for("papers.confirm_paper_template", course_id=course_id))
-    return render_template("papers/mark_distribution_form.html",
-                           form=form,
-                           title="Mark Distribution")
+        return redirect(url_for("papers.confirm_paper_template", course_id=course_id))
+    return render_template(
+        "papers/mark_distribution_form.html", form=form, title="Mark Distribution"
+    )
 
 
-@papers.route("/course/<course_id>/papers/confirm/template/",
-              methods=["GET", "POST"])
+@papers.route("/course/<course_id>/papers/confirm/template/", methods=["GET", "POST"])
 @login_required
 @check_valid_course
-@check_valid_session(session_keys=("paper_template", ))
+@check_valid_session(session_keys=("paper_template",))
 def confirm_paper_template(course_id):
     if request.method == "POST":
         if request.get_json():
-            return redirect(
-                url_for("papers.generate_paper", course_id=course_id))
+            return redirect(url_for("papers.generate_paper", course_id=course_id))
         flash("Form can't be empty!")
     paper_template = json_url.loads(session["paper_template"])
     return render_template(
@@ -172,16 +168,17 @@ def generate_paper(course_id):
     conflicting_questions = []
     for qtype in paper_template:
         for question in paper_template[qtype]:
-            for subquestion, constraints in paper_template[qtype][
-                    question].items():
+            for subquestion, constraints in paper_template[qtype][question].items():
                 constraints["cognitive"] = CognitiveEnum.from_string(
-                    constraints["cognitive"])
+                    constraints["cognitive"]
+                )
                 constraints["difficulty"] = DifficultyEnum.from_string(
-                    constraints["difficulty"])
-                constraints["question_type"] = QuestionTypeEnum.from_string(
-                    qtype)
+                    constraints["difficulty"]
+                )
+                constraints["question_type"] = QuestionTypeEnum.from_string(qtype)
                 conflicting_questions.extend(
-                    find_conflicting_questions(course_id, constraints))
+                    find_conflicting_questions(course_id, constraints)
+                )
                 paper_template[qtype][question][subquestion] = constraints
     form = PaperLogoForm()
     if form.validate_on_submit():
@@ -197,11 +194,11 @@ def generate_paper(course_id):
         paper_data["paper_format"] = defaultdict(lambda: defaultdict(dict))
         for qtype in paper_template:
             for question in paper_template[qtype]:
-                for subquestion, constraints in paper_template[qtype][
-                        question].items():
+                for subquestion, constraints in paper_template[qtype][question].items():
                     try:
                         paper_data["paper_format"][qtype][question].update(
-                            {subquestion: find_random_question(course_id, constraints)})
+                            {subquestion: find_random_question(course_id, constraints)}
+                        )
 
                     except QuestionNotFoundError:
                         flash(
@@ -229,11 +226,11 @@ def handle_conflicting_questions():
         data = request.get_json()
         for qtype in data:
             db.session.query(Question).filter(
-                Question.id.in_(data[qtype].get("nask", []))).update(
-                    dict(imp=False), synchronize_session="fetch")
+                Question.id.in_(data[qtype].get("nask", []))
+            ).update(dict(imp=False), synchronize_session="fetch")
             db.session.query(Question).filter(
-                Question.id.in_(data[qtype].get("ask", []))).update(
-                    dict(is_asked=False), synchronize_session="fetch")
+                Question.id.in_(data[qtype].get("ask", []))
+            ).update(dict(is_asked=False), synchronize_session="fetch")
             db.session.commit()
         return jsonify(dict(status="OK"))
 
@@ -268,17 +265,20 @@ def confirm_generated_paper(paper_id):
             )
             return redirect(url_for("papers.home"))
         db.session.query(Question).filter_by(id=paper_id).delete(
-            synchronize_session="fetch")
+            synchronize_session="fetch"
+        )
         db.session.commit()
         flash("Paper generation aborted successfully!")
         return redirect(url_for("papers.home"))
 
-    return render_template("papers/confirm_generated_paper.html",
-                           css_files=["css/papers/generate_paper.css"],
-                           paper_id=paper_id,
-                           form=form,
-                           image_file=profile_path(),
-                           js_files=["js/papers/confirm_generated_paper.js"])
+    return render_template(
+        "papers/confirm_generated_paper.html",
+        css_files=["css/papers/generate_paper.css"],
+        paper_id=paper_id,
+        form=form,
+        image_file=profile_path(),
+        js_files=["js/papers/confirm_generated_paper.js"],
+    )
 
 
 @papers.route("/course/<course_id>/papers/")
@@ -287,8 +287,11 @@ def confirm_generated_paper(paper_id):
 def all_papers(course_id):
     main_page = request.args.get("page", 1, type=int)
     _papers = Paper.query.filter_by(course_id=course_id).paginate(
-        page=main_page, per_page=10)
-    return render_template("papers/papers.html",
-                           papers=_papers,
-                           image_file=profile_path(),
-                           css_files=["css/papers/all_papers.css"])
+        page=main_page, per_page=10
+    )
+    return render_template(
+        "papers/papers.html",
+        papers=_papers,
+        image_file=profile_path(),
+        css_files=["css/papers/all_papers.css"],
+    )
