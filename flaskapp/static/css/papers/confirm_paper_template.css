@@ -54,9 +54,7 @@
         padding-left: 20px !important;
         padding-right: 20px !important;
     }
-    .question_properties {
-        /*justify-content: center;*/
-    }
+
 }
 
 @media (max-width: 700px){
