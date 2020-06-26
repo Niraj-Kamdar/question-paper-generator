@@ -1,5 +1,26 @@
 {% extends "base.html" %}
 
+{% block special_top_links %}
+    <a class="top_navigation_items" href={{ url_for("courses.all_courses") }}>
+        <h4 class="py-2 mx-3">Courses</h4>
+    </a>
+{% endblock special_top_links %}
+
+{% block special_side_links %}
+    <a class="side_navigation_items" href={{ url_for("courses.all_courses") }}>Courses</a>
+{% endblock special_side_links %}
+
+{% block flashes %}
+{% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+<ul class="flashes flashes_question">
+    {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %} {% endwith %}
+{% endblock flashes %}
+
 {% block header %}
   <h3>Mark Distribution</h3>
 {% endblock header %}

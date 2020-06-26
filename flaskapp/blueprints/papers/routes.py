@@ -55,7 +55,7 @@ def home():
         page=main_page, per_page=10)
     return render_template(
         "papers/home.html",
-        css_files=["css/base.css", "css/home.css"],
+        css_files=["css/base.css", "css/papers/home.css"],
         papers=_papers,
         title="Home",
         image_file=profile_path(),
@@ -169,7 +169,6 @@ def confirm_paper_template(course_id):
 @check_valid_session(session_keys=("paper_template", "total_marks"))
 def generate_paper(course_id):
     paper_template = json_url.loads(session["paper_template"])
-    print(paper_template)
     conflicting_questions = []
     for qtype in paper_template:
         for question in paper_template[qtype]:
@@ -184,9 +183,7 @@ def generate_paper(course_id):
                 conflicting_questions.extend(
                     find_conflicting_questions(course_id, constraints))
                 paper_template[qtype][question][subquestion] = constraints
-
     form = PaperLogoForm()
-    form.process(request.form)
     if form.validate_on_submit():
         paper_data = {}
         if form.picture.data:
@@ -203,10 +200,9 @@ def generate_paper(course_id):
                 for subquestion, constraints in paper_template[qtype][
                         question].items():
                     try:
-                        paper_data["paper_format"][qtype][question].update({
-                            subquestion:
-                            find_random_question(course_id, constraints)
-                        })
+                        paper_data["paper_format"][qtype][question].update(
+                            {subquestion: find_random_question(course_id, constraints)})
+
                     except QuestionNotFoundError:
                         flash(
                             "Question that satisfies all given constraints doesn't exist in database."
@@ -216,7 +212,7 @@ def generate_paper(course_id):
         paper = Paper(**paper_data)
         db.session.add(paper)
         db.session.commit()
-        return redirect(url_for("papers.html_paper", paper_id=paper.id))
+        return redirect(url_for("papers.confirm_generated_paper", paper_id=paper.id))
     return render_template(
         "papers/generate_paper.html",
         conflicting_questions=conflicting_questions,
@@ -241,6 +237,12 @@ def handle_conflicting_questions():
             db.session.commit()
         return jsonify(dict(status="OK"))
 
+@papers.route("/papers/html/<paper_id>")
+@login_required
+@check_valid_paper
+def html_paper(paper_id):
+    paper = Paper.query.filter_by(id=paper_id).first()
+    return render_template("papers/ptp.html",paper=paper,css_files=["css/ptp.css"])
 
 @papers.route("/papers/<paper_id>")
 @login_required
@@ -253,8 +255,9 @@ def pdf_paper(paper_id):
         PDF: Pdf of final paper
     """
     paper = Paper.query.filter_by(id=paper_id).first()
+
     filename, html, css = render_paper(paper)
-    return render_pdf(html, stylesheets=[css], download_filename=filename)
+    return render_pdf(html, stylesheets=[css])
 
 
 @papers.route("/papers/confirm/<paper_id>", methods=["GET", "POST"])
@@ -264,7 +267,8 @@ def confirm_generated_paper(paper_id):
     form = ExaminerEmailForm()
     if form.validate_on_submit():
         if form.generate.data == "YES":
-            email_pdf(form.examiner_email.data, current_user.email, paper_id)
+            paper = Paper.query.filter_by(id=paper_id).first()
+            email_pdf(form.examiner_email.data, current_user.email, paper)
             flash(
                 "An email has been sent to you and examiner with generated pdf as an attachment."
             )
@@ -274,9 +278,13 @@ def confirm_generated_paper(paper_id):
         db.session.commit()
         flash("Paper generation aborted successfully!")
         return redirect(url_for("papers.home"))
+
     return render_template("papers/confirm_generated_paper.html",
+                           css_files=["css/papers/generate_paper.css"],
                            paper_id=paper_id,
-                           form=form)
+                           form=form,
+                           image_file=profile_path(),
+                           js_files=["js/papers/confirm_generated_paper.js"])
 
 
 @papers.route("/course/<course_id>/papers/")
@@ -286,4 +294,4 @@ def all_papers(course_id):
     main_page = request.args.get("page", 1, type=int)
     _papers = Paper.query.filter_by(course_id=course_id).paginate(
         page=main_page, per_page=10)
-    return render_template("papers/papers.html", papers=_papers)
+    return render_template("papers/papers.html", papers=_papers,image_file = profile_path(),css_files=["css/papers/all_papers.css"])

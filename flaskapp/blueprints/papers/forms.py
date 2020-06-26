@@ -12,7 +12,7 @@ from wtforms import StringField
 from wtforms import SubmitField
 from wtforms.fields.html5 import DateField
 from wtforms.form import BaseForm
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired,InputRequired
 from wtforms.validators import Email
 from wtforms.validators import ValidationError
 
@@ -77,19 +77,19 @@ class MarkDistributionForm:
         for unit in units:
             field = f"Unit:{unit.chapter_no:02d}"
             form_fields.update(
-                {field: IntegerField(field, validators=[DataRequired()])})
+                {field: IntegerField(field, validators=[InputRequired()])})
             validators["unit"].append(field)
         for c_level in CognitiveEnum.__members__:
             form_fields.update(
-                {c_level: IntegerField(c_level, validators=[DataRequired()])})
+                {c_level: IntegerField(c_level, validators=[InputRequired()])})
             validators["cognitive"].append(c_level)
         for d_level in DifficultyEnum.__members__:
             form_fields.update(
-                {d_level: IntegerField(d_level, validators=[DataRequired()])})
+                {d_level: IntegerField(d_level, validators=[InputRequired()])})
             validators["difficulty"].append(d_level)
         for qtype in QuestionTypeEnum.__members__:
             form_fields.update(
-                {qtype: IntegerField(qtype, validators=[DataRequired()])})
+                {qtype: IntegerField(qtype, validators=[InputRequired()])})
             validators["question_type"].append(qtype)
 
         idx = 0
@@ -176,7 +176,5 @@ class PaperLogoForm(FlaskForm):
 
 
 class ExaminerEmailForm(FlaskForm):
-    examiner_email = StringField("Examiner's email",
-                                 validators=[DataRequired(),
-                                             Email()])
+    examiner_email = StringField("Examiner's email")
     generate = HiddenField("Generate", validators=[DataRequired()])

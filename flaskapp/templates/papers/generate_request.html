@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 
+{% block special_top_links %}
+    <a class="top_navigation_items" href={{ url_for("courses.all_courses") }}>
+        <h4 class="py-2 mx-3">Courses</h4>
+    </a>
+{% endblock special_top_links %}
+
+{% block special_side_links %}
+    <a class="side_navigation_items" href={{ url_for("courses.all_courses") }}>Courses</a>
+{% endblock special_side_links %}
+
 {% block header %}
 <h3 class="header">Questions</h3>
 {% endblock header %}
