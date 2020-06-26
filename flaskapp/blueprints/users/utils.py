@@ -20,7 +20,8 @@ def save_picture(form_picture):
     Returns:
         string -- To save picture
     """
-    profile_path = os.path.join(current_app.root_path, "static", "profile_pics")
+    profile_path = os.path.join(
+        current_app.root_path, "static", "profile_pics")
     if not os.path.exists(profile_path):
         os.makedirs(profile_path)
     _, f_ext = os.path.splitext(form_picture.filename)
