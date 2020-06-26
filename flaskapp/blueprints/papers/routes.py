@@ -250,7 +250,7 @@ def pdf_paper(paper_id):
     """
     paper = Paper.query.filter_by(id=paper_id).first()
 
-    filename, html, css = render_paper(paper)
+    _, html, css = render_paper(paper)
     return render_pdf(html, stylesheets=[css])
 
 

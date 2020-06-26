@@ -26,6 +26,11 @@
   color: blue;
 }
 
+#embed_pdf {
+  width : 100%;
+  height : 500px;
+}
+
 .first_row {
   border-bottom: 1px solid black;
   display: flex;
@@ -222,6 +227,7 @@ input[type='file']{
   }
 
   #page_display {
+    padding: 0 !important;
     align-items: center;
   }
 
@@ -261,7 +267,7 @@ input[type='file']{
   }
 }
 
-@media (max-width: 568px) {
+@media (max-width: 578px) {
   #page_display {
     align-items: initial;
     padding-left: 0 !important;

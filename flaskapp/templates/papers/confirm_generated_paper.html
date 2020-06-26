@@ -12,6 +12,9 @@
 
 {% block main %}
 
+<object data='{{url_for("papers.pdf_paper", paper_id=paper_id)}}' type="application/pdf" id="embed_pdf">
+    Browser does not support embedding of pdf
+</object>
 <div style="font-size: 20px"><a href='{{url_for("papers.pdf_paper", paper_id=paper_id)}}' target="_blank">Click Here</a> to view Demo</div>
 <br /><br />
 <div style="font-size: 20px">Mail paper to examiner</div>
