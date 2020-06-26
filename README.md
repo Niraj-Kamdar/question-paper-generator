@@ -7,18 +7,16 @@
 [![DeepScan grade](https://deepscan.io/api/teams/8090/projects/10244/branches/138920/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=8090&pid=10244&bid=138920)
 [![CodeFactor](https://www.codefactor.io/repository/github/niraj-kamdar/question-paper-generator/badge)](https://www.codefactor.io/repository/github/niraj-kamdar/question-paper-generator)
 
-The **Question Paper Generator** has been developed to override the problems
-prevailing in the practicing manual system.This software supported to reduce the
-hardships faced by the existing system.In this system we present a smart
-question paper generating system for universities.This application is reduced as
-much as possible to avoid errors while entering the data.
-
-It is made to allow professors to generate question papers with random but
-enough questions to cover most chapters of a subject with difficulty level
-(1-10) and mail them to examiner instantly. The purpose of this system is to
-automate the existing manual system by the help of computerized equipment
-,fulfilling their requirements, so that their valuable data/information can be
-stored for a longer period with easy accessing and manipulation of the same.
+There are many schools and colleges that take frequent exams and 
+creating a perfect balanced paper for all these exams are a difficult task.
+Most of the teachers already have a long question bank for the courses he 
+is teaching. So, we are providing a system where s/he can generate a random
+paper with constraints specified by him/her. We currently support four such 
+constraints:
+1. Difficulty level (Easy, Medium, Hard)
+2. Cognitive level (Application, Knowledge, Comprehension)
+3. Unit wise mark distribution 
+4. Question Type (Subjective, Objective)
 
 ## Contributors
 
