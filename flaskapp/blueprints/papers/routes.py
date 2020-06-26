@@ -237,12 +237,6 @@ def handle_conflicting_questions():
             db.session.commit()
         return jsonify(dict(status="OK"))
 
-@papers.route("/papers/html/<paper_id>")
-@login_required
-@check_valid_paper
-def html_paper(paper_id):
-    paper = Paper.query.filter_by(id=paper_id).first()
-    return render_template("papers/ptp.html",paper=paper,css_files=["css/ptp.css"])
 
 @papers.route("/papers/<paper_id>")
 @login_required
@@ -294,4 +288,4 @@ def all_papers(course_id):
     main_page = request.args.get("page", 1, type=int)
     _papers = Paper.query.filter_by(course_id=course_id).paginate(
         page=main_page, per_page=10)
-    return render_template("papers/papers.html", papers=_papers,image_file = profile_path(),css_files=["css/papers/all_papers.css"])
+    return render_template("papers/papers.html", papers=_papers, image_file=profile_path(), css_files=["css/papers/all_papers.css"])

@@ -12,7 +12,7 @@ from wtforms import StringField
 from wtforms import SubmitField
 from wtforms.fields.html5 import DateField
 from wtforms.form import BaseForm
-from wtforms.validators import DataRequired,InputRequired
+from wtforms.validators import DataRequired, InputRequired
 from wtforms.validators import ValidationError
 
 from flaskapp.models import Course
