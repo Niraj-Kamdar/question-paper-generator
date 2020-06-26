@@ -20,7 +20,8 @@ def save_picture(form_picture):
     Returns:
         string -- To save picture
     """
-    profile_path = os.path.join(current_app.root_path, "static", "profile_pics")
+    profile_path = os.path.join(current_app.root_path, "static",
+                                "profile_pics")
     if not os.path.exists(profile_path):
         os.makedirs(profile_path)
     _, f_ext = os.path.splitext(form_picture.filename)
@@ -43,9 +44,8 @@ def send_reset_email(user):
         will send mail of reset password to user's submitted/registered mail for verification.
     """
     token = user.get_reset_token()
-    mail_file = os.path.join(
-        APP_PATH, "templates", "users", "password-reset", "content.txt"
-    )
+    mail_file = os.path.join(APP_PATH, "templates", "users", "password-reset",
+                             "content.txt")
     with open(mail_file, "r") as f:
         msg_text = f.read()
     msg_text = msg_text.format(
@@ -63,9 +63,9 @@ def send_reset_email(user):
         operating_system="linux",
         browser_name="firefox",
     )
-    msg = Message(
-        "Password Reset Request", sender="setnow@tuta.io", recipients=[user.email]
-    )
+    msg = Message("Password Reset Request",
+                  sender="setnow@tuta.io",
+                  recipients=[user.email])
     msg.body = msg_text
     msg.html = msg_html
     mail.send(msg)
