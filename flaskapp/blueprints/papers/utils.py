@@ -22,43 +22,66 @@ class QuestionNotFoundError(Exception):
 
 
 def find_conflicting_questions(course_id, constraints):
-    unit = (db.session.query(Unit).filter(
-        and_(Unit.chapter_no == constraints["unit"],
-             Unit.course_id == course_id)).first())
-    return (db.session.query(Question).filter(
-        and_(
-            Question.cognitive_level == constraints["cognitive"],
-            Question.difficulty == constraints["difficulty"],
-            Question.mark == constraints["mark"],
-            Question.unit_id == unit.id,
-            Question.question_type == constraints["question_type"],
-            Question.imp is True,
-            Question.is_asked is True,
-        )).all())
+    unit = (
+        db.session.query(Unit)
+        .filter(
+            and_(Unit.chapter_no == constraints["unit"], Unit.course_id == course_id)
+        )
+        .first()
+    )
+    return (
+        db.session.query(Question)
+        .filter(
+            and_(
+                Question.cognitive_level == constraints["cognitive"],
+                Question.difficulty == constraints["difficulty"],
+                Question.mark == constraints["mark"],
+                Question.unit_id == unit.id,
+                Question.question_type == constraints["question_type"],
+                Question.imp is True,
+                Question.is_asked is True,
+            )
+        )
+        .all()
+    )
 
 
 def find_random_question(course_id, constraints):
-    unit = (db.session.query(Unit).filter(
-        and_(Unit.chapter_no == constraints["unit"],
-             Unit.course_id == course_id)).first())
-    imp_question = (db.session.query(Question).filter_by(
-        cognitive_level=constraints["cognitive"],
-        difficulty=constraints["difficulty"],
-        mark=constraints["mark"],
-        unit_id=unit.id,
-        imp=True,
-        question_type=constraints["question_type"],
-    ).order_by(func.random()).first())
+    unit = (
+        db.session.query(Unit)
+        .filter(
+            and_(Unit.chapter_no == constraints["unit"], Unit.course_id == course_id)
+        )
+        .first()
+    )
+    imp_question = (
+        db.session.query(Question)
+        .filter_by(
+            cognitive_level=constraints["cognitive"],
+            difficulty=constraints["difficulty"],
+            mark=constraints["mark"],
+            unit_id=unit.id,
+            imp=True,
+            question_type=constraints["question_type"],
+        )
+        .order_by(func.random())
+        .first()
+    )
     if imp_question:
         return imp_question.to_dict()
-    question = (db.session.query(Question).filter_by(
-        cognitive_level=constraints["cognitive"],
-        difficulty=constraints["difficulty"],
-        mark=constraints["mark"],
-        unit_id=unit.id,
-        is_asked=False,
-        question_type=constraints["question_type"],
-    ).order_by(func.random()).first())
+    question = (
+        db.session.query(Question)
+        .filter_by(
+            cognitive_level=constraints["cognitive"],
+            difficulty=constraints["difficulty"],
+            mark=constraints["mark"],
+            unit_id=unit.id,
+            is_asked=False,
+            question_type=constraints["question_type"],
+        )
+        .order_by(func.random())
+        .first()
+    )
     if question:
         return question.to_dict()
     raise QuestionNotFoundError()
@@ -90,10 +113,7 @@ def save_logo(form_picture):
 
 def render_paper(paper):
     html = render_template(
-        "papers/ptp.html",
-        css_files=["css/ptp.css"],
-        title="Paper-to-PDF",
-        paper=paper,
+        "papers/ptp.html", css_files=["css/ptp.css"], title="Paper-to-PDF", paper=paper,
     )
     css = """
     body { font: 2em Fontin, serif }
@@ -109,18 +129,19 @@ def render_paper(paper):
 
 
 def email_pdf(examiner, user, paper):
-    mail_file = os.path.join(APP_PATH, "templates", "papers",
-                             "pdf-email-receipt", "content.txt")
+    mail_file = os.path.join(
+        APP_PATH, "templates", "papers", "pdf-email-receipt", "content.txt"
+    )
     with open(mail_file, "r") as f:
         msg_text = f.read()
 
     msg_text = msg_text.format(exam=paper.name, date=paper.exam_date)
-    msg_html = render_template("papers/pdf-email-receipt/content.html",
-                               exam=paper.name,
-                               date=paper.exam_date)
-    msg = Message(f"Paper for {paper.name}",
-                  sender="setnow@tuta.io",
-                  recipients=[examiner, user])
+    msg_html = render_template(
+        "papers/pdf-email-receipt/content.html", exam=paper.name, date=paper.exam_date
+    )
+    msg = Message(
+        f"Paper for {paper.name}", sender="setnow@tuta.io", recipients=[examiner, user]
+    )
     msg.body = msg_text
     msg.html = msg_html
 
