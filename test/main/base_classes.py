@@ -168,8 +168,8 @@ class BaseSubQuestion(BaseUnit):
             submit="submit",
         )
         test_post_request(self, "/course/1/unit/1/question/sub/new/",
-                          new_question, models.Question, 7)    
-        
+                          new_question, models.Question, 7)
+
         new_question = dict(
             question="is engineering easy?",
             mark=5,
@@ -181,7 +181,7 @@ class BaseSubQuestion(BaseUnit):
         )
         test_post_request(self, "/course/1/unit/1/question/sub/new/",
                           new_question, models.Question, 8)
-        
+
         new_question = dict(
             question="Comprehension sub hard",
             mark=5,
@@ -193,7 +193,7 @@ class BaseSubQuestion(BaseUnit):
         )
         test_post_request(self, "/course/1/unit/1/question/sub/new/",
                           new_question, models.Question, 9)
-    
+
         new_question = dict(
             question="this is one more really?",
             mark=5,
@@ -216,7 +216,7 @@ class BaseSubQuestion(BaseUnit):
             submit="submit",
         )
         test_post_request(self, "/course/1/unit/1/question/sub/new/",
-                          new_question, models.Question, 11)  
+                          new_question, models.Question, 11)
 
         new_question = dict(
             question="Knowledge med sub.",
@@ -228,7 +228,7 @@ class BaseSubQuestion(BaseUnit):
             submit="submit",
         )
         test_post_request(self, "/course/1/unit/1/question/sub/new/",
-                          new_question, models.Question, 12)     
+                          new_question, models.Question, 12)
 
         new_question = dict(
             question="Comprehension sub easy",
@@ -252,7 +252,8 @@ class BaseSubQuestion(BaseUnit):
             submit="submit",
         )
         test_post_request(self, "/course/1/unit/1/question/sub/new/",
-                          new_question, models.Question, 14) 
+                          new_question, models.Question, 14)
+
 
 class BaseMCQQuestion(BaseUnit):
     def setUp(self):
@@ -550,7 +551,3 @@ class BaseMCQQuestion(BaseUnit):
             models.Question,
             14,
         )
-
-
-
-
