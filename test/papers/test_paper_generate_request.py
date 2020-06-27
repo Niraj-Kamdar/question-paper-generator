@@ -1,8 +1,9 @@
-from test.main.base_classes import BaseMCQQuestion, BaseSubQuestion
-from test.main.utils import test_post_request
-
 from flask import json
+
 from flaskapp.models import Paper
+from test.main.base_classes import BaseMCQQuestion
+from test.main.base_classes import BaseSubQuestion
+from test.main.utils import test_post_request
 
 
 class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
