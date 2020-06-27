@@ -6,12 +6,14 @@ from flask import request
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
 from wtforms import FileField
+from wtforms import HiddenField
 from wtforms import IntegerField
 from wtforms import StringField
 from wtforms import SubmitField
 from wtforms.fields.html5 import DateField
 from wtforms.form import BaseForm
 from wtforms.validators import DataRequired
+from wtforms.validators import InputRequired
 from wtforms.validators import ValidationError
 
 from flaskapp.models import Course
@@ -75,19 +77,19 @@ class MarkDistributionForm:
         for unit in units:
             field = f"Unit:{unit.chapter_no:02d}"
             form_fields.update(
-                {field: IntegerField(field, validators=[DataRequired()])})
+                {field: IntegerField(field, validators=[InputRequired()])})
             validators["unit"].append(field)
         for c_level in CognitiveEnum.__members__:
             form_fields.update(
-                {c_level: IntegerField(c_level, validators=[DataRequired()])})
+                {c_level: IntegerField(c_level, validators=[InputRequired()])})
             validators["cognitive"].append(c_level)
         for d_level in DifficultyEnum.__members__:
             form_fields.update(
-                {d_level: IntegerField(d_level, validators=[DataRequired()])})
+                {d_level: IntegerField(d_level, validators=[InputRequired()])})
             validators["difficulty"].append(d_level)
         for qtype in QuestionTypeEnum.__members__:
             form_fields.update(
-                {qtype: IntegerField(qtype, validators=[DataRequired()])})
+                {qtype: IntegerField(qtype, validators=[InputRequired()])})
             validators["question_type"].append(qtype)
 
         idx = 0
@@ -171,3 +173,8 @@ class PaperLogoForm(FlaskForm):
     picture = FileField("Upload logo for paper",
                         validators=[FileAllowed(["jpg", "png"])])
     submit = SubmitField("generate now")
+
+
+class ExaminerEmailForm(FlaskForm):
+    examiner_email = StringField("Examiner's email")
+    generate = HiddenField("Generate", validators=[DataRequired()])

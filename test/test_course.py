@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 from test.main.base_classes import BaseUser
 from test.main.utils import test_post_request
 from flaskapp import models
 from flask import json
+=======
+from flask import json
+
+from flaskapp import models
+from test.main.base_classes import BaseUser
+from test.main.utils import test_post_request
+
+>>>>>>> ca19d95b3a59fab76f2d901b229877d7d601b52f
 
 class CourseTestCase(BaseUser):
     def test_delete_course(self):
@@ -9,6 +18,7 @@ class CourseTestCase(BaseUser):
         self.login()
         # adding new course
         new_course = dict(course="maths")
+<<<<<<< HEAD
         _ , course = test_post_request(self,"/course/new",new_course,models.Course,1)
         # Checking repr method
         self.assertEqual(str(course),"Course(maths)")
@@ -21,6 +31,22 @@ class CourseTestCase(BaseUser):
 
         # Delete course
         delete_list = [1,2]
+=======
+        _, course = test_post_request(self, "/course/new", new_course,
+                                      models.Course, 1)
+        # Checking repr method
+        self.assertEqual(str(course), "Course(maths)")
+
+        # adding another course
+        new_course = dict(course="science")
+        _, course = test_post_request(self, "/course/new", new_course,
+                                      models.Course, 2)
+        # cheking repr method
+        self.assertEqual(str(course), "Course(science)")
+
+        # Delete course
+        delete_list = [1, 2]
+>>>>>>> ca19d95b3a59fab76f2d901b229877d7d601b52f
         self.client.post(
             "/course/delete/",
             data=json.dumps(delete_list),
@@ -29,4 +55,8 @@ class CourseTestCase(BaseUser):
         c1 = self.db.session.query(models.Course).get(1)
         c2 = self.db.session.query(models.Course).get(2)
         self.assertIsNone(c1)
+<<<<<<< HEAD
         self.assertIsNone(c2)
+=======
+        self.assertIsNone(c2)
+>>>>>>> ca19d95b3a59fab76f2d901b229877d7d601b52f

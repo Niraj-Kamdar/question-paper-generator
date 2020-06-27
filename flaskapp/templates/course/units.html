@@ -9,6 +9,7 @@
 {% block special_side_links %}
     <a class="side_navigation_items" href={{ url_for("papers.paper_generate_request", course_id=course_id) }}>Generate
         Paper</a>
+    <a class="side_navigation_items" href={{url_for('papers.all_papers',course_id=course_id) }}>Previous Papers</a>
     <a class="side_navigation_items" href={{ url_for("courses.all_courses") }}>Courses</a>
 {% endblock special_side_links %}
 
@@ -53,6 +54,9 @@ messages %}
             </a>
             <a id="generate_paper" href={{ url_for("papers.paper_generate_request", course_id=course_id) }}>
                 <div>Generate Paper</div>
+            </a>
+            <a id="previous_paper" href="{{url_for('papers.all_papers',course_id=course_id) }}">
+                <div>Previous Paper</div>
             </a>
             <button id="delete_unit">
                 <div>Remove Unit</div>

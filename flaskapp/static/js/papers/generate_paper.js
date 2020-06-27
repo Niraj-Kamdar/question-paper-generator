@@ -35,6 +35,7 @@
   document.getElementById(
     "page_display"
   ).firstElementChild.firstElementChild.innerHTML = "Conflicts";
+
   logoContent.style.display = "none";
 
   qidContainer.forEach(function (node, index) {
@@ -65,6 +66,9 @@
   if (!addCheckbox.length) {
     const data = { mcq: { ask: [], nask: [] }, sub: { ask: [], nask: [] } };
     ajax(data);
+    document.getElementById(
+      "page_display"
+    ).firstElementChild.firstElementChild.innerHTML = "Paper Information";
   } else {
     conflictsButton.addEventListener("click", function () {
       const mcqAskId = qids.filter(
@@ -90,6 +94,9 @@
         },
       };
       ajax(data);
+      document.getElementById(
+        "page_display"
+      ).firstElementChild.firstElementChild.innerHTML = "Paper Information";
     });
   }
 

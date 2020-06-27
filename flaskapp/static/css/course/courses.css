@@ -2,6 +2,7 @@
 #add_unit,
 #add_unit_small,
 #delete_unit_small,
+#previous_paper,
 #generate_paper,
 .delete_course,
 #delete_unit,
@@ -41,6 +42,7 @@
 #delete_unit_small:hover,
 #add_unit:hover,
 #generate_paper:hover,
+#previous_paper:hover,
 .delete_course:hover,
 #delete_unit:hover {
   box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.2);

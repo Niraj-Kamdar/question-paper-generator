@@ -149,4 +149,7 @@ def delete_unit(course_id):
             Unit.id.in_(unit_ids)).delete(synchronize_session="fetch")
         db.session.commit()
     return redirect(url_for("courses.all_units", course_id=course_id))
+<<<<<<< HEAD
     
+=======
+>>>>>>> ca19d95b3a59fab76f2d901b229877d7d601b52f

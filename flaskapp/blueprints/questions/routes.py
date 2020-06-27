@@ -44,7 +44,7 @@ def all_questions(course_id, unit_id, qtype):
         and_(
             Question.unit_id == unit_id,
             Question.question_type == QuestionTypeEnum.from_string(qtype),
-        )).paginate(page=main_page, per_page=1)
+        )).paginate(page=main_page, per_page=10)
     common_args = dict(
         courses=_courses,
         course_id=course_id,

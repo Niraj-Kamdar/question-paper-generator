@@ -1,0 +1,53 @@
+.block_main,#body_container,#page_display,
+#template_display,#content{
+    height: 100%;
+}
+
+
+#body_container{
+    padding: 0 !important;
+}
+
+#page_display {
+    padding : 100px 10px 0 !important;
+}
+
+#pagination {
+    text-align: center;
+}
+
+#paper_container {
+    flex-grow: 1;
+}
+
+.papers {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin : 5px 5px 20px;
+    padding: 5px;
+}
+
+.paper_fields {
+    background-color: rgba(144,0,240,0.15);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 5px;
+    padding: 10px;
+    width : 250px;
+}
+
+#template_display {
+    display: flex;
+    flex-direction: column;
+}
+
+.links a{
+    background-color: rgba(144, 0, 240, 0.76);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: block;
+    color : white;
+    margin: 5px;
+    padding: 10px;
+    text-decoration: none;
+    width : 250px;
+}
