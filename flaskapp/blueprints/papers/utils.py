@@ -39,7 +39,7 @@ def find_conflicting_questions(course_id, constraints):
 
 def find_random_question(course_id, constraints):
     course = (db.session.query(Course).filter(
-            Course.id == course_id
+        Course.id == course_id
     )).first()
     unit = (db.session.query(Unit).filter(
         and_(Unit.chapter_no == constraints["unit"],
