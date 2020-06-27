@@ -58,7 +58,7 @@ def validate_chapter_no(form, chapter_no):
              Unit.course == form.course)).first()
     max_chapter_no = db.session.query(
         Unit,
-        label('max_chapter_no', func.max(Unit.chapter_no)).filter(Unit.course == form.course)).first().max_chapter_no
+        label('max_chapter_no', func.max(Unit.chapter_no))).filter(Unit.course == form.course).first().max_chapter_no
     if unit:
         raise ValidationError(
             "That Unit is already exist. Please choose a different one.")
