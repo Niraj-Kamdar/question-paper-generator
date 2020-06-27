@@ -1,9 +1,7 @@
 from flask import json
 
 from flaskapp.models import Paper
-from test.main.base_classes import BaseMCQQuestion
-from test.main.base_classes import BaseSubQuestion
-from test.main.base_classes import BaseUnit
+from test.main.base_classes import BaseMCQQuestion, BaseSubQuestion
 from test.main.utils import test_post_request
 
 
@@ -81,7 +79,7 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
             "exam_date": "2020-10-15",
             "time_limit": "2",
         }
-        res, _ = test_post_request(
+        test_post_request(
             self,
             "/course/1/papers/generate/",
             data,
