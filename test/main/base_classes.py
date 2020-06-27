@@ -95,7 +95,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=True,
             submit="submit",
         )
-        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question)
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question)
 
         new_question = dict(
             question="Is it question?",
@@ -106,7 +107,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=False,
             submit="submit",
         )
-        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question)
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question)
 
         new_question = dict(
             question="What is it?",
@@ -117,7 +119,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=True,
             submit="submit",
         )
-        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question)
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question)
 
         new_question = dict(
             question="What was that?",
@@ -128,7 +131,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=False,
             submit="submit",
         )
-        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question)
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question)
 
         new_question = dict(
             question="How are you?",
@@ -139,7 +143,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=True,
             submit="submit",
         )
-        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question)
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question)
 
         new_question = dict(
             question="is SEN easy?",
@@ -150,7 +155,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=False,
             submit="submit",
         )
-        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question)
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question)
 
         new_question = dict(
             question="is IT easy?",
@@ -161,7 +167,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=False,
             submit="submit",
         )
-        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question)
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question)
 
         new_question = dict(
             question="is engineering easy?",
@@ -172,7 +179,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=False,
             submit="submit",
         )
-        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question)
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question)
 
         new_question = dict(
             question="Comprehension sub hard",
@@ -183,7 +191,8 @@ class BaseSubQuestion(BaseUnit):
             is_asked=False,
             submit="submit",
         )
-        test_post_request(self, "/course/1/unit/1/question/sub/new/", new_question)
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question)
 
         new_question = dict(
             question="this is one more really?",
@@ -195,7 +204,9 @@ class BaseSubQuestion(BaseUnit):
             submit="submit",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/sub/new/", new_question,
+            self,
+            "/course/1/unit/1/question/sub/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -208,7 +219,9 @@ class BaseSubQuestion(BaseUnit):
             submit="submit",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/sub/new/", new_question,
+            self,
+            "/course/1/unit/1/question/sub/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -221,7 +234,9 @@ class BaseSubQuestion(BaseUnit):
             submit="submit",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/sub/new/", new_question,
+            self,
+            "/course/1/unit/1/question/sub/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -234,7 +249,9 @@ class BaseSubQuestion(BaseUnit):
             submit="submit",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/sub/new/", new_question,
+            self,
+            "/course/1/unit/1/question/sub/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -247,7 +264,9 @@ class BaseSubQuestion(BaseUnit):
             submit="submit",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/sub/new/", new_question,
+            self,
+            "/course/1/unit/1/question/sub/new/",
+            new_question,
         )
 
 
@@ -269,7 +288,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -286,7 +307,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -303,7 +326,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -320,7 +345,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -337,7 +364,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -354,7 +383,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
         new_question = dict(
             question="is engineering complete?",
@@ -370,7 +401,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -387,7 +420,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -404,7 +439,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -421,7 +458,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -438,7 +477,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -455,7 +496,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -472,7 +515,9 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
 
         new_question = dict(
@@ -489,5 +534,7 @@ class BaseMCQQuestion(BaseUnit):
             option4="D",
         )
         test_post_request(
-            self, "/course/1/unit/1/question/mcq/new/", new_question,
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
         )
