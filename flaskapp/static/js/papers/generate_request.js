@@ -80,11 +80,10 @@ const generateSubQuestionForm = (function () {
     for (let i = 1; i <= value; i++) {
       let s = '<div class="form__fields">';
       let s1 = `<label for="subquestions_${i}">Enter subquestions for Q${i}: </label>`;
-      let s2 = `<input type="number" id="subquestions_${i}" class="subquestions" value="${
-        buffer[i - 1] ? buffer[i - 1] : ""
-      }" />`;
-      let s3 = '<div class="subquestions_err"></div></div>';
-      s = s + s1 + s2 + s3;
+      let s2 = `<input type="number" id="subquestions_${i}" class="subquestions"`;
+      let s3 = `value="${buffer[i - 1] ? buffer[i - 1] : ""}" />`;
+      let s4 = '<div class="subquestions_err"></div></div>'
+      s = s + s1 + s2 + s3 + s4;
       content = content + s;
     }
 
