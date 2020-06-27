@@ -81,19 +81,13 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
             "exam_date": "2020-10-15",
             "time_limit": "2",
         }
-        res = self.client.post(
+        res, _ = test_post_request(
+            self,
             "/course/1/papers/generate/",
-            data=json.dumps(data),
-            headers={"Content-Type": "application/json"},
+            data,
+            Paper,
+            1
         )
-        """
-            FIX-ME!!!
-            it is redirecting to home maybe due to question not satisfying
-            given constrain from above mark distribution
-        """
-        self.assertIn(b"<a href=/papers/confirm/1 >", res.data)
-        # p1 = self.db.session.query(Paper).get(1)
-        # self.assertEqual(p1.to_dict()[name],"paper1")
 
         # testing gerenated paper
         with self.mail.record_messages() as outbox:
