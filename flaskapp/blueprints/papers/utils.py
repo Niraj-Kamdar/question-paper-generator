@@ -13,6 +13,7 @@ from sqlalchemy import func
 from flaskapp import APP_PATH
 from flaskapp import db
 from flaskapp import mail
+from flaskapp.models import Course
 from flaskapp.models import Question
 from flaskapp.models import Unit
 
@@ -38,6 +39,7 @@ def find_conflicting_questions(course_id, constraints):
 
 
 def find_random_question(course_id, constraints):
+    course = (db.session.query(Course).filter(Course.id == course_id)).first()
     unit = (db.session.query(Unit).filter(
         and_(Unit.chapter_no == constraints["unit"],
              Unit.course_id == course_id)).first())
@@ -50,6 +52,11 @@ def find_random_question(course_id, constraints):
         question_type=constraints["question_type"],
     ).order_by(func.random()).first())
     if imp_question:
+        if not course.include_asked:
+            (db.session.query(Question).filter(
+                Question.id == imp_question.id).update(
+                    dict(is_asked=True), synchronize_session="fetch"))
+            db.session.commit()
         return imp_question.to_dict()
     question = (db.session.query(Question).filter_by(
         cognitive_level=constraints["cognitive"],
@@ -60,6 +67,11 @@ def find_random_question(course_id, constraints):
         question_type=constraints["question_type"],
     ).order_by(func.random()).first())
     if question:
+        if not course.include_asked:
+            (db.session.query(Question).filter(
+                Question.id == question.id).update(
+                    dict(is_asked=True), synchronize_session="fetch"))
+            db.session.commit()
         return question.to_dict()
     raise QuestionNotFoundError()
 
