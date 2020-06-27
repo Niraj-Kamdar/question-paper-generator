@@ -138,5 +138,5 @@ def email_pdf(examiner, user, paper):
 
     filename, html, css = render_paper(paper)
     pdf = html.write_pdf(stylesheets=[css])
-    msg.attach(filename, "application/pdf", pdf.read())
+    msg.attach(filename, "application/pdf", pdf)
     mail.send(msg)
