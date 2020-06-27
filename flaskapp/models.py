@@ -165,11 +165,9 @@ class Paper(db.Model):
             name=self.name,
             term=self.term,
             mark=self.mark,
-            difficulty=self.difficulty,
-            cognitive_level=self.cognitive_level,
             paper_format=self.paper_format,
             paper_logo=self.paper_logo,
-            exam_date=self.exam_date,
+            exam_date=self.exam_date.isoformat(),
             time_limit=self.time_limit,
             instructions=self.instructions,
         )

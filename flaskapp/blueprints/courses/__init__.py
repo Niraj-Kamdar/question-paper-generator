@@ -1,1 +1,1 @@
-
+"""course blueprint"""

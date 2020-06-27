@@ -26,8 +26,8 @@ class SubOperationTestCase(BaseSubQuestion):
 
         # test invalid data
         response, _ = test_post_request(
-            self, "/course/1/unit/1/question/sub/update/12", update_question)
-        self.assertIn(b"Question:12 Does not exist", response.data)
+            self, "/course/1/unit/1/question/sub/update/20", update_question)
+        self.assertIn(b"Question:20 Does not exist", response.data)
 
     def test_delete_question(self):
         delete_list = [1, 4]
