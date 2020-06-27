@@ -27,12 +27,11 @@ def validate_course_name(form, course_name):
         ValidationError: If already exist then error of That Course is already exist. Please choose a different one. else add the course
     """
     course = Course.query.filter(
-        and_(Course.name == course_name.data, Course.teacher == current_user)
-    ).first()
+        and_(Course.name == course_name.data,
+             Course.teacher == current_user)).first()
     if course:
         raise ValidationError(
-            "That Course is already exist. Please choose a different one."
-        )
+            "That Course is already exist. Please choose a different one.")
 
 
 def validate_unit_name(form, unit_name):
@@ -46,35 +45,30 @@ def validate_unit_name(form, unit_name):
         ValidationError: If already there then give error of That Unit is already exist. Please choose a different one. else add name of unit
     """
     unit = Unit.query.filter(
-        and_(Unit.name == unit_name.data, Unit.course == form.course)
-    ).first()
+        and_(Unit.name == unit_name.data, Unit.course == form.course)).first()
 
     if unit:
         raise ValidationError(
-            "That Unit is already exist. Please choose a different one."
-        )
+            "That Unit is already exist. Please choose a different one.")
 
 
 def validate_chapter_no(form, chapter_no):
     unit = Unit.query.filter(
-        and_(Unit.chapter_no == chapter_no.data, Unit.course == form.course)
-    ).first()
-    max_chapter_no = (
-        db.session.query(Unit, label("max_chapter_no", func.max(Unit.chapter_no)))
-        .filter(Unit.course == form.course)
-        .first()
-        .max_chapter_no
-    )
+        and_(Unit.chapter_no == chapter_no.data,
+             Unit.course == form.course)).first()
+    max_chapter_no = (db.session.query(
+        Unit, label("max_chapter_no", func.max(Unit.chapter_no))).filter(
+            Unit.course == form.course).first().max_chapter_no)
     if unit:
         raise ValidationError(
-            "That Unit is already exist. Please choose a different one."
-        )
+            "That Unit is already exist. Please choose a different one.")
     if max_chapter_no and (max_chapter_no - chapter_no.data) > 1:
         raise ValidationError(f"Please crete unit:{max_chapter_no + 1} first.")
 
 
 class CourseForm(FlaskForm):
-    course = StringField("Course", validators=[DataRequired(), validate_course_name])
+    course = StringField("Course",
+                         validators=[DataRequired(), validate_course_name])
     include_asked = BooleanField("Should paper include asked questions?")
     submit = SubmitField("submit")
 
