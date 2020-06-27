@@ -11,13 +11,15 @@ class CourseTestCase(BaseUser):
         self.login()
         # adding new course
         new_course = dict(course="maths")
-        _, course = test_post_request(self, "/course/new", new_course, models.Course, 1)
+        _, course = test_post_request(self, "/course/new", new_course,
+                                      models.Course, 1)
         # Checking repr method
         self.assertEqual(str(course), "Course(maths)")
 
         # adding another course
         new_course = dict(course="science")
-        _, course = test_post_request(self, "/course/new", new_course, models.Course, 2)
+        _, course = test_post_request(self, "/course/new", new_course,
+                                      models.Course, 2)
         # cheking repr method
         self.assertEqual(str(course), "Course(science)")
 
