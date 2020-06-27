@@ -6,7 +6,7 @@ from flaskapp.models import Paper
 
 class PaperGenerateRequest(BaseUnit):
     def test_paper_generate_request(self):
-        data = dict(questions=[1,2,3], total_marks=30)
+        data = dict(questions=[1, 2 ,3], total_marks=30)
         response = self.client.post(
             "/course/1/papers/generate/request",
             data=json.dumps(data),
