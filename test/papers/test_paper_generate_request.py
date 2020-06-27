@@ -86,7 +86,7 @@ class PaperGenerateRequest(BaseUnit):
         '''
             FIX-ME!!!
             it is redirecting to home maybe due to question not satisfying
-            given constrain
+            given constrain from mark distribution
         '''
         #self.assertIn(b"<a href=/papers/confirm/1 >",res.data)
         #p1 = self.db.session.query(Paper).get(1)
