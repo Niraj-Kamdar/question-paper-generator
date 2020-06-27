@@ -1,8 +1,8 @@
+from flask import json
+
+from flaskapp import models
 from test.main.base_classes import BaseMCQQuestion
 from test.main.utils import test_post_request
-
-from flask import json
-from flaskapp import models
 
 
 class MCQOperationTestCase(BaseMCQQuestion):
