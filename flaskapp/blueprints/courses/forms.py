@@ -64,7 +64,8 @@ def validate_chapter_no(form, chapter_no):
     if units:
         max_chapter_no = max(map(lambda _unit: int(_unit.chapter_no), units))
         if max_chapter_no and (max_chapter_no - chapter_no.data) < -1:
-            raise ValidationError(f"Please crete unit:{max_chapter_no + 1} first.")
+            raise ValidationError(
+                f"Please crete unit:{max_chapter_no + 1} first.")
 
 
 class CourseForm(FlaskForm):
