@@ -1,10 +1,10 @@
 from flask import json
 
-from test.main.base_classes import BaseUnit
+from test.main.base_classes import BaseUnit, BaseSubQuestion, BaseMCQQuestion
 from test.main.utils import test_post_request
 from flaskapp.models import Paper
 
-class PaperGenerateRequest(BaseUnit):
+class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
     def test_paper_generate_request(self):
         data = dict(questions=[1, 2 ,3], total_marks=30)
         response = self.client.post(
@@ -87,7 +87,7 @@ class PaperGenerateRequest(BaseUnit):
             it is redirecting to home maybe due to question not satisfying
             given constrain from above mark distribution
         '''
-        #self.assertIn(b"<a href=/papers/confirm/1 >",res.data)
+        self.assertIn(b"<a href=/papers/confirm/1 >",res.data)
         #p1 = self.db.session.query(Paper).get(1)
         #self.assertEqual(p1.to_dict()[name],"paper1")
 

@@ -146,6 +146,113 @@ class BaseSubQuestion(BaseUnit):
         test_post_request(self, "/course/1/unit/1/question/sub/new/",
                           new_question, models.Question, 5)
 
+        new_question = dict(
+            question="is SEN easy?",
+            mark=5,
+            difficulty="Easy",
+            cognitive_level="Application",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 6)
+
+        new_question = dict(
+            question="is IT easy?",
+            mark=5,
+            difficulty="Medium",
+            cognitive_level="Comprehension",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 7)    
+        
+        new_question = dict(
+            question="is engineering easy?",
+            mark=5,
+            difficulty="Hard",
+            cognitive_level="Knowledge",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 8)
+        
+        new_question = dict(
+            question="Comprehension sub hard",
+            mark=5,
+            difficulty="Hard",
+            cognitive_level="Comprehension",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 9)
+    
+        new_question = dict(
+            question="this is one more really?",
+            mark=5,
+            difficulty="Hard",
+            cognitive_level="Application",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 10)
+
+        new_question = dict(
+            question="Application med sub.",
+            mark=5,
+            difficulty="Medium",
+            cognitive_level="Application",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 11)  
+
+        new_question = dict(
+            question="Knowledge med sub.",
+            mark=5,
+            difficulty="Medium",
+            cognitive_level="Knowledge",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 12)     
+
+        new_question = dict(
+            question="Comprehension sub easy",
+            mark=5,
+            difficulty="Easy",
+            cognitive_level="Comprehension",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 13)
+
+        new_question = dict(
+            question="Knowledge sub easy",
+            mark=5,
+            difficulty="Easy",
+            cognitive_level="Knowledge",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+        )
+        test_post_request(self, "/course/1/unit/1/question/sub/new/",
+                          new_question, models.Question, 14) 
 
 class BaseMCQQuestion(BaseUnit):
     def setUp(self):
@@ -255,3 +362,195 @@ class BaseMCQQuestion(BaseUnit):
             models.Question,
             5,
         )
+
+        new_question = dict(
+            question="is Project complete?",
+            mark=5,
+            difficulty="Easy",
+            cognitive_level="Application",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
+            models.Question,
+            6,
+        )
+        new_question = dict(
+            question="is engineering complete?",
+            mark=5,
+            difficulty="Medium",
+            cognitive_level="Comprehension",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
+            models.Question,
+            7,
+        )
+
+        new_question = dict(
+            question="did you get degree?",
+            mark=5,
+            difficulty="Hard",
+            cognitive_level="Application",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
+            models.Question,
+            8,
+        )
+
+        new_question = dict(
+            question="Comprehension mcq hard",
+            mark=5,
+            difficulty="Hard",
+            cognitive_level="Comprehension",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
+            models.Question,
+            9,
+        )
+
+        new_question = dict(
+            question="Knowledge mcq hard",
+            mark=5,
+            difficulty="Hard",
+            cognitive_level="Comprehension",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
+            models.Question,
+            10,
+        )
+
+        new_question = dict(
+            question="Knowledge mcq med",
+            mark=5,
+            difficulty="Medium",
+            cognitive_level="Knowledge",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
+            models.Question,
+            11,
+        )
+
+        new_question = dict(
+            question="Application mcq med",
+            mark=5,
+            difficulty="Medium",
+            cognitive_level="Application",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
+            models.Question,
+            12,
+        )
+
+        new_question = dict(
+            question="Comprehension mcq easy",
+            mark=5,
+            difficulty="Easy",
+            cognitive_level="Comprehension",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
+            models.Question,
+            13,
+        )
+
+        new_question = dict(
+            question="Knowledge mcq easy",
+            mark=5,
+            difficulty="Easy",
+            cognitive_level="Knowledge",
+            imp=None,
+            is_asked=False,
+            submit="submit",
+            option1="A",
+            option2="B",
+            option3="C",
+            option4="D",
+        )
+        test_post_request(
+            self,
+            "/course/1/unit/1/question/mcq/new/",
+            new_question,
+            models.Question,
+            14,
+        )
+
+
+
+
