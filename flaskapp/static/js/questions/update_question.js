@@ -84,7 +84,7 @@
   }
 
   for (let i = 0; i < qids.length; i++) {
-    qids[i].innerText = (pageNo - 1) * qids.length + (i + 1);
+    qids[i].innerText = (pageNo - 1) * 10 + (i + 1);
   }
 
   for (let i = 0; i < imps.length; i++) {
