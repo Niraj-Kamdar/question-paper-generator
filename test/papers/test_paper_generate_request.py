@@ -1,7 +1,7 @@
-from flask import json
-
-from test.main.base_classes import BaseUnit, BaseSubQuestion, BaseMCQQuestion
+from test.main.base_classes import BaseMCQQuestion, BaseSubQuestion, BaseUnit
 from test.main.utils import test_post_request
+
+from flask import json
 from flaskapp.models import Paper
 
 

@@ -1,8 +1,8 @@
-from flask import json
-
-from flaskapp import models
 from test.main.base_classes import BaseUser
 from test.main.utils import test_post_request
+
+from flask import json
+from flaskapp import models
 
 
 class CourseTestCase(BaseUser):
