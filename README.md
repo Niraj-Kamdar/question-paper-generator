@@ -18,6 +18,10 @@ constraints:
 3. Unit wise mark distribution 
 4. Question Type (Subjective, Objective)
 
+We also store all previously generated papers so that teacher can access it 
+anytime. We by default don't ask previously asked question. We also provide
+an option to email generated paper in PDF format to the examiner.
+
 ## Contributors
 
 [![](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/images/0)](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/links/0)[![](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/images/1)](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/links/1)[![](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/images/2)](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/links/2)[![](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/images/3)](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/links/3)[![](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/images/4)](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/links/4)[![](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/images/5)](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/links/5)[![](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/images/6)](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/links/6)[![](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/images/7)](https://sourcerer.io/fame/Niraj-Kamdar/Niraj-Kamdar/question-paper-generator/links/7)
