@@ -82,7 +82,6 @@ class PaperGenerateRequest(BaseUnit):
             data=json.dumps(data),
             headers={"Content-Type": "application/json"},
         )
-
         '''
             FIX-ME!!!
             it is redirecting to home maybe due to question not satisfying
@@ -98,7 +97,7 @@ class PaperGenerateRequest(BaseUnit):
             "generate" : "YES",
             "examiner_email" : "proton@gmail.com"
             }
-            test_post_request(self,"papers/confirm/1",data=data)
-            self.assertEqual(1,len(outbox))
-            self.assertEqual("Paper for paper1",outbox[0].subject)
+            test_post_request(self,"papers/confirm/1", data=data)
+            self.assertEqual(1, len(outbox))
+            self.assertEqual("Paper for paper1", outbox[0].subject)
 
