@@ -89,7 +89,7 @@
     fetch(`/course/${courseId}/papers/confirm/template/`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status:"OK" }),
+      body: JSON.stringify({ status: "OK" }),
     })
       .then((val) => val.text())
       .then((paper) => {
