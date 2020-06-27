@@ -1,19 +1,11 @@
 from flask_login import current_user
 from flask_wtf import FlaskForm
-from sqlalchemy import and_
-from sqlalchemy import func
-from sqlalchemy.sql import label
-from wtforms import BooleanField
-from wtforms import IntegerField
-from wtforms import StringField
-from wtforms import SubmitField
-from wtforms.validators import DataRequired
-from wtforms.validators import NumberRange
-from wtforms.validators import ValidationError
-
 from flaskapp import db
-from flaskapp.models import Course
-from flaskapp.models import Unit
+from flaskapp.models import Course, Unit
+from sqlalchemy import and_, func
+from sqlalchemy.sql import label
+from wtforms import BooleanField, IntegerField, StringField, SubmitField
+from wtforms.validators import DataRequired, NumberRange, ValidationError
 
 
 def validate_course_name(form, course_name):
