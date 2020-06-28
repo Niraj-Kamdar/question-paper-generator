@@ -90,6 +90,6 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
 
     def test_pdf_paper(self):
         self.test_generate_and_confirm_paper()
-        self.app.get('/papers/1')
+        self.client.post('/papers/1')
         self.assert_template_used('papers/ptp.html')
         self.assert_context("title", "Paper-to-PDF")
