@@ -93,4 +93,4 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
         self.test_mark_distribution_form()
         self.test_generate_and_confirm_paper()
         response = self.client.get('/papers/1')
-        self.assertIn(b"<title>Paper-to-PDF</title>", response.data)
+        self.assertIn(b"Answer the following Multiple choice questions", response.data)
