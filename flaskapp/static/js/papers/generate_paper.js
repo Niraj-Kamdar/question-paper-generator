@@ -130,21 +130,6 @@
         } else {
           validation.err.push("");
         }
-      } else {
-        if (!value) {
-          validation.isValid = false;
-          validation.err.push("required field!!");
-        } else {
-          const extension = value.substr(value.lastIndexOf(".") + 1);
-          console.log(extension);
-          const validExtensions = ["jpg", "jpeg", "png", "tiff"];
-          if (validExtensions.indexOf(extension) === -1) {
-            validation.isValid = false;
-            validation.err.push("enter valid image file");
-          } else {
-            validation.err.push("");
-          }
-        }
       }
     });
     return validation;
