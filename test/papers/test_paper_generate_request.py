@@ -89,6 +89,8 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
             self.assertEqual("Paper for paper1", outbox[0].subject)
 
     def test_pdf_paper(self):
+        self.test_paper_generate_request()
+        self.test_mark_distribution_form()
         self.test_generate_and_confirm_paper()
         response = self.client.post('/papers/1')
         self.assertIn(b"<title>Paper-to-PDF</title>", response.data)
