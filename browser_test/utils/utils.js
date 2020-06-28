@@ -204,7 +204,7 @@ if(checking){
 
 function add_sub(checking) {
     web.click('(//a[@class=\'unit_item\'])[1]');
-    const count = web.getElementCount("//div[@class=\'question_container\']");
+    const count = web.getElementCount("//div[@class='question_container']");
     if(!count){
         web.click('//div[@id=\'sideNav\']/div[3]/div[2]/div[2]/a');
 web.selectWindow('title=Add Subjective Question');
@@ -293,7 +293,7 @@ web.assertText('//div[@id=\'questions\']/div[2]/div/div[2]/div[5]/div', 'who is 
 }
 
 function delete_sub(checking){
-    let count = web.getElementCount("//div[@class=\'question_container\']");
+    let count = web.getElementCount("//div[@class='question_container']");
     if(count){
     web.click('//img[@alt=\'delete\']');
 // xpath:attributes: (//input[@type=\'checkbox\'])[1]
@@ -308,8 +308,8 @@ web.click('(//input[@type=\'checkbox\'])[1]');
 web.click('//img[@alt=\'delete\']');
 
 if(checking){
-    web.waitForNotExist("//div[@class=\'question_container\']");
-const count = web.getElementCount("//div[@class=\'question_container\']");
+    web.waitForNotExist("//div[@class='question_container']");
+const count = web.getElementCount("//div[@class='question_container']");
 if(count){
     throw new Error("Question is not deleted");
 }
@@ -320,7 +320,7 @@ if(count){
 function add_mcq(checking){
     web.click('//div[@id=\'unit_container\']/div[2]/div/a');
     web.click('//div[@id=\'sideNav\']/div[2]/div[2]/div[1]/a');
-    status = web.isExist("//div[@class=\'question_container\']");
+    let status = web.isExist("//div[@class='question_container']");
     if(!status){
     web.click('//div[@id=\'sideNav\']/div[3]/div[2]/div[1]/a');
 web.selectWindow('title=Add Objective Question');
@@ -416,8 +416,8 @@ web.type('//div[@id=\'options\']/div[7]/label[1]/textarea', 'none');
 //              css: css=#submit_btn
 web.click('id=submit_btn');
 if(checking){
-    web.waitForExist("//div[@class=\'question_container\']");
-    const count = web.getElementCount("//div[@class=\'question_container\']");
+    web.waitForExist("//div[@class='question_container']");
+    const count = web.getElementCount("//div[@class='question_container']");
     if(!count){
         throw new Error('mcq is not added');
     }
@@ -431,7 +431,7 @@ function delete_mcq(checking){
     //    web.click('//div[@id=\'unit_container\']/div[2]/div/a');
     // }
     // web.click('//div[@id=\'sideNav\']/div[2]/div[2]/div[1]/a');
-    let status = web.isExist("//div[@class=\'question_container\']");
+    let status = web.isExist("//div[@class='question_container']");
     if(status){
         web.click('//img[@alt=\'delete\']');
 // xpath:attributes: (//input[@type=\'checkbox\'])[1]
@@ -445,8 +445,8 @@ web.click('(//input[@type=\'checkbox\'])[1]');
 //              css: css=#delete_btn > img
 web.click('//img[@alt=\'delete\']');
 if(checking){
-web.waitForNotExist("//div[@class=\'question_container\']");
-const count = web.getElementCount("//div[@class=\'question_container\']");
+web.waitForNotExist("//div[@class='question_container']");
+const count = web.getElementCount("//div[@class='question_container']");
 if(count){
     throw new Error("mcq is not deleted");
 }
@@ -487,8 +487,8 @@ web.assertText('id=back_1', 'Back');
 //              css: css=#next_2
 
 if(checking){
-let count = web.getElementCount("//input[@class=\'subquestions\']");
-count = count + web.getElementCount("//input[@id=\'marks\']");
+let count = web.getElementCount("//input[@class='subquestions']");
+count = count + web.getElementCount("//input[@id='marks']");
 assert.equal(count,3);
 
 }
@@ -523,7 +523,7 @@ web.type('id=marks', '10');
 //              css: css=#page_display > div.mb-2 > h3
 if(checking){
     web.click('id=back_1');
-    const status = web.isExist("//button[@id=\'next_1\']");
+    const status = web.isExist("//button[@id='next_1']");
     if(!status){
         throw new Error('back link not working');
     }else{
@@ -798,9 +798,9 @@ web.assertText('id=subjective_part_title', 'Subjective Question');
 //              css: css=#mcq_part_title
 web.assertText('id=mcq_part_title', 'MCQs');
 
-let count = web.getElementCount("//div[@class=\'mcqs_id\']");
+let count = web.getElementCount("//div[@class='mcqs_id']");
 if(!count){
-let count2 = web.getElementCount("//div[@class=\'subquestions_id\']");
+let count2 = web.getElementCount("//div[@class='subquestions_id']");
 if(!count2){
     throw new Error("Invalid paper template");
 }

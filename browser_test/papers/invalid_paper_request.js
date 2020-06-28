@@ -42,8 +42,8 @@ web.click('id=next_1');
 // xpath:idRelative: //form[@id=\'subquestions\']/div/div[3]/button[1]
 //   xpath:position: //div[3]/button[1]
 //              css: css=#back_1
-let count = web.getElementCount("//input[@class=\'subquestions\']");
-count = count + web.getElementCount("//input[@id=\'marks\']");
+let count = web.getElementCount("//input[@class='subquestions']");
+count = count + web.getElementCount("//input[@id='marks']");
 assert.equal(count,3);
 
 web.click('id=next_2');
