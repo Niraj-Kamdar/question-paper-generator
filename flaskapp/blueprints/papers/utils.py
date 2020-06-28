@@ -49,6 +49,7 @@ def find_random_question(course_id, constraints):
         mark=constraints["mark"],
         unit_id=unit.id,
         imp=True,
+        is_asked=False,
         question_type=constraints["question_type"],
     ).order_by(func.random()).first())
     if imp_question:
