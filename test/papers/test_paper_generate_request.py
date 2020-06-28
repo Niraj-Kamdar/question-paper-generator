@@ -5,6 +5,7 @@ from test.main.base_classes import BaseMCQQuestion
 from test.main.base_classes import BaseSubQuestion
 from test.main.utils import test_post_request
 
+
 class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
     def test_paper_generate_request(self):
         data = dict(questions=[1, 2, 3], total_marks=30)
@@ -24,10 +25,10 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
             "ask": [1, 3],
             "nask": [2, 4]
         },
-                    sub={
-                        "ask": [1, 3],
-                        "nask": [2, 4]
-                    })
+            sub={
+            "ask": [1, 3],
+            "nask": [2, 4]
+        })
         response = self.client.post(
             "/papers/handle/conflicts",
             data=json.dumps(data),
@@ -93,4 +94,5 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
         self.test_mark_distribution_form()
         self.test_generate_and_confirm_paper()
         response = self.client.get('/papers/1')
-        self.assertIn(b"Answer the following Multiple choice questions", response.data)
+        self.assertIn(
+            b"Answer the following Multiple choice questions", response.data)
