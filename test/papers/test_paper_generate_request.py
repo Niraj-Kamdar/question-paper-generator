@@ -4,7 +4,6 @@ from flaskapp.models import Paper
 from test.main.base_classes import BaseMCQQuestion
 from test.main.base_classes import BaseSubQuestion
 from test.main.utils import test_post_request
-import pyPdf
 
 class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
     def test_paper_generate_request(self):
@@ -94,4 +93,4 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
         self.test_mark_distribution_form()
         self.test_generate_and_confirm_paper()
         response = self.client.post('/papers/1')
-        pdf = pyPdf.PdfFileReader(open(response, "rb"))
+        self.assertIn(b"<title>Paper-to-PDF</title>", response.data)
