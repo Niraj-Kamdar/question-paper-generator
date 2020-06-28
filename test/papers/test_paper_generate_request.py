@@ -88,3 +88,11 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
             test_post_request(self, "papers/confirm/1", data=data)
             self.assertEqual(1, len(outbox))
             self.assertEqual("Paper for paper1", outbox[0].subject)
+
+    def test_pdf_paper(self):
+        self.test_paper_generate_request()
+        self.test_mark_distribution_form()
+        self.test_generate_and_confirm_paper()
+        response = self.client.get("/papers/1")
+        self.assertIn(b"Answer the following Multiple choice questions",
+                      response.data)
