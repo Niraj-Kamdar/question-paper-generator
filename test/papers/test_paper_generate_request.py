@@ -90,6 +90,5 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
 
     def test_pdf_paper(self):
         self.test_generate_and_confirm_paper()
-        self.client.post('/papers/1')
-        self.assert_template_used('papers/ptp.html')
-        self.assert_context("title", "Paper-to-PDF")
+        response = self.client.post('/papers/1')
+        self.assertIn(b"<title>Paper-to-PDF</title>", response.data)
