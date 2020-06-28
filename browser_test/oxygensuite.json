@@ -1,0 +1,103 @@
+{
+    "iterations" : 2,
+    "parallel" : 1,
+    "url": "http://localhost:4444/wd/hub",
+    "cases":[
+        {
+            "name" : "basic_navigation",
+            "path" : "./basic_navigation.js"
+        },{
+            "name" : "about_us_after_login",
+            "path" : "./about_us_after_login.js"
+        },{
+            "name" : "inavlid_registration",
+            "path" : "./user/invalid_register.js"
+        },{
+            "name" : "valid_registration",
+            "path" : "./user/valid_register.js"
+        },{
+            "name" : "invalid_login",
+            "path" : "./user/invalid_login.js"
+        },{
+            "name" : "valid_login",
+            "path" : "./user/valid_login.js"
+        },{
+            "name" : "invalid_user_update",
+            "path" : "./user/invalid_user_update.js"
+        },{
+            "name" : "valid_user_update",
+            "path" : "./user/user_update.js"
+        },{
+            "name" : "add_question",
+            "path" : "./questions/add_sub.js"
+        },{
+            "name" : "add_mcq",
+            "path" : "./questions/add_mcq.js"
+        },{
+            "name" : "delete_mcq",
+            "path" : "./questions/delete_mcq.js"
+        },{
+            "name" : "delete_sub",
+            "path" : "./questions/delete_sub.js"
+        },{
+            "name" : "invalid_add_sub",
+            "path" : "./questions/invalid_add_sub.js"
+        },{
+            "name" : "modify_sub",
+            "path" : "./questions/modify_sub.js"
+        },{
+            "name" : "modify_mcq",
+            "path" : "./questions/modify_mcq.js"
+        },{
+            "name" : "abort_paper",
+            "path" : "./papers/abort_paper.js"
+        },{
+            "name" : "paper_info",
+            "path" : "./papers/paper_info.js"
+        },{
+            "name" : "paper_request",
+            "path" : "./papers/paper_request.js"
+        },{
+            "name" : "invalid_paper_info",
+            "path" : "./papers/invalid_paper_info.js"
+        },{
+            "name" : "invalid_paper_request",
+            "path" : "./papers/invalid_paper_request.js"
+        },{
+            "name" : "invalid_examiner_email",
+            "path" : "./papers/invalid_examiner_email.js"
+        },{
+            "name" : "invalid_mark_distribution",
+            "path" : "./papers/invalid_mark_distribution.js"
+        },{
+            "name" : "valid_mark_distribution",
+            "path" : "./papers/valid_mark_distribution.js"
+        },{
+            "name" : "invalid_course_addition",
+            "path" : "./course/invalid_course_addition.js"
+        },{
+            "name" : "invalid_unit_addition",
+            "path" : "./course/invalid_unit_addition.js"
+        },{
+            "name" : "remove_course",
+            "path" : "./course/remove_course.js"
+        },{
+            "name" : "remove_unit",
+            "path" : "./course/remove_unit.js"
+        },{
+            "name" : "valid_course_addition",
+            "path" : "./course/valid_course_addition.js"
+        },{
+            "name" : "valid_unit_registration",
+            "path" : "./course/valid_unit_addition.js"
+        }
+    ],
+      "capabilities": [
+    {
+      "browserName": "firefox"
+    }
+  ],
+     "options": {
+    "autoReopen": true
+  }
+}
