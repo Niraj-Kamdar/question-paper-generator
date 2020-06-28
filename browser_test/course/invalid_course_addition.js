@@ -1,4 +1,4 @@
-const {register,login} = require("../utils/utils");
+const {register, login} = require("../utils/utils");
 
 web.init();
 web.open('http://localhost:5000/');

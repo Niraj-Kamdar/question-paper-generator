@@ -1,6 +1,18 @@
 
 
-const {register,login,add_course,add_unit,add_sub,add_mcq,paper_request,mark_distribution,paper_info,delete_mcq,delete_sub} = require("../utils/utils");
+const {
+  register,
+  login,
+  add_course,
+  add_unit,
+  add_sub,
+  add_mcq,
+  paper_request,
+  mark_distribution,
+  paper_info,
+  delete_mcq,
+  delete_sub
+} = require("../utils/utils");
 
 web.init();
 web.open('http://localhost:5000/');
@@ -23,7 +35,8 @@ web.click('id=pdf_mail');
 // xpath:idRelative: //div[@id=\'form_content\']/div[1]/div
 //   xpath:position: //form/div/div[1]/div
 //              css: css=#form_content > div.form__fields > div
-web.assertText('//div[@id=\'form_content\']/div[1]/div', 'Invalid email Address!!');
+web.assertText('//div[@id=\'form_content\']/div[1]/div',
+               'Invalid email Address!!');
 //               id: id=abort
 // xpath:attributes: //button[@id=\'abort\']
 // xpath:idRelative: //div[@id=\'form_content\']/div[2]/button[1]

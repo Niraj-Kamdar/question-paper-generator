@@ -90,10 +90,12 @@ web.click('id=submit');
 // xpath:idRelative: //form[@id=\'registerForm\']/fieldset/div[3]/div
 //   xpath:position: //div[3]/div
 //              css: css=#user_password_error
-web.assertText('id=user_password_error', 'password must have atleast 8 characters');
+web.assertText('id=user_password_error',
+               'password must have atleast 8 characters');
 //               id: id=user_confirm_password_error
 // xpath:attributes: //div[@id=\'user_confirm_password_error\']
 // xpath:idRelative: //form[@id=\'registerForm\']/fieldset/div[4]/div
 //   xpath:position: //fieldset/div[4]/div
 //              css: css=#user_confirm_password_error
-web.assertText('id=user_confirm_password_error', 'this field must match with password field');
+web.assertText('id=user_confirm_password_error',
+               'this field must match with password field');

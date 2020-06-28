@@ -1,5 +1,5 @@
 
-const {register,login,add_course,add_unit} = require("../utils/utils");
+const {register, login, add_course, add_unit} = require("../utils/utils");
 
 web.init();
 web.open('http://localhost:5000/');
@@ -44,17 +44,19 @@ web.click('id=next_1');
 //              css: css=#back_1
 let count = web.getElementCount("//input[@class='subquestions']");
 count = count + web.getElementCount("//input[@id='marks']");
-assert.equal(count,3);
+assert.equal(count, 3);
 
 web.click('id=next_2');
 // xpath:idRelative: //div[@id=\'dynamic_content\']/div[1]/div
 //   xpath:position: //form/div/div[1]/div[1]/div
 //              css: css=#dynamic_content > div:nth-child(1) > div
-web.assertText('//div[@id=\'dynamic_content\']/div[1]/div', 'Number of Subquestions should be Integer');
+web.assertText('//div[@id=\'dynamic_content\']/div[1]/div',
+               'Number of Subquestions should be Integer');
 // xpath:idRelative: //div[@id=\'dynamic_content\']/div[2]/div
 //   xpath:position: //form/div/div[1]/div[2]/div
 //              css: css=#dynamic_content > div:nth-child(2) > div
-web.assertText('//div[@id=\'dynamic_content\']/div[2]/div', 'Number of Subquestions should be Integer');
+web.assertText('//div[@id=\'dynamic_content\']/div[2]/div',
+               'Number of Subquestions should be Integer');
 //               id: id=marks_err
 // xpath:attributes: //div[@id=\'marks_err\']
 // xpath:idRelative: //form[@id=\'subquestions\']/div/div[2]/div

@@ -1,4 +1,4 @@
-const {register,login,add_course} = require("../utils/utils");
+const {register, login, add_course} = require("../utils/utils");
 
 web.init();
 web.open('http://localhost:5000/');
@@ -6,7 +6,6 @@ web.open('http://localhost:5000/');
 register();
 login();
 add_course();
-
 
 web.click('//a[contains(text(),\'WEB\')]');
 web.selectWindow('title=Units');
@@ -25,8 +24,10 @@ web.click('id=submit_btn');
 // xpath:idRelative: //div[@id=\'form_content\']/div[1]/div
 //   xpath:position: //form/div/div[1]/div
 //              css: css=#form_content > div:nth-child(1) > div
-web.assertText('//div[@id=\'form_content\']/div[1]/div', 'chapter number is required!!');
+web.assertText('//div[@id=\'form_content\']/div[1]/div',
+               'chapter number is required!!');
 // xpath:idRelative: //div[@id=\'form_content\']/div[2]/div
 //   xpath:position: //form/div/div[2]/div
 //              css: css=#form_content > div:nth-child(2) > div
-web.assertText('//div[@id=\'form_content\']/div[2]/div', 'Chapter name is required!!');
+web.assertText('//div[@id=\'form_content\']/div[2]/div',
+               'Chapter name is required!!');

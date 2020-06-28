@@ -1,4 +1,5 @@
-const {register,login,add_course,add_unit,add_mcq} = require("../utils/utils");
+const {register, login, add_course, add_unit, add_mcq} =
+    require("../utils/utils");
 
 web.init();
 web.open('http://localhost:5000/');
@@ -8,7 +9,6 @@ login();
 add_course();
 add_unit();
 add_mcq();
-
 
 web.click('//img[@alt=\'edit\']');
 //               id: id=form_field_question_value
@@ -42,5 +42,7 @@ web.click('id=submit_btn');
 web.selectWindow('title=Objective Questions');
 // xpath:idRelative: //div[@id=\'questions\']/div[2]/div/div[2]/div[5]/div
 //   xpath:position: //div[5]/div
-//              css: css=#questions > div:nth-child(2) > div > div.question_info > div.fifth_row > div
-web.assertText('//div[@id=\'questions\']/div[2]/div/div[2]/div[5]/div', 'who is jango fett?');
+//              css: css=#questions > div:nth-child(2) > div > div.question_info
+//              > div.fifth_row > div
+web.assertText('//div[@id=\'questions\']/div[2]/div/div[2]/div[5]/div',
+               'who is jango fett?');

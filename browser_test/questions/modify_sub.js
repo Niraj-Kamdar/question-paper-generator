@@ -1,4 +1,5 @@
-const {register,login,add_course,add_unit,add_sub} = require("../utils/utils");
+const {register, login, add_course, add_unit, add_sub} =
+    require("../utils/utils");
 
 web.init();
 web.open('http://localhost:5000/');
@@ -41,10 +42,12 @@ web.click('id=submit_btn');
 web.selectWindow('title=Subjective Questions');
 // xpath:idRelative: //div[@id=\'questions\']/div[2]/div/div[2]/div[5]/div
 //   xpath:position: //div[5]/div
-//              css: css=#questions > div:nth-child(2) > div > div.question_info > div.fifth_row > div
-web.assertText('//div[@id=\'questions\']/div[2]/div/div[2]/div[5]/div', 'who is baby yoda?');
+//              css: css=#questions > div:nth-child(2) > div > div.question_info
+//              > div.fifth_row > div
+web.assertText('//div[@id=\'questions\']/div[2]/div/div[2]/div[5]/div',
+               'who is baby yoda?');
 //        xpath:img: //img[@alt=\'edit\']
 // xpath:idRelative: //div[@id=\'questions\']/div[2]/div/div[3]/div/img
 //   xpath:position: //div[2]/div[1]/div/div[2]/div/div[3]/div/img
-//              css: css=#questions > div:nth-child(2) > div > div.update_question > div > img
-
+//              css: css=#questions > div:nth-child(2) > div >
+//              div.update_question > div > img

@@ -1,7 +1,7 @@
 web.init();
 web.open('http://localhost:5000/');
 
-const {login,register} = require("../utils/utils");
+const {login, register} = require("../utils/utils");
 
 register();
 login();
@@ -37,7 +37,6 @@ web.clear('id=username');
 //              css: css=#email
 web.click('id=email');
 
-
 web.clear('id=email');
 //               id: id=submit
 //             name: name=submit
@@ -49,8 +48,10 @@ web.click('id=submit');
 // xpath:idRelative: //div[@id=\'form_content\']/div[1]/div
 //   xpath:position: //form/div/div[1]/div
 //              css: css=#form_content > div:nth-child(2) > div
-web.assertText('//div[@id=\'form_content\']/div[1]/div', 'username is required');
+web.assertText('//div[@id=\'form_content\']/div[1]/div',
+               'username is required');
 // xpath:idRelative: //div[@id=\'form_content\']/div[2]/div
 //   xpath:position: //form/div/div[2]/div
 //              css: css=#form_content > div:nth-child(3) > div
-web.assertText('//div[@id=\'form_content\']/div[2]/div', 'email address is invalid!!');
+web.assertText('//div[@id=\'form_content\']/div[2]/div',
+               'email address is invalid!!');

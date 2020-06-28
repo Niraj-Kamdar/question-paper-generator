@@ -1,7 +1,7 @@
 web.init();
 web.open('http://localhost:5000/');
 
-const {register,login} = require("../utils/utils");
+const {register, login} = require("../utils/utils");
 
 register();
 login();
@@ -44,7 +44,8 @@ web.type('id=email', '201701176@daiict.ac.in');
 //              css: css=#username
 
 web.click('id=submit');
-web.assertText('//div[@id=\'template_display\']/div/div[1]/div/div/h2', 'CT7567TG');
+web.assertText('//div[@id=\'template_display\']/div/div[1]/div/div/h2',
+               'CT7567TG');
 
 web.click('id=username');
 //               id: id=username
