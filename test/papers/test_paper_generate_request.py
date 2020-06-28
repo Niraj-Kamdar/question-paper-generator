@@ -4,7 +4,7 @@ from flaskapp.models import Paper
 from test.main.base_classes import BaseMCQQuestion
 from test.main.base_classes import BaseSubQuestion
 from test.main.utils import test_post_request
-
+from flask.ext.testing import TestCase
 
 class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
     def test_paper_generate_request(self):
@@ -88,3 +88,9 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
             test_post_request(self, "papers/confirm/1", data=data)
             self.assertEqual(1, len(outbox))
             self.assertEqual("Paper for paper1", outbox[0].subject)
+
+    def test_pdf_paper(self):
+        self.test_generate_and_confirm_paper()
+        self.app.get('/papers/1')
+        self.assert_template_used('papers/ptp.html')
+        self.assert_context("title", "Paper-to-PDF")
