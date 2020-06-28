@@ -15,16 +15,6 @@
   submitBtn.setAttribute("tabindex", tabindex++);
   resetBtn.setAttribute("tabindex", tabindex++);
 
-  resetBtn.addEventListener("click", function () {
-    courseField.value = "";
-    clientError[0].innerHTML = "";
-    if (formError.length) {
-      formError[0].innerHTML = "";
-    }
-    toggleBtn.style.left = "4px";
-    toggleContainer.style.backgroundColor = "#ccc";
-  });
-
   function isValid(course) {
     let validation = {
       isValid: true,

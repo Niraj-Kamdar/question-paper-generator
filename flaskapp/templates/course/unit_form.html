@@ -64,7 +64,7 @@
 
             <div id="submit_reset_container">
                 {{ form.submit(id="submit_btn") }}
-                <button type="reset" id="reset_btn">Cancel</button>
+                <a id="reset_btn" href="{{url_for('courses.all_units',course_id=course_id)}}">Cancel</a>
             </div>
         </div>
     </form>
