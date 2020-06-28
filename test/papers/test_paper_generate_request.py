@@ -15,17 +15,20 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
             headers={"Content-Type": "application/json"},
         )
         self.assertIn(
-            (
-                b"You should be redirected automatically to target URL: "
-                b"<a href=/course/1/papers/generate/form/ >"
-            ),
+            (b"You should be redirected automatically to target URL: "
+             b"<a href=/course/1/papers/generate/form/ >"),
             response.data,
         )
 
     def test_handle_conflicting_questions(self):
-        data = dict(
-            mcq={"ask": [1, 3], "nask": [2, 4]}, sub={"ask": [1, 3], "nask": [2, 4]}
-        )
+        data = dict(mcq={
+            "ask": [1, 3],
+            "nask": [2, 4]
+        },
+                    sub={
+                        "ask": [1, 3],
+                        "nask": [2, 4]
+                    })
         response = self.client.post(
             "/papers/handle/conflicts",
             data=json.dumps(data),
@@ -53,7 +56,9 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
             "sub": 15,
             "mcq": 15,
         }
-        response, _ = test_post_request(self, "/course/1/papers/generate/form/", data)
+        response, _ = test_post_request(self,
+                                        "/course/1/papers/generate/form/",
+                                        data)
         self.assertIn(b"<title>Mark Distribution</title>", response.data)
         response = self.client.post(
             "/course/1/papers/confirm/template/",
@@ -61,10 +66,8 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
             headers={"Content-Type": "application/json"},
         )
         self.assertIn(
-            (
-                b"You should be redirected automatically to target URL: "
-                b"<a href=/course/1/papers/generate/ >"
-            ),
+            (b"You should be redirected automatically to target URL: "
+             b"<a href=/course/1/papers/generate/ >"),
             response.data,
         )
 
@@ -91,4 +94,5 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
         self.test_mark_distribution_form()
         self.test_generate_and_confirm_paper()
         response = self.client.get("/papers/1")
-        self.assertIn(b"Answer the following Multiple choice questions", response.data)
+        self.assertIn(b"Answer the following Multiple choice questions",
+                      response.data)
