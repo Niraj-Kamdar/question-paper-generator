@@ -20,10 +20,13 @@ def save_picture(form_picture):
     Returns:
         string -- To save picture
     """
+    profile_path = os.path.join(current_app.root_path, "static",
+                                "profile_pics")
+    if not os.path.exists(profile_path):
+        os.makedirs(profile_path)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = str(current_user.id) + f_ext
-    picture_path = os.path.join(current_app.root_path, "static/profile_pics",
-                                picture_fn)
+    picture_path = os.path.join(profile_path, picture_fn)
 
     output_size = (256, 256)
     i = Image.open(form_picture)

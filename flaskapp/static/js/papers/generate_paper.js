@@ -66,6 +66,9 @@
   if (!addCheckbox.length) {
     const data = { mcq: { ask: [], nask: [] }, sub: { ask: [], nask: [] } };
     ajax(data);
+    document.getElementById(
+      "page_display"
+    ).firstElementChild.firstElementChild.innerHTML = "Paper Information";
   } else {
     conflictsButton.addEventListener("click", function () {
       const mcqAskId = qids.filter(
@@ -91,6 +94,9 @@
         },
       };
       ajax(data);
+      document.getElementById(
+        "page_display"
+      ).firstElementChild.firstElementChild.innerHTML = "Paper Information";
     });
   }
 
@@ -123,21 +129,6 @@
           validation.err.push("required field!!");
         } else {
           validation.err.push("");
-        }
-      } else {
-        if (!value) {
-          validation.isValid = false;
-          validation.err.push("required field!!");
-        } else {
-          const extension = value.substr(value.lastIndexOf(".") + 1);
-          console.log(extension);
-          const validExtensions = ["jpg", "jpeg", "png", "tiff"];
-          if (validExtensions.indexOf(extension) === -1) {
-            validation.isValid = false;
-            validation.err.push("enter valid image file");
-          } else {
-            validation.err.push("");
-          }
         }
       }
     });

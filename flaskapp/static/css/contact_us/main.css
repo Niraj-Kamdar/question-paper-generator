@@ -268,7 +268,7 @@ textarea.input100 {
   font-size: 15px;
   line-height: 1.5;
 
-  color: rgba(88, 88, 88, 1);
+  color: #585858;
 }
 
 .focus-input100 {
@@ -489,7 +489,7 @@ textarea.input100 {
 }
 
 .flashes li {
-  color: rgba(88, 88, 88, 1);
+  color: #585858;
   font-size: 25px;
   padding: 10px 15px;
 }

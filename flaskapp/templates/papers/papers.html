@@ -1,1 +1,53 @@
+{% extends "base.html" %}
 
+{% block special_top_links %}
+    <a class="top_navigation_items" href={{ url_for("courses.all_courses") }}>
+        <h4 class="py-2 mx-3">Courses</h4>
+    </a>
+{% endblock special_top_links %}
+
+{% block special_side_links %}
+    <a class="side_navigation_items" href={{ url_for("courses.all_courses") }}>Courses</a>
+{% endblock special_side_links %}
+
+{% block main %}
+   {% if papers %}
+<div id="paper_container">
+   {% for paper in papers.items %}
+   <div class="papers">
+       <div class="paper_fields">
+           Paper : {{paper.name}}
+       </div>
+       <div class="paper_fields">
+           Exam Date : {{paper.exam_date}}
+       </div>
+       <div class="paper_fields">
+           Term : {{paper.term}}
+       </div>
+       <div class="paper_fields">
+           Marks : {{paper.mark}}
+       </div>
+       <div class="links"><a href='{{url_for("papers.pdf_paper",paper_id = paper.id)}}' target="_blank">View Paper</a></div>
+   </div>
+   {% endfor %}
+</div>
+<div id="pagination">
+   {% for page_num in papers.iter_pages(left_edge=1,
+                                                right_edge=1,
+                                                left_current=1,
+                                                right_current=2) %}
+   {% if page_num %}
+    {% if papers.page == page_num %}
+    <a class="btn btn-info mb-4"
+        href="{{ url_for('papers.all_papers', page=page_num, course_id=papers.items[0].course_id) }}">{{ page_num }}</a>
+    {% else %}
+    <a class="btn btn-outline-info mb-4"
+        href="{{ url_for('papers.all_papers', page=page_num, course_id=papers.items[0].course_id) }}">{{ page_num }}</a>
+    {% endif %}
+    {% else %}
+    ...
+    {% endif %}
+   {% endfor %}
+</div>
+   {% endif %}
+{% endblock main %}

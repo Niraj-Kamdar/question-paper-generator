@@ -20,28 +20,45 @@
 {% endblock flashes %}
 
 {% block main %}
-<div class="col pt-4" id="home_content">
-    <a class="row my-3 p-3" href="#">Paper 1</a>
-    <a class="row my-3 p-3" href="#">Paper 2</a>
-    <a class="row my-3 p-3" href="#">Paper 3</a>
-    <a class="row my-3 p-3" href="#">Paper 4</a>
-    <a class="row my-3 p-3" href="#">Paper 5</a>
-    <a class="row my-3 p-3" href="#">Paper 6</a>
-    <a class="row my-3 p-3" href="#">Paper 7</a>
-    <a class="row my-3 p-3" href="#">Paper 8</a>
-    <a class="row my-3 p-3" href="#">Paper 9</a>
-    <a class="row my-3 p-3" href="#">Paper 10</a>
-    <a class="row my-3 p-3" href="#">Paper 11</a>
-    <a class="row my-3 p-3" href="#">Paper 12</a>
-    <a class="row my-3 p-3" href="#">Paper 13</a>
-    <a class="row my-3 p-3" href="#">Paper 14</a>
-    <a class="row my-3 p-3" href="#">Paper 15</a>
-    <a class="row my-3 p-3" href="#">Paper 16</a>
-    <a class="row my-3 p-3" href="#">Paper 17</a>
-    <a class="row my-3 p-3" href="#">Paper 18</a>
-    <a class="row my-3 p-3" href="#">Paper 19</a>
-    <a class="row my-3 p-3" href="#">Paper 20</a>
+   {% if papers %}
+<div id="paper_container">
+   {% for paper in papers.items %}
+   <div class="papers">
+       <div class="paper_fields">
+           Paper : {{paper.name}}
+       </div>
+       <div class="paper_fields">
+           Exam Date : {{paper.exam_date}}
+       </div>
+       <div class="paper_fields">
+           Term : {{paper.term}}
+       </div>
+       <div class="paper_fields">
+           Marks : {{paper.mark}}
+       </div>
+       <div class="links"><a href='{{url_for("papers.pdf_paper",paper_id = paper.id)}}' target="_blank">View Paper</a></div>
+   </div>
+   {% endfor %}
 </div>
+<div id="pagination">
+   {% for page_num in papers.iter_pages(left_edge=1,
+                                                right_edge=1,
+                                                left_current=1,
+                                                right_current=2) %}
+   {% if page_num %}
+    {% if papers.page == page_num %}
+    <a class="btn btn-info mb-4"
+        href="{{ url_for('papers.home',page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+    <a class="btn btn-outline-info mb-4"
+        href="{{ url_for('papers.home',page=page_num) }}">{{ page_num }}</a>
+    {% endif %}
+    {% else %}
+    ...
+    {% endif %}
+   {% endfor %}
+</div>
+   {% endif %}
 {% endblock main %}
 
 {% block sideNav %}
@@ -55,15 +72,3 @@
     </a>
 </div>
 {% endblock sideNav %}
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> upstream/develop

@@ -31,12 +31,12 @@
 
 	<div class="container-fluid p-5" style="border:1px solid green;">
 
-		{% if paper.logo %}
+		{% if paper.paper_logo %}
 		<div class="row">
 
 			<div class="col"></div>
 			<div class="col-2">
-            	<img src={{paper.logo}} class="paper_logo" alt="paper logo"/>
+            	<img src='/static/logos/{{paper.paper_logo}}' class="paper_logo" alt="paper logo"/>
             </div>
 			<div class="col"></div>
 
@@ -44,14 +44,14 @@
 		{% endif %}
 
 		<div class="row" style="display: flex;justify-content: center; font-weight: bold;">
-			<p style="margin: 0;">Subject : {{ paper.name }}</p>
+			<p style="margin: 0;">{{ paper.name }} Examination</p>
 		</div>
 		<div class="row" style="display: flex;justify-content: center; font-weight: bold;">
-			<p style="margin: 0;">{{ paper.term }} Examination</p>
+			<p style="margin: 0;">Term : {{ paper.term }}</p>
 		</div>
 		<div class="row pb-3" style="font-weight: bold; border-bottom: 2px solid black;">
 			<div class="col" style="text-align: left;"><p style="margin: 0;">Date : {{ paper.exam_date }}</p></div>
-			<div class="col" style="text-align: center;"><p style="margin: 0;">{{ paper.term }}</p></div>
+			<div class="col" style="text-align: center;"><p style="margin: 0;">Marks : {{ paper.mark }}</p></div>
 			<div class="col" style="text-align: right;"><p style="margin: 0;">Time limit : {{ paper.time_limit }}</p></div>
 		</div>
 
@@ -69,14 +69,14 @@
 
 			<h5 style="font-weight: bold; width: 100%; height: auto;">Answer the following Multiple choice questions.</h5>
 
-			<ol class="mt-4" type="1">
+			<ul class="mt-4" style="list-style-type: none">
 
 				{% for q in paper.paper_format.mcq %}
 
-					<li>
-					<ol class="mb-4" type="a">
+					<li>{{loop.index}}.
+					<ul class="mb-4" type="1" style="list-style-type: none">
 					  	{% for sub_q in paper.paper_format.mcq[q] %}
-							<li style="padding-left: 10px">{{ paper.paper_format.mcq[q][sub_q]['question'] }}  <b>[{{ paper.paper_format.mcq[q][sub_q]['mark'] }}] </b></li>
+							<li style="padding-left: 10px">({{loop.index}})  {{ paper.paper_format.mcq[q][sub_q]['question'] }}  <b>[{{ paper.paper_format.mcq[q][sub_q]['mark'] }}] </b></li>
 						<ol class="mb-4" type="A">
 							<li style="padding-left: 10px">{{ paper.paper_format.mcq[q][sub_q]['option1'] }}</li>
 							<li style="padding-left: 10px">{{ paper.paper_format.mcq[q][sub_q]['option2'] }}</li>
@@ -86,28 +86,29 @@
 
 
 						{% endfor %}
-					</ol>
-						</li>
+					</ul>
+					</li>
 
 				{% endfor %}
 
-			</ol>
+			</ul>
 
 			<h5 style="font-weight: bold; width: 100%; height: auto;">Answer the following subjective questions.</h5>
-
-			<ol class="mt-4" type="1">
+			<ul class="mt-4" style="list-style-type: none">
 
 				{% for q in paper.paper_format.sub %}
 
-					<li><ol class="mb-4" type="a">
+					<li>{{loop.index}}.
+						<ul class="mb-4" style="list-style-type: none">
 					  	{% for sub_q in paper.paper_format.sub[q] %}
-							<li style="padding-left: 10px">{{ paper.paper_format.sub[q][sub_q]['question'] }}  <b>[{{ paper.paper_format.sub[q][sub_q]['mark'] }}] </b></li>
+							<li style="padding-left: 10px">({{loop.index}})  {{ paper.paper_format.sub[q][sub_q]['question'] }}  <b>[{{ paper.paper_format.sub[q][sub_q]['mark'] }}] </b></li>
 						{% endfor %}
-					</ol></li>
+					</ul>
+					</li>
 
 				{% endfor %}
 
-			</ol>
+			</ul>
 
 		</div>
     </div>

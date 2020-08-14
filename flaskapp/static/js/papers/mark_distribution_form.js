@@ -82,7 +82,7 @@
   header.innerHTML = fieldHeader[0].innerHTML;
 
   markForm.addEventListener("submit", function (e) {
-    navigationHandler(3, false, e);
+    navigationHandler(4, false, e);
   });
 
   formParts.forEach(function (element, index) {

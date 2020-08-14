@@ -13,6 +13,7 @@ from sqlalchemy import func
 from flaskapp import APP_PATH
 from flaskapp import db
 from flaskapp import mail
+from flaskapp.models import Course
 from flaskapp.models import Question
 from flaskapp.models import Unit
 
@@ -38,6 +39,7 @@ def find_conflicting_questions(course_id, constraints):
 
 
 def find_random_question(course_id, constraints):
+    course = (db.session.query(Course).filter(Course.id == course_id)).first()
     unit = (db.session.query(Unit).filter(
         and_(Unit.chapter_no == constraints["unit"],
              Unit.course_id == course_id)).first())
@@ -47,9 +49,15 @@ def find_random_question(course_id, constraints):
         mark=constraints["mark"],
         unit_id=unit.id,
         imp=True,
+        is_asked=False,
         question_type=constraints["question_type"],
     ).order_by(func.random()).first())
     if imp_question:
+        if not course.include_asked:
+            (db.session.query(Question).filter(
+                Question.id == imp_question.id).update(
+                    dict(is_asked=True), synchronize_session="fetch"))
+            db.session.commit()
         return imp_question.to_dict()
     question = (db.session.query(Question).filter_by(
         cognitive_level=constraints["cognitive"],
@@ -60,6 +68,11 @@ def find_random_question(course_id, constraints):
         question_type=constraints["question_type"],
     ).order_by(func.random()).first())
     if question:
+        if not course.include_asked:
+            (db.session.query(Question).filter(
+                Question.id == question.id).update(
+                    dict(is_asked=True), synchronize_session="fetch"))
+            db.session.commit()
         return question.to_dict()
     raise QuestionNotFoundError()
 
@@ -73,10 +86,12 @@ def save_logo(form_picture):
     Returns:
         string -- To save picture
     """
+    logo_path = os.path.join(current_app.root_path, "static", "logos")
+    if not os.path.exists(logo_path):
+        os.makedirs(logo_path)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = secrets.token_urlsafe(10) + f_ext
-    picture_path = os.path.join(current_app.root_path, "static/logos",
-                                picture_fn)
+    picture_path = os.path.join(logo_path, picture_fn)
 
     output_size = (400, 400)
     i = Image.open(form_picture)
@@ -124,5 +139,5 @@ def email_pdf(examiner, user, paper):
 
     filename, html, css = render_paper(paper)
     pdf = html.write_pdf(stylesheets=[css])
-    msg.attach(filename, "application/pdf", pdf.read())
+    msg.attach(filename, "application/pdf", pdf)
     mail.send(msg)

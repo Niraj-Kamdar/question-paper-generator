@@ -4,7 +4,7 @@
   const formError = document.querySelectorAll(".form__error li");
   const clientError = document.getElementsByClassName("form__client_error");
   const form = document.getElementById("unit_form");
-  const resetBtn = document.getElementById("reset_btn");
+
   chapterNo.addEventListener("input", () => {
     clientError[0].innerHTML = "";
   });
@@ -13,12 +13,6 @@
     for (let err of formError) {
       err.innerHTML = "";
     }
-  });
-  resetBtn.addEventListener("click", function () {
-    chapterNo.value = "";
-    name.value = "";
-    clientError[0].innerHTML = "";
-    clientError[1].innerHTML = "";
   });
   form.addEventListener("submit", function (e) {
     let valid = {};
