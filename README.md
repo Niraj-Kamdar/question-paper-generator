@@ -7,18 +7,26 @@
 [![DeepScan grade](https://deepscan.io/api/teams/8090/projects/10244/branches/138920/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=8090&pid=10244&bid=138920)
 [![CodeFactor](https://www.codefactor.io/repository/github/niraj-kamdar/question-paper-generator/badge)](https://www.codefactor.io/repository/github/niraj-kamdar/question-paper-generator)
 
-The **Question Paper Generator** has been developed to override the problems
-prevailing in the practicing manual system.This software supported to reduce the
-hardships faced by the existing system.In this system we present a smart
-question paper generating system for universities.This application is reduced as
-much as possible to avoid errors while entering the data.
+There are many schools and colleges that take frequent exams and creating a
+perfect balanced paper for all these exams are a difficult task. Most of the
+teachers already have a long question bank for the courses he is teaching. So,
+we are providing a system where s/he can generate a random paper with
+constraints specified by him/her. We currently support four such constraints:
 
-It is made to allow professors to generate question papers with random but
-enough questions to cover most chapters of a subject with difficulty level
-(1-10) and mail them to examiner instantly. The purpose of this system is to
-automate the existing manual system by the help of computerized equipment
-,fulfilling their requirements, so that their valuable data/information can be
-stored for a longer period with easy accessing and manipulation of the same.
+1. Difficulty level (Easy, Medium, Hard)
+2. Cognitive level (Application, Knowledge, Comprehension)
+3. Unit wise mark distribution
+4. Question Type (Subjective, Objective)
+
+The system also stores all previously generated papers so that teachers can
+access it anytime. The system is designed to not repeat previously asked
+questions. The system also provides an option to email generated paper in PDF
+format to the examiner.
+
+The purpose of this system is to automate the existing manual system by the help
+of computerized equipment, fulfilling their requirements, so that their valuable
+data/information can be stored for a longer period with easy accessing and
+manipulation of the same.
 
 ## Contributors
 
@@ -45,3 +53,14 @@ stored for a longer period with easy accessing and manipulation of the same.
 
 - [Flask](http://flask.pocoo.org/) - Flask is a microframework for Python based
   on Werkzeug and Jinja 2
+- [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) -
+  Flask-SQLAlchemy is an extension for Flask that adds support for SQLAlchemy
+  ORM to your application.
+- [Weasyprint](https://weasyprint.org/) - WeasyPrint is a smart solution helping
+  web developers to create PDF documents.
+- [Heroku](https://www.heroku.com/) - Heroku is a cloud platform as a service
+  which host web app on internet.
+- [Sentry](https://sentry.io/) - Application monitoring and error tracking
+  software.
+- [Sendinblue](https://www.sendinblue.com/) - SaaS for email marketing and
+  transactional mail.

@@ -14,9 +14,9 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
             data=json.dumps(data),
             headers={"Content-Type": "application/json"},
         )
+        # Message will be platform specific so just assert target redirection URL.
         self.assertIn(
-            (b"You should be redirected automatically to target URL: "
-             b"<a href=/course/1/papers/generate/form/ >"),
+            b"/course/1/papers/generate/form/",
             response.data,
         )
 
@@ -66,8 +66,7 @@ class PaperGenerateRequest(BaseSubQuestion, BaseMCQQuestion):
             headers={"Content-Type": "application/json"},
         )
         self.assertIn(
-            (b"You should be redirected automatically to target URL: "
-             b"<a href=/course/1/papers/generate/ >"),
+            b"/course/1/papers/generate/",
             response.data,
         )
 
