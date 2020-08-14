@@ -48,3 +48,8 @@ The purpose of this system is to automate the existing manual system by the help
 
 - [Flask](http://flask.pocoo.org/) - Flask is a microframework for Python based
   on Werkzeug and Jinja 2
+- [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) -  Flask-SQLAlchemy is an extension for Flask that adds support for SQLAlchemy ORM to your application. 
+- [Weasyprint](https://weasyprint.org/) - WeasyPrint is a smart solution helping web developers to create PDF documents.
+- [Heroku](https://www.heroku.com/) - Heroku is a cloud platform as a service which host web app on internet.
+- [Sentry](https://sentry.io/) - Application monitoring and error tracking software.
+- [Sendinblue](https://www.sendinblue.com/) - SaaS for email marketing and transactional mail.
