@@ -18,9 +18,10 @@ constraints:
 3. Unit wise mark distribution 
 4. Question Type (Subjective, Objective)
 
-We also store all previously generated papers so that teacher can access it 
-anytime. We by default don't ask previously asked question. We also provide
-an option to email generated paper in PDF format to the examiner.
+The system also stores all previously generated papers so that teachers can access it anytime. The system is designed to not repeat previously asked questions. The system also provides an option to email generated paper in PDF format to the examiner.
+
+The purpose of this system is to automate the existing manual system by the help of computerized equipment, fulfilling their requirements, so that their valuable data/information can be stored for a longer period with easy accessing and manipulation of the same.
+
 
 ## Contributors
 
