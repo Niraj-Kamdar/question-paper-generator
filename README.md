@@ -64,20 +64,19 @@ manipulation of the same.
   software.
 - [Sendinblue](https://www.sendinblue.com/) - SaaS for email marketing and
   transactional mail.
-  
- ## Screenshots
-  - Home page
-   <img src="https://github.com/jeel2308/question-paper-generator/blob/develop8/screenshots/homepage.png" alt="login" width="350"/>
-   
-  - Paper generation
-   <img src="https://github.com/jeel2308/question-paper-generator/blob/develop8/screenshots/mark_for_each_unit.png" alt="unit_wise" width="350"/>
-   <img src="https://github.com/jeel2308/question-paper-generator/blob/develop8/screenshots/mark_for_difficulty.png" alt="difficulty_wise" width="350"/>
-   <img src="https://github.com/jeel2308/question-paper-generator/blob/develop8/screenshots/mark_for_skills.png" alt="skill_wise" width="350"/>
-   <img src="https://github.com/jeel2308/question-paper-generator/blob/develop8/screenshots/mark_for_subquestions.png" alt="subquestion_wise" width="350"/>
 
-  - Generated Paper
-   <img src="https://github.com/jeel2308/question-paper-generator/blob/develop8/screenshots/paper.jpg" alt="paper" width="350" />
-   
-  - [Click here to watch demo](https://www.youtube.com/watch?v=L1AUgybPBLA&t=20s)
-   
-  
+## Screenshots
+
+- Home page
+  <img src="https://github.com/jeel2308/question-paper-generator/blob/develop8/screenshots/homepage.png" alt="login" width="350"/>
+
+- Paper generation
+  <img src="https://github.com/jeel2308/question-paper-generator/blob/develop8/screenshots/mark_for_each_unit.png" alt="unit_wise" width="350"/>
+  <img src="https://github.com/jeel2308/question-paper-generator/blob/develop8/screenshots/mark_for_difficulty.png" alt="difficulty_wise" width="350"/>
+  <img src="https://github.com/jeel2308/question-paper-generator/blob/develop8/screenshots/mark_for_skills.png" alt="skill_wise" width="350"/>
+  <img src="https://github.com/jeel2308/question-paper-generator/blob/develop8/screenshots/mark_for_subquestions.png" alt="subquestion_wise" width="350"/>
+
+- Generated Paper
+  <img src="https://github.com/jeel2308/question-paper-generator/blob/develop8/screenshots/paper.jpg" alt="paper" width="350" />
+
+- [Click here to watch demo](https://www.youtube.com/watch?v=L1AUgybPBLA&t=20s)
