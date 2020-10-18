@@ -10,8 +10,8 @@ class CourseTestCase(BaseUser):
         BaseUser.setUp(self)
         self.login()
         # adding new course
-        new_course = dict(course="maths")
-        _, course = test_post_request(self, "/course/new", new_course,
+        course = dict(course="maths")
+        _, course = test_post_request(self, "/course/new", course,
                                       models.Course, 1)
         # Checking repr method
         self.assertEqual(str(course), "Course(maths)")
@@ -24,10 +24,10 @@ class CourseTestCase(BaseUser):
         self.assertEqual(str(course), "Course(science)")
 
         # Delete course
-        delete_list = [1, 2]
+        delete = [1, 2]
         self.client.post(
             "/course/delete/",
-            data=json.dumps(delete_list),
+            data=json.dumps(delete),
             headers={"Content-Type": "application/json"},
         )
         c1 = self.db.session.query(models.Course).get(1)
