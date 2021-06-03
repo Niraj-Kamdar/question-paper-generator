@@ -67,18 +67,5 @@ manipulation of the same.
 - [Jinja Templates](https://jinja.palletsprojects.com/en/2.11.x/) - templating
   language used with flask for frontend.
 
-## Screenshots
-
-- Home page
-  <kbd><img src="https://github.com/jeel2308/question-paper-generator/blob/develop/screenshots/homepage.png" alt="login" width="350"/></kbd>
-
-- Paper generation
-  <kbd><img src="https://github.com/jeel2308/question-paper-generator/blob/develop/screenshots/mark_for_each_unit.png" alt="unit_wise" width="350"/></kbd>
-  <kbd><img src="https://github.com/jeel2308/question-paper-generator/blob/develop/screenshots/mark_for_difficulty.png" alt="difficulty_wise" width="350"/></kbd>
-  <kbd><img src="https://github.com/jeel2308/question-paper-generator/blob/develop/screenshots/mark_for_skills.png" alt="skill_wise" width="350"/></kbd>
-  <kbd><img src="https://github.com/jeel2308/question-paper-generator/blob/develop/screenshots/mark_for_subquestions.png" alt="subquestion_wise" width="350"/></kbd>
-
-- Generated Paper
-  <kbd><img src="https://github.com/jeel2308/question-paper-generator/blob/develop/screenshots/paper.jpg" alt="paper" width="350" /></kbd>
 
 - [Click here to watch demo](https://www.youtube.com/watch?v=L1AUgybPBLA&t=20s)
