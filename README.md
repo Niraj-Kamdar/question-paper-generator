@@ -67,5 +67,4 @@ manipulation of the same.
 - [Jinja Templates](https://jinja.palletsprojects.com/en/2.11.x/) - templating
   language used with flask for frontend.
 
-
 - [Click here to watch demo](https://www.youtube.com/watch?v=L1AUgybPBLA&t=20s)
